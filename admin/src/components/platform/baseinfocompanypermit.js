@@ -1,0 +1,73 @@
+import React from 'react';
+import {
+    Datagrid,
+    DateField,
+    Edit,
+    DisabledInput,
+    EditButton,
+    Filter,
+    FormTab,
+    List,
+    NumberInput,
+    ReferenceInput,
+    ReferenceManyField,
+    RichTextField,
+    SelectInput,
+    TabbedForm,
+    TextField,
+    TextInput,
+    SimpleShowLayout,
+    Show,
+    SimpleForm
+} from 'admin-on-rest/lib/mui';
+import Chip from 'material-ui/Chip';
+import RichTextEditorInput from '../controls/richtoolbar.js';
+
+import ShowPageOne from '../controls/singlelistpage.js';
+import ShowPage from '../controls/ShowPage.js';
+import EditPage from '../controls/EditPage.js';
+import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+
+
+const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</span>;
+const BaseInfoCompanyPermitShow = (props) => (
+       <ShowPage title={<BaseInfoCompanyPermitTitle />} {...props}>
+           <SimpleShowLayout>
+           <TextField label="公司标识"  source="Companyld" />
+           <TextField label="行政区划代码"  source="Address" />
+           <TextField label="网络预约出租汽车经营许可证号"  source="Certificate" />
+           <TextField label="经营区域"  source="OperationArea" />
+           <TextField label="公司名称"  source="OwnerName" />
+           <TextField label="发证机构名称"  source="Organization" />
+           <TextField label="有效期起"  source="StartDate" />
+           <TextField label="有效期止"  source="StopDate" />
+           <TextField label="初次发证日期"  source="CertifyDate" />
+           <TextField label="状态"  source="State" />
+           <TextField label="数据更新时间"  source="UpdateTime" />
+           </SimpleShowLayout>
+       </ShowPage>
+);
+
+export {BaseInfoCompanyPermitShow};
+export const BaseInfoCompanyPermitList = props => (
+    <ShowPageOne resource={props.resource} location={props.location} ShowPage={BaseInfoCompanyPermitShow}  hasEdit={true}/>
+);
+
+
+export const BaseInfoCompanyPermitEdit = (props) => (
+    <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
+        <SimpleForm>
+            <DisabledInputEx  label="公司名称" source="CompanyName" />
+            <TextInputEx label="行政区划代码"  source="Address" />
+            <TextInputEx label="网络预约出租汽车经营许可证号"  source="Certificate" />
+            <TextInputEx label="经营区域"  source="OperationArea" />
+            <TextInputEx label="公司名称"  source="OwnerName" />
+            <TextInputEx label="发证机构名称"  source="Organization" />
+            <TextInputEx label="有效期起"  source="StartDate" />
+            <TextInputEx label="有效期止"  source="StopDate" />
+            <TextInputEx label="初次发证日期"  source="CertifyDate" />
+            <DisabledInputEx label="状态"  source="State" />
+            <DisabledInputEx label="数据更新时间"  source="UpdateTime" />
+        </SimpleForm>
+    </EditPage>
+);
