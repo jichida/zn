@@ -14,7 +14,7 @@ export const getcurrentlocationfn = (fncallback)=> {
                 fncallback(locationsz);
             })
         }catch(e){
-            alert(e.message);
+            alert(JSON.stringify(e));
             fncallback(locationsz);
         }
     },0);

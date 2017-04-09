@@ -21,9 +21,9 @@ export class Page extends React.Component {
   componentWillReceiveProps (nextProps) {
       const {curmappagerequest} = nextProps;
       if(curmappagerequest.requeststatus === "已取消"){
-          let triporderid = nextProps.curmappageorder._id;
-          nextProps.history.goBack();//replace(`/orderdetail/${triporderid}`);
-          window.setTimeout(()=>{
+          //let triporderid = nextProps.curmappageorder._id;
+         window.setTimeout(()=>{
+              nextProps.history.goBack();//replace(`/orderdetail/${triporderid}`);
               nextProps.dispatch(carmap_resetmap());
           },0);
       }
@@ -58,16 +58,13 @@ export class Page extends React.Component {
      else if(this.props.mapstage === '开始行程'){
       //更新请求状态（送到乘客目的地）
       //重定向到订单页面！
-        this.props.dispatch(carmap_setmapstage('行程完成'));
         this.props.dispatch(updaterequeststatus({
             triprequestid:currentrequest._id,
             triporderid:this.props.curmappageorder._id,
             requeststatus: "行程完成",
         })).then((result)=>{
-            //重置map!
-            this.props.history.replace(`/orderdetail/${result.triporder._id}`);
-            //
             window.setTimeout(()=>{
+                this.props.history.replace(`/orderdetail/${result.triporder._id}`);
                 this.props.dispatch(carmap_resetmap());
             },0);
 

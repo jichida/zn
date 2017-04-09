@@ -2,14 +2,15 @@ import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Admin, Resource } from 'admin-on-rest';
 import { Delete } from 'admin-on-rest/lib/mui';
-
-import './App.css';
-
-import authClient from './authClient';
-import sagas from './sagas';
 import themeReducer from './themeReducer';
+import authClient from './authClient';
+
+import logo from './logo.svg';
+import './App.css';
+import sagas from './sagas';
 import Login from './Login';
 import Layout from './Layout';
+import Menu from './Menu';
 //import { Dashboard } from './dashboard';
 import CustomRoutes from './routes';
 import translations from './i18n';
@@ -91,6 +92,7 @@ class App extends Component {
                 authClient={authClient}
                 loginPage={Login}
                 appLayout={Layout}
+                menu={Menu}
                 locale="cn"
                 messages={translations}
             >

@@ -1,213 +1,264 @@
 import React, { PropTypes } from 'react';
 import { translate } from 'admin-on-rest';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import SettingsIcon from 'material-ui/svg-icons/action/settings';
-import ContentDrafts from 'material-ui/svg-icons/action/settings';
-import IcCloudUpload from 'material-ui/svg-icons/action/accessibility';
-import BasicInfoCompany from 'material-ui/svg-icons/action/accessible';
+
+
+import PlatformbaseinfoIcon from 'material-ui/svg-icons/action/perm-data-setting';//平台基本信息
+import BaseinfocompanyIcon from 'material-ui/svg-icons/action/settings-input-antenna';//平台基本信息
+import BaseinfocompanystatIcon from 'material-ui/svg-icons/av/equalizer';//平台统计信息
+import BaseinfocompanypayIcon from 'material-ui/svg-icons/action/payment';//平台支付机构信息
+import BaseinfocompanyserviceIcon from 'material-ui/svg-icons/action/account-balance';//平台服务机构信息
+import BaseinfocompanypermitIcon from 'material-ui/svg-icons/action/verified-user';//平台经营许可信息
+import BaseinfocompanyfareIcon from 'material-ui/svg-icons/maps/local-atm';//运价信息
+import BaseinfovehicleIcon from 'material-ui/svg-icons/maps/directions-car';//车辆信息
+import BaseinfovehiclelnsuranceIcon from 'material-ui/svg-icons/hardware/security';//保险信息
+import BaseinfovehicletotalmileIcon from 'material-ui/svg-icons/action/donut-large';//车辆里程信息
+import BaseinfodriverIcon  from 'material-ui/svg-icons/action/assignment-ind';//司机基本信息
+import BaseinfodrivereducateIcon  from 'material-ui/svg-icons/maps/directions-car';//司机教育信息
+import BaseinfodriverappIcon  from 'material-ui/svg-icons/navigation/apps';//app信息
+import BaseinfodriverstatIcon  from 'material-ui/svg-icons/editor/pie-chart';//司机统计信息
+import BaseinfopassengerIcon  from 'material-ui/svg-icons/action/accessibility';//乘客基本信息
+
+import PlatformorderIcon from 'material-ui/svg-icons/action/shopping-cart';//订单信息
+import OrdercreateIcon from 'material-ui/svg-icons/action/note-add';//订单新建
+import OrdermatchIcon from 'material-ui/svg-icons/action/done';//订单匹配
+import OrdercancelIcon from 'material-ui/svg-icons/navigation/cancel';//订单取消
+
+import PlatformoperateIcon from 'material-ui/svg-icons/action/motorcycle';//经营信息
+import OperateloginIcon from 'material-ui/svg-icons/action/check-circle';//经营上线
+import OperatelogoutIcon from 'material-ui/svg-icons/action/exit-to-app';//经营下线
+import OperatedepartIcon from 'material-ui/svg-icons/action/flight-takeoff';//经营出发
+import OperatearriveIcon from 'material-ui/svg-icons/action/flight-land';//经营到达
+import OperatepayIcon from 'material-ui/svg-icons/action/credit-card';//经营支付
+
+import PlatformpositionIcon from 'material-ui/svg-icons/communication/location-on';//位置
+import PositiondriverIcon from 'material-ui/svg-icons/maps/person-pin';
+import PositionvehicleIcon from 'material-ui/svg-icons/maps/edit-location';
+
+import PlatformratedIcon from 'material-ui/svg-icons/action/face';//服务质量
+import RatedpassengerIcon from 'material-ui/svg-icons/action/favorite';//乘客评价
+import RatedpassengercomplaintIcon from 'material-ui/svg-icons/action/perm-phone-msg';//投诉
+import RateddriverpunishIcon from 'material-ui/svg-icons/action/thumb-down';//惩罚信息
+import RateddriverIcon from 'material-ui/svg-icons/action/favorite-border';//司机评价
+
+import SysinfoIcon from 'material-ui/svg-icons/action/build';//系统设置
+import SystemconfigIcon from 'material-ui/svg-icons/action/settings-brightness';//系统设置
+import NotifymessageIcon from 'material-ui/svg-icons/communication/chat';//系统消息
+import FaretypeIcon from 'material-ui/svg-icons/editor/monetization-on';//运价类型
+import PriceIcon from 'material-ui/svg-icons/editor/attach-money';//价格信息
+import AboutIcon from 'material-ui/svg-icons/action/info';//关于信息
+import BuscarpoolIcon from 'material-ui/svg-icons/social/people-outline';//拼车信息
+import TourbusinfoIcon from 'material-ui/svg-icons/maps/directions-bus';//旅游大巴信息
+import CouponIcon from 'material-ui/svg-icons/action/card-giftcard';//优惠券信息
+import OrderIcon from 'material-ui/svg-icons/action/euro-symbol';//订单信息
+import TriprequestIcon from 'material-ui/svg-icons/action/pan-tool';//请求信息
+
+import UsermgrIcon from 'material-ui/svg-icons/social/people-outline';//用户管理
+import UserdriverIcon from 'material-ui/svg-icons/action/account-box';//司机信息
+import UserriderIcon from 'material-ui/svg-icons/action/account-circle';//乘客信息
+
 export default [
   {
     'name':'platformbaseinfo',
-    'icon': <IcCloudUpload />,
+    'icon': <PlatformbaseinfoIcon />,
     'children': [
       {
         'name':'baseinfocompany',
-        'icon': <BasicInfoCompany />,
+        'icon': <BaseinfocompanyIcon />,
       },
       {
         'name':'baseinfocompanystat',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfocompanystatIcon />,
       },
       {
         'name':'baseinfocompanypay',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfocompanypayIcon />,
       },
       {
         'name':'baseinfocompanyservice',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfocompanyserviceIcon />,
       },
       {
         'name':'baseinfocompanypermit',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfocompanypermitIcon />,
       },
       {
         'name':'baseinfocompanyfare',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfocompanyfareIcon />,
       },
       {
         'name':'baseinfovehicle',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfovehicleIcon />,
       },
       {
         'name':'baseinfovehiclelnsurance',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfovehiclelnsuranceIcon />,
       },
       {
         'name':'baseinfovehicletotalmile',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfovehicletotalmileIcon />,
       },
       {
         'name':'baseinfodriver',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfodriverIcon />,
       },
       {
         'name':'baseinfodrivereducate',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfodrivereducateIcon />,
       },
       {
         'name':'baseinfodriverapp',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfodriverappIcon />,
       },
       {
         'name':'baseinfodriverstat',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfodriverstatIcon />,
       },
       {
         'name':'baseinfopassenger',
-        'icon': <SettingsIcon />,
+        'icon': <BaseinfopassengerIcon />,
       },
     ]
   },
   {
     'name':'platformorder',
-    'icon': <ContentDrafts />,
+    'icon': <PlatformorderIcon />,
     'children': [
       {
         'name':'ordercreate',
-        'icon': <SettingsIcon />,
+        'icon': <OrdercreateIcon />,
       },
       {
         'name':'ordermatch',
-        'icon': <SettingsIcon />,
+        'icon': <OrdermatchIcon />,
       },
       {
         'name':'ordercancel',
-        'icon': <SettingsIcon />,
+        'icon': <OrdercancelIcon />,
       }
     ]
   },
   {
     'name':'platformoperate',
-    'icon': <ContentDrafts />,
+    'icon': <PlatformoperateIcon />,
     'children': [
       {
         'name':'operatelogin',
-        'icon': <SettingsIcon />,
+        'icon': <OperateloginIcon />,
       },
       {
         'name':'operatelogout',
-        'icon': <SettingsIcon />,
+        'icon': <OperatelogoutIcon />,
       },
       {
         'name':'operatedepart',
-        'icon': <SettingsIcon />,
+        'icon': <OperatedepartIcon />,
       },
       {
         'name':'operatearrive',
-        'icon': <SettingsIcon />,
+        'icon': <OperatearriveIcon />,
       },
       {
         'name':'operatepay',
-        'icon': <SettingsIcon />,
+        'icon': <OperatepayIcon />,
       },
     ]
   },
   {
     'name':'platformposition',
-    'icon': <ContentDrafts />,
+    'icon': <PlatformpositionIcon />,
     'children': [
       {
         'name':'positiondriver',
-        'icon': <SettingsIcon />,
+        'icon': <PositiondriverIcon />,
       },
       {
         'name':'positionvehicle',
-        'icon': <SettingsIcon />,
+        'icon': <PositionvehicleIcon />,
       },
     ]
   },
   {
     'name':'platformrated',
-    'icon': <ContentDrafts />,
+    'icon': <PlatformratedIcon />,
     'children': [
       {
         'name':'ratedpassenger',
-        'icon': <SettingsIcon />,
+        'icon': <RatedpassengerIcon />,
       },
       {
         'name':'ratedpassengercomplaint',
-        'icon': <SettingsIcon />,
+        'icon': <RatedpassengercomplaintIcon />,
       },
       ,
       {
         'name':'rateddriverpunish',
-        'icon': <SettingsIcon />,
+        'icon': <RateddriverpunishIcon />,
       },
       ,
       {
         'name':'rateddriver',
-        'icon': <SettingsIcon />,
+        'icon': <RateddriverIcon />,
       },
     ]
   },
   {
     'name':'sysinfo',
-    'icon': <ContentDrafts />,
+    'icon': <SysinfoIcon />,
     'children': [
       {
         'name':'systemconfig',
-        'icon': <SettingsIcon />,
+        'icon': <SystemconfigIcon />,
       },
       {
         'name':'notifymessage',
-        'icon': <SettingsIcon />,
+        'icon': <NotifymessageIcon />,
       },
       {
         'name':'faretype',
-        'icon': <SettingsIcon />,
+        'icon': <FaretypeIcon />,
       },
       {
         'name':'price',
-        'icon': <SettingsIcon />,
+        'icon': <PriceIcon />,
       },
       {
         'name':'about',
-        'icon': <SettingsIcon />,
+        'icon': <AboutIcon />,
       },
       {
         'name':'buscarpool',
-        'icon': <SettingsIcon />,
+        'icon': <BuscarpoolIcon />,
       },
       {
         'name':'tourbusinfo',
-        'icon': <SettingsIcon />,
+        'icon': <TourbusinfoIcon />,
       },
       {
         'name':'coupon',
-        'icon': <SettingsIcon />,
+        'icon': <CouponIcon />,
       },
       {
         'name':'order',
-        'icon': <SettingsIcon />,
+        'icon': <OrderIcon />,
       },
       {
         'name':'triprequest',
-        'icon': <SettingsIcon />,
+        'icon': <TriprequestIcon />,
       }
 
     ]
   },
   {
     'name':'usermgr',
-    'icon': <ContentDrafts />,
+    'icon': <UsermgrIcon />,
     'children': [
       {
         'name':'userdriver',
-        'icon': <SettingsIcon />,
+        'icon': <UserdriverIcon />,
       },
       {
         'name':'userrider',
-        'icon': <SettingsIcon />,
+        'icon': <UserriderIcon />,
       }
     ]
   },

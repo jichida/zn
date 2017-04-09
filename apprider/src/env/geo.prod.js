@@ -14,7 +14,7 @@ export const getcurrentlocationfn = (fncallback)=> {
                 fncallback(locationsz);
             })
         }catch(e){
-            alert(e.message);
+            alert('获取地理位置失败:'+JSON.stringify(e));
             fncallback(locationsz);
         }
     },0);
