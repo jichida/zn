@@ -39,22 +39,19 @@ import '../../public/css/page.css';
 import {requireAuthentication} from './requireauthentication';
 
 
-
- class AppRoot extends React.Component {
-    onDismiss=()=>{
+class MessageCo extends React.Component {
+    onDismiss = ()=> {
         this.props.dispatch(hidepopmessage());
     }
-    componentWillMount () {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.ispop && !this.props.ispop) {
+            window.setTimeout(()=> {
+                this.props.dispatch(hidepopmessage());
+            }, 3000);
+        }
     }
-     componentWillReceiveProps (nextProps) {
-         if(nextProps.ispop && !this.props.ispop){
-             window.setTimeout(()=>{
-                 this.props.dispatch(hidepopmessage());
-             },3000);
-         }
-     }
 
-    render() {
+     render() {
         let fullheight = {
             height: window.innerHeight + "px"
         };
@@ -94,7 +91,19 @@ import {requireAuthentication} from './requireauthentication';
                 );
             }
         }
-        return (<div>{MessageCo}
+        return MessageCo;
+     }
+}
+const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
+    return {ispop,type,title,msg};
+}
+MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
+
+ class AppRoot extends React.Component {
+
+    render() {
+        
+        return (<div> <MessageCo />
             <Switch>
                 <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
                 <Route path="/index/:keyname" component={App}/>
@@ -111,17 +120,11 @@ import {requireAuthentication} from './requireauthentication';
                 <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>            
                 <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                 <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
-
                 <Route component={App}/>
             </Switch>
         </div>);
     }
 
 }
-
-const mapStateToProps = ({app}) => {
-    return {...app};
-}
-AppRoot = connect(mapStateToProps)(AppRoot);
 
 export default AppRoot;

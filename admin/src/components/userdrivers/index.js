@@ -6,20 +6,19 @@ import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
 
-
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
-import {TimePickerInput} from './controls/timepicker.js';
+import {TimePickerInput} from '../controls/timepicker.js';
 
-const UserriderlistTitle = ({ record }) => {
-   return <span>显示 乘客</span>;
+const UserdriverlistTitle = ({ record }) => {
+   return <span>显示 司机</span>;
 };
 
-const UserriderlistShow = (props) => (
-       <Show title={<UserriderlistTitle />} {...props}>
+const UserdriverlistShow = (props) => (
+       <Show title={<UserdriverlistTitle />} {...props}>
            <SimpleShowLayout>
                <TextField source="id" />
                <TextField label="手机号" source="username" />
@@ -28,13 +27,15 @@ const UserriderlistShow = (props) => (
                <TextField label="昵称" source="profile.nickname" />
                <TextField label="生日" source="profile.birthday" />
                <TextField label="性别" source="profile.sex" />
+               <TextField label="车辆类型" source="profile.carname" />
+               <TextField label="车牌号" source="profile.carid" />
            </SimpleShowLayout>
        </Show>
 );
 
 
 
-const UserriderlistList = (props) => (//
+const UserdriverlistList = (props) => (//
      <List title="司机列表" {...props} >
         <Datagrid>
         <TextField label="手机号" source="username" />
@@ -43,10 +44,12 @@ const UserriderlistList = (props) => (//
         <TextField label="昵称" source="profile.nickname" />
         <TextField label="生日" source="profile.birthday" />
         <TextField label="性别" source="profile.sex" />
+        <TextField label="车辆类型" source="profile.carname" />
+        <TextField label="车牌号" source="profile.carid" />
         <ShowButton />
         </Datagrid>
     </List>
 );
 
 
-export  {UserriderlistList,UserriderlistShow};
+export  {UserdriverlistList,UserdriverlistShow};

@@ -15,13 +15,6 @@ import Menu from './Menu';
 import CustomRoutes from './routes';
 import translations from './i18n';
 
-// import { VisitorList, VisitorEdit, VisitorDelete, VisitorIcon } from './visitors';
-// import { CommandList, CommandEdit, CommandIcon } from './commands';
-// import { ProductList, ProductEdit, ProductIcon } from './products';
-// import { CategoryList, CategoryEdit, CategoryIcon } from './categories';
-// import { ReviewList, ReviewEdit, ReviewIcon } from './reviews';
-//import restClient from './util/rest.js';
-
 import {PricelistList,PricelistCreate,PricelistEdit,PricelistShow} from './components/carprices/index.js';
 import {AboutlistList,AboutlistEdit,AboutlistShow} from './components/abouts/index.js';
 import {BuscarpoolList,BuscarpoolCreate,BuscarpoolEdit,BuscarpoolShow} from './components/pinche/index';
@@ -73,13 +66,6 @@ import  {FaretypelistList,FaretypelistCreate,FaretypelistEdit,FaretypelistShow} 
 import {NotifyMessagelistList,NotifyMessagelistCreate,NotifyMessagelistEdit,NotifyMessagelistShow} from './components/notifymessage/index.js';
 
 class App extends Component {
-    componentWillMount() {
-        //this.restoreFetch = fakeRestServer();
-    }
-
-    componentWillUnmount() {
-        //this.restoreFetch();
-    }
 
     render() {
         return (

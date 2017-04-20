@@ -36,59 +36,71 @@ import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '..
 import {requireAuthentication} from './requireauthentication';
 
 
- class AppRoot extends React.Component {
-    onDismiss=()=>{
+class MessageCo extends React.Component {
+    onDismiss = ()=> {
         this.props.dispatch(hidepopmessage());
     }
-
-    componentWillReceiveProps (nextProps) {
-        if(nextProps.ispop && !this.props.ispop){
-            window.setTimeout(()=>{
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.ispop && !this.props.ispop) {
+            window.setTimeout(()=> {
                 this.props.dispatch(hidepopmessage());
-            },3000);
+            }, 3000);
         }
     }
-    render() {
+
+     render() {
         let fullheight = {
             height: window.innerHeight + "px"
-        };
+        }
         let MessageCo = null;
         if (this.props.ispop) {
             if (this.props.type === 'error') {
-                MessageCo = (
+               MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
+                        <Message 
                                  error
                                  header={this.props.title}
                                  content={this.props.msg}
-                        />
+                            />
                     </div>
                 );
             }
             else if (this.props.type === 'warning') {
-                MessageCo = (
+                 MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
+                        <Message 
                                  warning
                                  header={this.props.title}
                                  content={this.props.msg}
-                        />
+                            />
                     </div>
                 );
             }
             else if (this.props.type === 'success') {
-                MessageCo = (
+                 MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
+                        <Message 
                                  success
                                  header={this.props.title}
                                  content={this.props.msg}
-                        />
+                            />
                     </div>
                 );
             }
         }
-        return (<div>{MessageCo}
+        return MessageCo;
+     }
+}
+const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
+    return {ispop,type,title,msg};
+}
+MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
+
+ class AppRoot extends React.Component {
+  
+    render() {
+        
+        return (<div><MessageCo />
             <Switch>
                 <Route exact path="/" component={()=>(<Redirect to="/index/all"/>)}/>
                 <Route path="/index/:keyname" component={App}/>
@@ -109,9 +121,5 @@ import {requireAuthentication} from './requireauthentication';
 
 }
 
-const mapStateToProps = ({app,carmap}) => {
-    return {...app};
-}
-AppRoot = connect(mapStateToProps)(AppRoot);
 
 export default AppRoot;

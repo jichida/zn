@@ -41,14 +41,26 @@ let getallmenus = (valuesel, translate,onMenuTap)=>{
    }
    let menuitemsco =[];
    allmenus.map((item)=> {
-     let title = translate(`resources.topmenuitem.${item.name}`);
-      menuitemsco.push(<MenuItem
-        primaryText={title}
-        key={item.name}
-        leftIcon={item.icon}
-        rightIcon={<ArrowDropRight />}
-        menuItems={getChildItems(item,translate,onMenuTap)}
-      />);
+     let title = translate(`resources.topmenuitem.${item.name}`, { smart_count: 2 });
+     if(item.children){
+        menuitemsco.push(<MenuItem
+            primaryText={title}
+            key={item.name}
+            leftIcon={item.icon}
+            rightIcon={<ArrowDropRight />}
+            menuItems={getChildItems(item,translate,onMenuTap)}
+        />);
+     }
+     else{
+          let link = `/${item.name}`;
+            menuitemsco.push(<MenuItem
+            primaryText={title}
+            key={item.name}
+            leftIcon={item.icon}
+            onTouchTap={onMenuTap}
+            containerElement={<Link to={link} />}
+        />);
+     }
    });
    return menuitemsco;
 }
