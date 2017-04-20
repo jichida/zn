@@ -9,8 +9,14 @@ export default (type, params) => {
                 }
                 return response.data;
             })
-            .then(({ token }) => {
-                localStorage.setItem('admintoken', token);
+            .then(({ loginsuccess,token }) => {
+                console.log(`loginsuccess:${loginsuccess},token:${token}`);
+                if(loginsuccess){
+                    localStorage.setItem('admintoken', token);
+                }
+                else{
+                    localStorage.removeItem('admintoken');
+                }
             });
     }
     if (type === AUTH_LOGOUT) {

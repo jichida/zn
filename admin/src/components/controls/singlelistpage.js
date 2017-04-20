@@ -13,10 +13,10 @@ import {white, cyan500} from 'material-ui/styles/colors';
 //import 'material-design-icons/iconfont/material-icons.css';
 import FontIcon from 'material-ui/FontIcon';
 
-
+import { push } from 'react-router-redux';
 import { CreateButton,NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,BooleanField } from 'admin-on-rest/lib/mui';
-
+//import { CreateButton } from 'admin-on-rest/lib/mui/button';
 
 import CircularProgress from 'material-ui/CircularProgress';
 class Page extends Component {
@@ -25,40 +25,20 @@ class Page extends Component {
       this.props.crudGetList(this.props.resource);
     }
     componentWillReceiveProps (nextProps) {
+      if(nextProps.ids.length > 0){
+          let id = nextProps.ids[0];
+          let basePath = nextProps.location.pathname;
+          let pathname=`${basePath}/${encodeURIComponent(id)}/show`;
+          console.log("enter--->" + pathname);
+          nextProps.redirecturl(pathname);
+          //nextProps.dispatch(pushAction(pathname));
+      }
 
     }
     render() {
-        if(this.props.ids.length > 0){
-          let id = this.props.ids[0];
+        if(this.props.ids.length === 0){
           let basePath = this.props.location.pathname;
-          let pathname=`${basePath}/${encodeURIComponent(id)}/show`;
-          // console.log("isobj:" + this.props.ShowPage);
-          // console.log("isobj:" + typeof(this.props.ShowPage));
-        //  return (<div>?</div>);
-          const ShowPage = this.props.ShowPage({
-              ...this.props,
-              location:{pathname:pathname},
-              params:{id:id},
-              hasEdit:this.props.hasEdit
-            });
-          return (<div>{ShowPage}</div>);
-          // const ShowPage = this.props.ShowPage;
-          // return (<ShowPage  {...this.props}
-          //     location={{pathname:pathname}}
-          //     params={{id:id}}
-          //     hasEdit={true}
-          //   />);
-          // return  (<div>{this.props.ShowPage &&
-          //   cloneElement(this.props.ShowPage,{
-          //     ...this.props,
-          //     location:{pathname:pathname},
-          //     params:{id:id},
-          //     hasEdit:true
-          //   }
-          //   )
-          //   }
-          // </div>);
-          //return <SystemconfigShow {...this.props} location={{pathname:pathname}} params={{id:id}} hasEdit={true}/>
+          return (<CreateButton basePath={basePath} />)
         }
         return <CircularProgress size={60} thickness={7} />;
     }
@@ -67,6 +47,7 @@ class Page extends Component {
 
 const mapStateToProps = (state,props) => {
   const resourceState = state.admin[props.resource];
+  console.log('resourceState===>' + JSON.stringify(resourceState));
   let page = {
     ids: resourceState.list.ids,
   };
@@ -82,6 +63,9 @@ const mapDispatchToProps = (dispatch) => {
         payload: {},
         meta: { resource, fetch: 'GET_LIST', cancelPrevious: true },
       });
+    },
+    redirecturl:(url)=>{
+      dispatch(push(url));
     }
   };
 }

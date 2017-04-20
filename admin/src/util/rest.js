@@ -13,6 +13,8 @@
  * CREATE       => POST http://my.api.url/posts/123
  * DELETE       => DELETE http://my.api.url/posts/123
  */
+
+// https://marmelab.com/admin-on-rest//RestClients.html#json-server-rest
 export default (apiUrl, httpClient = fetchJson) => {
 
    console.log("rest apiUrl:" + JSON.stringify(apiUrl));
@@ -51,27 +53,42 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Object} REST response
      */
     const convertHTTPResponseToREST = (response, type, resource, params) => {
+        let data = [];
         const { json } = response;
         switch (type) {
         case GET_LIST:
-            let data = [];
+        case GET_MANY_REFERENCE:
             json.docs.forEach((obj)=>{
               obj.id = obj._id;
               delete obj._id;
               data.push(obj);
             });
-            //console.log("json data:" + JSON.stringify(data));
+            console.log("GET_LIST|json data:" + JSON.stringify( {
+                data: data,
+                total: json.total,
+            }));
             return {
                 data: data,
                 total: json.total,
             };
+        case UPDATE:
         case GET_ONE:
+        case CREATE:
+        case DELETE:
             json.id = json._id;
             delete json._id;
-            return json;
-        case CREATE:
-            return { ...params.data, id: json.id };
+            console.log("UPDATE| json data:" + JSON.stringify( {data:json}));
+            return {data:json};
+        case GET_MANY:
+            json.forEach((obj)=>{
+              obj.id = obj._id;
+              delete obj._id;
+              data.push(obj);
+            });
+            console.log("GET_MANY json data:" + JSON.stringify({data}));
+            return {data};
         default:
+            console.log("default json data:" + JSON.stringify(json));
             return json;
         }
     };
