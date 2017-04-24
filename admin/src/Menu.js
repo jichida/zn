@@ -41,7 +41,7 @@ let getallmenus = (valuesel, translate,onMenuTap)=>{
    }
    let menuitemsco =[];
    allmenus.map((item)=> {
-     let title = translate(`resources.topmenuitem.${item.name}`, { smart_count: 2 });
+     let title = translate(`resources.${item.name}.name`, { smart_count: 2 });
      if(item.children){
         menuitemsco.push(<MenuItem
             primaryText={title}
@@ -69,16 +69,15 @@ const Menu = ({ onMenuTap, translate, logout }) => (
     <div style={styles.main}>
         <DashboardMenuItem onTouchTap={onMenuTap} />
         {getallmenus('baseinfocompany', translate,onMenuTap)}
-        <MenuItem
+        {logout}
+    </div>
+);
+        /*<MenuItem
             containerElement={<Link to="/configuration" />}
             primaryText={translate('pos.configuration')}
             leftIcon={<SettingsIcon />}
             onTouchTap={onMenuTap}
-        />
-        {logout}
-    </div>
-);
-
+        />*/
 const enhance = compose(
     connect(state => ({
         theme: state.theme,

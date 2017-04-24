@@ -9,15 +9,28 @@ export default {
     },
   },
   resources: {
-    topmenuitem:{
-      platformbaseinfo:'基本信息维护',
-      platformorder:'平台订单',
-      platformoperate:'经营信息',
-      platformposition:'定位信息',
-      platformrated:'服务质量',
-      sysinfo:'系统功能',
-      usermgr:'用户管理',
-    },
+    
+      platformbaseinfo:{
+         name: '基本信息维护|||| 基本信息维护',
+      },
+      platformorder:{
+        name: '平台订单|||| 平台订单',
+      },
+      platformoperate:{
+       name: '经营信息|||| 经营信息',
+      },
+      platformposition:{
+       name: '定位信息|||| 定位信息',
+      },
+      platformrated:{
+        name: '服务质量|||| 服务质量',
+      },
+      sysinfo:{
+       name: '系统功能|||| 系统功能',
+      },
+      usermgr:{
+        name: '用户管理|||| 用户管理',
+      },
     baseinfocompany:{
       name: '基本信息 |||| 基本信息',
       showpagename:'显示基本信息',

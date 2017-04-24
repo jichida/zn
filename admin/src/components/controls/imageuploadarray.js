@@ -95,7 +95,7 @@ class PicturesWall extends React.Component {
   }//this.setState({ fileList })
 
   render() {
- 
+    const {label} = this.props;
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
@@ -122,12 +122,16 @@ class PicturesWall extends React.Component {
   }
 }
 
-const ImageInputUploadArray = ({source}) => {
+const ImageInputUploadArray = ({source,label}) => {
   return(
     <span>
-      <Field name={source} component={PicturesWall} />
+      <Field name={source} component={PicturesWall}  label={label}/>
     </span>
 )
 }
+
+ImageInputUploadArray.defaultProps = {
+    addLabel: true,
+};
 
 export  {ImageInputUploadArray};

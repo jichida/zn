@@ -49,6 +49,7 @@ const renderImageupload= (props) => {
 
     }
   let imageUrl = input.value;
+  const {label} = props;
   return (
     <Upload
        className="avatar-uploader"
@@ -71,12 +72,15 @@ const renderImageupload= (props) => {
 
 }
 
-const ImageInputUpload = ({source}) => {
+const ImageInputUpload = ({source,label}) => {
   return(
     <span>
-      <Field name={source} component={renderImageupload} />
+      <Field name={source} component={renderImageupload} label={label} />
     </span>
 )
 }
 
+ImageInputUpload.defaultProps = {
+    addLabel: true,
+};
 export  {ImageInputUpload};
