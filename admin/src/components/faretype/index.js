@@ -65,10 +65,9 @@ const FaretypelistShow = (props) => (
 const FaretypelistList = (props) => (//
      <List title="运价类型列表" {...props} >
         <Datagrid>
-        <TextField source="id" />
         <ChipField  label="注册类型" source="registertype" />
         <TextField label="运价说明" source="faretypenote" />
-        <ShowButton />
+        <EditButton />
         </Datagrid>
     </List>
 );

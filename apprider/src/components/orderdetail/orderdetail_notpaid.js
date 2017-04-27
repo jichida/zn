@@ -37,13 +37,13 @@ export class Page extends React.Component {
        leftNav: [{...itemLeft, icon: 'left-nav'}],
        onAction: this.onClickBack.bind(this)
      };
-
+     const {orderinfo}  = this.props;
      let OrderPayDetail = null;
-     if(this.props.hasOwnProperty('orderinfo')){
-         if(this.props.orderinfo.triptype === '拼车'){
+     if(orderinfo){
+         if(orderinfo.triptype === '拼车'){
            OrderPayDetail = <OrderDetailPinche {...this.props} />;
          }
-         else if(this.props.orderinfo.triptype  === '旅游大巴'){
+         else if(orderinfo.triptype  === '旅游大巴'){
            OrderPayDetail = <OrderDetailTourbus {...this.props} />;
          }
          else {
@@ -53,6 +53,18 @@ export class Page extends React.Component {
       else{
         OrderPayDetail = <div>无效订单</div>;
       }
+
+    let paystatus = orderinfo.paystatus || '未支付';
+    let realprice = orderinfo.orderprice;
+    if(orderinfo.triptype === '旅游大巴' || orderinfo.triptype === '代驾'){
+      if(paystatus === '未支付'){
+        realprice = orderinfo.frontmoney;
+      }
+      else{
+        realprice = orderinfo.orderprice - orderinfo.frontmoney;
+      }
+    }
+
      return (
         <View>
           <NavBar {...dataLeft}/>
@@ -64,7 +76,7 @@ export class Page extends React.Component {
 
         </Container>
 		      <nav className="tabbar tabbar-primary padding-0">
-         <button onClick={this.onClickPay.bind(this)} className="btn btn-primary btn-block">确认支付40.0元</button>
+         <button onClick={this.onClickPay.bind(this)} className="btn btn-primary btn-block">确认支付{realprice}元</button>
          </nav>
         </View>
     );

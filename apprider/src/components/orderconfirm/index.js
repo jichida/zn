@@ -49,6 +49,7 @@ export class Page extends React.Component {
                 endcity:this.props.endcity,//关联拼车信息
                 orderprice:this.props.orderprice,
                 relatedid:this.props._id,
+                frontmoney:0
             };
         }
         else if(this.props.match.params.clickfrom === 'tourbus'){
@@ -59,6 +60,7 @@ export class Page extends React.Component {
                 enddate:this.props.enddate,//出发日期
                 orderdetail:this.props.orderdetail,
                 orderprice:this.props.orderprice,
+                frontmoney:this.props.frontmoney
             };
         }
         else{

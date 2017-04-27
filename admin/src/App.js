@@ -16,16 +16,16 @@ import CustomRoutes from './routes';
 import translations from './i18n';
 
 import {PricelistList,PricelistCreate,PricelistEdit,PricelistShow} from './components/carprices/index.js';
-import {AboutlistList,AboutlistEdit,AboutlistShow} from './components/abouts/index.js';
+import {AboutlistList,AboutlistEdit,AboutlistCreate} from './components/abouts/index.js';
 import {BuscarpoolList,BuscarpoolCreate,BuscarpoolEdit,BuscarpoolShow} from './components/pinche/index';
 import {TourbusinfolistList,TourbusinfolistCreate,TourbusinfolistEdit,TourbusinfolistShow} from './components/tourbusinfos/index.js';
 import {SystemconfigList,SystemconfigShow,SystemconfigEdit} from './components/systemconfig/index.js';
 
-import {CouponlistList,CouponlistCreate,CouponlistEdit,CouponlistShow} from './components/coupons';
-import {OrderlistList,OrderlistShow} from './components/orders';
-import {TriprequestlistList,TriprequestlistShow} from './components/triprequest';
-import {UserriderlistList,UserriderlistShow} from './components/userriders';
-import {UserdriverlistList,UserdriverlistShow} from './components/userdrivers';
+import {CouponlistList,CouponlistCreate,CouponlistEdit,CouponlistShow} from './components/coupons/index.js';
+import {OrderlistList,OrderlistShow} from './components/orders/index.js';
+import {TriprequestlistList,TriprequestlistShow} from './components/triprequest/index.js';
+import {UserriderlistList,UserriderlistShow} from './components/userriders/index.js';
+import {UserdriverlistList,UserdriverlistShow} from './components/userdrivers/index.js';
 
 import restClient from './restClient';
 //import fakeRestServer from './restServer';
@@ -65,6 +65,10 @@ import  {FaretypelistList,FaretypelistCreate,FaretypelistEdit,FaretypelistShow} 
 
 import {NotifyMessagelistList,NotifyMessagelistCreate,NotifyMessagelistEdit,NotifyMessagelistShow} from './components/notifymessage/index.js';
 
+import {CarbrandlistList,CarbrandlistEdit,CarbrandlistCreate} from './components/carbrand';
+import {CarcolorlistList,CarcolorlistEdit,CarcolorlistCreate} from './components/carcolor';
+import {CarmodellistList,CarmodellistEdit,CarmodellistCreate} from './components/carmodel';
+
 class App extends Component {
 
     render() {
@@ -82,6 +86,10 @@ class App extends Component {
                 locale="cn"
                 messages={translations}
             >
+            <Resource name="carbrand" list={CarbrandlistList}  edit={CarbrandlistEdit} create={CarbrandlistCreate} remove={Delete} />
+            <Resource name="carcolor" list={CarcolorlistList}  edit={CarcolorlistEdit} create={CarcolorlistCreate} remove={Delete} />
+            <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
+
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} />
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}
                           show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
@@ -120,29 +128,19 @@ class App extends Component {
             <Resource name="ratedpassenger" list={RatedPassengerList} show={RatedPassengerShow} />
             <Resource name="ratedpassengercomplaint" list={RatedPassengerComplaintList} show={RatedPassengerComplaintShow} />
 
-            <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} remove={Delete} />
+            <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} />
             <Resource name="notifymessage" list={NotifyMessagelistList} create={NotifyMessagelistCreate} edit={NotifyMessagelistEdit} show={NotifyMessagelistShow} remove={Delete} />
 
-            <Resource name="systemconfig" list={SystemconfigList}
-                   show={SystemconfigShow} edit={SystemconfigEdit} />
-            <Resource name="price" list={PricelistList}
-               create={PricelistCreate} edit={PricelistEdit} show={PricelistShow} remove={Delete} />
-            <Resource name="about" list={AboutlistList}
-               edit={AboutlistEdit} show={AboutlistShow}/>
-            <Resource name="buscarpool" list={BuscarpoolList}
-               create={BuscarpoolCreate} edit={BuscarpoolEdit} show={BuscarpoolShow} remove={Delete} />
-            <Resource name="tourbusinfo" list={TourbusinfolistList}
-                create={TourbusinfolistCreate} edit={TourbusinfolistEdit} show={TourbusinfolistShow} remove={Delete} />
-            <Resource name="coupon" list={CouponlistList}
-                create={CouponlistCreate} edit={CouponlistEdit} show={CouponlistShow} remove={Delete} />
-            <Resource name="order" list={OrderlistList}
-              show={OrderlistShow} />
-            <Resource name="triprequest" list={TriprequestlistList}
-               show={TriprequestlistShow} />
-            <Resource name="userdriver" list={UserdriverlistList}
-                  show={UserdriverlistShow} />
-            <Resource name="userrider" list={UserriderlistList}
-                   show={UserriderlistShow} />
+            <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit} />
+            <Resource name="price" list={PricelistList} create={PricelistCreate} edit={PricelistEdit} show={PricelistShow} remove={Delete} />
+            <Resource name="about" list={AboutlistList}  edit={AboutlistEdit} create={AboutlistCreate} remove={Delete} />
+            <Resource name="buscarpool" list={BuscarpoolList} create={BuscarpoolCreate} edit={BuscarpoolEdit} show={BuscarpoolShow} remove={Delete} />
+            <Resource name="tourbusinfo" list={TourbusinfolistList} create={TourbusinfolistCreate} edit={TourbusinfolistEdit} show={TourbusinfolistShow} remove={Delete} />
+            <Resource name="coupon" list={CouponlistList} create={CouponlistCreate} edit={CouponlistEdit} show={CouponlistShow} remove={Delete} />
+            <Resource name="order" list={OrderlistList} show={OrderlistShow} />
+            <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
+            <Resource name="userdriver" list={UserdriverlistList} show={UserdriverlistShow} />
+            <Resource name="userrider" list={UserriderlistList} show={UserriderlistShow} />
             </Admin>
         );
     }

@@ -65,7 +65,7 @@ const TourbusinfolistShow = (props) => (
                <TextField label="名字" source="name" />
                <TextField label="描述"  source="desc" />
                <TextField label="座位"  source="seatnumber" />
-               <TextField label="图标URL"  source="icon" />
+               <ImageField label="图标URL"  source="icon" />
                <TextField label="价格/天" source="priceperday" />
                <BooleanField label="是否启用" source="isenabled" />
            </SimpleShowLayout>
@@ -86,7 +86,6 @@ const TourbusinfolistList = (props) => (//
         <TextField label="价格/天" source="priceperday" />
         <BooleanField label="是否启用" source="isenabled" />
         <EditButton />
-        <ShowButton />
         </Datagrid>
     </List>
 );

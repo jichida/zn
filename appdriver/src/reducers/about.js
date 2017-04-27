@@ -3,15 +3,15 @@ import { getabouthtml_result } from '../actions';
 
 const initial = {
   about: {
-    'userguide':{
+    'driveruserguide':{
       title:'用户指南',
       desc:'乘客端用户指南'
     },
-    'feerules':{
+    'driverfeerules':{
       title:'计费规则',
       desc:'乘客端计费规则'
     },
-    'raws':{
+    'driverlaws':{
       title:'法律条款',
       desc:'乘客端法律条款'
     }

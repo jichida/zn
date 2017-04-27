@@ -209,10 +209,10 @@ const carmap = createReducer({
         let {mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress,enableddrawmapflag} = state;
         let autozoomenabled = true;
         if((enableddrawmapflag & ISENABLEDDRAW_MARKERSELF) > 0){
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEEDRAW_MARKERSTART;
+            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEDDRAW_POPWITHSTART;
         }
         else{
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEEDRAW_MARKERSTART;
+            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_POPWITHSTART;
         }
         mapcenterlocation = markerstartlatlng;
         return {...initial.carmap,mapcenterlocation,triptype,curlocation,markerstartlatlng,
@@ -222,10 +222,10 @@ const carmap = createReducer({
         //被行程完成 和 取消叫车后调用,路线不显示,store恢复初始化
         let {mapcenterlocation,enableddrawmapflag,triptype,curlocation,markerstartlatlng,srcaddress,zoomlevel} = state;
         if((enableddrawmapflag & ISENABLEDDRAW_MARKERSELF) > 0){
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEEDRAW_MARKERSTART;
+            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEDDRAW_POPWITHSTART;
         }
         else{
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEEDRAW_MARKERSTART;
+            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_POPWITHSTART;
         }
         mapcenterlocation = markerstartlatlng;
         return {...initial.carmap,mapcenterlocation,enableddrawmapflag,triptype,curlocation,markerstartlatlng,
@@ -247,8 +247,23 @@ const carmap = createReducer({
         return { ...state, markerstartlatlng };
     },
     [carmap_setdragging]:(state,dragging)=>{
+        let enableddrawmapflag = state.enableddrawmapflag;
+        let enableddrawmapflagbeforedragging = state.enableddrawmapflagbeforedragging;
+        if(dragging){//拖动时隐藏
+            if(!state.dragging){
+                enableddrawmapflagbeforedragging = enableddrawmapflag;
+            }
+            enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHSTART;
+            enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
+        }
+        else{
+            if(state.dragging){
+                enableddrawmapflag = enableddrawmapflagbeforedragging;
+                enableddrawmapflagbeforedragging = 0;
+            }
+        }
         //判断是否正在拖动
-        return { ...state, dragging};
+        return { ...state, dragging,enableddrawmapflag,enableddrawmapflagbeforedragging};
     },
     [carmap_setzoomlevel]:(state,zoomlevel)=>{
         //改变地图缩放等级

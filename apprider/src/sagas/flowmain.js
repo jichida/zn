@@ -35,6 +35,7 @@ import {
     fillprofile_request,
     notify_socket_connected,
     updateorder_comment_request,
+    
 
 } from '../actions';
 import {driveroute_request} from '../actions';
@@ -50,6 +51,7 @@ let sendmsgwhenreconnect =(socket)=>{
     }
     socket.emit('apprider',{cmd:'gethotcity',data:{}});
     socket.emit('apprider',{cmd:'gettourbus',data:{}});
+    socket.emit('apprider',{cmd:'getsystemconfig',data:{}});
 
 
     store.dispatch(notify_socket_connected(true));

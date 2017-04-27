@@ -46,7 +46,7 @@ const BaseInfoCompanyShow = (props) => (
            <TextField label="法人代表电话"  source="LegalPhone" />
            <Titlewithimage label="法人代表" icon="LegalPhotoURL" name="LegalName" addLabel={true}/>
            <TextField label="状态"  source="State" />
-           <TextField label="数据更新时间"  source="UpdateTime" />
+           <DateField label="数据更新时间" source="UpdateTime" showTime />
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -60,10 +60,10 @@ export const BaseInfoCompanyList = props => (
 export const BaseInfoCompanyEdit = (props) => (
     <EditPage {...props} title='resources.baseinfocompany.editpagename'>
         <SimpleForm>
-            <DisabledInputEx  label="公司标识" source="Companyld" />
+            <TextInputEx  label="公司标识" source="Companyld" />
             <TextInputEx  label="公司名称" source="CompanyName" />
             <TextInputEx  label="统一社会信用代码" source="Identifier" />
-            <SelectInput  label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
+            <SelectInput elStyle={{width:'100%'}} label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
               { id:110000, name: '北京市' },
               { id:120000, name: '天津市' },
               { id:130000, name: '河北省' },
@@ -105,7 +105,7 @@ export const BaseInfoCompanyEdit = (props) => (
             <TextInputEx label="法人代表电话"  source="LegalPhone" />
             <ImageInputUpload label="法人代表电话法人代表身份证扫描号"  source="LegalPhotoURL" />
             <DisabledInputEx label="状态"  source="State" />
-            <DisabledInputEx label="数据更新时间"  source="UpdateTime" />
+            <DateField label="数据更新时间" source="UpdateTime" showTime />
         </SimpleForm>
     </EditPage>
 );

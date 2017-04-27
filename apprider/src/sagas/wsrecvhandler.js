@@ -5,8 +5,10 @@ import {
     getabouthtml_result,
 
     login_result, login_err,
-    getoftenuseaddress_result, getoftenuseaddress_err,
-    setoftenuseaddress_result, setoftenuseaddress_err,
+    getoftenuseaddress_result, 
+    getoftenuseaddress_err,
+    setoftenuseaddress_result, 
+    setoftenuseaddress_err,
 
     getbuscarpoolcitylist_result,
     getbuscarpool_result,
@@ -22,6 +24,8 @@ import {
     canceltriprequestorder_result,
     insertorder_result,
     insertorder_err,
+
+    wait_updateorder_result,
     updateorder_result,
     getprice_result,
     driveroute_result,
@@ -33,23 +37,33 @@ import {
     fillprofile_result,
     logout_result,
     updateorder_comment_result,
-    
-} from '../actions';
+    getsystemconfig_result,
 
-import {wait_canceltriprequestorder_result,wait_starttriprequestorder_result,wait_insertorder_result} from '../actions';
-import {wait_getpaysign_result,getpaysign_result,getpaysign_err} from '../actions';
-import {
-  serverpush_triprequest,
-  serverpush_triporder,
-  serverpush_triprequestandorder,
-  serverpush_driverlocation,
-  serverpush_orderprice,
-  serverpush_restoreorder
+
+    wait_canceltriprequestorder_result,
+    wait_starttriprequestorder_result,
+    wait_insertorder_result,
+
+    wait_getpaysign_result,
+    getpaysign_result,
+    getpaysign_err,
+
+    serverpush_triprequest,
+    serverpush_triporder,
+    serverpush_triprequestandorder,
+    serverpush_driverlocation,
+    serverpush_orderprice,
+    serverpush_restoreorder
 } from '../actions';
 
 
 
 const handlerlist = {
+  ['getsystemconfig_result']: (socket, emit)=> {
+    return ((payload) => {
+      emit(getsystemconfig_result(payload));
+    });
+  },
   ['updateorder_comment_result']: (socket, emit)=> {
     return ((payload) => {
       emit(triporder_updateone(payload));
@@ -220,6 +234,7 @@ const handlerlist = {
   ['updateorder_result']:(socket,emit)=>{
     return (result)=>{
       emit(triporder_updateone(result.triporder));
+      emit(wait_updateorder_result({result:result}));
     }
   },
   ['insertorder_err']:(socket,emit)=>{

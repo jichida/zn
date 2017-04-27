@@ -44,13 +44,13 @@ import {logout_request} from '../actions';
                 <div className="group group-no-padded">
           <div className="group-body">
 		  <ul className="list">
-              <li  onClick={this.onClickPage.bind(this,'/about/userguide')} className="item item-linked"><a><div className="item-media"><span className="icon icon-gz"></span></div>
+              <li  onClick={this.onClickPage.bind(this,'/about/driveruserguide')} className="item item-linked"><a><div className="item-media"><span className="icon icon-gz"></span></div>
                 <div className="item-main"><h3 className="item-title">用户指南</h3>
                 <span className="icon icon-right-nav item-icon"></span></div></a></li>
-              <li  onClick={this.onClickPage.bind(this,'/about/feerules')}  className="item item-linked"><a><div className="item-media"><span className="icon icon-jfgz"></span></div>
+              <li  onClick={this.onClickPage.bind(this,'/about/driverfeerules')}  className="item item-linked"><a><div className="item-media"><span className="icon icon-jfgz"></span></div>
                 <div className="item-main"><h3 className="item-title">计费规则</h3>
                 <span className="icon icon-right-nav item-icon"></span></div></a></li>
-                <li onClick={this.onClickPage.bind(this,'/about/raws')}   className="item item-linked"><a><div className="item-media"><span className="icon icon-flfg"></span></div>
+                <li onClick={this.onClickPage.bind(this,'/about/driverlaws')}   className="item item-linked"><a><div className="item-media"><span className="icon icon-flfg"></span></div>
                 <div className="item-main"><h3 className="item-title">法律条款</h3>
                 <span className="icon icon-right-nav item-icon"></span></div></a></li>
             </ul>

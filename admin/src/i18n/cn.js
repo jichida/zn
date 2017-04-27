@@ -9,12 +9,32 @@ export default {
     },
   },
   resources: {
-    
+      carinfo: {
+          name: '车辆管理 |||| 车辆管理',
+      },
+      carbrand: {
+          name: '车辆品牌 |||| 车辆品牌',
+      },
+      carmodel: {
+          name: '车辆型号 |||| 车辆型号',
+          fields:{
+            carbrandid:'选择品牌'
+          }
+      },
+      carcolor: {
+          name: '车辆颜色 |||| 车辆型号',
+      },
+      settingbaseinfo:{
+         name: '基础信息设置|||| 基础信息设置',
+      },
       platformbaseinfo:{
-         name: '基本信息维护|||| 基本信息维护',
+         name: '平台基本信息维护|||| 平台基本信息维护',
       },
       platformorder:{
         name: '平台订单|||| 平台订单',
+      },
+      platformrun:{
+        name: '平台运行信息|||| 平台运行信息',
       },
       platformoperate:{
        name: '经营信息|||| 经营信息',
@@ -53,6 +73,9 @@ export default {
       tabs:{
         tab0:'基本信息',
         tab1:'高级信息'
+      },
+      fields:{
+        FareType:'类型'
       }
     },
     baseinfovehicle:{
@@ -160,6 +183,10 @@ export default {
         tabs: {
             basicinfo: '基本信息',
             citystation: '城市站点',
+        },
+        notification:{
+          copyrecord_success: '拷贝记录成功',
+          copyrecord_error: '拷贝记录失败',
         },
     },
     tourbusinfo: {

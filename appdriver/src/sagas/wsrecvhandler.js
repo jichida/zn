@@ -33,7 +33,15 @@ import {
     serverpush_driverlocation,
     serverpush_orderprice,
     serverpush_restoreorder,
-    updateorder_comment_result
+    updateorder_comment_result,
+
+    carcreate_result,
+    cardelete_result,
+    cargetall_result,
+    carupdate_result,
+    cargetallbrands_result,
+    cargetallmodelfrombrandid_result,
+    cargetallcolors_result
 } from '../actions';
 import {serverpush_triprequest,serverpush_triporder,serverpush_triprequestandorder} from '../actions';
 
@@ -42,6 +50,42 @@ import {wait_starttriprequestorder_result} from '../actions';
 
 
 const handlerlist = {
+   ['carcreate_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(carcreate_result(payload));
+      });
+    },
+    ['cardelete_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(cardelete_result(payload));
+      });
+    },
+    ['cargetall_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(cargetall_result(payload));
+      });
+    },
+    ['carupdate_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(carupdate_result(payload));
+      });
+    },
+    ['cargetallbrands_result']: (socket, emit)=> {
+        return ((payload) => {
+          emit(cargetallbrands_result(payload));
+        });
+      },
+    ['cargetallmodelfrombrandid_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(cargetallmodelfrombrandid_result(payload));
+      });
+    },
+    ['cargetallcolors_result']: (socket, emit)=> {
+      return ((payload) => {
+        emit(cargetallcolors_result(payload));
+      });
+    },
+
   ['updateorder_comment_result']: (socket, emit)=> {
     return ((payload) => {
       emit(triporder_updateone(payload));

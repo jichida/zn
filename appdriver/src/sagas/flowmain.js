@@ -33,6 +33,14 @@ import {
     notify_socket_connected,
     logout_request,logout_result,
     updateorder_comment_request,
+
+    carcreate_request,
+    cardelete_request,
+    cargetall_request,
+    carupdate_request,
+    cargetallbrands_request,
+    cargetallmodelfrombrandid_request,
+    cargetallcolors_request
 } from '../actions';
 import store from '../env/store.js';
 
@@ -115,7 +123,12 @@ function* handleIOWithAuth(socket) {
             'updaterequeststatus':`${updaterequeststatus_request}`,
             'canceltriprequestorder':`${canceltriprequestorder_request}`,
             'getmytriporders':`${getmytriporders_request}`,
-            'updateorder_comment':`${updateorder_comment_request}`
+            'updateorder_comment':`${updateorder_comment_request}`,
+
+            'carcreate':`${carcreate_request}`,
+            'cardelete':`${cardelete_request}`,
+            'cargetall':`${cargetall_request}`,
+            'carupdate':`${carupdate_request}`,
         };
 
         for (var cmd in fnsz) {
@@ -154,6 +167,11 @@ function* handleIO(socket) {
         'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
         'operatelogin':`${operatelogin}`,
         'operatelogout':`${operatelogout}`,
+
+        'cargetallbrands':`${cargetallbrands_request}`,
+        'cargetallmodelfrombrandid':`${cargetallmodelfrombrandid_request}`,
+        'cargetallcolors':`${cargetallcolors_request}`,
+ 
     };
 
     for (var cmd in fnsz) {

@@ -32,6 +32,9 @@ export const insertorder_err = createAction('insertorder_err');
 
 export const updateorder_request = createAction('updateorder_request');
 export const updateorder_result = createAction('updateorder_result');
+export const wait_updateorder_request= createAction('wait_updateorder_request');
+export const wait_updateorder_result= createAction('wait_updateorder_result');
+
 
 //订单确认页面，传递数据
 export const orderconfirm_settourbus = createAction('orderconfirm_settourbus');

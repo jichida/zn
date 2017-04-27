@@ -3,7 +3,8 @@ import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
+import { ReferenceField,
+    NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
 
 
@@ -22,10 +23,14 @@ const TriprequestlistShow = (props) => (
        <Show title={<TriprequestlistTitle />} {...props}>
            <SimpleShowLayout>
                <TextField source="id" />
-               <TextField label="乘客信息" source="rideruserid" />
-               <TextField label="司机信息" source="driveruserId" />
+                <ReferenceField label="乘客" source="rideruserid" reference="userrider" addLabel={true}>
+                    <TextField source="username" />
+                </ReferenceField>
+                <ReferenceField label="司机" source="driveruserid" reference="userdriver" addLabel={true} allowEmpty>
+                    <TextField source="username" />
+                </ReferenceField>
                <TextField label="行程类型"  source="triptype" />
-               <TextField label="生成时间"  source="created_at" />
+               <DateField label="生成时间"  source="created_at" />
                <TextField label="状态"  source="requeststatus" />
                <TextField label="行程开始时间" source="showtimestring" />
                <TextField label="起始地" source="srcaddress.addressname" />
@@ -39,10 +44,13 @@ const TriprequestlistShow = (props) => (
 const TriprequestlistList = (props) => (//
      <List title="行程列表" {...props} >
         <Datagrid>
-        <TextField label="乘客信息" source="rideruserid" />
-        <TextField label="司机信息" source="driveruserId" />
+        <ReferenceField label="乘客" source="rideruserid" reference="userrider" addLabel={false}>
+             <TextField source="username" />
+        </ReferenceField>
+         <ReferenceField label="司机" source="driveruserid" reference="userdriver" addLabel={false} allowEmpty>
+             <TextField source="username" />
+        </ReferenceField>
         <TextField label="行程类型"  source="triptype" />
-        <TextField label="生成时间"  source="created_at" />
         <TextField label="状态"  source="requeststatus" />
         <TextField label="行程开始时间" source="showtimestring" />
         <TextField label="起始地" source="srcaddress.addressname" />

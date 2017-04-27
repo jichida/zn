@@ -4,9 +4,10 @@ import {
     canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
     getpaysign_request,wait_getpaysign_request,wait_getpaysign_result,
     insertorder_request,wait_insertorder_request,wait_insertorder_result,
+    updateorder_request,wait_updateorder_request,wait_updateorder_result
 } from '../actions/index.js';
 
-import { fork, take, call, put, cancel,race } from 'redux-saga/effects';
+import { fork, take, call, put, cancel,race ,takeLatest} from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
 
@@ -16,29 +17,6 @@ let synccall=(payload,waitfn,fn)=>{
       dispatch(waitfn({resolve,reject,payload}));
       dispatch(fn({...payload}));
     });
-  }
-}
-
-
-function* createflow(fnwaitreq,fnwatres){
-  while (true) {
-    let {payload:{resolve,reject}} = yield take(fnwaitreq);
-    const { response, timeout } = yield race({
-       response: take(fnwatres),
-       timeout: call(delay, config.requesttimeout)
-    });
-    if(timeout){
-      reject('请求超时!');
-    }
-    else{
-      let {payload:{err,result}} = response;
-      if (err) {
-        reject(err);
-      }
-      else{
-        resolve(result);
-      }
-    }
   }
 }
 
@@ -59,22 +37,43 @@ export function getpaysign(payload){
 export function insertorder(payload){
   return synccall(payload,wait_insertorder_request,insertorder_request);
 }
+
+export function updateorder(payload){
+  return synccall(payload,wait_updateorder_request,updateorder_request);
+}
+
 //2.
-
+function* createflowsz(fnwatres,action){
+    let {payload:{resolve,reject,payload:data}} = action;
+    console.log('createflowsz==>payload:' +JSON.stringify(data));
+    const { response, timeout } = yield race({
+       response: take(fnwatres),
+       timeout: call(delay, config.requesttimeout)
+    });
+    if(timeout){
+      reject('请求超时!');
+    }
+    else{
+      let {payload:{err,result}} = response;
+      if (err) {
+        reject(err);
+      }
+      else{
+        resolve(result);
+      }
+    }
+}
 //以下导出放在saga中
-export function* starttriprequestorderflow(){
-  return yield createflow(`${wait_starttriprequestorder_request}`,`${wait_starttriprequestorder_result}`);
-}
+export function* createsagacallbackflow(){
+  let waitfnsz = [];
+  waitfnsz.push([`${wait_starttriprequestorder_request}`,`${wait_starttriprequestorder_result}`]);
+  waitfnsz.push([`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`]);
+  waitfnsz.push([`${wait_getpaysign_request}`,`${wait_getpaysign_result}`]);
+  waitfnsz.push([`${wait_insertorder_request}`,`${wait_insertorder_result}`]);
+  waitfnsz.push([`${wait_updateorder_request}`,`${wait_updateorder_result}`]);
 
-export function* canceltriprequestorderflow(){
-  return yield createflow(`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`);
-}
+  for(let fnsz of waitfnsz){
+     yield takeLatest(fnsz[0],createflowsz, fnsz[1]);
+  }
 
-export function* getpaysignflow(){
-  return yield createflow(`${wait_getpaysign_request}`,`${wait_getpaysign_result}`);
 }
-
-export function* insertorderflow(){
-  return yield createflow(`${wait_insertorder_request}`,`${wait_insertorder_result}`);
-}
-

@@ -38,6 +38,7 @@ const OrderToPayDetail = (props) => {
                 <div className="group-body">
                     <div className="padding text-center">
                         <p><b className="fize28 text-primary">订单金额：{props.orderprice}</b>元</p>
+                        <p><b className="fize28 text-primary">预付定金：{props.frontmoney}</b>元</p>
                     </div>
                 </div>
             </div>

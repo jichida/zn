@@ -57,6 +57,81 @@ import UserdriverIcon from 'material-ui/svg-icons/action/account-box';//司机�
 import UserriderIcon from 'material-ui/svg-icons/action/account-circle';//乘客信息
 
 export default [
+   {
+        'name':'notifymessage',
+        'icon': <NotifymessageIcon />,
+      },
+      {
+        'name':'buscarpool',
+        'icon': <BuscarpoolIcon />,
+      },
+      {
+        'name':'order',
+        'icon': <OrderIcon />,
+      },
+      {
+        'name':'triprequest',
+        'icon': <TriprequestIcon />,
+      }
+   ,
+  {
+    'name':'usermgr',
+    'icon': <UsermgrIcon />,
+    'children': [
+      {
+        'name':'userdriver',
+        'icon': <UserdriverIcon />,
+      },
+      {
+        'name':'userrider',
+        'icon': <UserriderIcon />,
+      }
+    ]
+  },
+  {
+    'name':'carinfo',
+    'icon': <UsermgrIcon />,
+    'children': [
+      {
+        'name':'carbrand',
+        'icon': <UserdriverIcon />,
+      },
+      {
+        'name':'carmodel',
+        'icon': <UserriderIcon />,
+      },
+      {
+        'name':'carcolor',
+        'icon': <UserriderIcon />,
+      }
+    ]
+  },
+  {
+     'name':'settingbaseinfo',
+    'icon': <PlatformbaseinfoIcon />,
+    'children': [
+      {
+        'name':'tourbusinfo',
+        'icon': <TourbusinfoIcon />,
+      },
+      {
+        'name':'systemconfig',
+        'icon': <SystemconfigIcon />,
+      },
+      {
+        'name':'faretype',
+        'icon': <FaretypeIcon />,
+      },
+      {
+        'name':'about',
+        'icon': <AboutIcon />,
+      },
+      {
+        'name':'coupon',
+        'icon': <CouponIcon />,
+      },
+      ]
+  },
   {
     'name':'platformbaseinfo',
     'icon': <PlatformbaseinfoIcon />,
@@ -120,7 +195,7 @@ export default [
     ]
   },
   {
-    'name':'platformorder',
+    'name':'platformrun',
     'icon': <PlatformorderIcon />,
     'children': [
       {
@@ -134,13 +209,7 @@ export default [
       {
         'name':'ordercancel',
         'icon': <OrdercancelIcon />,
-      }
-    ]
-  },
-  {
-    'name':'platformoperate',
-    'icon': <PlatformoperateIcon />,
-    'children': [
+      }, 
       {
         'name':'operatelogin',
         'icon': <OperateloginIcon />,
@@ -161,12 +230,6 @@ export default [
         'name':'operatepay',
         'icon': <OperatepayIcon />,
       },
-    ]
-  },
-  {
-    'name':'platformposition',
-    'icon': <PlatformpositionIcon />,
-    'children': [
       {
         'name':'positiondriver',
         'icon': <PositiondriverIcon />,
@@ -175,12 +238,6 @@ export default [
         'name':'positionvehicle',
         'icon': <PositionvehicleIcon />,
       },
-    ]
-  },
-  {
-    'name':'platformrated',
-    'icon': <PlatformratedIcon />,
-    'children': [
       {
         'name':'ratedpassenger',
         'icon': <RatedpassengerIcon />,
@@ -201,66 +258,7 @@ export default [
       },
     ]
   },
-  {
-    'name':'sysinfo',
-    'icon': <SysinfoIcon />,
-    'children': [
-      {
-        'name':'systemconfig',
-        'icon': <SystemconfigIcon />,
-      },
-      {
-        'name':'notifymessage',
-        'icon': <NotifymessageIcon />,
-      },
-      {
-        'name':'faretype',
-        'icon': <FaretypeIcon />,
-      },
-      {
-        'name':'price',
-        'icon': <PriceIcon />,
-      },
-      {
-        'name':'about',
-        'icon': <AboutIcon />,
-      },
-      {
-        'name':'buscarpool',
-        'icon': <BuscarpoolIcon />,
-      },
-      {
-        'name':'tourbusinfo',
-        'icon': <TourbusinfoIcon />,
-      },
-      {
-        'name':'coupon',
-        'icon': <CouponIcon />,
-      },
-      {
-        'name':'order',
-        'icon': <OrderIcon />,
-      },
-      {
-        'name':'triprequest',
-        'icon': <TriprequestIcon />,
-      }
 
-    ]
-  },
-  {
-    'name':'usermgr',
-    'icon': <UsermgrIcon />,
-    'children': [
-      {
-        'name':'userdriver',
-        'icon': <UserdriverIcon />,
-      },
-      {
-        'name':'userrider',
-        'icon': <UserriderIcon />,
-      }
-    ]
-  },
+     
 
 ];

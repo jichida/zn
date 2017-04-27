@@ -9,6 +9,8 @@ export * from './oftenuseaddress';
 export * from './operate';
 export * from './orders';
 export * from './userlogin';
+export * from './car';
+
 //
 // //查询城市列表
 // export const getbuscarpoolcitylist_request = createAction('getbuscarpoolcitylist_request');

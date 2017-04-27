@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Datagrid,
     DateField,
+    DateInput,
     Edit,
     DisabledInput,
     EditButton,
@@ -44,9 +45,9 @@ const BaseInfoCompanyServiceShow = (props) => (
            <TextField label="管理人联系电话"  source="ManagerPhone" />
            <TextField label="服务机构紧急联系电话"  source="ContactPhone" />
            <TextField label="行政文书送达邮寄地址"  source="MailAddress" />
-           <TextField label="服务机构设立日期"  source="CreateDate" />
+           <DateField label="服务机构设立日期"  source="CreateDate" />
            <TextField label="状态"  source="State" />
-           <TextField label="数据更新时间"  source="UpdateTime" />
+           <DateField label="数据更新时间" source="UpdateTime" showTime />
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -72,7 +73,7 @@ export const BaseInfoCompanyServiceEdit = (props) => (
             <TextInputEx label="管理人联系电话"  source="ManagerPhone" />
             <TextInputEx label="服务机构紧急联系电话"  source="ContactPhone" />
             <TextInputEx label="行政文书送达邮寄地址"  source="MailAddress" />
-            <TextInputEx label="服务机构设立日期"  source="CreateDate" />
+            <DateInput label="服务机构设立日期"  source="CreateDate" />
         </SimpleForm>
     </EditPage>
 );

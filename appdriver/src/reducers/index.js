@@ -11,12 +11,14 @@ import carmap from './carmap';
 import driveroute from './driveroute';
 import myorders from './myorders';
 import orderdetail from './orderdetail';
+import car from './car';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
         about,
         app,
         appui,
+        car,
         userlogin,
         emerygencycontact,
         oftenuseaddress,

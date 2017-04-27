@@ -3,8 +3,30 @@ import { List, EmailField } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import {CreateButton,RichTextField, NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton} from 'admin-on-rest/lib/mui';
+import {
+  CreateButton,
+  RichTextField,
+  NumberInput,
+  Create,
+  Edit,
+  SimpleForm,
+  DisabledInput,
+  TextInput,
+  Show,
+  SimpleShowLayout,
+  ShowButton,
+  DateInput,
+  LongTextInput,
+  ReferenceManyField,
+  Datagrid,
+  TextField,
+  DateField,
+  EditButton,
+  SelectInput,
+  BooleanInput,
+  BooleanField,
+  ImageField
+} from 'admin-on-rest/lib/mui';
 
 import RichTextInput from '../controls/richtoolbar.js';
 
@@ -20,30 +42,44 @@ const AboutlistTitle = ({ record }) => {
    return <span>编辑 关于信息</span>;
 };
 
+const AboutlistCreate = (props) => {
+      return (<Create title={<AboutlistTitle />} {...props}>
+          <SimpleForm>
+              <DisabledInput label="Id" source="id" />
+              <SelectInput  label="类型" source="keyname" choices={[
+                { id: 'rideruserguide', name: '乘客端用户指南' },
+                { id: 'riderfeerules', name: '乘客端计费规则' },
+                { id: 'riderlaws', name: '乘客端法律条款' },
+                { id: 'driveruserguide', name: '司机端用户指南' },
+                { id: 'driverfeerules', name: '司机端计费规则' },
+                { id: 'driverlaws', name: '司机端法律条款' },
+            ]} />
+              <TextInput label="标题"  source="title" />
+              <RichTextInput label="详细信息" source="desc" addLabel={false}/>
+          </SimpleForm>
+      </Create>);
+
+};
+
+
 const AboutlistEdit = (props) => {
       return (<Edit title={<AboutlistTitle />} {...props}>
           <SimpleForm>
               <DisabledInput label="Id" source="id" />
-              <DisabledInput label="类型" source="keyname" />
+             <SelectInput  label="类型" source="keyname" choices={[
+                { id: 'rideruserguide', name: '乘客端用户指南' },
+                { id: 'riderfeerules', name: '乘客端计费规则' },
+                { id: 'riderlaws', name: '乘客端法律条款' },
+                { id: 'driveruserguide', name: '司机端用户指南' },
+                { id: 'driverfeerules', name: '司机端计费规则' },
+                { id: 'driverlaws', name: '司机端法律条款' },
+            ]} />
               <TextInput label="标题"  source="title" />
               <RichTextInput label="详细信息" source="desc" addLabel={false}/>
           </SimpleForm>
       </Edit>);
 
 };
-
-
-const AboutlistShow = (props) => (
-       <Show title={<AboutlistTitle />} {...props}>
-           <SimpleShowLayout>
-               <TextField source="id" />
-               <TextField label="类型" source="keyname" />
-               <TextField label="标题" source="title" />
-               <RichTextField label="详细信息"  source="desc" stripTags={false} />
-           </SimpleShowLayout>
-       </Show>
-);
-
 
 
 const AboutlistList = (props) => (//
@@ -53,10 +89,9 @@ const AboutlistList = (props) => (//
         <TextField label="标题" source="title" />
         <RichTextField label="详细信息"  source="desc" stripTags={false} />
         <EditButton />
-        <ShowButton />
         </Datagrid>
     </List>
 );
 
 
-export  {AboutlistList,AboutlistEdit,AboutlistShow};
+export  {AboutlistList,AboutlistEdit,AboutlistCreate};

@@ -9,12 +9,7 @@ import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import moment from 'moment';
 import {ui_lvyoudabasetdateshow1,ui_lvyoudabasetdateshow2,orderconfirm_settourbus} from '../actions';
 import objectPath from 'object-path';
-// rentusername:this.props.rentusername,
-// busnumberobj:this.props.busnumberobj,
-// startdate:this.props.startdate,
-// enddate:this.props.enddate,
-// orderdetail:orderdetail,
-// orderprice:totalprice
+
 
 const Tourbusco = (props) => {
   const {businfo,onClickBusAdd,onClickBusDec,curnumber,onChangeBusinput} = props;
@@ -47,7 +42,9 @@ let renderTourbusForm = (props)=>{
   //'rentusername', 'busnumberobj', 'startdate', 'enddate', 'orderdetail', 'orderprice'
   const {buslist,isstartdateopen,isenddateopen,
     rentusername,busnumberobj,
-    startdate,enddate,orderdetail,orderprice,dispatch} = props;
+    startdate,enddate,orderdetail,orderprice,frontmoney,
+    paytourbus,
+    dispatch} = props;
 
     let busnumberobjv = {...busnumberobj.input.value};
     buslist.forEach((businfo)=>{
@@ -68,6 +65,10 @@ let renderTourbusForm = (props)=>{
       let price = gettotalprice();
       busnumberobj.input.onChange({...busnumberobjv});
       orderprice.input.onChange(price);
+               
+      let frontmoneyf = (price*paytourbus/100).toFixed(2);
+      frontmoneyf = parseFloat(frontmoneyf);
+      frontmoney.input.onChange(frontmoneyf);
     }
     let onClickBusDec=(businfo)=>{
       if(busnumberobjv[businfo._id] > 0){
@@ -75,6 +76,10 @@ let renderTourbusForm = (props)=>{
         let price = gettotalprice();
         busnumberobj.input.onChange({...busnumberobjv});
         orderprice.input.onChange(price);
+      
+        let frontmoneyf = (price*paytourbus/100).toFixed(2);
+        frontmoneyf = parseFloat(frontmoneyf);
+        frontmoney.input.onChange(frontmoneyf);
       }
     }
     let onChangeBusinput=(businfo,e)=>{
@@ -86,6 +91,10 @@ let renderTourbusForm = (props)=>{
           let price = gettotalprice();
           busnumberobj.input.onChange({...busnumberobjv});
           orderprice.input.onChange(price);
+
+          let frontmoneyf = (price*paytourbus/100).toFixed(2);
+          frontmoneyf = parseFloat(frontmoneyf);
+          frontmoney.input.onChange(frontmoneyf);
         }
       }
       catch(e){
@@ -185,8 +194,8 @@ let renderTourbusForm = (props)=>{
           </div>
     );
 };
-const mapStateToProps1 = ({appui,lvyoudaba}) => {
-  return {...lvyoudaba,...appui.lvyoudaba};
+const mapStateToProps1 = ({appui,lvyoudaba,app:{paytourbus}}) => {
+  return {...lvyoudaba,...appui.lvyoudaba,paytourbus};
 }
 renderTourbusForm = connect(mapStateToProps1)(renderTourbusForm);
 
@@ -196,16 +205,17 @@ let TourbusForm = (props)=>{
     props.history.push('/orderconfirm/tourbus');
     console.log("ok:" + JSON.stringify(values));
   }
-  let {handleSubmit,totalprice} = props;
+  let {handleSubmit,totalprice,paytourbus} = props;
+  let frontmoney = (totalprice*paytourbus/100).toFixed(2);
   return (
       <Form onSubmit={handleSubmit(onClickOK)}>
           <div>
             <div style={{marginTop: '1.5em'}}>
-            <Fields names={['rentusername', 'busnumberobj', 'startdate', 'enddate', 'orderdetail', 'orderprice']}
+            <Fields names={['rentusername', 'busnumberobj', 'startdate', 'enddate', 'orderdetail', 'orderprice','frontmoney']}
                     component={renderTourbusForm}/>
             <div className="item item-input">
               <div className="item-main">
-                <p>需支付一半费用<span className="text-primary">{totalprice / 2}</span></p>
+                <p>需支付{paytourbus}%费用<span className="text-primary">{frontmoney}</span></p>
               </div>
             </div>
             <div className="padding">
@@ -219,22 +229,31 @@ let TourbusForm = (props)=>{
       </Form>
   );
 };
-const mapStateToProps2 = ({form}) => {
+const mapStateToProps2 = ({form,app:{paytourbus}}) => {
   let model = objectPath(form);
   let totalprice = model.get("tourbus.values.orderprice",0);
-  return {totalprice};
+  return {totalprice,paytourbus};
 }
 TourbusForm = connect(mapStateToProps2)(TourbusForm);
 
+const validate = values => {
+  const errors = {}
+  if (values.orderprice === 0.0) {
+    errors.orderprice = '请选择旅游大巴数量';
+  }
+  return errors;
+}
 TourbusForm = reduxForm({
   form: 'tourbus',
+  validate,
   initialValues:{
     rentusername:'',
     busnumberobj:{},
     startdate:new Date(),
     enddate:new Date(),
     orderdetail:'',
-    orderprice:0
+    orderprice:0,
+    frontmoney:0
   }
 })(TourbusForm);
 

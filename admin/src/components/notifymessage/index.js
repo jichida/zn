@@ -46,6 +46,7 @@ const NotifyMessagelistEdit = (props) => {
               ]} />
               <TextInput label="消息标题"  source="messagetitle" />
               <RichTextInput label="消息内容" source="messagecontent" addLabel={false}/>
+             
           </SimpleForm>
       </Edit>);
 
@@ -58,6 +59,7 @@ const NotifyMessagelistShow = (props) => (
                <TextField source="id" />
                <TextField label="消息类型" source="messagetype" />
                <TextField label="消息标题" source="messagetitle" />
+               <DateField label="发帖时间" source="created_at" showTime />
            </SimpleShowLayout>
        </Show>
 );
@@ -67,9 +69,9 @@ const NotifyMessagelistShow = (props) => (
 const NotifyMessagelistList = (props) => (//
      <List title="通知消息列表" {...props} >
         <Datagrid>
-        <TextField source="id" />
         <TextField label="消息类型" source="messagetype" />
         <TextField label="消息标题" source="messagetitle" />
+        <DateField label="发帖时间" source="created_at" showTime />
         <ShowButton />
         </Datagrid>
     </List>

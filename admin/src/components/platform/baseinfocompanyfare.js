@@ -24,6 +24,9 @@ const BaseInfoCompanyFareCreate = (props) => (
        <Create {...props} title={<BaseInfoCompanyFarecreateTitle />} >
        <TabbedForm>
            <FormTab label="resources.baseinfocompanyfare.tabs.tab0">
+          <ReferenceInput source="FareType" reference="faretype" allowEmpty>
+                  <SelectInput optionText="registertype" />
+            </ReferenceInput>
            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
            <DateInput label="运价有效期起" source="FareValidOn" />
            <DateInput label="运价有效期止" source="FareValidOff" />
@@ -61,7 +64,9 @@ const BaseInfoCompanyFareEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyFareTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.baseinfocompanyfare.tabs.tab0">
-            <DisabledInputEx  label="运价类型编码" source="FareType" />
+            <ReferenceInput source="FareType" reference="faretype" allowEmpty>
+                  <SelectInput optionText="registertype" />
+            </ReferenceInput>
             <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
             <DateInput label="运价有效期起" source="FareValidOn" />
             <DateInput label="运价有效期止" source="FareValidOff" />
@@ -95,9 +100,11 @@ const BaseInfoCompanyFareEdit = (props) => {
 const BaseInfoCompanyFareList = (props) => (//
      <List title="运价列表" {...props} >
         <Datagrid>
-        <TextField label="运价说明" source="FareTypeNote" />
-        <TextField label="有效期起" source="FareValidOn" />
-        <TextField label="有效期止" source="FareValidOff" />
+        <ReferenceField source="FareType" reference="faretype" allowEmpty>
+            <TextField source="registertype" />
+        </ReferenceField>
+        <DateField label="有效期起" source="FareValidOn" />
+        <DateField label="有效期止" source="FareValidOff" />
         <TextField  label="起步价" source="StartFare" />
         <TextField  label="起步里程" source="StartMile" />
         <TextField  label="按公里单价" source="UnitPricePerMile" />

@@ -2,6 +2,7 @@ import React from 'react';
 import {
     Datagrid,
     DateField,
+    DateInput,
     Edit,
     DisabledInput,
     EditButton,
@@ -39,11 +40,11 @@ const BaseInfoCompanyPermitShow = (props) => (
            <TextField label="经营区域"  source="OperationArea" />
            <TextField label="公司名称"  source="OwnerName" />
            <TextField label="发证机构名称"  source="Organization" />
-           <TextField label="有效期起"  source="StartDate" />
-           <TextField label="有效期止"  source="StopDate" />
-           <TextField label="初次发证日期"  source="CertifyDate" />
+            <DateInput label="有效期起" source="StartDate" />
+            <DateInput label="有效期止" source="StopDate" />
+            <DateField label="初次发证日期" source="CertifyDate" />
            <TextField label="状态"  source="State" />
-           <TextField label="数据更新时间"  source="UpdateTime" />
+           <DateField label="数据更新时间" source="UpdateTime" showTime />
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -63,11 +64,11 @@ export const BaseInfoCompanyPermitEdit = (props) => (
             <TextInputEx label="经营区域"  source="OperationArea" />
             <TextInputEx label="公司名称"  source="OwnerName" />
             <TextInputEx label="发证机构名称"  source="Organization" />
-            <TextInputEx label="有效期起"  source="StartDate" />
-            <TextInputEx label="有效期止"  source="StopDate" />
-            <TextInputEx label="初次发证日期"  source="CertifyDate" />
+            <DateField label="有效期起" source="StartDate" />
+            <DateField label="有效期止" source="StopDate" />
+            <DateField label="初次发证日期" source="CertifyDate" />
             <DisabledInputEx label="状态"  source="State" />
-            <DisabledInputEx label="数据更新时间"  source="UpdateTime" />
+            <DateField label="数据更新时间" source="UpdateTime" showTime />
         </SimpleForm>
     </EditPage>
 );

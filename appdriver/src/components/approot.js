@@ -13,6 +13,7 @@ import Orderdetail from './orderdetail/orderdetail';
 import Myorders from './myorders';
 import Emerygencycontact from './emerygencycontact';
 import Feedetail from './orderdetail/feedetail';
+import Test from './test';
 
 import {hidepopmessage} from '../actions/index.js';
 import { Message } from 'semantic-ui-react';
@@ -36,71 +37,59 @@ import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '..
 import {requireAuthentication} from './requireauthentication';
 
 
-class MessageCo extends React.Component {
-    onDismiss = ()=> {
+ class AppRoot extends React.Component {
+    onDismiss=()=>{
         this.props.dispatch(hidepopmessage());
     }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.ispop && !this.props.ispop) {
-            window.setTimeout(()=> {
+
+    componentWillReceiveProps (nextProps) {
+        if(nextProps.ispop && !this.props.ispop){
+            window.setTimeout(()=>{
                 this.props.dispatch(hidepopmessage());
-            }, 3000);
+            },3000);
         }
     }
-
-     render() {
+    render() {
         let fullheight = {
             height: window.innerHeight + "px"
-        }
+        };
         let MessageCo = null;
         if (this.props.ispop) {
             if (this.props.type === 'error') {
-               MessageCo = (
+                MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message 
+                        <Message onDismiss={this.onDismiss}
                                  error
                                  header={this.props.title}
                                  content={this.props.msg}
-                            />
+                        />
                     </div>
                 );
             }
             else if (this.props.type === 'warning') {
-                 MessageCo = (
+                MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message 
+                        <Message onDismiss={this.onDismiss}
                                  warning
                                  header={this.props.title}
                                  content={this.props.msg}
-                            />
+                        />
                     </div>
                 );
             }
             else if (this.props.type === 'success') {
-                 MessageCo = (
+                MessageCo = (
                     <div className="messageCo" style={fullheight}>
-                        <Message 
+                        <Message onDismiss={this.onDismiss}
                                  success
                                  header={this.props.title}
                                  content={this.props.msg}
-                            />
+                        />
                     </div>
                 );
             }
         }
-        return MessageCo;
-     }
-}
-const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
-    return {ispop,type,title,msg};
-}
-MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
-
- class AppRoot extends React.Component {
-  
-    render() {
-        
-        return (<div><MessageCo />
+        return (<div>{MessageCo}
             <Switch>
                 <Route exact path="/" component={()=>(<Redirect to="/index/all"/>)}/>
                 <Route path="/index/:keyname" component={App}/>
@@ -114,6 +103,7 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                 <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
                 <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
                 <Route path="/myorders" component={requireAuthentication(Myorders)}/>
+                <Route path="/test" component={Test}/>
                 <Route component={App}/>
             </Switch>
         </div>);
@@ -121,5 +111,9 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
 
 }
 
+const mapStateToProps = ({app,carmap}) => {
+    return {...app};
+}
+AppRoot = connect(mapStateToProps)(AppRoot);
 
 export default AppRoot;

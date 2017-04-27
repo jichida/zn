@@ -42,6 +42,7 @@ import {TimePickerInput} from '../controls/timepicker.js';
 
 import RoutePrice from './routeprice.js';
 import RoutePriceShow from './routepriceshow.js';
+import MyCopyButton from './mycopybutton.js';
 
 const BuscarpoolcreateTitle = translate(({ record, translate })  => {
    return <span>新建 拼车路线</span>;
@@ -60,8 +61,8 @@ const BuscarpoolCreate = (props) => (
            <NumberInput label="座位数"  source="seatnumber" />
            <TextInput label="状态"  source="status" />
            <DisabledInput label="已定座位"  source="takennumber" />
-           <TextInputSZ label="开始站点" source="startstations" />
-           <TextInputSZ label="目的站点" source="endstations" />
+           <TextInputSZ label="开始站点" source="startstations" addLabel={true}/>
+           <TextInputSZ label="目的站点" source="endstations" addLabel={true}/>
            <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
            </SimpleForm>
        </Create>
@@ -76,9 +77,9 @@ const BuscarpoolEdit = (props) => {
           <TabbedForm>
               <FormTab label="resources.buscarpool.tabs.citystation">
 
-                <TextInputSZ label="开始站点" source="startstations" />
-                <TextInputSZ label="目的站点" source="endstations" />
-                <RoutePrice source="carpoolprice"/>
+                <TextInputSZ label="开始站点" source="startstations" addLabel={true}/>
+                <TextInputSZ label="目的站点" source="endstations" addLabel={true}/>
+                <RoutePrice label="编辑站点价格" source="carpoolprice" addLabel={true}/>
 
               </FormTab>
               <FormTab label="resources.buscarpool.tabs.basicinfo">
@@ -115,33 +116,12 @@ const BuscarpoolShow = (props) => {
                <TextField label="目的城市" source="endcity" />
                <DateField label="出发日期" source="startdate" type="date" />
                <TextField label="出发时间" source="starttime" />
-               <DateField label="新建时间" source="created_at" type="date" />
                <TextField label="已定座位数" source="takennumber" />
                <RoutePriceShow label="路线价格" source="carpoolprice" />
                <BooleanField label="是否启用" source="isenabled" />
            </SimpleShowLayout>
        </Show>
   );
-}
-
-import ImageEye from 'material-ui/svg-icons/image/remove-red-eye';
-const MyCopyButton = ({basePath = '', record = {}, label = '复制到明天'}) => {
-  let onClickCopy =()=>{
-
-    // store.dispatch({type:'server/admin', data:{
-    //   cmd:'copycarpool',
-    //   data:{
-    //     id:record.id,
-    //   }
-    // }});
-  }
-  return (<FlatButton
-    onClick={onClickCopy}
-    primary
-    label={label}
-    icon={<ImageEye />}
-    style={{ overflow: 'inherit' }}
-  />);
 }
 
 const BuscarpoolFilter = (props) => (
@@ -165,7 +145,6 @@ const BuscarpoolList = (props) => (//
         <TextField label="开始城市" source="startcity" />
         <DateField label="出发日期" source="startdate" type="date" />
         <TextField label="出发时间" source="starttime" />
-        <DateField label="新建时间" source="created_at" type="date" />
         <TextField label="目的城市" source="endcity" />
         <TextField label="已定座位数" source="takennumber" />
         <BooleanField label="是否启用" source="isenabled" />
