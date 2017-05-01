@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
-import { Admin, Resource } from 'admin-on-rest';
-import { Delete } from 'admin-on-rest/lib/mui';
+import { Admin, Resource ,Delete} from 'admin-on-rest';
 import themeReducer from './themeReducer';
 import authClient from './authClient';
 
@@ -22,7 +21,7 @@ import {TourbusinfolistList,TourbusinfolistCreate,TourbusinfolistEdit,Tourbusinf
 import {SystemconfigList,SystemconfigShow,SystemconfigEdit} from './components/systemconfig/index.js';
 
 import {CouponlistList,CouponlistCreate,CouponlistEdit,CouponlistShow} from './components/coupons/index.js';
-import {OrderlistList,OrderlistShow} from './components/orders/index.js';
+import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
 import {TriprequestlistList,TriprequestlistShow} from './components/triprequest/index.js';
 import {UserriderlistList,UserriderlistShow} from './components/userriders/index.js';
 import {UserdriverlistList,UserdriverlistShow} from './components/userdrivers/index.js';
@@ -137,7 +136,7 @@ class App extends Component {
             <Resource name="buscarpool" list={BuscarpoolList} create={BuscarpoolCreate} edit={BuscarpoolEdit} show={BuscarpoolShow} remove={Delete} />
             <Resource name="tourbusinfo" list={TourbusinfolistList} create={TourbusinfolistCreate} edit={TourbusinfolistEdit} show={TourbusinfolistShow} remove={Delete} />
             <Resource name="coupon" list={CouponlistList} create={CouponlistCreate} edit={CouponlistEdit} show={CouponlistShow} remove={Delete} />
-            <Resource name="order" list={OrderlistList} show={OrderlistShow} />
+            <Resource name="order" list={OrderlistList} edit={OrderlistEdit} />
             <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
             <Resource name="userdriver" list={UserdriverlistList} show={UserdriverlistShow} />
             <Resource name="userrider" list={UserriderlistList} show={UserriderlistShow} />

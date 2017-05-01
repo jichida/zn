@@ -48,7 +48,7 @@ export class Page extends React.Component {
                 startcity:this.props.startcity,//关联拼车信息
                 endcity:this.props.endcity,//关联拼车信息
                 orderprice:this.props.orderprice,
-                relatedid:this.props._id,
+                buscarpoolid:this.props._id,
                 frontmoney:0
             };
         }

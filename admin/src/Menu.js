@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router';
-import { translate } from 'admin-on-rest';
+import { Link } from 'react-router-dom';
+import { translate,DashboardMenuItem } from 'admin-on-rest';
 import compose from 'recompose/compose';
 import MenuItem from 'material-ui/MenuItem';
 import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import LabelIcon from 'material-ui/svg-icons/action/label';
-import { DashboardMenuItem } from 'admin-on-rest/lib/mui';
+
 import Icon from 'material-ui/svg-icons/social/person';
 
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
@@ -67,7 +67,6 @@ let getallmenus = (valuesel, translate,onMenuTap)=>{
 
 const Menu = ({ onMenuTap, translate, logout }) => (
     <div style={styles.main}>
-        <DashboardMenuItem onTouchTap={onMenuTap} />
         {getallmenus('baseinfocompany', translate,onMenuTap)}
         {logout}
     </div>

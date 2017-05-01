@@ -180,9 +180,16 @@ export default {
     },
     buscarpool: {
         name: '拼车 |||| 拼车',
+        fields:{
+          startstation:'出发站点',
+          endstation:'目的站点',
+          price:'价格',
+          passenager:'乘客信息'
+        },
         tabs: {
             basicinfo: '基本信息',
             citystation: '城市站点',
+            passenager:'乘客信息'
         },
         notification:{
           copyrecord_success: '拷贝记录成功',
@@ -197,6 +204,15 @@ export default {
     },
     order: {
         name: '订单 |||| 订单',
+        tabs:{
+          basic:'基本信息',
+          info:'订单详情',
+            daijia:'代驾信息',
+            chuzuche:'出租车信息',
+            kuaiche:'快车信息',
+            lvyoudaba:'旅游大巴信息',
+            pinche:'拼车信息'
+        }
     },
     triprequest: {
         name: '行程 |||| 行程',

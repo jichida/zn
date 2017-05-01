@@ -4,10 +4,10 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "admin-on-rest": "^0.9.4",
+    "admin-on-rest": "^1.0.0",
     "antd": "^2.9.0",
     "aor-color-input": "^1.1.0",
-    "aor-language-chinese": "^1.0.1",
+    "aor-language-chinese": "^1.0.3",
     "aor-summernote-input": "^1.0.0",
     "axios": "^0.16.0",
     "json-stringify-safe": "^5.0.1",

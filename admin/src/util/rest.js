@@ -34,6 +34,11 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Object} { url, options } The HTTP request parameters
      */
     const convertRESTRequestToHTTP = (type, resource, params) => {
+        console.log("convertRESTRequestToHTTP:" + JSON.stringify( {
+            type,
+            params
+        }));
+
         let url = `${apiUrl}/${resource}`;
         const options = {
           method:'POST',

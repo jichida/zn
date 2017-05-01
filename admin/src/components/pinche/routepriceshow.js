@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import EditTable from './material-ui-table-edit.js';
-import { Fields } from 'redux-form';
+import { translate } from 'admin-on-rest';
+import compose from 'recompose/compose';
 
-class Page extends Component {
-    componentDidMount() {
-    }
+class OrderProductDetail extends Component {
     render() {
-        return (
-            <Paper zDepth={2}>
-            <EditTable
-                rows={this.props.rows}
-                headerColumns={this.props.headers}
-              />
-            </Paper>
-        );
-    }
-}
-
-const mapStateToProps = (state, props) => {
-  let {source, record} = props;
+  let {source, record,translate} = this.props;
   let rows = [];
   let carpoolprice = record.carpoolprice;
   let startstations = record.startstations;
@@ -32,38 +26,69 @@ const mapStateToProps = (state, props) => {
       }
       if(carpoolprice[startstations[i]].hasOwnProperty(endstations[j])){
         rows.push(
-          {columns: [
-          {value: startstations[i]},
-          {value: endstations[j]},
-          {value: carpoolprice[startstations[i]][endstations[j]]},
-          ]}
+          {
+            startstation:startstations[i],
+            endstation:endstations[j],
+            price:carpoolprice[startstations[i]][endstations[j]]
+          }
         );
         continue;
      }
      carpoolprice[startstations[i]][endstations[j]] =0;
-
-     rows.push(
-       {columns: [
-       {value: startstations[i]},
-       {value: endstations[j]},
-       {value: 0},
-       ]}
-     );
+          rows.push(
+          {
+            startstation:startstations[i],
+            endstation:endstations[j],
+            price:0
+          }
+        );
     }
   }
 
-  let headers = [
-     {value: '出发站点', type: 'ReadOnly', width: 200},
-     {value: '目的站点', type: 'ReadOnly', width: 200},
-     {value: '价格', type: 'ReadOnly', width: 200},
-  ];
-  let page = {
-    rows:rows,
-    headers:headers
-  };
-  return Object.assign({},state,page);
+        return (
+            <Paper style={{ width: '42em', float: 'left' }} zDepth={2}>
+                <Table selectable={false}>
+                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                        <TableRow>
+                            <TableHeaderColumn>
+                                {translate('resources.buscarpool.fields.startstation')}
+                            </TableHeaderColumn>
+                            <TableHeaderColumn style={{ textAlign: 'right' }}>
+                                {translate('resources.buscarpool.fields.endstation')}
+                            </TableHeaderColumn>
+                            <TableHeaderColumn style={{ textAlign: 'right' }}>
+                                {translate('resources.buscarpool.fields.price')}
+                            </TableHeaderColumn>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody displayRowCheckbox={false}>
+                        {rows.map(item => (
+                            <TableRow key={`${item.startstation}.${item.endstation}`}>
+                                <TableRowColumn>
+                                    {item.startstation}
+                                </TableRowColumn>
+                                <TableRowColumn style={{ textAlign: 'right' }}>
+                                     {item.endstation}
+                                 </TableRowColumn>
+                                <TableRowColumn style={{ textAlign: 'right' }}>
+                                    {item.price.toLocaleString('zh-cn', { style: 'currency', currency: 'CNY' })}
+                                </TableRowColumn>)
+                                </TableRow>
+                          )
+                        )}
+                    </TableBody>
+                </Table>
+            </Paper>
+        );
+    }
 }
 
-export  default  connect(
-  mapStateToProps,
-)(Page);
+
+
+const enhance = compose(
+    translate,
+    connect()
+);
+
+export default enhance(OrderProductDetail);
+

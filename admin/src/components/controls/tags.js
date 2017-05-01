@@ -41,6 +41,7 @@ const renderStationsTags= (props) => {
 const TextInputSZ = ({source}) => {
   return(
     <span>
+      <br />
       <Field name={source} component={renderStationsTags} />
     </span>
 )

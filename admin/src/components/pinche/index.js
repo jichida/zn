@@ -28,7 +28,8 @@ import {
   EditButton,
   Filter,
   BooleanInput,
-  BooleanField
+  BooleanField,
+  ReferenceField
 } from 'admin-on-rest/lib/mui';
 
 import {TabbedForm,FormTab} from 'admin-on-rest/lib/mui';
@@ -108,18 +109,35 @@ const BuscarpoolTitle2 = ({ record }) => {
 };
 
 const BuscarpoolShow = (props) => {
-  return (<Show title={<BuscarpoolTitle2 />} {...props}>
-           <SimpleShowLayout>
+  return (<Show title={<BuscarpoolTitle2 />} {...props} >
+              <TabbedForm>
+              <FormTab label="resources.buscarpool.tabs.citystation">
+                <RoutePriceShow label="路线价格" source="carpoolprice" />
+               </FormTab>
+               <FormTab label="resources.buscarpool.tabs.basicinfo">
                <TextField source="id" />
                <TextField label="拼车类型" source="pinchetype" />
                <TextField label="开始城市" source="startcity" />
                <TextField label="目的城市" source="endcity" />
                <DateField label="出发日期" source="startdate" type="date" />
                <TextField label="出发时间" source="starttime" />
-               <TextField label="已定座位数" source="takennumber" />
-               <RoutePriceShow label="路线价格" source="carpoolprice" />
                <BooleanField label="是否启用" source="isenabled" />
-           </SimpleShowLayout>
+               </FormTab>
+               <FormTab label="resources.buscarpool.tabs.passenager">
+               <ReferenceManyField reference="order" target="buscarpoolid" label="resources.buscarpool.fields.passenager" perPage={5} addLabel={false}>
+               <Datagrid>
+                    <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={false}>
+                        <TextField source="username" />
+                    </ReferenceField>
+                    <TextField label="开始站点" source="startstation" />
+                    <TextField label="目的站点" source="endstation" />
+                    <TextField label="座位数" source="seatnumber" />
+                    <TextField label="订单状态" source="orderstatus" />
+                    <EditButton />
+                </Datagrid>
+            </ReferenceManyField>
+               </FormTab>
+              </TabbedForm>
        </Show>
   );
 }
@@ -139,7 +157,7 @@ const BuscarpoollistTitle = translate(({ record, translate })  => {
    return <span>拼车列表</span>;
 });
 const BuscarpoolList = (props) => (//
-     <List title={<BuscarpoollistTitle />} {...props} filters={<BuscarpoolFilter />}  perPage={25} >
+     <List title={<BuscarpoollistTitle />} {...props} filters={<BuscarpoolFilter />}  perPage={25} sort={{ field: 'startdate', order: 'DESC' }}>
         <Datagrid>
         <TextField label="拼车类型" source="pinchetype" />
         <TextField label="开始城市" source="startcity" />
