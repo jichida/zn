@@ -94,6 +94,12 @@ class Page extends Component {
 			            </Cell>
 			        </Cells>
 				</div>
+				<div className="pointLnk">
+					<a>
+						<img src="newimg/10.png" />
+						<span>出车</span>
+					</a>
+				</div>
     		</div>
     	)
     }

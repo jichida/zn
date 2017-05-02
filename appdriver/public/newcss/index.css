@@ -56,3 +56,29 @@
     width: 10px;
     height: 10px;
 }
+.indexPage .pointLnk{
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.indexPage .pointLnk a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #CCC;
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+    border-radius: 70px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #888888;
+}
+.indexPage .pointLnk a:active{
+    background: #f4b124;
+}
+.indexPage .pointLnk a img{
+    width: 30px;
+    height: 30px;
+}

@@ -13,9 +13,14 @@ import Orderdetail from './orderdetail/orderdetail';
 import Myorders from './myorders';
 import Emerygencycontact from './emerygencycontact';
 import Feedetail from './orderdetail/feedetail';
+//注册
 import Register from './register';
+//选择注册类型
 import Register1 from './register1';
+//首页
 import Index from './index';
+//出车
+import Outcar from './new/outcar';
 
 //注册
 import Test from './test';
@@ -116,6 +121,8 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/register" component={Register}/>
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
+                    <Route path="/outcar" component={Outcar}/>
+
                     <Route component={App}/>
                 </Switch>
             </div>
