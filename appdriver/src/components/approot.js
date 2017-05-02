@@ -13,6 +13,11 @@ import Orderdetail from './orderdetail/orderdetail';
 import Myorders from './myorders';
 import Emerygencycontact from './emerygencycontact';
 import Feedetail from './orderdetail/feedetail';
+import Register from './register';
+import Register1 from './register1';
+import Index from './index';
+
+//注册
 import Test from './test';
 
 import {hidepopmessage} from '../actions/index.js';
@@ -25,11 +30,13 @@ import {
     Switch
 } from 'react-router-dom';
 
-import '../../public/App.css';
-import '../../public/amaze.css';
-import '../../public/a2017.css';
-import '../../public/style.css';
-import '../../public/css/page.css';
+import '../../public/newcss/common.css';
+
+// import '../../public/App.css';
+// import '../../public/amaze.css';
+// import '../../public/a2017.css';
+// import '../../public/style.css';
+// import '../../public/css/page.css';
 
 import {getcurrentlocationfn,getcurrentlocationstring} from '../util/geo.js';
 import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '../actions';
@@ -89,24 +96,30 @@ import {requireAuthentication} from './requireauthentication';
                 );
             }
         }
-        return (<div>{MessageCo}
-            <Switch>
-                <Route exact path="/" component={()=>(<Redirect to="/index/all"/>)}/>
-                <Route path="/index/:keyname" component={App}/>
-                <Route path="/systemsettings" component={SystemSetting}/>
-                <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
-                <Route path="/login" component={Login}/>
-                <Route path="/about/:keyname" component={About}/>
-                <Route path="/city" component={City}/>
-                <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
-                <Route path='/starttrip' component={Caroverlaystart} />
-                <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
-                <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                <Route path="/myorders" component={requireAuthentication(Myorders)}/>
-                <Route path="/test" component={Test}/>
-                <Route component={App}/>
-            </Switch>
-        </div>);
+        return (
+            <div className="AppContainer">
+                {MessageCo}
+                <Switch>
+                    <Route exact path="/" component={()=>(<Redirect to="/index/all"/>)}/>
+                    <Route path="/index/:keyname" component={App}/>
+                    <Route path="/systemsettings" component={SystemSetting}/>
+                    <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
+                    <Route path="/login" component={Login}/>
+                    <Route path="/about/:keyname" component={About}/>
+                    <Route path="/city" component={City}/>
+                    <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
+                    <Route path='/starttrip' component={Caroverlaystart} />
+                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
+                    <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
+                    <Route path="/myorders" component={requireAuthentication(Myorders)}/>
+                    <Route path="/test" component={Test}/>
+                    <Route path="/register" component={Register}/>
+                    <Route path="/register1" component={Register1}/>
+                    <Route path="/index" component={Index}/>
+                    <Route component={App}/>
+                </Switch>
+            </div>
+        );
     }
 
 }

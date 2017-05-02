@@ -50,7 +50,7 @@ renderLoginForm = connect()(renderLoginForm);
 let LoginForm = (props)=>{
   let {handleSubmit,onClickLogin} = props;
   return (<Form onSubmit={handleSubmit(onClickLogin)}>
-        <img src="images/logo.png" alt='logo'/>
+        <img src="newimg/1.png" alt='logo'/>
         <div className="group">
           <div className="group-body background">
             <Fields names={[ 'phonenumber', 'authcode',]} component={renderLoginForm}/>

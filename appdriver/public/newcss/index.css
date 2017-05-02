@@ -1,0 +1,58 @@
+/*index*/
+.starcontent{
+    font-size: 28px;
+    height: 40px;
+    overflow: hidden;
+    color: #EEE;
+}
+.indexPage .indexHead .weui-cells{
+    margin-top: 0;
+}
+.indexPage .indexHead .weui-cell__hd{
+    display: flex;
+    align-items: center
+}
+.indexPage .indexHead .weui-cell__hd img{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    display: flex;
+    margin-right: 20px;
+}
+.indexPage .indexHead .weui-cell__bd .tit{
+    margin-top: 10px;
+    margin-bottom: -3px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.indexPage .indexHead .weui-cell__bd .tit span.name{
+    margin-right: 10px;
+}
+.indexPage .indexHead .weui-cell__bd .tit span.type{
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+.indexPage .indexHead .weui-cell__bd .con{
+    font-size: 14px;
+    color: #999
+}
+.indexPage .indexHead .weui-cell_access .weui-cell__ft:after{
+    height: 16px;
+    width: 16px;
+}
+.indexPage .list .weui-cell__hd {
+    display: flex;
+    align-items: center;
+}
+.indexPage .list .weui-cell__hd img{
+    width: 30px;
+    margin-right: 10px;
+}
+.indexPage .list .weui-cell_access .weui-cell__ft:after{
+    width: 10px;
+    height: 10px;
+}
