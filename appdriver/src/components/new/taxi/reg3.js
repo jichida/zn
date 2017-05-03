@@ -98,7 +98,7 @@ class Page extends Component {
                 </div>
 
                 <div className="submitBtn">
-                    <botton className="btn Primary">下一步</botton>
+                    <botton className="btn Primary">完成</botton>
                 </div>
             </div>
         )

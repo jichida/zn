@@ -29,6 +29,10 @@ import Taxireg1 from './new/taxi/reg1';
 import Taxireg2 from './new/taxi/reg2';
 //出租车注册-上传照片
 import Taxireg3 from './new/taxi/reg3';
+//代驾司机注册-基本信息
+import Replacereg1 from './new/replace/reg1';
+//代驾司机注册-上传照片
+import Replacereg2 from './new/replace/reg2';
 
 //注册
 import Test from './test';
@@ -134,6 +138,9 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/taxireg1" component={Taxireg1}/>
                     <Route path="/taxireg2" component={Taxireg2}/>
                     <Route path="/taxireg3" component={Taxireg3}/>
+                    <Route path="/replacereg1" component={Replacereg1}/>
+                    <Route path="/replacereg2" component={Replacereg2}/>
+
 
                     <Route component={App}/>
                 </Switch>
