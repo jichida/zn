@@ -21,6 +21,14 @@ import Register1 from './register1';
 import Index from './index';
 //出车
 import Outcar from './new/outcar';
+//抢单
+import Roborder from './new/roborder';
+//出租车注册-基本信息
+import Taxireg1 from './new/taxi/reg1';
+//出租车注册-车辆信息
+import Taxireg2 from './new/taxi/reg2';
+//出租车注册-上传照片
+import Taxireg3 from './new/taxi/reg3';
 
 //注册
 import Test from './test';
@@ -122,6 +130,10 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
                     <Route path="/outcar" component={Outcar}/>
+                    <Route path="/roborder" component={Roborder}/>
+                    <Route path="/taxireg1" component={Taxireg1}/>
+                    <Route path="/taxireg2" component={Taxireg2}/>
+                    <Route path="/taxireg3" component={Taxireg3}/>
 
                     <Route component={App}/>
                 </Switch>
