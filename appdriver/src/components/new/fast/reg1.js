@@ -1,5 +1,5 @@
 ﻿/*
-    注册司机－基本信息
+    注册快车司机－基本信息
 */
 import React, { Component } from 'react';
 import WeUI from 'react-weui';
@@ -26,7 +26,7 @@ class Page extends Component {
     render() {
         return (
             <div className="taxiPage AppPage">
-                <NavBar back={true} title="注册" />
+                <NavBar back={true} title="注册快车司机" />
                 <div className="list">
                     <div className="avatar">
                         <img src="newimg/4.png" />

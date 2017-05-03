@@ -33,6 +33,13 @@ input, textarea{
 .btn.Primary:active{
     background: #2a6bce;
 }
+.btn.Warning{
+    background: #fe8802;
+    color: #FFF;
+}
+.btn.Warning:active{
+    background: #e07b08;
+}
 .btn.login{
     background: #72aaff;
 }

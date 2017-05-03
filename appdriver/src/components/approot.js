@@ -40,6 +40,10 @@ import Fastreg2 from './new/fast/reg2';
 //快车司机注册-上传照片
 import Fastreg3 from './new/fast/reg3';
 
+//examine
+import Examine from './new/examine';
+
+
 //注册
 import Test from './test';
 
@@ -149,6 +153,7 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/fastreg1" component={Fastreg1}/>
                     <Route path="/fastreg2" component={Fastreg2}/>
                     <Route path="/fastreg3" component={Fastreg3}/>
+                    <Route path="/examine" component={Examine}/>
 
                     <Route component={App}/>
                 </Switch>
