@@ -1,0 +1,15 @@
+.baseinfoPage{
+
+}
+.baseinfoPage .avatar{
+
+}
+.baseinfoPage .weui-cell.avatar .weui-cell__ft img{
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+}
+.baseinfoPage .f{
+    text-align: center;
+    line-height: 40px;
+}
