@@ -1,5 +1,5 @@
 ﻿/*
-    出车
+    抢单
 */
 import React, { Component } from 'react';
 import WeUI from 'react-weui';
@@ -22,10 +22,14 @@ class Page extends Component {
         return (
             <div className="outcarPage AppPage">
                 <NavBar back={true} title="中南出行" />
-                <div className="headNav">
-                    <span className="sel">出租车</span>
-                    <span>代驾</span>
+                <div className="mapcontent">
+                    <div className="baidumap">
+                        <img src="newimg/11.png" style={{width:"100%"}} />
+                    </div>
                 </div>
+
+
+
                 <div className="mapcontent">
                     <div className="baidumap">
                         <img src="newimg/11.png" style={{width:"100%"}} />
