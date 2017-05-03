@@ -1,19 +1,23 @@
 import React from 'react';
-import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
-import { CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import { ReferenceField,Filter,SelectInput,ReferenceInput,TabbedForm,FormTab,
-    NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
-
-
-import { Field,FieldArray } from 'redux-form';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import TimePicker from 'material-ui/TimePicker';
-import moment from 'moment';
-import {TimePickerInput} from '../controls/timepicker.js';
+import {
+  ReferenceField,
+  Filter,
+  SelectInput,
+  ReferenceInput,
+  TabbedForm,
+  FormTab,
+  NumberInput,
+  Create,
+  Edit,
+  SimpleForm,
+  DisabledInput,
+  TextInput,
+  Show,
+  SimpleShowLayout,
+  ShowButton,
+  DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
+ List
+} from 'admin-on-rest';
 
 import Orderinfo from './orderinfo.js';
 
@@ -35,7 +39,7 @@ const OrderlistEdit = (props) => {
     //         };
     //         let label = `resources.order.tabs.${triptypemap[data.triptype]}`;
     //         return (<Orderinfo  label={label} />)
-    // label="resources.order.tabs.info" 
+    // label="resources.order.tabs.info"
     //   }
       return (<Edit title={<OrderlistTitle />} {...props}>
           <TabbedForm>

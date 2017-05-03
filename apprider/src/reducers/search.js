@@ -27,7 +27,8 @@ const search = createReducer({
     [setsearchtxt]: (state, searchtxt) => {
         return { ...state,searchtxt:searchtxt};
     },
-    [searchtext_result]: (state, {result}) => {
+    [searchtext_result]: (state,payload) => {
+        const {result} = payload;
         return { ...state,searchtxtresult:result};
     },
 }, initial.search);

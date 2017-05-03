@@ -34,11 +34,6 @@ export default (apiUrl, httpClient = fetchJson) => {
      * @returns {Object} { url, options } The HTTP request parameters
      */
     const convertRESTRequestToHTTP = (type, resource, params) => {
-        console.log("convertRESTRequestToHTTP:" + JSON.stringify( {
-            type,
-            params
-        }));
-
         let url = `${apiUrl}/${resource}`;
         const options = {
           method:'POST',
@@ -85,7 +80,7 @@ export default (apiUrl, httpClient = fetchJson) => {
             console.log("UPDATE| json data:" + JSON.stringify( {data:json}));
             return {data:json};
         case GET_MANY:
-            json.forEach((obj)=>{
+            json.docs.forEach((obj)=>{
               obj.id = obj._id;
               delete obj._id;
               data.push(obj);

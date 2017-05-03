@@ -23,7 +23,8 @@ const userlogin = createReducer({
     localStorage.removeItem('zhongnan_rider_token');
     return { ...initial.userlogin};
   },
-  [fillprofile_result]: (state, {profile}) => {
+  [fillprofile_result]: (state,payload) => {
+    const {profile} = payload;
     return { ...state, profile};
   },
   [login_result]: (state, payload) => {
@@ -33,7 +34,8 @@ const userlogin = createReducer({
   [login_err]: (state, authtoken) => {
     return { ...state, loginsuccess:false};
   },
-  [loginsendauth_result]:(state,authtoken)=>{
+  [loginsendauth_result]:(state,payload)=>{
+    const {authtoken,popmessage} = payload;
     return { ...state, authtoken};
   }
 }, initial.userlogin);

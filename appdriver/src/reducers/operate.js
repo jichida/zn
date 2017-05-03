@@ -51,7 +51,8 @@ const operate = createReducer({
   },
   [serverpush_nearbyrequests]:(state, payload) => {
     console.log('serverpush_nearbyrequests...');
-    let nearbyrequestsresult = normalizr_requestlist({list:payload});
+    const {list} = payload;
+    let nearbyrequestsresult = normalizr_requestlist({list});
     let nearbyrequests = {
       list:nearbyrequestsresult.result.list,
       requests:nearbyrequestsresult.entities.requests

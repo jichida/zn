@@ -18,7 +18,9 @@ export const ImageArrayField = ({ elStyle = {}, record, source, title }) => {
         ...styles.container,
         ...elStyle,
     };
-
+    let onClickImage = (url)=>{
+        window.open(url);
+    }
     const titleValue = get(record, title) || title;
     const srcValuez = get(record, source);
 
@@ -33,6 +35,7 @@ export const ImageArrayField = ({ elStyle = {}, record, source, title }) => {
                 alt={titleValue}
                 src={srcValue}
                 style={styles.image}
+                onClick={()=>{onClickImage(srcValue)}}
             />);
     });
     return (

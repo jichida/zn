@@ -1,8 +1,6 @@
-/**
- * Created by wangxiaoqing on 2017/3/27.
- */
+let islocalhost = false;
 let config = {
-    serverurl:'http://zn.com28.cn:3004',//'http://localhost:3100',//'http://vpn.czjcd.com:3100',//
+    serverurl:islocalhost?'http://localhost:3004':'http://zn.com28.cn:3004',
     requesttimeout:5000,
     intervalrequestnearbydriver:4000
 };

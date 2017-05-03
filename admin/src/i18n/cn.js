@@ -12,6 +12,17 @@ export default {
       carinfo: {
           name: '车辆管理 |||| 车辆管理',
       },
+      mycar:{
+        name: '驾驶员车辆列表 |||| 驾驶员车辆列表',
+        tabs:{
+          basicinfo:'车辆信息',
+          tab0:'基本信息',
+          tab1:'发动机',
+          tab2:'证件信息',
+          tab3:'卫星定位装置',
+          tab4:'服务',
+        }
+      },
       carbrand: {
           name: '车辆品牌 |||| 车辆品牌',
       },
@@ -219,6 +230,20 @@ export default {
     },
     userdriver: {
         name: '司机 |||| 司机',
+        tabs:{
+          basicinfo:'基本信息',
+          platformdriverinfo:'平台驾驶员信息',
+          platformhukou:'平台户口信息',
+          platformtaxi:'平台出租车信息',
+          platformcontract:'平台驾驶员合同',
+          platformemergencycontact:'平台紧急联系人',
+        },
+        notification:{
+          approved_success:'审批成功',
+          approved_error:'审批失败',
+          rejected_success:'拒绝成功',
+          rejected_error:'拒绝失败',
+        },
     },
     userrider: {
         name: '乘客 |||| 乘客',

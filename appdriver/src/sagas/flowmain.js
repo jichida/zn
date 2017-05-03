@@ -5,50 +5,18 @@ import io from 'socket.io-client';
 import { eventChannel } from 'redux-saga';
 import config from '../config.js';
 import { fork, take, call, put, cancel } from 'redux-saga/effects';
-import {
-    login_result,//这个result特殊，需要判断是否登录
-    getbuscarpoolcitylist_request,
-    getbuscarpool_request,
-    getemerygencycontact_request,
 
-    showpopmessage,
-    disconnect,
-    getabouthtml_request,
-
-    loginsendauth_request,loginwithauth_request,loginwithtoken_request,
-
-    getoftenuseaddress_request,
-    setoftenuseaddress_request,
-    searchtext_request,
-
-    getcurrentlocationandnearestdrivers_request,
-    updaterequeststatus_request,
-    canceltriprequestorder_request,
-    acceptrequest_request,
-    getmytriporders_request,
-    sendcurlocationtoserver,
-
-    operatelogin,
-    operatelogout,
-    notify_socket_connected,
-    logout_request,logout_result,
-    updateorder_comment_request,
-
-    carcreate_request,
-    cardelete_request,
-    cargetall_request,
-    carupdate_request,
-    cargetallbrands_request,
-    cargetallmodelfrombrandid_request,
-    cargetallcolors_request
-} from '../actions';
 import store from '../env/store.js';
-
-import {driveroute_request} from '../actions';
-import {starttriprequestorderflow} from '../actions/sagacallback';
 
 import {wsrecvhandler} from './wsrecvhandler.js';
 import {getcurrentpos} from './getcurrentpos';
+import data from './datahandler.js';
+import {
+    login_result,
+    logout_result,
+    logout_request,
+    notify_socket_connected
+} from '../actions';
 
 let sendmsgwhenreconnect =(socket)=>{
     let token = localStorage.getItem('zhongnan_driver_token');
@@ -114,22 +82,7 @@ function* handleIOWithAuth(socket) {
         sendmsgwhenlogined(socket);
 
         console.log("登录成功!");
-        let fnsz = {
-            'getbuscarpool':`${getbuscarpool_request}`,
-            'getoftenuseaddress':`${getoftenuseaddress_request}`,
-            'setoftenuseaddress':`${setoftenuseaddress_request}`,
-            'acceptrequest':`${acceptrequest_request}`,
-            'sendcurlocationtoserver':`${sendcurlocationtoserver}`,
-            'updaterequeststatus':`${updaterequeststatus_request}`,
-            'canceltriprequestorder':`${canceltriprequestorder_request}`,
-            'getmytriporders':`${getmytriporders_request}`,
-            'updateorder_comment':`${updateorder_comment_request}`,
-
-            'carcreate':`${carcreate_request}`,
-            'cardelete':`${cardelete_request}`,
-            'cargetall':`${cargetall_request}`,
-            'carupdate':`${carupdate_request}`,
-        };
+        let fnsz = data.sendmessageauthfnsz;
 
         for (var cmd in fnsz) {
             let task =  yield fork(write, socket,fnsz[cmd],cmd);
@@ -154,26 +107,7 @@ function* handleIOWithAuth(socket) {
 }
 
 function* handleIO(socket) {
-    let fnsz =  {
-        'getabouthtml':`${getabouthtml_request}`,
-        'loginsendauth':`${loginsendauth_request}`,
-        'loginwithauth':`${loginwithauth_request}`,
-        'loginwithtoken':`${loginwithtoken_request}`,
-        'getbuscarpoolcitylist':`${getbuscarpoolcitylist_request}`,
-        'getbuscarpool':`${getbuscarpool_request}`,
-        'getemerygencycontact':`${getemerygencycontact_request}`,
-        'searchtext':`${searchtext_request}`,
-        'driveroute':`${driveroute_request}`,
-        'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
-        'operatelogin':`${operatelogin}`,
-        'operatelogout':`${operatelogout}`,
-
-        'cargetallbrands':`${cargetallbrands_request}`,
-        'cargetallmodelfrombrandid':`${cargetallmodelfrombrandid_request}`,
-        'cargetallcolors':`${cargetallcolors_request}`,
- 
-    };
-
+    let fnsz =  data.sendmessagefnsz;
     for (var cmd in fnsz) {
         yield fork(write, socket,fnsz[cmd],cmd);
     }
@@ -181,22 +115,12 @@ function* handleIO(socket) {
 
 
 export function* flowmain() {
-    // while (true) {
-    //   console.log("flow...");
-
     const socket = yield call(connect);
     //连接上以后直接发送-----》
     sendmsgwhenreconnect(socket);
-    //  socket.emit('appdriver',{ cmd:'gethotcity',data:{}});
 
     const taskread = yield fork(read, socket);
     const taskwritewithauth = yield fork(handleIOWithAuth, socket);
     const taskwrite = yield fork(handleIO, socket);
 
-    //   yield take(`${disconnect}`);
-    //   console.log('断开连接,重新连接中');
-    //   yield cancel(taskread);
-    //   yield cancel(taskwritewithauth);
-    //   yield cancel(taskwrite);
-    // }
 }

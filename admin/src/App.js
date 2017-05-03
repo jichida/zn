@@ -13,6 +13,7 @@ import Menu from './Menu';
 //import { Dashboard } from './dashboard';
 import CustomRoutes from './routes';
 import translations from './i18n';
+import restClient from './restClient';
 
 import {PricelistList,PricelistCreate,PricelistEdit,PricelistShow} from './components/carprices/index.js';
 import {AboutlistList,AboutlistEdit,AboutlistCreate} from './components/abouts/index.js';
@@ -24,9 +25,8 @@ import {CouponlistList,CouponlistCreate,CouponlistEdit,CouponlistShow} from './c
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
 import {TriprequestlistList,TriprequestlistShow} from './components/triprequest/index.js';
 import {UserriderlistList,UserriderlistShow} from './components/userriders/index.js';
-import {UserdriverlistList,UserdriverlistShow} from './components/userdrivers/index.js';
+import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/index.js';
 
-import restClient from './restClient';
 //import fakeRestServer from './restServer';
 import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit} from './components/platform/baseinfocompany.js';
 import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow} from './components/platform/baseinfocompanystat.js';
@@ -67,6 +67,7 @@ import {NotifyMessagelistList,NotifyMessagelistCreate,NotifyMessagelistEdit,Noti
 import {CarbrandlistList,CarbrandlistEdit,CarbrandlistCreate} from './components/carbrand';
 import {CarcolorlistList,CarcolorlistEdit,CarcolorlistCreate} from './components/carcolor';
 import {CarmodellistList,CarmodellistEdit,CarmodellistCreate} from './components/carmodel';
+import {MycarList,MycarEdit} from './components/mycar';
 
 class App extends Component {
 
@@ -88,26 +89,21 @@ class App extends Component {
             <Resource name="carbrand" list={CarbrandlistList}  edit={CarbrandlistEdit} create={CarbrandlistCreate} remove={Delete} />
             <Resource name="carcolor" list={CarcolorlistList}  edit={CarcolorlistEdit} create={CarcolorlistCreate} remove={Delete} />
             <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
+            <Resource name="mycar" list={MycarList}  edit={MycarEdit} />
 
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} />
-            <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}
-                          show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
-            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}
-                    show={BaseInfoCompanyStatShow} />
-            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}
-                      show={BaseInfoCompanyPermitShow}  edit={BaseInfoCompanyPermitEdit} />
+            <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList} show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
+            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} />
+            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow}  edit={BaseInfoCompanyPermitEdit} />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
-            <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}
-                  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
+            <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
             <Resource name="baseinfovehicle" list={BaseInfoVehicleList} create={BaseInfoVehicleCreate}  edit={BaseInfoVehicleEdit}/>
             <Resource name="baseinfovehiclelnsurance" list={BaseInfoVehiclelnsuranceList} create={BaseInfoVehiclelnsuranceCreate}  edit={BaseInfoVehiclelnsuranceEdit}  show={BaseInfoVehiclelnsuranceShow} />
-            <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList}
-                                show={BaseInfoVehicleTotalMileShow} />
+            <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList}  show={BaseInfoVehicleTotalMileShow} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList} create={BaseInfoDriverCreate}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  show={BaseInfoDriverEducateShow}  edit={BaseInfoDriverEducateEdit} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
-            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}
-                                show={BaseInfoDriverStatShow} />
+            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  show={BaseInfoDriverStatShow} />
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} show={BaseInfoPassengerShow} />
             <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
             <Resource name="ordermatch" list={OrderMatchList} show={OrderMatchShow} />
@@ -138,7 +134,7 @@ class App extends Component {
             <Resource name="coupon" list={CouponlistList} create={CouponlistCreate} edit={CouponlistEdit} show={CouponlistShow} remove={Delete} />
             <Resource name="order" list={OrderlistList} edit={OrderlistEdit} />
             <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
-            <Resource name="userdriver" list={UserdriverlistList} show={UserdriverlistShow} />
+            <Resource name="userdriver" list={UserdriverlistList} edit={UserdriverlistEdit} />
             <Resource name="userrider" list={UserriderlistList} show={UserriderlistShow} />
             </Admin>
         );

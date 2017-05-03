@@ -38,7 +38,8 @@ const initial = {
 };
 
 const city = createReducer({
-  [sethotcity]:(state, hotcity) => {
+  [sethotcity]:(state, payload) => {
+    const {hotcity} = payload;
     localStorage.setItem('defaulthotcity',hotcity);
     return { ...state,hotcity:[...hotcity]};
   },

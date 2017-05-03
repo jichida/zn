@@ -14,14 +14,16 @@ const initial = {
 
 const pinche = createReducer({
   [getbuscarpoolcitylist_result]: (state, payload) => {
-    let citylist = [...payload];
+    const {list} = payload;
+    let citylist = [...list];
     return {
             ...state,
             citylist
         };
   },
   [getbuscarpool_result]: (state, payload) => {
-    let resultroute = [...payload];
+    const {list} = payload;
+    let resultroute = [...list];
     return {
         ...state,
         resultroute

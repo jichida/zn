@@ -13,7 +13,8 @@ const initial = {
 
 const lvyoudaba = createReducer({
   [gettourbus_result]: (state, payload) => {
-    let buslist = [...payload];
+    const {list} = payload;
+    let buslist = [...list];
     return {
             ...state,
             buslist

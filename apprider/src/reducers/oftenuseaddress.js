@@ -11,7 +11,8 @@ const initial = {
 };
 
 const oftenuseaddress = createReducer({
-    [getoftenuseaddress_result]:(state, oftenuseaddress) => {
+    [getoftenuseaddress_result]:(state, payload) => {
+        const {oftenuseaddress} = payload;
         return { ...state,...oftenuseaddress};
     },
 }, initial.oftenuseaddress);
