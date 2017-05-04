@@ -1,0 +1,181 @@
+.userorderinfoPage{
+
+}
+.userorderinfoPage #newNavHeadContent.newNavHeadContent{
+    border-bottom: 1px solid #EEE;
+}
+.userorderinfoPage .orderinfohead{
+    display: flex;
+    align-items: center;
+    background: #FFF;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    flex-shrink: 0;
+}
+.userorderinfoPage .pageContent{
+    flex-grow: 1;
+    overflow: scroll;
+}
+.userorderinfoPage .orderinfohead img.avatar{
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.userorderinfoPage .address{
+    display: flex;
+    flex-direction: column;
+}
+.userorderinfoPage .orderinfohead img.phone{
+    width: 40px;
+    margin-left: 10px;
+}
+.userorderinfoPage .address>div{
+    display: flex;
+    align-items: center;
+}
+.userorderinfoPage .address>div:before{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.userorderinfoPage .address>div:first-child{
+    margin-bottom: 5px;
+}
+.userorderinfoPage .address>div:first-child:before{
+    border: 1px solid #02ae62;
+}
+.userorderinfoPage .address>div:last-child:before{
+    border: 1px solid #f55716;
+}
+.userorderinfoPage .weui-loadmore_line .weui-loadmore__tips{
+    background: #EEE;
+}
+.userorderinfoPage .content .price{
+    width: 100%;
+    display: block;
+    font-size: 18px;
+    text-align: center;
+}
+.userorderinfoPage .PanelBox{
+    margin: 20px;
+    background: #FFF;
+    border-radius: 6px;
+    padding: 15px;
+    flex-shrink: 0;
+}
+.userorderinfoPage .pricelist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.userorderinfoPage .pricelist .tit{
+    margin-bottom: 10px;
+}
+.userorderinfoPage .pricelist .list{
+    width: 100%;
+}
+.userorderinfoPage .pricelist .list p{
+    margin-bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.userorderinfoPage .tt{
+    text-align: center;
+    line-height: 50px;
+    color: #999;
+}
+.userorderinfoPage .evaluate{
+    background: #FFF;
+    justify-content: center;
+    font-size: 30px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.userorderinfoPage .evaluate .text{
+    font-size: 16px;
+    color: #666;
+}
+.userorderinfoPage .getMoney{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userorderinfoPage .getMoney span{
+    color: #007fff;
+    border:1px solid #007fff;
+    width: 70%;
+    text-align: center;
+    background: #FFF;
+    line-height: 30px;
+    background: #FFF;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.addevaluate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.2);
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.addevaluate .wamp{
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+}
+.addevaluate .wamp .tit{
+    position: relative;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+}
+.addevaluate .wamp .tit img.close{
+    position: absolute;
+    width: 20px;
+    top: 5px;
+    right: 5px;
+}
+.addevaluate .wamp .star{
+    font-size: 30px;
+    align-self: center;
+    height: 48px;
+}
+.addevaluate .wamp .text .weui-cells{
+    margin-top: 0;
+}
+.addevaluate .wamp .text .weui-cells:before{
+    content: none;
+}
+.addevaluate .wamp .text .weui-cells .weui-cell__bd,
+.addevaluate .wamp .text .weui-cells_form textarea{
+    background: #EEE;
+    border-radius: 6px;
+}
+.addevaluate .wamp .text .weui-cells_form textarea{
+    padding: 10px;
+    border-radius: 6px;
+}
+.addevaluate .wamp .text .weui-textarea-counter{
+    padding-right: 10px;
+}
+.addevaluate .wamp .text .btn{
+    margin: 0 15px 15px 15px;
+}

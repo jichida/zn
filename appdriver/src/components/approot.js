@@ -39,6 +39,18 @@ import Fastreg1 from './new/fast/reg1';
 import Fastreg2 from './new/fast/reg2';
 //快车司机注册-上传照片
 import Fastreg3 from './new/fast/reg3';
+//个人中心-基本信息
+import Userbaseinfo from './new/user/baseinfo';
+//个人中心-我的车辆
+import Usercarlist from './new/user/carlist';
+//个人中心-订单详情
+import Userorderinfo from './new/user/orderinfo';
+//个人中心-我的订单
+import Userorderlist from './new/user/orderlist';
+//个人中心-我的钱包
+import Userwallet from './new/user/wallet';
+//个人中心－提现
+import Userwithdrawals from './new/user/withdrawals';
 
 //examine
 import Examine from './new/examine';
@@ -154,6 +166,14 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/fastreg2" component={Fastreg2}/>
                     <Route path="/fastreg3" component={Fastreg3}/>
                     <Route path="/examine" component={Examine}/>
+                    <Route path="/userbaseinfo" component={Userbaseinfo}/>
+                    <Route path="/usercarlist" component={Usercarlist}/>
+                    <Route path="/userorderinfo" component={Userorderinfo}/>
+                    <Route path="/userorderlist" component={Userorderlist}/>
+                    <Route path="/userwallet" component={Userwallet}/>
+                    <Route path="/userwithdrawals" component={Userwithdrawals}/>
+
+
 
                     <Route component={App}/>
                 </Switch>
