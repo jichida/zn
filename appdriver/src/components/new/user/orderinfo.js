@@ -9,7 +9,10 @@ import '../../../../public/newcss/userorderinfo.css';
 import NavBar from '../tools/nav.js';
 import StarRatingComponent from 'react-star-rating-component';
 const { 
-    
+    Form,
+    FormCell,
+    CellBody,
+    TextArea,
     LoadMore
     } = WeUI;
 
@@ -60,6 +63,35 @@ class Page extends Component {
                     </div>
 
                     <div className="getMoney"><span>收现金</span></div>
+
+                    <div className="addevaluate">
+                        <div className="wamp">
+                            <div className="tit">
+                                <span>评价乘客</span>
+                                <img src="newimg/22.png" className="close" />
+                            </div>
+                            <div className="star">
+                                <StarRatingComponent 
+                                    name="star" 
+                                    editing={true}
+                                    starCount={5}
+                                    value={1}
+                                    emptyStarColor="#EEEEEE"
+                                />
+                            </div>
+                            <div className="text">
+                                <Form> 
+                                    <FormCell>
+                                        <CellBody>
+                                            <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"></TextArea>
+                                        </CellBody>
+                                    </FormCell>
+                                    <div className="btn Primary">提交</div>
+                                </Form>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

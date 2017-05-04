@@ -9,14 +9,29 @@
     height: 40px;
     display: flex;
     align-items: center;
+    justify-content: space-between;;
+}
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.type{
+    border: 1px solid #EEE;
+    border-radius: 6px;
+    font-size: 12px;
+    padding: 1px 5px;
+    margin-left: 5px;
+    color: #999
+}
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.status{
+
 }
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.i{
     background: #83cb7a;
     border-radius: 0 20px 20px 0;
     padding: 0 10px;
-    line-height: 30px;
+    line-height: 24px;
     color: #FFF;
     margin-right: 10px;
+}
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.li{
+    margin-left: 10px;
 }
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.li:before{
     content: "";
@@ -33,6 +48,7 @@
     border-radius: 6px;
     font-size: 14px;
     padding: 0;
+    padding-bottom: 10px;
 }
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd .a:before{
     border: 1px solid #1aae66;
@@ -44,4 +60,13 @@
     width: 12px;
     height: 12px;
     border-width: 1px 1px 0 0;
+    margin-top:15px;
+    margin-right: 15px;
 }
+
+
+
+
+
+
+

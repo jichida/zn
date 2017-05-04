@@ -7,8 +7,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/userorderlist.css';
 import NavBar from '../tools/nav.js';
-const { 
-    
+const {
     Cells,
     Cell,
     CellBody,
@@ -23,11 +22,16 @@ class Page extends Component {
                 <NavBar back={true} title="我的订单" />
                 <div className="list">
                     <Cells>
-                        <Cell href="javascript:;" access>
+                        <Cell access>
+                            
                             <CellBody>
                                 <div className="tt">
-                                    <span className="i">预约</span>
-                                    <span>2017-01-22 10:00</span>
+                                    <div className="ttinfo">
+                                        <span className="i">预约</span>
+                                        <span className="time">2017-01-22 10:00</span>
+                                        <span className="type">代驾</span>
+                                    </div>
+                                    <span className="status color_warning">待支付</span>
                                 </div>
                                 <div className="li a">我的行程</div>
                                 <div className="li b">我的行程</div>

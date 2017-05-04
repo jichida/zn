@@ -47,6 +47,10 @@ import Usercarlist from './new/user/carlist';
 import Userorderinfo from './new/user/orderinfo';
 //个人中心-我的订单
 import Userorderlist from './new/user/orderlist';
+//个人中心-我的钱包
+import Userwallet from './new/user/wallet';
+//个人中心－提现
+import Userwithdrawals from './new/user/withdrawals';
 
 //examine
 import Examine from './new/examine';
@@ -166,6 +170,9 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/usercarlist" component={Usercarlist}/>
                     <Route path="/userorderinfo" component={Userorderinfo}/>
                     <Route path="/userorderlist" component={Userorderlist}/>
+                    <Route path="/userwallet" component={Userwallet}/>
+                    <Route path="/userwithdrawals" component={Userwithdrawals}/>
+
 
 
                     <Route component={App}/>

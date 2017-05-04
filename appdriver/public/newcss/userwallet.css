@@ -1,90 +1,69 @@
-.taxiPage{
+.userwalletPage{
 
 }
-.taxiPage .list{
+.userwalletPage .head {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.userwalletPage .head > img{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+}
+.userwalletPage .head > div{
+    position: absolute;
+    display: flex;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    color: #FFF;
+    padding: 20px;
+    flex-direction: column;
+}
+.userwalletPage .head > div .tit{
+    margin-bottom: 3%;
+}
+.userwalletPage .head > div .myprice{
+    font-size: 36px;
+    text-align: center;
+}
+.userwalletPage .list {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.userwalletPage .list>div{
+    flex-shrink: 0;
+}
+.userwalletPage .list div.l2{
     flex-grow: 1;
     overflow: scroll;
+    flex-shrink: 1;
 }
-.taxiPage .submitBtn{
-    margin: 20px;
-}
-.taxiPage .avatar{
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    align-items: center;
-}
-.taxiPage .avatar img{
-    border-radius: 50%;
-    width: 100px;
-    margin-bottom: 5px;
-}
-.taxiPage .formStyle1 .weui-cell .weui-cell__bd.selCityBody{
-    justify-content: flex-end;
-}
-.taxiPage .formStyle1 .weui-cell .weui-cell__bd.selCityBody:after{
-    content: " ";
-    display: inline-block;
-    height: 6px;
-    width: 6px;
-    border-width: 2px 2px 0 0;
-    border-color: #C8C8CD;
-    border-style: solid;
-    right: 15px;
-    transform: rotate(45deg);
-    margin-left: 9px;
-}
-.updataimg {
-    display: flex;
-    flex-direction: column;
-}
-.updataimg .li{
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-}
-.updataimg .li .tit{
-    font-size: 22px;
-    padding-left: 20px;
-    margin-top: 15px;
-}
-.updataimg .li .desc{
-    padding: 0 20px;
-}
-.updataimg .li .imgbox{
-    border: 1px solid #EEE;
-    border-radius: 6px;
-    margin: 10px 20px;
-    background: #FFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.updataimg .li .imgbox img{
-    max-width: 65%;
-    margin: 15px 0;
-}
-.updataimg .li .imgbox .lnk{
-    color: #FFF;
-    display: flex;
-    height: 38px;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    background: #CCC;
-    flex-grow: 1;
-    align-self: stretch;
-    border-radius: 0 0 6px 6px;
-}
-.updataimg .li .imgbox .lnk:active{
-    background: #999;
-}
-.updataimg .weui-cells{
+.userwalletPage .list .l2 .weui-cells{
     margin-top: 0;
-    margin-bottom: 5px;
 }
-
-
+.userwalletPage .list .tixianlnk{
+    margin-top: 0;
+}
+.userwalletPage .list .tixianlnk .weui-cell__hd {
+    display: flex;
+    align-items: center;
+}
+.userwalletPage .list .tixianlnk .weui-cell__hd >img{
+    width: 26px;
+    margin-right: 8px;
+}
+.userwalletPage .list .weui-cell__bd{
+    display: flex;
+    flex-direction: column;
+}
+.userwalletPage .list .weui-cell__bd span.status{
+    color: #999;
+    font-size: 14px;
+}
