@@ -7,3 +7,6 @@ export const md_serverpush_triporder = createAction('md_serverpush_triporder');
 export const md_serverpush_triprequestandorder = createAction('md_serverpush_triprequestandorder');
 export const md_updaterequeststatus_result = createAction('md_updaterequeststatus_result');
 export const md_canceltriprequestorder_result = createAction('md_canceltriprequestorder_result');
+export const md_register_result = createAction('md_register_result');
+export const md_login_result = createAction('md_login_result');
+export const md_fillrealnameprofile_result  = createAction('md_fillrealnameprofile_result');

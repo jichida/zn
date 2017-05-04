@@ -5,6 +5,7 @@ import {
     login_err,
     loginsendauth_result,
     logout_result,
+    fillrealnameprofile_result
 } from '../actions';
 
 const initial = {
@@ -26,8 +27,8 @@ const userlogin = createReducer({
     localStorage.setItem('zhongnan_driver_token',payload.token);
     return { ...state, ...payload,loginsuccess:true};
   },
-  [login_err]: (state, authtoken) => {
-    return { ...state, loginsuccess:false};
+  [fillrealnameprofile_result]: (state, payload) => {
+    return { ...state, ...payload};
   },
   [loginsendauth_result]:(state,authtoken)=>{
     return { ...state, authtoken};

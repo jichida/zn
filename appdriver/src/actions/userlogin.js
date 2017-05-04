@@ -16,3 +16,6 @@ export const logout_result = createAction('logout_result');
 
 export const register_request = createAction('register_request');
 export const register_result = createAction('register_result');
+
+export const fillrealnameprofile_request = createAction('fillrealnameprofile_request');
+export const fillrealnameprofile_result = createAction('fillrealnameprofile_result');

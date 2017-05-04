@@ -1,10 +1,11 @@
 import {
-    login_result,//这个result特殊，需要判断是否登录
+    md_login_result,//这个result特殊，需要判断是否登录
+
     getbuscarpoolcitylist_request,
     getbuscarpool_request,
     getemerygencycontact_request,
     driveroute_request,
-    showpopmessage,
+
     disconnect,
     getabouthtml_request,
 
@@ -67,14 +68,20 @@ import {
     md_canceltriprequestorder_result,
 
     register_request,
-    register_result
+    md_register_result,
+    common_err,
+
+    fillrealnameprofile_request,
+    md_fillrealnameprofile_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
-  'register_result':register_result,
-  'login_result':login_result,
+  'common_err':common_err,
+  'fillrealnameprofile_result':md_fillrealnameprofile_result,
+  'register_result':md_register_result,
+  'login_result':md_login_result,
   'carcreate_result':carcreate_result,
   'cardelete_result':cardelete_result,
   'cargetall_result':cargetall_result,
@@ -106,39 +113,40 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
-  'register_request':register_request,
-  'getabouthtml':getabouthtml_request,
-  'loginsendauth':loginsendauth_request,
-  'loginwithauth':loginwithauth_request,
-  'loginwithtoken':loginwithtoken_request,
-  'getbuscarpoolcitylist':getbuscarpoolcitylist_request,
-  'getbuscarpool':getbuscarpool_request,
-  'getemerygencycontact':getemerygencycontact_request,
-  'searchtext':searchtext_request,
-  'driveroute':driveroute_request,
-  'getcurrentlocationandnearestdrivers':getcurrentlocationandnearestdrivers_request,
-  'operatelogin':operatelogin,
-  'operatelogout':operatelogout,
+  'register':`${register_request}`,
+  'getabouthtml':`${getabouthtml_request}`,
+  'loginsendauth':`${loginsendauth_request}`,
+  'loginwithauth':`${loginwithauth_request}`,
+  'loginwithtoken':`${loginwithtoken_request}`,
+  'getbuscarpoolcitylist':`${getbuscarpoolcitylist_request}`,
+  'getbuscarpool':`${getbuscarpool_request}`,
+  'getemerygencycontact':`${getemerygencycontact_request}`,
+  'searchtext':`${searchtext_request}`,
+  'driveroute':`${driveroute_request}`,
+  'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
+  'operatelogin':`${operatelogin}`,
+  'operatelogout':`${operatelogout}`,
 
-  'cargetallbrands':cargetallbrands_request,
-  'cargetallmodelfrombrandid':cargetallmodelfrombrandid_request,
-  'cargetallcolors':cargetallcolors_request,
+  'cargetallbrands':`${cargetallbrands_request}`,
+  'cargetallmodelfrombrandid':`${cargetallmodelfrombrandid_request}`,
+  'cargetallcolors':`${cargetallcolors_request}`,
 };
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
-  'getbuscarpool':getbuscarpool_request,
-  'getoftenuseaddress':getoftenuseaddress_request,
-  'setoftenuseaddress':setoftenuseaddress_request,
-  'acceptrequest':acceptrequest_request,
-  'sendcurlocationtoserver':sendcurlocationtoserver,
-  'updaterequeststatus':updaterequeststatus_request,
-  'canceltriprequestorder':canceltriprequestorder_request,
-  'getmytriporders':getmytriporders_request,
-  'updateorder_comment':updateorder_comment_request,
+  'fillrealnameprofile':`${fillrealnameprofile_request}`,
+  'getbuscarpool':`${getbuscarpool_request}`,
+  'getoftenuseaddress':`${getoftenuseaddress_request}`,
+  'setoftenuseaddress':`${setoftenuseaddress_request}`,
+  'acceptrequest':`${acceptrequest_request}`,
+  'sendcurlocationtoserver':`${sendcurlocationtoserver}`,
+  'updaterequeststatus':`${updaterequeststatus_request}`,
+  'canceltriprequestorder':`${canceltriprequestorder_request}`,
+  'getmytriporders':`${getmytriporders_request}`,
+  'updateorder_comment':`${updateorder_comment_request}`,
 
-  'carcreate':carcreate_request,
-  'cardelete':cardelete_request,
-  'cargetall':cargetall_request,
-  'carupdate':carupdate_request,
+  'carcreate':`${carcreate_request}`,
+  'cardelete':`${cardelete_request}`,
+  'cargetall':`${cargetall_request}`,
+  'carupdate':`${carupdate_request}`,
 }

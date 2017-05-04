@@ -12,6 +12,7 @@ import driveroute from './driveroute';
 import myorders from './myorders';
 import orderdetail from './orderdetail';
 import car from './car';
+import registerfillwizard from './registerfillwizard';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -27,6 +28,7 @@ export default combineReducers({
         driveroute,
         myorders,
         orderdetail,
+        registerfillwizard,
         form: formReducer,
         router: routerReducer
     }

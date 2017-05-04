@@ -14,31 +14,16 @@ import Myorders from './myorders';
 import Emerygencycontact from './emerygencycontact';
 import Feedetail from './orderdetail/feedetail';
 //注册
-import Register from './register';
+import Register from './register/index.js';
 //选择注册类型
-import Register1 from './register1';
+import Register1 from './register/registerfillwizard';
 //首页
 import Index from './index';
 //出车
 import Outcar from './new/outcar';
 //抢单
 import Roborder from './new/roborder';
-//出租车注册-基本信息
-import Taxireg1 from './new/taxi/reg1';
-//出租车注册-车辆信息
-import Taxireg2 from './new/taxi/reg2';
-//出租车注册-上传照片
-import Taxireg3 from './new/taxi/reg3';
-//代驾司机注册-基本信息
-import Replacereg1 from './new/replace/reg1';
-//代驾司机注册-上传照片
-import Replacereg2 from './new/replace/reg2';
-//快车司机注册-基本信息
-import Fastreg1 from './new/fast/reg1';
-//快车司机注册-车辆信息
-import Fastreg2 from './new/fast/reg2';
-//快车司机注册-上传照片
-import Fastreg3 from './new/fast/reg3';
+
 //个人中心-基本信息
 import Userbaseinfo from './new/user/baseinfo';
 //个人中心-我的车辆
@@ -52,8 +37,8 @@ import Userwallet from './new/user/wallet';
 //个人中心－提现
 import Userwithdrawals from './new/user/withdrawals';
 
-//examine
-import Examine from './new/examine';
+//审核页面
+import Approval from './register/approval';
 
 
 //注册
@@ -157,15 +142,7 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/index" component={Index}/>
                     <Route path="/outcar" component={Outcar}/>
                     <Route path="/roborder" component={Roborder}/>
-                    <Route path="/taxireg1" component={Taxireg1}/>
-                    <Route path="/taxireg2" component={Taxireg2}/>
-                    <Route path="/taxireg3" component={Taxireg3}/>
-                    <Route path="/replacereg1" component={Replacereg1}/>
-                    <Route path="/replacereg2" component={Replacereg2}/>
-                    <Route path="/fastreg1" component={Fastreg1}/>
-                    <Route path="/fastreg2" component={Fastreg2}/>
-                    <Route path="/fastreg3" component={Fastreg3}/>
-                    <Route path="/examine" component={Examine}/>
+                    <Route path="/approval" component={Approval}/>
                     <Route path="/userbaseinfo" component={Userbaseinfo}/>
                     <Route path="/usercarlist" component={Usercarlist}/>
                     <Route path="/userorderinfo" component={Userorderinfo}/>

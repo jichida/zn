@@ -23,6 +23,7 @@ import TaxiRegPage1 from './taxi/reg1.js';
 import TaxiRegPage2 from './taxi/reg2.js';
 import TaxiRegPage3 from './taxi/reg3.js';
 
+import {fillrealnameprofile_request} from '../../actions';
 
 class RegisterFillWizardForm extends Component {
   constructor(props) {
@@ -52,6 +53,20 @@ class RegisterFillWizardForm extends Component {
     const { registertype } = this.props;
     console.log(`FINALL===========>values:${JSON.stringify(values)}`);
     alert(`注册类型:${registertype},数据:${JSON.stringify(values)}`);
+    const {idcard,bankname,avatar,bankaccount,CarmanPhotoldURL,PhotoldURL,...Platform_baseInfoDriver} = values;
+    let data = {
+      registertype,
+      idcard,
+      bankname,
+      bankaccount,
+      CarmanPhotoldURL,
+      PhotoldURL,
+      profile:{
+        avatar
+      },
+      Platform_baseInfoDriver
+    };
+    this.props.dispatch(fillrealnameprofile_request({data}));
   };
 
   renderpage0 =()=> {

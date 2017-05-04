@@ -5,6 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "amazeui-touch": "^1.0.0",
+    "antd": "^2.9.3",
     "axios": "^0.15.3",
     "belle": "^3.0.1",
     "geolib": "^2.0.22",
