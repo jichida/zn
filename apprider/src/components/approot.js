@@ -28,12 +28,18 @@ import {
     Redirect
 } from 'react-router-dom';
 
-import '../../public/App.css';
-import '../../public/amaze.css';
-import '../../public/a2017.css';
-import '../../public/m2015.css';
-import '../../public/style.css';
-import '../../public/css/page.css';
+
+/*UI重新做*/
+import Messagelist from "./new/user/message.js";
+/*公共样式*/
+import '../../public/newcss/common.css';
+
+// import '../../public/App.css';
+// import '../../public/amaze.css';
+// import '../../public/a2017.css';
+// import '../../public/m2015.css';
+// import '../../public/style.css';
+// import '../../public/css/page.css';
 
 
 import {requireAuthentication} from './requireauthentication';
@@ -99,30 +105,36 @@ const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
 }
 MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
 
- class AppRoot extends React.Component {
+class AppRoot extends React.Component {
 
     render() {
         
-        return (<div> <MessageCo />
-            <Switch>
-                <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
-                <Route path="/index/:keyname" component={App}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/about/:keyname" component={About}/>
-                <Route path="/systemsettings" component={SystemSetting}/>
-                <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
-                <Route path="/city" component={City}/>
-                <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
-                <Route path="/search/:searchfrom" component={Search}/>
-                <Route path="/requestorderstarting" component={Caroverlay}/>
-                <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
-                <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>            
-                <Route path="/myorders" component={requireAuthentication(Myorders)}/>
-                <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
-                <Route component={App}/>
-            </Switch>
-        </div>);
+        return (
+            <div className="AppContainer">
+                <MessageCo />
+                <Switch>
+                    <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
+                    <Route path="/index/:keyname" component={App}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/about/:keyname" component={About}/>
+                    <Route path="/systemsettings" component={SystemSetting}/>
+                    <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
+                    <Route path="/city" component={City}/>
+                    <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
+                    <Route path="/search/:searchfrom" component={Search}/>
+                    <Route path="/requestorderstarting" component={Caroverlay}/>
+                    <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
+                    <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
+                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>            
+                    <Route path="/myorders" component={requireAuthentication(Myorders)}/>
+                    <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
+
+
+                    <Route path="/messagelist" component={Messagelist}/>
+                    <Route component={App}/>
+                </Switch>
+            </div>
+        );
     }
 
 }

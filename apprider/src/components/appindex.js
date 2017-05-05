@@ -119,7 +119,7 @@ export class AppIndex extends React.Component {
                      touch={false}
                      onSetOpen={this.onSetSidebarOpen.bind(this)}
                      >
-      <View style={{zIndex: 0}}>
+        <View style={{zIndex: 0}}>
         <header className="navbar">
               <h2 className="navbar-title navbar-center"><font><font>中南出行</font></font></h2>
               <div onClick={this.onSetSidebarOpen.bind(this,true)} className="navbar-nav navbar-left"><a  className="navbar-nav-item"><span className="icon icon-user navbar-icon navbar-icon-sibling-of-title fize22 padding-t10"></span></a></div>
