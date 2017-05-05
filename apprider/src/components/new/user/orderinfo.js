@@ -130,7 +130,7 @@ class Page extends Component {
 
                     <div className="getMoney"><span>收现金</span></div>
 
-                    <div className="addevaluate" style={{display:"none"}}>
+                    <div className="addevaluate">
                         <div className="wamp">
                             <div className="tit">
                                 <span>评价司机</span>
@@ -145,6 +145,11 @@ class Page extends Component {
                                     emptyStarColor="#EEEEEE"
                                 />
                             </div>
+                            <div className="hottag">
+                                <span className="sel">师傅长得帅</span>
+                                <span>比较幽默</span>
+                                <span>车技好</span>
+                            </div>
                             <div className="text">
                                 <Form> 
                                     <FormCell>
@@ -158,6 +163,9 @@ class Page extends Component {
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         )

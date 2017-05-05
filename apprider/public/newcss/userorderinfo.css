@@ -138,6 +138,27 @@
     height: 16px;
     margin-right: 5px;
 }
+
+.userorderinfoPage .hottag{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10px 0 10px 15px;
+}
+.userorderinfoPage .hottag span{
+    line-height: 24px;
+    padding: 0 10px;
+    border-radius: 24px;
+    border: 1px solid #CCC;
+    color: #999;
+    margin-right: 15px;
+}
+.userorderinfoPage .hottag span.sel{
+    background: #3479e1;
+    color: #FFF;
+    border: none;
+}
+
 .userorderinfoPage .address>div:before{
     content: "";
     display: inline-block;
