@@ -3,7 +3,7 @@ import { Field } from 'redux-form';
 import { Upload, Icon, message } from 'antd';
 //import 'antd/dist/antd.css';
 import './imageupload.css';
-import config from '../../../env/config.js';
+import config from '../../env/config.js';
 
 const renderImageupload= (props) => {
   let {input} = props;

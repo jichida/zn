@@ -96,6 +96,7 @@ export class Page extends React.Component {
      }
 
      const {curlocation,curreqobj} = nextProps;
+     if(curreqobj){
      const {curlocation:prevlocation} = this.props;
      if((curlocation.lng !== prevlocation.lng || curlocation.lat !== prevlocation.lat)
      && curreqobj.requeststatus){
@@ -121,6 +122,7 @@ export class Page extends React.Component {
        }
        nextProps.dispatch(nav_drawroute({drawroute,startlnglat,endlnglat}));
      }
+   }
    }
 
    onDragging(){

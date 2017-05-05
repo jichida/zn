@@ -22,3 +22,6 @@ export const cargetallmodelfrombrandid_result = createAction('cargetallmodelfrom
 
 export const cargetallcolors_request = createAction('cargetallcolors_request');
 export const cargetallcolors_result = createAction('cargetallcolors_result');
+
+export const carsetdefault_request = createAction('carsetdefault_request');
+export const carsetdefault_result = createAction('carsetdefault_result');

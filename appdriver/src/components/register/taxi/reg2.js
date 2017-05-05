@@ -8,7 +8,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import NavBar from '../tools/nav.js';
+import NavBar from '../../tools/nav.js';
 import validate from './validate';
 import StarRatingComponent from 'react-star-rating-component';
 const {
@@ -24,7 +24,7 @@ const {
     Input,
     Select
     } = WeUI;
-import {renderInputField,renderSelField} from '../tools/renderfield';
+import {renderInputField,renderSelField} from '../../tools/renderfield';
 
 class Page extends Component {
 

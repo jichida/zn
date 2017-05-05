@@ -8,7 +8,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import NavBar from '../tools/nav.js';
+import NavBar from '../../tools/nav.js';
 import validate from './validate';
 import StarRatingComponent from 'react-star-rating-component';
 const {
@@ -23,9 +23,9 @@ const {
     Input,
     Select
     } = WeUI;
-import {renderInputField,renderSelField} from '../tools/renderfield';
-import {renderImageupload} from '../tools/renderimageupload';
-import {renderDateField} from '../tools/renderdate';
+import {renderInputField,renderSelField} from '../../tools/renderfield';
+import {renderImageupload} from '../../tools/renderimageupload';
+import {renderDateField} from '../../tools/renderdate';
 import {ui_isdateopen} from '../../../actions';
 
 const databanklist = [

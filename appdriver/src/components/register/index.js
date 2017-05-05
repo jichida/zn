@@ -12,7 +12,7 @@ import {
   register_request,
   login_request
 } from '../../actions/index.js';
-import {renderInputField,renderAuthField} from './tools/renderfield';
+import {renderInputField,renderAuthField} from '../tools/renderfield';
 
 const {
     FormCell,

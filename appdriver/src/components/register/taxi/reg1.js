@@ -8,7 +8,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import NavBar from '../tools/nav.js';
+import NavBar from '../../tools/nav.js';
 import validate from './validate';
 import StarRatingComponent from 'react-star-rating-component';
 const {
@@ -23,8 +23,8 @@ const {
     Input,
     Select
     } = WeUI;
-import {renderInputField,renderSelField} from '../tools/renderfield';
-import {renderImageupload} from '../tools/renderimageupload';
+import {renderInputField,renderSelField} from '../../tools/renderfield';
+import {renderImageupload} from '../../tools/renderimageupload';
 
 const databanklist = [
   {
@@ -87,7 +87,7 @@ class Page extends Component {
                         <Field name="DriverType" label="准驾类型" placeholder="请输入准驾类型" type="text" component={renderInputField} />
                         <Field name="DriverType" label="准驾类型" placeholder="请输入准驾类型" type="text" component={renderInputField} />
                         <Field name="DriverGender" label="性别" data={datasexlist} component={renderSelField} />
-                        <Field name="DriverCensus" label="户籍" placeholder="户口登记机关名称" type="text" component={renderInputField} />
+                        <Field name="huji" label="户籍" placeholder="户口登记机关名称" type="text" component={renderInputField} />
                         <Field name="DriverAddress" label="户口住址" placeholder="户口住址或长住地址" type="text" component={renderInputField} />
                         <Field name="DriverNation" label="民族" placeholder="请输入民族" type="text" component={renderInputField} />
                         <Field name="DriverMaritalStatus" label="婚姻情况" data={datamarriagestatuslist} component={renderSelField} />

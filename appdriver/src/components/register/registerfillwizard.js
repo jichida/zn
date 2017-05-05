@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import {ui_registerfillwizard} from '../../actions';
 import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
@@ -23,7 +22,10 @@ import TaxiRegPage1 from './taxi/reg1.js';
 import TaxiRegPage2 from './taxi/reg2.js';
 import TaxiRegPage3 from './taxi/reg3.js';
 
-import {fillrealnameprofile_request} from '../../actions';
+import {
+  ui_registerfillwizard,
+  fillrealnameprofile_request
+} from '../../actions';
 
 class RegisterFillWizardForm extends Component {
   constructor(props) {
@@ -53,18 +55,50 @@ class RegisterFillWizardForm extends Component {
     const { registertype } = this.props;
     console.log(`FINALL===========>values:${JSON.stringify(values)}`);
     alert(`注册类型:${registertype},数据:${JSON.stringify(values)}`);
-    const {idcard,bankname,avatar,bankaccount,CarmanPhotoldURL,PhotoldURL,...Platform_baseInfoDriver} = values;
-    let data = {
-      registertype,
+    // idcard:String,//身份证号<---
+    // bankname:String,//银行名字<---
+    // bankaccount:String,//银行账号<---
+    // huji:String,//户籍
+    // PhotoandCarmanURL:String,//人车合影
+    // PhotoJiandukaURL:String,//监督卡照片
+    // PhotoServiceicenseURL:String,//服务资格证
+    // CarrunPhotoldURL:String,//机动车行驶证
+    const {
       idcard,
       bankname,
       bankaccount,
+      huji,
       CarmanPhotoldURL,
+      PhotoJiandukaURL,
+      PhotoServiceicenseURL,
+      CarrunPhotoldURL,
+
+      City,
+      VehicleNo,
+      Seats,
+      Certificate,
       PhotoldURL,
-      profile:{
-        avatar
-      },
-      Platform_baseInfoDriver
+      CheckState,
+      ...Platform_baseInfoDriver} = values;
+
+    let data = {
+      idcard,
+      bankname,
+      bankaccount,
+      huji,
+      CarmanPhotoldURL,
+      PhotoJiandukaURL,
+      PhotoServiceicenseURL,
+      CarrunPhotoldURL,
+      Platform_baseInfoDriver,
+      Platform_baseInfoVehicle:{
+        City,
+        VehicleNo,
+        Seats,
+        Certificate,
+        PhotoldURL,
+        CheckState
+      }
     };
     this.props.dispatch(fillrealnameprofile_request({data}));
   };

@@ -72,13 +72,17 @@ import {
     common_err,
 
     fillrealnameprofile_request,
-    md_fillrealnameprofile_result
+    md_fillrealnameprofile_result,
+
+    carsetdefault_request,
+    carsetdefault_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
   'common_err':common_err,
+  'carsetdefault_result':carsetdefault_result,
   'fillrealnameprofile_result':md_fillrealnameprofile_result,
   'register_result':md_register_result,
   'login_result':md_login_result,
@@ -134,6 +138,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'carsetdefault':`${carsetdefault_request}`,
   'fillrealnameprofile':`${fillrealnameprofile_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
   'getoftenuseaddress':`${getoftenuseaddress_request}`,

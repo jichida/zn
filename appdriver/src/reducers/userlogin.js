@@ -14,6 +14,7 @@ const initial = {
     username:'',
     token:'',
     authtoken:'',
+    registertype:'快车',
     profile:{},
   },
 };

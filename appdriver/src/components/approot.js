@@ -10,7 +10,13 @@ import City from './city';
 import Caroverlayqd from './maps/caroverlayqd';
 import Caroverlaystart from './maps/caroverlaystarttrip';
 import Orderdetail from './orderdetail/orderdetail';
-import Myorders from './myorders';
+//我的订单（行程）
+import Myorders from './myorders/orderlist';
+//我的车辆
+import Mycars from './mycars/carlist';
+//新增车辆
+import Createcar from './mycars/createcar/createcarwizard';
+
 import Emerygencycontact from './emerygencycontact';
 import Feedetail from './orderdetail/feedetail';
 //注册
@@ -18,9 +24,9 @@ import Register from './register/index.js';
 //选择注册类型
 import Register1 from './register/registerfillwizard';
 //首页
-import Index from './index';
+import Index from './home/index';
 //出车
-import Outcar from './new/outcar';
+import Outcar from './maps/outcar';
 //抢单
 import Roborder from './new/roborder';
 
@@ -68,11 +74,11 @@ import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '..
 import {requireAuthentication} from './requireauthentication';
 
 
- class AppRoot extends React.Component {
+
+class MessageCo extends React.Component {
     onDismiss=()=>{
         this.props.dispatch(hidepopmessage());
     }
-
     componentWillReceiveProps (nextProps) {
         if(nextProps.ispop && !this.props.ispop){
             window.setTimeout(()=>{
@@ -80,6 +86,7 @@ import {requireAuthentication} from './requireauthentication';
             },3000);
         }
     }
+
     render() {
         let fullheight = {
             height: window.innerHeight + "px"
@@ -120,11 +127,22 @@ import {requireAuthentication} from './requireauthentication';
                 );
             }
         }
+        return MessageCo;
+     }
+}
+const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
+    return {ispop,type,title,msg};
+}
+MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
+
+ class AppRoot extends React.Component {
+
+    render() {
         return (
             <div className="AppContainer">
                 {MessageCo}
                 <Switch>
-                    <Route exact path="/" component={()=>(<Redirect to="/index/all"/>)}/>
+                    <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/index/:keyname" component={App}/>
                     <Route path="/systemsettings" component={SystemSetting}/>
                     <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
@@ -150,7 +168,8 @@ import {requireAuthentication} from './requireauthentication';
                     <Route path="/userwallet" component={Userwallet}/>
                     <Route path="/userwithdrawals" component={Userwithdrawals}/>
 
-
+                    <Route path="/mycars" component={Mycars}/>
+                    <Route path="/createcar" component={Createcar}/>
 
                     <Route component={App}/>
                 </Switch>

@@ -2,7 +2,7 @@
     注册司机－车辆信息
 */
 import React, { Component } from 'react';
-import NavBar from '../tools/nav.js';
+import NavBar from '../../tools/nav.js';
 import { Field,Fields,reduxForm,Form} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
@@ -22,8 +22,8 @@ const {
     Select,
     CellsTitle
     } = WeUI;
-import {renderInputField} from '../tools/renderfield';
-import {renderImageupload} from '../tools/renderimageupload';
+import {renderInputField} from '../../tools/renderfield';
+import {renderImageupload} from '../../tools/renderimageupload';
 
 class Page extends Component {
 

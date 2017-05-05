@@ -13,6 +13,8 @@ import myorders from './myorders';
 import orderdetail from './orderdetail';
 import car from './car';
 import registerfillwizard from './registerfillwizard';
+import createcarwizard from './createcarwizard';
+import withdraw from './withdraw';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -20,6 +22,7 @@ export default combineReducers({
         app,
         appui,
         car,
+        createcarwizard,
         userlogin,
         emerygencycontact,
         oftenuseaddress,
@@ -27,6 +30,7 @@ export default combineReducers({
         carmap,
         driveroute,
         myorders,
+        withdraw,
         orderdetail,
         registerfillwizard,
         form: formReducer,

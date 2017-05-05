@@ -31,9 +31,10 @@ class Page extends Component {
         const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
-                <NavBar back={false} title="上传照片" />
+                <NavBar back={true} title="上传照片" />
                 <div className="list updataimg">
-                    <div className="li">
+
+                  <div className="li">
                         <div className="tit">驾驶证</div>
                         <FormUI>
                           <Field name="Licenseld" label="驾驶证号" placeholder="请输入驾驶证号" type="text" component={renderInputField}/>
@@ -48,7 +49,7 @@ class Page extends Component {
                         <div className="tit">行驶证</div>
                         <div className="desc">出租客运，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="CarrunPhotoldURL" component={renderImageupload}/>
+                            <Field name="LicensePhotoldURL" component={renderImageupload}/>
                         </div>
                     </div>
 
@@ -60,19 +61,18 @@ class Page extends Component {
                         </div>
                     </div>
 
-
                 </div>
+
                 <div className="submitBtn">
-                  <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
-                  <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
+                    <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
+                    <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
                 </div>
             </div>
-        );
+        )
     }
-};
-
+}
 export default reduxForm({
-  form: 'registerfillwizard',                 // <------ same form name
+  form: 'createcarwizard',                 // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
   validate

@@ -2,7 +2,7 @@
     注册司机－车辆信息
 */
 import React, { Component } from 'react';
-import NavBar from '../tools/nav.js';
+import NavBar from '../../tools/nav.js';
 import { Field,Fields,reduxForm,Form} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
@@ -22,8 +22,8 @@ const {
     Select,
     CellsTitle
     } = WeUI;
-import {renderInputField} from '../tools/renderfield';
-import {renderImageupload} from '../tools/renderimageupload';
+import {renderInputField} from '../../tools/renderfield';
+import {renderImageupload} from '../../tools/renderimageupload';
 
 class Page extends Component {
 
@@ -38,7 +38,7 @@ class Page extends Component {
                         <div className="tit">服务资格证</div>
                         <div className="desc">证件有效期内，需证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                          <Field name="LicensePhotoldURL" component={renderImageupload}/>
+                          <Field name="PhotoServiceicenseURL" component={renderImageupload}/>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@ class Page extends Component {
                         <div className="tit">监督卡</div>
                         <div className="desc">证件有效期内，需证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL" component={renderImageupload}/>
+                            <Field name="PhotoJiandukaURL" component={renderImageupload}/>
                         </div>
                     </div>
 
@@ -65,7 +65,7 @@ class Page extends Component {
                         <div className="tit">行驶证</div>
                         <div className="desc">出租客运，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL" component={renderImageupload}/>
+                            <Field name="CarrunPhotoldURL" component={renderImageupload}/>
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@ class Page extends Component {
                         <div className="tit">人车合影</div>
                         <div className="desc">人车合影正面照，能看清人、车牌、顶灯。</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL" component={renderImageupload}/>
+                            <Field name="PhotoandCarmanURL" component={renderImageupload}/>
                         </div>
                     </div>
 

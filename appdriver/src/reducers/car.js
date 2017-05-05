@@ -12,11 +12,15 @@ import {
 
 const initial = {
   car: {
-
+    carlist:[],
   },
 };
 
 const car = createReducer({
+  [cargetall_result]:(state,payload)=>{
+    const {list:carlist} = payload;
+    return {...state,carlist};
+  },
   [cargetallbrands_result]:(state,payload)=>{
     return {...state,...payload};
   },

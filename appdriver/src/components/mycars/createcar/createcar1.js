@@ -53,7 +53,7 @@ class Page extends Component {
 }
 
 export default reduxForm({
-  form: 'registerfillwizard',                 // <------ same form name
+  form: 'createcarwizard',                 // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
   validate
