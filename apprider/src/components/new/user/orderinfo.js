@@ -23,6 +23,7 @@ class Page extends Component {
             <div className="userorderinfoPage AppPage">
                 <NavBar back={true} title="订单详情" />
                 <div className="pageContent">
+
                     <div className="orderinfohead">
                         <div className="driver">
                             <img src="newimg/17.png" className="avatar"/>
@@ -45,6 +46,46 @@ class Page extends Component {
                             <div>建邺区东山路214号成安国际大厦</div>
                         </div>
                     </div>
+                    
+
+
+                    <div className="orderinfohead">
+                        <div className="driver">
+                            <img src="newimg/17.png" className="avatar"/>
+                            <div className="info">
+                                <div>
+                                    <span>赵师傅</span>
+                                    <span className="star"></span>
+                                </div>
+                                <div>
+                                    白色现代·苏A12345 <span>出租车</span>
+                                </div>
+                            </div>
+                            <div className="call">
+                                <img src="newimg/20.png" />
+                                联系TA
+                            </div>
+                        </div>
+                        <div className="busslist">
+                            <div><img src="newimg/18.png" />用车时间: 2017-01-22 10:00</div>
+                            <div><img src="newimg/18.png" />用车时间: 2017-01-22 10:00</div>
+                            <div><img src="newimg/21.png" />已付定金 60元</div>
+                        </div>
+                    </div>
+
+                    <div className="orderinfohead">
+                        <div className="pinche">
+                            <div className="time">2017-02-05 07:30</div>
+                            <div className="city">
+                                <span className="start">天长快车站</span>
+                                <span className="line"></span>
+                                <span className="end">南京</span>
+                            </div>
+                            <div className="time2">07:30 <span>40人成团</span></div>
+                        </div>
+                    </div>
+
+
 
                     <div className="content">
                         <LoadMore showLine>已支付</LoadMore>
@@ -75,6 +116,17 @@ class Page extends Component {
                         />
                         <span className="text">默认好评</span>
                     </div>
+
+                    <div className="information PanelBox">
+                        <div className="tit color_warning">正在积极参与中...</div>
+                        <div className="cont">
+                            距离发车时间还有20天，请耐心等待<br/>
+                            目前已参与人数20人，还差20人
+                        </div>
+                    </div>
+
+                    <div className="promptcenter">如有退款，请与平台客服联系</div>
+
 
                     <div className="getMoney"><span>收现金</span></div>
 

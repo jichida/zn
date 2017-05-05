@@ -13,6 +13,71 @@
     flex-direction: column;
 
 }
+.userorderinfoPage .orderinfohead .pinche{
+    display: flex;
+    flex-direction: column;
+}
+.userorderinfoPage .orderinfohead .pinche .city{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.userorderinfoPage .orderinfohead .pinche .line{
+    height: 4px;
+    background: #0180ff;
+    flex-grow: 1;
+    position: relative;
+}
+.userorderinfoPage .orderinfohead .pinche .line:after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #0180ff;
+    border-right: 10px solid transparent;
+    position: absolute;
+    right: -5px;
+    bottom: 0;
+}
+.userorderinfoPage .orderinfohead .pinche .time{
+    margin-bottom: 10px;
+}
+.userorderinfoPage .orderinfohead .pinche .time2{
+    margin-top: 10px;
+}
+
+.userorderinfoPage .promptcenter{
+    padding: 15px;
+    color: #888;
+    text-align: center;
+}
+
+.userorderinfoPage .information{
+    background: #FFF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.userorderinfoPage .information .tit{
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.userorderinfoPage .information .cont{
+    text-align: center;
+}
+
+.userorderinfoPage .orderinfohead .pinche .time2 span{
+    border: 1px solid #DDD;
+    border-radius: 6px;
+    padding: 0 5px;
+    color: #999;
+}
+.userorderinfoPage .orderinfohead .pinche .city .start,
+.userorderinfoPage .orderinfohead .pinche .city .end{
+    margin:  0 15px;
+    font-size: 22px;
+}
 .userorderinfoPage .orderinfohead .driver{
     display: flex;
     align-items: center;
@@ -62,6 +127,16 @@
 .userorderinfoPage .address>div{
     display: flex;
     align-items: center;
+}
+.userorderinfoPage .busslist>div{
+    display: flex;
+    align-items: center;
+    color: #888;
+}
+.userorderinfoPage .busslist>div img{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
 }
 .userorderinfoPage .address>div:before{
     content: "";
