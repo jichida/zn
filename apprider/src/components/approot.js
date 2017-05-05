@@ -30,7 +30,25 @@ import {
 
 
 /*UI重新做*/
-import Messagelist from "./new/user/message.js";
+import Messagelist from "./new/user/message";
+
+/*个人中心*/
+//设置
+import Setting from "./new/user/setting";
+//优惠券
+import Discount from "./new/user/discount";
+//addresscommon常用地址
+import Addresscommon from "./new/user/addresscommon";
+//添加常用地址
+import Addresscommonadd from "./new/user/addresscommonadd";
+//我的钱包
+import Userwallet from "./new/user/wallet";
+//我要充值
+import Userrecharge from "./new/user/recharge";
+//订单详情
+import Orderinfo from "./new/user/orderinfo";
+
+
 /*公共样式*/
 import '../../public/newcss/common.css';
 
@@ -131,6 +149,19 @@ class AppRoot extends React.Component {
 
 
                     <Route path="/messagelist" component={Messagelist}/>
+                    <Route path="/setting" component={Setting}/>
+                    <Route path="/discount" component={Discount}/>
+                    <Route path="/addresscommon" component={Addresscommon}/>
+                    <Route path="/addresscommonadd" component={Addresscommonadd}/>
+                    <Route path="/userwallet" component={Userwallet}/>
+                    <Route path="/userrecharge" component={Userrecharge}/>
+                    <Route path="/orderinfo" component={Orderinfo}/>
+
+
+
+
+
+
                     <Route component={App}/>
                 </Switch>
             </div>
