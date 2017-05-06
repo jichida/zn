@@ -125,12 +125,36 @@ class Page extends Component {
                         </div>
                     </div>
 
+                    <div className="information PanelBox">
+                        <img src="newimg/23.png" width="60" />
+                        <div className="tit color_warning">恭喜你参团成功</div>
+                        <div className="cont">
+                            请注意开车时间，提前到站等候发车
+                        </div>
+                    </div>
+
+                    <div className="information PanelBox">
+                        <img src="newimg/24.png" width="60" />
+                        <div className="tit color_warning">谢谢你的参与</div>
+                        <div className="cont">
+                            参团失败，请另选择交通工具
+                        </div>
+                    </div>
+
+                    <div className="cancelorder">
+                        <img src="newimg/25.png" width="60" />
+                        <div className="tit">订单已取消</div>
+                        <div className="reason">取消原因:太远了</div>
+                        <div className="btn">回首页</div>
+                    </div>
+
+
                     <div className="promptcenter">如有退款，请与平台客服联系</div>
 
 
                     <div className="getMoney"><span>收现金</span></div>
 
-                    <div className="addevaluate">
+                    <div className="addevaluate" style={{display:"none"}}>
                         <div className="wamp">
                             <div className="tit">
                                 <span>评价司机</span>

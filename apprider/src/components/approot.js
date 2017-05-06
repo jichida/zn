@@ -47,6 +47,22 @@ import Userwallet from "./new/user/wallet";
 import Userrecharge from "./new/user/recharge";
 //订单详情
 import Orderinfo from "./new/user/orderinfo";
+//订单列表
+import Orderlist from "./new/user/orderlist";
+//选择支付方式
+import Selpay from "./new/user/selpay";
+//紧急联系人
+import Urgentlist from "./new/user/urgentlist";
+//个人信息
+import Userinfo from "./new/user/userinfo";
+//个人中心
+import Usercenter from "./new/user/usercenter";
+
+//取消规则
+import Cancelrule from "./new/other/cancelrule";
+//集团信息
+import Phonelist from "./new/other/phonelist";
+//.cancelrulePage {}
 
 
 /*公共样式*/
@@ -156,6 +172,15 @@ class AppRoot extends React.Component {
                     <Route path="/userwallet" component={Userwallet}/>
                     <Route path="/userrecharge" component={Userrecharge}/>
                     <Route path="/orderinfo" component={Orderinfo}/>
+                    <Route path="/cancelrule" component={Cancelrule}/>
+                    <Route path="/orderlist" component={Orderlist}/>
+                    <Route path="/selpay" component={Selpay}/>
+                    <Route path="/urgentlist" component={Urgentlist}/>
+                    <Route path="/phonelist" component={Phonelist}/>
+                    <Route path="/userinfo" component={Userinfo}/>
+                    <Route path="/usercenter" component={Usercenter}/>
+
+
 
 
 

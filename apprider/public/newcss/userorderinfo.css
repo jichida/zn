@@ -244,6 +244,37 @@
     margin-bottom: 10px;
 }
 
+
+.userorderinfoPage .cancelorder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF;
+    padding-top: 20px;
+    flex-grow: 1;
+    align-self: stretch;
+}
+.userorderinfoPage .cancelorder >img{
+    width: 50px;
+    margin-bottom: 15px;
+}
+.userorderinfoPage .cancelorder .tit{
+    font-size: 16px;
+    color: #333;
+}
+.userorderinfoPage .cancelorder .reason{
+    color: #999;
+}
+.userorderinfoPage .cancelorder .btn{
+    border: 1px solid #007eff;
+    border-radius: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #007eff;
+    padding: 0 20px;
+    margin: 15px 0;
+}
+
 .addevaluate {
     position: absolute;
     top: 0;
