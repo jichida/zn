@@ -39,7 +39,7 @@ import Userorderinfo from './new/user/orderinfo';
 //个人中心-我的订单
 import Userorderlist from './new/user/orderlist';
 //个人中心-我的钱包
-import Userwallet from './new/user/wallet';
+import Userwallet from './mywallet/wallet';
 //个人中心－提现
 import Userwithdrawals from './new/user/withdrawals';
 
@@ -165,7 +165,8 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/usercarlist" component={Usercarlist}/>
                     <Route path="/userorderinfo" component={Userorderinfo}/>
                     <Route path="/userorderlist" component={Userorderlist}/>
-                    <Route path="/userwallet" component={Userwallet}/>
+                    
+                    <Route path="/mywallet" component={Userwallet}/>
                     <Route path="/userwithdrawals" component={Userwithdrawals}/>
 
                     <Route path="/mycars" component={Mycars}/>

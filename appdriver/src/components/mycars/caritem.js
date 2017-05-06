@@ -14,22 +14,24 @@ const {
 
 
 let CarItem =(props)=> {
-    let {carinfo,onClickSelCurCar} = props;
+    let {carinfo,isdefault,onClickSelCurCar} = props;
     if(!carinfo){
-        return (<div>无订单项</div>);
+        return (<div>无车</div>);
     }
+
+    const {Platform_baseInfoVehicle} = carinfo;
     console.log("carinfo:" + JSON.stringify((carinfo)));
 
     return (
-      <MediaBox type="appmsg" href="javascript:void(0);">
+      <MediaBox type="appmsg" onClick={()=>onClickSelCurCar(carinfo)}>
           <MediaBoxHeader>
-              <img src="newimg/18.png" />
+              <img src={carinfo.PhotoandCarmanURL} />
           </MediaBoxHeader>
           <MediaBoxBody>
-              <MediaBoxTitle>现代·1109</MediaBoxTitle>
+              <MediaBoxTitle>{Platform_baseInfoVehicle.Brand}·{Platform_baseInfoVehicle.Model}</MediaBoxTitle>
               <MediaBoxDescription>
-                  <span className="tag">苏A12345</span>
-                  <span className="current">当前车辆</span>
+                  <span className="tag">{Platform_baseInfoVehicle.VehicleNo}</span>
+                  {isdefault && (<span className="current">当前车辆</span>)}
               </MediaBoxDescription>
           </MediaBoxBody>
       </MediaBox>

@@ -18,3 +18,4 @@
 /appdriver/src/components/register/tools/renderfield.js
 /appdriver/src/components/register/tools/renderimageupload.js
 /appdriver/src/reducers/registerfillwizard.js
+appdriver/node_modules/

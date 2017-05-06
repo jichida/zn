@@ -25,6 +25,8 @@ import {
  } from 'admin-on-rest/lib/mui';
 
 import ApproveButton from './btn';
+import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {ImageInputUpload} from '../controls/imageupload.js';
 
 const UserdriverlistTitle = ({ record }) => {
    return <span>显示 司机</span>;
@@ -38,6 +40,20 @@ export const UserdriverFilter = props => (
 
 const UserdriverTitle = ({ record }) => {
    return <span>司机</span>;
+};
+
+const validateDriverEdit = (values) => {
+    const errors = {};
+    if(values.Platform_baseInfoDriver){
+      if (!values.Platform_baseInfoDriver.DriverName) {
+          errors.Platform_baseInfoDriver.DriverName = ['司机姓名必填'];
+      }
+      if (!values.Platform_baseInfoDriver.DriverPhone) {
+          errors.Platform_baseInfoDriver.DriverPhone = ['司机手机号必填'];
+      }
+    }
+
+    return errors
 };
 
 const UserdriverlistEdit = (props) => {
@@ -61,11 +77,14 @@ const UserdriverlistEdit = (props) => {
               </ReferenceField>
               <TextField label="余额" source="balance" />
               <TextInput label="拒绝理由" source="approvalrejectseason" />
-              <SelectInput  label="审批状态"  source="approvalstatus" choices={[
-                  { id: '未审批', name: '未审批' },
-                  { id: '已审批', name: '审批通过' },
+              <SelectInput  label="审核状态"  source="approvalstatus" choices={[
+                  { id: '未递交', name: '未递交资料' },
+                  { id: '待审核', name: '待审核' },
+                  { id: '审核中', name: '审核中' },
+                  { id: '已审核', name: '已审核' },
                   { id: '已拒绝', name: '拒绝(填写拒绝理由)' },
               ]} />
+              <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.platformdriverinfo">
               <TextInput label="姓名" source="Platform_baseInfoDriver.DriverName" />
@@ -120,6 +139,42 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="紧急情况联系人" source="Platform_baseInfoDriver.EmergencyContact" />
               <TextInput label="紧急情况联系人电话手机号" source="Platform_baseInfoDriver.EmergencyContactPhone" />
               <TextInput label="紧急情况联系人通信地址" source="Platform_baseInfoDriver.EmergencyContactAddress" />
+              </FormTab>
+              <FormTab label="resources.userdriver.tabs.vehicle">
+              <TextInputEx  label="车辆号牌" source="Platform_baseInfoVehicle.VehicleNo" />
+              <TextInputEx  label="车牌颜色" source="Platform_baseInfoVehicle.PlateColor" />
+              <NumberInputEx  label="核定载客位" source="Platform_baseInfoVehicle.Seats" />
+              <TextInputEx  label="车辆厂牌" source="Platform_baseInfoVehicle.Brand" />
+              <TextInputEx  label="车辆型号" source="Platform_baseInfoVehicle.Model" />
+              <TextInputEx  label="车辆类型" source="Platform_baseInfoVehicle.VehicleType" />
+              <TextInputEx  label="车辆所有人(应与《机动车登记证书》所注明的车辆所有人一致)" source="Platform_baseInfoVehicle.OwnerName" />
+              <TextInputEx  label="车身颜色" source="Platform_baseInfoVehicle.VehicleColor" />
+              <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.Engineld" />
+              <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN" />
+              <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" />
+              <TextInputEx  label="牢辆燃料类型" source="Platform_baseInfoVehicle.FuelType" />
+              <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace" />
+              <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoldURL" />
+              <TextInputEx  label="运输证字号" source="Platform_baseInfoVehicle.Certificate" />
+              <TextInputEx  label="车辆运输证发证机构" source="Platform_baseInfoVehicle.TransAgency" />
+              <TextInputEx  label="车辆经营区域" source="Platform_baseInfoVehicle.TransArea" />
+              <DateInput  label="车辆运输证有效期起" source="Platform_baseInfoVehicle.TransDateStart" />
+              <DateInput  label="车辆运输证有效期止" source="Platform_baseInfoVehicle.TransDateStop" />
+              <DateInput  label="车辆初次登记日期" source="Platform_baseInfoVehicle.CertifyDateB" />
+              <SelectInput  label="车辆检修状态"  source="Platform_baseInfoVehicle.FixState" choices={[
+                  { id: 0, name: '未检修' },
+                  { id: 1, name: '已检修' },
+                  { id: 2, name: '未知' },
+              ]} />
+              <DateInput  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
+              <TextInputEx  label="车辆年度审验状态?" source="Platform_baseInfoVehicle.CheckState" />
+              <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintld" />
+              <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand" />
+              <TextInputEx  label="卫星定位装置型号" source="Platform_baseInfoVehicle.GPSModel" />
+              <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" />
+              <DateInput  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate" />
+              <DateInput  label="报备日期" source="Platform_baseInfoVehicle.RegisterDate" />
+              <TextInputEx  label="FareType?" source="Platform_baseInfoVehicle.FareType" />
               </FormTab>
         </TabbedForm>
       </Edit>);

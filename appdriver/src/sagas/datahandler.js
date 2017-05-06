@@ -83,6 +83,7 @@ import {
 exports.recvmessagetoresultpair = {
   'common_err':common_err,
   'carsetdefault_result':carsetdefault_result,
+  'serverpush_userinfo':md_fillrealnameprofile_result,
   'fillrealnameprofile_result':md_fillrealnameprofile_result,
   'register_result':md_register_result,
   'login_result':md_login_result,

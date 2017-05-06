@@ -58,15 +58,28 @@ class CreateCarWizardForm extends Component {
     //   },
     //   Platform_baseInfoDriver
     // };
-    const {OwnerName,VehicleNo,Seats,CheckState,Certificate,LicensePhotoldURL} = values;
+    const {
+      OwnerName,
+      VehicleNo,
+      Seats,
+      CheckState,
+      Certificate,
+      LicensePhotoldURL,
+      CarrunPhotoldURL,
+      PhotoandCarmanURL
+    } = values;
+
     let data = {
+      CarrunPhotoldURL,
+      PhotoandCarmanURL,
       Platform_baseInfoVehicle:{
         OwnerName,
         VehicleNo,
         Seats,
         CheckState,
         Certificate,
-        LicensePhotoldURL
+        LicensePhotoldURL,
+
       }
     };
     this.props.dispatch(carcreate_request({data}));

@@ -21,38 +21,44 @@ class Page extends Component {
     this.props.history.push(name);
   }
 	render() {
-    const {loginsuccess,registertype,username,profile:{nickname,avatar}} = this.props;
-    let phonenumbertext = loginsuccess?nickname:'未登录';
+    const {loginsuccess,registertype,username,PhotoandCarmanURL,Platform_baseInfoDriver,Platform_baseInfoVehicle} = this.props;
+    let phonenumbertext = loginsuccess?Platform_baseInfoDriver.DriverName:'未登录';
     let linkeditprofile = loginsuccess?'/editprofile':'/login';
 
     return (
     		<div className="indexPage AppPage">
     		<NavBar back={false} title="中南出行" />
 				<div className="indexHead" onClick={()=>{this.onClickItem(linkeditprofile)}}>
+          {loginsuccess && (
 					<Cells>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src={avatar} />
+			                    <img src={PhotoandCarmanURL} />
 			                </CellHeader>
 			                <CellBody>
 			                    <div className="tit">
-			                    	<span className="name">{nickname}</span>
+			                    	<span className="name">{Platform_baseInfoDriver.DriverName}</span>
 			                    	<span className="type">{registertype}</span>
 			                    </div>
-			                    <div className="starcontent">
-				                    <StarRatingComponent
-					                    name="star"
-					                    editing={false}
-					                    starCount={5}
-					                    value={4.5}
-					                    emptyStarColor="#EEEEEE"
-					                />
-				                </div>
-			                    <div className="con">当前车辆: 苏A123456</div>
+			                    <div className="con">当前车辆: {Platform_baseInfoVehicle.VehicleNo}</div>
 			                </CellBody>
 			                <CellFooter />
 			            </Cell>
-			        </Cells>
+			        </Cells>)}
+              {!loginsuccess  && (
+    					<Cells>
+    			            <Cell access>
+    			                <CellHeader>
+
+    			                </CellHeader>
+    			                <CellBody>
+    			                    <div className="tit">
+    			                    	<span className="name">{phonenumbertext}</span>
+      			                    </div>
+    			                </CellBody>
+    			                <CellFooter />
+    			            </Cell>
+    			        </Cells>)}
 				</div>
 				<div className="list">
 					<Cells>

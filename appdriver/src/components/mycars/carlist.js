@@ -32,7 +32,11 @@ class Page extends Component {
   }
 
   onClickSelCurCar(carinfo){
-    this.props.dispatch(carsetdefault_request({carid:carinfo._id}));
+    this.props.dispatch(carsetdefault_request({
+      carid:carinfo._id,
+      Platform_baseInfoVehicleId:carinfo.Platform_baseInfoVehicleId,
+      Platform_baseInfoVehicle:carinfo.Platform_baseInfoVehicle
+    }));
       //this.props.history.push(`/cardetail/${orderinfo._id}`);
   }
 
@@ -45,10 +49,10 @@ class Page extends Component {
                 url : '/createcar'
             },
         ];
-        const {carlist} = this.props;
+        const {carlist,defaultmycar} = this.props;
         let carlistco = [];
         _.map(carlist,(caritem,index)=>{
-          carlistco.push(<CarItem carinfo={caritem}  key={index}
+          carlistco.push(<CarItem carinfo={caritem}  key={index} isdefault={defaultmycar === caritem._id }
                        onClickSelCurCar={this.onClickSelCurCar.bind(this)} />)
         });
         return (
@@ -68,8 +72,8 @@ class Page extends Component {
 }
 
 
-const mapStateToProps =  ({car:{carlist}}) =>{
-    return {carlist};
+const mapStateToProps =  ({car:{carlist},userlogin:{defaultmycar}}) =>{
+    return {carlist,defaultmycar};
 };
 
 export default connect(

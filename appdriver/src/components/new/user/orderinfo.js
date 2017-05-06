@@ -3,12 +3,13 @@
 */
 import React, { Component } from 'react';
 import WeUI from 'react-weui';
+import { connect } from 'react-redux';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/userorderinfo.css';
 import NavBar from '../tools/nav.js';
 import StarRatingComponent from 'react-star-rating-component';
-const { 
+const {
     Form,
     FormCell,
     CellBody,
@@ -52,8 +53,8 @@ class Page extends Component {
                     <div className="tt">评价乘客</div>
 
                     <div className="evaluate PanelBox">
-                        <StarRatingComponent 
-                            name="star" 
+                        <StarRatingComponent
+                            name="star"
                             editing={false}
                             starCount={5}
                             value={4.5}
@@ -71,8 +72,8 @@ class Page extends Component {
                                 <img src="newimg/22.png" className="close" />
                             </div>
                             <div className="star">
-                                <StarRatingComponent 
-                                    name="star" 
+                                <StarRatingComponent
+                                    name="star"
                                     editing={true}
                                     starCount={5}
                                     value={1}
@@ -80,7 +81,7 @@ class Page extends Component {
                                 />
                             </div>
                             <div className="text">
-                                <Form> 
+                                <Form>
                                     <FormCell>
                                         <CellBody>
                                             <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"></TextArea>
@@ -97,4 +98,14 @@ class Page extends Component {
         )
     }
 }
-export default Page;
+
+
+const mapStateToProps =  ({orderdetail,myorders}, props) =>{
+  let triporderid = props.match.params.triporderid;
+  let orderinfo = myorders.triporders[triporderid];
+  return {...orderdetail,orderinfo};
+};
+
+export default connect(
+    mapStateToProps,
+)(Page);

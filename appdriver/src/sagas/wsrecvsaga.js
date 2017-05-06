@@ -1,4 +1,4 @@
-import { put,takeEvery } from 'redux-saga/effects';
+import { put,takeEvery} from 'redux-saga/effects';
 import {
   acceptrequest_result,
   wait_acceptrequest_result,
@@ -29,11 +29,18 @@ import {
   register_result,
 
   md_fillrealnameprofile_result,
-  fillrealnameprofile_result
+  fillrealnameprofile_result,
+
+  carcreate_result
 } from '../actions';
-import { push } from 'react-router-redux';
+import { push,goBack  } from 'react-router-redux';
 
 export function* wsrecvsagaflow() {
+  yield takeEvery(`${carcreate_result}`, function*(action) {
+      let {payload:result} = action;
+      yield put(goBack());
+  });
+
   yield takeEvery(`${md_fillrealnameprofile_result}`, function*(action) {
       let {payload:result} = action;
       yield put(fillrealnameprofile_result(result));//在审核中
@@ -93,7 +100,7 @@ export function* wsrecvsagaflow() {
   });
 
   yield takeEvery(`${common_err}`, function*(action) {
-      let {payload:result} = action;
+        let {payload:result} = action;
         console.log(`common_err:${JSON.stringify(result)}`);
         yield put(showpopmessage({
           title:result.title,

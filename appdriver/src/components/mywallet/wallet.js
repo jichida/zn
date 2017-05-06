@@ -2,6 +2,7 @@
     个人中心-我的钱包
 */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -30,7 +31,7 @@ class Page extends Component {
     render() {
       const {rechargerecordlist,balance} = this.props;
       let rechargerecordco = [];
-      _.map({rechargerecordlist,(item,index)=>{
+      _.map(rechargerecordlist,(item,index)=>{
         rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
       });
 
@@ -71,8 +72,7 @@ class Page extends Component {
     }
 }
 
-const mapStateToProps =  ({withdraw}) =>{
-    let balance = 500;
+const mapStateToProps =  ({withdraw,userlogin:{balance}}) =>{
     return {...withdraw,balance};
 };
 

@@ -49,7 +49,7 @@ class Page extends Component {
                         <div className="tit">行驶证</div>
                         <div className="desc">出租客运，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL" component={renderImageupload}/>
+                            <Field name="CarrunPhotoldURL" component={renderImageupload}/>
                         </div>
                     </div>
 

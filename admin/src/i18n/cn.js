@@ -237,12 +237,15 @@ export default {
           platformtaxi:'平台出租车信息',
           platformcontract:'平台驾驶员合同',
           platformemergencycontact:'平台紧急联系人',
+          vehicle:'车辆信息'
         },
         notification:{
           approved_success:'审批成功',
           approved_error:'审批失败',
           rejected_success:'拒绝成功',
           rejected_error:'拒绝失败',
+          approvedstart_success:'开始审核成功',
+          approvedstart_error:'开始审核失败',
         },
     },
     userrider: {
