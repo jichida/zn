@@ -30,12 +30,24 @@ import {
 
   md_fillrealnameprofile_result,
   fillrealnameprofile_result,
-
+  withdrawcashapplyaddone_result,
+  withdrawcashapplyauth_result,
   carcreate_result
 } from '../actions';
-import { push,goBack  } from 'react-router-redux';
+import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 export function* wsrecvsagaflow() {
+  yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
+      let {payload:result} = action;
+      yield put(go(-2));
+  });
+
+  yield takeEvery(`${withdrawcashapplyaddone_result}`, function*(action) {
+      let {payload:result} = action;
+      yield put(push(`/withdrawauth/${result.newitem._id}`));
+  });
+
+
   yield takeEvery(`${carcreate_result}`, function*(action) {
       let {payload:result} = action;
       yield put(goBack());

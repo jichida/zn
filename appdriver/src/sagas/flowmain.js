@@ -25,6 +25,8 @@ let sendmsgwhenreconnect =(socket)=>{
         socket.emit('appdriver',{cmd:'loginwithtoken',data:{token:token}});
     }
     store.dispatch(notify_socket_connected(true));
+
+    socket.emit('appdriver',{cmd:'getsystemconfig',data:{}});
 }
 
 let sendmsgwhenlogined  = (socket)=>{

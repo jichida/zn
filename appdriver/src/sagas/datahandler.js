@@ -76,11 +76,20 @@ import {
 
     carsetdefault_request,
     carsetdefault_result,
+
+    getsystemconfig_result,
+    withdrawcashapplyaddone_request,
+    withdrawcashapplyaddone_result,
+    withdrawcashapplyauth_request,
+    withdrawcashapplyauth_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'withdrawcashapplyauth_result':withdrawcashapplyauth_result,
+  'withdrawcashapplyaddone_result':withdrawcashapplyaddone_result,
+  'getsystemconfig_result':getsystemconfig_result,
   'common_err':common_err,
   'carsetdefault_result':carsetdefault_result,
   'serverpush_userinfo':md_fillrealnameprofile_result,
@@ -150,7 +159,8 @@ exports.sendmessageauthfnsz = {
   'canceltriprequestorder':`${canceltriprequestorder_request}`,
   'getmytriporders':`${getmytriporders_request}`,
   'updateorder_comment':`${updateorder_comment_request}`,
-
+  'withdrawcashapplyaddone':`${withdrawcashapplyaddone_request}`,
+  'withdrawcashapplyauth':`${withdrawcashapplyauth_request}`,
   'carcreate':`${carcreate_request}`,
   'cardelete':`${cardelete_request}`,
   'cargetall':`${cargetall_request}`,

@@ -16,6 +16,16 @@ const initial = {
     authtoken:'',
     registertype:'快车',
     profile:{},
+    PhotoandCarmanURL:'',
+    Platform_baseInfoDriver:
+    {
+      DriverName:'',
+      DriverPhone:''
+    },
+    Platform_baseInfoVehicle:
+    {
+      VehicleNo:''
+    },
   },
 };
 

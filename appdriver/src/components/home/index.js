@@ -89,7 +89,7 @@ class Page extends Component {
 			                </CellBody>
 			                <CellFooter />
 			            </Cell>
-			            <Cell access onClick={()=>{this.onClickItem('/messsagecenter')}}>
+			            <Cell access onClick={()=>{this.onClickItem('/messagecenter')}}>
 			                <CellHeader>
 			                    <img src="newimg/8.png" />
 			                </CellHeader>

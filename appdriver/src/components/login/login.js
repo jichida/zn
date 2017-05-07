@@ -9,7 +9,7 @@ import {
   NavBar
 } from 'amazeui-touch';
 import {Label} from 'semantic-ui-react';
-import {loginsendauth_request} from '../actions';
+import {loginsendauth_request,loginwithauth_request} from '../../actions';
 
 let renderLoginForm = (fields)=>{
     let onClickSendAuth =()=>{
@@ -99,8 +99,6 @@ LoginForm = reduxForm({
   }
 })(LoginForm);
 
-
-import {loginwithauth_request} from '../actions/index.js';
 export class Page extends React.Component {
 
   componentWillMount () {

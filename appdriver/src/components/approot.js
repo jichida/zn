@@ -2,13 +2,15 @@
  * Created by wangxiaoqing on 2017/3/15.
  */
 import React from 'react';
-import App from './appindex.js';
-import Login from './login.js';
-import SystemSetting from './systemsettings';
-import About from './about.js';
-import City from './city';
+
+import Login from './login/login.js';
+
+import City from './city/city';
+
 import Caroverlayqd from './maps/caroverlayqd';
+
 import Caroverlaystart from './maps/caroverlaystarttrip';
+
 import Orderdetail from './orderdetail/orderdetail';
 //我的订单（行程）
 import Myorders from './myorders/orderlist';
@@ -17,7 +19,7 @@ import Mycars from './mycars/carlist';
 //新增车辆
 import Createcar from './mycars/createcar/createcarwizard';
 
-import Emerygencycontact from './emerygencycontact';
+
 import Feedetail from './orderdetail/feedetail';
 //注册
 import Register from './register/index.js';
@@ -28,27 +30,21 @@ import Index from './home/index';
 //出车
 import Outcar from './maps/outcar';
 //抢单
-import Roborder from './new/roborder';
 
 //个人中心-基本信息
-import Userbaseinfo from './new/user/baseinfo';
-//个人中心-我的车辆
-import Usercarlist from './new/user/carlist';
-//个人中心-订单详情
-import Userorderinfo from './new/user/orderinfo';
-//个人中心-我的订单
-import Userorderlist from './new/user/orderlist';
+import Editprofile from './editprofile/editprofile';
+
 //个人中心-我的钱包
 import Userwallet from './mywallet/wallet';
 //个人中心－提现
-import Userwithdrawals from './new/user/withdrawals';
+import Withdraw from './mywallet/withdraw';
 
+import Withdrawauth from './mywallet/withdrawauth';
 //审核页面
 import Approval from './register/approval';
 
-
-//注册
-import Test from './test';
+//消息页面
+import MessageCenter from './messagecenter/message';
 
 import {hidepopmessage} from '../actions/index.js';
 import { Message } from 'semantic-ui-react';
@@ -76,18 +72,18 @@ import {requireAuthentication} from './requireauthentication';
 
 
 class MessageCo extends React.Component {
-    onDismiss=()=>{
+    onDismiss = ()=> {
         this.props.dispatch(hidepopmessage());
     }
-    componentWillReceiveProps (nextProps) {
-        if(nextProps.ispop && !this.props.ispop){
-            window.setTimeout(()=>{
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.ispop && !this.props.ispop) {
+            window.setTimeout(()=> {
                 this.props.dispatch(hidepopmessage());
-            },3000);
+            }, 3000);
         }
     }
 
-    render() {
+     render() {
         let fullheight = {
             height: window.innerHeight + "px"
         };
@@ -143,46 +139,30 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                 {MessageCo}
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
-                    <Route path="/index/:keyname" component={App}/>
-                    <Route path="/systemsettings" component={SystemSetting}/>
-                    <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
                     <Route path="/login" component={Login}/>
-                    <Route path="/about/:keyname" component={About}/>
                     <Route path="/city" component={City}/>
                     <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
                     <Route path='/starttrip' component={Caroverlaystart} />
                     <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
                     <Route path="/myorders" component={requireAuthentication(Myorders)}/>
-                    <Route path="/test" component={Test}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
                     <Route path="/outcar" component={Outcar}/>
-                    <Route path="/roborder" component={Roborder}/>
                     <Route path="/approval" component={Approval}/>
-                    <Route path="/userbaseinfo" component={Userbaseinfo}/>
-                    <Route path="/usercarlist" component={Usercarlist}/>
-                    <Route path="/userorderinfo" component={Userorderinfo}/>
-                    <Route path="/userorderlist" component={Userorderlist}/>
-                    
-                    <Route path="/mywallet" component={Userwallet}/>
-                    <Route path="/userwithdrawals" component={Userwithdrawals}/>
 
+                    <Route path="/mywallet" component={Userwallet}/>
+                    <Route path="/withdraw" component={Withdraw}/>
+                    <Route path="/withdrawauth/:withdrawid" component={Withdrawauth}/>
+                    <Route path="/editprofile" component={Editprofile}/>
                     <Route path="/mycars" component={Mycars}/>
                     <Route path="/createcar" component={Createcar}/>
+                    <Route path="/messagecenter" component={MessageCenter}/>
 
-                    <Route component={App}/>
                 </Switch>
             </div>
         );
     }
-
 }
-
-const mapStateToProps = ({app,carmap}) => {
-    return {...app};
-}
-AppRoot = connect(mapStateToProps)(AppRoot);
-
 export default AppRoot;

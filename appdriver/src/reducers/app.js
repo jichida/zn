@@ -2,12 +2,16 @@ import { createReducer } from 'redux-act';
 import {
   showpopmessage,
   hidepopmessage,
-    notify_socket_connected
+  notify_socket_connected,
+  getsystemconfig_result
 } from '../actions';
 
 
 const initial = {
   app: {
+    servicephonenumber:'',//客服电话
+    commenttagsforrider:[],//评论标签
+
     socketconnected:false,
     type:'error',
     title:'',
@@ -17,6 +21,9 @@ const initial = {
 };
 
 const app = createReducer({
+  [getsystemconfig_result]:(state,payload)=>{
+    return {...state,...payload};
+  },
   [notify_socket_connected]:(state,socketconnected)=>{
     return {...state,socketconnected};
   },
