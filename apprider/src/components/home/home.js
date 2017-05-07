@@ -1,29 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Myprofile from './myprofile';
 import {
     ui_setsidebaropen,
     ui_setindexmapvisiable,
     carmap_settriptype
-} from '../actions';
+} from '../../actions';
 import {
   Route,
   Switch
 } from 'react-router-dom';
 
+import UserCenter from './usercenter.js';
+import Lvyoudaba from '../tourbus/index.js';
+import Pinche from '../carpool/index.js';
+import CarOverlayEmbedded from '../maps/caroverlaymbedded';
+
+var Sidebar = require('react-sidebar').default;
+
 import {
   Container,View
 } from 'amazeui-touch';
-import Lvyoudaba from './lvyoudaba';
-import Pinche from './pinche';
-import CarOverlayEmbedded from './maps/caroverlaymbedded';
-
-var Sidebar = require('react-sidebar').default;
 
 
 export class AppIndex extends React.Component {
   renderOC =()=> {
-    return (<Myprofile />);
+    return (<UserCenter />);
   }
   onSetSidebarOpen(open){
     this.props.dispatch(ui_setsidebaropen(open));
@@ -119,7 +120,7 @@ export class AppIndex extends React.Component {
                      touch={false}
                      onSetOpen={this.onSetSidebarOpen.bind(this)}
                      >
-        <View style={{zIndex: 0}}>
+      <View style={{zIndex: 0}}>
         <header className="navbar">
               <h2 className="navbar-title navbar-center"><font><font>中南出行</font></font></h2>
               <div onClick={this.onSetSidebarOpen.bind(this,true)} className="navbar-nav navbar-left"><a  className="navbar-nav-item"><span className="icon icon-user navbar-icon navbar-icon-sibling-of-title fize22 padding-t10"></span></a></div>

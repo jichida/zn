@@ -6,11 +6,12 @@ import ReactDOM from 'react-dom';
 import { InfiniteLoader, List } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import { connect } from 'react-redux';
+import OrderItem from './myordersitem.js';
+import {ui_setmyorderstabheader,getmytriporders_request} from '../../actions';
+
 import {
     View
 } from 'amazeui-touch';
-import OrderItem from './myordersitem.js';
-import {ui_setmyorderstabheader,getmytriporders_request} from '../actions';
 
 export class Page extends React.Component {
     constructor(props) {

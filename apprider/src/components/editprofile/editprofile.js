@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import { Field,Fields, reduxForm,Form  } from 'redux-form';
+
+import DatePicker from 'react-mobile-datepicker';
+import config from '../../config.js';
+import {fileupload} from '../../util/fileupload.js';
+import {
+  fillprofile_request,
+  ui_editprofilesetbirthdayshow
+} from '../../actions';
+
+
 import {
   Container,
   View,
   NavBar,
 } from 'amazeui-touch';
-import DatePicker from 'react-mobile-datepicker';
-import config from '../config.js';
-import {fileupload} from '../util/fileupload.js';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
-import {fillprofile_request,ui_editprofilesetbirthdayshow} from '../actions';
-import moment from 'moment';
 
 let renderEditprofile = (props)=>{
   let onChangeFieldname=(fieldname,e)=>{

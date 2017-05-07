@@ -1,24 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Container,
-} from 'amazeui-touch';
-//import 'react-mobile-datepicker/lib/index.css';
 import DatePicker from 'react-mobile-datepicker';
-import config from '../config.js';
-import {ui_pinchesetdateshow,ui_clickpinchetypebtn,
-    getbuscarpoolcitylist_request,getbuscarpool_request,
-    orderconfirm_setpinche} from '../actions';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import moment from 'moment';
 import objectPath from 'object-path';
-/*
-{
-begincityselid:xxx,
-endcityselid:xxx,
-searchdatesel:xxx
-}
-*/
+
+import config from '../../config.js';
+import {
+  ui_pinchesetdateshow,
+  ui_clickpinchetypebtn,
+  getbuscarpoolcitylist_request,
+  getbuscarpool_request,
+  orderconfirm_setpinche
+} from '../../actions';
+
+import {
+  Container,
+} from 'amazeui-touch';
 
 let renderPincheQueryForm = (fields)=>{
   const {isquerydateshow,
@@ -218,16 +216,7 @@ PincheQueryForm = reduxForm({
       this.props.dispatch(orderconfirm_setpinche(routeobj));
       this.props.history.push(name);
   }
-     // shouldComponentUpdate(nextProps){
-     //     if(nextProps.begincityselid === '' || nextProps.endcityselid === ''){
-     //         console.log("初始化还不需要更新呢!!!");
-     //         return false;
-     //     }
-     //     console.log("需要更新呢!!!");
-     //     console.log("nextProps:" + JSON.stringify(nextProps));
-     //     console.log("thisProps:" + JSON.stringify(this.props));
-     //     return true;
-     // }
+
   render() {
       console.log("render Pinche again!!!");
     let resultrouteco = [];
@@ -248,8 +237,6 @@ PincheQueryForm = reduxForm({
           </a> </li>);
         }
       });
-
-
 
     return (<Container scrollable={true} fill={false}>
                 <PincheQueryForm onClickQuery={this.onClickQuery.bind(this)}/>

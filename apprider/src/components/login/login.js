@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import { connect } from 'react-redux';
+import {Label} from 'semantic-ui-react';
+import {loginsendauth_request,loginwithauth_request} from '../../actions';
+
 import {
   Container,
   View,
@@ -8,8 +11,6 @@ import {
   Notification,
   NavBar
 } from 'amazeui-touch';
-import {Label} from 'semantic-ui-react';
-import {loginsendauth_request} from '../actions';
 
 let renderLoginForm = (fields)=>{
     let onClickSendAuth =()=>{
@@ -100,7 +101,6 @@ LoginForm = reduxForm({
 })(LoginForm);
 
 
-import {loginwithauth_request} from '../actions/index.js';
 export class Page extends React.Component {
 
   componentWillMount () {

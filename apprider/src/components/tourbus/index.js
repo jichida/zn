@@ -1,15 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-mobile-datepicker';
-import config from '../config.js';
+import { Field,Fields, reduxForm,Form  } from 'redux-form';
+import moment from 'moment';
+import objectPath from 'object-path';
+
+import {
+  ui_lvyoudabasetdateshow1,
+  ui_lvyoudabasetdateshow2,
+  orderconfirm_settourbus
+} from '../../actions';
+import config from '../../config.js';
+
+
+
 import {
   Button
 } from 'amazeui-touch';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
-import moment from 'moment';
-import {ui_lvyoudabasetdateshow1,ui_lvyoudabasetdateshow2,orderconfirm_settourbus} from '../actions';
-import objectPath from 'object-path';
-
 
 const Tourbusco = (props) => {
   const {businfo,onClickBusAdd,onClickBusDec,curnumber,onChangeBusinput} = props;
@@ -65,7 +72,7 @@ let renderTourbusForm = (props)=>{
       let price = gettotalprice();
       busnumberobj.input.onChange({...busnumberobjv});
       orderprice.input.onChange(price);
-               
+
       let frontmoneyf = (price*paytourbus/100).toFixed(2);
       frontmoneyf = parseFloat(frontmoneyf);
       frontmoney.input.onChange(frontmoneyf);
@@ -76,7 +83,7 @@ let renderTourbusForm = (props)=>{
         let price = gettotalprice();
         busnumberobj.input.onChange({...busnumberobjv});
         orderprice.input.onChange(price);
-      
+
         let frontmoneyf = (price*paytourbus/100).toFixed(2);
         frontmoneyf = parseFloat(frontmoneyf);
         frontmoney.input.onChange(frontmoneyf);

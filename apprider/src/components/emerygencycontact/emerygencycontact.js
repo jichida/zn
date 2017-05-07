@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import config from '../config.js';
+import config from '../../config.js';
 import {
     View,
     NavBar,
@@ -8,7 +8,7 @@ import {
     Button
 } from 'amazeui-touch';
 
-import {getemerygencycontact_request} from '../actions';
+import {getemerygencycontact_request} from '../../actions';
 
 export class Page extends React.Component {
 

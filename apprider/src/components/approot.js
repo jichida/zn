@@ -2,18 +2,19 @@
  * Created by wangxiaoqing on 2017/3/15.
  */
 import React from 'react';
-import App from './appindex.js';
-import Login from './login.js';
-import SystemSetting from './systemsettings';
-import About from './about.js';
-import Emerygencycontact from './emerygencycontact';
-import City from './city';
-import Oftenuseaddress from './oftenuseaddress';
-import Search from './search.js';
+
+import App from './home/home';
+import Login from './login/login';
+import SystemSetting from './setting/setting';
+import About from './setting/about';
+import Emerygencycontact from './emerygencycontact/emerygencycontact';
+import City from './city/city';
+import Oftenuseaddress from './oftenuseaddress/index';
+import Search from './search/search';
 import Caroverlay from './maps/caroverlay';
-import Editprofile from './editprofile';
+import Editprofile from './editprofile/editprofile';
 import Orderdetail from './orderdetail/orderdetail';
-import Myorders from './myorders';
+import Myorders from './myorders/myorders';
 import Orderconfirm from './orderconfirm/index';
 import Feedetail from './orderdetail/feedetail';
 
@@ -139,29 +140,29 @@ const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
 }
 MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
 
-class AppRoot extends React.Component {
+ class AppRoot extends React.Component {
 
     render() {
-        
+
         return (
             <div className="AppContainer">
                 <MessageCo />
-                <Switch>
-                    <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
-                    <Route path="/index/:keyname" component={App}/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/about/:keyname" component={About}/>
-                    <Route path="/systemsettings" component={SystemSetting}/>
-                    <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
-                    <Route path="/city" component={City}/>
-                    <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
-                    <Route path="/search/:searchfrom" component={Search}/>
-                    <Route path="/requestorderstarting" component={Caroverlay}/>
-                    <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
-                    <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>            
-                    <Route path="/myorders" component={requireAuthentication(Myorders)}/>
-                    <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
+            <Switch>
+                <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
+                <Route path="/index/:keyname" component={App}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/about/:keyname" component={About}/>
+                <Route path="/systemsettings" component={SystemSetting}/>
+                <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
+                <Route path="/city" component={City}/>
+                <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
+                <Route path="/search/:searchfrom" component={Search}/>
+                <Route path="/requestorderstarting" component={Caroverlay}/>
+                <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
+                <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
+                <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
+                <Route path="/myorders" component={requireAuthentication(Myorders)}/>
+                <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
 
 
                     <Route path="/messagelist" component={Messagelist}/>
@@ -180,15 +181,8 @@ class AppRoot extends React.Component {
                     <Route path="/userinfo" component={Userinfo}/>
                     <Route path="/usercenter" component={Usercenter}/>
 
-
-
-
-
-
-
-
-                    <Route component={App}/>
-                </Switch>
+                <Route component={App}/>
+            </Switch>
             </div>
         );
     }

@@ -14,7 +14,11 @@ const initial = {
     username:'',
     token:'',
     authtoken:'',
-    profile:{},
+    balance:0,
+    profile:{
+      avatar:'images/user.jpg',
+      nickname:''
+    },
   },
 };
 
