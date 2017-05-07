@@ -1,6 +1,4 @@
 import {
-
-    getbuscarpoolcitylist_request,
     getbuscarpool_request,
     getemerygencycontact_request,
     gettourbus_request,
@@ -46,9 +44,8 @@ import {
     fillprofile_result,
     common_err,
     getbuscarpool_result,
-    getbuscarpoolcitylist_result,
     gettourbus_result,
-    sethotcity,
+
     getoftenuseaddress_result,
     setoftenuseaddress_result,
     searchtext_result,
@@ -88,9 +85,7 @@ exports.recvmessagetoresultpair = {
   'fillprofile_result':fillprofile_result,
   'common_err':common_err,
   'getbuscarpool_result':getbuscarpool_result,
-  'getbuscarpoolcitylist_result':getbuscarpoolcitylist_result,
   'gettourbus_result':gettourbus_result,
-  'gethotcity_result':sethotcity,
   'getoftenuseaddress_result':getoftenuseaddress_result,
   'setoftenuseaddress_result':setoftenuseaddress_result,
   'searchtext_result':searchtext_result,
@@ -115,7 +110,6 @@ exports.sendmessagefnsz = {
   'loginsendauth':`${loginsendauth_request}`,
   'loginwithauth':`${loginwithauth_request}`,
   'loginwithtoken':`${loginwithtoken_request}`,
-  'getbuscarpoolcitylist':`${getbuscarpoolcitylist_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
 
   'searchtext':`${searchtext_request}`,

@@ -9,7 +9,6 @@ import config from '../../config.js';
 import {
   ui_pinchesetdateshow,
   ui_clickpinchetypebtn,
-  getbuscarpoolcitylist_request,
   getbuscarpool_request,
   orderconfirm_setpinche
 } from '../../actions';
@@ -116,8 +115,8 @@ let renderPincheQueryForm = (fields)=>{
 
 }
 
-const mapStateToProps1 = ({pinche,appui}) => {
-    return {...pinche,...appui.pinche};
+const mapStateToProps1 = ({pinche,appui,app:{pinchecitylist:citylist}}) => {
+    return {...pinche,...appui.pinche,citylist};
 }
 
 renderPincheQueryForm = connect(mapStateToProps1)(renderPincheQueryForm);
@@ -198,7 +197,6 @@ PincheQueryForm = reduxForm({
  class Pinche extends React.Component {
 
   componentWillMount () {
-    this.props.dispatch(getbuscarpoolcitylist_request());
     //this.onClickQuery();
   }
   onClickQuery(values){//少出发日期

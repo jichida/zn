@@ -18,7 +18,7 @@ import {
     TextInput,
     SimpleShowLayout,
     Show as ShowPage,
-    SimpleForm
+    SimpleForm,
 } from 'admin-on-rest/lib/mui';
 
 import Chip from 'material-ui/Chip';
@@ -36,6 +36,8 @@ const SystemconfigShow = (props) => (
                <TextField source="id" />
                <TextFieldSZ label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
                <TextFieldSZ label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
+               <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
+               <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
                <TextField  label="代驾预付款" source="paydaijia" />
                <TextField  label="旅游大巴预付款(百分比)" source="paytourbus" />
                <RichTextField label="出租车价格显示" source="pricestring.出租车" stripTags={false}/>
@@ -56,28 +58,44 @@ const SystemconfigCreateTitle = ({ record }) => {
 };
 export const SystemconfigCreate = (props) => (
        <Create {...props} title={<SystemconfigCreateTitle />} >
-           <SimpleForm>
-             <TextInputSZ label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
-             <TextInputSZ label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
-             <NumberInput  label="代驾预付款" source="paydaijia" />
-             <NumberInput  label="旅游大巴预付款(百分比)" source="paytourbus" />
-             <RichTextEditorInput label="出租车价格显示" source="pricestring.出租车" addLabel={true}/>
-             <RichTextEditorInput label="快车价格显示" source="pricestring.快车" addLabel={true}/>
-             <RichTextEditorInput label="代驾价格显示" source="pricestring.代驾" addLabel={true}/>
-           </SimpleForm>
+       <TabbedForm>
+           <FormTab label="resources.systemconfig.tabs.rider">
+           <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
+           <NumberInput  label="代驾预付款" source="paydaijia" />
+           <NumberInput  label="旅游大巴预付款(百分比)" source="paytourbus" />
+           <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
+           <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+           </FormTab>
+           <FormTab label="resources.systemconfig.tabs.price">
+           <RichTextEditorInput label="出租车价格显示" source="pricestring.出租车" addLabel={true}/>
+           <RichTextEditorInput label="快车价格显示" source="pricestring.快车" addLabel={true}/>
+           <RichTextEditorInput label="代驾价格显示" source="pricestring.代驾" addLabel={true}/>
+           </FormTab>
+           <FormTab label="resources.systemconfig.tabs.driver">
+           <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
+           </FormTab>
+       </TabbedForm>
        </Create>
 );
 
 export const SystemconfigEdit = (props) => (
     <EditPage {...props} title={<SystemconfigTitle />}>
-        <SimpleForm>
+        <TabbedForm>
+            <FormTab label="resources.systemconfig.tabs.rider">
             <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
-            <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
             <NumberInput  label="代驾预付款" source="paydaijia" />
             <NumberInput  label="旅游大巴预付款(百分比)" source="paytourbus" />
+            <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
+            <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+            </FormTab>
+            <FormTab label="resources.systemconfig.tabs.price">
             <RichTextEditorInput label="出租车价格显示" source="pricestring.出租车" addLabel={true}/>
             <RichTextEditorInput label="快车价格显示" source="pricestring.快车" addLabel={true}/>
             <RichTextEditorInput label="代驾价格显示" source="pricestring.代驾" addLabel={true}/>
-        </SimpleForm>
+            </FormTab>
+            <FormTab label="resources.systemconfig.tabs.driver">
+            <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
+            </FormTab>
+        </TabbedForm>
     </EditPage>
 );

@@ -1,14 +1,9 @@
 import { createReducer } from 'redux-act';
 import {
-  sethotcity,
   setcurcity,
   setcurselcity
 } from '../actions';
 
-let defaulthotcity = localStorage.getItem('defaulthotcity');
-if(!defaulthotcity){
-  defaulthotcity = [];
-}
 
 let defaultcurcity = localStorage.getItem('defaultcurcity');
 if(!defaultcurcity){
@@ -31,18 +26,12 @@ if(!defaultcurselcity){
 
 const initial = {
   city: {
-    hotcity: defaulthotcity,
     curcity: defaultcurcity,
     curselcity: defaultcurselcity,
   },
 };
 
 const city = createReducer({
-  [sethotcity]:(state, payload) => {
-    const {hotcity} = payload;
-    localStorage.setItem('defaulthotcity',hotcity);
-    return { ...state,hotcity:[...hotcity]};
-  },
   [setcurcity]:(state, curcity) => {
     localStorage.setItem('defaultcurcity',curcity);
     return { ...state,curcity:{...curcity}};

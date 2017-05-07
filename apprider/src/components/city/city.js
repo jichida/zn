@@ -77,8 +77,8 @@ export class Page extends React.Component {
   }
 
 
-const mapStateToProps = ({city}) => {
-    return city;
+const mapStateToProps = ({city,app:{hotcity}}) => {
+    return {...city,hotcity};
 }
 
   export default connect(

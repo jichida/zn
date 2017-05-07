@@ -21,7 +21,6 @@ let sendmsgwhenreconnect =(socket)=>{
     if (token !== null) {
         socket.emit('apprider',{cmd:'loginwithtoken',data:{token:token}});
     }
-    socket.emit('apprider',{cmd:'gethotcity',data:{}});
     socket.emit('apprider',{cmd:'gettourbus',data:{}});
     socket.emit('apprider',{cmd:'getsystemconfig',data:{}});
 

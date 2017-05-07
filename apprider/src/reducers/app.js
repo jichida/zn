@@ -13,7 +13,11 @@ const initial = {
     type:'error',
     title:'',
     msg:'',
-    ispop:false
+    ispop:false,
+    pinchecitylist:[],
+    commenttagsfordriver:[],
+    hotcity:[],
+    servicephonenumber:''
   },
 };
 
