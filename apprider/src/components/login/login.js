@@ -2,7 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import { connect } from 'react-redux';
 import {Label} from 'semantic-ui-react';
-import {loginsendauth_request,loginwithauth_request} from '../../actions';
+import {
+  loginsendauth_request,
+  loginwithauth_request
+} from '../../actions';
 
 import {
   Container,

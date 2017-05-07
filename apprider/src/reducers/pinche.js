@@ -14,8 +14,7 @@ const initial = {
 
 const pinche = createReducer({
   [getbuscarpoolcitylist_result]: (state, payload) => {
-    const {list} = payload;
-    let citylist = [...list];
+    const {citylist} = payload;
     return {
             ...state,
             citylist
