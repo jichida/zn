@@ -50,9 +50,8 @@ const AboutlistCreate = (props) => {
                 { id: 'rideruserguide', name: '乘客端用户指南' },
                 { id: 'riderfeerules', name: '乘客端计费规则' },
                 { id: 'riderlaws', name: '乘客端法律条款' },
-                { id: 'driveruserguide', name: '司机端用户指南' },
-                { id: 'driverfeerules', name: '司机端计费规则' },
-                { id: 'driverlaws', name: '司机端法律条款' },
+                { id: 'ridercancelrules', name: '乘客端取消规则' },
+                { id: 'ridergroup', name: '乘客端集团通讯录' },
             ]} />
               <TextInput label="标题"  source="title" />
               <RichTextInput label="详细信息" source="desc" addLabel={false}/>
@@ -67,12 +66,11 @@ const AboutlistEdit = (props) => {
           <SimpleForm>
               <DisabledInput label="Id" source="id" />
              <SelectInput  label="类型" source="keyname" choices={[
-                { id: 'rideruserguide', name: '乘客端用户指南' },
-                { id: 'riderfeerules', name: '乘客端计费规则' },
-                { id: 'riderlaws', name: '乘客端法律条款' },
-                { id: 'driveruserguide', name: '司机端用户指南' },
-                { id: 'driverfeerules', name: '司机端计费规则' },
-                { id: 'driverlaws', name: '司机端法律条款' },
+               { id: 'rideruserguide', name: '乘客端用户指南' },
+               { id: 'riderfeerules', name: '乘客端计费规则' },
+               { id: 'riderlaws', name: '乘客端法律条款' },
+               { id: 'ridercancelrules', name: '乘客端取消规则' },
+               { id: 'ridergroup', name: '乘客端集团通讯录' },
             ]} />
               <TextInput label="标题"  source="title" />
               <RichTextInput label="详细信息" source="desc" addLabel={false}/>

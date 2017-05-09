@@ -48,6 +48,10 @@ export default function CarOverlayInit(props){
             resultpricedetail:props.resultpricerequest
           }
         };
+
+        if(!props.ispagenow){//预约时间
+          param.triprequest.dated_at = props.ridedatesel;
+        }
         props.dispatch(starttriprequestorder(param)).then((result)=>{
             console.log("starttriprequestorder result:" + JSON.stringify(result));
             //推送给所有司机该订单
@@ -109,6 +113,8 @@ export default function CarOverlayInit(props){
     let floatcomponents;
 
     let isgetaddress = isgetdst&&isgetsrc;
+
+    if(!isgetaddress){
     if(props.ispagenow){
         btnnows.push(<li key='now' className="hover">现在</li>);
         btnnows.push(<li key='date' onClick={()=>{onClickNow(false)}}>预约</li>);
@@ -117,7 +123,7 @@ export default function CarOverlayInit(props){
         btnnows.push(<li key='now' onClick={()=>{onClickNow(true)}}>现在</li>);
         btnnows.push(<li key='date' className="hover">预约</li>);
     }
-    if(!isgetaddress){
+
         floatcomponents = (<ul className="xjl_xf_3">
             {props.ispagenow?null:<li className="text-center">
         <Callcardateinput

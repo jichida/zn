@@ -25,13 +25,14 @@ import {getstringoftime,getstringofdistance} from '../util/geo.js';
 import {getcurrentpos} from './getcurrentpos';
 
 const getoperateprops = (state) => {
+  let approvalstatus = state.userlogin.approvalstatus;
   let loginsuccess = state.userlogin.loginsuccess;
   let socketconnected = state.app.socketconnected;
   let triporderid = '0';
   if(state.carmap.curmappageorder.hasOwnProperty('_id')){
     triporderid = state.carmap.curmappageorder._id;
   }
-  return {...state.operate,loginsuccess,socketconnected};
+  return {...state.operate,loginsuccess,socketconnected,approvalstatus};
 };
 
 export function* getcurpositionflow(){
@@ -59,7 +60,7 @@ export function* getcurpositionflow(){
     yield put(setcurlocation(curposition));//存入store
 
     const operate = yield select(getoperateprops);
-    if(operate.socketconnected && operate.loginsuccess){
+    if(operate.socketconnected && operate.loginsuccess && operate.approvalstatus === '已审核'){
       //如果连接并且已经登录,发送给服务端
       yield put(sendcurlocationtoserver({
         driverlocation:[curposition.lng,curposition.lat],
@@ -81,12 +82,14 @@ export function* createstartoperateloginoutflow(){
       take(setcurlocation)
     ];
     console.log("登录并且获取到当前位置：" + JSON.stringify(result));
+    let loginresult = result[0].payload;
     let curlocation = result[1].payload;
     let operateLogindoc = {
       driverlocation :[curlocation.lng,curlocation.lat]
     };
+    if(loginresult.approvalstatus === '已审核'){
     yield put(operatelogin(operateLogindoc));
-
+    }
     //登出或退出APP
     console.log("等待登出或退出");
     const { logoutaction, exitappaction } = yield race({
@@ -95,11 +98,11 @@ export function* createstartoperateloginoutflow(){
     });
 
     console.log("等待下一轮登录");
-    if(logoutaction){
+    if(logoutaction && loginresult.approvalstatus === '已审核'){
       yield put(logoutaction);
     }
 
-    if(exitappaction){
+    if(exitappaction && loginresult.approvalstatus === '已审核'){
       console.log("开始获取地址");
       curlocation = yield call(getcurrentpos);
       let operateLogoutdoc = {
