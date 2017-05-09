@@ -19,21 +19,34 @@ let CarItem =(props)=> {
         return (<div>无车</div>);
     }
 
-    const {Platform_baseInfoVehicle} = carinfo;
+    const {Platform_baseInfoVehicle,approvalstatus} = carinfo;
     console.log("carinfo:" + JSON.stringify((carinfo)));
-
+    let co = (<MediaBoxBody>
+                  <MediaBoxTitle>{Platform_baseInfoVehicle.Brand}·{Platform_baseInfoVehicle.Model}</MediaBoxTitle>
+                  <MediaBoxDescription>
+                      <span className="tag">{Platform_baseInfoVehicle.VehicleNo}</span>
+                      {isdefault && (<span className="current">当前车辆</span>)}
+                  </MediaBoxDescription>
+              </MediaBoxBody>);
+    if(approvalstatus !== '已审核'){
+          co = (<MediaBoxBody>
+                   <MediaBoxTitle>点前车辆不可用</MediaBoxTitle>
+                   <MediaBoxDescription>
+                       <span className="tag">{approvalstatus}</span>
+                    </MediaBoxDescription>
+               </MediaBoxBody>);
+    }
     return (
-      <MediaBox type="appmsg" onClick={()=>onClickSelCurCar(carinfo)}>
+      <MediaBox type="appmsg" onClick={
+        ()=>{
+        if(approvalstatus === '已审核'){
+          onClickSelCurCar(carinfo);
+        }
+      }}>
           <MediaBoxHeader>
               <img src={carinfo.PhotoandCarmanURL} />
           </MediaBoxHeader>
-          <MediaBoxBody>
-              <MediaBoxTitle>{Platform_baseInfoVehicle.Brand}·{Platform_baseInfoVehicle.Model}</MediaBoxTitle>
-              <MediaBoxDescription>
-                  <span className="tag">{Platform_baseInfoVehicle.VehicleNo}</span>
-                  {isdefault && (<span className="current">当前车辆</span>)}
-              </MediaBoxDescription>
-          </MediaBoxBody>
+          {co}
       </MediaBox>
     );
 }

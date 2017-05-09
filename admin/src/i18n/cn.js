@@ -21,7 +21,15 @@ export default {
           tab2:'证件信息',
           tab3:'卫星定位装置',
           tab4:'服务',
-        }
+        },
+        notification:{
+          approved_success:'审批成功',
+          approved_error:'审批失败',
+          rejected_success:'拒绝成功',
+          rejected_error:'拒绝失败',
+          approvedstart_success:'开始审核成功',
+          approvedstart_error:'开始审核失败',
+        },
       },
       carbrand: {
           name: '车辆品牌 |||| 车辆品牌',

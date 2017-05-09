@@ -4,16 +4,24 @@ import { getabouthtml_result } from '../actions';
 const initial = {
   about: {
     'rideruserguide':{
-      title:'用户指南',
-      desc:'乘客端用户指南'
+      title:'',
+      desc:''
     },
     'riderfeerules':{
-      title:'计费规则',
-      desc:'乘客端计费规则'
+      title:'',
+      desc:''
     },
     'riderlaws':{
-      title:'法律条款',
-      desc:'乘客端法律条款'
+      title:'',
+      desc:''
+    },
+    'ridercancelrules':{
+      title:'',
+      desc:''
+    },
+    'ridergroup':{
+      title:'',
+      desc:''
     }
   },
 };

@@ -35,7 +35,7 @@ const UserriderlistShow = (props) => (
 
 
 const UserriderlistList = (props) => (//
-     <List title="司机列表" {...props} >
+     <List title="乘客列表" {...props} >
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>

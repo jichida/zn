@@ -52,7 +52,7 @@ class Page extends Component {
                                 <img src="newimg/21.png" alt=""/>
                             </CellHeader>
                             <CellBody onClick={()=>{this.props.history.push('/withdraw');}}>
-                                我要提现
+                                我要充值
                             </CellBody>
                             <CellFooter />
                         </Cell>

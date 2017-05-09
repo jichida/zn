@@ -18,6 +18,9 @@ import Myorders from './myorders/myorders';
 import Orderconfirm from './orderconfirm/index';
 import Feedetail from './orderdetail/feedetail';
 
+import Mywallet from './mywallet/wallet';
+import Mycoupons from './mycoupons/index';
+
 import {hidepopmessage} from '../actions/index.js';
 import { Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -152,7 +155,7 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                 <Route path="/index/:keyname" component={App}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/about/:keyname" component={About}/>
-                <Route path="/systemsettings" component={SystemSetting}/>
+                <Route path="/systemsetting" component={SystemSetting}/>
                 <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
                 <Route path="/city" component={City}/>
                 <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
@@ -163,6 +166,8 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                 <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
                 <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                 <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
+                <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
+                <Route path="/mycoupons" component={requireAuthentication(Mycoupons)}/>
 
 
                     <Route path="/messagelist" component={Messagelist}/>

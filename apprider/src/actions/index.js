@@ -12,3 +12,4 @@ export * from './pinche';
 export * from './search';
 export * from './userlogin';
 export * from './md';
+export * from './chargerecord';

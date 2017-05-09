@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../../../public/newcss/discount.css';
+import '../../../public/newcss/discount.css';
 import NavBar from '../tools/nav.js';
 const {
     Cells,

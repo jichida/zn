@@ -103,7 +103,7 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        <Cell access>
+                        <Cell access onClick={this.onClickItem.bind(this,'/about/ridergroup')}>
                             <CellHeader>
                                 <img src="newimg/32.png" alt=""/>
                             </CellHeader>

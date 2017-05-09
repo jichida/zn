@@ -7,10 +7,12 @@ export function CarOverlayOrder(props) {
     if(props.curmappageorder.hasOwnProperty('_id')){
         let requestobj = props.curmappagerequest;
         let orderobj = props.curmappageorder;
-        let driverinfo = requestobj.driveruserinfo || {
-                drivername:'无名司机',
-                carid:'隐藏车牌',
-                carname:'匿名车辆',
+        let driverinfo = requestobj.driverinfo || {
+                DriverName:'无名司机',
+                VehicleNo:'隐藏车牌',
+                PlateColor:'',
+                Brand:'',
+                Model:'匿名车辆',
                 starnum:5
             };
         let cancelrequest =()=>{
@@ -37,7 +39,7 @@ export function CarOverlayOrder(props) {
             //stoplocationrequest();//已经接单了!!
             return  (<ul className="xjl_ddjj" >
                 <li><div className="xjl_ddjj_top"><img src="images/user.jpg"  alt="img"/><div className="xjl_ddjj_main"><div>
-                    <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.carname}</p>
+                    <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.PlateColor}{driverinfo.Model}{driverinfo.Brand}</p>
                     <div className="xjl_ddjj_bottom">
                         <Rating defaultValue={driverinfo.starnum} disabled={true}/>
                     </div></div></div>
@@ -54,7 +56,7 @@ export function CarOverlayOrder(props) {
         let getrequestoverwaitinggetin=()=>{
             return (<ul className="xjl_ddjj">
                 <li><div className="xjl_ddjj_top"><img src="/images/user.jpg"  alt="img"/><div className="xjl_ddjj_main"><div>
-                    <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.carname}</p>
+                <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.PlateColor}{driverinfo.Model}{driverinfo.Brand}</p>
                     <div className="xjl_ddjj_bottom">
                         <Rating defaultValue={driverinfo.starnum} disabled={true}/>
                     </div></div></div><div className="xjl_ddjj_right"><a href="tel;400-1000-000">
@@ -67,7 +69,8 @@ export function CarOverlayOrder(props) {
         let gettripping =()=>{
             return  (<ul className="xjl_ddjj">
                 <li><div className="xjl_ddjj_top"><img src="images/user.jpg" alt='user'/><div className="xjl_ddjj_main"><div>
-                    <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.carname}</p><div className="xjl_ddjj_bottom">
+                <h2>{driverinfo.drivername}~{driverinfo.carid}</h2><p>{driverinfo.PlateColor}{driverinfo.Model}{driverinfo.Brand}</p>
+                    <div className="xjl_ddjj_bottom">
                     <Rating defaultValue={driverinfo.starnum} disabled={true}/>
                 </div></div></div></div>
                 </li>

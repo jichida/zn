@@ -75,6 +75,7 @@ const UserdriverlistEdit = (props) => {
               <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty addLabel={true}>
                 <TextField source="DriverName" />
               </ReferenceField>
+              <NumberInputEx label="星级" source="starnum" />
               <TextField label="余额" source="balance" />
               <TextInput label="拒绝理由" source="approvalrejectseason" />
               <SelectInput  label="审核状态"  source="approvalstatus" choices={[
