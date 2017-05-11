@@ -73,11 +73,11 @@ import Phonelist from "./new/other/phonelist";
 import '../../public/newcss/common.css';
 
 // import '../../public/App.css';
-// import '../../public/amaze.css';
+import '../../public/amaze.css';
 // import '../../public/a2017.css';
-// import '../../public/m2015.css';
-// import '../../public/style.css';
-// import '../../public/css/page.css';
+import '../../public/m2015.css';
+import '../../public/style.css';
+import '../../public/css/page.css';
 
 
 import {requireAuthentication} from './requireauthentication';

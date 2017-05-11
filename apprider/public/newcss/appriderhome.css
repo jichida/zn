@@ -1,0 +1,52 @@
+.appriderhomePage .homesidebar{
+	width: 50%;
+	display: flex;
+}
+.appriderhomePage .homesidebarcontent{
+	z-index: 0;
+}
+.appriderhomePage .nav{
+	border-top: 1px solid #EEE;
+	display: flex;
+	justify-content: space-between;
+	background: #FFF;
+}
+.appriderhomePage .nav>div{
+	text-align: center;
+	padding: 10px 0;
+	flex-grow: 1;
+	position: relative;
+
+}
+.appriderhomePage .nav>div:before{
+	content: "";
+	position: absolute;
+	height: 25px;
+	background: #EEE;
+	width: 1px;
+	right: 0;
+	top: 10px;
+}
+.appriderhomePage .nav>div:last-child:before{
+	content: none;
+}
+.appriderhomePage .nav>div.hover{
+	color: #0080ff;
+}
+.appriderhomePage .nav>div.hover:after{
+	content: "";
+	position: absolute;
+	height: 2px;
+	background: #0080ff;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+}
+.appriderhomePage .bottomContent{
+	position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 999;
+    margin: 10px;
+}

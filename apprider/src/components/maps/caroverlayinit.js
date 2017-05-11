@@ -1,6 +1,4 @@
-
 import React from 'react';
-
 import Callcardateinput from './callcardateinput';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
@@ -8,22 +6,20 @@ import {getstringoftime,getstringofdistance} from '../../util/geo.js';
 import {ui_setcarmap,carmap_resetmap} from '../../actions';
 import {starttriprequestorder} from '../../actions/sagacallback';
 import {pushrequesttodrivers_request,changestartposition} from '../../actions';
+import './caroverlayinit.css';
+
 
 export default function CarOverlayInit(props){
 
     let onClickNow=(isnow)=>{
-        props.dispatch(ui_setcarmap({
-            ispagenow:isnow
-        }));
+        props.dispatch(ui_setcarmap({ispagenow:isnow}));
     }
-
     let onClickSelDstAddress=()=>{
         props.history.push('/search/dstaddress');
     }
     let onClickSelSrcAddress=()=>{
         props.history.push('/search/srcaddress');
     };
-
     let onOK=()=>{
         if(!props.loginsuccess){
             //未登录，到登录页面
@@ -35,25 +31,24 @@ export default function CarOverlayInit(props){
             return;
         }
         let param = {
-          triprequest:
-          {
-              srcaddress:props.srcaddress,
-              dstaddress:props.dstaddress,
-              triptype:props.triptype,
-              isrealtime:props.ispagenow,
-          },
-          order:{
-            totaldistance:props.totaldistance,
-            totalduration:props.totalduration,
-            resultpricedetail:props.resultpricerequest
-          }
+            triprequest:{
+                srcaddress:props.srcaddress,
+                dstaddress:props.dstaddress,
+                triptype:props.triptype,
+                isrealtime:props.ispagenow,
+            },
+            order:{
+                totaldistance:props.totaldistance,
+                totalduration:props.totalduration,
+                resultpricedetail:props.resultpricerequest
+            }
         };
 
         if(!props.ispagenow){//预约时间
-          param.triprequest.dated_at = props.ridedatesel;
+            param.triprequest.dated_at = props.ridedatesel;
         }
+
         props.dispatch(starttriprequestorder(param)).then((result)=>{
-            console.log("starttriprequestorder result:" + JSON.stringify(result));
             //推送给所有司机该订单
             let driveridlist =[];
             props.driverlist.forEach((driver)=>{
@@ -67,12 +62,7 @@ export default function CarOverlayInit(props){
             props.history.push('/requestorderstarting');
 
         }).catch((error)=>{
-
         });
-        //props.dispatch(starttriprequestorder_request(param));
-        //可能需要封装成promise
-
-
     }
 
     let handleSelect=(time)=> {
@@ -81,16 +71,15 @@ export default function CarOverlayInit(props){
         }));
     }
 
-    //==============================================
-
     let onCancel=()=>{
-      props.dispatch(carmap_resetmap());
+        props.dispatch(carmap_resetmap());
         //props.onUpdatePage('restartall');
         //发送一次当前请求
-        //  startlocationrequest(1000*8,this.props.typename);
-        //  let zoomlevel = this.props.pagefields.zoomlevel=== 17?18:17;
-        //  window.leafletmap.setView(this.props.pagefields.markerstartlatlng,zoomlevel);
+        //startlocationrequest(1000*8,this.props.typename);
+        //let zoomlevel = this.props.pagefields.zoomlevel=== 17?18:17;
+        //window.leafletmap.setView(this.props.pagefields.markerstartlatlng,zoomlevel);
     }
+
     //尚未叫车!
     let isgetsrc = false;
     let isgetdst = false;
@@ -108,43 +97,69 @@ export default function CarOverlayInit(props){
         isgetdst = true;
     }
 
-    let btnnows = [];
-
     let floatcomponents;
-
     let isgetaddress = isgetdst&&isgetsrc;
 
-    if(!isgetaddress){
-    if(props.ispagenow){
-        btnnows.push(<li key='now' className="hover">现在</li>);
-        btnnows.push(<li key='date' onClick={()=>{onClickNow(false)}}>预约</li>);
-    }
-    else{
-        btnnows.push(<li key='now' onClick={()=>{onClickNow(true)}}>现在</li>);
-        btnnows.push(<li key='date' className="hover">预约</li>);
-    }
-
-        floatcomponents = (<ul className="xjl_xf_3">
-            {props.ispagenow?null:<li className="text-center">
-        <Callcardateinput
-            value={moment(props.ridedatesel)}
-            onChange={handleSelect}
-        /></li>}
-            <li onClick={onClickSelSrcAddress} className="cfd_icon">{srcname}</li>
-            <li onClick={onClickSelDstAddress} className="zd_icon">{dstname}</li>
-        </ul>);
-    }
-    else{
-        floatcomponents =(<div className="xjl_xf_3">
-            {renderHTML(props.resulthtmlstring)}
-            <div className="padding"><a className="btn_a" onClick={onOK}>叫车</a></div>
-            <div className="padding"><a className="btn_b" onClick={onCancel}>取消</a></div>
-        </div>);
-    }
-    return (<div className="xjl_xf_2">
-        <ul className="xjl_xf_1">
-            {btnnows}
-        </ul>
-        {floatcomponents}
-    </div>);
+    return (
+        <div className="caroverlayinitPage">
+            {
+                //这里是注释
+                !isgetaddress?(
+                    <ul className="listnav">
+                        <li 
+                            key='now' 
+                            className={props.ispagenow?"hover":""}
+                            onClick={()=>{onClickNow(props.ispagenow?props.ispagenow:!props.ispagenow)}}
+                            >
+                            现在
+                        </li>
+                        <li 
+                            key='date'
+                            className={props.ispagenow?"":"hover"}
+                            onClick={()=>{onClickNow(props.ispagenow?!props.ispagenow:props.ispagenow)}}
+                            >
+                            预约
+                        </li>
+                    </ul>
+                ):""
+            }
+            <div className="listcontent">
+                {
+                    //这里是注释
+                    !props.ispagenow&&!isgetaddress?(
+                        <div className="setordertime">
+                            <span>
+                                <img src="newimg/33.png" />
+                                预约时间:
+                            </span>
+                            <Callcardateinput
+                                value={moment(props.ridedatesel)}
+                                onChange={handleSelect}
+                            />
+                        </div>
+                        
+                    ):""
+                }
+                {
+                    //这里是注释
+                    !isgetaddress?(
+                        <div className="addresslist">
+                            <li onClick={onClickSelSrcAddress} className="cfd_icon">{srcname}</li>
+                            <li onClick={onClickSelDstAddress} className="color_warning"><span>{dstname}</span></li>
+                        </div>
+                    ):""
+                }
+                {
+                    //这里是注释
+                    isgetaddress?(
+                        <div className="isGetaddress">
+                            <span className="showprice">{renderHTML(props.resulthtmlstring)}</span>
+                            <div className="li"><a className="btn_a" onClick={onOK}>叫车</a></div>
+                            <div className="li"><a className="btn_b" onClick={onCancel}>取消</a></div>
+                        </div>
+                    ):""
+                }
+            </div>
+        </div>
+    );
 };

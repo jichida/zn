@@ -1,58 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
+import { Container } from 'amazeui-touch';
+import '../../../public/newcss/dstaddress.css';
+import _ from "lodash";
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+import NavBar from '../tools/nav.js';
+const { SearchBar } = WeUI;
 import {
-  setsearchtxt,
-  searchtext_request,
-  placesearchresult,
-  setoftenuseaddress_request,
-  carmap_setstartaddress,
-  carmap_setendaddress,
-  driveroute_result,
-  getprice_request
-} from '../../actions';
-
-import {
-    Container,
-} from 'amazeui-touch';
+    setsearchtxt,
+    searchtext_request,
+    placesearchresult,
+    setoftenuseaddress_request,
+    carmap_setstartaddress,
+    carmap_setendaddress,
+    driveroute_result,
+    getprice_request
+    } from '../../actions';
 
 export class Search extends React.Component {
-
-    componentWillMount () {
-    }
-    handleChangeSearchTxt(e){
-//handler
-        let searchtxt = e.target.value;
+    handleChangeSearchTxt(text, e){
+        let searchtxt = text;
         this.props.dispatch(setsearchtxt(searchtxt));
         let param = {
             searchtext:searchtxt,
             region:this.props.curselcity.zipcode
         };
-
-        //this.props.dispatch(searchtext_request(param));
         window.AMap.service(["AMap.PlaceSearch"], ()=> {
-               var placeSearch = new window.AMap.PlaceSearch({ //构造地点查询类
-                   city:param.region, //城市
-                   citylimit:true,
-               });
-               //关键字查询
-               placeSearch.search(param.searchtext,(status,result)=>{
-                     console.log("status:" + status);
-                     console.log("result:" + JSON.stringify(result));
-                     if(status === 'complete'){
-                       this.props.dispatch(placesearchresult(result));
-                     }
-                     //searchtext_result
-               });
+            var placeSearch = new window.AMap.PlaceSearch({ //构造地点查询类
+                city:param.region, //城市
+                citylimit:true,
+            });
+            //关键字查询
+            placeSearch.search(param.searchtext,(status,result)=>{
+                console.log("status:" + status);
+                console.log("result:" + JSON.stringify(result));
+                if(status === 'complete'){
+                    this.props.dispatch(placesearchresult(result));
+                }
            });
-        // if(window.geocoder){
-        //   window.geocoder.setCity(param.region);
-        //   window.geocoder.getLocation(param.searchtext,(status,result)=>{
-        //     console.log("status:" + status);
-        //     console.log("result:" + JSON.stringify(result));
-        //   });
-        // }
+        });
     }
+
     onClickSelAddress(addressitem){
         if(this.props.match.params.searchfrom === 'home' || this.props.match.params.searchfrom === 'company'){
             let data = this.props.oftenuseaddress;
@@ -165,35 +156,55 @@ export class Search extends React.Component {
                 searchresults.push(<li onClick={this.onClickSelAddress.bind(this,item)}
                                        key={i}><h2>{item.address}</h2><p>{item.name}</p></li>);
         }
+        return (
+            <div className="dstaddressPage AppPage">
+                <NavBar back={true} title="查询地址" />
+                <div className="select_name">
+                    <div onClick={this.onChangeCity.bind(this)}>{this.props.curselcity.cityname}</div>
+                    
+                    <label className="item-input-wrapper">
+                        <input 
+                            type="text" 
+                            onChange={this.handleChangeSearchTxt.bind(this)}
+                            value={this.props.searchtxt}
+                            />
+                    </label>
+                    <button className="button button-clear" onClick={this.onCancel.bind(this)}>取消</button>
+                </div>
+                <div className="g list margin-0">{homecompanybtns}</div>
 
-        return (<Container scrollable={true} fill={false}>
-            <div className="select_name">
-                <div onClick={this.onChangeCity.bind(this)}>{this.props.curselcity.cityname}</div>
-                <label className="item-input-wrapper">
-                    <input type="text" onChange={this.handleChangeSearchTxt.bind(this)}
-                           value={this.props.searchtxt}/>
-                </label>
-                <button className="button button-clear" onClick={this.onCancel.bind(this)}>取消</button>
+
+                <SearchBar
+                    onChange={this.handleChangeSearchTxt.bind(this)}
+                    placeholder="请输入地址关键字"
+                    lang={{
+                        cancel: 'Cancel'
+                    }}
+                />
+                <div className="list">
+                    <ul>
+                        {_.map(this.props.placeresult, (place,index)=>{
+                            return (
+                                <li 
+                                    onClick={()=>{this.onClickSelAddress.bind(this,place)}}
+                                    key={index}
+                                    >
+                                    <h2>{place.address}</h2>
+                                    <p>{place.name}</p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
-            <div className="g list margin-0">{homecompanybtns}</div>
-            <div className="list margin-0">
-                <ul>
-                    {searchresults}
-                </ul>
-            </div>
-        </Container >);
+        );
     }
 }
-
-
-
 const mapStateToProps = ({search,city,oftenuseaddress,carmap}) => {
     const {searchtxt,placesearchresult} = search;
     let placeresult = placesearchresult.poiList.pois;
     return {searchtxt,placeresult,curselcity:city.curselcity,oftenuseaddress,triptype:carmap.triptype,markerstartlatlng:carmap.markerstartlatlng};
 }
-
-
 export default connect(
     mapStateToProps,
 )(Search);

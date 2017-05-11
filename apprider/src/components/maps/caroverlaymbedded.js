@@ -4,21 +4,9 @@
 import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
-
-
 import CarOverlayInit from './caroverlayinit.js';
 
-
 export class Page extends React.Component {
-
-    componentDidMount () {
-    }
-    componentWillUnmount(){
-    }
-    componentWillReceiveProps (nextProps) {
-
-    }
-
     render() {
         let floatcomponents;
         if(this.props.mapstage === 'pageinit'){
@@ -31,9 +19,7 @@ export class Page extends React.Component {
             </div>
         );
     }
-
 }
-
 /*
  分4个页面：
  1.mapcarpage,公用
@@ -65,8 +51,8 @@ export class Page extends React.Component {
 const mapStateToProps = ({carmap,appui,userlogin}) => {
     return {...carmap,loginsuccess:userlogin.loginsuccess,...appui.carmap};
 }
-
-
 export default connect(
     mapStateToProps,
 )(Page);
+
+

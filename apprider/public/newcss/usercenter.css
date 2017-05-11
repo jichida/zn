@@ -1,7 +1,8 @@
 .usercenterPage.AppPage{
-	width: 50%;
 	flex-grow: 0;
 	background: #FFF;
+	position: relative;
+	flex-grow: 1;
 }
 .usercenterPage .head{
     text-align: center;

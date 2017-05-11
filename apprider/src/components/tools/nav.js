@@ -26,21 +26,44 @@ export class Page extends React.Component {
 
     //用户自定义按钮
     getuserbtn =(nav,index)=>{
-        let action = null;
+        let action = ()=>{};
+        let actionOption = null;
+
+
+        if(nav.hasOwnProperty("actionOption")){
+            actionOption = nav.actionOption;
+        }
         if(nav.hasOwnProperty("action")){
             action = nav.action;
         }
         if(nav.type=='push'){
             action = this.pagePush;
+            actionOption = nav.url;
         }
+        if(!nav.hasOwnProperty("icontype")){
+            nav.icontype = "img";
+        }
+        if(nav.hasOwnProperty("text")){
+            nav.text = '';
+        }
+
         return (
-            <span className="nli" onClick={()=>{nav.action}} key={index}>
+            <span 
+                className="nli"
+                key={index}
+                onClick={()=>{action(actionOption)}}
+                >
                 {
-                    nav.icon==''?'':(
-                        <span className="iconBtn" onClick={()=>{action(nav.url)}}>
+                    nav.icon!=''&&nav.icontype=="img"?(
+                        <span className="iconBtn">
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}}/>
                         </span>
-                    )
+                    ):""
+                }
+                {
+                    nav.icon!=''&&nav.icontype=="font"?(
+                        <span className={nav.icon} />
+                    ):""
                 }
                 {
                     nav.text==''?'':(<span>{nav.text}</span>)
