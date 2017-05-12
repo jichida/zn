@@ -21,8 +21,9 @@ import {
     } from '../../actions';
 
 export class Search extends React.Component {
-    handleChangeSearchTxt(text, e){
+    handleChangeSearchTxt(text){
         let searchtxt = text;
+        console.log("text:" + text);
         this.props.dispatch(setsearchtxt(searchtxt));
         let param = {
             searchtext:searchtxt,
@@ -131,56 +132,66 @@ export class Search extends React.Component {
         }
         this.props.history.goBack();
     }
-    onCancel(){
-        this.props.history.goBack();
-    }
     onChangeCity(){
         this.props.history.push('/city');
     }
     render() {
-        let homecompanybtns = [];
-        if(this.props.match.params.searchfrom === 'srcaddress' || this.props.match.params.searchfrom === 'dstaddress'){
-            if(this.props.oftenuseaddress.hasOwnProperty('home')){
-                homecompanybtns.push(<div onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.home)}
-                                          key="homebtn" className="col-3 padding border-l"><span className="icon icon-home text-primary fize18"></span>家庭<p className="margin-0 gray">{this.props.oftenuseaddress.home.name}</p></div>);
-            }
-            if(this.props.oftenuseaddress.hasOwnProperty('company')){
-                homecompanybtns.push(<div onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.company)}
-                                          key="companybtn" className="col-3 padding"><span className="icon icon-jtxx text-primary fize18"></span>公司<p className="margin-0 gray">{this.props.oftenuseaddress.company.name}</p></div>);
-            }
-        }
-
-        let searchresults = [];
-        for(let i=0;i<this.props.placeresult.length;i++){
-                let item = this.props.placeresult[i];
-                searchresults.push(<li onClick={this.onClickSelAddress.bind(this,item)}
-                                       key={i}><h2>{item.address}</h2><p>{item.name}</p></li>);
-        }
+        let params = this.props.match.params;
+        //是否显示常用地址
+        let showhomebtn = (params.searchfrom==='srcaddress'||params.searchfrom==='dstaddress')&&this.props.oftenuseaddress.hasOwnProperty('home');
+        let showcompanybtn = (params.searchfrom==='srcaddress'||params.searchfrom==='dstaddress')&&this.props.oftenuseaddress.hasOwnProperty('company');
         return (
             <div className="dstaddressPage AppPage">
-                <NavBar back={true} title="查询地址" />
-                <div className="select_name">
-                    <div onClick={this.onChangeCity.bind(this)}>{this.props.curselcity.cityname}</div>
-                    
-                    <label className="item-input-wrapper">
-                        <input 
-                            type="text" 
-                            onChange={this.handleChangeSearchTxt.bind(this)}
-                            value={this.props.searchtxt}
-                            />
-                    </label>
-                    <button className="button button-clear" onClick={this.onCancel.bind(this)}>取消</button>
+                <NavBar 
+                    back={true} 
+                    title="查询地址"
+                    rightnav={[
+                        {
+                            type : 'action',
+                            action : this.onChangeCity.bind(this),
+                            text : this.props.curselcity.cityname
+                        },
+                    ]}
+                    />
+                <div className="commonBtnContent">
+                    {showhomebtn?(
+                        <div
+                            onClick={()=>{this.onClickSelAddress.bind(this,this.props.oftenuseaddress.home)}}
+                            >
+                            <span className="icon icon-home"></span>
+                            <div>
+                                <span className="tit">家庭</span>
+                                <span className="address">
+                                    {this.props.oftenuseaddress.home.name}
+                                </span>
+                            </div>
+                        </div>
+                    ):""}
+                    {showcompanybtn?(
+                        <div
+                            onClick={()=>{this.onClickSelAddress.bind(this,this.props.oftenuseaddress.company)}}
+                            >
+                            <span className="icon icon-home"></span>
+                            <div>
+                                <span className="tit">公司</span>
+                                <span className="address">
+                                    {this.props.oftenuseaddress.company.name}
+                                </span>
+                            </div>
+                        </div>
+                    ):""}
                 </div>
-                <div className="g list margin-0">{homecompanybtns}</div>
-
-
-                <SearchBar
-                    onChange={this.handleChangeSearchTxt.bind(this)}
-                    placeholder="请输入地址关键字"
-                    lang={{
-                        cancel: 'Cancel'
-                    }}
-                />
+                <div className="searchContent">
+                    
+                    <SearchBar
+                        onChange={this.handleChangeSearchTxt.bind(this)}
+                        placeholder="请输入地址关键字"
+                        lang={{
+                            cancel: '取消'
+                        }}
+                        value={this.props.searchtxt}
+                    />
+                </div>
                 <div className="list">
                     <ul>
                         {_.map(this.props.placeresult, (place,index)=>{
@@ -201,6 +212,7 @@ export class Search extends React.Component {
     }
 }
 const mapStateToProps = ({search,city,oftenuseaddress,carmap}) => {
+    console.log(city);
     const {searchtxt,placesearchresult} = search;
     let placeresult = placesearchresult.poiList.pois;
     return {searchtxt,placeresult,curselcity:city.curselcity,oftenuseaddress,triptype:carmap.triptype,markerstartlatlng:carmap.markerstartlatlng};

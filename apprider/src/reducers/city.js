@@ -27,7 +27,11 @@ if(!defaultcurselcity){
 const initial = {
   city: {
     curcity: defaultcurcity,
-    curselcity: defaultcurselcity,
+    curselcity: {
+    "cityname": "南京",
+    "zipcode": "025",
+    "pinyin": "Nanjing"
+  },
   },
 };
 
@@ -36,10 +40,10 @@ const city = createReducer({
     localStorage.setItem('defaultcurcity',curcity);
     return { ...state,curcity:{...curcity}};
   },
-  [setcurselcity]:(state, curselcity) => {
-    localStorage.setItem('defaultcurselcity',curselcity);
-    return { ...state,curselcity:{...curselcity}};
-  },
+  // [setcurselcity]:(state, curselcity) => {
+  //   localStorage.setItem('defaultcurselcity',curselcity);
+  //   return { ...state,curselcity:{...curselcity}};
+  // },
 }, initial.city);
 
 export default city;

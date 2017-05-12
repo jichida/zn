@@ -1,5 +1,8 @@
 .userrechargePage{
-
+	background: #EEE;
+}
+.userrechargePage.AppPage .list{
+	flex-grow: 0;
 }
 .userrechargePage .submitBtn .btn{
     color: #FFF;

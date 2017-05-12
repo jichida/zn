@@ -9,6 +9,9 @@ import {pushrequesttodrivers_request,changestartposition} from '../../actions';
 import './caroverlayinit.css';
 
 
+//初始化代驾余额
+const balance = 20;
+
 export default function CarOverlayInit(props){
 
     let onClickNow=(isnow)=>{

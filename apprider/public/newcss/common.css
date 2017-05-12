@@ -9,7 +9,7 @@
   	margin: 0;
   	padding: 0;
   	font-family: sans-serif;
-    font-weight: 200;
+    font-weight: 100;
 }
 input, textarea{
     -webkit-user-select:text;
@@ -19,31 +19,33 @@ input, textarea{
     outline: none;
     resize: none;
 }
-.btn{
+
+.AppPage .btn{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 44px;
     border-radius: 6px;
+    margin:0;
 }
-.btn.Primary{
+.AppPage .btn.Primary{
     background: #3479e1;
     color: #FFF;
 }
-.btn.Primary:active{
+.AppPage .btn.Primary:active{
     background: #2a6bce;
 }
-.btn.Warning{
+.AppPage .btn.Warning{
     background: #fe8802;
     color: #FFF;
 }
-.btn.Warning:active{
+.AppPage .btn.Warning:active{
     background: #e07b08;
 }
-.btn.login{
+.AppPage .btn.login{
     background: #72aaff;
 }
-.btn.login:active{
+.AppPage .btn.login:active{
     background: #3479e1;
 }
 .AppContainer{
@@ -57,12 +59,27 @@ input, textarea{
     align-items: stretch;
     background: #EEE;
 }
+.requireAuthentication{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+}
 .AppPage{
     flex-grow: 1;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+}
+.AppPage .list{
+    margin: 0;
+    flex-grow: 1;
+    overflow: scroll;
 }
 .formStyle1 {
     background: #FFF;

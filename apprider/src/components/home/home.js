@@ -12,7 +12,8 @@ import NavBar from '../tools/nav.js';
 import { 
     ui_setsidebaropen,
     ui_setindexmapvisiable,
-    carmap_settriptype
+    carmap_settriptype,
+    set_weui
     } from '../../actions';
 import '../../../public/newcss/appriderhome.css';
 
@@ -35,12 +36,30 @@ export class AppIndex extends React.Component {
         else if(page === 'daijia'){
             this.props.dispatch(carmap_settriptype('代驾'));
         }
+
+        //代驾余额不足//mywallet
+        if(page=='daijia'){
+            let confirm = {
+                show : true,
+                title : "余额不足",
+                text : "您好，您的帐户余额不足50元，需要充值，才能使用代驾",
+                buttonsCloseText : "暂不充值",
+                buttonsClickText : "去充值",
+                buttonsClick : ()=>{this.onClickPagePush("/mywallet")}
+            }
+            this.props.dispatch(set_weui({confirm}));
+        }
+
+
     }
     onClickPagePush(page){
         this.props.history.push(page);
     }
     componentWillMount () {
         this.props.dispatch(ui_setindexmapvisiable(true));
+
+        
+
     }
     componentWillReceiveProps (nextprop) {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){
@@ -56,6 +75,8 @@ export class AppIndex extends React.Component {
     }
     componentWillUnmount () {
         this.props.dispatch(ui_setindexmapvisiable(false));
+
+
     }
     render() {
         //console.log("thisprops:" + JSON.stringify(this.props));
@@ -158,7 +179,16 @@ export class AppIndex extends React.Component {
                                     )
                                 })
                             }
+                            {currentkeyname=="daijia"?(
+                                <div className="daijiayueTip color_warning">
+                                    呼叫代驾，账户余额必须满50元
+                                    <span onClick={()=>{this.onClickPagePush("/mywallet")}}>查看余额</span>
+                                </div>
+                            ):""}
                         </div>
+
+                        
+                        
                         <Container scrollable={true}>
                             {Co}
                         </Container>

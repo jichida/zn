@@ -10,6 +10,21 @@
 	display: flex;
 	justify-content: space-between;
 	background: #FFF;
+	position: relative;
+	overflow: visible;
+}
+.appriderhomePage .nav .daijiayueTip{
+	position: absolute;
+	left: 0;
+	top:0;
+	width: 100%;
+	text-indent: 15px;
+	top: 41px;
+	z-index: 1000
+}
+.appriderhomePage .nav .daijiayueTip span{
+	margin-right: 15px;
+	text-indent: 0;
 }
 .appriderhomePage .nav>div{
 	text-align: center;
@@ -50,3 +65,24 @@
     z-index: 999;
     margin: 10px;
 }
+.appriderhomePage .daijiayueTip {
+	display: flex;
+	height: 40px;
+	background: #FFF;
+	padding: 0 15px;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid #EEE;
+}
+.appriderhomePage .daijiayueTip span{
+	display: inline-block;
+	border: 1px solid #fe8802;
+	color: #fe8802;
+	font-size: 14px;
+	padding: 0 15px;
+	border-radius: 50px;
+}
+
+
+
+

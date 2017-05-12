@@ -43,7 +43,7 @@ export class Page extends React.Component {
         if(!nav.hasOwnProperty("icontype")){
             nav.icontype = "img";
         }
-        if(nav.hasOwnProperty("text")){
+        if(!nav.hasOwnProperty("text")){
             nav.text = '';
         }
 
@@ -54,7 +54,7 @@ export class Page extends React.Component {
                 onClick={()=>{action(actionOption)}}
                 >
                 {
-                    nav.icon!=''&&nav.icontype=="img"?(
+                    nav.icon!=''&&nav.icon&&nav.icontype=="img"?(
                         <span className="iconBtn">
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}}/>
                         </span>

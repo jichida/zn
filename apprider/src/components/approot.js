@@ -3,6 +3,8 @@
  */
 import React from 'react';
 
+import WeuiTool from './tools/weuitool';
+
 import App from './home/home';
 import Login from './login/login';
 import SystemSetting from './setting/setting';
@@ -66,18 +68,22 @@ import Usercenter from "./new/user/usercenter";
 import Cancelrule from "./new/other/cancelrule";
 //集团信息
 import Phonelist from "./new/other/phonelist";
-//.cancelrulePage {}
 
+
+//选择支付方式
+import Payway from "./orderdetail/payway";
+//提现
+import Recharge from "./new/user/recharge";
 
 /*公共样式*/
 import '../../public/newcss/common.css';
 
-// import '../../public/App.css';
-import '../../public/amaze.css';
-// import '../../public/a2017.css';
-import '../../public/m2015.css';
-import '../../public/style.css';
-import '../../public/css/page.css';
+//import '../../public/App.css';
+//import '../../public/amaze.css';
+//import '../../public/a2017.css';
+//import '../../public/m2015.css';
+//import '../../public/style.css';
+//import '../../public/css/page.css';
 
 
 import {requireAuthentication} from './requireauthentication';
@@ -143,33 +149,30 @@ const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
 }
 MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
 
- class AppRoot extends React.Component {
-
+class AppRoot extends React.Component {
     render() {
-
         return (
             <div className="AppContainer">
+                <WeuiTool />
                 <MessageCo />
-            <Switch>
-                <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
-                <Route path="/index/:keyname" component={App}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/about/:keyname" component={About}/>
-                <Route path="/systemsetting" component={SystemSetting}/>
-                <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
-                <Route path="/city" component={City}/>
-                <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
-                <Route path="/search/:searchfrom" component={Search}/>
-                <Route path="/requestorderstarting" component={Caroverlay}/>
-                <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
-                <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
-                <Route path="/myorders" component={requireAuthentication(Myorders)}/>
-                <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
-                <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
-                <Route path="/mycoupons" component={requireAuthentication(Mycoupons)}/>
-
-
+                <Switch>
+                    <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
+                    <Route path="/index/:keyname" component={App}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/about/:keyname" component={About}/>
+                    <Route path="/systemsetting" component={SystemSetting}/>
+                    <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
+                    <Route path="/city" component={City}/>
+                    <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>
+                    <Route path="/search/:searchfrom" component={Search}/>
+                    <Route path="/requestorderstarting" component={Caroverlay}/>
+                    <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
+                    <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
+                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
+                    <Route path="/myorders" component={requireAuthentication(Myorders)}/>
+                    <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
+                    <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
+                    <Route path="/mycoupons" component={requireAuthentication(Mycoupons)}/>
                     <Route path="/messagelist" component={Messagelist}/>
                     <Route path="/setting" component={Setting}/>
                     <Route path="/discount" component={Discount}/>
@@ -185,13 +188,14 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/phonelist" component={Phonelist}/>
                     <Route path="/userinfo" component={Userinfo}/>
                     <Route path="/usercenter" component={Usercenter}/>
+                    <Route path="/payway" component={Payway}/>
+                    <Route path="/recharge" component={Recharge}/>
 
-                <Route component={App}/>
-            </Switch>
+                    <Route component={App}/>
+                </Switch>
             </div>
         );
     }
-
 }
 
 export default AppRoot;

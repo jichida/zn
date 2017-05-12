@@ -29,17 +29,17 @@ class Page extends Component {
    }
 
     render() {
-      const {rechargerecordlist,balance} = this.props;
-      let rechargerecordco = [];
-      _.map(rechargerecordlist,(item,index)=>{
+        const {rechargerecordlist,balance} = this.props;
+        let rechargerecordco = [];
+            _.map(rechargerecordlist,(item,index)=>{
         rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
-      });
+    });
 
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
-                    <img src="newimg/20.png" />
+                    <img src="newimg/10.png" />
                     <div>
                         <span className="tit">余额(元)</span>
                         <span className="myprice">{balance}</span>
