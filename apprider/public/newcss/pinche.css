@@ -1,0 +1,42 @@
+.orderconfirmPinchePage{
+}
+.orderconfirmPinchePage .head{
+	background:-webkit-gradient(linear, 0 0, 0 bottom, from(#51a9ff), to(#0080ff));
+	color: #FFF;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+}
+.orderconfirmPinchePage .head .city{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+.orderconfirmPinchePage .head .city span{
+	font-size: 26px;
+	font-weight: 300;
+}
+.orderconfirmPinchePage .head .city span.line{
+	flex-grow: 1;
+	align-self: stretch;
+	position: relative;
+	margin:  0 20px;
+}
+.orderconfirmPinchePage .head .city span.line:before{
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	background: #FFF;
+	content: "";
+	top: 19px;
+}
+.orderconfirmPinchePage .head .city span.line:after{
+	content: "";
+	width: 0;
+    height: 0;
+    border-bottom: 10px solid #FFF;
+    border-right: 10px solid transparent;
+    position: absolute;
+    right: -5px;
+    top: 12px;
+}

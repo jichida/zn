@@ -6,7 +6,6 @@ import {
     Container,
     View,
     Group,
-    NavBar,
     Grid,
     Col,
     List,
@@ -20,22 +19,14 @@ import OrderToPayDetailTourbus from './tourbus';
 import {insertorder} from '../../actions/sagacallback';
 
 import {orderconfirm_setpayway} from '../../actions';
+import NavBar from "../tools/nav.js";
+import "../../../public/newcss/orderconfirm.css";
 
 export class Page extends React.Component {
 
-    componentWillMount () {
-    }
-    componentWillUnmount(){
-     }
-    onClickBack(){
-        this.props.history.goBack();
-    }
-
     onClickOK(){
         let order = {};
-
         //生成一个订单，跳转到订单详情页
-
         if(this.props.match.params.clickfrom === 'pinche'){
             order = {
                 triptype:'拼车',
@@ -71,7 +62,7 @@ export class Page extends React.Component {
         this.props.dispatch(insertorder(order)).then(({triporder})=>{
             this.props.history.replace(`/orderdetail/${triporder._id}`);
         });
-      }
+    }
 
     onClickPayway(name){
       this.props.dispatch(orderconfirm_setpayway(name));
@@ -89,27 +80,25 @@ export class Page extends React.Component {
             OrderToPayDetail = <OrderToPayDetailTourbus {...this.props} />;
         }
         return (
-            <View>
-                <NavBar {...dataLeft}/>
-                <Container scrollable={true}>
-
+            <div className="orderconfirmPage AppPage">
+                <NavBar
+                    back={dataLeft.title}
+                    title="确认出行"
+                    />
+                <div className="list">
                     {OrderToPayDetail}
-
-                    <div className="padding" >
-                        <Button onClick={this.onClickOK.bind(this)} amStyle="primary" block>继续,订单{this.props.orderprice}元</Button>
-                        <Button onClick={this.onClickBack.bind(this)} block>取消</Button>
-                    </div>
-                </Container>
-
-            </View>
-
+                </div>
+                <div className="submitbtn">
+                    <div>总价: <span className="color_error">{this.props.orderprice}</span>元</div>
+                    <div 
+                        onClick={this.onClickOK.bind(this)}
+                        className="btn Primary"
+                        >立刻预定</div>
+                </div>
+            </div>
         );
     }
 }
-
-
-
-
 const mapStateToProps = ({orderconfirm},props) => {
     const {pinche,tourbus,payway} = orderconfirm;
     let cheprops = null;
@@ -121,8 +110,6 @@ const mapStateToProps = ({orderconfirm},props) => {
     }
     return {...cheprops,payway};
 }
-
-
 export default connect(
     mapStateToProps,
 )(Page);

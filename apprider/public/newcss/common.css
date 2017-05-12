@@ -249,4 +249,8 @@ input, textarea{
     flex-shrink: 0;
 }
 
+.datepicker.ios .datepicker-navbar-btn{
+    color:#fe8802;
+}
+
 

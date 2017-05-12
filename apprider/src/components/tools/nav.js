@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import '../../../public/newcss/nav.css';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
@@ -26,44 +26,21 @@ export class Page extends React.Component {
 
     //用户自定义按钮
     getuserbtn =(nav,index)=>{
-        let action = ()=>{};
-        let actionOption = null;
-
-
-        if(nav.hasOwnProperty("actionOption")){
-            actionOption = nav.actionOption;
-        }
+        let action = null;
         if(nav.hasOwnProperty("action")){
             action = nav.action;
         }
         if(nav.type=='push'){
             action = this.pagePush;
-            actionOption = nav.url;
         }
-        if(!nav.hasOwnProperty("icontype")){
-            nav.icontype = "img";
-        }
-        if(!nav.hasOwnProperty("text")){
-            nav.text = '';
-        }
-
         return (
-            <span 
-                className="nli"
-                key={index}
-                onClick={()=>{action(actionOption)}}
-                >
+            <span className="nli" onClick={()=>{nav.action}} key={index}>
                 {
-                    nav.icon!=''&&nav.icon&&nav.icontype=="img"?(
-                        <span className="iconBtn">
+                    nav.icon==''?'':(
+                        <span className="iconBtn" onClick={()=>{action(nav.url)}}>
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}}/>
                         </span>
-                    ):""
-                }
-                {
-                    nav.icon!=''&&nav.icontype=="font"?(
-                        <span className={nav.icon} />
-                    ):""
+                    )
                 }
                 {
                     nav.text==''?'':(<span>{nav.text}</span>)
@@ -81,7 +58,7 @@ export class Page extends React.Component {
         //是否有返回按钮 back＝true
         let back = props.hasOwnProperty('back')?props.back:false;
         //是否有分享到按钮 share＝true
-        let share = props.hasOwnProperty('share')?props.share:false;
+        let share = props.hasOwnProperty('share')?props.share:false;    
         //判断是否有用户自定义左侧按钮
         let haveUserLeftNav = props.hasOwnProperty('leftnav')?true:false;
         //判断是否有用户自定义右侧按钮
@@ -92,7 +69,7 @@ export class Page extends React.Component {
                 {
                     icon : 'img/shopping/11.png',
                     text : '',
-                    type : 'push',//push, action,
+                    type : 'push',//push, action, 
                     url : '/shoppingcart',
                     width : "10px",
                     height: "10px",
@@ -110,7 +87,7 @@ export class Page extends React.Component {
                 {
                     icon : 'img/shopping/11.png',
                     text : '',
-                    type : 'push',//push, action,
+                    type : 'push',//push, action, 
                     url : '/shoppingcart'
                 },
             ]

@@ -1,258 +1,182 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-mobile-datepicker';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import moment from 'moment';
 import objectPath from 'object-path';
-
+import '../../../public/newcss/carpool.css';
 import config from '../../config.js';
 import {
-  ui_pinchesetdateshow,
-  ui_clickpinchetypebtn,
-  getbuscarpool_request,
-  orderconfirm_setpinche
+    ui_pinchesetdateshow,
+    ui_clickpinchetypebtn,
+    getbuscarpool_request,
+    orderconfirm_setpinche
 } from '../../actions';
-
-import {
-  Container,
-} from 'amazeui-touch';
-
-let renderPincheQueryForm = (fields)=>{
-  const {isquerydateshow,
-    citylist,dispatch} = fields;
-
-  let begincitylistco = [];
-  let endcitylistco = [];
-  citylist.forEach((cityname,index)=>{
-    begincitylistco.push(
-      <option key={"begincity_"+index } value={cityname}>
-      {cityname}</option>);
-    endcitylistco.push(
-      <option key={"endcity_"+index } value={cityname} >
-        {cityname}</option>);
-  });
-
-  let yesterdayDate = new Date();
-  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-
-  let handleSelect=(time)=> {
-    dispatch(ui_pinchesetdateshow(false));
-    fields.searchdatesel.input.onChange(time);
-  }
-  let handleCancel=()=>{
-    dispatch(ui_pinchesetdateshow(false));
-  }
-  let handleShow=()=>{
-    dispatch(ui_pinchesetdateshow(true));
-  }
-  let changeHandler=(keyname,event)=>{
-    fields[keyname].input.onChange(event.target.value);
-  }
-
-
-    let begincityselid = fields.begincityselid.input.value;
-    let endcityselid = fields.endcityselid.input.value;
-    if(begincityselid === ''){
-        begincityselid=citylist.length>0?citylist[0]:'';
-        if(begincityselid !== ''){
-            window.setTimeout(()=>{
-                fields.begincityselid.input.onChange(begincityselid);
-            },0);
-
-        }
-    }
-    if(endcityselid === ''){
-        endcityselid=citylist.length>1?citylist[1]:begincityselid;
-        if(endcityselid !== ''){
-            window.setTimeout(()=>{
-                fields.endcityselid.input.onChange(endcityselid);
-            },0);
-
-        }
-    }
-    // let model = objectPath(form);
-    // begincityselid = model.get("pinche.values.begincityselid",begincityselid);
-    // endcityselid= model.get("pinche.values.endcityselid",endcityselid);
-
-  return (<ul>
-      <li className="item item-input padding-0 ">
-        <div className="item-main">
-        <label className="field-container"><span className="field-label cfd_icon"> 起始地 </span>
-            <select className="borderless pl_pr margin-0 text-right"
-            value={begincityselid}  onChange={(e)=>{changeHandler('begincityselid',e);}}>
-            {begincitylistco}
-            </select>
-         </label>
-        </div>
-        </li>
-        <li className="item item-input padding-0 ">
-          <div className="item-main">
-            <label className="field-container"><span className="field-label zd_icon">目的地</span>
-
-              <select className="borderless pl_pr margin-0 text-right"
-                value={endcityselid}  onChange={(e)=>{changeHandler('endcityselid',e);}}>
-                {endcitylistco}
-              </select>
-            </label>
-          </div>
-        </li>
-      <li  className="item item-input padding-0">
-      <div className="item-main" onClick={handleShow}>
-        <label className="field-container"><span className="field-label time_icon">出发日期</span>
-          <span className="p10">{moment(fields.searchdatesel.input.value).format('YYYY年MM月DD日')}
-        <DatePicker
-          value={fields.isquerydateshow.value}
-          isOpen={isquerydateshow}
-          onSelect={handleSelect}
-          onCancel={handleCancel}
-          min={yesterdayDate}
-          dateFormat={['YYYY年', 'MM月', 'DD日']}
-          /></span>
-           </label>
-      </div>
-    </li>
-  </ul>);
-
-}
-
-const mapStateToProps1 = ({pinche,appui,app:{pinchecitylist:citylist}}) => {
-    return {...pinche,...appui.pinche,citylist};
-}
-
-renderPincheQueryForm = connect(mapStateToProps1)(renderPincheQueryForm);
-
-let renderPincheTypeField = (field)=>{
-  let {dispatch,input:{value,onChange}} = field;
-  let tabtitle = ['专线拼车','人气团拼'];
-  let onClickTabbtn =(newvalue)=>{
-    onChange(tabtitle[newvalue]);
-    dispatch(ui_clickpinchetypebtn(newvalue));
-  }
-  let btn0,btn1;
-  if(value === 0){
-    btn0 = <button className="btn btn-sm btn-primary btn-hollow radius_l active">{tabtitle[0]}</button>;
-  }
-  else{
-    btn0 = <button onClick={()=>{onClickTabbtn(0);}} className="btn btn-sm btn-primary btn-hollow radius_l">{tabtitle[0]}</button>;
-  }
-
-  if(value === 1){
-    btn1 = <button className="btn btn-sm btn-primary btn-hollow radius_r active">{tabtitle[1]}</button>;
-  }
-  else{
-    btn1 = <button onClick={()=>{onClickTabbtn(1);}}  className="btn btn-sm btn-primary btn-hollow radius_r">{tabtitle[1]}</button>;
-  }
-  return (
-      <div className="group margin-0">
-        <div className="group-body background">
-          <div className="tabs-nav btn-group btn-group-justify">
-            {btn0}
-            {btn1}
-          </div>
-        </div>
-      </div>
-  );
-}
-renderPincheTypeField = connect()(renderPincheTypeField);
-
-let PincheQueryForm = (props)=>{
-  let {handleSubmit,onClickQuery} = props;
-  return (<Form onSubmit={handleSubmit(onClickQuery)}>
-        <Field name='pinchetype' component={renderPincheTypeField}/>
-        <div className="index_ul">
-            <div className="relative">
-            <span className="icon icon-wf index_poastion"></span>
-            </div>
-            <Fields names={[ 'begincityselid', 'endcityselid', 'searchdatesel']} component={renderPincheQueryForm}/>
-
-           <button className="btn btn-primary btn-block margin-bottom-0 margin-top">查询</button>
-
-        </div>
-        </Form>);
-};
-
-
-const validate = values => {
-    const errors = {}
-    if (!values.begincityselid || values.begincityselid === '') {
-        errors.begincityselid = '必须选择出发城市';
-    }
-    if (!values.endcityselid || values.endcityselid === '') {
-        errors.endcityselid = '必须选择目的城市';
-    }
-    return errors;
-}
-
-PincheQueryForm = reduxForm({
-    form: 'pinche',
-    validate,
-    initialValues:{
-        begincityselid: '',
-        endcityselid: '',
-        searchdatesel: new Date(),
-        pinchetype: 0
-    }
-})(PincheQueryForm);
-
- class Pinche extends React.Component {
-
-  componentWillMount () {
-    //this.onClickQuery();
-  }
-  onClickQuery(values){//少出发日期
-      let tabtitle = ['专线','人气团拼'];
-      let querydata = {
-          startcity:values.begincityselid,
-          endcity:values.endcityselid,
-          pinchetype:tabtitle[values.pinchetype],
-          startdate:values.searchdatesel
-      };
-      this.props.dispatch(getbuscarpool_request(querydata));
-  }
-  onClickPage(name,routeobj){
-      //-------------------------
-      this.props.dispatch(orderconfirm_setpinche(routeobj));
-      this.props.history.push(name);
-  }
-
-  render() {
-      console.log("render Pinche again!!!");
-    let resultrouteco = [];
-    let index =0;
-    let tabtitle = ['专线','人气团拼'];
-    this.props.resultroute.forEach((routeobj)=>{
-        index++;
-        if(tabtitle[this.props.pinchetypetabbtn] === routeobj.pinchetype ){
-        resultrouteco.push(
-        <li className="item item-linked" key={index}><a>
-          <div>{routeobj.startcity}——{routeobj.endcity}
-            <p className="text-warning margin-top-0">剩余{routeobj.seatnumber-routeobj.takennumber}座</p>
-          </div>
-          <div>{routeobj.starttime}</div>
-          <div>
-            <button onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)} className="btn btn-primary radius5">出行</button>
-          </div>
-          </a> </li>);
-        }
-      });
-
-    return (<Container scrollable={true} fill={false}>
-                <PincheQueryForm onClickQuery={this.onClickQuery.bind(this)}/>
-                <div className="group group-no-padded">
-                  <div className="group-body">
-                    <ul className="list">
-                      {resultrouteco}
-                    </ul>
-                  </div>
+import _ from "lodash";
+import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
+import { 
+    required, 
+    InputValidation, 
+    WeuiInputValidation,
+    WeuiSelectValidation
+    } from "../tools/formvalidation";
+import {renderDateField} from "../tools/renderdate";
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+//最新的代码
+class PincheForm extends React.Component{
+    render(){
+        const { handleSubmit,citylist,FormSubmit,starttime } = this.props;
+        let newcitylist = _.map(citylist,(city,index)=>{
+            return {
+                value:city,
+                label:city
+            }
+        })
+        return (
+            <Form
+                onSubmit={handleSubmit(FormSubmit)}
+                className="formStyle1"
+                >
+                <Field
+                    name="startcity"
+                    id="startcity"
+                    Option={newcitylist}
+                    component={ WeuiSelectValidation }
+                    InputTit="出发地"
+                />
+                <Field
+                    name="endcity"
+                    id="endcity"
+                    Option={newcitylist}
+                    component={ WeuiSelectValidation }
+                    InputTit="目的地"
+                />
+                <Field 
+                    name="starttime" 
+                    id="starttime"
+                    label="出发时间"
+                    component={renderDateField}
+                />
+                <div className="submitBtn">
+                    <botton 
+                        className="btn Primary"  
+                        onClick={handleSubmit}>
+                        确定
+                    </botton>
                 </div>
-        </Container>);
-  }
+            </Form>
+        )
+    }
+}
+PincheForm = reduxForm({
+    form: 'selectingFormValues',
+    initialValues:{
+        starttime : moment(new Date()).format('YYYY-MM-DD'),
+        endcity : "常州",
+        startcity : "南京"
+    }
+})(PincheForm);
+const selector = formValueSelector('selectingFormValues');
+PincheForm = connect(({state,pinche,appui,app:{pinchecitylist:citylist}}) => {
+    // can select values individually
+    const startcity = selector(state, 'startcity');
+    const endcity = selector(state, 'endcity');
+    return {
+        endcity,
+        startcity,
+        citylist,
+        ...pinche,
+        ...appui.pinche,
+    };
+})(PincheForm);
+
+class Pinche extends React.Component {
+    onClickPage(name,routeobj){
+        this.props.dispatch(orderconfirm_setpinche(routeobj));
+        this.props.history.push(name);
+    }
+    onClickTabbtn =(newvalue)=>{
+        this.props.dispatch(ui_clickpinchetypebtn(newvalue));
+    }
+    formSubmit =(value)=>{
+        let tabtitle = ['专线','人气团拼'];
+        let querydata = {
+            startcity:value.startcity,
+            endcity:value.endcity,
+            pinchetype:tabtitle[value.pinchetype],
+            startdate:value.starttime
+        };
+        this.props.dispatch(getbuscarpool_request(querydata));
+    }
+    render() {
+        let resultrouteco = [];
+        let index =0;
+        let tabtitle = ['专线','人气团拼'];
+        const {  pinchetypetabbtn } = this.props;
+        return (
+            <div className="carpoolPage AppPage">
+                <div className="pageNav">
+                    <span
+                        className={pinchetypetabbtn==0?"sel":""}
+                        onClick={()=>{this.onClickTabbtn(0)}}
+                        >
+                        专线
+                    </span>
+                    <span
+                        className={pinchetypetabbtn==1?"sel":""}
+                        onClick={()=>{this.onClickTabbtn(1)}}
+                        >
+                        人气团拼
+                    </span>
+                </div>
+
+                <PincheForm FormSubmit={this.formSubmit}/>
+                
+                <div className="listcontent">
+                    {
+                        _.map(this.props.resultroute, (routeobj, index)=>{
+                            console.log(routeobj);
+                            return (
+                                <div 
+                                    className="li"
+                                    key={index}
+                                    >
+                                    {
+                                        routeobj.pinchetype=="专线"?(
+                                            <div className="licontent">
+                                                <div className="time">{routeobj.starttime}</div>
+                                                <div className="city">
+                                                    {routeobj.startcity}——{routeobj.endcity}
+                                                    <p 
+                                                        className="text-warning margin-top-0"
+                                                        >
+                                                        剩余{routeobj.seatnumber-routeobj.takennumber}座
+                                                    </p>
+                                                </div>
+                                                <div className="bbtn">
+                                                    <span 
+                                                        onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)} 
+                                                        className="btn Primary">
+                                                        出行
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ):""
+                                    }
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = ({pinche,appui}) => {
-
     return {...pinche,...appui.pinche};
 }
 export default connect(
-  mapStateToProps,
+    mapStateToProps,
 )(Pinche);

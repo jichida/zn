@@ -31,7 +31,6 @@
 	padding: 10px 0;
 	flex-grow: 1;
 	position: relative;
-
 }
 .appriderhomePage .nav>div:before{
 	content: "";
@@ -82,7 +81,6 @@
 	padding: 0 15px;
 	border-radius: 50px;
 }
-
 
 
 

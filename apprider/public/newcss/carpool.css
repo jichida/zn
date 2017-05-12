@@ -1,0 +1,60 @@
+.carpoolPage{
+    display: flex;
+    flex-direction: column;
+}
+.carpoolPage .pageNav{
+    display: flex;
+    margin: 15px 15%;
+    flex-grow: 1;
+    justify-content: space-between;
+    border: 1px solid #0080ff;
+    color: #0080ff;
+    border-radius: 36px;
+    overflow: hidden;
+}
+.carpoolPage .pageNav span{
+    width: 50%;
+    text-align: center;
+    color: #0080ff;
+    height: 36px;
+    line-height: 36px;
+}
+.carpoolPage .pageNav span.sel{
+     color: #FFF;
+     background: #0080ff;
+}
+.carpoolPage .submitBtn{
+    margin: 15px;
+}
+.carpoolPage .listcontent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    background: #FFF;
+}
+.carpoolPage .listcontent .licontent{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #EEE;
+    padding: 5px 15px;
+    align-items: center
+}
+.carpoolPage .listcontent .licontent .city{
+    flex-grow: 1;
+}
+.carpoolPage .listcontent .licontent .time{
+    padding-right: 15px;
+    margin-right: 15px;
+    border-right: 1px solid #EEE;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carpoolPage .listcontent .licontent .bbtn .btn{
+    padding: 0 20px;
+    border-radius: 50px;
+    height: 30px;
+}
+
+
