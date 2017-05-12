@@ -46,6 +46,7 @@ export class Search extends React.Component {
     }
 
     onClickSelAddress(addressitem){
+      console.log(`searchfrom:${this.props.match.params.searchfrom},addressitem:${JSON.stringify(addressitem)}`)
         if(this.props.match.params.searchfrom === 'home' || this.props.match.params.searchfrom === 'company'){
             let data = this.props.oftenuseaddress;
             data[this.props.match.params.searchfrom] = addressitem;
@@ -142,8 +143,8 @@ export class Search extends React.Component {
         let showcompanybtn = (params.searchfrom==='srcaddress'||params.searchfrom==='dstaddress')&&this.props.oftenuseaddress.hasOwnProperty('company');
         return (
             <div className="dstaddressPage AppPage">
-                <NavBar 
-                    back={true} 
+                <NavBar
+                    back={true}
                     title="查询地址"
                     rightnav={[
                         {
@@ -156,7 +157,7 @@ export class Search extends React.Component {
                 <div className="commonBtnContent">
                     {showhomebtn?(
                         <div
-                            onClick={()=>{this.onClickSelAddress.bind(this,this.props.oftenuseaddress.home)}}
+                            onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.home)}
                             >
                             <span className="icon icon-home"></span>
                             <div>
@@ -169,7 +170,7 @@ export class Search extends React.Component {
                     ):""}
                     {showcompanybtn?(
                         <div
-                            onClick={()=>{this.onClickSelAddress.bind(this,this.props.oftenuseaddress.company)}}
+                            onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.company)}
                             >
                             <span className="icon icon-home"></span>
                             <div>
@@ -182,7 +183,7 @@ export class Search extends React.Component {
                     ):""}
                 </div>
                 <div className="searchContent">
-                    
+
                     <SearchBar
                         onChange={this.handleChangeSearchTxt.bind(this)}
                         placeholder="请输入地址关键字"
@@ -196,8 +197,8 @@ export class Search extends React.Component {
                     <ul>
                         {_.map(this.props.placeresult, (place,index)=>{
                             return (
-                                <li 
-                                    onClick={()=>{this.onClickSelAddress.bind(this,place)}}
+                                <li
+                                    onClick={this.onClickSelAddress.bind(this,place)}
                                     key={index}
                                     >
                                     <h2>{place.address}</h2>
