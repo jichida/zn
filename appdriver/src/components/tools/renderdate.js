@@ -1,6 +1,7 @@
 import React from 'react'
 import WeUI from 'react-weui';
 import DatePicker from 'react-mobile-datepicker';
+
 const {
     FormCell,
     CellHeader,
@@ -12,10 +13,10 @@ const {
     Select
   } = WeUI;
 
-  import moment from 'moment';
+import moment from 'moment';
 
 class renderDateField extends React.Component{
-    construcorr(props) {  
+    constructor(props) {  
         super(props);
         this.state = {
             isdateopen : false,
@@ -27,19 +28,16 @@ class renderDateField extends React.Component{
     
     render(){
         const { input, label, meta: { touched, error } } = this.props;
-        if(typeof input.value === 'string'){
-            try{
-                input.value= new Date(Date.parse(input.value));
-            }
-            catch(e){
-                input.value= new Date();
-            }
-        }
+
+
+        console.log("input value"+input.value);
+
+        
         let handleClick1 =()=>{
             this.setDateopen(true);
         }
         let handleSelect1=(time)=>{
-            input.onChange(time);
+            input.onChange(moment(time).format('YYYY-MM-DD'));
             this.setDateopen(false);
         };
         let handleCancel1=()=>{
@@ -47,19 +45,29 @@ class renderDateField extends React.Component{
         }
         return (
             <FormCell>
-                <CellHeader>{label}</CellHeader>
-                <CellBody>
-                    <span onClick={handleClick1}>{moment(input.value).format("YYYY-MM-DD")}
-                        <DatePicker
-                            value={input.value}
-                            isOpen={this.state.isdateopen}
-                            onSelect={handleSelect1}
-                            onCancel={handleCancel1}
-                            dateFormat={['YYYY年', 'MM月', 'DD日']}
+                <CellHeader>
+                    <Label>
+                        <span>{label}</span>
+                    </Label>
+                </CellHeader>
+                <CellFooter>
+                    <Input 
+                        {...input} 
+                        onClick={handleClick1}
+                        style={{textAlign:"right"}}
                         />
-                    </span>
-                </CellBody>
+                </CellFooter>
+                <DatePicker
+                    value={new Date(input.value)}
+                    isOpen={this.state.isdateopen}
+                    onSelect={handleSelect1}
+                    onCancel={handleCancel1}
+                    dateFormat={['YYYY', 'MM', 'DD']}
+                    theme="ios"
+                />
+                
             </FormCell>
+
         )
     }
 }
