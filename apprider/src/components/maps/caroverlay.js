@@ -19,31 +19,32 @@ export class Page extends React.Component {
     componentWillUnmount(){
     }
     componentWillReceiveProps (nextProps) {
-
-        if(nextProps.mapstage === 'pageinit'){
-            this.props.history.replace('/');
+        const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
+        if(mapstage === 'pageinit'){
+            history.replace('/');
         }
         else{
-            if(nextProps.curmappagerequest.requeststatus === '行程完成'){
+            if(curmappagerequest.requeststatus === '行程完成'){
                 //重置状态
-                this.props.dispatch(carmap_resetmap());
-                this.props.history.replace(`/orderdetail/${nextProps.curmappageorder._id}`);
+                dispatch(carmap_resetmap());
+                history.replace(`/orderdetail/${curmappageorder._id}`);
             }
-            else if(nextProps.curmappagerequest.requeststatus === '已取消'){
+            else if(curmappagerequest.requeststatus === '已取消'){
                 //重置状态
-                this.props.dispatch(carmap_resetmap());
-                this.props.history.replace(`/`);
+                dispatch(carmap_resetmap());
+                history.replace(`/`);
             }
         }
 
     }
 
     render() {
-        if(!this.props.curmappagerequest.hasOwnProperty('_id')){
+        const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = this.props;
+        if(!curmappagerequest.hasOwnProperty('_id')){
             return <div>无请求</div>
         }
         let dataLeft = {
-            title:this.props.curmappagerequest.requeststatus
+            title:curmappagerequest.requeststatus
         };
 
         if(dataLeft.title === '行程完成'){
@@ -54,17 +55,17 @@ export class Page extends React.Component {
                 title: dataLeft.title,
                 leftNav: [{...itemLeft, icon: 'left-nav'}],
                 onAction: ()=>{
-                    this.props.history.replace('/');
+                    history.replace('/');
                 },
             };
         }
 
         let floatcomponents;
-        if(this.props.mapstage === 'pageinit'){
+        if(mapstage === 'pageinit'){
             floatcomponents = <CarOverlayInit {...this.props}/>;
         }
-        else if(this.props.mapstage === 'pageorder'){
-            if(this.props.curmappagerequest.requeststatus === '行程完成'){
+        else if(mapstage === 'pageorder'){
+            if(curmappagerequest.requeststatus === '行程完成'){
                 floatcomponents =  <div>行程完成,正在生成订单</div>;
                 return (<View>
                     <NavBar {...dataLeft}/>
@@ -81,7 +82,7 @@ export class Page extends React.Component {
             <View>
                 <NavBar {...dataLeft}/>
                 <Container scrollable={true}>
-                    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' {...this.props} /></div>
+                    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'/></div>
                     {floatcomponents}
                 </Container>
             </View>);
@@ -117,8 +118,8 @@ export class Page extends React.Component {
  }
  */
 
-const mapStateToProps = ({carmap,userlogin}) => {
-    return {...carmap,loginsuccess:userlogin.loginsuccess};
+const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder}}) => {
+    return {mapstage,curmappagerequest,curmappageorder};
 }
 
 

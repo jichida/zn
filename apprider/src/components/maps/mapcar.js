@@ -29,7 +29,7 @@ let markerdriverlist = [];
 let markerstart,markerend,markerself,markerdriver,polylineleft,polylinepast;
 
 window.initamaploaded = false;
-export class Page extends React.Component {
+class Page extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -416,4 +416,10 @@ export class Page extends React.Component {
     }
 }
 
-export default Page;
+const mapStateToProps = ({carmap}) => {
+    return {...carmap};
+}
+
+export default connect(
+    mapStateToProps,
+)(Page);

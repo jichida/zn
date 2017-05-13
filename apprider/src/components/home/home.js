@@ -9,7 +9,7 @@ import CarOverlayEmbedded from '../maps/caroverlaymbedded';
 import { Container,View } from 'amazeui-touch';
 var Sidebar = require('react-sidebar').default;
 import NavBar from '../tools/nav.js';
-import { 
+import {
     ui_setsidebaropen,
     ui_setindexmapvisiable,
     carmap_settriptype,
@@ -38,28 +38,24 @@ export class AppIndex extends React.Component {
         }
 
         //代驾余额不足//mywallet
-        if(page=='daijia'){
+        const {balance,daijialeastbalance} = this.props;
+        if(page === 'daijia' && balance < daijialeastbalance){
             let confirm = {
                 show : true,
                 title : "余额不足",
-                text : "您好，您的帐户余额不足50元，需要充值，才能使用代驾",
+                text : `您好，您的帐户余额${balance}不足${daijialeastbalance}元，需要充值，才能使用代驾`,
                 buttonsCloseText : "暂不充值",
                 buttonsClickText : "去充值",
                 buttonsClick : ()=>{this.onClickPagePush("/mywallet")}
             }
             this.props.dispatch(set_weui({confirm}));
         }
-
-
     }
     onClickPagePush(page){
         this.props.history.push(page);
     }
     componentWillMount () {
         this.props.dispatch(ui_setindexmapvisiable(true));
-
-        
-
     }
     componentWillReceiveProps (nextprop) {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){
@@ -80,7 +76,7 @@ export class AppIndex extends React.Component {
     }
     render() {
         //console.log("thisprops:" + JSON.stringify(this.props));
-        const {issidedbaropen,match,location,history} = this.props;
+        const {issidedbaropen,match,location,history,daijialeastbalance} = this.props;
         let pathnamelist = [
             {
                 keyname:'chuzuche',
@@ -127,7 +123,7 @@ export class AppIndex extends React.Component {
         });
         return (
             <div className="appriderhomePage">
-                <Sidebar 
+                <Sidebar
                     sidebar={this.renderOC()}
                     sidebarClassName="homesidebar"
                     contentClassName="homesidebarcontent"
@@ -138,7 +134,7 @@ export class AppIndex extends React.Component {
                     shadow={false}
                     >
                     <View>
-                        <NavBar 
+                        <NavBar
                             back={false}
                             leftnav = {[
                                 {
@@ -163,15 +159,15 @@ export class AppIndex extends React.Component {
                             title="中南出行"
                             />
 
-                        <div 
+                        <div
                             className="nav"
                             >
                             {
                                 _.map(pathnamelist, (cur, index)=>{
                                     return (
-                                        <div 
-                                            onClick={this.onClickPage.bind(this,cur.keyname)} 
-                                            key={cur.keyname} 
+                                        <div
+                                            onClick={this.onClickPage.bind(this,cur.keyname)}
+                                            key={cur.keyname}
                                             className={cur.keyname === currentkeyname?"hover":""}
                                             >
                                             {cur.title}
@@ -181,14 +177,14 @@ export class AppIndex extends React.Component {
                             }
                             {currentkeyname=="daijia"?(
                                 <div className="daijiayueTip color_warning">
-                                    呼叫代驾，账户余额必须满50元
+                                    呼叫代驾，账户余额必须满{daijialeastbalance}元
                                     <span onClick={()=>{this.onClickPagePush("/mywallet")}}>查看余额</span>
                                 </div>
                             ):""}
                         </div>
 
-                        
-                        
+
+
                         <Container scrollable={true}>
                             {Co}
                         </Container>
@@ -199,8 +195,8 @@ export class AppIndex extends React.Component {
     }
 }
 
-const mapStateToProps = ({appui}) => {
-  return appui.home;
+const mapStateToProps = ({appui:{home},app:{daijialeastbalance},userlogin:{balance}}) => {
+  return {...home,balance,daijialeastbalance};
 }
 AppIndex = connect(mapStateToProps)(AppIndex);
 export default AppIndex;

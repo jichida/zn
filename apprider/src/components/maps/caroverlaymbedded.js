@@ -10,11 +10,11 @@ export class Page extends React.Component {
     render() {
         let floatcomponents;
         if(this.props.mapstage === 'pageinit'){
-            floatcomponents = <CarOverlayInit {...this.props} />;
+            floatcomponents = <CarOverlayInit />;
         }
         return (
             <div>
-                <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' {...this.props} /></div>
+                <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'/></div>
                 {floatcomponents}
             </div>
         );
@@ -48,8 +48,8 @@ export class Page extends React.Component {
  }
  */
 
-const mapStateToProps = ({carmap,appui,userlogin}) => {
-    return {...carmap,loginsuccess:userlogin.loginsuccess,...appui.carmap};
+const mapStateToProps = ({carmap:{mapstage}}) => {
+    return {mapstage};
 }
 export default connect(
     mapStateToProps,

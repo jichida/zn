@@ -17,7 +17,8 @@ const initial = {
     pinchecitylist:[],
     commenttagsfordriver:[],
     hotcity:[],
-    servicephonenumber:''
+    servicephonenumber:'',
+    daijialeastbalance:50,
   },
 };
 
