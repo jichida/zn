@@ -124,7 +124,7 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
-      yield put(updaterequeststatus_result(result.triporder));
+      yield put(updaterequeststatus_result(result));
       yield put(wait_updaterequeststatus_result({result:result}));
   });
 
