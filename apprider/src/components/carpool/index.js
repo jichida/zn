@@ -13,9 +13,9 @@ import {
 } from '../../actions';
 import _ from "lodash";
 import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
-import { 
-    required, 
-    InputValidation, 
+import {
+    required,
+    InputValidation,
     WeuiInputValidation,
     WeuiSelectValidation
     } from "../tools/formvalidation";
@@ -52,15 +52,15 @@ class PincheForm extends React.Component{
                     component={ WeuiSelectValidation }
                     InputTit="目的地"
                 />
-                <Field 
-                    name="starttime" 
+                <Field
+                    name="starttime"
                     id="starttime"
                     label="出发时间"
                     component={renderDateField}
                 />
                 <div className="submitBtn">
-                    <botton 
-                        className="btn Primary"  
+                    <botton
+                        className="btn Primary"
                         onClick={handleSubmit}>
                         确定
                     </botton>
@@ -132,13 +132,13 @@ class Pinche extends React.Component {
                 </div>
 
                 <PincheForm FormSubmit={this.formSubmit}/>
-                
+
                 <div className="listcontent">
                     {
                         _.map(this.props.resultroute, (routeobj, index)=>{
                             console.log(routeobj);
                             return (
-                                <div 
+                                <div
                                     className="li"
                                     key={index}
                                     >
@@ -148,15 +148,15 @@ class Pinche extends React.Component {
                                                 <div className="time">{routeobj.starttime}</div>
                                                 <div className="city">
                                                     {routeobj.startcity}——{routeobj.endcity}
-                                                    <p 
+                                                    <p
                                                         className="text-warning margin-top-0"
                                                         >
-                                                        剩余{routeobj.seatnumber-routeobj.takennumber}座
+                                                        剩余{routeobj.seatnumber-routeobj.seatnumbertotal}座
                                                     </p>
                                                 </div>
                                                 <div className="bbtn">
-                                                    <span 
-                                                        onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)} 
+                                                    <span
+                                                        onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
                                                         className="btn Primary">
                                                         出行
                                                     </span>
