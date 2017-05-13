@@ -19,53 +19,53 @@ export class Page extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-      const {curmappagerequest} = nextProps;
+      const {curmappagerequest,history,dispatch} = nextProps;
       if(curmappagerequest.requeststatus === "已取消"){
           //let triporderid = nextProps.curmappageorder._id;
          window.setTimeout(()=>{
-              nextProps.history.goBack();//replace(`/orderdetail/${triporderid}`);
-              nextProps.dispatch(carmap_resetmap());
+              history.goBack();//replace(`/orderdetail/${triporderid}`);
+              dispatch(carmap_resetmap());
           },0);
       }
   }
 
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);
-    let currentrequest = this.props.curmappagerequest;
-    if(this.props.mapstage === '联系乘客'){
+    const {mapstage,curmappagerequest,curmappageorder,dispatch,history}= this.props;
+    if(mapstage === '联系乘客'){
       //规划路线
-      this.props.dispatch(carmap_setmapstage('去接乘客'));
+      dispatch(carmap_setmapstage('去接乘客'));
     }
-    else if(this.props.mapstage === '去接乘客'){
+    else if(mapstage === '去接乘客'){
         //更新请求状态（接到乘客）
-        this.props.dispatch(updaterequeststatus({
-            triprequestid:currentrequest._id,
-            triporderid:this.props.curmappageorder._id,
+        dispatch(updaterequeststatus({
+            triprequestid:curmappagerequest._id,
+            triporderid:curmappageorder._id,
             requeststatus: "待上车"
         })).then((result)=>{
-          this.props.dispatch(carmap_setmapstage('接到乘客'));
+          dispatch(carmap_setmapstage('接到乘客'));
         });
      }
-      else if(this.props.mapstage === '接到乘客'){
-        this.props.dispatch(updaterequeststatus({
-            triprequestid:currentrequest._id,
-            triporderid:this.props.curmappageorder._id,
+      else if(mapstage === '接到乘客'){
+        dispatch(updaterequeststatus({
+            triprequestid:curmappagerequest._id,
+            triporderid:curmappageorder._id,
             requeststatus: "行程中",
         })).then((result)=>{
-          this.props.dispatch(carmap_setmapstage('开始行程'));
+          dispatch(carmap_setmapstage('开始行程'));
         });
       }
-     else if(this.props.mapstage === '开始行程'){
+     else if(mapstage === '开始行程'){
       //更新请求状态（送到乘客目的地）
       //重定向到订单页面！
-        this.props.dispatch(updaterequeststatus({
-            triprequestid:currentrequest._id,
-            triporderid:this.props.curmappageorder._id,
+        dispatch(updaterequeststatus({
+            triprequestid:curmappagerequest._id,
+            triporderid:curmappageorder._id,
             requeststatus: "行程完成",
         })).then((result)=>{
             window.setTimeout(()=>{
-                this.props.history.replace(`/orderdetail/${result.triporder._id}`);
-                this.props.dispatch(carmap_resetmap());
+                history.replace(`/orderdetail/${result.triporder._id}`);
+                dispatch(carmap_resetmap());
             },0);
 
         });
@@ -73,60 +73,63 @@ export class Page extends React.Component {
   }
 
    cancelrequest =()=>{
-    this.props.dispatch(canceltriprequestorder({
-      triporderid:this.props.curmappageorder._id,
-      triprequestid:this.props.curmappagerequest._id
+     const {curmappagerequest,curmappageorder,dispatch,history}= this.props.curmappagerequest;
+
+     dispatch(canceltriprequestorder({
+      triporderid:curmappageorder._id,
+      triprequestid:curmappagerequest._id
     })).then((result)=>{
-      this.props.history.goBack();//replace(`/orderdetail/${triporderid}`);
+      history.goBack();//replace(`/orderdetail/${triporderid}`);
       window.setTimeout(()=>{
-          this.props.dispatch(carmap_resetmap());
+          dispatch(carmap_resetmap());
       },0);
     });
   }
   render() {
+      const {mapstage,curmappagerequest:currentrequest,curmappageorder:currentorder,
+        curlocation,driveroute,} = this.props;
       const dataLeft = {
-        title:this.props.mapstage
+        title:mapstage
       };
-      let currentrequest = this.props.curmappagerequest;
-      let currentorder = this.props.curmappageorder;
+
       let CaroverlayCo;
       if(currentrequest.requeststatus !== "已取消" && currentrequest.requeststatus){
         //被reset了！！
-        if(this.props.mapstage === '联系乘客'){
+        if(mapstage === '联系乘客'){
           CaroverlayCo = <CaroverlayLxck
           currentrequest={currentrequest}
           currentorder={currentorder}
           onClickCancel={this.cancelrequest}
           onClickNext={this.onClickNext.bind(this,'去接乘客')}
-          curlocation={this.props.curlocation}/>
+          curlocation={curlocation}/>
         }
-        else if(this.props.mapstage === '去接乘客'){
+        else if(mapstage === '去接乘客'){
           CaroverlayCo = <CaroverlayQjck
            currentrequest={currentrequest}
            currentorder={currentorder}
-           driveroute={this.props.driveroute}
+           driveroute={driveroute}
            onClickCancel={this.cancelrequest}
            onClickNext={this.onClickNext.bind(this,'接到乘客')}
-           curlocation={this.props.curlocation}/>
+           curlocation={curlocation}/>
         }
-        else if(this.props.mapstage === '接到乘客'){
+        else if(mapstage === '接到乘客'){
           CaroverlayCo = <CaroverlayJdck
            currentrequest={currentrequest}
            currentorder={currentorder}
-           driveroute={this.props.driveroute}
+           driveroute={driveroute}
            onClickCancel={this.cancelrequest}
            onClickNext={this.onClickNext.bind(this,'开始行程')}
-           curlocation={this.props.curlocation}/>
+           curlocation={curlocation}/>
         }
-        else if(this.props.mapstage === '开始行程'){
+        else if(mapstage === '开始行程'){
           CaroverlayCo = <CaroverlayKsxc
           currentrequest={currentrequest}
           currentorder={currentorder}
-          driveroute={this.props.driveroute}
+          driveroute={driveroute}
           onClickNext={this.onClickNext.bind(this,'到达目的地')}
-          curlocation={this.props.curlocation}/>
+          curlocation={curlocation}/>
         }
-        else if(this.props.mapstage === '行程完成'){
+        else if(mapstage === '行程完成'){
             CaroverlayCo=<div>行程完成,正在拉取订单,请稍后...</div>
         }
       }
@@ -139,9 +142,16 @@ export class Page extends React.Component {
 }
 
 
-const mapStateToProps = ({driveroute,operate,carmap},props) => {
-  let curlocation = operate.curlocation;
-  return {driveroute,...carmap,curlocation};
+const mapStateToProps = (state) => {
+  const {driveroute,operate:{curlocation},carmap:{curmappagerequest,curmappageorder,mapstage}} = state;
+  let newstate = {
+    driveroute,
+    mapstage,
+    curmappagerequest,
+    curmappageorder,
+    curlocation
+  }
+  return newstate;
 }
 
 

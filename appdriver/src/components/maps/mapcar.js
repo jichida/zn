@@ -37,8 +37,8 @@ export class Page extends React.Component {
   }
   componentDidMount () {
     console.log('地图---->componentDidMount---------' + this.props.isMapInited);
-    const {mapcenterlocation,zoomlevel} = this.props;
-    if(this.props.isMapInited && mapcenterlocation.lng!==0 && !window.amap ){
+    const {isMapInited,mapcenterlocation,zoomlevel} = this.props;
+    if(isMapInited && mapcenterlocation.lng!==0 && !window.amap ){
       let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);
       window.amap = new window.AMap.Map("gaodemap", {
             center: center,
@@ -68,8 +68,8 @@ export class Page extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     console.log('地图---->componentWillReceiveProps---------' + nextProps.isMapInited);
-    const {mapcenterlocation,zoomlevel} = nextProps;
-    if(nextProps.isMapInited && mapcenterlocation.lng!==0){
+    const {isMapInited,mapcenterlocation,zoomlevel} = nextProps;
+    if(isMapInited && mapcenterlocation.lng!==0){
       if(!window.amap){
         let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);
         window.amap = new window.AMap.Map("gaodemap", {

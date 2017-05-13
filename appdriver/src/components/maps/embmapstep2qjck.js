@@ -17,8 +17,8 @@ export default class Page extends React.Component {
     this.props.onClickNext(btnname);
   }
   render() {
-      let routeshow = this.props.driveroute;
-      let curreqobj = this.props.currentrequest;
+      const {driveroute:routeshow,currentrequest:curreqobj,onClickCancel} = this.props;
+
       let btnco;
       if(curreqobj.requeststatus === '已取消'){
             return (<div>已取消</div>);
@@ -29,7 +29,7 @@ export default class Page extends React.Component {
         <div className="item-main">
           <h3 className="item-title text-warning">{routeshow.instruction}<div className="gray">{routeshow.leftdistancetxt} {routeshow.leftduringtxt}</div></h3>
           <div className="item-after"><button onClick={this.onClickNext.bind(this,'到达乘客位置')} className="btn">到达乘客位置</button></div>
-          <div className="item-after"><button onClick={this.props.onClickCancel} className="btn">取消</button></div>
+          <div className="item-after"><button onClick={onClickCancel} className="btn">取消</button></div>
         </div>
         </a>
         </div>);

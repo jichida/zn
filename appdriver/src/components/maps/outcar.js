@@ -42,9 +42,14 @@ class Page extends Component {
       this.props.dispatch(ui_outcarexpand(outcarexpand));
   }
   render() {
-        const {uiregistertype,requestlist,
+        const {
+          uiregistertype,
+          requestlist,
           outcarexpand,
-          registertypeoptions,curlocation} = this.props;
+          registertypeoptions,
+          curlocation
+        } = this.props;
+        
         let titleco = [];
         _.map(registertypeoptions,(registertype,index)=>{
           if(uiregistertype === registertype){
