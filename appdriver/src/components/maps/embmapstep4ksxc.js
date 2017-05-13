@@ -26,7 +26,7 @@ export default class Page extends React.Component {
   return (
     <Container>
 		<div className="relative">
-      <MapGaode ref='mapgaode'  curreqobj={curreqobj} currentorder={currentorder}/>
+      <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} currentorder={currentorder}/></div>
                 <div className="item item-content borderless xjl_top box_show"><div className="item-media"><span className="icon icon-tz text-primary"></span></div>
                 <div className="item-main">行程开始，祝您一路好心情</div>
                 </div>

@@ -21,7 +21,7 @@ export default class Page extends React.Component {
       console.log("curreqobj==>"  + JSON.stringify(curreqobj));
       return (
            <Container>
-          <MapGaode ref='mapgaode'  curreqobj={curreqobj} />
+          <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} /></div>
           <div className="list margin-0 xjl_bottom">
           <div className="item">
                     <div>{curreqobj.showtimestring}</div>

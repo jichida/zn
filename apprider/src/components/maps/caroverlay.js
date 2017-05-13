@@ -81,7 +81,7 @@ export class Page extends React.Component {
             <View>
                 <NavBar {...dataLeft}/>
                 <Container scrollable={true}>
-                    <MapGaode ref='mapgaode' {...this.props} />
+                    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' {...this.props} /></div>
                     {floatcomponents}
                 </Container>
             </View>);

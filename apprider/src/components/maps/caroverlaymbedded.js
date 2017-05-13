@@ -14,7 +14,7 @@ export class Page extends React.Component {
         }
         return (
             <div>
-                <MapGaode ref='mapgaode' {...this.props} />
+                <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' {...this.props} /></div>
                 {floatcomponents}
             </div>
         );
@@ -54,5 +54,3 @@ const mapStateToProps = ({carmap,appui,userlogin}) => {
 export default connect(
     mapStateToProps,
 )(Page);
-
-

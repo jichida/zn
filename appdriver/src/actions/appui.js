@@ -14,3 +14,4 @@ export const ui_createcarwizard = createAction('ui_createcarwizard');
 
 export const ui_isdateopen = createAction('ui_isdateopen');
 export const ui_outcarselregistertype = createAction('ui_outcarselregistertype');
+export const ui_outcarexpand = createAction('ui_outcarexpand');

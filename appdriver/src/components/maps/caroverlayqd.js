@@ -58,7 +58,7 @@ export class Page extends React.Component {
         <NavBar {...dataLeft}/>
         <Container scrollable={true}>
 		<div className="relative">
-		<MapGaode ref='mapgaode' curreqobj={curreqobj} />
+		    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' curreqobj={curreqobj} /></div>
           <div className="list margin-0 xjl_bottom">
 			<div className="text-center">{curreqobj.requeststatus}</div>
             <div className="item item-content">

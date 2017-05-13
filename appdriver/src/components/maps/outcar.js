@@ -19,7 +19,11 @@ const {
     } = WeUI;
 import MapGaode from './mapcar.js';
 import _ from 'lodash';
-import {selrequest,ui_outcarselregistertype} from '../../actions';
+import {
+  selrequest,
+  ui_outcarselregistertype,
+  ui_outcarexpand
+  } from '../../actions';
 
 class Page extends Component {
   constructor(props) {
@@ -34,8 +38,13 @@ class Page extends Component {
     this.props.dispatch(selrequest(reqobj));
     this.props.history.push(`/selrequest/${reqobj._id}`);
   }
+  showlist=(outcarexpand)=>{
+      this.props.dispatch(ui_outcarexpand(outcarexpand));
+  }
   render() {
-        const {uiregistertype,requestlist,registertypeoptions,curlocation} = this.props;
+        const {uiregistertype,requestlist,
+          outcarexpand,
+          registertypeoptions,curlocation} = this.props;
         let titleco = [];
         _.map(registertypeoptions,(registertype,index)=>{
           if(uiregistertype === registertype){
@@ -71,14 +80,20 @@ class Page extends Component {
                 <div className="mapcontent">
                     <MapGaode ref='mapgaode' />
                     <div className="outcarControl">
-                        <div className="list hide">
+                        <div
+                          className={outcarexpand?"list show":"list hide"}
+                          >
                             <Cells>
                               {cellco}
                             </Cells>
                         </div>
-                        <div className="lnk">展开</div>
+                        <div
+                          className="lnk"
+                          onClick={()=>{this.showlist(!outcarexpand)}}
+                          >
+                          {outcarexpand?"收起":"展开"}
+                          </div>
                         <div className="bbtn">
-                            <span>全部</span>
                             <span>收车</span>
                         </div>
                     </div>
@@ -88,7 +103,7 @@ class Page extends Component {
     }
 }
 
-const mapStateToProps = ({appui,operate,userlogin}) => {
+const mapStateToProps = ({appui:{outcarexpand,pageregistertype:uiregistertype},operate,userlogin}) => {
   let nearbyrequestslist = operate.nearbyrequests.list;
   let requests = operate.nearbyrequests.requests;
   let curlocation = operate.curlocation;
@@ -103,7 +118,6 @@ const mapStateToProps = ({appui,operate,userlogin}) => {
   else if(userregistertype === '代驾'){
     registertypeoptions= ['代驾'];
   }
-  let uiregistertype = appui.pageregistertype;
   if(registertypeoptions.indexOf(uiregistertype) === -1){
     uiregistertype = registertypeoptions[0];
   }
@@ -116,6 +130,7 @@ const mapStateToProps = ({appui,operate,userlogin}) => {
     }
   });
   return {
+    outcarexpand,
     uiregistertype,
     requestlist,
     registertypeoptions,

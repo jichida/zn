@@ -38,7 +38,7 @@ export default class Page extends React.Component {
   return (
              <Container>
       			 <div className="relative">
-      			 <MapGaode ref='mapgaode'  curreqobj={curreqobj} />
+      			 <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} /></div>
                       <div target="_blank" className="item item-content xjl_top">
                         <div className="item-media"><img width="50" src="images/user.jpg" className="radius50" alt='img'/></div>
                         <div className="item-main">

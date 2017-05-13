@@ -128,25 +128,35 @@
     height: 12px;
     border-width: 1px 1px 0 0;
 }
+.outcarPage .mapcontent .outcarControl  .list{
+  max-height: 300px;
+  overflow: scroll;
+}
 .outcarPage .mapcontent .outcarControl  .list.show{
-    bottom : 200px;
-    animation:listshow 2s;
+    bottom : 89px;
+    opacity : 1;
+    animation:listshow 1s;
+    animation:listshowopacity 1s;
 }
 .outcarPage .mapcontent .outcarControl  .list.hide{
-    bottom : 0px;
-    animation:listhide 2s;
+    bottom : 0;
+    opacity : 0;
+    animation:listhide 1s;
+    animation:listhideopacity 1s;
 }
 @keyframes listshow{
     from {bottom : 0px;}
-    to {bottom : 200px;}
+    to {bottom : 89px;}
 }
 @keyframes listhide{
-    from {bottom : 200px;}
+    from {bottom : 89px;}
     to {bottom : 0px;}
 }
-
-
-
-
-
-
+@keyframes listhideopacity{
+    from {opacity : 1;}
+    to {opacity : 0;}
+}
+@keyframes listshowopacity{
+    from {opacity : 0;}
+    to {opacity : 1;}
+}
