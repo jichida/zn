@@ -56,6 +56,7 @@ import TriprequestIcon from 'material-ui/svg-icons/action/pan-tool';//请求信�
 import UsermgrIcon from 'material-ui/svg-icons/social/people-outline';//用户管理
 import UserdriverIcon from 'material-ui/svg-icons/action/account-box';//司机信息
 import UserriderIcon from 'material-ui/svg-icons/action/account-circle';//乘客信息
+import UserIcon from 'material-ui/svg-icons/action/account-circle';//用户提现
 
 export default [
    {
@@ -86,7 +87,8 @@ export default [
       {
         'name':'userrider',
         'icon': <UserriderIcon />,
-      }
+      },
+      { name: 'withdrawcash', icon: <UserIcon /> },
     ]
   },
   {
