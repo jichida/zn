@@ -1,4 +1,4 @@
-﻿/*
+/*
     个人中心-我的钱包
 */
 import React, { Component } from 'react';
@@ -17,30 +17,24 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
-import {
-  getrechargerecords_request,
-  rechargepay_request
-} from '../../actions';
-import Item from './rechargerecorditem';
+import {getrechargerecords_request} from '../../actions';
 
+//充值页面
 class Page extends Component {
   constructor(props) {
       super(props);
    }
    componentWillMount () {
-     this.props.dispatch(getrechargerecords_request({}));
    }
-
-    render() {
-        const {rechargerecordlist,balance} = this.props;
-        let rechargerecordco = [];
-            _.map(rechargerecordlist,(item,index)=>{
-        rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
-    });
-
+   pay = (values)=>{
+      //更新订单信息，然后发送pay请求
+   }
+  render() {
+        //支付方式和充值金额，用redux-form实现
+        const {orderinfo,balance} = this.props;
         return (
             <div className="userwalletPage AppPage">
-                <NavBar back={true} title="我的钱包" />
+                <NavBar back={true} title="充值" />
                 <div className="head">
                     <img src="newimg/10.png" />
                     <div>
@@ -54,29 +48,25 @@ class Page extends Component {
                             <CellHeader>
                                 <img src="newimg/21.png" alt=""/>
                             </CellHeader>
-                            <CellBody onClick={()=>{this.props.dispatch(rechargepay_request({}));}}>
-                                我要充值
+                            <CellBody onClick={()=>{this.pay({
+                              paytype:'alipay',
+                              money:0.01
+                            });}}>
+                                充值
                             </CellBody>
                             <CellFooter />
                         </Cell>
                     </Cells>
-
-                    <CellsTitle>账单查询</CellsTitle>
-
-                    <div className="l2">
-                        <Cells>
-                          {rechargerecordco}
-                        </Cells>
-                    </div>
-
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps =  ({withdraw,userlogin:{balance}}) =>{
-    return {...withdraw,balance};
+const mapStateToProps =  ({myorders,userlogin:{balance}}, props) =>{
+    let triporderid = props.match.params.triporderid;
+    let orderinfo = myorders.triporders[triporderid];
+    return {balance,orderinfo};
 };
 
 export default connect(
