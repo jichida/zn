@@ -10,7 +10,7 @@ import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
 
 class Page extends Component {
-
+    //未递交/待审核/审核中/已审核/已拒绝
     render() {
         const {approvalstatus} = this.props;
         return (
@@ -76,8 +76,8 @@ class Page extends Component {
 
 }
 
-const mapStateToProps = ({userlogin}) => {
-  return {...userlogin}
+const mapStateToProps = ({userlogin:{approvalstatus}}) => {
+  return {approvalstatus}
 }
 Page = connect(mapStateToProps)(Page);
 export default Page;

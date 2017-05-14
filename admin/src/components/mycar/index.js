@@ -56,7 +56,7 @@ const MycarEdit = (props) => {
               <ImageField  label="城市" source="City" addLabel={true}/>
               <ImageField  label="机动车行驶证" source="CarrunPhotoldURL" addLabel={true}/>
               <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" addLabel={true} allowEmpty>
-                <TextField source="VehicleNo" />
+                <TextField source="id" />
               </ReferenceField>
               <TextInput label="拒绝理由" source="approvalrejectseason" />
               <SelectInput  label="审核状态"  source="approvalstatus" choices={[
@@ -132,7 +132,7 @@ const MycarList = (props) => (//
           <TextField source="username" />
         </ReferenceField>
         <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty>
-          <TextField source="VehicleNo" />
+          <TextField source="id" />
         </ReferenceField>
         <TextField label="审批状态"  source="approvalstatus" />
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
