@@ -17,8 +17,11 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
-import {getrechargerecords_request} from '../../actions';
-
+import {
+  getrechargerecords_request,
+} from '../../actions';
+import {updateorder} from '../../actions/sagacallback.js';
+import {onclickpay} from '../../env/pay';
 //充值页面
 class Page extends Component {
   constructor(props) {
@@ -27,7 +30,25 @@ class Page extends Component {
    componentWillMount () {
    }
    pay = (values)=>{
+      let paytype = 'alipay';
       //更新订单信息，然后发送pay请求
+      //例：充99返100,参数为realprice:99,orderprice:100
+      const triporderid = this.props.match.params.triporderid;
+      let orderinfo = {
+        realprice:0.01,//实充价格
+        orderprice:0.01,//新增余额价格
+        paytype,
+      };
+      this.props.dispatch(updateorder({
+        query:{_id:triporderid},
+        data:orderinfo
+      })).then((result)=>{
+        onclickpay({
+          orderinfo:result.triporder,
+          paytype,
+          dispatch:this.props.dispatch
+        });
+      });
    }
   render() {
         //支付方式和充值金额，用redux-form实现
