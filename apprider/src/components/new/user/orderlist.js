@@ -20,6 +20,34 @@ const {
     CellFooter
     } = WeUI;
 
+//快车信息
+export class Kuaiche extends Component{
+    render(){
+        const {info} = this.props;
+        return (
+            <div className="pinchelistli">
+                <div className="li a">{info.srcaddress.addressname}</div>
+                <div className="li b">{info.dstaddress.addressname}</div>
+            </div>
+        )
+    }
+}
+
+//拼车信息
+export class Pinche extends Component{
+    render(){
+        const {info} = this.props;
+        return (
+            <div className="pinchelistli">
+                <div>出发时间: {moment(info.startdate).format("YYYY-MM-DD")+" "+info.starttime}</div>
+                <div>出发地: {info.startcity} {info.startstation}</div>
+                <div>目的地: {info.endcity} {info.endstation}</div>
+            </div>
+        )
+    }
+}
+
+
 class Page extends Component {
 
     componentWillMount () {
@@ -47,6 +75,7 @@ class Page extends Component {
                                 return (
                                     <Cell
                                         onClick={()=>{history.push(`/orderdetail/${orderinfo._id}`);}}
+                                        key={index}
                                         access>
                                         <CellBody>
                                             <div className="tt">
@@ -57,12 +86,16 @@ class Page extends Component {
                                                 </div>
                                                 <span className="status color_warning">{orderinfo.orderstatus}</span>
                                             </div>
-                                            {orderinfo.hasOwnProperty("srcaddress")?(
-                                                <div className="li a">{orderinfo.srcaddress.addressname}</div>
+                                            
+                                            {orderinfo.triptype==="拼车"?(
+                                                <Pinche info={orderinfo} />
                                             ):""}
-                                            {orderinfo.hasOwnProperty("dstaddress")?(
-                                                <div className="li b">{orderinfo.dstaddress.addressname}</div>
+
+                                            {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
+                                                <Kuaiche info={orderinfo} />
                                             ):""}
+                                            
+
                                         </CellBody>
                                         <CellFooter />
                                     </Cell>

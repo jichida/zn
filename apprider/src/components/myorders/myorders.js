@@ -1,164 +1,117 @@
-/**
- * Created by wangxiaoqing on 2017/3/21.
- */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { InfiniteLoader, List } from 'react-virtualized';
-import 'react-virtualized/styles.css'; // only needs to be imported once
+/*
+    个人中心-订单详情
+*/
+import React, { Component } from 'react';
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+import '../../../public/newcss/userorderlist.css';
+import NavBar from '../tools/nav.js';
+import _ from "lodash";
 import { connect } from 'react-redux';
-import OrderItem from './myordersitem.js';
-import {ui_setmyorderstabheader,getmytriporders_request} from '../../actions';
-
+import moment from "moment";
 import {
-    View
-} from 'amazeui-touch';
+    getmytriporders_request
+    } from '../../actions';
+const {
+    Cells,
+    Cell,
+    CellBody,
+    CellFooter
+    } = WeUI;
 
-export class Page extends React.Component {
-    constructor(props) {
-        super(props);
-     }
-    componentWillMount () {
-        this.onClickSelTabOrder('all');
-    }
-    componentWillUnmount () {
-    }
-    onClickSelTabOrder(name){
-        console.log("onClickSelTabOrder:" + name);
-        this.props.dispatch(ui_setmyorderstabheader(name));
-        let queryobj = {};
-        if(name === 'all'){
-        }
-        else if(name === 'paid'){
-            queryobj = {paystatus:'已支付'};
-         }
-        else if(name === 'notpaid'){
-            queryobj ={paystatus:'未支付'};
-         }
-        this.props.dispatch(getmytriporders_request({
-            query:queryobj,
-            options:{
-                sort:{created_at:-1},
-                offset: 0,
-                limit: 10,
-            }
-        }));
-    }
-    onClickSelCurOrder(orderinfo){
-        this.props.history.push(`/orderdetail/${orderinfo._id}`);
-    }
-    onClickBack(){
-        this.props.history.goBack();
-    }
-
-    isRowLoaded = ({ index })=> {
-        return (this.props.mytriporderlist.length > index);
-    }
-
-    loadMoreRows= ({ startIndex, stopIndex })=> {
-        console.log(`loadMoreRows====>${startIndex},${stopIndex}`)
-        return new Promise((resolve) => {
-          let name = this.props.tabheader;
-          let queryobj = {};
-          if(name === 'all'){
-          }
-          else if(name === 'paid'){
-              queryobj = {paystatus:'已支付'};
-          }
-          else if(name === 'notpaid'){
-              queryobj ={paystatus:'未支付'};
-          }
-          this.props.dispatch(getmytriporders_request({
-              query:queryobj,
-              options:{
-                  sort:{created_at:-1},
-                  offset: startIndex,
-                  limit: (stopIndex-startIndex),
-              }
-          }));
-          resolve();
-        }).then((result)=> {
-
-        });
-    }
-
-    rowRenderer= ({ key, index, style})=> {
-      if (this.isRowLoaded({index})) {
-          let tripid = this.props.mytriporderlist[index];
-          return (<OrderItem orderinfo={this.props.triporders[tripid]}  key={key}
-                       onClickSelCurOrder={this.onClickSelCurOrder.bind(this)} />);
-       }
-       return (<div key={key}>loading...</div>);
-    }
-
-    render() {
-        let tabheaders = [
-            {
-                name:'all',
-                title:'全部'
-            },
-            {
-                name:'paid',
-                title:'已支付'
-            },
-            {
-                name:'notpaid',
-                title:'未支付'
-            },
-        ];
-        let tabstatus = {};
-        let headerocs = [];
-        tabheaders.forEach((headerobj)=>{
-            tabstatus[headerobj.name] = headerobj.title;
-            if(headerobj.name === this.props.tabheader){
-                headerocs.push(<li key={headerobj.name} className="hover">{headerobj.title}</li>);
-            }
-            else{
-                headerocs.push(<li key={headerobj.name} onClick={this.onClickSelTabOrder.bind(this,headerobj.name)}>{headerobj.title}</li>);
-            }
-
-        });
-        console.log(`window.innerHeight===>${window.innerHeight}`);
+//快车信息
+export class Kuaiche extends Component{
+    render(){
+        const {info} = this.props;
         return (
-            <View>
-                <header className="navbar">
-                    <h2 className="navbar-title navbar-center"><font><font>我的订单</font></font></h2>
-                    <div onClick={this.onClickBack.bind(this)} className="navbar-nav navbar-left"><a className="navbar-nav-item"><span className="icon icon-left-nav navbar-icon navbar-icon-sibling-of-title">返回</span></a></div>
-                </header>
-
-                <div className="tab">
-                    <ul className="list  margin-top-0">
-                        {headerocs}
-                    </ul>
-                </div>
-
-                <div className="messageList" style={{height:(window.innerHeight-46)+"px"}}>
-                <InfiniteLoader
-                    isRowLoaded={this.isRowLoaded}
-                    loadMoreRows={this.loadMoreRows}
-                    rowCount={this.props.remoteRowCount}
-                >
-                    {({ onRowsRendered, registerChild }) => (
-                        <List
-                            height={151*this.props.mytriporderlist.length}
-                            onRowsRendered={onRowsRendered}
-                            ref={registerChild}
-                            rowCount={this.props.remoteRowCount}
-                            rowHeight={151}
-                            rowRenderer={this.rowRenderer}
-                            width={window.innerWidth}
-                        />
-                    )}
-                </InfiniteLoader>
-                </div>
-            </View>
-        );
+            <div className="pinchelistli">
+                <div className="li a">{info.srcaddress.addressname}</div>
+                <div className="li b">{info.dstaddress.addressname}</div>
+            </div>
+        )
     }
 }
 
-const mapStateToProps =  ({myorders}) =>{
+//拼车信息
+export class Pinche extends Component{
+    render(){
+        const {info} = this.props;
+        return (
+            <div className="pinchelistli">
+                <div>出发时间: {moment(info.startdate).format("YYYY-MM-DD")+" "+info.starttime}</div>
+                <div>出发地: {info.startcity} {info.startstation}</div>
+                <div>目的地: {info.endcity} {info.endstation}</div>
+            </div>
+        )
+    }
+}
+
+
+class Page extends Component {
+
+    componentWillMount () {
+        this.props.dispatch(getmytriporders_request({
+            query: {},
+            options:{
+                sort:{created_at:-1},
+                offset: 0,
+                limit: 1000,
+            }
+        }));
+    }
+
+    render() {
+        const {mytriporderlist, triporders, history} = this.props;
+        return (
+            <div className="userorderlistPage AppPage">
+                <NavBar back={true} title="我的订单" />
+                <div className="list">
+                    <Cells>
+                        {
+                            _.map(mytriporderlist,(orderid,index)=>{
+                                let orderinfo = triporders[orderid];
+                                console.log(orderinfo);
+                                return (
+                                    <Cell
+                                        onClick={()=>{history.push(`/orderdetail/${orderinfo._id}`);}}
+                                        key={index}
+                                        access>
+                                        <CellBody>
+                                            <div className="tt">
+                                                <div className="ttinfo">
+                                                    <span className="i">预约</span>
+                                                    <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
+                                                    <span className="type">{orderinfo.triptype}</span>
+                                                </div>
+                                                <span className="status color_warning">{orderinfo.orderstatus}</span>
+                                            </div>
+                                            
+                                            {orderinfo.triptype==="拼车"?(
+                                                <Pinche info={orderinfo} />
+                                            ):""}
+
+                                            {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
+                                                <Kuaiche info={orderinfo} />
+                                            ):""}
+                                            
+
+                                        </CellBody>
+                                        <CellFooter />
+                                    </Cell>
+                                )
+                            })
+                        }
+                        
+                    </Cells>
+                </div>
+            </div>
+        )
+    }
+}
+const data =({myorders})=>{
     return {...myorders};
 };
+export default connect(data)(Page);
 
-export default connect(
-    mapStateToProps,
-)(Page);
+

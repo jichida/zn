@@ -33,13 +33,17 @@
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.li{
     margin-left: 10px;
 }
-.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.li:before{
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd div.li.a:before,
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd div.li.b:before{
     content: "";
     display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 8px;
     margin-right: 5px;
+}
+.userorderlistPage .weui-cell:before{
+    content: none;
 }
 .userorderlistPage .list .weui-cells .weui-cell{
     margin:10px;
@@ -63,7 +67,9 @@
     margin-top:15px;
     margin-right: 15px;
 }
-
+.userorderlistPage .pinchelistli{
+    padding-left: 15px;
+}
 
 
 
