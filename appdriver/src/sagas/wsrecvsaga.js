@@ -64,15 +64,15 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_login_result}`, function*(action) {
       let {payload:result} = action;
       yield put(login_result(result));
-      if(result.approvalstatus=== '未递交'){
-        yield put(push('/register1'));
-      }
-      else if(result.approvalstatus === '已审批'){
-        yield put(push('/'));
-      }
-      else{//待审批/审批中/已拒绝/ 复用同一个页面
-        yield put(push('/approval'));
-      }
+      // if(result.approvalstatus=== '未递交'){
+      //   yield put(push('/register1'));
+      // }
+      // else if(result.approvalstatus === '已审批'){
+      //   yield put(push('/'));
+      // }
+      // else{//待审批/审批中/已拒绝/ 复用同一个页面
+      //   yield put(push('/approval'));
+      // }
   });
 
   yield takeEvery(`${md_register_result}`, function*(action) {

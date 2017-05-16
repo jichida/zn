@@ -3,7 +3,6 @@ import {
     Datagrid,
     DateField,
     Create,
-    Edit as EditPage,
     EditButton,
     Filter,
     FormTab,
@@ -17,6 +16,7 @@ import {
     TextField,
     TextInput,
     SimpleShowLayout,
+    Edit as EditPage,
     Show as ShowPage,
     SimpleForm,
 } from 'admin-on-rest/lib/mui';

@@ -9,6 +9,9 @@ export default {
     },
   },
   resources: {
+    withdrawcash:{
+      name: '提现管理 |||| 提现管理',
+    },
       carinfo: {
           name: '车辆管理 |||| 车辆管理',
       },

@@ -15,10 +15,10 @@ export default class Page extends React.Component {
 
   }
   render() {
-      let routeshow = this.props.driveroute;
-      let curreqobj = this.props.currentrequest;
-      let currentorder = this.props.currentorder;
+
+      const {driveroute:routeshow,currentrequest:curreqobj,currentorder:currentorder,onClickNext} = this.props;
       const {resultpricedetail} = curreqobj;
+
       if(curreqobj.requeststatus === '已取消'){
         return (<div>已取消</div>);
       }
@@ -37,7 +37,7 @@ export default class Page extends React.Component {
       <div className="item-media"><span className="icon icon-jld text-warning"></span></div>
       <div className="item-main"><h3 className="item-title text-warning">全程大约{resultpricedetail.totalkm}公里 耗时{resultpricedetail.totalduringminute}分钟</h3>
       <div className="item-after">
-      <button onClick={this.props.onClickNext} className="btn">到目的地</button></div></div>
+      <button onClick={onClickNext} className="btn">到目的地</button></div></div>
       </a>
       </div>
       </Container>

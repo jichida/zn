@@ -28,7 +28,7 @@ import {UserriderlistList,UserriderlistShow} from './components/userriders/index
 import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/index.js';
 
 //import fakeRestServer from './restServer';
-import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit} from './components/platform/baseinfocompany.js';
+import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit,BaseInfoCompanyCreate} from './components/platform/baseinfocompany.js';
 import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow} from './components/platform/baseinfocompanystat.js';
 import {BaseInfoCompanyServiceList,BaseInfoCompanyServiceShow,BaseInfoCompanyServiceEdit} from './components/platform/baseinfocompanyservice.js';
 import {BaseInfoCompanyPermitList,BaseInfoCompanyPermitShow,BaseInfoCompanyPermitEdit} from './components/platform/baseinfocompanypermit.js';
@@ -68,6 +68,7 @@ import {CarbrandlistList,CarbrandlistEdit,CarbrandlistCreate} from './components
 import {CarcolorlistList,CarcolorlistEdit,CarcolorlistCreate} from './components/carcolor';
 import {CarmodellistList,CarmodellistEdit,CarmodellistCreate} from './components/carmodel';
 import {MycarList,MycarEdit} from './components/mycar';
+import {WithdrawcashlistList,WithdrawcashlistEdit} from './components/withdrawcashapply/index.js';
 
 class App extends Component {
 
@@ -91,7 +92,7 @@ class App extends Component {
             <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
             <Resource name="mycar" list={MycarList}  edit={MycarEdit} />
 
-            <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} />
+            <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} create={BaseInfoCompanyCreate}/>
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList} show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
             <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} />
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow}  edit={BaseInfoCompanyPermitEdit} />
@@ -136,6 +137,8 @@ class App extends Component {
             <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
             <Resource name="userdriver" list={UserdriverlistList} edit={UserdriverlistEdit} />
             <Resource name="userrider" list={UserriderlistList} show={UserriderlistShow} />
+
+            <Resource name="withdrawcash" list={WithdrawcashlistList} edit={WithdrawcashlistEdit}/>
             </Admin>
         );
     }

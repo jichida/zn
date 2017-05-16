@@ -87,7 +87,7 @@ class CreateCarWizardForm extends Component {
 
 
   render() {
-    const {curpage } = this.props;
+    const { curpage } = this.props;
     if(curpage === 1){
       return (<CreatecarPage1 previousPage={this.previousPage}  onSubmit={this.nextPage}/>);
     }

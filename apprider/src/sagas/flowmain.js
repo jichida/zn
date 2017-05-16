@@ -12,7 +12,8 @@ import data from './datahandler.js';
 import {
     login_result,
     logout_result,
-    notify_socket_connected
+    notify_socket_connected,
+    showpopmessage
 } from '../actions';
 
 let sendmsgwhenreconnect =(socket)=>{
@@ -91,8 +92,6 @@ function* handleIOWithAuth(socket) {
 
 function* handleIO(socket) {
     let fnsz = data.sendmessagefnsz;
-
-
     let tasksz =[];
     for (let cmd in fnsz) {
         let task =  yield fork(write, socket,fnsz[cmd],cmd);

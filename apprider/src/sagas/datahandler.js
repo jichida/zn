@@ -66,12 +66,16 @@ import {
     md_loginsendauth_result,
     md_serverpush_triprequestandorder,
     md_starttriprequestorder_result,
-    md_canceltriprequestorder_result
+    md_canceltriprequestorder_result,
+
+    rechargepay_request,
+    rechargepay_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'rechargepay_result':rechargepay_result,
   'getsystemconfig_result':getsystemconfig_result,
   'updateorder_comment_result':updateorder_comment_result,
   'serverpush_restoreorder':serverpush_restoreorder,
@@ -122,6 +126,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'rechargepay':`${rechargepay_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'getoftenuseaddress':`${getoftenuseaddress_request}`,
   'setoftenuseaddress':`${setoftenuseaddress_request}`,

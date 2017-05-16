@@ -70,7 +70,7 @@ const UserdriverlistEdit = (props) => {
               <DateField label="注册时间" source="created_at"  showTime/>
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <ReferenceField label="默认车辆(至少应有一辆,否则不要审批通过)" source="defaultmycar" reference="mycar" allowEmpty addLabel={true}>
-                <TextField source="name" />
+                <TextField source="id" />
               </ReferenceField>
               <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty addLabel={true}>
                 <TextField source="DriverName" />

@@ -67,7 +67,7 @@ import '../../public/newcss/common.css';
 import {getcurrentlocationfn,getcurrentlocationstring} from '../util/geo.js';
 import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '../actions';
 
-import {requireAuthentication} from './requireauthentication';
+import {requireAuthentication,requireApproval} from './requireauthentication';
 
 
 
@@ -149,10 +149,12 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/register" component={Register}/>
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
-                    <Route path="/outcar" component={Outcar}/>
-                    <Route path="/approval" component={Approval}/>
 
-                    <Route path="/mywallet" component={Userwallet}/>
+                    <Route path="/outcar" component={requireApproval(Outcar)}/>
+
+                    <Route path="/approval" component={requireAuthentication(Approval)}/>
+
+                    <Route path="/mywallet" component={requireApproval(Userwallet)}/>
                     <Route path="/withdraw" component={Withdraw}/>
                     <Route path="/withdrawauth/:withdrawid" component={Withdrawauth}/>
                     <Route path="/editprofile" component={Editprofile}/>

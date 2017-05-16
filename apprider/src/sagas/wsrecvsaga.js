@@ -27,10 +27,21 @@ import {
   md_loginsendauth_result,
   md_serverpush_triprequestandorder,
   md_starttriprequestorder_result,
-  md_canceltriprequestorder_result
+  md_canceltriprequestorder_result,
+
+  rechargepay_result
 } from '../actions';
+import { push } from 'react-router-redux';
 
 export function* wsrecvsagaflow() {
+  yield takeEvery(`${rechargepay_result}`, function*(action) {
+      let {payload:result} = action;
+      //返回一个订单object
+      yield put(triporder_addone(result.triporder));
+      yield put(push(`/rechargepay/${result.triporder._id}`));
+  });
+
+
   yield takeEvery(`${md_serverpush_triporder}`, function*(action) {
       let {payload:result} = action;
       yield put(serverpush_triporder(result));

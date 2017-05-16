@@ -15,6 +15,7 @@ const initial = {
     token:'',
     authtoken:'',
     registertype:'快车',
+    approvalstatus:'',
     profile:{},
     PhotoandCarmanURL:'',
     Platform_baseInfoDriver:

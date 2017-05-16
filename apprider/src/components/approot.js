@@ -75,6 +75,8 @@ import Payway from "./orderdetail/payway";
 //提现
 import Recharge from "./new/user/recharge";
 
+//充值页面
+import Rechargepay from './mywallet/rechargepay.js';
 /*公共样式*/
 import '../../public/newcss/common.css';
 
@@ -161,6 +163,7 @@ class AppRoot extends React.Component {
                     <Route path="/login" component={Login}/>
                     <Route path="/about/:keyname" component={About}/>
                     <Route path="/systemsetting" component={SystemSetting}/>
+                    <Route path="/rechargepay/:triporderid" component={requireAuthentication(Rechargepay)}/>
                     <Route path="/emerygencycontact" component={requireAuthentication(Emerygencycontact)} />
                     <Route path="/city" component={City}/>
                     <Route path="/oftenuseaddress" component={requireAuthentication(Oftenuseaddress)}/>

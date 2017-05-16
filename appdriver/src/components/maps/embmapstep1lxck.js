@@ -14,7 +14,8 @@ export default class Page extends React.Component {
   componentWillMount () {
   }
   render() {
-      let curreqobj = this.props.currentrequest;
+      const {currentrequest:curreqobj,curlocation,onClickNext,onClickCancel} = this.props;
+
       if(curreqobj.requeststatus === '已取消'){
         return (<div>已取消</div>);
       }
@@ -26,7 +27,7 @@ export default class Page extends React.Component {
           <div className="item">
                     <div>{curreqobj.showtimestring}</div>
                     <div className="item-after"><span className="icon icon-jl fize18"></span>
-                      距离乘客:{getdistance([this.props.curlocation.lng,this.props.curlocation.lat],[curreqobj.srcaddress.location.lng,curreqobj.srcaddress.location.lat])}
+                      距离乘客:{getdistance([curlocation.lng,curlocation.lat],[curreqobj.srcaddress.location.lng,curreqobj.srcaddress.location.lat])}
                     </div>
                   </div>
             <div className="item item-linked item-content"> <a>
@@ -36,8 +37,8 @@ export default class Page extends React.Component {
                 <div className="zd_icon">{curreqobj.dstaddress.addressname}</div>
               </div>
       <img src="images/dh.png" alt="img" style={{width:"40px"}}/></a> </div>
-      <Button onClick={this.props.onClickNext} amStyle="primary" block className="margin-0">去接乘客</Button>
-      <Button onClick={this.props.onClickCancel} amStyle="primary" block className="margin-0">取消</Button>
+      <Button onClick={onClickNext} amStyle="primary" block className="margin-0">去接乘客</Button>
+      <Button onClick={onClickCancel} amStyle="primary" block className="margin-0">取消</Button>
           </div>
 
     </Container>

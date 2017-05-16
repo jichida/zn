@@ -98,7 +98,7 @@ export class Page extends React.Component {
 
 const mapStateToProps = ({operate},props) => {
   let requests = operate.nearbyrequests.requests;
-  let  selrequest = requests[props.match.params.requestid];
+  let selrequest = requests[props.match.params.requestid];
   let curlocation = operate.curlocation;
   return {selrequest,curlocation};
 }

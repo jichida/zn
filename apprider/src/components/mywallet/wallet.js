@@ -17,7 +17,10 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
-import {getrechargerecords_request} from '../../actions';
+import {
+  getrechargerecords_request,
+  rechargepay_request
+} from '../../actions';
 import Item from './rechargerecorditem';
 
 class Page extends Component {
@@ -51,7 +54,7 @@ class Page extends Component {
                             <CellHeader>
                                 <img src="newimg/21.png" alt=""/>
                             </CellHeader>
-                            <CellBody onClick={()=>{this.props.history.push('/withdraw');}}>
+                            <CellBody onClick={()=>{this.props.dispatch(rechargepay_request({}));}}>
                                 我要充值
                             </CellBody>
                             <CellFooter />
