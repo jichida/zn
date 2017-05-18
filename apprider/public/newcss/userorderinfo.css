@@ -11,7 +11,17 @@
     padding: 15px;
     flex-shrink: 0;
     flex-direction: column;
-
+    position: relative;
+}
+.userorderinfoPage .orderinfohead:after{
+    content: "";
+    height: 6px;
+    width: 100%;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    background: url("../newimg/34.png") repeat-x left bottom;
+    background-size: 10px 6px;
 }
 .userorderinfoPage .orderinfohead .pinche{
     display: flex;
@@ -177,6 +187,9 @@
 .userorderinfoPage .weui-loadmore_line .weui-loadmore__tips{
     background: #EEE;
 }
+.userorderinfoPage .weui-loadmore.weui-loadmore_line{
+    margin-bottom: 0;
+}
 .userorderinfoPage .content .price{
     width: 100%;
     display: block;
@@ -287,6 +300,15 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-bottom: -200px;
+    opacity: 0;
+    transition:margin-bottom 2s;
+    -moz-transition:margin-bottom 2s; /* Firefox 4 */
+    -webkit-transition:margin-bottom 2s; /* Safari and Chrome */
+    -o-transition:margin-bottom 2s; /* Opera */
+}
+.addevaluate{
+    margin-bottom: 0;
 }
 .addevaluate .wamp{
     background: #FFF;

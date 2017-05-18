@@ -7,7 +7,12 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/userorderinfo.css';
 import NavBar from '../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
+
+import { connect } from 'react-redux';
+import Orderdetailhead from "./orderdetailhead";
+import Orderdetailpaycontent from "./orderdetailpaycontent";
+import Orderdetailevaluate from "./orderdetailevaluate";
+
 const { 
     Form,
     FormCell,
@@ -19,10 +24,18 @@ const {
 class Page extends Component {
 
     render() {
+        const { orderinfo } = this.props;
+        const driverinfo = {
+            name : "赵师傅",
+            phone : "19000000000",
+            avatar : "newimg/17.png",
+            carinfo : "白色现代·苏A12345",
+            cartype : "出租车"
+        }
         return (
             <div className="userorderinfoPage AppPage">
                 <NavBar back={true} title="订单详情" />
-                <div className="pageContent">
+                <div className="pageContent" style={{display:"none"}}>
 
                     <div className="orderinfohead">
                         <div className="driver">
@@ -104,18 +117,7 @@ class Page extends Component {
                         </div>
                     </div>
 
-                    <div className="tt">评价司机</div>
-
-                    <div className="evaluate PanelBox">
-                        <StarRatingComponent 
-                            name="star" 
-                            editing={false}
-                            starCount={5}
-                            value={4.5}
-                            emptyStarColor="#EEEEEE"
-                        />
-                        <span className="text">默认好评</span>
-                    </div>
+                    
 
                     <div className="information PanelBox">
                         <div className="tit color_warning">正在积极参与中...</div>
@@ -154,45 +156,30 @@ class Page extends Component {
 
                     <div className="getMoney"><span>收现金</span></div>
 
-                    <div className="addevaluate" style={{display:"none"}}>
-                        <div className="wamp">
-                            <div className="tit">
-                                <span>评价司机</span>
-                                <img src="newimg/12.png" className="close" />
-                            </div>
-                            <div className="star">
-                                <StarRatingComponent 
-                                    name="star" 
-                                    editing={true}
-                                    starCount={5}
-                                    value={1}
-                                    emptyStarColor="#EEEEEE"
-                                />
-                            </div>
-                            <div className="hottag">
-                                <span className="sel">师傅长得帅</span>
-                                <span>比较幽默</span>
-                                <span>车技好</span>
-                            </div>
-                            <div className="text">
-                                <Form> 
-                                    <FormCell>
-                                        <CellBody>
-                                            <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"></TextArea>
-                                        </CellBody>
-                                    </FormCell>
-                                    <div className="btn Primary">提交</div>
-                                </Form>
-
-                            </div>
-                        </div>
-                    </div>
 
 
 
+
+
+                </div>
+                <div className="pageContent">
+                    <Orderdetailhead orderinfo={orderinfo} driverinfo={driverinfo} />
+                    <Orderdetailpaycontent orderinfo={orderinfo} />
+                    <Orderdetailevaluate orderinfo={orderinfo} />
                 </div>
             </div>
         )
     }
 }
-export default Page;
+const mapStateToProps =  ({orderdetail,myorders}, props) =>{
+    //let triporderid = props.match.params.triporderid;
+    let orderinfo = myorders.triporders["59166b1c6aba146808e436e3"];
+    console.log(orderdetail);
+    console.log(orderinfo);
+    return {...orderdetail,orderinfo};
+};
+
+export default connect(
+    mapStateToProps,
+)(Page);
+
