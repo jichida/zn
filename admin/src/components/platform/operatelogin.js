@@ -25,7 +25,7 @@ const OperateLoginShow = (props) => (
            <SimpleShowLayout>
            <TextField label="机动车驾驶证号" source="Licenseld" />
            <TextField label="车辆号牌" source="VehicleNo" />
-           <DateField label="车辆经营上线时间" source="LoginTime" />
+           <DateField label="车辆经营上线时间" source="LoginTime" showTime/>
            <TextField label="上线经度" source="Longitude" />
            <TextField label="上线纬度" source="Latitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
@@ -40,7 +40,7 @@ const OperateLoginList = (props) => (//
         <Datagrid>
         <TextField label="机动车驾驶证号" source="Licenseld" />
         <TextField label="车辆号牌" source="VehicleNo" />
-        <DateField label="车辆经营上线时间" source="LoginTime" />
+        <DateField label="车辆经营上线时间" source="LoginTime" showTime/>
         <TextField label="上线经度" source="Longitude" />
         <TextField label="上线纬度" source="Latitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
