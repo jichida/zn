@@ -28,7 +28,7 @@ const OrderMatchShow = (props) => (
            <TextField label="车辆纬度" source="Latitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
            <TextField label="机动车驾驶证编号" source="Licenseld" />
-           <TextField label="派单成功时间" source="DistributeTime" />
+           <DateField label="派单成功时间" source="DistributeTime" />
            </SimpleShowLayout>
        </Show>
 );
@@ -43,7 +43,7 @@ const OrderMatchList = (props) => (//
         <TextField label="车辆纬度" source="Latitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
         <TextField label="机动车驾驶证编号" source="Licenseld" />
-        <TextField label="派单成功时间" source="DistributeTime" />
+        <DateField label="派单成功时间" source="DistributeTime" />
         <ShowButton />
         </Datagrid>
     </List>

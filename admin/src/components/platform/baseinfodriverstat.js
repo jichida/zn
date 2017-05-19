@@ -2,7 +2,6 @@ import React from 'react';
 import {
     Datagrid,
     DateField,
-    Edit,
     DisabledInput,
     EditButton,
     Filter,
@@ -17,15 +16,15 @@ import {
     TextField,
     TextInput,
     SimpleShowLayout,
-    Show,
+    Edit as EditPage,
+    Show as ShowPage,
     SimpleForm
 } from 'admin-on-rest/lib/mui';
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 
 import ShowPageOne from '../controls/singlelistpage.js';
-import ShowPage from '../controls/ShowPage.js';
-import EditPage from '../controls/EditPage.js';
+
 
 
 const BaseInfoDriverStatTitle = ({ record }) => <span>驾驶员统计信息</span>;

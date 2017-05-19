@@ -24,7 +24,7 @@ const RatedDriverPunishShow = (props) => (
        <Show title={<RatedDriverPunishTitle />} {...props}>
            <SimpleShowLayout>
            <TextField label="机动车驾驶证编号" source="Licenseld" />
-           <TextField label="处罚时间"  source="PunishTime" />
+           <DateField label="处罚时间"  source="PunishTime" />
            <TextField label="处罚原因"  source="PunishReason" />
            <TextField label="处罚结果"  source="PunishResult" />
            </SimpleShowLayout>
@@ -37,7 +37,7 @@ const RatedDriverPunishList = (props) => (//
      <List title="驾驶员处罚信息列表" {...props} >
         <Datagrid>
         <TextField label="机动车驾驶证编号" source="Licenseld" />
-        <TextField label="处罚时间"  source="PunishTime" />
+        <DateField label="处罚时间"  source="PunishTime" />
         <TextField label="处罚原因"  source="PunishReason" />
         <TextField label="处罚结果"  source="PunishResult" />
         <ShowButton />

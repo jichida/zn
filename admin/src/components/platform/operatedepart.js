@@ -30,9 +30,9 @@ const OperateDepartShow = (props) => (
            <TextField label="车辆出发经度" source="DepLongitude" />
            <TextField label="车辆出发纬度" source="DepLatitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
-           <TextField label="上车时间" source="DepTime" />
+           <DateField label="上车时间" source="DepTime" />
            <TextField label="空驶里程" source="WaitMile" />
-           <TextField label="等待时间" source="WaitTime" />
+           <DateField label="等待时间" source="WaitTime" />
            </SimpleShowLayout>
        </Show>
 );

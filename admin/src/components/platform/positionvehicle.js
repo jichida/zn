@@ -25,7 +25,7 @@ const PositionVehicleShow = (props) => (
            <SimpleShowLayout>
              <TextField label="车辆号牌" source="VehicleNo" />
              <TextField label="行政区划代码"  source="VehicleRegionCode" />
-             <TextField label="定位时间"  source="PositionTime" />
+             <DateField label="定位时间"  source="PositionTime" />
              <TextField label="经度" source="Longitude" />
              <TextField label="纬度" source="Latitude" />
              <TextField label="瞬时速度" source="Speed" />
@@ -48,7 +48,7 @@ const PositionVehicleList = (props) => (//
         <Datagrid>
         <TextField label="车辆号牌" source="VehicleNo" />
         <TextField label="行政区划代码"  source="VehicleRegionCode" />
-        <TextField label="定位时间"  source="PositionTime" />
+        <DateField label="定位时间"  source="PositionTime" />
         <TextField label="瞬时速度" source="Speed" />
         <TextField label="方向角" source="Direction" />
         <TextField label="海拔高度" source="Elevation" />
