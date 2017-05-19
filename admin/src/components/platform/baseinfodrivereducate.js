@@ -56,9 +56,9 @@ const BaseInfoDriverEducateShow = (props) => (
                <TextField source="id" />
                <TextField label="机动车驾驶证号" source="Licenseld" />
                <TextField label="驾驶员培训课程名称"  source="CourseName" />
-               <TextField label="培训课程日期"  source="CourseDate" />
-               <TextField label="培训开始时间" source="StartTime" />
-               <TextField label="培训结束时间" source="StopTime" />
+               <DateField label="培训课程日期"  source="CourseDate" />
+               <DateField label="培训开始时间" source="StartTime" showTime/>
+               <DateField label="培训结束时间" source="StopTime" showTime/>
                <TextField label="培训时长" source="Duration" />
            </SimpleShowLayout>
        </Show>
@@ -72,8 +72,8 @@ const BaseInfoDriverEducateList = (props) => (//
         <TextField label="机动车驾驶证号" source="Licenseld" />
         <TextField label="驾驶员培训课程名称"  source="CourseName" />
         <TextField label="培训课程日期"  source="CourseDate" />
-        <TextField label="培训开始时间" source="StartTime" />
-        <TextField label="培训结束时间" source="StopTime" />
+        <DateField label="培训开始时间" source="StartTime" />
+        <DateField label="培训结束时间" source="StopTime" />
         <TextField label="培训时长" source="Duration" />
         <EditButton />
         <ShowButton />

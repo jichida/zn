@@ -29,7 +29,7 @@ import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/in
 
 //import fakeRestServer from './restServer';
 import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit,BaseInfoCompanyCreate} from './components/platform/baseinfocompany.js';
-import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow} from './components/platform/baseinfocompanystat.js';
+import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow,BaseInfoCompanyStatCreate,BaseInfoCompanyStatEdit} from './components/platform/baseinfocompanystat.js';
 import {BaseInfoCompanyServiceList,BaseInfoCompanyServiceShow,BaseInfoCompanyServiceEdit} from './components/platform/baseinfocompanyservice.js';
 import {BaseInfoCompanyPermitList,BaseInfoCompanyPermitShow,BaseInfoCompanyPermitEdit} from './components/platform/baseinfocompanypermit.js';
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow}  from './components/platform/baseinfocompanypay.js';
@@ -94,7 +94,7 @@ class App extends Component {
 
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} create={BaseInfoCompanyCreate}/>
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList} show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
-            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} />
+            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} create={BaseInfoCompanyStatCreate} edit={BaseInfoCompanyStatEdit} />
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow}  edit={BaseInfoCompanyPermitEdit} />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />

@@ -29,19 +29,19 @@ const OperatePayShow = (props) => (
            <TextField label="机动车驾驶证号" source="Licenseld" />
            <TextField label="运价类型编码" source="FareType" />
            <TextField label="车辆号牌" source="VehicleNo" />
-           <TextField label="预计上车时间" source="BookDepTime" />
-           <TextField label="等待时间" source="WaitTime" />
+           <DateField label="预计上车时间" source="BookDepTime" />
+           <DateField label="等待时间" source="WaitTime" />
            <TextField label="出发经度" source="DepLongitude" />
            <TextField label="出发纬度" source="DepLatitude" />
            <TextField label="上车地点" source="DepArea" />
-           <TextField label="上车时间" source="DepTime" />
+           <DateField label="上车时间" source="DepTime" />
            <TextField label="车辆到达纬度" source="DestLongitude" />
            <TextField label="车辆到达纬度" source="DestLatitude" />
-           <TextField label="下车时间" source="DestTime" />
+           <DateField label="下车时间" source="DestTime" />
            <TextField label="预定车型" source="BookModel" />
            <TextField label="实际使用车型" source="Model" />
            <TextField label="载客里程" source="DriveMile" />
-           <TextField label="载客时间" source="DriveTime" />
+           <DateField label="载客时间" source="DriveTime" />
            <TextField label="空驶里程" source="WaitMile" />
            <TextField label="实收金额" source="FactPrice" />
            <TextField label="应收金额" source="Price" />
@@ -58,8 +58,8 @@ const OperatePayShow = (props) => (
            <TextField label="远途加价金额" source="FarUpPrice" />
            <TextField label="其他加价金额" source="OtherUpPrice" />
            <TextField label="结算状态" source="PayState" />
-           <TextField label="乘客结算时间" source="PayTime" />
-           <TextField label="订单完成时间" source="OrderMatchTime" />
+           <DateField label="乘客结算时间" source="PayTime" />
+           <DateField label="订单完成时间" source="OrderMatchTime" />
            <TextField label="发票状态" source="InvoiceStatus" />
            </SimpleShowLayout>
        </Show>
@@ -74,12 +74,12 @@ const OperatePayList = (props) => (//
         <TextField label="机动车驾驶证号" source="Licenseld" />
         <TextField label="运价类型编码" source="FareType" />
         <TextField label="车辆号牌" source="VehicleNo" />
-        <TextField label="预计上车时间" source="BookDepTime" />
-        <TextField label="等待时间" source="WaitTime" />
+        <DateField label="预计上车时间" source="BookDepTime" />
+        <DateField label="等待时间" source="WaitTime" />
         <TextField label="出发经度" source="DepLongitude" />
         <TextField label="出发纬度" source="DepLatitude" />
         <TextField label="上车地点" source="DepArea" />
-        <TextField label="上车时间" source="DepTime" />
+        <DateField label="上车时间" source="DepTime" />
         <ShowButton />
         </Datagrid>
     </List>

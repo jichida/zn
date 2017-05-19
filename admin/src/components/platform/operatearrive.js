@@ -27,9 +27,9 @@ const OperateArriveShow = (props) => (
            <TextField label="车辆到达经度" source="DestLongitude" />
            <TextField label="车辆到达纬度" source="DestLatitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
-           <TextField label="下车时间" source="DestTime" />
+           <DateField label="下车时间" source="DestTime" />
            <TextField label="载客里程" source="DriveMile" />
-           <TextField label="载客时间" source="DriveTime" />
+           <DateField label="载客时间" source="DriveTime" />
            </SimpleShowLayout>
        </Show>
 );
@@ -43,9 +43,9 @@ const OperateArriveList = (props) => (//
         <TextField label="车辆到达经度" source="DestLongitude" />
         <TextField label="车辆到达纬度" source="DestLatitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
-        <TextField label="下车时间" source="DestTime" />
+        <DateField label="下车时间" source="DestTime" />
         <TextField label="载客里程" source="DriveMile" />
-        <TextField label="载客时间" source="DriveTime" />
+        <DateField label="载客时间" source="DriveTime" />
         <ShowButton />
         </Datagrid>
     </List>

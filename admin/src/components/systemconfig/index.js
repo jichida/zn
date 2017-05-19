@@ -28,7 +28,6 @@ import {TextFieldSZ,TextInputSZ} from '../controls/tags.js';
 import ShowPageOne from '../controls/singlelistpage.js';
 
 
-
 const SystemconfigTitle = ({ record }) => <span>系统设置</span>;
 const SystemconfigShow = (props) => (
        <ShowPage title={<SystemconfigTitle />} {...props}>
