@@ -60,7 +60,6 @@ export const length6 = sureLength(6)
 export const length7 = sureLength(7)
 export const length8 = sureLength(8)
 
-
 //年龄必须18岁以上
 export const minValue = min => value => value && value < min ? `必须满${min}岁以上` : undefined
 export const minValue18 = minValue(18);

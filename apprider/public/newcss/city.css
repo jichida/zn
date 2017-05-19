@@ -1,4 +1,6 @@
-.cityPage{}
+.cityPage{
+	background: #FFF;
+}
 .cityPage .tit{
 	background: #EEE;
 	height: 30px;

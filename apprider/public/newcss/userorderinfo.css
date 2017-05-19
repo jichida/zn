@@ -197,7 +197,8 @@
     text-align: center;
 }
 .userorderinfoPage .PanelBox{
-    margin: 20px;
+    margin: 0 20px;
+    margin-bottom: 20px;
     background: #FFF;
     border-radius: 6px;
     padding: 15px;
@@ -301,15 +302,24 @@
     flex-direction: column;
     justify-content: flex-end;
     margin-bottom: -200px;
-    opacity: 0;
-    transition:margin-bottom 2s;
-    -moz-transition:margin-bottom 2s; /* Firefox 4 */
-    -webkit-transition:margin-bottom 2s; /* Safari and Chrome */
-    -o-transition:margin-bottom 2s; /* Opera */
+    display: none;
 }
-.addevaluate{
+.addevaluate.show{
+    display: flex;
     margin-bottom: 0;
+    animation:showaddevaluate .6s;
+    -webkit-animation:showaddevaluate .6s;
 }
+@keyframes showaddevaluate{
+    from {margin-bottom:-200px}
+    to {margin-bottom: 0}
+}
+@-webkit-keyframes showaddevaluate {
+    from {margin-bottom:-100px}
+    to {margin-bottom: 0}
+}
+
+
 .addevaluate .wamp{
     background: #FFF;
     display: flex;

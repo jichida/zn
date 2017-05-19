@@ -2,12 +2,16 @@
     个人中心-我的钱包
 */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
+import { connect } from 'react-redux';
+import {
+    getrechargerecords_request,
+    rechargepay_request
+} from '../../actions';
 const {
     Cells,
     Cell,
@@ -16,45 +20,32 @@ const {
     CellHeader,
     CellsTitle
     } = WeUI;
-import _ from 'lodash';
-import {
-  getrechargerecords_request,
-  rechargepay_request
-} from '../../actions';
-import Item from './rechargerecorditem';
 
 class Page extends Component {
-  constructor(props) {
-      super(props);
-   }
-   componentWillMount () {
-     this.props.dispatch(getrechargerecords_request({}));
-   }
+
+    componentWillMount () {
+        this.props.dispatch(getrechargerecords_request({}));
+    }
 
     render() {
         const {rechargerecordlist,balance} = this.props;
-        let rechargerecordco = [];
-            _.map(rechargerecordlist,(item,index)=>{
-        rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
-    });
-
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
-                    <img src="newimg/10.png" />
-                    <div>
-                        <span className="tit">余额(元)</span>
-                        <span className="myprice">{balance}</span>
-                    </div>
+                    <span className="tit">余额(元)</span>
+                    <span className="myprice">{balance}</span>
                 </div>
                 <div className="list">
                     <Cells className="tixianlnk">
-                        <Cell access>
+                        <Cell
+                            access
+                            onClick={()=>{this.props.dispatch(rechargepay_request({}));}}
+                            >
                             <CellHeader>
-                                <img src="newimg/21.png" alt=""/>
+                                <img src="newimg/13.png" alt=""/>
                             </CellHeader>
-                            <CellBody onClick={()=>{this.props.dispatch(rechargepay_request({}));}}>
+                            <CellBody>
                                 我要充值
                             </CellBody>
                             <CellFooter />
@@ -62,10 +53,27 @@ class Page extends Component {
                     </Cells>
 
                     <CellsTitle>账单查询</CellsTitle>
-
+                    
                     <div className="l2">
                         <Cells>
-                          {rechargerecordco}
+                            <Cell>
+                                <CellBody>
+                                    <span className="time">2016-11-12</span>
+                                    <span className="status">正在处理中...</span>
+                                </CellBody>
+                                <CellFooter>
+                                    <span className="color_warning">-10</span>
+                                </CellFooter>
+                            </Cell>
+                            <Cell>
+                                <CellBody>
+                                    <span className="time">2016-11-12</span>
+                                    <span className="status">正在处理中...</span>
+                                </CellBody>
+                                <CellFooter>
+                                    <span className="color_warning">-10</span>
+                                </CellFooter>
+                            </Cell>
                         </Cells>
                     </div>
 
@@ -74,11 +82,9 @@ class Page extends Component {
         )
     }
 }
-
-const mapStateToProps =  ({withdraw,userlogin:{balance}}) =>{
+const data =  ({withdraw,userlogin:{balance}}) =>{
     return {...withdraw,balance};
 };
-
 export default connect(
-    mapStateToProps,
+    data,
 )(Page);

@@ -1,23 +1,54 @@
 import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
-
 import {
     View,
     Container,
-    NavBar,
 } from 'amazeui-touch';
+import NavBar from "../tools/nav";
 import L from 'leaflet';
 import CarOverlayInit from './caroverlayinit.js';
 import CarOverlayOrder from './caroverlayorder.js';
-import {carmap_resetmap,getprice_request} from '../../actions';
+import "../../../public/newcss/caroverlay.css";
+import {
+    carmap_resetmap,
+    getprice_request,
+    set_weui,
+    changestartposition
+    } from '../../actions';
+import {
+    canceltriprequestorder
+    } from '../../actions/sagacallback';
 
 export class Page extends React.Component {
 
-    componentDidMount () {
+    //取消叫车
+    cancelcar =()=>{
+        this.props.dispatch(set_weui({
+            confirm : {
+                show : true,
+                title : "取消叫车",
+                text : "您确定要取消叫车吗",
+                buttonsCloseText : "取消",
+                buttonsClickText : "确定",
+                buttonsClose : ()=>{},
+                buttonsClick : ()=>{this.cancelrequest().bind(this)}
+            },
+        }))
     }
-    componentWillUnmount(){
+
+    cancelrequest =()=>{
+        this.props.dispatch(canceltriprequestorder({
+            triporderid:this.props.curmappageorder._id,
+            triprequestid:this.props.curmappagerequest._id
+        })).then((result)=>{
+            let srclocationstring = this.props.curlocation.lng + ',' + this.props.curlocation.lat;
+            this.props.dispatch(changestartposition({
+                location:srclocationstring
+            }));//重新发送一次附近请求
+        });
     }
+
     componentWillReceiveProps (nextProps) {
         const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
         if(mapstage === 'pageinit'){
@@ -35,7 +66,6 @@ export class Page extends React.Component {
                 history.replace(`/`);
             }
         }
-
     }
 
     render() {
@@ -79,17 +109,28 @@ export class Page extends React.Component {
             }
         }
         return (
-            <View>
-                <NavBar {...dataLeft}/>
-                <Container scrollable={true}>
-                    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'/></div>
+            <div className="caroverlayPage AppPage">
+                <NavBar 
+                    back={false} 
+                    title={dataLeft.title} 
+                    rightnav={[
+                        {
+                            type : 'action',
+                            action : this.cancelcar.bind(this),
+                            text : "取消叫车"
+                        },
+                    ]}
+                    />
+                <div className="list">
+                    <MapGaode ref='mapgaode' />
                     {floatcomponents}
-                </Container>
-            </View>);
+                </div>
+            </div>
+        );
     }
 
 }
-
+//<NavBar {...dataLeft}/>
 /*
  分4个页面：
  1.mapcarpage,公用
@@ -117,6 +158,7 @@ export class Page extends React.Component {
  orderobj
  }
  */
+
 
 const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder}}) => {
     return {mapstage,curmappagerequest,curmappageorder};

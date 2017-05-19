@@ -1,74 +1,76 @@
-import React from 'react';
+/*
+    个人中心-紧急联系人列表
+*/
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import config from '../../config.js';
-import {
-    View,
-    NavBar,
-    Container,
-    Button
-} from 'amazeui-touch';
-
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+import '../../../public/newcss/urgentlist.css';
+import NavBar from '../tools/nav.js';
+import _ from "lodash";
 import {getemerygencycontact_request} from '../../actions';
+const {
+    Cells,
+    Cell,
+    CellBody,
+    CellFooter,
+    CellsTitle
+    } = WeUI;
 
-export class Page extends React.Component {
+class Page extends Component {
 
     componentWillMount () {
-        console.log('componentWillMount=======>');
         this.props.dispatch(getemerygencycontact_request());
     }
     onClickBack(){
         this.props.history.goBack();
     }
-
     onClickAdd(){
         this.props.history.push('/seladdressbook');
     }
-
     render() {
-        const itemLeft = {
-            title: '返回'
-        };
-        const dataLeft = {
-            title: '紧急联系人',
-            leftNav: [{...itemLeft, icon: 'left-nav'}],
-            onAction: ()=>{
-                this.props.history.goBack();
-            },
-        };
-
-        let conactitemco = [];
-        this.props.concatlist.forEach((contactitem)=>{
-            conactitemco.push(<li key={contactitem._id} className="item item-linked"><a href="#"><h3 className="item-title">{contactitem.name}</h3></a></li>);
-        })
-        return (<View>
-            <NavBar {...dataLeft}/>
-            <Container>
-                <p className="padding margin-bottom-0">为了保证您的行程安全，请添加紧急联系人</p>
-                <div className="group group-no-padded margin-top-0">
-                    <div className="group-body">
-                        <ul className="list">
-                            <li onClick={this.onClickAdd.bind(this)} className="item item-linked"><a><h3 className="item-title">添加紧急联系人</h3><span className="icon icon-right-nav item-icon"></span></a></li>
-                        </ul>
-                    </div>
-
+        const {concatlist} = this.props;
+        return (
+            <div className="urgentlistPage AppPage">
+                <NavBar back={true} title="紧急联系人" />
+                <div className="head">
+                    为了保证您的行程安全<br/>
+                    紧急联系人将用于紧急救助功能
                 </div>
-                <div className="group group-no-padded">
-                    <header className="group-header">已有联系人</header>
-                    <div className="group-body">
-                        <ul className="list">
-                            {conactitemco}
-                        </ul>
-                    </div>
+                <div className="list">
+                    <Cells className="tixianlnk">
+                        {
+                            _.map(concatlist, (concat,index)=>{
+                                return (
+                                    <Cell>
+                                        <CellBody>
+                                            关羽
+                                        </CellBody>
+                                        <CellFooter>
+                                            13888888888
+                                        </CellFooter>
+                                    </Cell>
+                                )
+                            })
+                        }
+                        <Cell 
+                            onClick={()=>{this.onClickAdd()}}
+                            access>
+                            <CellBody>
+                                添加紧急联系人
+                            </CellBody>
+                            <CellFooter />
+                        </Cell>
+                    </Cells>
+                    <CellsTitle>最多添加5位联系人</CellsTitle>
                 </div>
-            </Container>
-        </View>);
+            </div>
+        )
     }
 }
-
-const mapStateToProps = ({emerygencycontact}) => {
+const data = ({emerygencycontact}) => {
     return emerygencycontact;
 }
+export default connect(data)(Page);
 
-export default connect(
-    mapStateToProps,
-)(Page);

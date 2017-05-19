@@ -220,12 +220,21 @@ BuscarpoolSchema = new Schema({
 BuscarpoolSchema.plugin(mongoosePaginate);
 
 //乘车订单
+calcUnitPricePerMile:0
+calcUnitPricePerMinute:0
+fareid:''
+pricestringdebug:""
+pricestringdetail:""
+totalduringminute:0
+totalkm:0
+totalprice:0
+
 let TripOrderSchema = new Schema({
     rideruserid:{ type: Schema.Types.ObjectId, ref: 'userrider' },
     driveruserid:{ type: Schema.Types.ObjectId, ref: 'userdriver' },
     triptype:String,//快车，出租车，代驾|拼车|旅游大巴 |充值（仅乘客端有效）
     resultpricedetail:Schema.Types.Mixed,//仅快车，出租车，代驾有效，使用平台定义的运价(详细信息）
-    realtimepricedetail:Schema.Types.Mixed,//仅快车，出租车，代驾有效，实时信息
+    realtimepricedetail:Schema.Types.Mixed,//仅快车，出租车，代驾有效，实时信息//
     driverlocation:[Number],
 
     ordertitle:String,  //订单标题（支付宝，微信用）

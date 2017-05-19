@@ -1,5 +1,6 @@
 .userrechargePage{
 	background: #EEE;
+	overflow: hidden;
 }
 .userrechargePage.AppPage .list{
 	flex-grow: 0;
@@ -7,6 +8,9 @@
 .userrechargePage .submitBtn .btn{
     color: #FFF;
     margin: 15px 30px 0 30px;
+    align-self: stretch;
+    flex-grow: 1;
+    margin-bottom: 20px;
 }
 .userrechargePage .weui-cell .weui-cell__hd{
 	display: flex;
@@ -21,4 +25,8 @@
 }
 .userrechargePage .weui-cells_radio .weui-check:checked + .weui-icon-checked:before{
 	  content: '\EA06';
+}
+
+.userrechargePage .weui-check{
+	opacity: 0;
 }

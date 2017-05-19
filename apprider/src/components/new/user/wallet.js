@@ -7,6 +7,11 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
+import { connect } from 'react-redux';
+import {
+    getrechargerecords_request,
+    rechargepay_request
+} from '../../../actions';
 const {
     Cells,
     Cell,
@@ -18,34 +23,30 @@ const {
 
 class Page extends Component {
 
+    componentWillMount () {
+        this.props.dispatch(getrechargerecords_request({}));
+    }
+
     render() {
+        const {rechargerecordlist,balance} = this.props;
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
-                    <img src="newimg/10.png" />
-                    <div>
-                        <span className="tit">余额(元)</span>
-                        <span className="myprice">680</span>
-                    </div>
+                    <span className="tit">余额(元)</span>
+                    <span className="myprice">{balance}</span>
                 </div>
                 <div className="list">
                     <Cells className="tixianlnk">
-                        <Cell access>
+                        <Cell
+                            access
+                            onClick={()=>{this.props.dispatch(rechargepay_request({}));}}
+                            >
                             <CellHeader>
                                 <img src="newimg/13.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 我要充值
-                            </CellBody>
-                            <CellFooter />
-                        </Cell>
-                        <Cell access>
-                            <CellHeader>
-                                <img src="newimg/11.png" alt=""/>
-                            </CellHeader>
-                            <CellBody>
-                                我要提现
                             </CellBody>
                             <CellFooter />
                         </Cell>
@@ -81,4 +82,9 @@ class Page extends Component {
         )
     }
 }
-export default Page;
+const data =  ({withdraw,userlogin:{balance}}) =>{
+    return {...withdraw,balance};
+};
+export default connect(
+    data,
+)(Page);

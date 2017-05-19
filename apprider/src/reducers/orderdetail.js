@@ -12,8 +12,10 @@ const initial = {
     orderdetail: {
         paysign:'',
         paytype:'alipay',
-        ratenum:5,
-        comment:''
+        ratenum:0,
+        comment:'',
+        //
+        showaddevaluate : false,
     },
 };
 
@@ -25,12 +27,15 @@ const orderdetail = createReducer({
             resultroute
         };
     },
+    //设置订单临时数据
     [ui_setorderdetail]: (state, payload) => {
          return {
             ...state,
             ...payload
         };
     },
+
+
 }, initial.orderdetail);
 
 export default orderdetail;

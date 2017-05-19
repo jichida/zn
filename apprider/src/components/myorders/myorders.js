@@ -66,7 +66,6 @@ class Page extends Component {
         return (
             <div className="userorderlistPage AppPage">
                 <NavBar back={true} title="我的订单" />
-                <span onClick={()=>{history.push("orderinfo")}}>new 订单详情 </span>
                 <div className="list">
                     <Cells>
                         {

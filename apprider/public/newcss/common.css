@@ -27,10 +27,25 @@ input, textarea{
     height: 44px;
     border-radius: 6px;
     margin:0;
+    border:none;
+}
+.AppPage .submitBtn{
+    display: flex;
+}
+.AppPage .submitBtn .btn{
+    flex-grow: 1;
 }
 .AppPage .btn.Primary{
     background: #3479e1;
     color: #FFF;
+}
+.AppPage .btn.Default{
+    background: #FFF;
+    border: 1px solid #EEE;
+    color: #333;
+}
+.AppPage .btn.Default:active{
+    background: #EEE;
 }
 .AppPage .btn.Primary:active{
     background: #2a6bce;
@@ -41,6 +56,13 @@ input, textarea{
 }
 .AppPage .btn.Warning:active{
     background: #e07b08;
+}
+.AppPage .btn.Error{
+    background: #F00;
+    color: #FFF;
+}
+.AppPage .btn.Error:active{
+    background: #C00;
 }
 .AppPage .btn.login{
     background: #72aaff;
@@ -251,6 +273,11 @@ input, textarea{
 
 .datepicker.ios .datepicker-navbar-btn{
     color:#fe8802;
+}
+
+.weui-search-bar__box .weui-icon-clear,
+.weui-search-bar__box .weui-icon-search{
+    line-height: 34px;
 }
 
 

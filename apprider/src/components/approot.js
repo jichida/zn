@@ -18,7 +18,7 @@ import Editprofile from './editprofile/editprofile';
 import Orderdetail from './orderdetail/orderdetail';
 import Myorders from './myorders/myorders';
 import Orderconfirm from './orderconfirm/index';
-import Feedetail from './orderdetail/feedetail';
+//import Feedetail from './orderdetail/feedetail';
 
 import Mywallet from './mywallet/wallet';
 import Mycoupons from './mycoupons/index';
@@ -171,7 +171,7 @@ class AppRoot extends React.Component {
                     <Route path="/requestorderstarting" component={Caroverlay}/>
                     <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
+                    
                     <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                     <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
                     <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
@@ -200,5 +200,5 @@ class AppRoot extends React.Component {
         );
     }
 }
-
+//<Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
 export default AppRoot;

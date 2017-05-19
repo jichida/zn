@@ -79,7 +79,8 @@
     background: #EEE;
 }
 #newNavHeadContent .nli .iconBtn{
-
+    display: flex;
+    align-items: center;
 }
 #newNavHeadContent .nli .number{
     position: absolute;

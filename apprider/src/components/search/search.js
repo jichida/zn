@@ -134,6 +134,7 @@ export class Search extends React.Component {
         this.props.history.goBack();
     }
     onChangeCity(){
+        console.log("onClickcity");
         this.props.history.push('/city');
     }
     render() {

@@ -122,7 +122,7 @@ export class AppIndex extends React.Component {
             navlinkco.push(' ');
         });
         return (
-            <div className="appriderhomePage">
+            <div className="appriderhomePage AppPage">
                 <Sidebar
                     sidebar={this.renderOC()}
                     sidebarClassName="homesidebar"
@@ -138,22 +138,22 @@ export class AppIndex extends React.Component {
                             back={false}
                             leftnav = {[
                                 {
-                                    icon : 'icon icon-user navbar-icon navbar-icon-sibling-of-title',
-                                    icontype : "font",
+                                    icon : 'newimg/35.png',
+                                    icontype : "img",
                                     type : 'action',
                                     action : this.onSetSidebarOpen.bind(this,true),
-                                    width : "10px",
-                                    height: "10px",
+                                    width : "24px",
+                                    height: "24px",
                                 },
                             ]}
                             rightnav={[
                                 {
-                                    icon : 'icon icon-xx navbar-icon navbar-icon-sibling-of-title',
-                                    icontype : "font",
+                                    icon : 'newimg/36.png',
+                                    icontype : "img",
                                     type : 'push',
                                     url : '/messagecenter',
-                                    width : "10px",
-                                    height: "10px",
+                                    width : "24px",
+                                    height: "24px",
                                 },
                             ]}
                             title="中南出行"
@@ -185,9 +185,9 @@ export class AppIndex extends React.Component {
 
 
 
-                        <Container scrollable={true}>
+                        <div className="list">
                             {Co}
-                        </Container>
+                        </div>
                     </View>
                 </Sidebar>
             </div>

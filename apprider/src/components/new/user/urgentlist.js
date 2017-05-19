@@ -2,11 +2,14 @@
     个人中心-紧急联系人列表
 */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/urgentlist.css';
 import NavBar from '../tools/nav.js';
+import _ from "lodash";
+import {getemerygencycontact_request} from '../../../actions';
 const {
     Cells,
     Cell,
@@ -17,7 +20,17 @@ const {
 
 class Page extends Component {
 
+    componentWillMount () {
+        this.props.dispatch(getemerygencycontact_request());
+    }
+    onClickBack(){
+        this.props.history.goBack();
+    }
+    onClickAdd(){
+        this.props.history.push('/seladdressbook');
+    }
     render() {
+        const {concatlist} = this.props;
         return (
             <div className="urgentlistPage AppPage">
                 <NavBar back={true} title="紧急联系人" />
@@ -27,29 +40,28 @@ class Page extends Component {
                 </div>
                 <div className="list">
                     <Cells className="tixianlnk">
-                        <Cell>
-                            <CellBody>
-                                关羽
-                            </CellBody>
-                            <CellFooter>
-                                13888888888
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                张飞
-                            </CellBody>
-                            <CellFooter>
-                                13866666666
-                            </CellFooter>
-                        </Cell>
-                        <Cell access>
+                        {
+                            _.map(concatlist, (concat,index)=>{
+                                return (
+                                    <Cell>
+                                        <CellBody>
+                                            关羽
+                                        </CellBody>
+                                        <CellFooter>
+                                            13888888888
+                                        </CellFooter>
+                                    </Cell>
+                                )
+                            })
+                        }
+                        <Cell 
+                            onClick={()=>{this.onClickAdd()}}
+                            access>
                             <CellBody>
                                 添加紧急联系人
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        
                     </Cells>
                     <CellsTitle>最多添加5位联系人</CellsTitle>
                 </div>
@@ -57,4 +69,8 @@ class Page extends Component {
         )
     }
 }
-export default Page;
+const data = ({emerygencycontact}) => {
+    return emerygencycontact;
+}
+export default connect(data)(Page);
+
