@@ -1,50 +1,58 @@
-/**
- * Created by wangxiaoqing on 2017/3/20.
- */
-import React from 'react';
+/*
+    个人中心-订单详情
+*/
+import React, { Component } from 'react';
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+import '../../../public/newcss/userorderinfo.css';
+import NavBar from '../tools/nav.js';
+
 import { connect } from 'react-redux';
-import {
-    View,Container,NavBar,Button
-} from 'amazeui-touch';
+import Orderdetailhead from "./orderdetailhead";
+import Orderdetailpaycontent from "./orderdetailpaycontent";
+import Orderdetailevaluate from "./orderdetailevaluate";
 
-import OrderDetailNotpaid from './orderdetail_notpaid.js';
-import OrderDetailpaid from './orderdetail_paid.js';
+const { 
+    Form,
+    FormCell,
+    CellBody,
+    TextArea,
+    LoadMore
+    } = WeUI;
 
+class Page extends Component {
 
-export class Page extends React.Component {
-
-    componentWillMount () {
-    }
-    onClickBack(){
-        this.props.history.goBack();
-    }
-    componentWillUnmount () {
-
-    }
     render() {
-        if(this.props.hasOwnProperty('orderinfo')){
-            if(this.props.orderinfo.hasOwnProperty('paystatus')){
-                if(this.props.orderinfo.paystatus === '未支付' || this.props.orderinfo.paystatus === '部分支付'){
-                    return <OrderDetailNotpaid {...this.props} />;
-                }
-                else if(this.props.orderinfo.paystatus === '已支付'){
-                    return <OrderDetailpaid {...this.props} />;
-                }
-            }
+        const { orderinfo } = this.props;
+        const driverinfo = {
+            name : "赵师傅",
+            phone : "19000000000",
+            avatar : "newimg/17.png",
+            carinfo : "白色现代·苏A12345",
+            cartype : "出租车"
         }
-        return <div>无效订单</div>;
+        return (
+            <div className="userorderinfoPage AppPage">
+                <NavBar back={true} title="订单详情" />
+                <div className="pageContent">
+                    <Orderdetailhead orderinfo={orderinfo} driverinfo={driverinfo} />
+                    <Orderdetailpaycontent orderinfo={orderinfo} />
+                    <Orderdetailevaluate orderinfo={orderinfo} />
+                </div>
+            </div>
+        )
     }
 }
-
-
-
-
 const mapStateToProps =  ({orderdetail,myorders}, props) =>{
     let triporderid = props.match.params.triporderid;
     let orderinfo = myorders.triporders[triporderid];
+    console.log(orderdetail);
+    console.log(orderinfo);
     return {...orderdetail,orderinfo};
 };
 
 export default connect(
     mapStateToProps,
 )(Page);
+
