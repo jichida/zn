@@ -10,6 +10,7 @@ import {
     orderconfirm_settourbus
     } from '../../actions';
 import config from '../../config.js';
+import Userinfo from './userinfo.js';
 import { Button } from 'amazeui-touch';
 
 const Tourbusco = (props) => {
@@ -113,8 +114,6 @@ let renderTourbusForm = (props)=>{
       curnumber={busnumberobjv[businfo._id]}
       onChangeBusinput={(e)=>onChangeBusinput(businfo,e)} />);
     });
-
-
     let yesterdayDate = new Date();
     yesterdayDate.setDate(yesterdayDate.getDate() - 1);
     let minEndDate = new Date();
@@ -141,8 +140,8 @@ let renderTourbusForm = (props)=>{
       dispatch(ui_lvyoudabasetdateshow2(false));
     }
     return (
-          <div style={{marginTop: '1.5em'}}>
-            <div className="group group-no-padded margin-0">
+        <div className="lvyoudabaPage">
+            <div className="group group-no-padded margin-0" style="display:none">
               <div className="group-body">
                 <ul className="list">
                   <li className="item item-input">
@@ -186,7 +185,7 @@ let renderTourbusForm = (props)=>{
                 </ul>
               </div>
             </div>
-            <div className="group group-no-padded margin-top-0 background">
+            <div className="group group-no-padded margin-top-0 background" style="display:none">
               <div className="group-body background">
                 <div className="g text-center padding xzcx">
 
@@ -195,10 +194,15 @@ let renderTourbusForm = (props)=>{
                 </div>
               </div>
             </div>
-          </div>
+
+            <Userinfo />
+        </div>
     );
 };
 const mapStateToProps1 = ({appui,lvyoudaba,app:{paytourbus}}) => {
+
+
+    console.log("lvyoudaba:::::"+JSON.stringify(1));
   return {...lvyoudaba,...appui.lvyoudaba,paytourbus};
 }
 renderTourbusForm = connect(mapStateToProps1)(renderTourbusForm);
@@ -212,7 +216,7 @@ let TourbusForm = (props)=>{
   let {handleSubmit,totalprice,paytourbus} = props;
   let frontmoney = (totalprice*paytourbus/100).toFixed(2);
   return (
-      <Form onSubmit={handleSubmit(onClickOK)}>
+      <Form onSubmit={handleSubmit(onClickOK)} >
           <div>
             <div style={{marginTop: '1.5em'}}>
             <Fields names={['rentusername', 'busnumberobj', 'startdate', 'enddate', 'orderdetail', 'orderprice','frontmoney']}
@@ -262,4 +266,16 @@ TourbusForm = reduxForm({
 })(TourbusForm);
 
 
-export default TourbusForm;
+//export default TourbusForm;
+
+
+
+
+
+export default class XX extends React.Component{
+    render(){
+        return (
+            <Userinfo />
+        )
+    }
+}

@@ -10,6 +10,8 @@ import {
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
+import DatePicker from 'react-mobile-datepicker';
+import moment from 'moment';
 const { 
     Form,
     FormCell,
@@ -210,11 +212,58 @@ let WeuiSwitchValidation = (props) => {
             </CellFooter>
         </FormCell>
 	);
-}					
+}
+
+//选择日期的组件
+class DatePickerInput extends React.Component{
+
+	constructor(props) {
+		super(props);
+		this.state={
+			time: new Date(),
+			isOpen: false,
+		}
+	}
+	handleClick = () => {
+		this.setState({ isOpen: true });
+	}
+
+	handleCancel = () => {
+		this.setState({ isOpen: false });
+	}
+
+	handleSelect = (time) => {
+		this.setState({ time, isOpen: false });
+	}
+
+	render() {
+		const { input } = this.props;
+		return (
+			<div className="datePickerInputPage">
+				<div
+					className="select-btn"
+					onClick={this.handleClick}>
+					{moment(this.state.time).format("YYYY-MM-DD")}
+					<input {...input} type="hidden" value={this.state.time} />
+					<DatePicker
+						value={this.state.time}
+						isOpen={this.state.isOpen}
+						onSelect={this.handleSelect}
+						onCancel={this.handleCancel}
+						/>
+				</div>
+			</div>
+		);
+	}
+}
+
 
 const inputData = (state) => {
     return state;
 };
+
+DatePickerInput = connect(inputData)(DatePickerInput);
+export {DatePickerInput};
 
 WeuiSwitchValidation = connect(inputData,inputDispatchToProps)(WeuiSwitchValidation);
 export {WeuiSwitchValidation};
