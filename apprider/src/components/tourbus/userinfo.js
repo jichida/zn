@@ -37,8 +37,8 @@ const {
     } = WeUI;
 import _ from 'lodash';
 import {
-    orderconfirm_settourbus
-    } from '../../actions';
+    insertorder
+} from '../../actions/sagacallback';
 
 
 const PageForm = (props) => {
@@ -142,15 +142,27 @@ PageForm = reduxForm({
 const Page = (props) => {
     let onClickOK =(values)=>{
       console.log("ok:" + JSON.stringify(values));
-      const {startdate,enddate,orderprice} = values;
+      const {startdate,enddate,orderprice,zucheren,zuchephone} = values;
+      const {buslistsel,totalnumber} = props;
       let days = enddate.getDate() - startdate.getDate() + 1;
       if(days < 1){
         days = 1;
       }
       let totalorderprice = orderprice*days;
-
-      props.dispatch(orderconfirm_settourbus({...values,orderprice:totalorderprice}));
-      props.history.push('/orderconfirm/tourbus');
+      let order = {
+          triptype:'旅游大巴',
+          buslistsel:buslistsel,
+          rentusername:zucheren,
+          rentuserphone:zuchephone,
+          startdate:startdate,//出发日期
+          enddate:enddate,//出发日期
+          orderdetail:`预定旅游大巴${totalnumber}辆,使用${days}天`,
+          orderprice:totalorderprice,
+      };
+      console.log(`insertorder order:` + JSON.stringify(order));
+      props.dispatch(insertorder(order)).then(({triporder})=>{
+          props.history.replace(`/orderdetail/${triporder._id}`);
+      });
     }
     const {buslistsel,totalnumber} = props;
     return (
