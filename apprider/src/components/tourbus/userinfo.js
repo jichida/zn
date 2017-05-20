@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DatePicker from 'react-mobile-datepicker';
-import { Field,Fields,reduxForm,Form  } from 'redux-form';
+import { Field,Fields,reduxForm,Form,getFormValues  } from 'redux-form';
 import moment from 'moment';
 import WeUI from 'react-weui';
 import 'weui';
@@ -35,13 +35,17 @@ const {
     Label,
     CellsTitle
     } = WeUI;
+import _ from 'lodash';
+import {
+    orderconfirm_settourbus
+    } from '../../actions';
 
 const PageForm = (props) => {
-   	
-   	const {handleSubmit} = props;
+
+   	const {handleSubmit,onClickOK} = props;
     return (
 	    <Form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onClickOK)}
             >
 
             <FormUI>
@@ -102,36 +106,68 @@ const PageForm = (props) => {
 	                <button className="btn Primary">确定</button>
 	            </div>
             </FormUI>
-	        
+
 		</Form>
     );
 };
 
 PageForm = reduxForm({
     form: 'tourbus',
+    destroyOnUnmount: false,        // <------ preserve form data
+    forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
     initialValues:{
-        
+      rentusername:'',
+      startdate:new Date(),
+      enddate:new Date(),
     }
 })(PageForm);
 
 
 const Page = (props) => {
-
+    let onClickOK =(values)=>{
+      console.log("ok:" + JSON.stringify(values));
+      props.dispatch(orderconfirm_settourbus(values));
+      props.history.push('/orderconfirm/tourbus');
+    }
+    const {buslistsel,totalnumber} = props;
     return (
         <div className="tourbusUserinfoPage">
         	<NavBar title='填写订单' back={true} />
         	<div className="carlist">
         		<div className="li">
-
-        			<span><img src="newimg/38.png" /><i>2</i></span>
-        			<span><img src="newimg/38.png" /><i>2</i></span>
-        			<span><img src="newimg/38.png" /><i>2</i></span>
+              {
+                _.map(buslistsel,(businfosel)=>{
+                  return (<span key={businfosel._id}><img src={businfosel.icon} /><i>{businfosel.num}</i></span>);
+                })
+              }
         		</div>
-        		<span className="carlistlnk">共12辆</span>
+        		<span className="carlistlnk">共{totalnumber}辆</span>
         	</div>
-        	<PageForm />
+        	<PageForm onClickOK={onClickOK}/>
         </div>
     );
 };
+
+const mapStateToProps = (state) => {
+  const {lvyoudaba:{buslist}} = state;
+  let {busnumberobj} = getFormValues('tourbus')(state);
+
+  let buslistsel = [];
+  let totalnumber = 0;
+  _.map(buslist,(businfo)=>{
+      if(busnumberobj.hasOwnProperty(businfo._id)){
+          totalnumber += busnumberobj[businfo._id];
+          buslistsel.push({
+            _id:businfo._id,
+            icon:businfo.icon,
+            num:busnumberobj[businfo._id]
+          });
+      }
+  });
+  console.log(`values:===>${JSON.stringify(buslistsel)}`);
+  return {buslistsel,totalnumber};
+}
+Page = connect(mapStateToProps)(Page);
+
 
 export default Page;
