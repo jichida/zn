@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import validate from './validate';
 import _ from 'lodash';
+import "./selbusform.css";
 
 const Tourbusco = (props) => {
     const {businfo,onClickBusAdd,onClickBusDec,curnumber,onChangeBusinput} = props;
@@ -11,24 +12,27 @@ const Tourbusco = (props) => {
             <div className="xzcx_img">
                 <img src={businfo.icon} alt="img"/>
             </div>
-            <div>{businfo.name}
-                <p className="margin-top-0">
-                    <small>({businfo.seatnumber})座位</small>
-                </p>
+            <div className="info">
+                <span>{businfo.name}{businfo.seatnumber}座</span>
+                <span>这里是简介</span>
+            </div>
             <div className="mui-numbox">
                 <button
                     key={'bus0' + businfo._id}
                     onClick={onClickBusDec}
                     className="mui-btn mui-btn-numbox-minus"
                     type="button"
-                    >-
-              </button>
-              <input className="mui-input-numbox" type="number" onChange={onChangeBusinput} value={curnumber}/>
-              <button key={'bus1' + businfo._id} onClick={onClickBusAdd} className="mui-btn mui-btn-numbox-plus"
-                      type="button">+
-              </button>
+                    > -
+                </button>
+                <input className="mui-input-numbox" type="number" onChange={onChangeBusinput} value={curnumber}/>
+                <button 
+                    key={'bus1' + businfo._id}
+                    onClick={onClickBusAdd}
+                    className="mui-btn mui-btn-numbox-plus"
+                    type="button"
+                    > +
+                </button>
             </div>
-          </div>
         </div>
     );
 
@@ -78,7 +82,7 @@ let renderTourbusForm = (props)=>{
     }
 
     return (
-                <div className="g text-center padding xzcx">
+                <div className="list">
                   {
                     _.map(buslist,(businfo)=>{
                       return (<Tourbusco key={businfo._id}
@@ -103,14 +107,11 @@ renderTourbusForm = connect(mapStateToProps1)(renderTourbusForm);
 
 
 const renderOrderpriceField = (field) => (
-  <div className="item item-input">
-    <div className="item-main">
-      <p>需支付{field.input.value}/天
-      <span className="text-primary" onClick={field.onClickOK}>下一步</span>
-      </p>
+    <div className="renderOrderpriceField">
+        <div className="orderprice">需支付 <span className="color_warning">{field.input.value}</span>元/天</div>
+        <div className="btn Primary" onClick={field.onClickOK}>确定</div>
     </div>
-  </div>
-  )
+)
 
 let TourbusForm = (props)=>{
   const {history} = props;
@@ -119,15 +120,13 @@ let TourbusForm = (props)=>{
     console.log("onClickOK");
     history.push('/tourbusfillform');
   }
-  return (
-      <Form >
-          <div>
-            <div style={{marginTop: '1.5em'}}>
+    return (
+        <Form 
+            onSubmit={()=>{}}
+            className="selbusformPage AppPage">
             <Fields names={['busnumberobj','orderprice']} component={renderTourbusForm}/>
             <Field name="orderprice" component={renderOrderpriceField} onClickOK={onClickOK}/>
-            </div>
-          </div>
-      </Form>
+        </Form>
   );
 };
 

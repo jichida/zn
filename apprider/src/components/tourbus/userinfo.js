@@ -131,7 +131,7 @@ const Page = (props) => {
     }
     const {buslistsel,totalnumber} = props;
     return (
-        <div className="tourbusUserinfoPage">
+        <div className="tourbusUserinfoPage AppPage">
         	<NavBar title='填写订单' back={true} />
         	<div className="carlist">
         		<div className="li">
