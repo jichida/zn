@@ -80,6 +80,11 @@ import Rechargepay from './mywallet/rechargepay.js';
 /*公共样式*/
 import '../../public/newcss/common.css';
 
+
+
+//旅游大巴 - 填写信息
+import Tourbusfillform from "./tourbus/userinfo";
+
 //import '../../public/App.css';
 //import '../../public/amaze.css';
 //import '../../public/a2017.css';
@@ -193,6 +198,9 @@ class AppRoot extends React.Component {
                     <Route path="/usercenter" component={Usercenter}/>
                     <Route path="/payway" component={Payway}/>
                     <Route path="/recharge" component={Recharge}/>
+                    <Route path="/tourbusfillform" component={Tourbusfillform}/>
+
+
 
                     <Route component={App}/>
                 </Switch>

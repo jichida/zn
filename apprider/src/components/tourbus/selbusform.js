@@ -117,7 +117,7 @@ let TourbusForm = (props)=>{
 
   let onClickOK =()=>{
     console.log("onClickOK");
-    history.push('/filldetailtourbus');
+    history.push('/tourbusfillform');
   }
   return (
       <Form >
