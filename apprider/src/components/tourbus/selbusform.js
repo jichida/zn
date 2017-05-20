@@ -25,7 +25,7 @@ const Tourbusco = (props) => {
                     > -
                 </button>
                 <input className="mui-input-numbox" type="number" onChange={onChangeBusinput} value={curnumber}/>
-                <button 
+                <button
                     key={'bus1' + businfo._id}
                     onClick={onClickBusAdd}
                     className="mui-btn mui-btn-numbox-plus"
@@ -121,7 +121,7 @@ let TourbusForm = (props)=>{
     history.push('/tourbusfillform');
   }
     return (
-        <Form 
+        <Form
             onSubmit={()=>{}}
             className="selbusformPage AppPage">
             <Fields names={['busnumberobj','orderprice']} component={renderTourbusForm}/>
@@ -140,5 +140,9 @@ export default reduxForm({
   initialValues:{
     busnumberobj:{},
     orderprice:0,
+    zucheren:'',
+    zuchephone:'',
+    startdate:new Date(),
+    enddate:new Date(),
   }
 })(TourbusForm)

@@ -82,7 +82,7 @@ const PageForm = (props) => {
                     <CellBody>
                         <Field
             							name="startdate"
-            							id="startdata"
+            							id="startdate"
             							component={ DatePickerInput }
                           min={yesterdayDate}
                           dateFormat={['YYYY年', 'MM月', 'DD日']}
@@ -96,7 +96,7 @@ const PageForm = (props) => {
                     <CellBody>
                         <Field
               							name="enddate"
-              							id="enddata"
+              							id="enddate"
               							component={ DatePickerInput }
                             dateFormat={['YYYY年', 'MM月', 'DD日']}
                             min={minEndDate}
@@ -136,11 +136,6 @@ PageForm = reduxForm({
     form: 'tourbus',
     destroyOnUnmount: false,        // <------ preserve form data
     forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-    initialValues:{
-      rentusername:'',
-      startdate:new Date(),
-      enddate:new Date(),
-    }
 })(PageForm);
 
 
