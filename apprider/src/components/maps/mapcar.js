@@ -13,7 +13,7 @@ import {changestartposition} from '../../actions';
 import Popinfotrip from './popinfocar';
 import Popinfowaiting from './popinfolookingcar';
 import Script from 'react-load-script';
-import "../../../public/newcss/mapcontainer.css"; 
+import "../../../public/newcss/mapcontainer.css";
 
 
 
@@ -354,13 +354,13 @@ class Page extends React.Component {
         if(window.amap){
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
             let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
-            positiondiv = [pixel.getX()-85,pixel.getY()-70];
+            positiondiv = [pixel.getX(),pixel.getY()];
             pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
           }
           console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
             let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-            positiondiv = [pixel.getX()-110,pixel.getY()-70];
+            positiondiv = [pixel.getX(),pixel.getY()];
             const {totaldistancetxt,totaldurationtxt} = this.props;
             const {requeststatus} = this.props.curmappagerequest;
             if(requeststatus === '行程中'){
