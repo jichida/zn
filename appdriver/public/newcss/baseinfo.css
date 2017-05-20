@@ -2,10 +2,16 @@
 
 }
 .baseinfoPage .avatar{
-
+	height: 50px;
+	flex-grow: 1;
+	display: flex;
+	width: auto;
+}
+.baseinfoPage .avatar .weui-cell__bd{
+	flex-grow: 1;
 }
 .baseinfoPage .weui-cell.avatar .weui-cell__ft img{
-    width: 50px;
+    width: 40px;
     border-radius: 50%;
     display: flex;
 }

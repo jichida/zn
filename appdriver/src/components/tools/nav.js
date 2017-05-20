@@ -31,13 +31,16 @@ export class Page extends React.Component {
             action = nav.action;
         }
         if(nav.type=='push'){
-            action = this.pagePush;
+            action = this.pagePush.bind(this,nav.url);
         }
         return (
-            <span className="nli" onClick={()=>{nav.action}} key={index}>
+            <span
+                onClick={action}
+                className="nli" 
+                key={index}>
                 {
                     nav.icon==''?'':(
-                        <span className="iconBtn" onClick={()=>{action(nav.url)}}>
+                        <span className="iconBtn">
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}}/>
                         </span>
                     )
@@ -58,7 +61,7 @@ export class Page extends React.Component {
         //是否有返回按钮 back＝true
         let back = props.hasOwnProperty('back')?props.back:false;
         //是否有分享到按钮 share＝true
-        let share = props.hasOwnProperty('share')?props.share:false;
+        let share = props.hasOwnProperty('share')?props.share:false;    
         //判断是否有用户自定义左侧按钮
         let haveUserLeftNav = props.hasOwnProperty('leftnav')?true:false;
         //判断是否有用户自定义右侧按钮
@@ -69,7 +72,7 @@ export class Page extends React.Component {
                 {
                     icon : 'img/shopping/11.png',
                     text : '',
-                    type : 'push',//push, action,
+                    type : 'push',//push, action, 
                     url : '/shoppingcart',
                     width : "10px",
                     height: "10px",
@@ -87,7 +90,7 @@ export class Page extends React.Component {
                 {
                     icon : 'img/shopping/11.png',
                     text : '',
-                    type : 'push',//push, action,
+                    type : 'push',//push, action, 
                     url : '/shoppingcart'
                 },
             ]

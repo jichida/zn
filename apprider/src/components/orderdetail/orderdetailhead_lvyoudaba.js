@@ -17,7 +17,7 @@ export default class Page extends Component{
                             <span className="star"></span>
                         </div>
                         <div>
-                            白色现代·苏A12345 <span>出租车</span>
+                            <span>大巴</span>
                         </div>
                     </div>
                     <div className="call">

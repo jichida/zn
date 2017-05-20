@@ -33,7 +33,7 @@ class Page extends Component {
 					<Cells>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src={PhotoandCarmanURL} />
+			                    <img src={PhotoandCarmanURL||"newimg/17.png"} />
 			                </CellHeader>
 			                <CellBody>
 			                    <div className="tit">

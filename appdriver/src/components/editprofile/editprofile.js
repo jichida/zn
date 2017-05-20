@@ -24,15 +24,15 @@ class Page extends Component {
                 <NavBar back={true} title="查看个人资料" />
                 <div className="list">
                     <Cells>
-                        <Cell access className="avatar">
+                        <Cell className="avatar">
                             <CellBody>
                                 头像
                             </CellBody>
                             <CellFooter>
-                                <img src={PhotoandCarmanURL} />
+                                <img src={PhotoandCarmanURL||"newimg/17.png"} />
                             </CellFooter>
                         </Cell>
-                        <Cell access>
+                        <Cell>
                             <CellBody>
                                 姓名
                             </CellBody>
@@ -40,7 +40,7 @@ class Page extends Component {
                                 {DriverName}
                             </CellFooter>
                         </Cell>
-                        <Cell access>
+                        <Cell>
                             <CellBody>
                                 手机号
                             </CellBody>
