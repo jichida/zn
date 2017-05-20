@@ -40,9 +40,16 @@ import {
     orderconfirm_settourbus
     } from '../../actions';
 
+
 const PageForm = (props) => {
 
-   	const {handleSubmit,onClickOK} = props;
+   	const {handleSubmit,onClickOK,totalorderprice,startdate,enddate} = props;
+
+    let yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    let minEndDate = new Date();
+    minEndDate.setDate(startdate.getDate() - 1);
+
     return (
 	    <Form
             onSubmit={handleSubmit(onClickOK)}
@@ -74,10 +81,12 @@ const PageForm = (props) => {
                     </CellHeader>
                     <CellBody>
                         <Field
-							name="startdate"
-							id="startdata"
-							component={ DatePickerInput }
-						/>
+            							name="startdate"
+            							id="startdata"
+            							component={ DatePickerInput }
+                          min={yesterdayDate}
+                          dateFormat={['YYYY年', 'MM月', 'DD日']}
+            						/>
                     </CellBody>
                 </FormCell>
                 <FormCell className="seltime">
@@ -86,16 +95,18 @@ const PageForm = (props) => {
                     </CellHeader>
                     <CellBody>
                         <Field
-							name="enddate"
-							id="enddata"
-							component={ DatePickerInput }
-						/>
+              							name="enddate"
+              							id="enddata"
+              							component={ DatePickerInput }
+                            dateFormat={['YYYY年', 'MM月', 'DD日']}
+                            min={minEndDate}
+						             />
                     </CellBody>
                 </FormCell>
 	            <Cell>
 	                <CellBody>
 	                    <span className="tit">支付金额</span>
-	                    <span className="color_warning">¥ 800</span>
+	                    <span className="color_warning">¥{totalorderprice}</span>
 	                </CellBody>
 	            </Cell>
 	            <CellsTitle className="pricenum">
@@ -110,6 +121,16 @@ const PageForm = (props) => {
 		</Form>
     );
 };
+
+const mapStateToPropsForm = (state) => {
+  let {orderprice,startdate,enddate} = getFormValues('tourbus')(state);
+  startdate = startdate || new Date();
+  enddate = enddate || new Date();
+  let days = enddate.getDate() - startdate.getDate() + 1;
+  let totalorderprice = orderprice*days;
+  return {totalorderprice,startdate,enddate};
+}
+PageForm = connect(mapStateToPropsForm)(PageForm);
 
 PageForm = reduxForm({
     form: 'tourbus',
@@ -126,7 +147,14 @@ PageForm = reduxForm({
 const Page = (props) => {
     let onClickOK =(values)=>{
       console.log("ok:" + JSON.stringify(values));
-      props.dispatch(orderconfirm_settourbus(values));
+      const {startdate,enddate,orderprice} = values;
+      let days = enddate.getDate() - startdate.getDate() + 1;
+      if(days < 1){
+        days = 1;
+      }
+      let totalorderprice = orderprice*days;
+
+      props.dispatch(orderconfirm_settourbus({...values,orderprice:totalorderprice}));
       props.history.push('/orderconfirm/tourbus');
     }
     const {buslistsel,totalnumber} = props;
