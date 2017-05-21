@@ -63,6 +63,13 @@ class Page extends Component {
 
     render() {
         const {mytriporderlist, triporders, history} = this.props;
+        let istriptypemap = (triptype)=>{
+          return (
+            triptype==='快车' ||
+            triptype==='出租车' ||
+            triptype==='代驾');
+        }
+
         return (
             <div className="userorderlistPage AppPage">
                 <NavBar back={true} title="我的订单" />
@@ -80,21 +87,25 @@ class Page extends Component {
                                         <CellBody>
                                             <div className="tt">
                                                 <div className="ttinfo">
-                                                    <span className="i">{orderinfo.isrealtime?'':'预约'}</span>
-                                                    <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
+                                                    {
+                                                      (istriptypemap(orderinfo.triptype) && !orderinfo.isrealtime)?
+                                                      (<span className="i">预约</span>):(<span></span>)
+                                                    }
+                                                    <span className="time">
+                                                      {
+                                                        orderinfo.isrealtime?
+                                                        moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss"):
+                                                        moment(orderinfo.dated_at).format("YYYY-MM-DD H:mm:ss")
+                                                      }
+                                                    </span>
                                                     <span className="type">{orderinfo.triptype}</span>
                                                 </div>
                                                 <span className="status color_warning">{orderinfo.orderstatus}</span>
                                             </div>
 
-                                            {orderinfo.triptype==="拼车"?(
-                                                <Pinche info={orderinfo} />
-                                            ):""}
+                                            {orderinfo.triptype==="拼车" && <Pinche info={orderinfo} />}
 
-                                            {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
-                                                <Kuaiche info={orderinfo} />
-                                            ):""}
-
+                                            {istriptypemap(orderinfo.triptype) &&  <Kuaiche info={orderinfo} />}
 
                                         </CellBody>
                                         <CellFooter />

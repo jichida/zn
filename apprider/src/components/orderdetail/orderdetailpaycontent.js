@@ -14,7 +14,7 @@ export default class Page extends Component{
         const {orderinfo} = this.props;
 
 
-        paycontentlist  = {
+        let paycontentlist  = {
             "起步价" : ""
         }
 
@@ -39,5 +39,3 @@ export default class Page extends Component{
         )
     }
 }
-
-

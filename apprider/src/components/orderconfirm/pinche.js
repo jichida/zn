@@ -50,7 +50,7 @@ const OrderToPayDetail = (props) => {
                     <span className="line"></span>
                     <span>{props.endcity}</span>
                 </div>
-                <div className="lastnum">剩余{props.seatnumber-props.takennumber}座</div>
+                <div className="lastnum">剩余{props.seatnumber-props.seatnumbertotal}座</div>
             </div>
             <div className="pageForm formStyle1">
                 <Form>
@@ -59,7 +59,7 @@ const OrderToPayDetail = (props) => {
                             <Label>上车地点</Label>
                         </CellHeader>
                         <CellBody>
-                            <Select 
+                            <Select
                                 onChange={(e)=>{changeHandler('beginstation',e)}}
                                 data={newstartstations} />
                         </CellBody>
@@ -69,7 +69,7 @@ const OrderToPayDetail = (props) => {
                             <Label>到站地点</Label>
                         </CellHeader>
                         <CellBody>
-                            <Select 
+                            <Select
                                 onChange={(e)=>{changeHandler('endstation',e)}}
                                 data={newendstations} />
                         </CellBody>
