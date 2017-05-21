@@ -5,7 +5,6 @@ import {
   Container,
   View,
   Group,
-  NavBar,
   Grid,
   Col,
   List,
@@ -15,6 +14,8 @@ import {getdistance} from '../../util/geo.js';
 import {carmap_setmapstage} from '../../actions';
 import {acceptrequest} from '../../actions/sagacallback';
 import MapGaode from './mapcar.js';
+import '../../../public/newcss/outcar.css';
+import NavBar from '../tools/nav.js';
 
 export class Page extends React.Component {
   constructor(props) {
@@ -54,12 +55,30 @@ export class Page extends React.Component {
     let showqdbtn = curreqobj.requeststatus === '请求中';
     const {resultpricedetail} = curreqobj;
   return (
-    <View>
-        <NavBar {...dataLeft}/>
-        <Container scrollable={true}>
+        <div className="outcarPage AppPage">
+            <NavBar back={true} title="抢单" />
+            <div className="orderinfohead">
+                <img src="newimg/17.png" className="avatar"/>
+                <div className="address">
+                    <div className="orderprice">全程约: <span className="color_warning">{resultpricedetail.totalkm}公里</span></div>
+                    <div className="orderprice">预计费用: <span className="color_warning">￥{resultpricedetail.totalprice}元</span></div>
+                    <div className="startaddress">{curreqobj.srcaddress.addressname}</div>
+                    <div className="endaddress">{curreqobj.dstaddress.addressname}</div>
+                </div>
+                <span 
+                    className="qiangdanLnk"
+                    onClick={this.onClickOK.bind(this)}
+                    >抢单</span>
+            </div>
+            <div className="mapcontent list">
+                <MapGaode ref='mapgaode' curreqobj={curreqobj} />
+            </div>
+
+
+
+
 		<div className="relative">
-		    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode' curreqobj={curreqobj} /></div>
-          <div className="list margin-0 xjl_bottom">
+            <div className="list margin-0 xjl_bottom">
 			<div className="text-center">{curreqobj.requeststatus}</div>
             <div className="item item-content">
               <div className="item-main">
@@ -83,13 +102,12 @@ export class Page extends React.Component {
                 </div>
                 <div className="item-title-row padding"><div>预计费用</div><div className="item-after red">￥{resultpricedetail.totalprice}元</div></div>
 				{showqdbtn?
-    <Button onClick={this.onClickOK.bind(this)} amStyle="primary" block className="margin-0">抢单</Button>
+                    <Button onClick={this.onClickOK.bind(this)} amStyle="primary" block className="margin-0">抢单</Button>
       :null}
             </div>
-            </div>
-    </Container>
-  </View>
-  );
+        </div>
+    </div>
+);
 }
 
 }

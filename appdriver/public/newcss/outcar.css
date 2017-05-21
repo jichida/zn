@@ -160,3 +160,64 @@
     from {opacity : 0;}
     to {opacity : 1;}
 }
+
+
+.outcarPage .orderinfohead{
+    display: flex;
+    background: #FFF;
+    justify-content: space-between;
+    padding: 15px;
+    flex-shrink: 0;
+    flex-direction: row;
+    position: relative;
+    border-top: 1px solid #EEE;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+    position: relative;
+    z-index: 2000
+}
+.outcarPage .orderinfohead img.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    margin-right: 10px;
+}
+.outcarPage .address{
+    display: flex;
+    flex-direction: column;
+    padding-left: 8px;
+    flex-grow: 1;
+}
+.outcarPage .orderinfohead img.phone{
+    width: 40px;
+    margin-left: 10px;
+    align-self: center
+}
+
+.outcarPage .orderinfohead .qiangdanLnk{
+    background: #fe8802;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px 0 0 30px;
+    padding-left: 20px;
+    padding-right: 10px;
+    color: #FFF;
+    margin-right: -15px;
+    flex-shrink: 0;
+    align-self: center;
+}
+.outcarPage .orderinfohead .address >div.startaddress:before,
+.outcarPage .orderinfohead .address >div.endaddress:before{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.outcarPage .orderinfohead .address >div.startaddress:before{
+    border: 1px solid #02ae62;
+}
+.outcarPage .orderinfohead .address >div.endaddress:before{
+    border: 1px solid #f55716;
+}

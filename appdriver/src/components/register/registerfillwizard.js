@@ -105,7 +105,7 @@ class RegisterFillWizardForm extends Component {
 
   renderpage0 =()=> {
         return (
-    		<div className="registerPage register1Page AppPage">
+    		<div className="registerPage register1Page  AppPage">
 				<Cells>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>
