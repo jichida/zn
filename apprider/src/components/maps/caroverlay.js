@@ -38,13 +38,13 @@ export class Page extends React.Component {
     }
 
     cancelrequest =()=>{
-        this.props.dispatch(canceltriprequestorder({
-            triporderid:this.props.curmappageorder._id,
-            triprequestid:this.props.curmappagerequest._id
+        const {curmappageorder,curmappagerequest,curlocation,dispatch} = this.props;
+        dispatch(canceltriprequestorder({
+            triporderid:curmappageorder._id,
+            triprequestid:curmappagerequest._id
         })).then((result)=>{
-            let srclocationstring = this.props.curlocation.lng + ',' + this.props.curlocation.lat;
-            this.props.dispatch(changestartposition({
-                location:srclocationstring
+            dispatch(changestartposition({
+                location:`${curlocation.lng},${curlocation.lat}`
             }));//重新发送一次附近请求
         });
     }
@@ -90,23 +90,13 @@ export class Page extends React.Component {
             };
         }
 
-        let floatcomponents;
-        if(mapstage === 'pageinit'){
-            floatcomponents = <CarOverlayInit {...this.props}/>;
-        }
-        else if(mapstage === 'pageorder'){
-            if(curmappagerequest.requeststatus === '行程完成'){
-                floatcomponents =  <div>行程完成,正在生成订单</div>;
-                return (<View>
+        if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
+              return (<View>
                     <NavBar {...dataLeft}/>
                     <Container scrollable={true}>
-                        {floatcomponents}
+                        <div>行程完成,正在生成订单</div>
                     </Container>
                 </View>);
-            }
-            else{
-              floatcomponents =  <CarOverlayOrder  {...this.props}/>;
-            }
         }
         return (
             <div className="caroverlayPage AppPage">
@@ -123,7 +113,8 @@ export class Page extends React.Component {
                     />
                 <div className="list">
                     <MapGaode ref='mapgaode' />
-                    {floatcomponents}
+                    {mapstage === 'pageinit' && <CarOverlayInit />}
+                    {mapstage === 'pageorder' && <CarOverlayOrder />}
                 </div>
             </div>
         );
@@ -160,8 +151,8 @@ export class Page extends React.Component {
  */
 
 
-const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder}}) => {
-    return {mapstage,curmappagerequest,curmappageorder};
+const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder,curlocation}}) => {
+    return {mapstage,curmappagerequest,curmappageorder,curlocation};
 }
 
 
