@@ -73,7 +73,7 @@ export class Page extends React.Component {
   }
 
    cancelrequest =()=>{
-     const {curmappagerequest,curmappageorder,dispatch,history}= this.props.curmappagerequest;
+     const {curmappagerequest,curmappageorder,dispatch,history}= this.props;
 
      dispatch(canceltriprequestorder({
       triporderid:curmappageorder._id,

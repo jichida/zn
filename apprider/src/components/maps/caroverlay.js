@@ -32,7 +32,7 @@ export class Page extends React.Component {
                 buttonsCloseText : "取消",
                 buttonsClickText : "确定",
                 buttonsClose : ()=>{},
-                buttonsClick : ()=>{this.cancelrequest().bind(this)}
+                buttonsClick : ()=>{this.cancelrequest()}
             },
         }))
     }
@@ -110,9 +110,9 @@ export class Page extends React.Component {
         }
         return (
             <div className="caroverlayPage AppPage">
-                <NavBar 
-                    back={false} 
-                    title={dataLeft.title} 
+                <NavBar
+                    back={false}
+                    title={dataLeft.title}
                     rightnav={[
                         {
                             type : 'action',
