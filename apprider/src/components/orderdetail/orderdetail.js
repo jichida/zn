@@ -25,13 +25,6 @@ class Page extends Component {
 
     render() {
         const { orderinfo } = this.props;
-        const driverinfo = {
-            name : "赵师傅",
-            phone : "19000000000",
-            avatar : "newimg/17.png",
-            carinfo : "白色现代·苏A12345",
-            cartype : "出租车"
-        }
         return (
             <div className="userorderinfoPage AppPage">
                 <NavBar back={true} title="订单详情" />

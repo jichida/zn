@@ -14,9 +14,7 @@ export default class Page extends Component{
         const {orderinfo} = this.props;
 
 
-        paycontentlist  = {
-            "起步价" : ""
-        }
+        
 
         return (
                 <div className="paycontent">
