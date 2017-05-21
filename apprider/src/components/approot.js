@@ -176,7 +176,7 @@ class AppRoot extends React.Component {
                     <Route path="/requestorderstarting" component={Caroverlay}/>
                     <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
-                    
+
                     <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                     <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
                     <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
@@ -184,21 +184,21 @@ class AppRoot extends React.Component {
                     <Route path="/messagelist" component={Messagelist}/>
                     <Route path="/setting" component={Setting}/>
                     <Route path="/discount" component={Discount}/>
-                    <Route path="/addresscommon" component={Addresscommon}/>
-                    <Route path="/addresscommonadd" component={Addresscommonadd}/>
-                    <Route path="/userwallet" component={Userwallet}/>
+                    <Route path="/addresscommon" component={requireAuthentication(Addresscommon)}/>
+                    <Route path="/addresscommonadd" component={requireAuthentication(Addresscommonadd)}/>
+                    <Route path="/userwallet" component={requireAuthentication(Userwallet)}/>
                     <Route path="/userrecharge" component={Userrecharge}/>
-                    <Route path="/orderinfo" component={Orderinfo}/>
+                    <Route path="/orderinfo" component={requireAuthentication(Orderinfo)}/>
                     <Route path="/cancelrule" component={Cancelrule}/>
-                    <Route path="/orderlist" component={Orderlist}/>
+                    <Route path="/orderlist" component={requireAuthentication(Orderlist)}/>
                     <Route path="/selpay" component={Selpay}/>
-                    <Route path="/urgentlist" component={Urgentlist}/>
+                    <Route path="/urgentlist" component={requireAuthentication(Urgentlist)}/>
                     <Route path="/phonelist" component={Phonelist}/>
-                    <Route path="/userinfo" component={Userinfo}/>
-                    <Route path="/usercenter" component={Usercenter}/>
+                    <Route path="/userinfo" component={requireAuthentication(Userinfo)}/>
+                    <Route path="/usercenter" component={requireAuthentication(Usercenter)}/>
                     <Route path="/payway" component={Payway}/>
-                    <Route path="/recharge" component={Recharge}/>
-                    <Route path="/tourbusfillform" component={Tourbusfillform}/>
+                    <Route path="/recharge" component={requireAuthentication(Recharge)}/>
+                    <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
 
 
 

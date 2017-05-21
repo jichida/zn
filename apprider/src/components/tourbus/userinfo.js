@@ -127,6 +127,9 @@ const mapStateToPropsForm = (state) => {
   startdate = startdate || new Date();
   enddate = enddate || new Date();
   let days = enddate.getDate() - startdate.getDate() + 1;
+  if(days < 1){
+    days = 1;
+  }
   let totalorderprice = orderprice*days;
   return {totalorderprice,startdate,enddate};
 }
