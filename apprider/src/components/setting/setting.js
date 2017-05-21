@@ -75,7 +75,9 @@ class Page extends Component {
                         </Cell>
                     </Cells>
                 </div>
-                {this.props.loginsuccess && (<div className="btn">退出</div>)}
+                {this.props.loginsuccess && (<div className="btn" onClick={
+                  this.onClickLogout.bind(this)
+                }>退出</div>)}
             </div>
         )
     }

@@ -36,14 +36,14 @@ class Page extends Component {
       return (
             <div className="usercenterPage AppPage">
                 {loginsuccess &&
-                (<div className="head">
+                (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
                     <img src={avatar}/>
                     <span className="name">{phonenumbertext}</span>
                     <span className="li">账户余额 ¥{balance}</span>
                     <span className="li">优惠券 3张</span>
                 </div>)}
                 {!loginsuccess &&
-                (<div className="head">
+                (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
                     <img src={avatar} />
                     <span className="name">{phonenumbertext}</span>
                 </div>)}
