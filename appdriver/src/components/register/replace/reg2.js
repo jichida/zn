@@ -31,7 +31,15 @@ class Page extends Component {
         const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
-                <NavBar back={true} title="上传照片" />
+                <NavBar back={false} title="上传照片"
+                  leftnav={[
+                    {
+                      type:"action",
+                      action : previousPage,
+                      text:"上一步"
+                    }
+                  ]}
+                 />
                 <div className="list updataimg">
                     <div className="li">
                         <div className="tit">驾驶证</div>
@@ -45,7 +53,6 @@ class Page extends Component {
                     </div>
                 </div>
                 <div className="submitBtn">
-                  <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
                   <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
                 </div>
             </div>

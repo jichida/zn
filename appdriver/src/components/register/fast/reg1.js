@@ -73,9 +73,17 @@ class Page extends Component {
     render() {
         const { handleSubmit,previousPage } = this.props;
         return (
-            <div className="taxiPage AppPage">
+            <div className="taxiPage taxiregisterPage AppPage">
 
-                <NavBar back={false} title="注册快车司机" />
+                <NavBar back={false} title="注册快车司机"
+                  leftnav={[
+                    {
+                      type:"action",
+                      action : previousPage,
+                      text:"上一步"
+                    }
+                  ]}
+                 />
 
                 <div className="list">
                     <div className="avatar">
@@ -99,7 +107,6 @@ class Page extends Component {
                     </FormUI>
                 </div>
                 <div className="submitBtn">
-                    <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
                     <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
                 </div>
             </div>
