@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 class Page extends Component {
     //未递交/待审核/审核中/已审核/已拒绝
     render() {
-        const {approvalstatus} = this.props;
+        const {approvalstatus,approvalrejectseason,history} = this.props;
         return (
             <div className="examinePage AppPage">
                 <NavBar back={true} title="审核" />
@@ -27,7 +27,9 @@ class Page extends Component {
                           <div className="desc">
                               你可以在此平台上接单了
                           </div>
-                          <div className="btn Warning">
+                          <div className="btn Warning" onClick={
+                            ()=>{history.replace('/');}
+                          }>
                               去接单
                           </div>
                       </div>}
@@ -39,10 +41,12 @@ class Page extends Component {
                             你好，<span className="color_warning">审核没有通过</span>
                         </div>
                         <div className="desc">
-                            如有疑问电致：400-1234－567
+                            失败原因：{approvalrejectseason}
                         </div>
-                        <div className="btn Warning">
-                            联系客服
+                        <div className="btn Warning" onClick={
+                          ()=>{history.replace('/register1');}
+                        }>
+                            重新审核
                         </div>
                     </div>}
 
@@ -76,8 +80,8 @@ class Page extends Component {
 
 }
 
-const mapStateToProps = ({userlogin:{approvalstatus}}) => {
-  return {approvalstatus}
+const mapStateToProps = ({userlogin:{approvalstatus,approvalrejectseason}}) => {
+  return {approvalstatus,approvalrejectseason}
 }
 Page = connect(mapStateToProps)(Page);
 export default Page;
