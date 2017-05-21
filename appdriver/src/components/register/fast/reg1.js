@@ -79,7 +79,7 @@ class Page extends Component {
 
                 <div className="list">
                     <div className="avatar">
-                        <Field name="avatar" component={renderImageupload}/>
+                        <Field name="avatarURL" component={renderImageupload}/>
                     </div>
                     <FormUI className="formStyle1">
                     <Field name="DriverName" label="司机姓名" placeholder="请输入司机姓名" type="text" component={renderInputField}/>
