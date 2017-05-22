@@ -14,6 +14,7 @@ import car from './car';
 import registerfillwizard from './registerfillwizard';
 import createcarwizard from './createcarwizard';
 import withdraw from './withdraw';
+import weui from './weui';
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -29,6 +30,7 @@ export default combineReducers({
         withdraw,
         orderdetail,
         registerfillwizard,
+        weui,
         form: formReducer,
         router: routerReducer
     }

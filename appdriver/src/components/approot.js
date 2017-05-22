@@ -2,6 +2,7 @@
  * Created by wangxiaoqing on 2017/3/15.
  */
 import React from 'react';
+import WeuiTool from './tools/weuitool';
 
 import Login from './login/login.js';
 
@@ -136,6 +137,7 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
     render() {
         return (
             <div className="AppContainer">
+                <WeuiTool />
                 {MessageCo}
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
@@ -149,11 +151,8 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/register" component={Register}/>
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
-
                     <Route path="/outcar" component={requireApproval(Outcar)}/>
-
                     <Route path="/approval" component={requireAuthentication(Approval)}/>
-
                     <Route path="/mywallet" component={requireApproval(Userwallet)}/>
                     <Route path="/withdraw" component={Withdraw}/>
                     <Route path="/withdrawauth/:withdrawid" component={Withdrawauth}/>
@@ -161,7 +160,6 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/mycars" component={Mycars}/>
                     <Route path="/createcar" component={Createcar}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
-
                 </Switch>
             </div>
         );

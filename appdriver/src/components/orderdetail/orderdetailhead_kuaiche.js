@@ -12,8 +12,8 @@ export default class Page extends Component{
                 <div className="driver">
                     <img src="newimg/4.png" className="avatar"/>
                     <div className="address">
-                        <div>这里是起点</div>
-                        <div>这里是终点</div>
+                        <div className="startaddress">{orderinfo.srcaddress.addressname}</div>
+                        <div className="endaddress">{orderinfo.dstaddress.addressname}</div>
                     </div>
                     <a 
                         href={`tel:${19999999999}`}
