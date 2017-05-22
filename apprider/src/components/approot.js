@@ -38,6 +38,9 @@ import {
 /*UI重新做*/
 import Messagelist from "./new/user/message";
 
+//支付界面
+import Pay from './pay/pay';
+import Selpay from './pay/selpay';
 /*个人中心*/
 //设置
 import Setting from "./new/user/setting";
@@ -56,7 +59,7 @@ import Orderinfo from "./new/user/orderinfo";
 //订单列表
 import Orderlist from "./new/user/orderlist";
 //选择支付方式
-import Selpay from "./new/user/selpay";
+//import Selpay from "./new/user/selpay";
 //紧急联系人
 import Urgentlist from "./new/user/urgentlist";
 //个人信息
@@ -200,7 +203,8 @@ class AppRoot extends React.Component {
                     <Route path="/recharge" component={requireAuthentication(Recharge)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
 
-
+                    <Route path="/selpay" component={Selpay}/>
+                    <Route path="/pay" component={Pay}/>
 
                     <Route component={App}/>
                 </Switch>
