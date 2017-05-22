@@ -1,78 +1,68 @@
 /*
-    审核
+    支付
 */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../public/newcss/examine.css';
 import NavBar from '../tools/nav.js';
-import { connect } from 'react-redux';
+import '../../../public/newcss/pay.css';
+import Selpay from './selpay.js';
+const { 
+    Cell,
+    CellBody,
+    CellFooter,
+    Cells
+    } = WeUI;
 
 class Page extends Component {
-    //未递交/待审核/审核中/已审核/已拒绝
     render() {
         const {approvalstatus,approvalrejectseason,history} = this.props;
         return (
-            <div className="examinePage AppPage">
-                <NavBar back={true} title="审核" />
+            <div className="payPage AppPage">
+                <NavBar back={true} title="支付订单" />
+                <div className="orderinfo">
+                    <div className="avatarcon">
+                        <img src="newimg/17.png" className="avatarimg" />
+                        <span>赵师傅</span>
+                    </div>
+                    <div className="info">
+                        <div>订单类型：<span className="color_warning">代驾</span></div>
+                        <div>里程数: <span className="color_warning">120KM</span></div>
+                        <div>订单价格: <span className="color_warning">120元</span></div>
+                    </div>
+                </div>
 
                 <div className="list">
-                    {approvalstatus === '已审核' &&
-                      <div className="success li">
-                          <img src="newimg/13.png" />
-                          <div className="tit">
-                              你好，<span className="color_warning">审核已通过</span>
-                          </div>
-                          <div className="desc">
-                              你可以在此平台上接单了
-                          </div>
-                          <div className="btn Warning" onClick={
-                            ()=>{history.replace('/');}
-                          }>
-                              去接单
-                          </div>
-                      </div>}
 
-                    {approvalstatus === '已拒绝' &&
-                    <div className="false li">
-                        <img src="newimg/14.png" />
-                        <div className="tit">
-                            你好，<span className="color_warning">审核没有通过</span>
-                        </div>
-                        <div className="desc">
-                            失败原因：{approvalrejectseason}
-                        </div>
-                        <div className="btn Warning" onClick={
-                          ()=>{history.replace('/register1');}
-                        }>
-                            重新审核
-                        </div>
-                    </div>}
-
-                    {approvalstatus === '审核中' &&
-                     <div className="warting li">
-                        <img src="newimg/15.png" />
-                        <div className="tit">
-                            你好，正在加紧<span className="color_warning">审核中</span>
-                        </div>
-                        <div className="desc">
-                            审核结果会以短信形式通知你
-                        </div>
-                    </div>}
-
-                    {approvalstatus === '待审核' &&
-                    <div className="updata li">
-                        <img src="newimg/16.png" />
-                        <div className="tit">
-                            注册资料已提交，<span className="color_warning">待审核</span>
-                        </div>
-                        <div className="desc">
-                            <span>审核将于5个工作日内完成</span>
-                            <span className="color_warning">审核结果会以短信的形式通知你</span>
-                        </div>
-                    </div>
-                  }
+                    <Cells>
+                        <Cell access>
+                            <CellBody>
+                                优惠券
+                            </CellBody>
+                            <CellFooter>
+                                <span>3张</span>
+                            </CellFooter>
+                        </Cell>
+                        <Cell access>
+                            <CellBody>
+                                优惠券
+                            </CellBody>
+                            <CellFooter>
+                                <span className="color_error">-3元</span>
+                            </CellFooter>
+                        </Cell>
+                    </Cells>
+                    <Selpay />
+                </div>
+                <div className="paybtn"> 
+                    <span>
+                        还需支付：<span>100元</span>
+                    </span>
+                    <span className="btn Primary">
+                        确定支付
+                    </span>
                 </div>
             </div>
         )
@@ -80,8 +70,12 @@ class Page extends Component {
 
 }
 
-const mapStateToProps = ({userlogin:{approvalstatus,approvalrejectseason}}) => {
-  return {approvalstatus,approvalrejectseason}
+const data = ({}) => {
+  return {}
 }
-Page = connect(mapStateToProps)(Page);
+Page = connect(data)(Page);
 export default Page;
+
+
+
+

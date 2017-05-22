@@ -44,6 +44,10 @@ import Withdrawauth from './mywallet/withdrawauth';
 //审核页面
 import Approval from './register/approval';
 
+//支付界面
+import Pay from './pay/pay';
+import Selpay from './pay/selpay';
+
 //消息页面
 import MessageCenter from './messagecenter/message';
 
@@ -160,6 +164,8 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/mycars" component={Mycars}/>
                     <Route path="/createcar" component={Createcar}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
+                    <Route path="/selpay" component={Selpay}/>
+                    <Route path="/pay" component={Pay}/>
                 </Switch>
             </div>
         );
