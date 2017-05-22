@@ -15,16 +15,14 @@ export default class Page extends Component{
                         <div className="startaddress">{orderinfo.srcaddress.addressname}</div>
                         <div className="endaddress">{orderinfo.dstaddress.addressname}</div>
                     </div>
-                    <a 
+                    <a
                         href={`tel:${19999999999}`}
                         className="call">
                         <img src="newimg/19.png" />
                     </a>
                 </div>
-                
+
             </div>
         )
     }
 }
-
-

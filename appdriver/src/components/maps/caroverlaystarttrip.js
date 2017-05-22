@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {carmap_resetmap,carmap_setmapstage,initdriverroute,driveroute_request} from '../../actions';
 import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
 import '../../../public/newcss/outcar.css';
-import CaroverlayLxck from './embmapstep1lxck';
+//import CaroverlayLxck from './embmapstep1lxck';
 import CaroverlayQjck from './embmapstep2qjck';
 import CaroverlayJdck from './embmapstep3jdck';
 import CaroverlayKsxc from './embmapstep4ksxc';
@@ -28,11 +28,8 @@ export class Page extends React.Component {
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);
     const {mapstage,curmappagerequest,curmappageorder,dispatch,history}= this.props;
-    if(mapstage === '联系乘客'){
-      //规划路线
-      dispatch(carmap_setmapstage('去接乘客'));
-    }
-    else if(mapstage === '去接乘客'){
+
+    if(mapstage === '去接乘客'){
         //更新请求状态（接到乘客）
         dispatch(updaterequeststatus({
             triprequestid:curmappagerequest._id,
@@ -91,16 +88,8 @@ export class Page extends React.Component {
       let CaroverlayCo;
       if(currentrequest.requeststatus !== "已取消" && currentrequest.requeststatus){
         //被reset了！！
-        if(mapstage === '联系乘客'){
-          CaroverlayCo = <CaroverlayLxck
-          currentrequest={currentrequest}
-          currentorder={currentorder}
-          onClickCancel={this.cancelrequest}
-          onClickNext={this.onClickNext.bind(this,'去接乘客')}
-          curlocation={curlocation}/>
-        }
-        else if(mapstage === '去接乘客'){
-            CaroverlayCo = 
+        if(mapstage === '去接乘客'){
+            CaroverlayCo =
                 <CaroverlayQjck
                     currentrequest={currentrequest}
                     currentorder={currentorder}
@@ -111,7 +100,7 @@ export class Page extends React.Component {
                 />
         }
         else if(mapstage === '接到乘客'){
-            CaroverlayCo = 
+            CaroverlayCo =
                 <CaroverlayJdck
                     currentrequest={currentrequest}
                     currentorder={currentorder}
@@ -122,7 +111,7 @@ export class Page extends React.Component {
                 />
         }
         else if(mapstage === '开始行程'){
-            CaroverlayCo = 
+            CaroverlayCo =
                 <CaroverlayKsxc
                     currentrequest={currentrequest}
                     currentorder={currentorder}

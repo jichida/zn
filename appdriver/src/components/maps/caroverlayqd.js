@@ -48,7 +48,7 @@ export class Page extends React.Component {
     let triptypename = curreqobj.isrealtime?'实时':'预约';
     let showqdbtn = curreqobj.requeststatus === '请求中';
     const {resultpricedetail} = curreqobj;
-  return (
+    return (
         <div className="outcarPage AppPage">
             <NavBar back={true} title="抢单" />
             <div className="orderinfohead">
@@ -59,7 +59,7 @@ export class Page extends React.Component {
                     <div className="startaddress">{curreqobj.srcaddress.addressname}</div>
                     <div className="endaddress">{curreqobj.dstaddress.addressname}</div>
                 </div>
-                <span 
+                <span
                     className="qiangdanLnk"
                     onClick={this.onClickOK.bind(this)}
                     >抢单</span>

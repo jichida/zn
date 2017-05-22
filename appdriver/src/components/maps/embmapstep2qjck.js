@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NavBar from '../tools/nav.js';
 import MapGaode from './mapcar.js';
-
+import PageRiderHead from './pageriderheader';
 
 export default class Page extends React.Component {
     constructor(props) {
@@ -14,26 +14,20 @@ export default class Page extends React.Component {
         this.props.onClickNext(btnname);
     }
     render() {
-        const {driveroute:routeshow,currentrequest:curreqobj,onClickCancel} = this.props;
-        //urreqobj.requeststatus 
+        const {driveroute:routeshow,currentrequest:curreqobj,currentorder,onClickCancel} = this.props;
+        //urreqobj.requeststatus
         return (
             <div className="outcarPage AppPage">
-                <NavBar 
-                    back={true} 
-                    title="接乘客" 
+                <NavBar
+                    back={false}
+                    title="接乘客"
                     rightnav={[{
                         text:"取消订单",
                         type:"action",
                         action:onClickCancel
                     }]}
                 />
-                <div className="orderinfohead">
-                    <img src="newimg/17.png" className="avatar"/>
-                    <div className="address">
-                        <div className="startaddress">{curreqobj.srcaddress.addressname}</div>
-                        <div className="endaddress">{curreqobj.dstaddress.addressname}</div>
-                    </div>
-                </div>
+                <PageRiderHead currentorder={currentorder}/>
                 <div className="mapcontent list">
                     <MapGaode ref='mapgaode'  curreqobj={curreqobj} />
                 </div>

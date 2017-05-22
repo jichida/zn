@@ -18,6 +18,8 @@ export const getpaysign_result = createAction('getpaysign_result');
 export const getpaysign_err = createAction('getpaysign_err');
 
 export const ui_setorderdetail = createAction('ui_setorderdetail');
+export const ui_setselcommenttag = createAction('ui_setselcommenttag');
+
 
 export const getcommenttags_request = createAction('getcommenttags_request');
 export const getcommenttags_result = createAction('getcommenttags_result');

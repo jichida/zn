@@ -8,7 +8,7 @@ import Kuaiche from './orderdetailhead_kuaiche';
 
 export default class Page extends Component {
     render() {
-        const { orderinfo,driverinfo } = this.props;
+        const { orderinfo } = this.props;
         return (
             <div className="orderinfohead">
             	{
@@ -18,7 +18,6 @@ export default class Page extends Component {
             		(
             			<Kuaiche
             				orderinfo={orderinfo}
-            				driverinfo={driverinfo}
             			/>
             		):""
             	}
