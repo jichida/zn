@@ -32,7 +32,8 @@ import {
   fillrealnameprofile_result,
   withdrawcashapplyaddone_result,
   withdrawcashapplyauth_result,
-  carcreate_result
+  carcreate_result,
+  set_weui,
 } from '../actions';
 import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -92,11 +93,12 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(showpopmessage({
-        title:'成功',
-        msg:result.popmessage,
+      yield put(set_weui({
+        toast:{
+        text:result.popmessage,
+        show: true,
         type:'success'
-      }));
+      }}));
   });
 
   yield takeEvery(`${md_serverpush_triporder}`, function*(action) {
@@ -114,11 +116,12 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${common_err}`, function*(action) {
         let {payload:result} = action;
         console.log(`common_err:${JSON.stringify(result)}`);
-        yield put(showpopmessage({
-          title:result.title,
-          msg:result.errmsg,
+        yield put(set_weui({
+          toast:{
+          text:result.errmsg,
+          show: true,
           type:'error'
-        }));
+        }}));
   });
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
