@@ -4,8 +4,10 @@ import {sendstartpositionflow,createinitflow} from './sendstartposition';
 import {createrestoreorderflow} from './restoreorder';
 import {flowmain} from './flowmain';
 import {wsrecvsagaflow} from './wsrecvsaga';
+import {payflow} from './payflow';
 
 export default function* rootSaga() {
+  yield fork(payflow);
   yield fork(wsrecvsagaflow);
   yield fork(createrestoreorderflow);//监视恢复订单
   yield fork(flowmain);

@@ -70,12 +70,16 @@ import {
 
 
     rechargepay_request,
-    rechargepay_result
+    rechargepay_result,
+
+    payorder_request,
+    payorder_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'payorder_result':payorder_result,
   'rechargepay_result':rechargepay_result,
   'getsystemconfig_result':getsystemconfig_result,
   'updateorder_comment_result':updateorder_comment_result,
@@ -127,6 +131,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'payorder_request':`${payorder_request}`,
   'rechargepay':`${rechargepay_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'getoftenuseaddress':`${getoftenuseaddress_request}`,
