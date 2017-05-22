@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {loginsendauth_request,loginwithauth_request} from '../../actions';
 import NavBar from '../tools/nav.js';
 import '../../../public/newcss/login.css';
+import { withRouter } from 'react-router-dom';
 import {
     required,
     phone,
@@ -60,6 +61,7 @@ export class PageForm extends Component {
                         >
                         登录
                     </span>
+                    <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
                 </div>
             </Form>
         )
@@ -79,6 +81,7 @@ PageForm = connect(
         }
     }
 )(PageForm)
+PageForm = withRouter(PageForm);
 
 export class Page extends Component {
     componentWillReceiveProps (nextProps) {
@@ -124,6 +127,7 @@ export class Page extends Component {
 
 const data = ({userlogin}) => { return userlogin; }
 Page = connect(data)(Page);
+
 export default Page;
 
 

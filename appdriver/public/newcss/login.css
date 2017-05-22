@@ -66,5 +66,10 @@
 .loginPage .submitBtn{
 	padding-top: 30px;
 }
+.loginPage .gotoregister{
+	color: #FFF;
+	text-align: center;
+	line-height: 40px;
+}
 
 

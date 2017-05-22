@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {renderInputField,renderAuthField} from '../tools/renderfield';
 import NavBar from '../tools/nav.js';
 import '../../../public/newcss/register.css';
+import { withRouter } from 'react-router-dom';
 import {
     loginsendauth_request,
     register_request,
@@ -39,8 +40,13 @@ let RegisterForm = (props)=> {
         props.dispatch(loginsendauth_request({phonenumber}));
         console.log("发送验证码:" + phonenumber);
     }
+    let handleLogin =()=>{
+        props.history.replace("/login");
+    }
     return (
-        <Form>
+        <Form
+            onSubmit={handleSubmit}
+            >
             <FormUI>
                 <div className="li">
                     <Field
@@ -64,7 +70,7 @@ let RegisterForm = (props)=> {
                         validate={[ required,length4 ]}
                         InputTit="验证码"
                     />
-                    <div className="getyanzhen" onClickAuth={onClickAuth}>获取验证码</div>
+                    <div className="getyanzhen" onClick={onClickAuth}>获取验证码</div>
                 </div>
                 <div className="li">
                     <Field
@@ -89,7 +95,7 @@ let RegisterForm = (props)=> {
             </div>
             <div className="submitBtn">
                 <botton className="btn Primary" onClick={handleSubmit}>下一步</botton>
-                <a className="blue" >已有账号，去登录</a>
+                <a className="blue" onClick={handleLogin}>已有账号，去登录</a>
             </div>
         </Form>
     );
@@ -98,7 +104,6 @@ let RegisterForm = (props)=> {
 RegisterForm = reduxForm({
     form: 'selectingFormValues'
 })(RegisterForm);
-
 const selector = formValueSelector('selectingFormValues') 
 RegisterForm = connect(
     state => {
@@ -110,6 +115,7 @@ RegisterForm = connect(
         }
     }
 )(RegisterForm)
+RegisterForm = withRouter(RegisterForm);
 
 // const validate = values => {
 //     const errors = {}
