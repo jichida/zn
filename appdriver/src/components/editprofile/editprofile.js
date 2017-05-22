@@ -7,6 +7,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/baseinfo.css';
 import NavBar from '../tools/nav.js';
+import {logout_request} from '../../actions';
 const {
     Cells,
     Cell,
@@ -16,6 +17,12 @@ const {
 import { connect } from 'react-redux';
 
 class Page extends Component {
+
+    componentWillReceiveProps (nextProps) {
+        if(!nextProps.loginsuccess && this.props.loginsuccess){
+            this.props.history.push("/login");
+        }
+    }
 
     render() {
         const {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber} = this.props;
@@ -58,6 +65,14 @@ class Page extends Component {
                         </Cell>
                     </Cells>
                     <div className="f">如需修改，请联系客服<span className="color_warning">{servicephonenumber}</span></div>
+                    <div className="submitBtn" style={{padding:"20px"}}>
+                        <span
+                            className="btn Primary"
+                            onClick={()=>{this.props.dispatch(logout_request())}}
+                            >
+                            退出
+                        </span>
+                    </div>
                 </div>
             </div>
         )
@@ -65,24 +80,20 @@ class Page extends Component {
 }
 
 const mapStateToProps =  ({
-  app:{
-    servicephonenumber,
-  },
-  userlogin:
-  {
-    PhotoandCarmanURL,
-    Platform_baseInfoDriver:
-    {
-      DriverName,
-      DriverPhone
-    },
-    Platform_baseInfoVehicle:
-    {
-      VehicleNo
-    },
-  }
+    app:{servicephonenumber},
+    userlogin:{
+        PhotoandCarmanURL,
+        Platform_baseInfoDriver:{
+            DriverName,
+            DriverPhone
+        },
+        Platform_baseInfoVehicle:{
+            VehicleNo
+        },
+        loginsuccess
+    }
 }) =>{
-    return {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber};
+    return {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,loginsuccess};
 };
 
 export default connect(
