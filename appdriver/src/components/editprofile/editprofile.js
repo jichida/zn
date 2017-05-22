@@ -18,11 +18,11 @@ import { connect } from 'react-redux';
 
 class Page extends Component {
 
-    componentWillReceiveProps (nextProps) {
-        if(!nextProps.loginsuccess && this.props.loginsuccess){
-            this.props.history.push("/login");
-        }
-    }
+    // componentWillReceiveProps (nextProps) {
+    //     if(!nextProps.loginsuccess && this.props.loginsuccess){
+    //         this.props.history.push("/login");
+    //     }
+    // }
 
     render() {
         const {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber} = this.props;

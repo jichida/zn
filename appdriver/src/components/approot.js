@@ -158,14 +158,14 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/outcar" component={requireApproval(Outcar)}/>
                     <Route path="/approval" component={requireAuthentication(Approval)}/>
                     <Route path="/mywallet" component={requireApproval(Userwallet)}/>
-                    <Route path="/withdraw" component={Withdraw}/>
-                    <Route path="/withdrawauth/:withdrawid" component={Withdrawauth}/>
-                    <Route path="/editprofile" component={Editprofile}/>
-                    <Route path="/mycars" component={Mycars}/>
-                    <Route path="/createcar" component={Createcar}/>
+                    <Route path="/withdraw" component={requireAuthentication(Withdraw)}/>
+                    <Route path="/withdrawauth/:withdrawid" component={requireAuthentication(Withdrawauth)}/>
+                    <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>
+                    <Route path="/mycars" component={requireAuthentication(Mycars)}/>
+                    <Route path="/createcar" component={requireAuthentication(Createcar)}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
-                    <Route path="/selpay" component={Selpay}/>
-                    <Route path="/pay" component={Pay}/>
+                    <Route path="/selpay" component={requireAuthentication(Selpay)}/>
+                    <Route path="/pay" component={requireAuthentication(Pay)}/>
                 </Switch>
             </div>
         );
