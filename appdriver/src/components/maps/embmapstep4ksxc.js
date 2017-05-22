@@ -15,8 +15,8 @@ export default class Page extends React.Component {
         console.log("curreqobj==>"  + JSON.stringify(curreqobj));
         return (
             <div className="outcarPage AppPage startTrip">
-                <NavBar 
-                    back={true} 
+                <NavBar
+                    back={false} 
                     title="开始行程"
                 />
                 <div className="orderinfohead">

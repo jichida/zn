@@ -13,7 +13,7 @@ import Orderdetailhead from "./orderdetailhead";
 import Orderdetailpaycontent from "./orderdetailpaycontent";
 import Orderdetailevaluate from "./orderdetailevaluate";
 
-const { 
+const {
     Form,
     FormCell,
     CellBody,
@@ -25,20 +25,18 @@ class Page extends Component {
 
     render() {
         const { orderinfo } = this.props;
-        const driverinfo = {
-            name : "赵师傅",
-            phone : "19000000000",
-            avatar : "newimg/17.png",
-            carinfo : "白色现代·苏A12345",
-            cartype : "出租车"
+        let hascommented = false;
+        const {triptype} = orderinfo;
+        if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
+          hascommented = orderinfo.paystatus === '已支付';
         }
         return (
             <div className="userorderinfoPage AppPage">
                 <NavBar back={true} title="订单详情" />
                 <div className="pageContent">
-                    <Orderdetailhead orderinfo={orderinfo} driverinfo={driverinfo} />
+                    <Orderdetailhead orderinfo={orderinfo} />
                     <Orderdetailpaycontent orderinfo={orderinfo} />
-                    <Orderdetailevaluate orderinfo={orderinfo} />
+                    {hascommented && <Orderdetailevaluate orderinfo={orderinfo} />}
                 </div>
             </div>
         )
@@ -47,12 +45,9 @@ class Page extends Component {
 const mapStateToProps =  ({orderdetail,myorders}, props) =>{
     let triporderid = props.match.params.triporderid;
     let orderinfo = myorders.triporders[triporderid];
-    console.log(orderdetail);
-    console.log(orderinfo);
     return {...orderdetail,orderinfo};
 };
 
 export default connect(
     mapStateToProps,
 )(Page);
-

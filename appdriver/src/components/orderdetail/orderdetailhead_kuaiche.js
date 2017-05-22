@@ -12,19 +12,17 @@ export default class Page extends Component{
                 <div className="driver">
                     <img src="newimg/4.png" className="avatar"/>
                     <div className="address">
-                        <div>这里是起点</div>
-                        <div>这里是终点</div>
+                    <div>{orderinfo.srcaddress.addressname}</div>
+                    <div>{orderinfo.dstaddress.addressname}</div>
                     </div>
-                    <a 
+                    <a
                         href={`tel:${19999999999}`}
                         className="call">
                         <img src="newimg/19.png" />
                     </a>
                 </div>
-                
+
             </div>
         )
     }
 }
-
-

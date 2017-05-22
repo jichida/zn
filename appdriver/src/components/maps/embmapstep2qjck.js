@@ -15,12 +15,12 @@ export default class Page extends React.Component {
     }
     render() {
         const {driveroute:routeshow,currentrequest:curreqobj,onClickCancel} = this.props;
-        //urreqobj.requeststatus 
+        //urreqobj.requeststatus
         return (
             <div className="outcarPage AppPage">
-                <NavBar 
-                    back={true} 
-                    title="接乘客" 
+                <NavBar
+                    back={false} 
+                    title="接乘客"
                     rightnav={[{
                         text:"取消订单",
                         type:"action",

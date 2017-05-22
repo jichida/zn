@@ -16,9 +16,9 @@ export default class Page extends React.Component {
         //curreqobj.requeststatus
         return (
             <div className="outcarPage AppPage">
-                <NavBar 
-                    back={true} 
-                    title="等待乘客上车" 
+                <NavBar
+                    back={false} 
+                    title="等待乘客上车"
                     rightnav={[{
                         text:"取消订单",
                         type:"action",
