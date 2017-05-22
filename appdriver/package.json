@@ -4,7 +4,6 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "amazeui-touch": "^1.0.0",
     "antd": "^2.9.3",
     "axios": "^0.15.3",
     "belle": "^3.0.1",
@@ -24,7 +23,7 @@
     "react-sidebar": "^2.3.0",
     "react-star-rating-component": "^1.2.4",
     "react-virtualized": "^9.3.0",
-    "react-weui": "^1.0.3",
+    "react-weui": "^1.0.4",
     "redux": "^3.6.0",
     "redux-act": "^1.1.1",
     "redux-form": "^6.5.0",
