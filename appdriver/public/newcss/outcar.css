@@ -221,3 +221,25 @@
 .outcarPage .orderinfohead .address >div.endaddress:before{
     border: 1px solid #f55716;
 }
+.outcarPage .submitBtn{
+    padding: 10px 15px;
+    background: #FFF;
+}
+.startTrip .address .a{
+    display: flex;
+    align-items: center;
+
+}
+.startTrip .address .a img{
+    width: 30px;
+    margin-right: 10px;
+}
+.startTrip .address .b{
+    padding-left: 40px;
+}
+
+
+
+
+
+
