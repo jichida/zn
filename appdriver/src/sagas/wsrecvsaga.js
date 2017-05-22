@@ -119,11 +119,15 @@ export function* wsrecvsagaflow() {
           msg:result.errmsg,
           type:'error'
         }));
-
   });
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
+      const {triprequest, triporder} = result;
+      if(!!triporder){
+        //最后会有一个顺序
+        yield put(triporder_updateone(result.triporder));
+      }
       yield put(updaterequeststatus_result(result));
       yield put(wait_updaterequeststatus_result({result:result}));
   });
