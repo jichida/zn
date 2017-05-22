@@ -6,7 +6,28 @@ import '../../../public/newcss/userorderinfo.css';
 
 export default class Page extends Component{
     render(){
-        const {orderinfo,driverinfo} = this.props;
+          const {orderinfo} = this.props;
+          let {
+            driverinfo:
+            {
+              DriverName:name,
+              DriverPhone:phone,
+              Model,
+              Brand,
+              PlateColor,
+              VehicleNo,
+              starnum,
+              avatarURL,
+            }
+         } = orderinfo;
+         let carinfo = `${PlateColor}${Model}·${VehicleNo}`;
+         let driverinfo = {
+             name,
+             phone,
+             avatar : avatarURL||"newimg/17.png",
+             carinfo,
+             cartype : orderinfo.triptype
+         };
         return (
             <div className="kuaicheinfo">
                 <div className="driver">
@@ -20,7 +41,7 @@ export default class Page extends Component{
                             {driverinfo.carinfo} <span>{driverinfo.cartype}</span>
                         </div>
                     </div>
-                    <a 
+                    <a
                         href={`tel:${driverinfo.phone}`}
                         className="call">
                         <img src="newimg/20.png" />
@@ -35,5 +56,3 @@ export default class Page extends Component{
         )
     }
 }
-
-

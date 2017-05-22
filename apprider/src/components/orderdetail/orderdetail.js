@@ -25,40 +25,18 @@ class Page extends Component {
 
     render() {
         const { orderinfo } = this.props;
-        // const driverinfo = {
-        //     name : "赵师傅",
-        //     phone : "19000000000",
-        //     avatar : "newimg/17.png",
-        //     carinfo : "白色现代·苏A12345",
-        //     cartype : "出租车"
-        // }
-        let {
-          driverinfo:
-          {
-            DriverName:name,
-            DriverPhone:phone,
-            Model,
-            Brand,
-            PlateColor,
-            VehicleNo,
-            starnum
-          }
-       } = orderinfo;
-       let carinfo = `${PlateColor}${Model}·${VehicleNo}`;
-       let driverinfo = {
-           name,
-           phone,
-           avatar : "newimg/17.png",
-           carinfo,
-           cartype : orderinfo.triptype
-       }
+        let hascommented = false;
+        const {triptype} = orderinfo;
+        if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
+          hascommented = true;
+        }
         return (
             <div className="userorderinfoPage AppPage">
                 <NavBar back={true} title="订单详情" />
                 <div className="pageContent">
-                    <Orderdetailhead orderinfo={orderinfo} driverinfo={driverinfo} />
+                    <Orderdetailhead orderinfo={orderinfo} />
                     <Orderdetailpaycontent orderinfo={orderinfo} />
-                    <Orderdetailevaluate orderinfo={orderinfo} />
+                    {hascommented && <Orderdetailevaluate orderinfo={orderinfo} />}
                 </div>
             </div>
         )

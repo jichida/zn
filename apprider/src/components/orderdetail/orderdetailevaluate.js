@@ -9,7 +9,7 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userorderinfo.css';
 import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
-const { 
+const {
     Form,
     FormCell,
     CellBody,
@@ -40,38 +40,50 @@ export class Page extends Component{
             dispatch,
             ratenum,//评分
             } = this.props;
+
+        let iscommented = false;
+        const {commentflag} = orderinfo;
+        if(!!commentflag){
+          if((commentflag & 1) > 0 ){
+            iscommented = true;
+          }
+        }
         return (
                 <div className="evaluatecontent">
-                    <div
-                        className="tt"
-                        onClick={()=>{this.addevaluatebox(true)}}
-                        >
-                        评价司机
-                    </div>
-                    <div className="evaluate PanelBox">
-                        <StarRatingComponent 
-                            name="star" 
-                            editing={false}
-                            starCount={5}
-                            value={4}
-                            emptyStarColor="#EEEEEE"
-                            
-                        />
-                        <span className="text">默认好评</span>
-                    </div>
-                    
+                    {!iscommented &&
+                      <div
+                          className="tt"
+                          onClick={()=>{this.addevaluatebox(true)}}
+                          >
+                          评价司机
+                      </div>
+                    }
+
+                    {iscommented &&
+                      <div className="evaluate PanelBox">
+                          <StarRatingComponent
+                              name="star"
+                              editing={false}
+                              starCount={5}
+                              value={4}
+                              emptyStarColor="#EEEEEE"
+
+                          />
+                      </div>
+                    }
+
                     <div className={showaddevaluate?"addevaluate show":"addevaluate"}>
                         <div className="wamp">
                             <div className="tit">
                                 <span>评价司机</span>
-                                <img 
+                                <img
                                     src="newimg/12.png"
                                     onClick={()=>{this.addevaluatebox(false)}}
                                     className="close" />
                             </div>
                             <div className="star">
-                                <StarRatingComponent 
-                                    name="star" 
+                                <StarRatingComponent
+                                    name="star"
                                     editing={true}
                                     starCount={5}
                                     value={ratenum}
@@ -85,7 +97,7 @@ export class Page extends Component{
                                 <span>车技好</span>
                             </div>
                             <div className="text">
-                                <Form> 
+                                <Form>
                                     <FormCell>
                                         <CellBody>
                                             <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"></TextArea>
@@ -105,7 +117,3 @@ const data =  ({orderdetail}) =>{
     return {...orderdetail};
 };
 export default connect(data)(Page);
-
-
-
-

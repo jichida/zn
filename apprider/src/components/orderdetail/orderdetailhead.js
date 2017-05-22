@@ -10,7 +10,7 @@ import Lvyoudaba from './orderdetailhead_lvyoudaba';
 
 export default class Page extends Component {
     render() {
-        const { orderinfo,driverinfo } = this.props;
+        const { orderinfo } = this.props;
         return (
             <div className="orderinfohead">
             	{
@@ -20,25 +20,22 @@ export default class Page extends Component {
             		(
             			<Kuaiche
             				orderinfo={orderinfo}
-            				driverinfo={driverinfo}
             			/>
             		):""
             	}
             	{
             		orderinfo.triptype=="旅游大巴"?
             		(
-            			<Lvyoudaba 
+            			<Lvyoudaba
             				orderinfo={orderinfo}
-            				driverinfo={driverinfo}
             			/>
             		):""
             	}
             	{
             		orderinfo.triptype=="拼车"?
             		(
-            			<Pinche 
+            			<Pinche
             				orderinfo={orderinfo}
-            				driverinfo={driverinfo}
             			/>
             		):""
             	}
@@ -46,5 +43,3 @@ export default class Page extends Component {
         )
     }
 }
-
-
