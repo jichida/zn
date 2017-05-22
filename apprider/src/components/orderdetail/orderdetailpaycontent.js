@@ -19,11 +19,11 @@ export default class Page extends Component{
         if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
             const {realtimepricedetail} = orderinfo;
             if(!!realtimepricedetail && orderprice > 0){
-              const {totalkm} = realtimepricedetail;
-              paycontentlist.push({
-                name:`里程${totalkm}公里`,
-                fee:``
-              });
+              let {pricelistdetail} = realtimepricedetail;
+              paycontentlist = pricelistdetail || [{
+                name:`里程${realtimepricedetail.totalkm}公里`,
+                fee:`${orderprice}元`
+              }];
             }
             else{
               paycontentlist.push({

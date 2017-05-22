@@ -15,14 +15,38 @@ const {
     CellBody,
     TextArea,
     LoadMore } = WeUI;
+import _ from 'lodash';
 import {
-    ui_setorderdetail
+  updateorder_comment_request,
+  ui_setorderdetail,
+  ui_setselcommenttag
 } from '../../actions';
 
 export class Page extends Component{
 
     componentWillUnmount(){
         this.addevaluatebox(false);
+    }
+    onClickTag(addflag,comments){
+      this.props.dispatch(ui_setselcommenttag({
+        addflag,comments
+      }));
+    }
+    onClickCarComment(){
+      const {ratenum,commenttagsel,comment,orderinfo} = this.props;
+      let commentflag = orderinfo.commentflag | 1;
+      let commentinfo = {
+        ratedriverinfo:{
+          ratenum,
+          commenttagsel,
+          comment
+        },
+        commentflag
+      }
+      this.props.dispatch(updateorder_comment_request({
+        query:{_id:orderinfo._id},
+        data:commentinfo
+      }));
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -36,7 +60,10 @@ export class Page extends Component{
     render(){
         const {
             orderinfo,
+            commenttagsfordriver,
+            commenttagsel,
             showaddevaluate,
+            maxshowtags,
             dispatch,
             ratenum,//评分
             } = this.props;
@@ -48,6 +75,16 @@ export class Page extends Component{
             iscommented = true;
           }
         }
+
+        let commenttagsfordriverselmaxleft = _.xor(commenttagsfordriver,commenttagsel);
+        commenttagsfordriverselmaxleft = _.shuffle(commenttagsfordriverselmaxleft);
+        let commenttagsfordriverselmax = [...commenttagsel,...commenttagsfordriverselmaxleft];
+        if(commenttagsfordriverselmax.length > maxshowtags){
+          let drops = commenttagsfordriverselmax.length - maxshowtags;
+          commenttagsfordriverselmax = _.dropRight(commenttagsfordriverselmax,drops);
+        }
+
+
         return (
                 <div className="evaluatecontent">
                     {!iscommented &&
@@ -92,9 +129,16 @@ export class Page extends Component{
                                 />
                             </div>
                             <div className="hottag">
-                                <span className="sel">师傅长得帅</span>
-                                <span>比较幽默</span>
-                                <span>车技好</span>
+                                {
+                                  _.map(commenttagsfordriverselmax,(tag,index)=>{
+                                    if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
+                                      return (<span key={index} className="sel"
+                                      onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
+                                    }
+                                    return (<span key={index}
+                                    onClick={this.onClickTag.bind(this,true,tag)}>{tag}</span>);
+                                  })
+                                }
                             </div>
                             <div className="text">
                                 <Form>
@@ -113,7 +157,7 @@ export class Page extends Component{
     }
 }
 
-const data =  ({orderdetail}) =>{
-    return {...orderdetail};
+const data =  ({orderdetail,app:{commenttagsfordriver,maxshowtags}}) =>{
+    return {...orderdetail,commenttagsfordriver,maxshowtags};
 };
 export default connect(data)(Page);

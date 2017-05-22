@@ -28,7 +28,7 @@ class Page extends Component {
         let hascommented = false;
         const {triptype} = orderinfo;
         if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
-          hascommented = true;
+          hascommented = orderinfo.paystatus === '已支付';
         }
         return (
             <div className="userorderinfoPage AppPage">
