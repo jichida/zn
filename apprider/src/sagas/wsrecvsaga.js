@@ -32,7 +32,8 @@ import {
   updateorder_comment_result,
   ui_setorderdetail,
   
-  rechargepay_result
+  rechargepay_result,
+  set_weui
 } from '../actions';
 import { push } from 'react-router-redux';
 
@@ -62,11 +63,17 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(showpopmessage({
-        title:'成功',
-        msg:result.popmessage,
+      // yield put(showpopmessage({
+      //   title:'成功',
+      //   msg:result.popmessage,
+      //   type:'success'
+      // }));
+      yield put(set_weui({
+        toast:{
+        text:result.popmessage,
+        show: true,
         type:'success'
-      }));
+      }}));
   });
 
   yield takeEvery(`${common_err}`, function*(action) {
@@ -78,11 +85,17 @@ export function* wsrecvsagaflow() {
         yield put(wait_getpaysign_result({err:result.errmsg}));
       }
       else{
-        yield put(showpopmessage({
-          title:result.title,
-          msg:result.errmsg,
-          type:'error'
-        }));
+        // yield put(showpopmessage({
+        //   title:result.title,
+        //   msg:result.errmsg,
+        //   type:'error'
+        // }));
+        yield put(set_weui({
+          toast:{
+          text:result.errmsg,
+          show: true,
+          type:'warning'
+        }}));
       }
   });
 

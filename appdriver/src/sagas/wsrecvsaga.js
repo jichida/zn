@@ -120,7 +120,7 @@ export function* wsrecvsagaflow() {
           toast:{
           text:result.errmsg,
           show: true,
-          type:'error'
+          type:'warning'
         }}));
   });
 
