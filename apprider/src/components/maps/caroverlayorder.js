@@ -6,40 +6,57 @@ import {changestartposition} from '../../actions';
 import "../../../public/newcss/caroverlay.css";
 import StarRatingComponent from 'react-star-rating-component';
 
-let PageDriverHead =(props)=>(
+let PageDriverHead =(props)=>{
+  const {
+    topicinfo,
+      driverinfo:{
+      Model,
+      Brand,
+      VehicleNo,
+      Seats,
+      PlateColor,
+      DriverGender,
+      DriverPhone,
+      DriverName,
+      starnum,
+      avatarURL
+    }
+  } = props;
+
+  return (
     <div className="userorderinfoPage ">
         <div className="kuaicheinfo orderinfohead">
             <div className="driver">
-                <img src="images/user.jpg" className="avatar"/>
+                <img src={avatarURL} className="avatar"/>
                 <div className="info">
                     <div className='star'>
-                        <span>赵师傅</span>
-                        <StarRatingComponent 
-                            name="star" 
+                        <span>{DriverName}</span>
+                        <StarRatingComponent
+                            name="star"
                             editing={false}
                             starCount={5}
-                            value={4}
+                            value={starnum}
                             emptyStarColor="#EEEEEE"
                         />
                     </div>
                     <div>
-                        白色现代.苏A99999
+                        {PlateColor}{Brand}{Model}.{VehicleNo}
                     </div>
                 </div>
-                <a 
-                    href="tel:13888888888"
+                <a
+                    href={`tel:${DriverPhone}`}
                     className="call">
                     <img src="newimg/20.png" />
                     联系TA
                 </a>
             </div>
             <div className="topicinfo">
-                <div><img src="newimg/37.png" width={27}/>{props.topicinfo}</div>
+                <div><img src="newimg/37.png" width={27}/>{topicinfo}</div>
             </div>
         </div>
     </div>
-
-)
+  );
+};
 
 export class Page extends React.Component {
 
@@ -53,7 +70,7 @@ export class Page extends React.Component {
         if(curmappageorder.hasOwnProperty('_id')){
             let requestobj = curmappagerequest;
             let orderobj = curmappageorder;
-            let driverinfo = requestobj.driverinfo || {
+            let driverinfo = curmappageorder.driverinfo || {
                 DriverName:'无名司机',
                 VehicleNo:'隐藏车牌',
                 PlateColor:'',
@@ -85,18 +102,18 @@ export class Page extends React.Component {
 
             let getrequestoverwaitingpickup=()=>{
                 return  (
-                    <PageDriverHead topicinfo="司机即将到达，请提前到路边等待" />
+                    <PageDriverHead topicinfo="司机即将到达，请提前到路边等待" driverinfo={driverinfo}/>
                 );
             };
 
             let getrequestoverwaitinggetin=()=>{
                 return  (
-                    <PageDriverHead topicinfo="司机已到达，请尽快上车" />
+                    <PageDriverHead topicinfo="司机已到达，请尽快上车" driverinfo={driverinfo}/>
                 );
             };
             let gettripping=()=>{
                 return  (
-                    <PageDriverHead topicinfo="行程开始，祝您一路好心情。" />
+                    <PageDriverHead topicinfo="行程开始，祝您一路好心情。" driverinfo={driverinfo}/>
                 );
             };
 
