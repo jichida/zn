@@ -92,7 +92,7 @@ class Page extends React.Component {
       }
 
       let onCancel=()=>{
-          dispatch(carmap_resetmap());
+          dispatch(carmap_resetmap({}));
       }
 
       //尚未叫车!
@@ -172,10 +172,10 @@ class Page extends React.Component {
                                 {renderHTML(resulthtmlstring)}
                               </span>
                               <div className="btnlist">
-                                
+
                                 <a className="btn Primary" onClick={onOK}>叫车</a>
                                 <a className="btn Default" onClick={onCancel}>取消</a>
-                                
+
                               </div>
                           </div>
                       ):""

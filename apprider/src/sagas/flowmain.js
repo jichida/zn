@@ -57,7 +57,7 @@ function* read(socket) {
     const channel = yield call(subscribe, socket);
     while (true) {
         let action = yield take(channel);
-        console.log(`获取到:${action}`);
+        console.log(`获取到:${JSON.stringify(action)}`);
         yield put(action);
     }
 }

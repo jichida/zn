@@ -57,13 +57,17 @@ export class Page extends React.Component {
         else{
             if(curmappagerequest.requeststatus === '行程完成'){
                 //重置状态
-                dispatch(carmap_resetmap());
-                history.replace(`/orderdetail/${curmappageorder._id}`);
-            }
+                window.setTimeout(()=>{
+                  dispatch(carmap_resetmap({}));
+                  history.replace(`/orderdetail/${curmappageorder._id}`);
+                });
+              }
             else if(curmappagerequest.requeststatus === '已取消'){
                 //重置状态
-                dispatch(carmap_resetmap());
-                history.replace(`/`);
+                window.setTimeout(()=>{
+                  dispatch(carmap_resetmap({}));
+                  history.replace(`/`);
+                });
             }
         }
     }
