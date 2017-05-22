@@ -13,7 +13,10 @@ import _ from 'lodash';
 export default class Page extends Component{
     render(){
         const {orderinfo} = this.props;
-        const {orderprice,triptype} = orderinfo;
+        const {
+          orderprice,
+          triptype
+        } = orderinfo;
 
         let paycontentlist  = [];
         if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){

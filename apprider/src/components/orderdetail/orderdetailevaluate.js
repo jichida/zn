@@ -27,6 +27,12 @@ export class Page extends Component{
     componentWillUnmount(){
         this.addevaluatebox(false);
     }
+
+    onChangeFieldname(fieldname,value){//e.target.value
+        let orderdetail = {};
+        orderdetail[fieldname] = value;
+        this.props.dispatch(ui_setorderdetail(orderdetail));
+    }
     onClickTag(addflag,comments){
       this.props.dispatch(ui_setselcommenttag({
         addflag,comments
@@ -144,10 +150,14 @@ export class Page extends Component{
                                 <Form>
                                     <FormCell>
                                         <CellBody>
-                                            <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"></TextArea>
+                                            <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"
+                                            onChange={(e)=>{
+                                             this.onChangeFieldname('comment',e.target.value)
+                                           }}
+                                           ></TextArea>
                                         </CellBody>
                                     </FormCell>
-                                    <div className="btn Primary">提交</div>
+                                    <div className="btn Primary" onClick={this.onClickCarComment.bind(this)}>提交</div>
                                 </Form>
                             </div>
                         </div>

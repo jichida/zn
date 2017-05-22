@@ -29,11 +29,22 @@ import {
   md_starttriprequestorder_result,
   md_canceltriprequestorder_result,
 
+  updateorder_comment_result,
+  ui_setorderdetail,
+  
   rechargepay_result
 } from '../actions';
 import { push } from 'react-router-redux';
 
 export function* wsrecvsagaflow() {
+  yield takeEvery(`${updateorder_comment_result}`, function*(action) {
+      let {payload:result} = action;
+      //返回一个订单object
+      yield put(triporder_updateone(result));
+      yield put(ui_setorderdetail({showaddevaluate:false}));
+  });
+
+
   yield takeEvery(`${rechargepay_result}`, function*(action) {
       let {payload:result} = action;
       //返回一个订单object

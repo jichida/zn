@@ -8,8 +8,15 @@ import moment from 'moment';
 export default class Page extends Component{
     render(){
         const {orderinfo} = this.props;
-        const {startcity,endcity,startstation,endstation,
-        startdate,starttime,seatnumber} = orderinfo;
+        const {
+          startcity,
+          endcity,
+          startstation,
+          endstation,
+          startdate,
+          starttime,
+          seatnumber
+        } = orderinfo;
         return (
                 <div className="pinche">
                     <div className="time">{moment(startdate).format('YYYY-MM-DD')}</div>

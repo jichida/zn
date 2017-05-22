@@ -45,8 +45,6 @@ class Page extends Component {
 const mapStateToProps =  ({orderdetail,myorders}, props) =>{
     let triporderid = props.match.params.triporderid;
     let orderinfo = myorders.triporders[triporderid];
-    console.log(orderdetail);
-    console.log(orderinfo);
     return {...orderdetail,orderinfo};
 };
 
