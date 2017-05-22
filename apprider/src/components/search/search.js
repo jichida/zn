@@ -214,7 +214,6 @@ export class Search extends React.Component {
     }
 }
 const mapStateToProps = ({search,city,oftenuseaddress,carmap}) => {
-    console.log(city);
     const {searchtxt,placesearchresult} = search;
     let placeresult = placesearchresult.poiList.pois;
     return {searchtxt,placeresult,curselcity:city.curselcity,oftenuseaddress,triptype:carmap.triptype,markerstartlatlng:carmap.markerstartlatlng};

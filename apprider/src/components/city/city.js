@@ -2,18 +2,20 @@ import React from 'react';
 import citysel from './citysel.js';
 import { connect } from 'react-redux';
 import _ from "lodash";
-import {
-    Container,
-    View,
-    List,
-} from 'amazeui-touch';
+// import {
+//     Container,
+//     View,
+//     List,
+// } from 'amazeui-touch';
 import NavBar from '../tools/nav.js';
-import {setcurselcity} from '../../actions';
+import {setcurselcity,getcurcity} from '../../actions';
 import '../../../public/newcss/city.css';
 import { set_weui } from '../../actions/index.js';
 
 export class Page extends React.Component {
-
+    componentWillMount () {
+        this.props.dispatch(getcurcity({}));
+    }
     onClickSelCity(cityobj){
         this.props.dispatch(setcurselcity(cityobj));
         this.props.history.goBack();
@@ -29,13 +31,13 @@ export class Page extends React.Component {
     render() {
         return (
             <div className="cityPage AppPage">
-                <NavBar back="true" title="选择城市" />
+                <NavBar back={true} title="选择城市" />
                 <div className="list">
                     <div className="nowcity">
                         <div className="tit">当前城市</div>
                         <div className="li">
-                            <span 
-                                onClick={this.onClickSelCity.bind(this,this.props.curcity)} 
+                            <span
+                                onClick={this.onClickSelCity.bind(this,this.props.curcity)}
                                 className="btn btn-default">
                                 {this.props.curcity.cityname}
                             </span>
@@ -47,9 +49,9 @@ export class Page extends React.Component {
                             {
                                 _.map(this.props.hotcity,(city, index)=>{
                                     return (
-                                        <span 
-                                            onClick={this.onClickSelCity.bind(this,city)} 
-                                            key={city.zipcode} 
+                                        <span
+                                            onClick={this.onClickSelCity.bind(this,city)}
+                                            key={city.zipcode}
                                             className="btn btn-default"
                                             >
                                             {city.cityname}
@@ -64,11 +66,11 @@ export class Page extends React.Component {
                         {
                             _.map(citysel,(word, key)=>{
                                 return (
-                                    <div 
+                                    <div
                                         className="cityItems"
                                         key={key}
                                         >
-                                        <div 
+                                        <div
                                             className="tit"
                                             id={`citylist_${key}`}
                                             >
@@ -82,7 +84,7 @@ export class Page extends React.Component {
                                                         onClick={this.onClickSelCity.bind(this,city)}
                                                         key={index}
                                                         >
-                                                        {city.cityname} 
+                                                        {city.cityname}
                                                     </div>
                                                 )
                                             })
@@ -99,11 +101,11 @@ export class Page extends React.Component {
                     {
                         _.map(citysel,(word, key)=>{
                             return (
-                                <div 
+                                <div
                                     className="letterItems"
                                     key={key}
                                     >
-                                    <span 
+                                    <span
                                         className="tit"
                                         id={`citylist_${key}`}
                                         onClick={this.scrollToAnchor.bind(this,'#citylist_'+key, key)}
@@ -129,6 +131,3 @@ const mapStateToProps = ({city,app:{hotcity}}) => {
 export default connect(
     mapStateToProps
 )(Page);
-
-
-

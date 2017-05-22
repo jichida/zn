@@ -3,6 +3,7 @@
  */
 import { createAction } from 'redux-act';
 //城市相关
-
+export const getcurcity = createAction('getcurcity');
 export const setcurcity = createAction('setcurcity');
+
 export const setcurselcity = createAction('setcurselcity');
