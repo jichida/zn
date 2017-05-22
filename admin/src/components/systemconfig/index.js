@@ -35,7 +35,7 @@ const SystemconfigShow = (props) => (
                <TextField source="id" />
                <TextFieldSZ label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
                <TextFieldSZ label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
-               <TextFieldSZ label="最大显示评价数" source="maxshowtags" />
+               <TextField label="最大显示评价数" source="maxshowtags" />
                <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
                <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
                <TextField  label="旅游大巴预付款(百分比)" source="paytourbus" />
@@ -60,8 +60,7 @@ export const SystemconfigCreate = (props) => (
        <TabbedForm>
            <FormTab label="resources.systemconfig.tabs.rider">
            <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
-           <TextInputSZ label="最大显示评价数" source="maxshowtags" addLabel={true}/>
-           <NumberInput  label="旅游大巴预付款(百分比)" source="paytourbus" />
+           <NumberInput label="最大显示评价数" source="maxshowtags"/>
            <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
            <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
            </FormTab>
@@ -82,8 +81,7 @@ export const SystemconfigEdit = (props) => (
         <TabbedForm>
             <FormTab label="resources.systemconfig.tabs.rider">
             <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
-            <TextInputSZ label="最大显示评价数" source="maxshowtags" addLabel={true}/>
-            <NumberInput  label="旅游大巴预付款(百分比)" source="paytourbus" />
+            <NumberInput label="最大显示评价数" source="maxshowtags"/>
             <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
             <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
             </FormTab>
