@@ -39,6 +39,36 @@
 	color: #999;
 	font-size: 14px;
 }
+.registerPage .aggreeForm{
+	display: flex;
+	align-items: center;
+}
+.registerPage .aggreeForm label{
+	padding-left: 10px;
+	flex-grow: 1;
+}
+.registerPage div.li{
+	border-bottom: 1px solid #EEE;
+}
+.registerPage div.li.yanzhenli{
+	display: flex;
+	align-items: center;
+}
+.registerPage div.li.yanzhenli .weui-cell{
+	flex-grow: 1;
+}
+.registerPage .getyanzhen{
+	flex-shrink: 0;
+	border-left: 1px solid #369;
+	color: #369;
+	padding: 0 15px;
+}
+.registerPage .aggreeForm{
+	padding: 15px;
+	flex-shrink: 0;
+}
+
+
 
 
 
