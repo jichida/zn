@@ -2,21 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
-
 import DatePicker from 'react-mobile-datepicker';
 import config from '../../config.js';
 import {fileupload} from '../../util/fileupload.js';
+import NavBar from '../tools/nav.js';
 import {
   fillprofile_request,
   ui_editprofilesetbirthdayshow
 } from '../../actions';
-
-
 import {
   Container,
   View,
-  NavBar,
 } from 'amazeui-touch';
+import '../../../public/newcss/userprofile.css';
 
 let renderEditprofile = (props)=>{
   let onChangeFieldname=(fieldname,e)=>{
@@ -43,7 +41,7 @@ let renderEditprofile = (props)=>{
        }
      });
    }
-   return (  <div className="group-body">
+   return ( 
        <ul className="list">
 
        <li className="item item-input">
@@ -71,14 +69,16 @@ let renderEditprofile = (props)=>{
        </li>
 
 
-       <li className="item item-input"><div className="item-main">
+       <li className="item item-input iinput">
+        <div className="item-main">
        <label className="field-container"><span className="field-label">昵称</span>
        <input type="text" icon="person" className="field"
        onChange={(e)=>{onChangeFieldname('nickname',e);}}
        value={props.nickname.input.value}
-       /></label></div></li>
+       /></label></div>
+       </li>
 
-       <li className="item item-input"><div className="item-main"><label className="field-container">
+       <li className="item item-input selectinput"><div className="item-main"><label className="field-container">
        <span className="field-label">性别</span>
 
        <select className="borderless padding-left-0 margin-0"
@@ -87,6 +87,7 @@ let renderEditprofile = (props)=>{
        <option value={"男"}>男</option>
        <option value={"女"}>女</option>
        </select>
+       <span>{props.sex.input.value}</span>
 
        </label></div></li>
        <li className="item item-input"  onClick={handleClick}><div className="item-main">
@@ -103,7 +104,6 @@ let renderEditprofile = (props)=>{
 
        </div></li>
        </ul>
-     </div>
 );
 };
 
@@ -119,8 +119,8 @@ let EditprofileForm = (props)=>{
       <Form onSubmit={handleSubmit(props.onClickOK)}>
       <Fields names={['nickname', 'avatar', 'sex', 'birthday']}
               component={renderEditprofile}/>
-      <div className="padding">
-        <button className="btn btn-primary btn-block">确定</button>
+      <div className="pagebtn">
+        <button className="btn Primary">确定</button>
       </div>
       </Form>
     );
@@ -170,14 +170,11 @@ export class Page extends React.Component {
           birthday:birthday,
         }
       })(EditprofileForm);
-      return ( <View>
-           <NavBar {...dataLeft}/>
-           <Container scrollable={true}>
-          <div className="group group-no-padded">
+      return (
+        <div className="userprofilePage AppPage">
+           <NavBar title="个人资料" back={true} />
             <EditprofileForm onClickOK = {this.onClickOK} />
-            </div>
-          </Container>
-         </View>);
+         </div>);
     }
 }
 

@@ -37,8 +37,8 @@ let RegisterForm = (props)=> {
     let {handleSubmit,onClickLogin,onClickReturn,phonenumber} = props;
     let onClickAuth = (e)=> {
         // const name = fields.username.input.value;
-        props.dispatch(loginsendauth_request({phonenumber}));
-        console.log("发送验证码:" + phonenumber);
+            props.dispatch(loginsendauth_request({phonenumber}));
+            console.log("发送验证码:" + phonenumber);
     }
     let handleLogin =()=>{
         props.history.replace("/login");
