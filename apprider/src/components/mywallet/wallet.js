@@ -21,16 +21,26 @@ const {
     CellHeader,
     CellsTitle
     } = WeUI;
+import _ from 'lodash';
+import moment from 'moment';
 
 class Page extends Component {
 
     componentWillMount () {
       this.props.dispatch(queryuserbalance_request({}));
-      this.props.dispatch(getrechargerecords_request({}));
+
+      this.props.dispatch(getrechargerecords_request({
+        query: {},
+        options:{
+            sort:{created_at:-1},
+            offset: 0,
+            limit: 1000,
+        }
+      }));
     }
 
     render() {
-        const {rechargerecordlist,balance} = this.props;
+        const {rechargelist,balance} = this.props;
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
@@ -57,25 +67,20 @@ class Page extends Component {
                     <CellsTitle>账单查询</CellsTitle>
 
                     <div className="l2">
-                        <Cells>
-                            <Cell>
+                        <Cells>{
+                          _.map(rechargelist,(record)=>{
+                            return (<Cell key={record._id}>
                                 <CellBody>
-                                    <span className="time">2016-11-12</span>
-                                    <span className="status">正在处理中...</span>
+                                    <span className="time">{moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")}</span>
+                                    <span className="status">{_.get(record,'fromorder.triptype')}</span>
                                 </CellBody>
                                 <CellFooter>
-                                    <span className="color_warning">-10</span>
+                                    <span className="color_warning">{record.feebonus}</span>
+                                    <span className="color_warning">{record.feenew}</span>
                                 </CellFooter>
-                            </Cell>
-                            <Cell>
-                                <CellBody>
-                                    <span className="time">2016-11-12</span>
-                                    <span className="status">正在处理中...</span>
-                                </CellBody>
-                                <CellFooter>
-                                    <span className="color_warning">-10</span>
-                                </CellFooter>
-                            </Cell>
+                            </Cell>)
+                          })
+                        }
                         </Cells>
                     </div>
 
@@ -84,8 +89,8 @@ class Page extends Component {
         )
     }
 }
-const data =  ({withdraw,userlogin:{balance}}) =>{
-    return {...withdraw,balance};
+const data =  ({recharge:{rechargelist},userlogin:{balance}}) =>{
+    return {rechargelist,balance};
 };
 export default connect(
     data,
