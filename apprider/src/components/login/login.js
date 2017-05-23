@@ -18,9 +18,9 @@ export class PageForm extends Component {
     }
     render(){
         const { handleSubmit,onClickLogin,pristine,phonenumber,submitting } = this.props;
-        
+
         return (
-            <Form 
+            <Form
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
                 >
@@ -61,8 +61,7 @@ export class PageForm extends Component {
                         >
                         登录
                     </span>
-                    <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
-                </div>
+                  </div>
             </Form>
         )
     }
@@ -129,9 +128,3 @@ const data = ({userlogin}) => { return userlogin; }
 Page = connect(data)(Page);
 
 export default Page;
-
-
-
-
-
-
