@@ -34,24 +34,24 @@ const {
 
 let RegisterForm = (props)=> {
     console.log(`RegisterForm===>${JSON.stringify(props)}`);
-    let {handleSubmit,onClickLogin,onClickReturn,phonenumber} = props;
+    let {handleSubmit,onClickRegister,onClickReturn,username} = props;
     let onClickAuth = (e)=> {
         // const name = fields.username.input.value;
-            props.dispatch(loginsendauth_request({phonenumber}));
-            console.log("发送验证码:" + phonenumber);
+            props.dispatch(loginsendauth_request({phonenumber:username}));
+            console.log("发送验证码:" + username);
     }
     let handleLogin =()=>{
         props.history.replace("/login");
     }
     return (
         <Form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onClickRegister)}
             >
             <FormUI>
                 <div className="li">
                     <Field
-                        name="phonenumber"
-                        id="phonenumber"
+                        name="username"
+                        id="username"
                         placeholder="请输入手机号"
                         type="number"
                         title
@@ -85,10 +85,10 @@ let RegisterForm = (props)=> {
                 </div>
             </FormUI>
             <div className="aggreeForm">
-                <Field 
-                    name="hasAggree" 
-                    id="hasAggree" 
-                    component="input" 
+                <Field
+                    name="hasAggree"
+                    id="hasAggree"
+                    component="input"
                     type="checkbox"
                     />
                 <label htmlFor="hasAggree"><span>我已经阅读并同意中南出行协议</span></label>
@@ -101,17 +101,15 @@ let RegisterForm = (props)=> {
     );
 };
 
-RegisterForm = reduxForm({
-    form: 'selectingFormValues'
-})(RegisterForm);
-const selector = formValueSelector('selectingFormValues') 
+
+const selector = formValueSelector('register')
 RegisterForm = connect(
     state => {
         const hasAggree = selector(state, 'hasAggree');
-        const phonenumber = selector(state, 'phonenumber');
+        const username = selector(state, 'username');
         return {
             hasAggree,
-            phonenumber
+            username
         }
     }
 )(RegisterForm)
@@ -209,8 +207,7 @@ export class Page extends React.Component {
     render() {
         return (
             <div className="registerPage AppPage">
-                <RegisterForm onSubmit={this.onClickRegister}
-                              onClickLogin={this.onClickLogin}
+                <RegisterForm onClickRegister={this.onClickRegister}
                               onClickReturn={this.onClickReturn}/>
             </div>
         );
