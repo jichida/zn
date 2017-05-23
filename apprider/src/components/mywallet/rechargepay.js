@@ -8,7 +8,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userrecharge.css';
 import NavBar from '../tools/nav.js';
-import Selpay from './selpay';
+import Selpay from './renderselpay';
 import { connect } from 'react-redux';
 import { Field, reduxForm, Form } from 'redux-form';
 import {
@@ -28,6 +28,7 @@ const {
     CellsTitle,
     CellFooter
     } = WeUI;
+import {payorder_request} from '../../actions';
 
 class PageForm extends Component{
     render(){
@@ -38,16 +39,17 @@ class PageForm extends Component{
                 >
                 <FormUI className="formStyle1">
                     <Field
-                        name="moneyperiod"
+                        name="realprice"
                         id="moneyperiod"
-                        placeholder="请输入冲值金额"
+                        placeholder="请输入充值金额"
                         type="number"
                         component={ WeuiInputValidation }
                         validate={[ required ]}
                         InputTit="金额"
                         Company="元"
                     />
-                    <Selpay />
+                    <Field name="paytype" paytypelist={['weixin','alipay']}
+                      component={ Selpay } />
                     <div className="submitBtn">
                         <button className="btn Primary">确定</button>
                     </div>
@@ -57,16 +59,25 @@ class PageForm extends Component{
     }
 }
 PageForm = reduxForm({
-    form: 'pageform'
+    form: 'pageform',
+    initialValues:{
+      realprice:50,
+      paytype:'weixin'
+    }
 })(PageForm);
 
 
 class Page extends Component {
 
     //支付订单
-    pagesubmit=(value)=>{
-        console.log("qweqweqhqoeirhqoeri");
-        console.log(value);
+    pagesubmit=(values)=>{
+        console.log(values);
+        values.ordertitle = '充值';
+        values.orderdetail = `充值${values.realprice}元`;
+        this.props.dispatch(payorder_request({
+          query:{_id:this.props.triporderid},
+          data:values
+        }));
     }
 
     render() {
@@ -82,10 +93,9 @@ class Page extends Component {
     }
 }
 
-const data =  ({myorders,userlogin:{balance}}, props) =>{
+const data =  ({userlogin:{balance}}, props) =>{
     let triporderid = props.match.params.triporderid;
-    let orderinfo = myorders.triporders[triporderid];
-    return {balance,orderinfo};
+    return {balance,triporderid};
 };
 
 export default connect(data)(Page);

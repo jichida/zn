@@ -131,7 +131,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
-  'payorder_request':`${payorder_request}`,
+  'payorder':`${payorder_request}`,
   'rechargepay':`${rechargepay_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'getoftenuseaddress':`${getoftenuseaddress_request}`,

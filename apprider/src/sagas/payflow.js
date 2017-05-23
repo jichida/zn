@@ -31,7 +31,7 @@ export function* payflow() {
           let orderdoc = {
              out_trade_no: orderinfo._id,
              subject: orderinfo.ordertitle || '商品名称',
-             body: orderinfo.body|| '商品详情',
+             body: orderinfo.orderdetail|| '商品详情',
              total_fee: orderinfo.realprice
            };
            if(orderinfo.paytype === 'weixin'){
