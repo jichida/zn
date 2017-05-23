@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
-import { Container } from 'amazeui-touch';
 import '../../../public/newcss/dstaddress.css';
 import _ from "lodash";
 import WeUI from 'react-weui';

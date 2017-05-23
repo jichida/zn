@@ -1,10 +1,6 @@
 import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
-import {
-    View,
-    Container,
-} from 'amazeui-touch';
 import NavBar from "../tools/nav";
 import L from 'leaflet';
 import CarOverlayInit from './caroverlayinit.js';
@@ -95,12 +91,9 @@ export class Page extends React.Component {
         }
 
         if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
-              return (<View>
-                    <NavBar {...dataLeft}/>
-                    <Container scrollable={true}>
+              return (
                         <div>行程完成,正在生成订单</div>
-                    </Container>
-                </View>);
+                    );
         }
         return (
             <div className="caroverlayPage AppPage">

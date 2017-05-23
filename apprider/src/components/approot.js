@@ -74,7 +74,7 @@ import Phonelist from "./new/other/phonelist";
 
 
 //选择支付方式
-import Payway from "./orderdetail/payway";
+//import Payway from "./orderdetail/payway";
 //提现
 import Recharge from "./new/user/recharge";
 
@@ -194,12 +194,12 @@ class AppRoot extends React.Component {
                     <Route path="/orderinfo" component={requireAuthentication(Orderinfo)}/>
                     <Route path="/cancelrule" component={Cancelrule}/>
                     <Route path="/orderlist" component={requireAuthentication(Orderlist)}/>
-                    <Route path="/selpay" component={Selpay}/>
+
                     <Route path="/urgentlist" component={requireAuthentication(Urgentlist)}/>
                     <Route path="/phonelist" component={Phonelist}/>
                     <Route path="/userinfo" component={requireAuthentication(Userinfo)}/>
                     <Route path="/usercenter" component={requireAuthentication(Usercenter)}/>
-                    <Route path="/payway" component={Payway}/>
+      
                     <Route path="/recharge" component={requireAuthentication(Recharge)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
 

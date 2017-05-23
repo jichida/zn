@@ -10,10 +10,6 @@ import {
   fillprofile_request,
   ui_editprofilesetbirthdayshow
 } from '../../actions';
-import {
-  Container,
-  View,
-} from 'amazeui-touch';
 import '../../../public/newcss/userprofile.css';
 
 let renderEditprofile = (props)=>{
@@ -41,7 +37,7 @@ let renderEditprofile = (props)=>{
        }
      });
    }
-   return ( 
+   return (
        <ul className="list">
 
        <li className="item item-input">

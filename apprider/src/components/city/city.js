@@ -2,11 +2,6 @@ import React from 'react';
 import citysel from './citysel.js';
 import { connect } from 'react-redux';
 import _ from "lodash";
-// import {
-//     Container,
-//     View,
-//     List,
-// } from 'amazeui-touch';
 import NavBar from '../tools/nav.js';
 import {setcurselcity,getcurcity} from '../../actions';
 import '../../../public/newcss/city.css';

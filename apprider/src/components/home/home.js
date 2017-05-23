@@ -8,7 +8,6 @@ import Lvyoudaba from '../tourbus/selbusform.js';
 
 import Pinche from '../carpool/index.js';
 import CarOverlayEmbedded from '../maps/caroverlaymbedded';
-import { Container,View } from 'amazeui-touch';
 var Sidebar = require('react-sidebar').default;
 import NavBar from '../tools/nav.js';
 import {
@@ -135,7 +134,7 @@ export class AppIndex extends React.Component {
                     onSetOpen={this.onSetSidebarOpen.bind(this)}
                     shadow={false}
                     >
-                    <View>
+                    <div className="view">
                         <NavBar
                             back={false}
                             leftnav = {[
@@ -190,7 +189,7 @@ export class AppIndex extends React.Component {
                         <div className="list">
                             {Co}
                         </div>
-                    </View>
+                    </div>
                 </Sidebar>
             </div>
         );

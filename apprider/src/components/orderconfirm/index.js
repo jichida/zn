@@ -2,16 +2,6 @@
  * Created by wangxiaoqing on 2017/3/22.
  */
 import React from 'react';
-import {
-    Container,
-    View,
-    Group,
-    Grid,
-    Col,
-    List,
-    Button
-} from 'amazeui-touch';
-
 import { connect } from 'react-redux';
 
 import OrderToPayDetailPinche from './pinche';
@@ -90,7 +80,7 @@ export class Page extends React.Component {
                 </div>
                 <div className="submitbtn">
                     <div>总价: <span className="color_error">{this.props.orderprice}</span>元</div>
-                    <div 
+                    <div
                         onClick={this.onClickOK.bind(this)}
                         className="btn Primary"
                         >立刻预定</div>
