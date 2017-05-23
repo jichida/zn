@@ -9,6 +9,7 @@ import '../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
 import {
+    queryuserbalance_request,
     getrechargerecords_request,
     rechargepay_request
 } from '../../actions';
@@ -24,7 +25,8 @@ const {
 class Page extends Component {
 
     componentWillMount () {
-        this.props.dispatch(getrechargerecords_request({}));
+      this.props.dispatch(queryuserbalance_request({}));
+      this.props.dispatch(getrechargerecords_request({}));
     }
 
     render() {
@@ -53,7 +55,7 @@ class Page extends Component {
                     </Cells>
 
                     <CellsTitle>账单查询</CellsTitle>
-                    
+
                     <div className="l2">
                         <Cells>
                             <Cell>

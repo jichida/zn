@@ -12,8 +12,10 @@ export const payorder = (paysign,orderinfo,callbackfn)=>{
   requestpost('/pay/alipaytest',postdata,(err,result)=>{
           console.log("testpost err:" + JSON.stringify(err));
           console.log("testpost result:" + JSON.stringify(result));
-          callbackfn(result);
+
   });
+
+  callbackfn({});
 }
 
 

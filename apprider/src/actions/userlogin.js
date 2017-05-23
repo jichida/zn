@@ -17,3 +17,7 @@ export const fillprofile_result = createAction('fillprofile_result');
 
 export const logout_request = createAction('logout_request');
 export const logout_result = createAction('logout_result');
+
+export const serverpush_userbalance = createAction('serverpush_userbalance');
+export const queryuserbalance_request = createAction('queryuserbalance_request');
+export const queryuserbalance_result = createAction('queryuserbalance_result');

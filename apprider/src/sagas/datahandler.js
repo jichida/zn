@@ -74,11 +74,18 @@ import {
 
     payorder_request,
     payorder_result,
+
+    serverpush_userbalance,
+    queryuserbalance_request,
+    queryuserbalance_result,
+    md_queryuserbalance_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'serverpush_userbalance':serverpush_userbalance,
+  'queryuserbalance_result':queryuserbalance_result,
   'payorder_result':payorder_result,
   'rechargepay_result':rechargepay_result,
   'getsystemconfig_result':getsystemconfig_result,
@@ -131,6 +138,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'queryuserbalance':`${queryuserbalance_request}`,
   'payorder':`${payorder_request}`,
   'rechargepay':`${rechargepay_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,

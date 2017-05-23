@@ -1,7 +1,8 @@
 /**
  * Created by wangxiaoqing on 2017/3/25.
  */
-import { put,takeEvery,call,take} from 'redux-saga/effects';
+import {put,takeEvery,call,take,race} from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   payorder
 } from '../env/pay.js';
@@ -10,8 +11,12 @@ import {
   payorder_result,
   getpaysign_request,
   getpaysign_result,
+  serverpush_userbalance,
+  queryuserbalance_result,
+  queryuserbalance_request,
+
 } from '../actions';
-import { push,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 function takepay(paysign,orderinfo) {
     return new Promise(resolve => {
@@ -44,9 +49,17 @@ export function* payflow() {
           }));
           let { payload:paysign } = yield take(`${getpaysign_result}`);
           let payresult = yield call(takepay,paysign,orderinfo);
-          console.log(`payresult:${JSON.stringify(payresult)}`);
-          // confirmorder_result
-          //yield put(replace('/'));
+          console.log(`payresult:${JSON.stringify(payresult)},orderinfo.triptype:${orderinfo.triptype}`);
+          if(orderinfo.triptype === '充值'){
+            const { response, timeout } = yield race({
+               response: take(`${serverpush_userbalance}`),
+               timeout: call(delay, 5000)
+            });
+            if(!!timeout){
+              yield put(queryuserbalance_result(response.payload));
+            }
+            yield put(goBack());//返回上一页面
+          }
     });
 
 
