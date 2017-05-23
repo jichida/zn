@@ -43,7 +43,7 @@ const myorders = createReducer({
               ...state,
               mytriporderlist:mytriporders.result.list,
               triporders:{...mytriporders.entities.triporders},
-              inited:false,
+              inited:true,
               remoteRowCount
             };
         }
