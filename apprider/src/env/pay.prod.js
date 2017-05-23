@@ -13,6 +13,9 @@ import Common from './xview/Common.js';
         callbackfn(result);
      });
    }
+   else if(orderinfo.paytype === 'leftbalance'){
+     callbackfn({});
+   }
  }
 
 export const onclickpay = ({orderinfo,paytype,dispatch})=> {

@@ -13,6 +13,9 @@ const initial = {
     orderdetail: {
         paysign:'',
         paytype:'alipay',
+        couponprice:0,
+        couponid:'',
+
         ratenum:0,
         comment:'',
         commenttagsel:[],

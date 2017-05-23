@@ -199,12 +199,11 @@ class AppRoot extends React.Component {
                     <Route path="/phonelist" component={Phonelist}/>
                     <Route path="/userinfo" component={requireAuthentication(Userinfo)}/>
                     <Route path="/usercenter" component={requireAuthentication(Usercenter)}/>
-      
+
                     <Route path="/recharge" component={requireAuthentication(Recharge)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
 
-                    <Route path="/selpay" component={Selpay}/>
-                    <Route path="/pay" component={Pay}/>
+                    <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
 
                     <Route component={App}/>
                 </Switch>

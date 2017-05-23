@@ -11,6 +11,9 @@ const { LoadMore } = WeUI;
 import _ from 'lodash';
 
 export default class Page extends Component{
+    toPay(){
+      this.props.history.push(`/pay/${this.props.orderinfo._id}`);
+    }
     render(){
         const {orderinfo} = this.props;
         const {
@@ -67,7 +70,7 @@ export default class Page extends Component{
                             <p><span className="color_warning">4.5折券抵扣(最高5元)</span><span className="color_warning">-5.0元</span></p>
                         </div>
                     </div>
-                    {orderinfo.paystatus==='未支付' && <div className="getMoney"><span>去支付</span></div>}
+                    {orderinfo.paystatus==='未支付' && <div className="getMoney" onClick={this.toPay.bind(this)}><span>去支付</span></div>}
                 </div>
         )
     }

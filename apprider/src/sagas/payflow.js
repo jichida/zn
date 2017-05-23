@@ -58,8 +58,8 @@ export function* payflow() {
             if(!!timeout){
               yield put(queryuserbalance_result(response.payload));
             }
-            yield put(goBack());//返回上一页面
           }
+          yield put(goBack());//返回上一页面
     });
 
 

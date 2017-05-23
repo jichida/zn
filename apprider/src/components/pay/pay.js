@@ -8,29 +8,99 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import NavBar from '../tools/nav.js';
 import '../../../public/newcss/pay.css';
-import Selpay from './selpay.js';
-const { 
+//import Selpay from './selpay.js';
+const {
     Cell,
     CellBody,
     CellFooter,
     Cells
     } = WeUI;
+import _ from 'lodash';
+import Selpay from '../mywallet/renderselpay';
+import {
+  ui_setorderdetail,
+  payorder_request,
+} from '../../actions';
 
 class Page extends Component {
+    onClickPay(){
+      const {orderinfo,paytype,realprice} = this.props;
+      const {
+        orderprice,
+        triptype
+      } = orderinfo;
+      let orderinfotopay = {
+        paytype,
+        realprice
+      };
+      if(paytype === 'leftbalance'){
+        orderinfotopay.balanceprice = realprice;
+        orderinfotopay.realprice = 0;
+      }
+      orderinfotopay.ordertitle = `${triptype}订单`;
+      orderinfotopay.orderdetail = `${triptype}订单${orderprice}元`;
+      this.props.dispatch(payorder_request({
+        query:{_id:orderinfo._id},
+        data:orderinfotopay
+      }));
+    }
+    onChangePaytype(paytype){
+      this.props.dispatch(ui_setorderdetail({paytype}));
+    }
     render() {
-        const {approvalstatus,approvalrejectseason,history} = this.props;
+        const {orderinfo,paytype,realprice} = this.props;
+        const {
+          orderprice,
+          triptype
+        } = orderinfo;
+
+        let paycontentlist  = [];
+        if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
+            const {realtimepricedetail} = orderinfo;
+            if(!!realtimepricedetail && orderprice > 0){
+              let {pricelistdetail} = realtimepricedetail;
+              paycontentlist = pricelistdetail || [{
+                name:`里程${realtimepricedetail.totalkm}公里`,
+                fee:`${orderprice}元`
+              }];
+            }
+            else{
+              paycontentlist.push({
+                name:`费用`,
+                fee:`0元`
+              });
+            }
+        }
+        else if(triptype === '拼车'){
+          paycontentlist.push({
+            name:`拼车费用`,
+            fee:`${orderprice}元`
+          });
+        }
+        else if(triptype === '旅游大巴'){
+          paycontentlist.push({
+            name:`总费用`,
+            fee:`${orderprice}元`
+          });
+        }
+
+        let input = {
+          value:paytype,
+          onChange:this.onChangePaytype.bind(this)
+        };
         return (
             <div className="payPage AppPage">
                 <NavBar back={true} title="支付订单" />
                 <div className="orderinfo">
-                    <div className="avatarcon">
-                        <img src="newimg/17.png" className="avatarimg" />
-                        <span>赵师傅</span>
-                    </div>
-                    <div className="info">
-                        <div>订单类型：<span className="color_warning">代驾</span></div>
-                        <div>里程数: <span className="color_warning">120KM</span></div>
-                        <div>订单价格: <span className="color_warning">120元</span></div>
+                    <div className="tit">{triptype}车费情况</div>
+                    <div className="list">
+                        {
+                          _.map(paycontentlist,(feeinfo,index)=>{
+                            return (
+                              <p key={index}><span>{feeinfo.name}</span><span>{feeinfo.fee}</span></p>
+                            )
+                          })
+                        }
                     </div>
                 </div>
 
@@ -54,13 +124,13 @@ class Page extends Component {
                             </CellFooter>
                         </Cell>
                     </Cells>
-                    <Selpay />
+                    <Selpay paytypelist={['weixin','alipay','leftbalance']} input={input}/>
                 </div>
-                <div className="paybtn"> 
+                <div className="paybtn">
                     <span>
-                        还需支付：<span>100元</span>
+                        还需支付：<span>{realprice}元</span>
                     </span>
-                    <span className="btn Primary">
+                    <span className="btn Primary" onClick={this.onClickPay.bind(this)}>
                         确定支付
                     </span>
                 </div>
@@ -70,12 +140,14 @@ class Page extends Component {
 
 }
 
-const data = ({}) => {
-  return {}
-}
-Page = connect(data)(Page);
-export default Page;
+const mapStateToProps =  ({orderdetail,myorders}, props) =>{
+    let triporderid = props.match.params.triporderid;
+    let orderinfo = myorders.triporders[triporderid];
+    let realprice = orderinfo.orderprice;
+    //优惠券／优惠券抵扣金额
+    return {...orderdetail,orderinfo,realprice};
+};
 
-
-
-
+export default connect(
+    mapStateToProps,
+)(Page);
