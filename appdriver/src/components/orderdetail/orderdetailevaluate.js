@@ -17,15 +17,15 @@ const {
     LoadMore } = WeUI;
 import _ from 'lodash';
 import {
-  updateorder_comment_request,
   ui_setorderdetail,
-  ui_setselcommenttag
+  ui_setselcommenttag,
+  updateorder_comment_request,
 } from '../../actions';
 
 export class Page extends Component{
 
     componentWillUnmount(){
-        this.addevaluatebox(false);
+        this.props.dispatch(ui_setorderdetail({showaddevaluate:false}));
     }
 
     onChangeFieldname(fieldname,value){//e.target.value
@@ -66,7 +66,7 @@ export class Page extends Component{
     render(){
         const {
             orderinfo,
-            commenttagsfordriver,
+            commenttagsforrider,
             commenttagsel,
             showaddevaluate,
             maxshowtags,
@@ -82,12 +82,12 @@ export class Page extends Component{
           }
         }
 
-        let commenttagsfordriverselmaxleft = _.xor(commenttagsfordriver,commenttagsel);
-        commenttagsfordriverselmaxleft = _.shuffle(commenttagsfordriverselmaxleft);
-        let commenttagsfordriverselmax = [...commenttagsel,...commenttagsfordriverselmaxleft];
-        if(commenttagsfordriverselmax.length > maxshowtags){
-          let drops = commenttagsfordriverselmax.length - maxshowtags;
-          commenttagsfordriverselmax = _.dropRight(commenttagsfordriverselmax,drops);
+        let commenttagsforriderselmaxleft = _.xor(commenttagsforrider,commenttagsel);
+        commenttagsforriderselmaxleft = _.shuffle(commenttagsforriderselmaxleft);
+        let commenttagsforriderselmax = [...commenttagsel,...commenttagsforriderselmaxleft];
+        if(commenttagsforriderselmax.length > maxshowtags){
+          let drops = commenttagsforriderselmax.length - maxshowtags;
+          commenttagsforriderselmax = _.dropRight(commenttagsforriderselmax,drops);
         }
 
 
@@ -136,7 +136,7 @@ export class Page extends Component{
                             </div>
                             <div className="hottag">
                                 {
-                                  _.map(commenttagsfordriverselmax,(tag,index)=>{
+                                  _.map(commenttagsforriderselmax,(tag,index)=>{
                                     if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
                                       return (<span key={index} className="sel"
                                       onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
@@ -167,7 +167,7 @@ export class Page extends Component{
     }
 }
 
-const data =  ({orderdetail,app:{commenttagsfordriver,maxshowtags}}) =>{
-    return {...orderdetail,commenttagsfordriver,maxshowtags};
+const data =  ({orderdetail,app:{commenttagsforrider,maxshowtags}}) =>{
+    return {...orderdetail,commenttagsforrider,maxshowtags};
 };
 export default connect(data)(Page);

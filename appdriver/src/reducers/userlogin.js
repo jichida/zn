@@ -11,6 +11,7 @@ import {
 const initial = {
   userlogin:{
     loginsuccess:false,
+    commenttagsforrider:[],
     username:'',
     token:'',
     authtoken:'',
