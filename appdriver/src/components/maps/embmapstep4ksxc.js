@@ -29,7 +29,7 @@ export default class Page extends React.Component {
                     <MapGaode ref='mapgaode' curreqobj={curreqobj} currentorder={currentorder} />
                 </div>
                 <div className="submitBtn">
-                    <button onClick={onClickNext} className="btn Primary">到目的地</button>
+                    <button onClick={onClickNext} className="btn Primary"><span>到目的地</span></button>
                 </div>
             </div>
         );
