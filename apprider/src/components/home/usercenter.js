@@ -75,7 +75,7 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        <Cell access onClick={this.onClickItem.bind(this,'/mycoupons')}>
+                        <Cell access onClick={this.onClickItem.bind(this,'/mycoupons/nosel')}>
                             <CellHeader>
                                 <img src="newimg/29.png" alt=""/>
                             </CellHeader>

@@ -178,7 +178,7 @@ class AppRoot extends React.Component {
                     <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                     <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
                     <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
-                    <Route path="/mycoupons" component={requireAuthentication(Mycoupons)}/>
+                    <Route path="/mycoupons/:sel" component={requireAuthentication(Mycoupons)}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/messagedetail/:messageid" component={MessageDetail} />
                     <Route path="/setting" component={Setting}/>

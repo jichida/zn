@@ -23,6 +23,9 @@ import {
 } from '../../actions';
 
 class Page extends Component {
+    onClickSelCoupon(){
+      this.props.history.push('/mycoupons/sel');
+    }
     onClickPay(){
       const {orderinfo,paytype,realprice} = this.props;
       const {
@@ -107,7 +110,7 @@ class Page extends Component {
                 <div className="list">
 
                     <Cells>
-                        <Cell access>
+                        <Cell access onClick={this.onClickSelCoupon.bind(this)}>
                             <CellBody>
                                 优惠券
                             </CellBody>

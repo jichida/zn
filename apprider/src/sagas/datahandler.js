@@ -91,12 +91,16 @@ import {
     deleteemerygencycontact_result,
 
     getnotifymessage_request,
-    getnotifymessage_result
+    getnotifymessage_result,
+
+    mycoupongetall_request,
+    mycoupongetall_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'mycoupongetall_result':mycoupongetall_result,
   'getnotifymessage_result':getnotifymessage_result,
   'getemerygencycontact_result':getemerygencycontact_result,
   'insertemerygencycontact_result':insertemerygencycontact_result,
@@ -140,6 +144,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+
   'getnotifymessage':`${getnotifymessage_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,
@@ -157,6 +162,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'mycoupongetall':`${mycoupongetall_request}`,
   'insertemerygencycontact':`${insertemerygencycontact_request}`,
   'deleteemerygencycontact':`${deleteemerygencycontact_request}`,
   'getrechargerecords':`${getrechargerecords_request}`,
