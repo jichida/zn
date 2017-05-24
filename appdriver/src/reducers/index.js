@@ -4,7 +4,6 @@ import { reducer as formReducer } from 'redux-form';
 import app from './app';
 import appui from './appui';
 import userlogin from './userlogin';
-
 import operate from './operate';
 import carmap from './carmap';
 import driveroute from './driveroute';
@@ -15,6 +14,8 @@ import registerfillwizard from './registerfillwizard';
 import createcarwizard from './createcarwizard';
 import withdraw from './withdraw';
 import weui from './weui';
+import messagecenter from './messagecenter';
+
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
@@ -31,6 +32,7 @@ export default combineReducers({
         orderdetail,
         registerfillwizard,
         weui,
+        messagecenter,
         form: formReducer,
         router: routerReducer
     }

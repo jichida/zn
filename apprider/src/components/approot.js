@@ -72,7 +72,7 @@ import Cancelrule from "./new/other/cancelrule";
 //集团信息
 import Phonelist from "./new/other/phonelist";
 
-import MessageCenter from './messagecenter/messagecenter.js';
+
 //选择支付方式
 //import Payway from "./orderdetail/payway";
 //提现
@@ -88,6 +88,7 @@ import Seladdressbook from './emerygencycontact/Telephone/Seladdressbook.js';
 //旅游大巴 - 填写信息
 import Tourbusfillform from "./tourbus/userinfo";
 
+import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 
 import {requireAuthentication} from './requireauthentication';

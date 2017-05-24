@@ -44,12 +44,12 @@ import Withdrawauth from './mywallet/withdrawauth';
 //审核页面
 import Approval from './register/approval';
 
+import MessageCenter from './messagecenter/messagecenter.js';
+import MessageDetail from './messagecenter/messagedetail.js';
 //支付界面
 import Pay from './pay/pay';
 import Selpay from './pay/selpay';
 
-//消息页面
-import MessageCenter from './messagecenter/message';
 
 import {hidepopmessage} from '../actions/index.js';
 import { Message } from 'semantic-ui-react';
@@ -155,9 +155,11 @@ MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
                     <Route path="/register" component={Register}/>
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
+                    <Route path="/messagecenter" component={MessageCenter}/>
+                    <Route path="/messagedetail/:messageid" component={MessageDetail} />
                     <Route path="/outcar" component={requireApproval(Outcar)}/>
                     <Route path="/approval" component={requireAuthentication(Approval)}/>
-                    <Route path="/mywallet" component={requireApproval(Userwallet)}/>
+                    <Route path="/mywallet" component={requireAuthentication(Userwallet)}/>
                     <Route path="/withdraw" component={requireAuthentication(Withdraw)}/>
                     <Route path="/withdrawauth/:withdrawid" component={requireAuthentication(Withdrawauth)}/>
                     <Route path="/editprofile" component={requireAuthentication(Editprofile)}/>

@@ -81,12 +81,16 @@ import {
     withdrawcashapplyaddone_request,
     withdrawcashapplyaddone_result,
     withdrawcashapplyauth_request,
-    withdrawcashapplyauth_result
+    withdrawcashapplyauth_result,
+
+    getnotifymessage_request,
+    getnotifymessage_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getnotifymessage_result':getnotifymessage_result,
   'withdrawcashapplyauth_result':withdrawcashapplyauth_result,
   'withdrawcashapplyaddone_result':withdrawcashapplyaddone_result,
   'getsystemconfig_result':getsystemconfig_result,
@@ -127,6 +131,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'getnotifymessage':`${getnotifymessage_request}`,
   'register':`${register_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,
