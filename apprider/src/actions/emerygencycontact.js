@@ -7,3 +7,5 @@ export const getemerygencycontact_request = createAction('getbuscarpool_request'
 export const getemerygencycontact_result = createAction('getbuscarpool_result');
 
 export const insertemerygencycontact_request = createAction('insertemerygencycontact_request');
+
+export const getphoneconcatlist = createAction('getphoneconcatlist');

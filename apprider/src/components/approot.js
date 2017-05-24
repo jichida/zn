@@ -83,7 +83,7 @@ import Rechargepay from './mywallet/rechargepay.js';
 /*公共样式*/
 import '../../public/newcss/common.css';
 
-
+import Seladdressbook from './emerygencycontact/Telephone/Seladdressbook.js';
 
 //旅游大巴 - 填写信息
 import Tourbusfillform from "./tourbus/userinfo";
@@ -204,6 +204,7 @@ class AppRoot extends React.Component {
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
 
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
+                    <Route path="/seladdressbook" component={requireAuthentication(Seladdressbook)}/>
 
                     <Route component={App}/>
                 </Switch>
