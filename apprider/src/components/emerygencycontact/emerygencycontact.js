@@ -10,7 +10,8 @@ import '../../../public/newcss/urgentlist.css';
 import NavBar from '../tools/nav.js';
 import _ from "lodash";
 import {
-  getemerygencycontact_request
+  getemerygencycontact_request,
+  deleteemerygencycontact_request
 } from '../../actions';
 const {
     Cells,
@@ -19,6 +20,8 @@ const {
     CellFooter,
     CellsTitle
     } = WeUI;
+import Swipeout from 'rc-swipeout';
+import 'rc-swipeout/assets/index.css';
 
 class Page extends Component {
 
@@ -28,6 +31,9 @@ class Page extends Component {
     onClickBack(){
         this.props.history.goBack();
     }
+    onClickDelete(item){
+        this.props.dispatch(deleteemerygencycontact_request({_id:item._id}));
+    };
     onClickAdd(){
         this.props.history.push('/seladdressbook');
     }
@@ -46,14 +52,27 @@ class Page extends Component {
                         {
                             _.map(myconcatlist, (concat,index)=>{
                                 return (
-                                    <Cell key={index}>
+                                        <Swipeout  key={index} autoClose={true}
+                                                  right={[
+                                                    {
+                                                        text: '删除',
+                                                        onPress:this.onClickDelete.bind(this,concat),
+                                                        style: { backgroundColor: 'red', color: 'white', fontSize:"16px" }
+                                                    }
+                                                ]}
+                                            onOpen={() => console.log('open')}
+                                            onClose={() => console.log('close')}
+                                        >
+                                        <Cell>
                                         <CellBody>
                                             {concat.name}
                                         </CellBody>
                                         <CellFooter>
                                             {concat.tel}
                                         </CellFooter>
-                                    </Cell>
+                                        </Cell>
+                                        </Swipeout>
+
                                 )
                             })
                         }
