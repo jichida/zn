@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm, Form, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
 import {loginsendauth_request,loginwithauth_request} from '../../actions';

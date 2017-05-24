@@ -72,7 +72,7 @@ import Cancelrule from "./new/other/cancelrule";
 //集团信息
 import Phonelist from "./new/other/phonelist";
 
-
+import MessageCenter from './messagecenter/messagecenter.js';
 //选择支付方式
 //import Payway from "./orderdetail/payway";
 //提现
@@ -88,13 +88,7 @@ import Seladdressbook from './emerygencycontact/Telephone/Seladdressbook.js';
 //旅游大巴 - 填写信息
 import Tourbusfillform from "./tourbus/userinfo";
 
-//import '../../public/App.css';
-//import '../../public/amaze.css';
-//import '../../public/a2017.css';
-//import '../../public/m2015.css';
-//import '../../public/style.css';
-//import '../../public/css/page.css';
-
+import MessageDetail from './messagecenter/messagedetail.js';
 
 import {requireAuthentication} from './requireauthentication';
 
@@ -184,7 +178,8 @@ class AppRoot extends React.Component {
                     <Route path="/orderconfirm/:clickfrom" component={requireAuthentication(Orderconfirm)}/>
                     <Route path="/mywallet" component={requireAuthentication(Mywallet)}/>
                     <Route path="/mycoupons" component={requireAuthentication(Mycoupons)}/>
-                    <Route path="/messagelist" component={Messagelist}/>
+                    <Route path="/messagecenter" component={MessageCenter}/>
+                    <Route path="/messagedetail/:messageid" component={MessageDetail} />
                     <Route path="/setting" component={Setting}/>
                     <Route path="/discount" component={Discount}/>
                     <Route path="/addresscommon" component={requireAuthentication(Addresscommon)}/>

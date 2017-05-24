@@ -2,7 +2,7 @@ import {
     getbuscarpool_request,
     getemerygencycontact_request,
     getemerygencycontact_result,
-    
+
     gettourbus_request,
 
     getabouthtml_request,
@@ -88,12 +88,16 @@ import {
     insertemerygencycontact_request,
     insertemerygencycontact_result,
     deleteemerygencycontact_request,
-    deleteemerygencycontact_result
+    deleteemerygencycontact_result,
+
+    getnotifymessage_request,
+    getnotifymessage_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getnotifymessage_result':getnotifymessage_result,
   'getemerygencycontact_result':getemerygencycontact_result,
   'insertemerygencycontact_result':insertemerygencycontact_result,
   'deleteemerygencycontact_result':deleteemerygencycontact_result,
@@ -136,6 +140,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'getnotifymessage':`${getnotifymessage_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,
   'loginwithauth':`${loginwithauth_request}`,

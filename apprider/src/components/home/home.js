@@ -26,6 +26,9 @@ export class AppIndex extends React.Component {
     onSetSidebarOpen(open){
         this.props.dispatch(ui_setsidebaropen(open));
     }
+    onClickMessageCenter(){
+      this.props.history.push('/messagecenter');
+    }
     onClickPage(page){
         this.props.history.replace('/index/'+page);
         if(page === 'chuzuche'){
@@ -151,8 +154,8 @@ export class AppIndex extends React.Component {
                                 {
                                     icon : 'newimg/36.png',
                                     icontype : "img",
-                                    type : 'push',
-                                    url : '/messagecenter',
+                                    type : 'action',
+                                    action:this.onClickMessageCenter.bind(this),
                                     width : "24px",
                                     height: "24px",
                                 },
