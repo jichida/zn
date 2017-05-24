@@ -34,6 +34,7 @@ const MycouponItem = (props) => {
   const {mycoupon,onClickItem} = props;
   const {name,usestatus,pricediscountpercent,pricediscountmax,expdate} = mycoupon;
   const createdatestring = moment(mycoupon.created_at).format("YYYY-MM-DD");
+  const expdatestring = moment(expdate).format("YYYY-MM-DD");
   return (
     <div className="li" onClick={onClickItem}>
         <div className="w">
@@ -42,10 +43,10 @@ const MycouponItem = (props) => {
                 <div className="c">
                     <div className="price color_warning">
                         <span className="aa">{name}</span>
-                        <span className="bb">有效期至{expdate}</span>
+                        <span className="bb">有效期至{expdatestring}</span>
                     </div>
                     <div className="zhekou color_warning">
-                        <span className="aa">{pricediscountpercent}</span>
+                        <span className="aa">{pricediscountpercent*10}</span>
                         <span className="bb">折</span>
                     </div>
                 </div>
