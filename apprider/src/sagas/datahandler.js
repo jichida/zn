@@ -1,6 +1,8 @@
 import {
     getbuscarpool_request,
     getemerygencycontact_request,
+    getemerygencycontact_result,
+    
     gettourbus_request,
 
     getabouthtml_request,
@@ -81,12 +83,20 @@ import {
     md_queryuserbalance_result,
 
     getrechargerecords_request,
-    getrechargerecords_result
+    getrechargerecords_result,
+
+    insertemerygencycontact_request,
+    insertemerygencycontact_result,
+    deleteemerygencycontact_request,
+    deleteemerygencycontact_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getemerygencycontact_result':getemerygencycontact_result,
+  'insertemerygencycontact_result':insertemerygencycontact_result,
+  'deleteemerygencycontact_result':deleteemerygencycontact_result,
   'getrechargerecords_result':getrechargerecords_result,
   'serverpush_userbalance':serverpush_userbalance,
   'queryuserbalance_result':queryuserbalance_result,
@@ -142,6 +152,8 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'insertemerygencycontact':`${insertemerygencycontact_request}`,
+  'deleteemerygencycontact':`${deleteemerygencycontact_request}`,
   'getrechargerecords':`${getrechargerecords_request}`,
   'queryuserbalance':`${queryuserbalance_request}`,
   'payorder':`${payorder_request}`,

@@ -7,10 +7,7 @@ import {normalizr_emerygencycontactlist} from './normalizr';
 
 const initial = {
     emerygencycontact: {
-        concatlist:[],
-        emerygencycontacts:{
-
-        },
+        myconcatlist:[],
         phoneconcatlist:[],
     },
 };
@@ -20,9 +17,9 @@ const emerygencycontact = createReducer({
       let phoneconcatlist = [...payload];
       return {...state,phoneconcatlist};
     },
-    [getemerygencycontact_result]:(state, list) => {
-        let newemerygencycontactlist = normalizr_emerygencycontactlist(list);
-        return {...state,...newemerygencycontactlist};
+    [getemerygencycontact_result]:(state, payload) => {
+        let myconcatlist = [...payload.list];
+        return {...state,myconcatlist};
     },
 }, initial.emerygencycontact);
 

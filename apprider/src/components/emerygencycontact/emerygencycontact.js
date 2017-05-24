@@ -9,7 +9,9 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/urgentlist.css';
 import NavBar from '../tools/nav.js';
 import _ from "lodash";
-import {getemerygencycontact_request} from '../../actions';
+import {
+  getemerygencycontact_request
+} from '../../actions';
 const {
     Cells,
     Cell,
@@ -30,7 +32,8 @@ class Page extends Component {
         this.props.history.push('/seladdressbook');
     }
     render() {
-        const {concatlist} = this.props;
+        const {myconcatlist} = this.props;
+        const maxlimited = 5;
         return (
             <div className="urgentlistPage AppPage">
                 <NavBar back={true} title="紧急联系人" />
@@ -41,36 +44,39 @@ class Page extends Component {
                 <div className="list">
                     <Cells className="tixianlnk">
                         {
-                            _.map(concatlist, (concat,index)=>{
+                            _.map(myconcatlist, (concat,index)=>{
                                 return (
-                                    <Cell>
+                                    <Cell key={index}>
                                         <CellBody>
-                                            关羽
+                                            {concat.name}
                                         </CellBody>
                                         <CellFooter>
-                                            13888888888
+                                            {concat.tel}
                                         </CellFooter>
                                     </Cell>
                                 )
                             })
                         }
-                        <Cell 
-                            onClick={()=>{this.onClickAdd()}}
-                            access>
-                            <CellBody>
-                                添加紧急联系人
-                            </CellBody>
-                            <CellFooter />
-                        </Cell>
+
+                        {
+                          (myconcatlist.length < maxlimited) &&
+                            (<Cell
+                                onClick={()=>{this.onClickAdd()}}
+                                access>
+                                <CellBody>
+                                    添加紧急联系人
+                                </CellBody>
+                                <CellFooter />
+                            </Cell>)
+                        }
                     </Cells>
-                    <CellsTitle>最多添加5位联系人</CellsTitle>
+                    <CellsTitle>最多添加{maxlimited}位联系人</CellsTitle>
                 </div>
             </div>
         )
     }
 }
-const data = ({emerygencycontact}) => {
-    return emerygencycontact;
+const data = ({emerygencycontact:{myconcatlist}}) => {
+    return {myconcatlist};
 }
 export default connect(data)(Page);
-

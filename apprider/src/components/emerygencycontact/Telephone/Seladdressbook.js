@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import AddressBook from './AddressBook';
 
 import {getcontactlist} from '../../../env/addressbook.js';
-import {getphoneconcatlist} from '../../../actions';
+import {
+  insertemerygencycontact_request,
+  getphoneconcatlist
+} from '../../../actions';
 
 export class Page extends React.Component {
 
@@ -13,16 +16,12 @@ export class Page extends React.Component {
     });
   }
 
-  onClickAddressItem(name,phone){
-    //browserHistory.goBack();
-    // this.props.sendSrvData('server/rider',{
-    //   cmd:'insertemerygencycontact',
-    //   data:{
-    //     name:name,
-    //     tel:phone
-    //   }
-    // });
-    // browserHistory.goBack();
+  onClickAddressItem(name,tel){
+    this.props.dispatch(insertemerygencycontact_request({
+      name,
+      tel
+    }));
+    this.props.history.goBack();
   }
   render() {
 
