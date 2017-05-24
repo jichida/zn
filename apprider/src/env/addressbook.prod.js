@@ -1,3 +1,5 @@
+import * as Common from './xview/Common';
+import * as MakePy from './xview/MakePy';
 
 const initSZM =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
 let softDatas =(datas)=>{

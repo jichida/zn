@@ -180,7 +180,45 @@
   	}
     window.xview.openiPhoneApp(url);
   }
-
+  /**
+   * 获取通讯录信息
+   @method getPhoneBook
+   @since 2.0
+   */
+  export const getPhoneBook = (fun) => {
+  	window.xviewCallBack=function(result){
+      fun(result);
+    };
+  	 window.xview.getPhoneBook("xviewCallBack")
+  }
+  /**
+   * 拨打电话
+   @method callPhoneNumber
+   @since 2.0
+   */
+  export const LocalPhoneTelPhoneUOperationNameStartTimeUrlCallBack = (
+  	phone,
+  	phone2,
+  	u,
+  	operation,
+  	name,
+  	startTime,
+  	url,
+  	fun) => {
+  	//console.log(phone+"-"+phone2+"-"+u+"-"+operation+"-"+name+"-"+startTime+"-"+url);
+  	window.xviewCallBack=function(result){
+      fun(result);
+    };
+	window.xview.LocalPhoneTelPhoneUOperationNameStartTimeUrlCallBack(
+		phone,
+		phone2,
+		u,
+	  	operation,
+	  	name,
+	  	startTime,
+	  	url,
+	"xviewCallBack");
+  }
   /**
    * 调起短信
    @method sendSmsWithPhoneNumber
