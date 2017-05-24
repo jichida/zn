@@ -124,3 +124,17 @@
 .caroverlayinitPage .isGetaddress .btnlist a.btn:first-child{
     margin-bottom: 10px;
 }
+.caroverlayinitPage .showprice{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;    
+}
+.caroverlayinitPage .showprice span{
+    color: #f49d05;
+    font-weight: 300;
+    margin: 0 5px;
+}
+
+
+
+

@@ -33,7 +33,7 @@ export default class Page extends React.Component {
                 </div>
                 <div className="submitBtn">
                     <h3 className="item-title text-warning">{routeshow.instruction}<div className="gray">{routeshow.leftdistancetxt} {routeshow.leftduringtxt}</div></h3>
-                    <button onClick={this.onClickNext.bind(this,'')} className="btn Primary">到达叫车位置</button>
+                    <button onClick={this.onClickNext.bind(this,'')} className="btn Primary"><span>到达叫车位置</span></button>
                 </div>
             </div>
         );

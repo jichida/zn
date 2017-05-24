@@ -30,9 +30,9 @@
 }
 .cityPage .allletter{
 	display: flex;
-	width: 20px;
+	width: 30px;
 	position: absolute;
-	right: 15px;
+	right: 0px;
 	flex-wrap: wrap;
 	flex-direction: column;
 	top: 0;

@@ -23,6 +23,9 @@
     background: url("../newimg/34.png") repeat-x left bottom;
     background-size: 10px 6px;
 }
+.userorderinfoPage .orderinfohead {
+
+}
 .userorderinfoPage .orderinfohead .pinche{
     display: flex;
     flex-direction: column;

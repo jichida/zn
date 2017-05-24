@@ -22,7 +22,8 @@ import _ from 'lodash';
 import {
   selrequest,
   ui_outcarselregistertype,
-  ui_outcarexpand
+  ui_outcarexpand,
+  set_weui
   } from '../../actions';
 
 class Page extends Component {
@@ -39,7 +40,17 @@ class Page extends Component {
     this.props.history.push(`/selrequest/${reqobj._id}`);
   }
   showlist=(outcarexpand)=>{
-      this.props.dispatch(ui_outcarexpand(outcarexpand));
+      if(this.props.requestlist.length==0){
+          this.props.dispatch(set_weui({
+            toast: {
+              show : true,
+              text : "暂无订单数据",
+              type : "warning"
+            },
+          }))
+      }else{
+        this.props.dispatch(ui_outcarexpand(outcarexpand));
+      }
   }
   render() {
         const {
@@ -60,21 +71,21 @@ class Page extends Component {
           }
         });
 
-        let cellco = [];
-        _.map(requestlist,(reqobj,index)=>{
-          let triptypename = reqobj.isrealtime?'实时':'预约';
-          cellco.push(<Cell key={index} access onClick={this.onClickReq.bind(this,reqobj)}>
-              <CellBody>
-                  <div className="tt">
-                      <span className="i">{triptypename}</span>
-                      <span>{reqobj.showtimestring}</span>
-                  </div>
-                  <div className="li a">{reqobj.srcaddress.addressname}</div>
-                  <div className="li b">{reqobj.dstaddress.addressname}</div>
-              </CellBody>
-              <CellFooter />
-          </Cell>);
-        });
+        // let cellco = [];
+        // _.map(requestlist,(reqobj,index)=>{
+        //   let triptypename = reqobj.isrealtime?'实时':'预约';
+        //   cellco.push(<Cell key={index} access onClick={this.onClickReq.bind(this,reqobj)}>
+        //       <CellBody>
+        //           <div className="tt">
+        //               <span className="i">{triptypename}</span>
+        //               <span>{reqobj.showtimestring}</span>
+        //           </div>
+        //           <div className="li a">{reqobj.srcaddress.addressname}</div>
+        //           <div className="li b">{reqobj.dstaddress.addressname}</div>
+        //       </CellBody>
+        //       <CellFooter />
+        //   </Cell>);
+        // });
 
         return (
             <div className="outcarPage AppPage">
@@ -86,20 +97,35 @@ class Page extends Component {
                     <MapGaode ref='mapgaode' />
                     <div className="outcarControl">
                         <div
-                          className={outcarexpand?"list show":"list hide"}
+                          className={outcarexpand?"list show":"list"}
                           >
+                            
                             <Cells>
-                              {cellco}
+                               {
+                                  _.map(requestlist,(reqobj,index)=>{
+                                      let triptypename = reqobj.isrealtime?'实时':'预约';
+                                      return (
+                                          <Cell key={index} access onClick={this.onClickReq.bind(this,reqobj)}>
+                                              <CellBody>
+                                                  <div className="tt">
+                                                      <span className="i">{triptypename}</span>
+                                                      <span>{reqobj.showtimestring}</span>
+                                                  </div>
+                                                  <div className="li a">{reqobj.srcaddress.addressname}</div>
+                                                  <div className="li b">{reqobj.dstaddress.addressname}</div>
+                                              </CellBody>
+                                              <CellFooter />
+                                          </Cell>
+                                      )
+                                  })
+                              }
                             </Cells>
                         </div>
-                        <div
-                          className="lnk"
-                          onClick={()=>{this.showlist(!outcarexpand)}}
-                          >
-                          {outcarexpand?"收起":"展开"}
-                          </div>
                         <div className="bbtn">
                             <span>收车</span>
+                            <span onClick={()=>{this.showlist(!outcarexpand)}}>
+                              {outcarexpand?"隐藏订单":"展开订单"}
+                            </span>
                         </div>
                     </div>
                 </div>

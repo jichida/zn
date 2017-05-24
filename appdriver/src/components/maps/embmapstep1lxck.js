@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-  Container,
-  View,Button
-} from 'amazeui-touch';
 import MapGaode from './mapcar.js';
 import {getdistance} from '../../util/geo.js';
 
@@ -21,7 +17,7 @@ export default class Page extends React.Component {
       }
       console.log("curreqobj==>"  + JSON.stringify(curreqobj));
       return (
-           <Container>
+           <div>
           <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} /></div>
           <div className="list margin-0 xjl_bottom">
           <div className="item">
@@ -36,12 +32,11 @@ export default class Page extends React.Component {
                 <div className="cfd_icon">{curreqobj.srcaddress.addressname}</div>
                 <div className="zd_icon">{curreqobj.dstaddress.addressname}</div>
               </div>
-      <img src="images/dh.png" alt="img" style={{width:"40px"}}/></a> </div>
-      <Button onClick={onClickNext} amStyle="primary" block className="margin-0">去接乘客</Button>
-      <Button onClick={onClickCancel} amStyle="primary" block className="margin-0">取消</Button>
+              <img src="images/dh.png" alt="img" style={{width:"40px"}}/></a> </div>
+              <button onClick={onClickNext} amStyle="primary" block className="btn Primary">去接乘客</button>
+              <button onClick={onClickCancel} amStyle="primary" block className="btn Primary">取消</button>
           </div>
-
-    </Container>
+    </div>
   );
 }
 
