@@ -21,7 +21,7 @@ import {BuscarpoolList,BuscarpoolCreate,BuscarpoolEdit,BuscarpoolShow} from './c
 import {TourbusinfolistList,TourbusinfolistCreate,TourbusinfolistEdit,TourbusinfolistShow} from './components/tourbusinfos/index.js';
 import {SystemconfigList,SystemconfigShow,SystemconfigEdit} from './components/systemconfig/index.js';
 
-import {CouponlistList,CouponlistCreate,CouponlistEdit,CouponlistShow} from './components/coupons/index.js';
+import {MycouponlistList,MycouponlistCreate,MycouponlistEdit,MycouponlistShow} from './components/mycoupons/index.js';
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
 import {TriprequestlistList,TriprequestlistShow} from './components/triprequest/index.js';
 import {UserriderlistList,UserriderlistShow} from './components/userriders/index.js';
@@ -132,7 +132,7 @@ class App extends Component {
             <Resource name="about" list={AboutlistList}  edit={AboutlistEdit} create={AboutlistCreate} remove={Delete} />
             <Resource name="buscarpool" list={BuscarpoolList} create={BuscarpoolCreate} edit={BuscarpoolEdit} show={BuscarpoolShow} remove={Delete} />
             <Resource name="tourbusinfo" list={TourbusinfolistList} create={TourbusinfolistCreate} edit={TourbusinfolistEdit} show={TourbusinfolistShow} remove={Delete} />
-            <Resource name="coupon" list={CouponlistList} create={CouponlistCreate} edit={CouponlistEdit} show={CouponlistShow} remove={Delete} />
+            <Resource name="mycoupon" list={MycouponlistList} create={MycouponlistCreate} edit={MycouponlistEdit} show={MycouponlistShow} remove={Delete} />
             <Resource name="order" list={OrderlistList} edit={OrderlistEdit} />
             <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
             <Resource name="userdriver" list={UserdriverlistList} edit={UserdriverlistEdit} />

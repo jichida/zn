@@ -9,6 +9,12 @@ export default {
     },
   },
   resources: {
+    mycoupon:{
+      name: '乘客优惠券 |||| 乘客优惠券',
+      fields:{
+        creator:'所属乘客',
+      }
+    },
     withdrawcash:{
       name: '提现管理 |||| 提现管理',
     },
