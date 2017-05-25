@@ -57,8 +57,8 @@ export class Page extends React.Component {
             requeststatus: "行程完成",
         })).then((result)=>{
             window.setTimeout(()=>{
-                history.replace(`/orderdetail/${result.triporder._id}`);
                 dispatch(carmap_resetmap());
+                history.replace(`/orderdetail/${result.triporder._id}`);
             },0);
 
         });

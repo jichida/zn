@@ -35,7 +35,7 @@ import {
   carcreate_result,
   set_weui,
 } from '../actions';
-import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 export function* wsrecvsagaflow() {
   yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
@@ -57,8 +57,10 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_fillrealnameprofile_result}`, function*(action) {
       let {payload:result} = action;
       yield put(fillrealnameprofile_result(result));//在审核中
-      if(result.approvalstatus === '待审批'){//审批中
-        yield put(push('/approval'));
+      console.log(`fillrealnameprofile_result===>${JSON.stringify(result)}`);
+      console.log(`fillrealnameprofile_result approvalstatus===>${result.approvalstatus}`);
+      if(result.approvalstatus === '待审核'){//审批中
+        yield put(replace('/approval'));
       }
   });
 
