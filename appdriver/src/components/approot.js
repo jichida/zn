@@ -13,7 +13,7 @@ import Myorders from './myorders/orderlist';
 import Mycars from './mycars/carlist';
 //新增车辆
 import Createcar from './mycars/createcar/createcarwizard';
-import Feedetail from './orderdetail/feedetail';
+// import Feedetail from './orderdetail/feedetail';
 //注册
 import Register from './register/index.js';
 //选择注册类型
@@ -58,7 +58,6 @@ class AppRoot extends React.Component {
                     <Route path="/login" component={Login}/>
                     <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
                     <Route path='/starttrip' component={Caroverlaystart} />
-                    <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
                     <Route path="/myorders" component={requireAuthentication(Myorders)}/>
                     <Route path="/register" component={Register}/>
