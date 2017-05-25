@@ -31,19 +31,19 @@ let softDatas =(datas)=>{
 
 
 export const getcontactlist = (funcb)=>{
-  try{
-    Common.getPhoneBook((json)=>{
-      if(typeof json=='string'){
-        json=JSON.parse(json);
-      }
-      if(json.directories.length>0){
-        let datas=softDatas(json.directories);
-        funcb(datas);
-      }else{
+    try{
+        Common.getPhoneBook((json)=>{
+          if(typeof json=='string'){
+            json=JSON.parse(json);
+          }
+          if(json.directories.length>0){
+            let datas=softDatas(json.directories);
+            funcb(datas);
+          }else{
+            funcb([]);
+          }
+        });
+      }catch(e){
         funcb([]);
-      }
-    });
-  }catch(e){
-    funcb([]);
   }
 }

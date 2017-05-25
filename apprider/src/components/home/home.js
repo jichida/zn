@@ -59,7 +59,13 @@ export class AppIndex extends React.Component {
         this.props.history.push(page);
     }
     componentWillMount () {
-        this.props.dispatch(ui_setindexmapvisiable(true));
+        let currentkeyname = this.props.match.params.keyname;
+        if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
+            this.props.dispatch(ui_setindexmapvisiable(true));
+        }
+        else{
+            this.props.dispatch(ui_setindexmapvisiable(false));
+        }
     }
     componentWillReceiveProps (nextprop) {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){

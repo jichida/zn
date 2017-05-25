@@ -14,16 +14,6 @@ import {
 
 import store from '../env/store.js';
 //获取地理位置信息，封装为promise
-// let getcurrentpos =()=> {
-//   return new Promise(resolve => {
-//      getcurrentlocationfn((locz)=>{
-//         if(locz[0] !== 0 && locz[1] !== 0){
-//           resolve({lat:locz[1],lng:locz[0]});
-//         }
-//       });
-//   });
-// }
-
 //获取地理位置坐标，初始化地图
 //如果和服务端连接，要获取地理位置名字
 export function* createinitflow(){//仅执行一次

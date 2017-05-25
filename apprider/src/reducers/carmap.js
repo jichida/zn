@@ -45,7 +45,7 @@ const ISENABLEDDRAW_POPWITHCUR  = 256;
 const initial = {
     carmap: {
         isMapInited:false,
-        isindexmapvisiable:true,//是否停留在首页地图(发送附近车辆请求条件)
+        isindexmapvisiable:false,//是否停留在首页地图(发送附近车辆请求条件)
         triptype:'出租车',//当前打车类型
         dragging:false,//是否正在拖动（拖动中避免某些特性可提升性能）
         enabledragging:true,//是否允许拖动
