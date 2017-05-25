@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Field, reduxForm, Form, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
 import {loginsendauth_request,loginwithauth_request} from '../../actions';
@@ -18,9 +18,9 @@ export class PageForm extends Component {
     }
     render(){
         const { handleSubmit,onClickLogin,pristine,phonenumber,submitting } = this.props;
-        
+
         return (
-            <Form 
+            <Form
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
                 >
@@ -129,9 +129,3 @@ const data = ({userlogin}) => { return userlogin; }
 Page = connect(data)(Page);
 
 export default Page;
-
-
-
-
-
-

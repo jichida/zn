@@ -1,5 +1,4 @@
 import React,{ Component, PropTypes } from 'react';
-import { Icon } from 'semantic-ui-react';
 
 import '../../../public/css/popinfocar.css';
 let Popinfocar = ({positiondiv,totaldistancetxt,totaldurationtxt,realtimepricedetail=null})=> {

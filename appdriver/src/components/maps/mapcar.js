@@ -1,5 +1,4 @@
 import React from 'react';
-//import { Map } from 'react-amap';
 import { connect } from 'react-redux';
 import L from 'leaflet';
 import Script from 'react-load-script';
