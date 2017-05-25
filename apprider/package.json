@@ -33,7 +33,6 @@
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
     "reselect": "^3.0.1",
-    "semantic-ui-react": "^0.67.1",
     "socket.io-client": "^1.7.3",
     "weui": "^1.1.2"
   },

@@ -14,11 +14,11 @@ class Page extends Component {
             <div className="messagePage AppPage">
                 <NavBar back={true} title="消息" />
                 <div className="list">
-                      <div className="time">{createdatestring}</div>
-                      <div className="cont">
+                    <div className="time">{createdatestring}</div>
+                    <div className="cont">
                         <div className="tit">{notifymessage.messagetitle}</div>
                         <div className="text">{notifymessage.messageconent}</div>
-                      </div>
+                    </div>
                 </div>
             </div>
         )

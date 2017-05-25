@@ -11,7 +11,6 @@ import _ from 'lodash';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../public/newcss/userwithdrawals.css';
 const {
     LoadMore
     } = WeUI;

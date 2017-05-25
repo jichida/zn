@@ -4,9 +4,6 @@
 	flex-grow: 1;
 	overflow: scroll;
 }
-.dstaddressPage .weui-search-bar__box .weui-search-bar__input{
-	margin: 3px 0;
-}
 .dstaddressPage .weui-search-bar__label{
 	display: flex;
 	justify-content: center;
