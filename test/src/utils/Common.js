@@ -254,7 +254,7 @@
        */
       export const getPhoneBook = (fun) => {
         window.getPhoneBookCallback=function(result){
-          result=eval("("+result+")");
+          //result=eval("("+result+")");
           fun(result);
         };
         window.xview.getPhoneBook({callback:"getPhoneBookCallback"});
