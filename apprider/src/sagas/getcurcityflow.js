@@ -1,6 +1,4 @@
-import config from '../config.js';
 import {takeEvery,put,call} from 'redux-saga/effects';
-import {delay} from 'redux-saga';
 import {getcurcity,setcurcity} from '../actions';
 import {getcurrentpos} from '../util/geo.js';
 import _ from 'lodash';

@@ -28,7 +28,6 @@ import { Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import {
-    HashRouter as Router,
     Route,
     Switch,
     Redirect
@@ -40,7 +39,6 @@ import {
 
 //支付界面
 import Pay from './pay/pay';
-import Selpay from './pay/selpay';
 /*个人中心*/
 //设置
 // import Setting from "./new/user/setting";
@@ -181,7 +179,7 @@ class AppRoot extends React.Component {
                     <Route path="/mycoupons/:sel" component={requireAuthentication(Mycoupons)}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/messagedetail/:messageid" component={MessageDetail} />
-                  
+
                     <Route path="/orderlist" component={requireAuthentication(Orderlist)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>

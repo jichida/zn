@@ -1,5 +1,5 @@
 import config from '../config.js';
-import {select, fork, take, call, put, cancel,race } from 'redux-saga/effects';
+import {select, take, call, put,race } from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import L from 'leaflet';
 import {getcurrentpos} from '../util/geo.js';
@@ -8,7 +8,6 @@ import {
     changestartposition,
     notify_socket_connected,
     carmap_changemarkerstartlatlng,
-    getcurrentlocationandnearestdrivers_request,
     getnearestdrivers_request,
     carmap_setmapcenter
 } from '../actions';
@@ -51,7 +50,15 @@ export function* createinitflow(){//仅执行一次
 
 //想打车时,附近的车辆需要定时刷新
 const getmapprops = (state) => {
-  return {...state.carmap};
+  let mapprops = {...state.carmap};
+  let sendnearestdrivers = false;
+  if(mapprops.mapstage === 'pageinit' && mapprops.isindexmapvisiable
+      && !mapprops.iswaitingforcallpage && !mapprops.dragging){
+    if(mapprops.hasOwnProperty('srcaddress')){
+      sendnearestdrivers = true;
+    }
+  }
+  return {sendnearestdrivers,srcaddress:mapprops.srcaddress,triptype:mapprops.triptype};
 };
 export function* sendstartpositionflow(){
   while (true) {
@@ -66,16 +73,12 @@ export function* sendstartpositionflow(){
             // 3.未停留在价格页面.
             // 4.不在拖动中
             // 5.获取到位置
-          if(mapprops.mapstage === 'pageinit' && mapprops.isindexmapvisiable
-              && !mapprops.iswaitingforcallpage && !mapprops.dragging){
-            if(mapprops.hasOwnProperty('srcaddress')){
+          if(mapprops.sendnearestdrivers){
               let srclocationstring = mapprops.srcaddress.location.lng+ "," + mapprops.srcaddress.location.lat;
               yield put(getnearestdrivers_request({
                     location:srclocationstring,
                     registertype:mapprops.triptype
                 }));
-
-            }
           }
         }
         else{

@@ -7,7 +7,7 @@ import {
     updateorder_request,wait_updateorder_request,wait_updateorder_result
 } from '../actions/index.js';
 
-import { fork, take, call, put, cancel,race ,takeLatest} from 'redux-saga/effects';
+import { take, call, race ,takeLatest} from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
 

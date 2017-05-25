@@ -43,7 +43,7 @@ const userlogin = createReducer({
     return { ...state, loginsuccess:false};
   },
   [loginsendauth_result]:(state,payload)=>{
-    const {authtoken,popmessage} = payload;
+    const {authtoken} = payload;
     return { ...state, authtoken};
   }
 }, initial.userlogin);
