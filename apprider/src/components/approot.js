@@ -36,7 +36,7 @@ import {
 
 
 /*UI重新做*/
-import Messagelist from "./new/user/message";
+// import Messagelist from "./new/user/message";
 
 //支付界面
 import Pay from './pay/pay';
@@ -45,38 +45,38 @@ import Selpay from './pay/selpay';
 //设置
 import Setting from "./new/user/setting";
 //优惠券
-import Discount from "./new/user/discount";
-//addresscommon常用地址
-import Addresscommon from "./new/user/addresscommon";
-//添加常用地址
-import Addresscommonadd from "./new/user/addresscommonadd";
-//我的钱包
-import Userwallet from "./new/user/wallet";
-//我要充值
-import Userrecharge from "./new/user/recharge";
-//订单详情
-import Orderinfo from "./new/user/orderinfo";
+// import Discount from "./new/user/discount";
+// //addresscommon常用地址
+// import Addresscommon from "./new/user/addresscommon";
+// //添加常用地址
+// import Addresscommonadd from "./new/user/addresscommonadd";
+// //我的钱包
+// import Userwallet from "./new/user/wallet";
+// //我要充值
+// import Userrecharge from "./new/user/recharge";
+// //订单详情
+// import Orderinfo from "./new/user/orderinfo";
 //订单列表
-import Orderlist from "./new/user/orderlist";
+import Orderlist from "./myorders/myorders";
 //选择支付方式
 //import Selpay from "./new/user/selpay";
 //紧急联系人
-import Urgentlist from "./new/user/urgentlist";
-//个人信息
-import Userinfo from "./new/user/userinfo";
-//个人中心
-import Usercenter from "./new/user/usercenter";
-
-//取消规则
-import Cancelrule from "./new/other/cancelrule";
-//集团信息
-import Phonelist from "./new/other/phonelist";
-
-
-//选择支付方式
-//import Payway from "./orderdetail/payway";
-//提现
-import Recharge from "./new/user/recharge";
+// import Urgentlist from "./new/user/urgentlist";
+// //个人信息
+// import Userinfo from "./new/user/userinfo";
+// //个人中心
+// import Usercenter from "./new/user/usercenter";
+//
+// //取消规则
+// import Cancelrule from "./new/other/cancelrule";
+// //集团信息
+// import Phonelist from "./new/other/phonelist";
+//
+//
+// //选择支付方式
+// //import Payway from "./orderdetail/payway";
+// //提现
+// import Recharge from "./new/user/recharge";
 
 //充值页面
 import Rechargepay from './mywallet/rechargepay.js';
@@ -182,23 +182,8 @@ class AppRoot extends React.Component {
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/messagedetail/:messageid" component={MessageDetail} />
                     <Route path="/setting" component={Setting}/>
-                    <Route path="/discount" component={Discount}/>
-                    <Route path="/addresscommon" component={requireAuthentication(Addresscommon)}/>
-                    <Route path="/addresscommonadd" component={requireAuthentication(Addresscommonadd)}/>
-                    <Route path="/userwallet" component={requireAuthentication(Userwallet)}/>
-                    <Route path="/userrecharge" component={Userrecharge}/>
-                    <Route path="/orderinfo" component={requireAuthentication(Orderinfo)}/>
-                    <Route path="/cancelrule" component={Cancelrule}/>
                     <Route path="/orderlist" component={requireAuthentication(Orderlist)}/>
-
-                    <Route path="/urgentlist" component={requireAuthentication(Urgentlist)}/>
-                    <Route path="/phonelist" component={Phonelist}/>
-                    <Route path="/userinfo" component={requireAuthentication(Userinfo)}/>
-                    <Route path="/usercenter" component={requireAuthentication(Usercenter)}/>
-
-                    <Route path="/recharge" component={requireAuthentication(Recharge)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
-
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
                     <Route path="/seladdressbook" component={requireAuthentication(Seladdressbook)}/>
 
