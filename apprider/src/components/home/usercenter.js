@@ -25,7 +25,7 @@ class Page extends Component {
       e.stopPropagation();
     }
     render() {
-      const {loginsuccess,balance,username,profile:{nickname,avatar}} = this.props;
+      const {loginsuccess,balance,couponnum,username,profile:{nickname,avatar}} = this.props;
 
       let phonenumbertext = loginsuccess?username:'未登录';
       let linkeditprofile = loginsuccess?'/editprofile':'/login';
@@ -40,6 +40,7 @@ class Page extends Component {
                     <img src={avatar}/>
                     <span className="name">{phonenumbertext}</span>
                     <span className="li">账户余额 ¥{balance}</span>
+                    <span className="li">优惠券 {couponnum}张</span>
                 </div>)}
                 {!loginsuccess &&
                 (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
@@ -121,8 +122,8 @@ class Page extends Component {
 }
 
 
-const mapStateToProps =  ({userlogin}) =>{
-    return {...userlogin};
+const mapStateToProps =  ({userlogin,mycoupon:{couponlist}}) =>{
+    return {...userlogin,couponnum:couponlist.length};
 };
 export default connect(
 mapStateToProps,

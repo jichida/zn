@@ -57,6 +57,14 @@ const MycouponlistCreate = (props) => (
                <ReferenceInput source="creator" reference="userrider" allowEmpty>
                   <SelectInput optionText="username" />
                </ReferenceInput>
+               <SelectInput  label="优惠类型"  source="triptype" choices={[
+                   { id: '快车', name: '快车' },
+                   { id: '出租车', name: '出租车' },
+                   { id: '代驾', name: '代驾' },
+                   { id: '旅游大巴', name: '旅游大巴' },
+                   { id: '代驾', name: '代驾' },
+                   { id: '拼车', name: '拼车' },
+               ]} />
                <DateInput label="过期时间"  source="expdate" />
                <NumberInput label="最高抵扣金额"  source="pricediscountmax" />
                <NumberInput label="最高抵扣（折）"  source="pricediscountpercent" />
@@ -76,6 +84,14 @@ const MycouponlistEdit = (props) => {
             <ReferenceInput source="creator" reference="userrider" allowEmpty>
                <SelectInput optionText="username" />
             </ReferenceInput>
+            <SelectInput  label="优惠类型"  source="triptype" choices={[
+                { id: '快车', name: '快车' },
+                { id: '出租车', name: '出租车' },
+                { id: '代驾', name: '代驾' },
+                { id: '旅游大巴', name: '旅游大巴' },
+                { id: '代驾', name: '代驾' },
+                { id: '拼车', name: '拼车' },
+            ]} />
             <DateInput label="过期时间"  source="expdate" />
             <NumberInput label="最高抵扣金额"  source="pricediscountmax" />
             <NumberInput label="最高抵扣（折）"  source="pricediscountpercent" />
@@ -106,6 +122,7 @@ const MycouponlistList = (props) => (//
             <ReferenceField label="用户" source="creator" reference="userrider" addLabel={false}>
             <TextField source="username" />
             </ReferenceField>
+            <TextField label="优惠类型" source="triptype" />
             <DateField label="过期时间" source="expdate"  />
             <NumberField label="最高抵扣金额" source="pricediscountmax" locales="zh-cn" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
             <NumberField label="最高抵扣（折）" source="pricediscountpercent" locales="zh-cn" elStyle={{ fontWeight: 'bold' }}/>

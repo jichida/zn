@@ -60,7 +60,9 @@ const MycouponItem = (props) => {
 class Page extends Component {
     componentWillMount () {
       this.props.dispatch(mycoupongetall_request({
-        query:{},
+        query:{
+          usestatus:'未使用'
+        },
         options:{
           sort:{created_at:-1},
           offset: 0,

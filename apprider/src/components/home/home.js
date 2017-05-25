@@ -75,8 +75,6 @@ export class AppIndex extends React.Component {
     }
     componentWillUnmount () {
         this.props.dispatch(ui_setindexmapvisiable(false));
-
-
     }
     render() {
         //console.log("thisprops:" + JSON.stringify(this.props));
