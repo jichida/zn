@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Rating} from 'belle';
 import {canceltriprequestorder} from '../../actions/sagacallback';
 import {changestartposition} from '../../actions';
 import "../../../public/newcss/caroverlay.css";
