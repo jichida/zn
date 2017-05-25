@@ -23,7 +23,7 @@ import {
 } from '../../actions';
 
 class Page extends Component {
-    componentWillMount () {
+    componentWillUnmount () {
       this.props.dispatch(ui_setorderdetail({
         usecoupon:false,
         coupon:{},
@@ -33,14 +33,16 @@ class Page extends Component {
       this.props.history.push(`/mycoupons/${this.props.orderinfo._id}`);
     }
     onClickPay(){
-      const {orderinfo,paytype,realprice} = this.props;
+      const {orderinfo,paytype,realprice,couponprice,coupon} = this.props;
       const {
         orderprice,
         triptype
       } = orderinfo;
       let orderinfotopay = {
         paytype,
-        realprice
+        realprice,
+        couponprice,
+        couponid:coupon._id
       };
       if(paytype === 'leftbalance'){
         orderinfotopay.balanceprice = realprice;
@@ -57,7 +59,9 @@ class Page extends Component {
       this.props.dispatch(ui_setorderdetail({paytype}));
     }
     render() {
-        const {orderinfo,paytype,realprice} = this.props;
+        console.log(`payprops----->${JSON.stringify(this.props)}`);
+        
+        const {orderinfo,paytype,realprice,couponnum,couponprice,balance} = this.props;
         const {
           orderprice,
           triptype
@@ -97,6 +101,11 @@ class Page extends Component {
           value:paytype,
           onChange:this.onChangePaytype.bind(this)
         };
+
+        let paylist = ['weixin','alipay'];
+        if(balance > realprice){
+          paylist.push('leftbalance');
+        }
         return (
             <div className="payPage AppPage">
                 <NavBar back={true} title="支付订单" />
@@ -121,7 +130,7 @@ class Page extends Component {
                                 优惠券
                             </CellBody>
                             <CellFooter>
-                                <span>3张</span>
+                                <span>{couponnum}张</span>
                             </CellFooter>
                         </Cell>
                         <Cell access>
@@ -129,11 +138,11 @@ class Page extends Component {
                                 优惠券
                             </CellBody>
                             <CellFooter>
-                                <span className="color_error">-3元</span>
+                                <span className="color_error">{-couponprice}元</span>
                             </CellFooter>
                         </Cell>
                     </Cells>
-                    <Selpay paytypelist={['weixin','alipay','leftbalance']} input={input}/>
+                    <Selpay paytypelist={paylist} input={input}/>
                 </div>
                 <div className="paybtn">
                     <span>
@@ -149,16 +158,20 @@ class Page extends Component {
 
 }
 
-const mapStateToProps =  ({orderdetail,myorders}, props) =>{
+const mapStateToProps =  (state,props) =>{
+    const {orderdetail,myorders,mycoupon:{couponlist},userlogin:{balance}} = state;
     let triporderid = props.match.params.triporderid;
     let orderinfo = myorders.triporders[triporderid];
     let realprice = orderinfo.orderprice;
     let couponprice = 0;
     if(orderdetail.usecoupon){
-      
+      let minpricediscount = orderinfo.orderprice * (1 - orderdetail.coupon.pricediscountpercent);
+      couponprice = minpricediscount  > orderdetail.pricediscountmax ?orderdetail.pricediscountmax:minpricediscount;
     }
+    realprice = orderinfo.orderprice - couponprice;
     //优惠券／优惠券抵扣金额
-    return {...orderdetail,orderinfo,realprice};
+    return {...orderdetail,balance,
+      orderinfo,realprice,couponprice,couponnum:couponlist.length};
 };
 
 export default connect(
