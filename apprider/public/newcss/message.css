@@ -23,3 +23,6 @@
 .messagePage .list div.li .cont .text{
     color: #999;
 }
+.messagePage .weui-loadmore_line .weui-loadmore__tips{
+    background: #EEE;
+}

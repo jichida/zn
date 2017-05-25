@@ -73,16 +73,16 @@ let WithdrawForm = (props)=>{
                         />
                 </FormUI>
 
-              <div className="promptcontent">
-                  你好，本次可提现金额: <span className="color_warning">{balance}</span>元
-              </div>
-
-          </div>
-          <div className="submitBtn">
-              <button className="btn Primary"><span>确定</span></button>
-          </div>
-      </Form>
-  );
+                <div className="promptcontent">
+                    你好，本次可提现金额: <span className="color_warning">{balance}</span>元
+                </div>
+                <div className="submitBtn">
+                    <button className="btn Primary"><span>确定</span></button>
+                </div>
+            </div>
+          
+        </Form>
+    );
 }
 
 WithdrawForm = reduxForm({
