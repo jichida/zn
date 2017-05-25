@@ -11,7 +11,7 @@ let Popinfocar = ({positiondiv,totaldistancetxt,totaldurationtxt,realtimepricede
         <p>预计行驶<span>{totaldurationtxt}</span></p>
       </div>
       <div className="price">
-        <span>{pricedetail.price}元 <Icon name="angle right"/></span>
+        <span>{pricedetail.price}元 </span>
       </div>
     </div>
     <div className="point"></div>
