@@ -90,7 +90,10 @@ class Page extends Component {
                                 <img src="newimg/30.png" alt=""/>
                             </CellHeader>
                             <CellBody>
-                                联系客服
+                                <a 
+                                    href={`tel:${this.props.app.servicephonenumber}`}
+                                    style={{display:"block",color:"#333"}}
+                                >联系客服</a>
                             </CellBody>
                             <CellFooter />
                         </Cell>
@@ -122,8 +125,8 @@ class Page extends Component {
 }
 
 
-const mapStateToProps =  ({userlogin,mycoupon:{couponlist}}) =>{
-    return {...userlogin,couponnum:couponlist.length};
+const mapStateToProps =  ({userlogin,mycoupon:{couponlist},app}) =>{
+    return {...userlogin,couponnum:couponlist.length,app};
 };
 export default connect(
 mapStateToProps,

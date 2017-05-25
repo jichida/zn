@@ -1,15 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import {
-  Container,
-  View,
-  Group,
-  Grid,
-  Col,
-  List,
-  Button
-} from 'amazeui-touch';
 import {getdistance} from '../../util/geo.js';
 import {carmap_setmapstage} from '../../actions';
 import {acceptrequest} from '../../actions/sagacallback';

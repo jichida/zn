@@ -3,15 +3,9 @@
  */
 import React from 'react';
 import WeuiTool from './tools/weuitool';
-
 import Login from './login/login.js';
-
-import City from './city/city';
-
 import Caroverlayqd from './maps/caroverlayqd';
-
 import Caroverlaystart from './maps/caroverlaystarttrip';
-
 import Orderdetail from './orderdetail/orderdetail';
 //我的订单（行程）
 import Myorders from './myorders/orderlist';
@@ -19,8 +13,6 @@ import Myorders from './myorders/orderlist';
 import Mycars from './mycars/carlist';
 //新增车辆
 import Createcar from './mycars/createcar/createcarwizard';
-
-
 import Feedetail from './orderdetail/feedetail';
 //注册
 import Register from './register/index.js';
@@ -31,122 +23,39 @@ import Index from './home/index';
 //出车
 import Outcar from './maps/outcar';
 //抢单
-
 //个人中心-基本信息
 import Editprofile from './editprofile/editprofile';
-
 //个人中心-我的钱包
 import Userwallet from './mywallet/wallet';
 //个人中心－提现
 import Withdraw from './mywallet/withdraw';
-
 import Withdrawauth from './mywallet/withdrawauth';
 //审核页面
 import Approval from './register/approval';
-
 import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 //支付界面
 import Pay from './pay/pay';
 import Selpay from './pay/selpay';
-
-
 import {hidepopmessage} from '../actions/index.js';
-import { Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-
 import {
     HashRouter as Router,
     Route,Redirect,
     Switch
 } from 'react-router-dom';
-
 import '../../public/newcss/common.css';
-
-// import '../../public/App.css';
-// import '../../public/amaze.css';
-// import '../../public/a2017.css';
-// import '../../public/style.css';
-// import '../../public/css/page.css';
-
 import {getcurrentlocationfn,getcurrentlocationstring} from '../util/geo.js';
 import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '../actions';
-
 import {requireAuthentication,requireApproval} from './requireauthentication';
-
-
-
-class MessageCo extends React.Component {
-    onDismiss = ()=> {
-        this.props.dispatch(hidepopmessage());
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.ispop && !this.props.ispop) {
-            window.setTimeout(()=> {
-                this.props.dispatch(hidepopmessage());
-            }, 3000);
-        }
-    }
-
-     render() {
-        let fullheight = {
-            height: window.innerHeight + "px"
-        };
-        let MessageCo = null;
-        if (this.props.ispop) {
-            if (this.props.type === 'error') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 error
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-            else if (this.props.type === 'warning') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 warning
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-            else if (this.props.type === 'success') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 success
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-        }
-        return MessageCo;
-     }
-}
-const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
-    return {ispop,type,title,msg};
-}
-MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
-
- class AppRoot extends React.Component {
-
+class AppRoot extends React.Component {
     render() {
         return (
             <div className="AppContainer">
                 <WeuiTool />
-                {MessageCo}
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
-                    <Route path="/city" component={City}/>
                     <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
                     <Route path='/starttrip' component={Caroverlaystart} />
                     <Route path="/feedetail/:triporderid" component={requireAuthentication(Feedetail)}/>

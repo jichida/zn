@@ -74,15 +74,15 @@ class Page extends Component {
                 </div>
 
                 <div className="submitBtn">
-                    <botton className="btn Primary" onClick={handleSubmit}>确定</botton>
+                    <button className="btn Primary" onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
         )
     }
 }
 export default reduxForm({
-  form: 'createcarwizard',                 // <------ same form name
-  destroyOnUnmount: false,        // <------ preserve form data
-  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  validate
+    form: 'createcarwizard',                 // <------ same form name
+    destroyOnUnmount: false,        // <------ preserve form data
+    forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+    validate
 })(Page)

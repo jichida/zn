@@ -9,6 +9,9 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwithdrawals.css';
 import NavBar from '../tools/nav.js';
 import StarRatingComponent from 'react-star-rating-component';
+import { Field,Fields,reduxForm,Form} from 'redux-form';
+import { connect } from 'react-redux';
+import {loginsendauth_request,withdrawcashapplyauth_request} from '../../actions';
 const {
     CellHeader,
     CellBody,
@@ -18,11 +21,6 @@ const {
     Input,
     Select
     } = WeUI;
-import { Field,Fields,reduxForm,Form} from 'redux-form';
-import { connect } from 'react-redux';
-
-import {loginsendauth_request,withdrawcashapplyauth_request} from '../../actions';
-
 
 let WithdrawauthForm = (props)=>{
     const {showphonenumber,phonenumber,handleSubmit,dispatch}  = props;
@@ -38,7 +36,7 @@ let WithdrawauthForm = (props)=>{
                     </div>
                 </div>
                 <div className="submitBtn">
-                    <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
+                    <button className="btn Primary"  onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
             
@@ -47,36 +45,34 @@ let WithdrawauthForm = (props)=>{
 }
 
 WithdrawauthForm = reduxForm({
-  form: 'withdrawformauth',                 // <------ same form name
+    form: 'withdrawformauth', 
 })(WithdrawauthForm);
 
-
 class Page extends Component {
-  onClickWithdraw = (values)=>{
-    console.dir(values);
-    const withdrawid = this.props.match.params.withdrawid;
-    let payload = {
-      _id:withdrawid,
-      username: this.props.phonenumber,
-      authcode:values.authcode
-    };
-    this.props.dispatch(withdrawcashapplyauth_request(payload));
-  }
-
-  render() {
-      const {showphonenumber,phonenumber,dispatch} = this.props;
-
-      return (<WithdrawauthForm onSubmit={this.onClickWithdraw}
-        phonenumber={phonenumber}
-        showphonenumber={showphonenumber} dispatch={dispatch}/>);
+    onClickWithdraw = (values)=>{
+        const withdrawid = this.props.match.params.withdrawid;
+        let payload = {
+            _id:withdrawid,
+            username: this.props.phonenumber,
+            authcode:values.authcode
+        };
+        this.props.dispatch(withdrawcashapplyauth_request(payload));
+    }
+    render() {
+        const {showphonenumber,phonenumber,dispatch} = this.props;
+        return (
+            <WithdrawauthForm 
+                onSubmit={this.onClickWithdraw}
+                phonenumber={phonenumber}
+                showphonenumber={showphonenumber} 
+                dispatch={dispatch}
+            />
+        );
     }
 }
-
 const mapStateToProps = ({userlogin:{username:phonenumber}}) => {
-  let showphonenumber = phonenumber.substr(0,3)+"****"+phonenumber.substr(7,4);
-  return {showphonenumber,phonenumber};
+    let showphonenumber = phonenumber.substr(0,3)+"****"+phonenumber.substr(7,4);
+    return {showphonenumber,phonenumber};
 }
 Page = connect(mapStateToProps)(Page);
-
-
 export default Page;

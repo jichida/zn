@@ -63,8 +63,8 @@ class Page extends Component {
 
                 </div>
                 <div className="submitBtn">
-                  <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
-                  <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
+                  <button className="btn Primary" onClick={previousPage}><span>上一步</span></button>
+                  <button className="btn Primary" onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
         );

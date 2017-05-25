@@ -94,7 +94,7 @@ let RegisterForm = (props)=> {
                 <label htmlFor="hasAggree"><span>我已经阅读并同意中南出行协议</span></label>
             </div>
             <div className="submitBtn">
-                <botton className="btn Primary" onClick={handleSubmit}>下一步</botton>
+                <button className="btn Primary" onClick={handleSubmit}><span>下一步</span></button>
                 <a className="blue" onClick={handleLogin}>已有账号，去登录</a>
             </div>
         </Form>
