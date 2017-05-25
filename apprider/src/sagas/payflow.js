@@ -13,8 +13,6 @@ import {
   getpaysign_result,
   serverpush_userbalance,
   queryuserbalance_result,
-  queryuserbalance_request,
-
 } from '../actions';
 import { goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 

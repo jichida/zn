@@ -1,5 +1,4 @@
-import {select, fork, take, call, put, cancel,race } from 'redux-saga/effects';
-import {delay} from 'redux-saga';
+import {take, put, } from 'redux-saga/effects';
 import {
     serverpush_restoreorder,
     triporder_addone

@@ -3,7 +3,6 @@ import {
     getemerygencycontact_result,
     getphoneconcatlist,
 } from '../actions';
-import {normalizr_emerygencycontactlist} from './normalizr';
 
 const initial = {
     emerygencycontact: {

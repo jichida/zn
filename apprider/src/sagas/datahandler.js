@@ -28,7 +28,7 @@ import {
     getpaysign_request,
     updateorder_request,
     fillprofile_request,
-    notify_socket_connected,
+
     updateorder_comment_request,
 
     driveroute_request,
@@ -54,16 +54,12 @@ import {
     getcurrentlocationandnearestdrivers_result,
     getnearestdrivers_result,
     serverpush_triprequest,
-    serverpush_triporder,
-    serverpush_triprequestandorder,
-    starttriprequestorder_result,
+
     getmytriporders_result,
 
     insertorder_result,
     updateorder_result,
-    canceltriprequestorder_result,
     getpaysign_result,
-
     md_serverpush_triporder,
     md_loginsendauth_result,
     md_serverpush_triprequestandorder,
@@ -80,7 +76,6 @@ import {
     serverpush_userbalance,
     queryuserbalance_request,
     queryuserbalance_result,
-    md_queryuserbalance_result,
 
     getrechargerecords_request,
     getrechargerecords_result,

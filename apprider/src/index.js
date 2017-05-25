@@ -12,4 +12,4 @@ ReactDOM.render(
 
 sagaMiddleware.run(rootSaga);
 
-let unsubscribe = store.subscribe(handleChange);
+store.subscribe(handleChange);

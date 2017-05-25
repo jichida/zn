@@ -13,7 +13,6 @@ import {
     login_result,
     logout_result,
     notify_socket_connected,
-    showpopmessage
 } from '../actions';
 
 let sendmsgwhenreconnect =(socket)=>{
@@ -82,7 +81,7 @@ function* handleIOWithAuth(socket) {
             let task =  yield fork(write, socket,fnsz[cmd],cmd);
             tasksz.push(task);
         }
-        let action = yield take(`${logout_result}`);
+       yield take(`${logout_result}`);
 
         for (let task of tasksz) {
             yield cancel(task);
@@ -106,7 +105,7 @@ export function* flowmain() {
     //连接上以后直接发送-----》
     sendmsgwhenreconnect(socket);
 
-    const taskread = yield fork(read, socket);
-    const taskwritewithauth = yield fork(handleIOWithAuth, socket);
-    const taskwrite = yield fork(handleIO, socket);
+    yield fork(read, socket);
+    yield fork(handleIOWithAuth, socket);
+    yield fork(handleIO, socket);
 }

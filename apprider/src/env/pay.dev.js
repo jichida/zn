@@ -1,4 +1,3 @@
-import {updateorder_request} from '../actions';
 import {getpaysign} from '../actions/sagacallback';
 import {
   requestpost,

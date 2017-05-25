@@ -1,7 +1,6 @@
 import { put,takeEvery } from 'redux-saga/effects';
 import {
   loginsendauth_result,
-  showpopmessage,
 
   serverpush_triporder,
   triporder_updateone,
@@ -31,7 +30,7 @@ import {
 
   updateorder_comment_result,
   ui_setorderdetail,
-  
+
   rechargepay_result,
   set_weui
 } from '../actions';
