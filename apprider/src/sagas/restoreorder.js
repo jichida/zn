@@ -1,4 +1,4 @@
-import {take, put, } from 'redux-saga/effects';
+import {take, put,takeEvery } from 'redux-saga/effects';
 import {
     serverpush_restoreorder,
     triporder_addone
@@ -6,12 +6,19 @@ import {
 import { push } from 'react-router-redux';
 
 export function* createrestoreorderflow(){
-  while(true){
-    let restoreorderaction = yield take(serverpush_restoreorder);
-    const {payload} = restoreorderaction;
-    console.log("恢复订单===>" + JSON.stringify(payload));
-    yield put(triporder_addone(payload.triporder));
-    yield put(serverpush_restoreorder(payload));
-    yield put(push('/requestorderstarting'));
-  }
+    yield takeEvery(`${serverpush_restoreorder}`, function*(restoreorderaction) {
+      const {payload} = restoreorderaction;
+      console.log("恢复订单===>" + JSON.stringify(payload));
+      yield put(triporder_addone(payload.triporder));
+      //yield put(serverpush_restoreorder(payload));
+      yield put(push('/requestorderstarting'));
+    });
+  // while(true){
+  //   let restoreorderaction = yield take(serverpush_restoreorder);
+  //   const {payload} = restoreorderaction;
+  //   console.log("恢复订单===>" + JSON.stringify(payload));
+  //   yield put(triporder_addone(payload.triporder));
+  //   yield put(serverpush_restoreorder(payload));
+  //   yield put(push('/requestorderstarting'));
+  // }
 }

@@ -4,6 +4,9 @@ import Root from './env/root';
 import store,{sagaMiddleware} from './env/store';
 import rootSaga from './sagas';
 import {handleChange} from './sagas/subscribereduxstate';
+import {
+    postNotifyFromJPush
+} from './env/jpush';
 
 ReactDOM.render(
   <Root />,
@@ -13,3 +16,5 @@ ReactDOM.render(
 sagaMiddleware.run(rootSaga);
 
 store.subscribe(handleChange);
+
+postNotifyFromJPush(store.dispatch);

@@ -6,8 +6,10 @@ import {flowmain} from './flowmain';
 import {wsrecvsagaflow} from './wsrecvsaga';
 import {payflow} from './payflow';
 import {getcurcityflow} from './getcurcityflow';
+import {jpushflow} from './jpushflow';
 
 export default function* rootSaga() {
+  yield fork(jpushflow);
   yield fork(getcurcityflow);
   yield fork(payflow);
   yield fork(wsrecvsagaflow);

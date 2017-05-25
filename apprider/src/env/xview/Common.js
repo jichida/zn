@@ -186,10 +186,10 @@
    @since 2.0
    */
   export const getPhoneBook = (fun) => {
-  	window.xviewCallBack=function(result){
+  	window.xviewCallBackgetPhoneBook=function(result){
       fun(result);
     };
-  	 window.xview.getPhoneBook("xviewCallBack")
+  	 window.xview.getPhoneBook("xviewCallBackgetPhoneBook")
   }
   /**
    * 拨打电话
@@ -241,3 +241,20 @@
     };
     window.xview.geographyLocationCallbackMethod("callBack");
   }
+
+  /**
+    * 设置推送用户名
+    @method jiGuangTuiSong
+    @since 2.0
+    */
+   export const jiGuangTuiSong = (name) => {
+     window.xview.jiGuangTuiSong(name);
+   }
+   /**
+     * 取消单推
+     @method cancelJPushAlisa
+     @since 2.0
+     */
+    export const cancelJPushAlisa = () => {
+      window.xview.cancelJPushAlisa();
+    }
