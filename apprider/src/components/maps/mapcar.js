@@ -355,12 +355,14 @@ class Page extends React.Component {
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
             let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
             positiondiv = [pixel.getX(),pixel.getY()];
+            //positiondiv = [0,0];
             pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
           }
           console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
             let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
             positiondiv = [pixel.getX(),pixel.getY()];
+            //positiondiv = [0,0];
             const {totaldistancetxt,totaldurationtxt} = this.props;
             const {requeststatus} = this.props.curmappagerequest;
             if(requeststatus === '行程中'){

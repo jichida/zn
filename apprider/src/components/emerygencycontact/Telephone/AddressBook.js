@@ -1,4 +1,8 @@
 import React from 'react';
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+const { SearchBar } = WeUI;
 
 import AddressBookGroup from './AddressBookGroup';//通讯录分组
 
@@ -11,8 +15,7 @@ class AddressBook extends React.Component{
 	componentWillReceiveProps (nextProps) {
 		this.setState({source:nextProps.datas});
 	}
-	searchBook(event){
-		let value=event.target.value;
+	searchBook(value){
 		if(value===""){
 			this.setState({source:this.props.datas});
 		}else{
@@ -40,14 +43,19 @@ class AddressBook extends React.Component{
 	render(){
 		let {gotoTelephoneABDetailHandler} = this.props;//获取容器传递来的参数
 		return (
-			<div>
-				<div className="padding" style={{backgroundColor:"#ccc"}}>
-					<label className="item item-input" style={{paddingTop:"0px",paddingBottom:"0px"}}>
-						<i className="icon ion-search placeholder-icon"></i>
-						<input type="text" placeholder="输入字母、汉字或电话号码搜索" onChange={ this.searchBook.bind(this) } style={{paddingTop:"0px",paddingBottom:"0px"}} />
-					</label>
-				</div>
-				<div className="userlist_">
+			<div className="addressbookPage">
+				<div className="searchContent">
+
+                    <SearchBar
+                        onChange={ this.searchBook.bind(this) } 
+                        placeholder="请输入地址关键字"
+                        lang={{
+                            cancel: '取消'
+                        }}
+                        value={this.props.searchtxt}
+                    />
+                </div>
+				<div className="list">
 
 					{
 						this.state.source.map((curData,index)=>{
