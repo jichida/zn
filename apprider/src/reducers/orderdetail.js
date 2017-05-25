@@ -13,8 +13,8 @@ const initial = {
     orderdetail: {
         paysign:'',
         paytype:'alipay',
-        couponprice:0,
-        couponid:'',
+        usecoupon:false,
+        coupon:{},
 
         ratenum:0,
         comment:'',

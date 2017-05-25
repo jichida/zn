@@ -23,8 +23,14 @@ import {
 } from '../../actions';
 
 class Page extends Component {
+    componentWillMount () {
+      this.props.dispatch(ui_setorderdetail({
+        usecoupon:false,
+        coupon:{},
+      }));
+    }
     onClickSelCoupon(){
-      this.props.history.push('/mycoupons/sel');
+      this.props.history.push(`/mycoupons/${this.props.orderinfo._id}`);
     }
     onClickPay(){
       const {orderinfo,paytype,realprice} = this.props;
@@ -147,6 +153,10 @@ const mapStateToProps =  ({orderdetail,myorders}, props) =>{
     let triporderid = props.match.params.triporderid;
     let orderinfo = myorders.triporders[triporderid];
     let realprice = orderinfo.orderprice;
+    let couponprice = 0;
+    if(orderdetail.usecoupon){
+      
+    }
     //优惠券／优惠券抵扣金额
     return {...orderdetail,orderinfo,realprice};
 };

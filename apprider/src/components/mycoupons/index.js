@@ -15,11 +15,13 @@ const {
     CellHeader,
     } = WeUI;
 import {
+  ui_setorderdetail,
   mycoupongetall_request
 } from '../../actions';
 import moment from 'moment';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import getmycoupons from '../../selectors/selcoupons';
 // coupon:{ type: Schema.Types.ObjectId, ref: 'Coupon' },
 // creator:{ type: Schema.Types.ObjectId, ref: 'User' },
 // name:String,    //优惠券名
@@ -32,13 +34,13 @@ import { connect } from 'react-redux';
 // used_at:Date,
 const MycouponItem = (props) => {
   const {mycoupon,onClickItem} = props;
-  const {name,usestatus,pricediscountpercent,pricediscountmax,expdate} = mycoupon;
+  const {name,usestatus,pricediscountpercent,pricediscountmax,expdate,enabled,triptype} = mycoupon;
   const createdatestring = moment(mycoupon.created_at).format("YYYY-MM-DD");
   const expdatestring = moment(expdate).format("YYYY-MM-DD");
   return (
     <div className="li" onClick={onClickItem}>
         <div className="w">
-            <div className="a"></div>
+            <div className="a">是否启用{enabled},仅{triptype}使用</div>
             <div className="b">
                 <div className="c">
                     <div className="price color_warning">
@@ -72,13 +74,18 @@ class Page extends Component {
     }
 
     onClickItem(mycoupon){
-      if(this.props.sel){
+      if(this.props.sel && mycoupon.enabled){
+        this.props.dispatch(ui_setorderdetail({
+          usecoupon:true,
+          coupon:mycoupon,
+        }));
         this.props.history.goBack();
       }
     }
 
     render() {
         const {couponlist} = this.props;
+        console.log(`couponlist===>${JSON.stringify(couponlist)}`);
         return (
             <div className="discountPage AppPage">
                 <NavBar back={true} title="优惠券" />
@@ -95,9 +102,8 @@ class Page extends Component {
     }
 }
 
-const mapStateToProps = ({mycoupon:{couponlist}},props) => {
-  let sel = props.match.params.sel === 'nosel'?false:true;
-  return {couponlist,sel};
+const mapStateToProps = (state,props) => {
+  return getmycoupons(state,props);
 }
 
 export default connect(
