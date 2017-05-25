@@ -8,6 +8,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
+import moment from "moment";
 const {
     Cells,
     Cell,
@@ -30,6 +31,7 @@ class Page extends Component {
 
     render() {
       const {rechargerecordlist,balance} = this.props;
+
       let rechargerecordco = [];
       _.map(rechargerecordlist,(item,index)=>{
         rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
@@ -62,7 +64,22 @@ class Page extends Component {
 
                     <div className="l2">
                         <Cells>
-                          {rechargerecordco}
+                            {
+                                _.map(rechargerecordlist, (item,index)=>{
+                                    return (
+                                        <Cell key="index">
+                                            <CellBody>
+                                                <span className="time">2016-11-12</span>
+                                                <span className="status">正在处理中...</span>
+                                            </CellBody>
+                                            <CellFooter>
+                                                <span className="color_warning">-10</span>
+                                            </CellFooter>
+                                        </Cell>
+                                    )
+                                })
+                            }
+                            
                         </Cells>
                     </div>
 

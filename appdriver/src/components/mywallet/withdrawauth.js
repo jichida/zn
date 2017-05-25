@@ -25,25 +25,25 @@ import {loginsendauth_request,withdrawcashapplyauth_request} from '../../actions
 
 
 let WithdrawauthForm = (props)=>{
-  const {showphonenumber,phonenumber,handleSubmit,dispatch}  = props;
-  return (
-      <div className="withdrawalsPage AppPage">
-          <NavBar back={true} title="提现" />
-          <div className="list">
-            <div className="messageCodeContent">
-                <span className="tit">请输入<span className="phone">{showphonenumber}</span>收到的短信验证码</span>
-                <div className="messageCodeInput">
-                    <span className="txt">验证码</span>
-                    <Field name="authcode" label="验证码" placeholder="请输入验证码" type="text" component="input" />
-                    <span className="getcode" onClick={()=>{dispatch(loginsendauth_request({phonenumber}));}}>获取验证码</span>
+    const {showphonenumber,phonenumber,handleSubmit,dispatch}  = props;
+    return (
+        <div className="withdrawalsPage AppPage">
+            <NavBar back={true} title="提现" />
+            <div className="list">
+                <div className="messageCodeContent">
+                    <span className="tit">请输入<span className="phone color_warning">{showphonenumber}</span>收到的短信验证码</span>
+                    <div className="messageCodeInput">
+                        <Field name="authcode" label="验证码" placeholder="请输入验证码" type="text" component="input" />
+                        <span className="getcode btn Primary" onClick={()=>{dispatch(loginsendauth_request({phonenumber}));}}>获取验证码</span>
+                    </div>
+                </div>
+                <div className="submitBtn">
+                    <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
                 </div>
             </div>
-          </div>
-          <div className="submitBtn">
-              <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
-          </div>
-      </div>
-  );
+            
+        </div>
+    );
 }
 
 WithdrawauthForm = reduxForm({

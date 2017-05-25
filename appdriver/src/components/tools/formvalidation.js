@@ -1,5 +1,5 @@
 /*
-	表单验证
+	表单验证   formvalidation.js
 */
 import React from 'react'
 import "./formvalidation.css"
