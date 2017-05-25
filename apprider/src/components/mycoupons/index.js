@@ -96,7 +96,7 @@ class Page extends Component {
 }
 
 const mapStateToProps = ({mycoupon:{couponlist}},props) => {
-  let sel = props.match.params.sel === 'sel'?true:false;
+  let sel = props.match.params.sel === 'nosel'?false:true;
   return {couponlist,sel};
 }
 

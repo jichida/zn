@@ -43,7 +43,7 @@ import Pay from './pay/pay';
 import Selpay from './pay/selpay';
 /*个人中心*/
 //设置
-import Setting from "./new/user/setting";
+// import Setting from "./new/user/setting";
 //优惠券
 // import Discount from "./new/user/discount";
 // //addresscommon常用地址
@@ -181,7 +181,7 @@ class AppRoot extends React.Component {
                     <Route path="/mycoupons/:sel" component={requireAuthentication(Mycoupons)}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/messagedetail/:messageid" component={MessageDetail} />
-                    <Route path="/setting" component={Setting}/>
+                  
                     <Route path="/orderlist" component={requireAuthentication(Orderlist)}/>
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
