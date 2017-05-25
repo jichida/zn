@@ -280,5 +280,19 @@ input, textarea{
 .weui-search-bar__box .weui-icon-search{
     line-height: 34px;
 }
+.weui-search-bar__label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.weui-search-bar__form{
+    height: 34px;
+}
+.weui-search-bar__box .weui-search-bar__input{
+    height: 34px;
+    line-height: 34px;
+    padding: 0;
+}
+.searchContent{flex-shrink: 0}
 
 
