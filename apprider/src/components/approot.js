@@ -24,7 +24,7 @@ import Mywallet from './mywallet/wallet';
 import Mycoupons from './mycoupons/index';
 
 import {hidepopmessage} from '../actions/index.js';
-import { Message } from 'semantic-ui-react';
+
 import { connect } from 'react-redux';
 
 import {
@@ -92,72 +92,12 @@ import MessageDetail from './messagecenter/messagedetail.js';
 import {requireAuthentication} from './requireauthentication';
 
 
-class MessageCo extends React.Component {
-    onDismiss = ()=> {
-        this.props.dispatch(hidepopmessage());
-    }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.ispop && !this.props.ispop) {
-            window.setTimeout(()=> {
-                this.props.dispatch(hidepopmessage());
-            }, 3000);
-        }
-    }
-
-     render() {
-        let fullheight = {
-            height: window.innerHeight + "px"
-        };
-        let MessageCo = null;
-        if (this.props.ispop) {
-            if (this.props.type === 'error') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 error
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-            else if (this.props.type === 'warning') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 warning
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-            else if (this.props.type === 'success') {
-                MessageCo = (
-                    <div className="messageCo" style={fullheight}>
-                        <Message onDismiss={this.onDismiss}
-                                 success
-                                 header={this.props.title}
-                                 content={this.props.msg}
-                        />
-                    </div>
-                );
-            }
-        }
-        return MessageCo;
-     }
-}
-const mapStateToPropsMessageCo = ({app:{ispop,type,title,msg}}) => {
-    return {ispop,type,title,msg};
-}
-MessageCo = connect(mapStateToPropsMessageCo)(MessageCo);
 
 class AppRoot extends React.Component {
     render() {
         return (
             <div className="AppContainer">
                 <WeuiTool />
-                <MessageCo />
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
                     <Route path="/index/:keyname" component={App}/>

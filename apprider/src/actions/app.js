@@ -3,8 +3,6 @@
  */
 import { createAction } from 'redux-act';
 
-export const showpopmessage = createAction('showpopmessage');
-export const hidepopmessage = createAction('hidepopmessage');
 export const common_err = createAction('common_err');
 
 export const notify_socket_connected = createAction('notify_socket_connected');
