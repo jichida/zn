@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import _ from "lodash";
 import { Route, Switch } from 'react-router-dom';
 import UserCenter from './usercenter.js';
-import Lvyoudaba from '../tourbus/index.js';
+import Lvyoudaba from '../tourbus/selbusform.js';
+//import Lvyoudaba from '../tourbus/index.js';
+
 import Pinche from '../carpool/index.js';
 import CarOverlayEmbedded from '../maps/caroverlaymbedded';
-import { Container,View } from 'amazeui-touch';
 var Sidebar = require('react-sidebar').default;
 import NavBar from '../tools/nav.js';
 import {
@@ -24,6 +25,9 @@ export class AppIndex extends React.Component {
     }
     onSetSidebarOpen(open){
         this.props.dispatch(ui_setsidebaropen(open));
+    }
+    onClickMessageCenter(){
+      this.props.history.push('/messagecenter');
     }
     onClickPage(page){
         this.props.history.replace('/index/'+page);
@@ -55,7 +59,13 @@ export class AppIndex extends React.Component {
         this.props.history.push(page);
     }
     componentWillMount () {
-        this.props.dispatch(ui_setindexmapvisiable(true));
+        let currentkeyname = this.props.match.params.keyname;
+        if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
+            this.props.dispatch(ui_setindexmapvisiable(true));
+        }
+        else{
+            this.props.dispatch(ui_setindexmapvisiable(false));
+        }
     }
     componentWillReceiveProps (nextprop) {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){
@@ -71,8 +81,6 @@ export class AppIndex extends React.Component {
     }
     componentWillUnmount () {
         this.props.dispatch(ui_setindexmapvisiable(false));
-
-
     }
     render() {
         //console.log("thisprops:" + JSON.stringify(this.props));
@@ -122,7 +130,7 @@ export class AppIndex extends React.Component {
             navlinkco.push(' ');
         });
         return (
-            <div className="appriderhomePage">
+            <div className="appriderhomePage AppPage">
                 <Sidebar
                     sidebar={this.renderOC()}
                     sidebarClassName="homesidebar"
@@ -133,27 +141,27 @@ export class AppIndex extends React.Component {
                     onSetOpen={this.onSetSidebarOpen.bind(this)}
                     shadow={false}
                     >
-                    <View>
+                    <div className="view">
                         <NavBar
                             back={false}
                             leftnav = {[
                                 {
-                                    icon : 'icon icon-user navbar-icon navbar-icon-sibling-of-title',
-                                    icontype : "font",
+                                    icon : 'newimg/35.png',
+                                    icontype : "img",
                                     type : 'action',
                                     action : this.onSetSidebarOpen.bind(this,true),
-                                    width : "10px",
-                                    height: "10px",
+                                    width : "24px",
+                                    height: "24px",
                                 },
                             ]}
                             rightnav={[
                                 {
-                                    icon : 'icon icon-xx navbar-icon navbar-icon-sibling-of-title',
-                                    icontype : "font",
-                                    type : 'push',
-                                    url : '/messagecenter',
-                                    width : "10px",
-                                    height: "10px",
+                                    icon : 'newimg/36.png',
+                                    icontype : "img",
+                                    type : 'action',
+                                    action:this.onClickMessageCenter.bind(this),
+                                    width : "24px",
+                                    height: "24px",
                                 },
                             ]}
                             title="中南出行"
@@ -185,10 +193,10 @@ export class AppIndex extends React.Component {
 
 
 
-                        <Container scrollable={true}>
+                        <div className="list">
                             {Co}
-                        </Container>
-                    </View>
+                        </div>
+                    </div>
                 </Sidebar>
             </div>
         );

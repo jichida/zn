@@ -33,7 +33,7 @@ class Page extends Component {
 					<Cells>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src={PhotoandCarmanURL} />
+			                    <img src={PhotoandCarmanURL||"newimg/17.png"} />
 			                </CellHeader>
 			                <CellBody>
 			                    <div className="tit">
@@ -98,12 +98,15 @@ class Page extends Component {
 			                </CellBody>
 			                <CellFooter />
 			            </Cell>
-			            <Cell access onClick={()=>{this.onClickItem('/myorders')}}>
+			            <Cell access>
 			                <CellHeader>
 			                    <img src="newimg/9.png" />
 			                </CellHeader>
 			                <CellBody>
-			                   	联系客服
+			                   	<a 
+			                   		href={`tel:${this.props.app.servicephonenumber}`}
+			                   		style={{display:"block",color:"#333"}}
+			                   	>联系客服</a>
 			                </CellBody>
 			                <CellFooter />
 			            </Cell>
@@ -120,8 +123,8 @@ class Page extends Component {
     }
 }
 
-const mapStateToProps =  ({userlogin}) =>{
-    return {...userlogin};
+const mapStateToProps =  ({userlogin,app}) =>{
+    return {...userlogin,app};
 };
 
 

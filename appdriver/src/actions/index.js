@@ -12,3 +12,5 @@ export * from './userlogin';
 export * from './car';
 export * from './md';
 export * from './withdraw';
+export * from './weui';
+export * from './jpush';

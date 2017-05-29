@@ -1,159 +1,131 @@
-import React, { Component, PropTypes } from 'react';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
+import React, { Component } from 'react';
+import { Field, reduxForm, Form, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
-import {
-  Container,
-  View,
-  Button,
-  Notification,
-  NavBar
-} from 'amazeui-touch';
-import {Label} from 'semantic-ui-react';
 import {loginsendauth_request,loginwithauth_request} from '../../actions';
+import NavBar from '../tools/nav.js';
+import '../../../public/newcss/login.css';
+import { withRouter } from 'react-router-dom';
+import {
+    required,
+    phone,
+    InputValidation,
+    length4
+    } from "../tools/formvalidation"
 
-let renderLoginForm = (fields)=>{
-    let onClickSendAuth =()=>{
-        fields.dispatch(loginsendauth_request({phonenumber:fields.phonenumber.input.value}));
+export class PageForm extends Component {
+    onClickSendAuth =()=>{
+        this.props.dispatch(loginsendauth_request({phonenumber:this.props.phonenumber}));
     }
-    return (
-              <ul className="list background padding">
-                <li className="item item-input radius5 mb15">
-                  <div className="item-media"><span className="icon icon-sjh"></span></div>
-                  <div className="item-main">
-                    <label className="field-container">
-                      <input type="text" icon="person" placeholder="请输入您的手机号" className="field"
-                      {...fields.phonenumber.input} />
-                    </label>
-                    {fields.phonenumber.meta.touched && fields.phonenumber.meta.error &&
-                        <Label basic color='red' pointing>{fields.phonenumber.meta.error}</Label>}
-                  </div>
-                </li>
-                <li className="item item-input radius5 mb15">
-                  <div className="item-media"><span className="icon icon-yzm"></span></div>
-                  <div className="item-main">
-                    <label className="field-container">
-                      <input type="password" icon="info" placeholder="请输入验证码" className="field"
-                      {...fields.authcode.input} />
-                    </label>
-                    {fields.authcode.meta.touched && fields.authcode.meta.error &&
-                        <Label basic color='red' pointing>{fields.authcode.meta.error}</Label>}
-                    <a className="border_left padding-left" onClick={onClickSendAuth}>获取验证码</a>
-                  </div>
-                </li>
-              </ul>
-            );
+    render(){
+        const { handleSubmit,onClickLogin,pristine,phonenumber,submitting } = this.props;
 
+        return (
+            <Form
+                className="loginForm formStyle1"
+                onSubmit={handleSubmit(onClickLogin)}
+                >
+
+                <div className="li" >
+                    <span className="icon">
+                        <img src="newimg/25.png" />
+                    </span>
+                    <Field
+                        name="phonenumber"
+                        id="phonenumber"
+                        placeholder="请输入您的账号"
+                        type="text"
+                        component={ InputValidation }
+                        validate={[ required, phone ]}
+                    />
+                </div>
+                <div className="li">
+                    <span className="icon">
+                        <img src="newimg/26.png" />
+                    </span>
+                    <Field
+                        name="authcode"
+                        id="authcode"
+                        placeholder="请输入验证码"
+                        type="text"
+                        component={ InputValidation }
+                        validate={[ required,length4 ]}
+                    />
+                    <div className="getyanzhen" onClick={this.onClickSendAuth}>获取验证码</div>
+                </div>
+
+                <div className="submitBtn">
+                    <span
+                        className="btn Primary"
+                        disabled={pristine || submitting}
+                        onClick={handleSubmit(onClickLogin)}
+                        >
+                        登录
+                    </span>
+                    <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
+                </div>
+            </Form>
+        )
+    }
 }
 
-renderLoginForm = connect()(renderLoginForm);
+PageForm = reduxForm({
+    form: 'LoginPageForm'
+})(PageForm);
 
-let LoginForm = (props)=>{
-  let {handleSubmit,onClickLogin} = props;
-  return (<Form onSubmit={handleSubmit(onClickLogin)}>
-        <img src="images/logo.png" alt='logo'/>
-        <div className="group">
-          <div className="group-body background">
-            <Fields names={[ 'phonenumber', 'authcode',]} component={renderLoginForm}/>
-          <div className="padding"><Button amStyle="primary" block>确认登录</Button></div>
-          </div>
-        </div>
-  </Form>);
-};
-
-const validate = values => {
-  const errors = {}
-  if (!values.phonenumber) {
-    errors.phonenumber = '必须填写手机号码';
-  }
-  else{
-    let phone = values.phonenumber;
-    phone = phone.replace(/\s/g,'');
-		if(phone.match(/\D/g)||phone.length!==11||!phone.match(/^1/))
-		{
-      errors.phonenumber = '无效的手机号码';
+const inputconnect = formValueSelector('LoginPageForm');
+PageForm = connect(
+    state => {
+        const phonenumber = inputconnect(state, 'phonenumber');
+        return {
+            phonenumber
+        }
     }
-  }
+)(PageForm)
+PageForm = withRouter(PageForm);
 
-
-    if (!values.authcode) {
-      errors.authcode = '必须填写验证码';
+export class Page extends Component {
+    componentWillReceiveProps (nextProps) {
+        console.log(nextProps);
+        if(nextProps.loginsuccess && !this.props.loginsuccess){
+            console.log("------->" + JSON.stringify(this.props.location));
+            //search:?next=/devicelist
+            var fdStart = this.props.location.search.indexOf("?next=");
+            if(fdStart === 0){
+                const redirectRoute = this.props.location.search.substring(6);
+                this.props.history.replace(redirectRoute);
+            }
+            else{
+                this.props.history.goBack();
+            }
+            return;
+        }
     }
-    else{
-      let authcode = values.authcode;
-      authcode = authcode.replace(/\s/g,'');
-  		if(authcode.match(/\D/g)||authcode.length!==4)
-  		{
-        errors.authcode = '验证码必须是四位数字';
-      }
-    }
-
-  return errors;
-}
-
-LoginForm = reduxForm({
-  form: 'login',
-  validate,
-  initialValues:{
-    phonenumber:'',
-    authcode:'',
-  }
-})(LoginForm);
-
-export class Page extends React.Component {
-
-  componentWillMount () {
-  }
-
-  onClickLogin = (values)=>{
-    console.dir(values);
-    let payload = {
-        phonenumber:values.phonenumber,
-        authcode:values.authcode,
-    };
-    this.props.dispatch(loginwithauth_request(payload));
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if(nextProps.loginsuccess && !this.props.loginsuccess){
-      console.log("------->" + JSON.stringify(this.props.location));
-      //search:?next=/devicelist
-      var fdStart = this.props.location.search.indexOf("?next=");
-      if(fdStart === 0){
-        const redirectRoute = this.props.location.search.substring(6);
-        this.props.history.replace(redirectRoute);
-      }
-      else{
+    onClickReturn =()=>{
         this.props.history.goBack();
-      }
-      return;
     }
-  }
-  onClickReturn =()=>{
-    this.props.history.goBack();
-  }
-  render() {
-     const itemLeft = {
-        title: '返回'
-      };
-      const dataLeft = {
-        title: '快速登录',
-        leftNav: [{...itemLeft, icon: 'left-nav'}],
-        onAction: this.onClickReturn
-      };
-    return (
-        <View className="login_bg">
-        <NavBar {...dataLeft} className="white background"/>
-        <Container>
-        <LoginForm onClickLogin={this.onClickLogin}/>
-        </Container>
-        </View>
-    );
-  }
-
+    onClickLogin = (values)=>{
+        let payload = {
+            phonenumber:values.phonenumber,
+            authcode:values.authcode,
+        };
+        this.props.dispatch(loginwithauth_request(payload));
+    }
+    render(){
+        return (
+            <div className="loginPage AppPage">
+                <NavBar back={true} title="快速登录" />
+                <div className="content">
+                    <div className="logo">
+                        <img src="newimg/24.png" />
+                    </div>
+                    <PageForm onClickLogin={this.onClickLogin}/>
+                </div>
+            </div>
+        )
+    }
 }
 
-const mapStateToProps = ({userlogin}) => {
-  return userlogin;
-}
-Page = connect(mapStateToProps)(Page);
+const data = ({userlogin}) => { return userlogin; }
+Page = connect(data)(Page);
+
 export default Page;

@@ -8,14 +8,12 @@ import CarOverlayInit from './caroverlayinit.js';
 
 export class Page extends React.Component {
     render() {
-        let floatcomponents;
-        if(this.props.mapstage === 'pageinit'){
-            floatcomponents = <CarOverlayInit />;
-        }
         return (
-            <div>
-                <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'/></div>
-                {floatcomponents}
+            <div className="mapgaodePage">
+                <MapGaode ref='mapgaode'/>
+                {this.props.mapstage === 'pageinit'?(
+                    <CarOverlayInit />
+                ):""}
             </div>
         );
     }

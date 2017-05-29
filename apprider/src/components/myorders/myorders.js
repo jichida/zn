@@ -52,7 +52,9 @@ class Page extends Component {
 
     componentWillMount () {
         this.props.dispatch(getmytriporders_request({
-            query: {},
+            query: {
+              triptype:{'$ne':'充值'}
+            },
             options:{
                 sort:{created_at:-1},
                 offset: 0,
@@ -66,7 +68,6 @@ class Page extends Component {
         return (
             <div className="userorderlistPage AppPage">
                 <NavBar back={true} title="我的订单" />
-                <span onClick={()=>{history.push("orderinfo")}}>new 订单详情 </span>
                 <div className="list">
                     <Cells>
                         {
@@ -81,13 +82,13 @@ class Page extends Component {
                                         <CellBody>
                                             <div className="tt">
                                                 <div className="ttinfo">
-                                                    <span className="i">预约</span>
+                                                    <span className="i">{orderinfo.isrealtime?'':'预约'}</span>
                                                     <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
                                                     <span className="type">{orderinfo.triptype}</span>
                                                 </div>
                                                 <span className="status color_warning">{orderinfo.orderstatus}</span>
                                             </div>
-                                            
+
                                             {orderinfo.triptype==="拼车"?(
                                                 <Pinche info={orderinfo} />
                                             ):""}
@@ -95,7 +96,7 @@ class Page extends Component {
                                             {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
                                                 <Kuaiche info={orderinfo} />
                                             ):""}
-                                            
+
 
                                         </CellBody>
                                         <CellFooter />
@@ -103,7 +104,7 @@ class Page extends Component {
                                 )
                             })
                         }
-                        
+
                     </Cells>
                 </div>
             </div>
@@ -114,5 +115,3 @@ const data =({myorders})=>{
     return {...myorders};
 };
 export default connect(data)(Page);
-
-

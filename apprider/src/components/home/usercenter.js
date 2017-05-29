@@ -25,7 +25,7 @@ class Page extends Component {
       e.stopPropagation();
     }
     render() {
-      const {loginsuccess,balance,username,profile:{nickname,avatar}} = this.props;
+      const {loginsuccess,balance,couponnum,username,profile:{nickname,avatar}} = this.props;
 
       let phonenumbertext = loginsuccess?username:'未登录';
       let linkeditprofile = loginsuccess?'/editprofile':'/login';
@@ -36,14 +36,14 @@ class Page extends Component {
       return (
             <div className="usercenterPage AppPage">
                 {loginsuccess &&
-                (<div className="head">
+                (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
                     <img src={avatar}/>
                     <span className="name">{phonenumbertext}</span>
                     <span className="li">账户余额 ¥{balance}</span>
-                    <span className="li">优惠券 3张</span>
+                    <span className="li">优惠券 {couponnum}张</span>
                 </div>)}
                 {!loginsuccess &&
-                (<div className="head">
+                (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
                     <img src={avatar} />
                     <span className="name">{phonenumbertext}</span>
                 </div>)}
@@ -76,7 +76,7 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        <Cell access onClick={this.onClickItem.bind(this,'/mycoupons')}>
+                        <Cell access onClick={this.onClickItem.bind(this,'/mycoupons/nosel')}>
                             <CellHeader>
                                 <img src="newimg/29.png" alt=""/>
                             </CellHeader>
@@ -90,7 +90,10 @@ class Page extends Component {
                                 <img src="newimg/30.png" alt=""/>
                             </CellHeader>
                             <CellBody>
-                                联系客服
+                                <a 
+                                    href={`tel:${this.props.app.servicephonenumber}`}
+                                    style={{display:"block",color:"#333"}}
+                                >联系客服</a>
                             </CellBody>
                             <CellFooter />
                         </Cell>
@@ -122,8 +125,8 @@ class Page extends Component {
 }
 
 
-const mapStateToProps =  ({userlogin}) =>{
-    return {...userlogin};
+const mapStateToProps =  ({userlogin,mycoupon:{couponlist},app}) =>{
+    return {...userlogin,couponnum:couponlist.length,app};
 };
 export default connect(
 mapStateToProps,

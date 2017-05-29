@@ -92,7 +92,7 @@ class Page extends React.Component {
       }
 
       let onCancel=()=>{
-          dispatch(carmap_resetmap());
+          dispatch(carmap_resetmap({}));
       }
 
       //尚未叫车!
@@ -168,9 +168,15 @@ class Page extends React.Component {
                       //这里是注释
                       isgetaddress?(
                           <div className="isGetaddress">
-                              <span className="showprice">{renderHTML(resulthtmlstring)}</span>
-                              <div className="li"><a className="btn_a" onClick={onOK}>叫车</a></div>
-                              <div className="li"><a className="btn_b" onClick={onCancel}>取消</a></div>
+                              <span className="showprice">
+                                {renderHTML(resulthtmlstring)}
+                              </span>
+                              <div className="btnlist">
+
+                                <a className="btn Primary" onClick={onOK}>叫车</a>
+                                <a className="btn Default" onClick={onCancel}>取消</a>
+
+                              </div>
                           </div>
                       ):""
                   }

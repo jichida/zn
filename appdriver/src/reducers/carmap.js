@@ -57,7 +57,7 @@ const carmap = createReducer({
       let mapstage = state.mapstage;
       let enableddrawmapflag = 0;
       if(curmappagerequest.requeststatus === '已接单'){
-        mapstage = '联系乘客';//去接乘客
+        mapstage = '去接乘客';//去接乘客
       }
       else if(curmappagerequest.requeststatus === '待上车'){
         mapstage = '接到乘客';

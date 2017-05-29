@@ -43,26 +43,31 @@ class Page extends Component {
     render() {
         let titleRightNav = [
             {
-                icon : '',
                 text : '新增车辆',
                 type : 'push',//push, action,
                 url : '/createcar'
             },
         ];
         const {carlist,defaultmycar} = this.props;
-        let carlistco = [];
-        _.map(carlist,(caritem,index)=>{
-          carlistco.push(<CarItem carinfo={caritem}  key={index} isdefault={defaultmycar === caritem._id }
-                       onClickSelCurCar={this.onClickSelCurCar.bind(this)} />)
-        });
         return (
             <div className="usercarlistPage AppPage">
-                <NavBar back={true} title="我的车辆" rightnav={titleRightNav} />
-                <Button onClick={()=>this.props.history.push('/createcar')} >新建车辆</Button>
+                <NavBar 
+                  back={true} 
+                  title="我的车辆" 
+                  rightnav={titleRightNav} />
                 <div className="list">
                     <Panel>
                         <PanelBody>
-                            {carlistco}
+                            {_.map(carlist,(caritem,index)=>{
+                                return (
+                                    <CarItem 
+                                      carinfo={caritem}  
+                                      key={index} 
+                                      isdefault={defaultmycar === caritem._id }
+                                      onClickSelCurCar={this.onClickSelCurCar.bind(this)} 
+                                      />
+                                )
+                            })}
                         </PanelBody>
                     </Panel>
                 </div>

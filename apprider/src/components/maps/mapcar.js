@@ -2,17 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
 import {
-  carmap_setstartaddress,
-  carmap_setdragging,
-  carmap_changemarkerstartlatlng,
-  carmap_setzoomlevel,
-  carmap_setmapcenter,
-  carmap_setmapinited
+    carmap_setstartaddress,
+    carmap_setdragging,
+    carmap_changemarkerstartlatlng,
+    carmap_setzoomlevel,
+    carmap_setmapcenter,
+    carmap_setmapinited
 } from '../../actions';
 import {changestartposition} from '../../actions';
 import Popinfotrip from './popinfocar';
 import Popinfowaiting from './popinfolookingcar';
 import Script from 'react-load-script';
+import "../../../public/newcss/mapcontainer.css";
+
 
 
 const ISENABLEEDRAW_MARKERSTART = 1;
@@ -352,13 +354,15 @@ class Page extends React.Component {
         if(window.amap){
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
             let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
-            positiondiv = [pixel.getX()-85,pixel.getY()-70];
+            positiondiv = [pixel.getX(),pixel.getY()];
+            //positiondiv = [0,0];
             pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
           }
           console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
             let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-            positiondiv = [pixel.getX()-110,pixel.getY()-70];
+            positiondiv = [pixel.getX(),pixel.getY()];
+            //positiondiv = [0,0];
             const {totaldistancetxt,totaldurationtxt} = this.props;
             const {requeststatus} = this.props.curmappagerequest;
             if(requeststatus === '行程中'){
@@ -382,34 +386,17 @@ class Page extends React.Component {
                 />;
             }
           }
-          console.log(`当前位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
         }
         return (
-            <div style={{
-              width: '100%',
-              height: (window.innerHeight-92)+"px",
-              display:'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position:'relative'
-            }}>
-                {this.props.enabledragging?
-                <img src='images/start.png' style={{
-                    zIndex:2,
-                    width:'25px',
-                    height:'45px'
-                }}/>:null}
+            <div className="mapcontainer">
                 {pophtmlofstartlatlng}
-
-                <div  id="gaodemap"  style={{
-                  width: '100%',
-                  height: '100%',
-                  position:'absolute',
-                  left:"0",
-                  top: '0',
-                  zIndex:1
-                }} />
-
+                <div id="gaodemap" />
+                {
+                    this.props.enabledragging?
+                    <div className="startIcon">
+                        <img src='images/start.png' />
+                    </div>:null
+                }
                 {scriptco}
             </div>
         );

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './env/root';
-import {sagaMiddleware} from './env/store';
+import store,{sagaMiddleware} from './env/store';
 import rootSaga from './sagas';
+import {
+    postNotifyFromJPush
+} from './env/jpush';
 
 ReactDOM.render(
     <Root />,
@@ -10,3 +13,5 @@ ReactDOM.render(
 );
 
 sagaMiddleware.run(rootSaga);
+
+postNotifyFromJPush(store.dispatch);

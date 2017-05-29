@@ -26,7 +26,7 @@ const PositionDriverShow = (props) => (
                <TextField label="网约车公司标识" source="Licenseld" />
                <TextField label="行政区划代码"  source="RiverRegionCode" />
                <TextField label="网约车公司标识"  source="VehicleNo" />
-               <TextField label="定位时间"  source="PositionTime" />
+               <DateField label="定位时间"  source="PositionTime" showTime/>
                <TextField label="经度" source="Longitude" />
                <TextField label="纬度" source="Latitude" />
                <TextField label="坐标加密标识" source="Encrypt" />
@@ -47,7 +47,7 @@ const PositionDriverList = (props) => (//
         <TextField label="网约车公司标识" source="Licenseld" />
         <TextField label="行政区划代码"  source="RiverRegionCode" />
         <TextField label="网约车公司标识"  source="VehicleNo" />
-        <TextField label="定位时间"  source="PositionTime" />
+        <DateField label="定位时间"  source="PositionTime" showTime/>
         <TextField label="方向角" source="Direction" />
         <TextField label="海拔高度" source="Elevation" />
         <TextField label="瞬时速度" source="Speed" />

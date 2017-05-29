@@ -2,12 +2,17 @@
     个人中心-我的钱包
 */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
+import { connect } from 'react-redux';
+import {
+    queryuserbalance_request,
+    getrechargerecords_request,
+    rechargepay_request
+} from '../../actions';
 const {
     Cells,
     Cell,
@@ -17,44 +22,42 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
-import {
-  getrechargerecords_request,
-  rechargepay_request
-} from '../../actions';
-import Item from './rechargerecorditem';
+import moment from 'moment';
 
 class Page extends Component {
-  constructor(props) {
-      super(props);
-   }
-   componentWillMount () {
-     this.props.dispatch(getrechargerecords_request({}));
-   }
+
+    componentWillMount () {
+      this.props.dispatch(queryuserbalance_request({}));
+
+      this.props.dispatch(getrechargerecords_request({
+        query: {},
+        options:{
+            sort:{created_at:-1},
+            offset: 0,
+            limit: 1000,
+        }
+      }));
+    }
 
     render() {
-        const {rechargerecordlist,balance} = this.props;
-        let rechargerecordco = [];
-            _.map(rechargerecordlist,(item,index)=>{
-        rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
-    });
-
+        const {rechargelist,balance} = this.props;
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
-                    <img src="newimg/10.png" />
-                    <div>
-                        <span className="tit">余额(元)</span>
-                        <span className="myprice">{balance}</span>
-                    </div>
+                    <span className="tit">余额(元)</span>
+                    <span className="myprice">{balance}</span>
                 </div>
                 <div className="list">
                     <Cells className="tixianlnk">
-                        <Cell access>
+                        <Cell
+                            access
+                            onClick={()=>{this.props.dispatch(rechargepay_request({}));}}
+                            >
                             <CellHeader>
-                                <img src="newimg/21.png" alt=""/>
+                                <img src="newimg/13.png" alt=""/>
                             </CellHeader>
-                            <CellBody onClick={()=>{this.props.dispatch(rechargepay_request({}));}}>
+                            <CellBody>
                                 我要充值
                             </CellBody>
                             <CellFooter />
@@ -64,8 +67,20 @@ class Page extends Component {
                     <CellsTitle>账单查询</CellsTitle>
 
                     <div className="l2">
-                        <Cells>
-                          {rechargerecordco}
+                        <Cells>{
+                          _.map(rechargelist,(record)=>{
+                            return (<Cell key={record._id}>
+                                <CellBody>
+                                    <span className="time">{moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")}</span>
+                                    <span className="status">{_.get(record,'fromorder.triptype')}</span>
+                                </CellBody>
+                                <CellFooter>
+                                    <span className="color_warning">{record.feebonus}</span>
+                                    <span className="color_warning">{record.feenew}</span>
+                                </CellFooter>
+                            </Cell>)
+                          })
+                        }
                         </Cells>
                     </div>
 
@@ -74,11 +89,9 @@ class Page extends Component {
         )
     }
 }
-
-const mapStateToProps =  ({withdraw,userlogin:{balance}}) =>{
-    return {...withdraw,balance};
+const data =  ({recharge:{rechargelist},userlogin:{balance}}) =>{
+    return {rechargelist,balance};
 };
-
 export default connect(
-    mapStateToProps,
+    data,
 )(Page);

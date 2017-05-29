@@ -4,8 +4,10 @@ import {startacceptrequestflow,updaterequeststatusflow,canceltriprequestorderflo
 import {getcurpositionflow,createstartoperateloginoutflow,createnavdrawrouteflow} from './senddriverposition';
 import {createrestoreorderflow} from './restoreorder';
 import {wsrecvsagaflow} from './wsrecvsaga';
+import {jpushflow} from './jpushflow';
 
 export default function* rootSaga() {
+  yield fork(jpushflow);
   yield fork(wsrecvsagaflow);
   yield fork(createrestoreorderflow);
   yield fork(createnavdrawrouteflow);

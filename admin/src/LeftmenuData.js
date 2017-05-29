@@ -76,18 +76,20 @@ export default [
         'icon': <TriprequestIcon />,
       }
    ,
+   {
+     'name':'userdriver',
+     'icon': <UserdriverIcon />,
+   },
   {
     'name':'usermgr',
     'icon': <UsermgrIcon />,
     'children': [
-      {
-        'name':'userdriver',
-        'icon': <UserdriverIcon />,
-      },
+
       {
         'name':'userrider',
         'icon': <UserriderIcon />,
       },
+      { name: 'mycoupon', icon: <UserIcon /> },
       { name: 'withdrawcash', icon: <UserIcon /> },
     ]
   },

@@ -1,5 +1,4 @@
 import React from 'react';
-//import { Map } from 'react-amap';
 import { connect } from 'react-redux';
 import L from 'leaflet';
 import Script from 'react-load-script';
@@ -271,7 +270,7 @@ export class Page extends React.Component {
             const {totaldistancetxt,totaldurationtxt} = this.props.driveroute;
             const {realtimepricedetail} = this.props.curmappageorder;
             let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-            positiondiv = [pixel.getX()-110,pixel.getY()-70];
+            positiondiv = [pixel.getX(),pixel.getY()];
             pophtmlofstartlatlng = <Popinfotrip positiondiv={positiondiv}
             totaldistancetxt={totaldistancetxt}
             totaldurationtxt={totaldurationtxt}

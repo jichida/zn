@@ -15,6 +15,9 @@ import myorders from './myorders';
 import orderdetail from './orderdetail';
 import orderconfirm from './orderconfirm';
 import weui from "./weui";
+import recharge from './recharge';
+import messagecenter from './messagecenter';
+import mycoupon from './mycoupon';
 
 import { routerReducer } from 'react-router-redux';
 
@@ -34,6 +37,9 @@ export default combineReducers({
         orderdetail,
         orderconfirm,
         weui,
+        recharge,
+        messagecenter,
+        mycoupon,
         form: formReducer,
         router: routerReducer
     }

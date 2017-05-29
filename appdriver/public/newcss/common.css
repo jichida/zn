@@ -10,6 +10,7 @@
   	padding: 0;
   	font-family: sans-serif;
     font-weight: 200;
+    border:none;
 }
 input, textarea{
     -webkit-user-select:text;
@@ -18,6 +19,25 @@ input, textarea{
     user-select:text;
     outline: none;
     resize: none;
+}
+.submitBtn{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    text-align: center;
+    border-radius: 6px;
+}
+.btn>span{
+    display: block;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 16px;
 }
 .btn{
     display: flex;

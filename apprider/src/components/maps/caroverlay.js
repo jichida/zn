@@ -1,23 +1,50 @@
 import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
-
-import {
-    View,
-    Container,
-    NavBar,
-} from 'amazeui-touch';
+import NavBar from "../tools/nav";
 import L from 'leaflet';
 import CarOverlayInit from './caroverlayinit.js';
 import CarOverlayOrder from './caroverlayorder.js';
-import {carmap_resetmap,getprice_request} from '../../actions';
+import "../../../public/newcss/caroverlay.css";
+import {
+    carmap_resetmap,
+    getprice_request,
+    set_weui,
+    changestartposition
+    } from '../../actions';
+import {
+    canceltriprequestorder
+    } from '../../actions/sagacallback';
 
 export class Page extends React.Component {
 
-    componentDidMount () {
+    //取消叫车
+    cancelcar =()=>{
+        this.props.dispatch(set_weui({
+            confirm : {
+                show : true,
+                title : "取消叫车",
+                text : "您确定要取消叫车吗",
+                buttonsCloseText : "取消",
+                buttonsClickText : "确定",
+                buttonsClose : ()=>{},
+                buttonsClick : ()=>{this.cancelrequest()}
+            },
+        }))
     }
-    componentWillUnmount(){
+
+    cancelrequest =()=>{
+        const {curmappageorder,curmappagerequest,curlocation,dispatch} = this.props;
+        dispatch(canceltriprequestorder({
+            triporderid:curmappageorder._id,
+            triprequestid:curmappagerequest._id
+        })).then((result)=>{
+            dispatch(changestartposition({
+                location:`${curlocation.lng},${curlocation.lat}`
+            }));//重新发送一次附近请求
+        });
     }
+
     componentWillReceiveProps (nextProps) {
         const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
         if(mapstage === 'pageinit'){
@@ -26,16 +53,19 @@ export class Page extends React.Component {
         else{
             if(curmappagerequest.requeststatus === '行程完成'){
                 //重置状态
-                dispatch(carmap_resetmap());
-                history.replace(`/orderdetail/${curmappageorder._id}`);
-            }
+                window.setTimeout(()=>{
+                  dispatch(carmap_resetmap({}));
+                  history.replace(`/orderdetail/${curmappageorder._id}`);
+                });
+              }
             else if(curmappagerequest.requeststatus === '已取消'){
                 //重置状态
-                dispatch(carmap_resetmap());
-                history.replace(`/`);
+                window.setTimeout(()=>{
+                  dispatch(carmap_resetmap({}));
+                  history.replace(`/`);
+                });
             }
         }
-
     }
 
     render() {
@@ -60,36 +90,35 @@ export class Page extends React.Component {
             };
         }
 
-        let floatcomponents;
-        if(mapstage === 'pageinit'){
-            floatcomponents = <CarOverlayInit {...this.props}/>;
-        }
-        else if(mapstage === 'pageorder'){
-            if(curmappagerequest.requeststatus === '行程完成'){
-                floatcomponents =  <div>行程完成,正在生成订单</div>;
-                return (<View>
-                    <NavBar {...dataLeft}/>
-                    <Container scrollable={true}>
-                        {floatcomponents}
-                    </Container>
-                </View>);
-            }
-            else{
-              floatcomponents =  <CarOverlayOrder  {...this.props}/>;
-            }
+        if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
+              return (
+                        <div>行程完成,正在生成订单</div>
+                    );
         }
         return (
-            <View>
-                <NavBar {...dataLeft}/>
-                <Container scrollable={true}>
-                    <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'/></div>
-                    {floatcomponents}
-                </Container>
-            </View>);
+            <div className="caroverlayPage AppPage">
+                <NavBar
+                    back={false}
+                    title={dataLeft.title}
+                    rightnav={[
+                        {
+                            type : 'action',
+                            action : this.cancelcar.bind(this),
+                            text : "取消叫车"
+                        },
+                    ]}
+                    />
+                <div className="list">
+                    <MapGaode ref='mapgaode' />
+                    {mapstage === 'pageinit' && <CarOverlayInit />}
+                    {mapstage === 'pageorder' && <CarOverlayOrder />}
+                </div>
+            </div>
+        );
     }
 
 }
-
+//<NavBar {...dataLeft}/>
 /*
  分4个页面：
  1.mapcarpage,公用
@@ -118,8 +147,9 @@ export class Page extends React.Component {
  }
  */
 
-const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder}}) => {
-    return {mapstage,curmappagerequest,curmappageorder};
+
+const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder,curlocation}}) => {
+    return {mapstage,curmappagerequest,curmappageorder,curlocation};
 }
 
 

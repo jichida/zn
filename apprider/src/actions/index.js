@@ -14,3 +14,5 @@ export * from './userlogin';
 export * from './md';
 export * from './chargerecord';
 export * from './weui';
+export * from './coupon';
+export * from './jpush';

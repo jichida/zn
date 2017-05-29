@@ -11,6 +11,9 @@ export const getmytriporders_result = createAction('getmytriporders_result');
 export const triporder_addone = createAction('triporder_addone');
 export const triporder_updateone = createAction('triporder_updateone');
 //获取支付验证字符串
+export const payorder_request =  createAction('payorder_request');
+export const payorder_result = createAction('payorder_result');
+
 export const wait_getpaysign_request= createAction('wait_getpaysign_request');
 export const wait_getpaysign_result= createAction('wait_getpaysign_result');
 export const getpaysign_request = createAction('getpaysign_request');
@@ -18,6 +21,8 @@ export const getpaysign_result = createAction('getpaysign_result');
 export const getpaysign_err = createAction('getpaysign_err');
 
 export const ui_setorderdetail = createAction('ui_setorderdetail');
+export const ui_setselcommenttag = createAction('ui_setselcommenttag');
+
 
 export const getcommenttags_request = createAction('getcommenttags_request');
 export const getcommenttags_result = createAction('getcommenttags_result');

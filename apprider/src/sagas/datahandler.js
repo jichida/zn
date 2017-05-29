@@ -1,6 +1,8 @@
 import {
     getbuscarpool_request,
     getemerygencycontact_request,
+    getemerygencycontact_result,
+
     gettourbus_request,
 
     getabouthtml_request,
@@ -26,7 +28,7 @@ import {
     getpaysign_request,
     updateorder_request,
     fillprofile_request,
-    notify_socket_connected,
+
     updateorder_comment_request,
 
     driveroute_request,
@@ -52,29 +54,56 @@ import {
     getcurrentlocationandnearestdrivers_result,
     getnearestdrivers_result,
     serverpush_triprequest,
-    serverpush_triporder,
-    serverpush_triprequestandorder,
-    starttriprequestorder_result,
+
     getmytriporders_result,
 
     insertorder_result,
     updateorder_result,
-    canceltriprequestorder_result,
     getpaysign_result,
-
     md_serverpush_triporder,
     md_loginsendauth_result,
     md_serverpush_triprequestandorder,
     md_starttriprequestorder_result,
     md_canceltriprequestorder_result,
 
+
     rechargepay_request,
-    rechargepay_result
+    rechargepay_result,
+
+    payorder_request,
+    payorder_result,
+
+    serverpush_userbalance,
+    queryuserbalance_request,
+    queryuserbalance_result,
+
+    getrechargerecords_request,
+    getrechargerecords_result,
+
+    insertemerygencycontact_request,
+    insertemerygencycontact_result,
+    deleteemerygencycontact_request,
+    deleteemerygencycontact_result,
+
+    getnotifymessage_request,
+    getnotifymessage_result,
+
+    mycoupongetall_request,
+    mycoupongetall_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'mycoupongetall_result':mycoupongetall_result,
+  'getnotifymessage_result':getnotifymessage_result,
+  'getemerygencycontact_result':getemerygencycontact_result,
+  'insertemerygencycontact_result':insertemerygencycontact_result,
+  'deleteemerygencycontact_result':deleteemerygencycontact_result,
+  'getrechargerecords_result':getrechargerecords_result,
+  'serverpush_userbalance':serverpush_userbalance,
+  'queryuserbalance_result':queryuserbalance_result,
+  'payorder_result':payorder_result,
   'rechargepay_result':rechargepay_result,
   'getsystemconfig_result':getsystemconfig_result,
   'updateorder_comment_result':updateorder_comment_result,
@@ -110,6 +139,8 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+
+  'getnotifymessage':`${getnotifymessage_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,
   'loginwithauth':`${loginwithauth_request}`,
@@ -126,6 +157,12 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'mycoupongetall':`${mycoupongetall_request}`,
+  'insertemerygencycontact':`${insertemerygencycontact_request}`,
+  'deleteemerygencycontact':`${deleteemerygencycontact_request}`,
+  'getrechargerecords':`${getrechargerecords_request}`,
+  'queryuserbalance':`${queryuserbalance_request}`,
+  'payorder':`${payorder_request}`,
   'rechargepay':`${rechargepay_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'getoftenuseaddress':`${getoftenuseaddress_request}`,

@@ -11,6 +11,7 @@ import '../../../../public/newcss/taxi.css';
 import NavBar from '../../tools/nav.js';
 import validate from './validate';
 import StarRatingComponent from 'react-star-rating-component';
+import {renderInputField,renderSelField} from '../../tools/renderfield';
 const {
     Cells,
     Cell,
@@ -24,10 +25,7 @@ const {
     Input,
     Select
     } = WeUI;
-import {renderInputField,renderSelField} from '../../tools/renderfield';
-
 class Page extends Component {
-
     render() {
         const { handleSubmit,previousPage } = this.props;
         return (
@@ -44,17 +42,16 @@ class Page extends Component {
                     </FormUI>
                 </div>
                 <div className="submitBtn">
-                  <botton className="btn Primary"  onClick={previousPage}>上一步</botton>
-                  <botton className="btn Primary"  onClick={handleSubmit}>确定</botton>
+                  <button className="btn Primary" onClick={previousPage}><span>上一步</span></button>
+                  <button className="btn Primary" onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
         )
     }
 }
-
 export default reduxForm({
-  form: 'registerfillwizard',                 // <------ same form name
-  destroyOnUnmount: false,        // <------ preserve form data
-  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  validate
+    form: 'registerfillwizard',                 // <------ same form name
+    destroyOnUnmount: false,        // <------ preserve form data
+    forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+    validate
 })(Page)

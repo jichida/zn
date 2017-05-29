@@ -2,32 +2,25 @@
     width: 100%;
 }
 .userwalletPage .head {
+    min-height: 130px;
     position: relative;
     display: flex;
     align-items: center;
-}
-.userwalletPage .head > img{
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    display: flex;
-}
-.userwalletPage .head > div{
-    position: absolute;
-    display: flex;
-    top:0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
+    background:linear-gradient(top, #53a9ff, #0181ff); 
+    background:-moz-linear-gradient(top, #53a9ff, #0181ff);  
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#53a9ff), to(#0181ff));  
+    background:-o-linear-gradient(top, #53a9ff, #0181ff); 
+
     color: #FFF;
-    padding: 20px;
     flex-direction: column;
 }
-.userwalletPage .head > div .tit{
+.userwalletPage .head .tit{
     margin-bottom: 3%;
+    align-self: flex-start;
+    padding: 20px;
+    padding-bottom: 0;
 }
-.userwalletPage .head > div .myprice{
+.userwalletPage .head .myprice{
     font-size: 36px;
     text-align: center;
 }

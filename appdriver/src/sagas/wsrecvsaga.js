@@ -32,9 +32,10 @@ import {
   fillrealnameprofile_result,
   withdrawcashapplyaddone_result,
   withdrawcashapplyauth_result,
-  carcreate_result
+  carcreate_result,
+  set_weui,
 } from '../actions';
-import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 export function* wsrecvsagaflow() {
   yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
@@ -56,8 +57,10 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_fillrealnameprofile_result}`, function*(action) {
       let {payload:result} = action;
       yield put(fillrealnameprofile_result(result));//在审核中
-      if(result.approvalstatus === '待审批'){//审批中
-        yield put(push('/approval'));
+      console.log(`fillrealnameprofile_result===>${JSON.stringify(result)}`);
+      console.log(`fillrealnameprofile_result approvalstatus===>${result.approvalstatus}`);
+      if(result.approvalstatus === '待审核'){//审批中
+        yield put(replace('/approval'));
       }
   });
 
@@ -92,11 +95,12 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(showpopmessage({
-        title:'成功',
-        msg:result.popmessage,
+      yield put(set_weui({
+        toast:{
+        text:result.popmessage,
+        show: true,
         type:'success'
-      }));
+      }}));
   });
 
   yield takeEvery(`${md_serverpush_triporder}`, function*(action) {
@@ -114,16 +118,21 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${common_err}`, function*(action) {
         let {payload:result} = action;
         console.log(`common_err:${JSON.stringify(result)}`);
-        yield put(showpopmessage({
-          title:result.title,
-          msg:result.errmsg,
-          type:'error'
-        }));
-
+        yield put(set_weui({
+          toast:{
+          text:result.errmsg,
+          show: true,
+          type:'warning'
+        }}));
   });
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
+      const {triprequest, triporder} = result;
+      if(!!triporder){
+        //最后会有一个顺序
+        yield put(triporder_updateone(result.triporder));
+      }
       yield put(updaterequeststatus_result(result));
       yield put(wait_updaterequeststatus_result({result:result}));
   });

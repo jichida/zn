@@ -1,6 +1,22 @@
 //import {updateorder_request,ui_setorderdetail} from '../../actions';
 import {getpaysign} from '../actions/sagacallback';
- import Common from '../xview/Common.js';
+import Common from './xview/Common.js';
+
+ export const payorder = (paysign,orderinfo,callbackfn)=>{
+   if(orderinfo.paytype === 'weixin'){
+     Common.wxpayUrl(paysign,(result)=>{
+       callbackfn(result);
+    });
+   }
+   else if(orderinfo.paytype === 'alipay'){
+      Common.alipayUrl(paysign,(result)=>{
+        callbackfn(result);
+     });
+   }
+   else if(orderinfo.paytype === 'leftbalance'){
+     callbackfn({});
+   }
+ }
 
 export const onclickpay = ({orderinfo,paytype,dispatch})=> {
    let orderdoc = {

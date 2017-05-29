@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  Container,
-} from 'amazeui-touch';
-
+import NavBar from '../tools/nav.js';
 import MapGaode from './mapcar.js';
-
+import PageRiderHead from './pageriderheader';
 
 export default class Page extends React.Component {
   constructor(props) {
@@ -16,38 +13,28 @@ export default class Page extends React.Component {
   onClickNext(btnname){
     this.props.onClickNext(btnname);
   }
-  render() {
-      const {driveroute:routeshow,currentrequest:curreqobj,onClickCancel} = this.props;
-
-      if(curreqobj.requeststatus === '已取消'){
-            return (<div>已取消</div>);
-      }
-      let btnco;
-
-      btnco=(<div className="item item-linked xjl_bottom">
-        <a>
-        <div className="item-media"><span className="icon icon-jld text-warning"></span></div>
-        <div className="item-main">
-          <h3 className="item-title text-warning"><div className="gray"></div></h3>
-          <div className="item-after"><button onClick={this.onClickNext.bind(this,'接到乘客')} className="btn">接到乘客</button></div>
-          <div className="item-after"><button onClick={onClickCancel} className="btn">取消</button></div>
-        </div>
-        </a>
-        </div>);
-
-  return (
-             <Container>
-      			 <div className="relative">
-      			 <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} /></div>
-                      <div target="_blank" className="item item-content xjl_top">
-                        <div className="item-media"><img width="50" src="images/user.jpg" className="radius50" alt='img'/></div>
-                        <div className="item-main">
-                          <div className="cfd_icon">{curreqobj.srcaddress.addressname}</div>
-                          <div className="zd_icon">{curreqobj.dstaddress.addressname}</div>
-                        </div>
-                        <img src="images/dh.png" alt="img" style={{width:"40px"}}/> </div>
-      	  </div>
-            {btnco}
-         </Container>);
+    render() {
+        const {driveroute:routeshow,currentrequest:curreqobj,currentorder,onClickCancel} = this.props;
+        //curreqobj.requeststatus
+        return (
+            <div className="outcarPage AppPage">
+                <NavBar
+                    back={false}
+                    title="等待乘客上车"
+                    rightnav={[{
+                        text:"取消订单",
+                        type:"action",
+                        action:onClickCancel
+                    }]}
+                />
+                <PageRiderHead currentorder={currentorder}/>
+                <div className="mapcontent list">
+                    <MapGaode ref='mapgaode' curreqobj={curreqobj} />
+                </div>
+                <div className="submitBtn">
+                    <button onClick={this.onClickNext.bind(this,'接到乘客')} className="btn Primary"><span>开始行程</span></button>
+                </div>
+            </div>
+        );
     }
 }

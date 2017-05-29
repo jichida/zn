@@ -20,7 +20,7 @@ const {
 import {
   getoftenuseaddress_request
 } from '../../actions';
-import objectPath from 'object-path';
+import _ from 'lodash';
 
 class Page extends Component {
     componentWillMount () {
@@ -78,9 +78,8 @@ const mapStateToProps = ({oftenuseaddress}) => {
     let homeaddressname = '';
     let companyaddressname ='';
 
-    let model = objectPath(oftenuseaddress);
-    homeaddressname = model.get("home.name",'设置家的地址');
-    companyaddressname = model.get("home.company",'设置公司地址');
+    homeaddressname = _.get(oftenuseaddress,"home.name",'设置家的地址');
+    companyaddressname = _.get(oftenuseaddress,"company.name",'设置公司地址');
 
     return {homeaddressname,companyaddressname};
 }

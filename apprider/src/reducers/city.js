@@ -4,46 +4,42 @@ import {
   setcurselcity
 } from '../actions';
 
+let defaultcurselcity = {
+  "cityname": "南京",
+  "zipcode": "025",
+  "pinyin": "Nanjing"
+};
 
-let defaultcurcity = localStorage.getItem('defaultcurcity');
-if(!defaultcurcity){
-  defaultcurcity = {
-              "cityname": "常州",
-              "zipcode": "0519",
-              "pinyin": "Changzhou"
-          };
-}
-
-let defaultcurselcity = localStorage.getItem('defaultcurselcity');
-if(!defaultcurselcity){
-  defaultcurselcity = {
-    "cityname": "南京",
-    "zipcode": "025",
-    "pinyin": "Nanjing"
-  };
+let dcscl = localStorage.getItem('defaultcurselcity');
+if(!!dcscl){
+  try{
+    dcscl = JSON.parse(dcscl);
+    defaultcurselcity = dcscl;
+  }
+  catch(e){
+  }
 }
 
 
 const initial = {
   city: {
-    curcity: defaultcurcity,
-    curselcity: {
-    "cityname": "南京",
-    "zipcode": "025",
-    "pinyin": "Nanjing"
-  },
+    curcity: {
+      "cityname": "南京",
+      "zipcode": "025",
+      "pinyin": "Nanjing"
+    },
+    curselcity:defaultcurselcity,
   },
 };
 
 const city = createReducer({
-  [setcurcity]:(state, curcity) => {
-    localStorage.setItem('defaultcurcity',curcity);
-    return { ...state,curcity:{...curcity}};
+  [setcurcity]:(state, payload) => {
+    return { ...state,curcity:{...payload}};
   },
-  // [setcurselcity]:(state, curselcity) => {
-  //   localStorage.setItem('defaultcurselcity',curselcity);
-  //   return { ...state,curselcity:{...curselcity}};
-  // },
+  [setcurselcity]:(state, payload) => {
+    localStorage.setItem('defaultcurselcity',JSON.stringify(payload));
+    return { ...state,curselcity:{...payload}};
+  },
 }, initial.city);
 
 export default city;

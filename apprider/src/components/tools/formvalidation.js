@@ -10,7 +10,9 @@ import {
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-const { 
+import DatePicker from 'react-mobile-datepicker';
+import moment from 'moment';
+const {
     Form,
     FormCell,
     CellHeader,
@@ -60,7 +62,6 @@ export const length6 = sureLength(6)
 export const length7 = sureLength(7)
 export const length8 = sureLength(8)
 
-
 //年龄必须18岁以上
 export const minValue = min => value => value && value < min ? `必须满${min}岁以上` : undefined
 export const minValue18 = minValue(18);
@@ -86,7 +87,7 @@ const inputDispatchToProps = (dispatch) => {
 			    text : err,
 			    type : "warning"
 			}
-			dispatch(set_weui({ toast }));	
+			dispatch(set_weui({ toast }));
 	    },
 	}
 };
@@ -102,15 +103,15 @@ let InputValidation = (props) => {
 	return (
 	  	<div className={style}>
 		    <input {...input} placeholder={placeholder} type={type}/>
-		    {	touched && 
-		    	((error && 
-		    		<span 
+		    {	touched &&
+		    	((error &&
+		    		<span
 		    			className="warningtext"
 		    			onClick={()=>{onError(error)}}
 		    			>!</span>
-		    		) 
-		    		|| (warning && 
-		    			<span 
+		    		)
+		    		|| (warning &&
+		    			<span
 			    			className="warningtext"
 			    			onClick={()=>{onError(warning)}}
 			    			>!</span>
@@ -125,9 +126,9 @@ let WeuiInputValidation = (props) => {
 
 	const {
 		onError,
-		input, 
-		placeholder, 
-		type, 
+		input,
+		placeholder,
+		type,
 		meta: { touched, error, warning },
 		Company,
 		InputTit,
@@ -149,15 +150,15 @@ let WeuiInputValidation = (props) => {
                 <Input {...input} type={type} placeholder={placeholder}/>
                 <span>{Company}</span>
             </CellBody>
-            {	touched && 
-		    	((error && 
-		    		<span 
+            {	touched &&
+		    	((error &&
+		    		<span
 		    			className="warningtext"
 		    			onClick={()=>{onError(error)}}
 		    			>!</span>
-		    		) 
-		    		|| (warning && 
-		    			<span 
+		    		)
+		    		|| (warning &&
+		    			<span
 			    			className="warningtext"
 			    			onClick={()=>{onError(warning)}}
 			    			>!</span>
@@ -211,11 +212,60 @@ let WeuiSwitchValidation = (props) => {
             </CellFooter>
         </FormCell>
 	);
-}					
+}
+
+//选择日期的组件
+class DatePickerInput extends React.Component{
+
+	constructor(props) {
+		super(props);
+		this.state={
+			time: new Date(),
+			isOpen: false,
+		}
+	}
+	handleClick = () => {
+		this.setState({ isOpen: true });
+	}
+
+	handleCancel = () => {
+		this.setState({ isOpen: false });
+	}
+
+	handleSelect = (time) => {
+		this.setState({ time, isOpen: false });
+    this.props.input.onChange(time);
+	}
+
+	render() {
+		const { input,...rest } = this.props;
+		return (
+			<div className="datePickerInputPage">
+				<div
+					className="select-btn"
+					onClick={this.handleClick}>
+					{moment(this.state.time).format("YYYY-MM-DD")}
+					<input {...input} type="hidden" value={this.state.time} />
+					<DatePicker
+						value={this.state.time}
+						isOpen={this.state.isOpen}
+						onSelect={this.handleSelect}
+						onCancel={this.handleCancel}
+            {...rest}
+						/>
+				</div>
+			</div>
+		);
+	}
+}
+
 
 const inputData = (state) => {
     return state;
 };
+
+DatePickerInput = connect(inputData)(DatePickerInput);
+export {DatePickerInput};
 
 WeuiSwitchValidation = connect(inputData,inputDispatchToProps)(WeuiSwitchValidation);
 export {WeuiSwitchValidation};
@@ -228,15 +278,3 @@ export {WeuiInputValidation};
 
 WeuiSelectValidation = connect(inputData)(WeuiSelectValidation);
 export {WeuiSelectValidation};
-
-
-
-
-
-
-
-
-
-
-
-

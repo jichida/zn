@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  View,
-  NavBar,
-} from 'amazeui-touch';
 import {carmap_resetmap,carmap_setmapstage,initdriverroute,driveroute_request} from '../../actions';
 import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
-
-import CaroverlayLxck from './embmapstep1lxck';
+import '../../../public/newcss/outcar.css';
+//import CaroverlayLxck from './embmapstep1lxck';
 import CaroverlayQjck from './embmapstep2qjck';
 import CaroverlayJdck from './embmapstep3jdck';
 import CaroverlayKsxc from './embmapstep4ksxc';
@@ -32,11 +28,8 @@ export class Page extends React.Component {
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);
     const {mapstage,curmappagerequest,curmappageorder,dispatch,history}= this.props;
-    if(mapstage === '联系乘客'){
-      //规划路线
-      dispatch(carmap_setmapstage('去接乘客'));
-    }
-    else if(mapstage === '去接乘客'){
+
+    if(mapstage === '去接乘客'){
         //更新请求状态（接到乘客）
         dispatch(updaterequeststatus({
             triprequestid:curmappagerequest._id,
@@ -64,8 +57,8 @@ export class Page extends React.Component {
             requeststatus: "行程完成",
         })).then((result)=>{
             window.setTimeout(()=>{
-                history.replace(`/orderdetail/${result.triporder._id}`);
                 dispatch(carmap_resetmap());
+                history.replace(`/orderdetail/${result.triporder._id}`);
             },0);
 
         });
@@ -73,7 +66,7 @@ export class Page extends React.Component {
   }
 
    cancelrequest =()=>{
-     const {curmappagerequest,curmappageorder,dispatch,history}= this.props.curmappagerequest;
+     const {curmappagerequest,curmappageorder,dispatch,history}= this.props;
 
      dispatch(canceltriprequestorder({
       triporderid:curmappageorder._id,
@@ -95,48 +88,47 @@ export class Page extends React.Component {
       let CaroverlayCo;
       if(currentrequest.requeststatus !== "已取消" && currentrequest.requeststatus){
         //被reset了！！
-        if(mapstage === '联系乘客'){
-          CaroverlayCo = <CaroverlayLxck
-          currentrequest={currentrequest}
-          currentorder={currentorder}
-          onClickCancel={this.cancelrequest}
-          onClickNext={this.onClickNext.bind(this,'去接乘客')}
-          curlocation={curlocation}/>
-        }
-        else if(mapstage === '去接乘客'){
-          CaroverlayCo = <CaroverlayQjck
-           currentrequest={currentrequest}
-           currentorder={currentorder}
-           driveroute={driveroute}
-           onClickCancel={this.cancelrequest}
-           onClickNext={this.onClickNext.bind(this,'接到乘客')}
-           curlocation={curlocation}/>
+        if(mapstage === '去接乘客'){
+            CaroverlayCo =
+                <CaroverlayQjck
+                    currentrequest={currentrequest}
+                    currentorder={currentorder}
+                    driveroute={driveroute}
+                    onClickCancel={this.cancelrequest}
+                    onClickNext={this.onClickNext.bind(this,'接到乘客')}
+                    curlocation={curlocation}
+                />
         }
         else if(mapstage === '接到乘客'){
-          CaroverlayCo = <CaroverlayJdck
-           currentrequest={currentrequest}
-           currentorder={currentorder}
-           driveroute={driveroute}
-           onClickCancel={this.cancelrequest}
-           onClickNext={this.onClickNext.bind(this,'开始行程')}
-           curlocation={curlocation}/>
+            CaroverlayCo =
+                <CaroverlayJdck
+                    currentrequest={currentrequest}
+                    currentorder={currentorder}
+                    driveroute={driveroute}
+                    onClickCancel={this.cancelrequest}
+                    onClickNext={this.onClickNext.bind(this,'开始行程')}
+                    curlocation={curlocation}
+                />
         }
         else if(mapstage === '开始行程'){
-          CaroverlayCo = <CaroverlayKsxc
-          currentrequest={currentrequest}
-          currentorder={currentorder}
-          driveroute={driveroute}
-          onClickNext={this.onClickNext.bind(this,'到达目的地')}
-          curlocation={curlocation}/>
+            CaroverlayCo =
+                <CaroverlayKsxc
+                    currentrequest={currentrequest}
+                    currentorder={currentorder}
+                    driveroute={driveroute}
+                    onClickNext={this.onClickNext.bind(this,'到达目的地')}
+                    curlocation={curlocation}
+                />
         }
         else if(mapstage === '行程完成'){
             CaroverlayCo=<div>行程完成,正在拉取订单,请稍后...</div>
         }
       }
-      return (<View>
-           <NavBar {...dataLeft}/>
-           {CaroverlayCo}
-          </View>);
+        return (
+            <div className="outcarPage AppPage">
+                {CaroverlayCo}
+            </div>
+        );
     }
 
 }

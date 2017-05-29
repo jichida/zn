@@ -54,7 +54,7 @@ class RegisterFillWizardForm extends Component {
   onSubmit =(values)=>{
     const { registertype } = this.props;
     console.log(`FINALL===========>values:${JSON.stringify(values)}`);
-    alert(`注册类型:${registertype},数据:${JSON.stringify(values)}`);
+    //alert(`注册类型:${registertype},数据:${JSON.stringify(values)}`);
     // idcard:String,//身份证号<---
     // bankname:String,//银行名字<---
     // bankaccount:String,//银行账号<---
@@ -98,14 +98,15 @@ class RegisterFillWizardForm extends Component {
         Certificate,
         PhotoldURL,
         CheckState
-      }
+      },
+      approvalstatus:'待审批'
     };
     this.props.dispatch(fillrealnameprofile_request({data}));
   };
 
   renderpage0 =()=> {
         return (
-    		<div className="registerPage register1Page AppPage">
+    		<div className="registerPage register1Page  AppPage">
 				<Cells>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>

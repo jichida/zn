@@ -1,22 +1,22 @@
 import { createReducer } from 'redux-act';
 import {
-  ui_setsidebaropen,
-  ui_setpagetype,
-  ui_isdateopen,
-  ui_outcarselregistertype,
-  ui_outcarexpand
+    ui_setsidebaropen,
+    ui_setpagetype,
+    ui_isdateopen,
+    ui_outcarselregistertype,
+    ui_outcarexpand
 } from '../actions';
 
 const initial = {
-  appui:{
-    isdateopen:false,
-    pageregistertype:'快车',
-    outcarexpand: false,
-    home:{
-      issidedbaropen:false,
-      pagetype:'all'
-    },
-  }
+    appui:{
+        isdateopen:false,
+        pageregistertype:'快车',
+        outcarexpand: true,
+        home:{
+            issidedbaropen:false,
+            pagetype:'all'
+        },
+    }
 };
 
 const appui = createReducer({

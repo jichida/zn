@@ -5,10 +5,6 @@ import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 
-import ShowPageOne from '../controls/singlelistpage.js';
-import ShowPage from '../controls/ShowPage.js';
-import EditPage from '../controls/EditPage.js';
-
 
 const BaseInfoDriverAppTitle = ({ record }) => <span>驾驶员移动终端信息</span>;
 export const BaseInfoDriverAppShow = (props) => (

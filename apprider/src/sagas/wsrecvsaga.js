@@ -1,7 +1,6 @@
 import { put,takeEvery } from 'redux-saga/effects';
 import {
   loginsendauth_result,
-  showpopmessage,
 
   serverpush_triporder,
   triporder_updateone,
@@ -29,11 +28,23 @@ import {
   md_starttriprequestorder_result,
   md_canceltriprequestorder_result,
 
-  rechargepay_result
+  updateorder_comment_result,
+  ui_setorderdetail,
+
+  rechargepay_result,
+  set_weui
 } from '../actions';
 import { push } from 'react-router-redux';
 
 export function* wsrecvsagaflow() {
+  yield takeEvery(`${updateorder_comment_result}`, function*(action) {
+      let {payload:result} = action;
+      //返回一个订单object
+      yield put(triporder_updateone(result));
+      yield put(ui_setorderdetail({showaddevaluate:false}));
+  });
+
+
   yield takeEvery(`${rechargepay_result}`, function*(action) {
       let {payload:result} = action;
       //返回一个订单object
@@ -51,11 +62,12 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(showpopmessage({
-        title:'成功',
-        msg:result.popmessage,
+      yield put(set_weui({
+        toast:{
+        text:result.popmessage,
+        show: true,
         type:'success'
-      }));
+      }}));
   });
 
   yield takeEvery(`${common_err}`, function*(action) {
@@ -67,11 +79,12 @@ export function* wsrecvsagaflow() {
         yield put(wait_getpaysign_result({err:result.errmsg}));
       }
       else{
-        yield put(showpopmessage({
-          title:result.title,
-          msg:result.errmsg,
-          type:'error'
-        }));
+        yield put(set_weui({
+          toast:{
+          text:result.errmsg,
+          show: true,
+          type:'warning'
+        }}));
       }
   });
 

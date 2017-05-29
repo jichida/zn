@@ -1,4 +1,4 @@
-import React,{ Component, PropTypes } from 'react';
+import React,{ Component } from 'react';
 import { Field,Fields, reduxForm,Form  } from 'redux-form';
 import 'iosselect/src/iosSelect.css';
 import IosSelect from 'iosselect';

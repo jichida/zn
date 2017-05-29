@@ -31,13 +31,16 @@ export class Page extends React.Component {
             action = nav.action;
         }
         if(nav.type=='push'){
-            action = this.pagePush;
+            action = this.pagePush.bind(nav.url);
         }
         return (
-            <span className="nli" onClick={()=>{nav.action}} key={index}>
+            <span
+                onClick={action}
+                className="nli" 
+                key={index}>
                 {
                     nav.icon==''?'':(
-                        <span className="iconBtn" onClick={()=>{action(nav.url)}}>
+                        <span className="iconBtn">
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}}/>
                         </span>
                     )

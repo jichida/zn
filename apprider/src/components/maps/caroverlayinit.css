@@ -109,6 +109,31 @@
 .caroverlayinitPage .addresslist li:last-child span{
     flex-grow: 1;
 } 
+.caroverlayinitPage .isGetaddress .showprice h2{
+    font-size: 16px;
+    font-weight: 200;
+}
+.caroverlayinitPage .isGetaddress .btnlist{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.caroverlayinitPage .isGetaddress .btnlist a.btn{
+    flex-grow: 1;
+}
+.caroverlayinitPage .isGetaddress .btnlist a.btn:first-child{
+    margin-bottom: 10px;
+}
+.caroverlayinitPage .showprice{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;    
+}
+.caroverlayinitPage .showprice span{
+    color: #f49d05;
+    font-weight: 300;
+    margin: 0 5px;
+}
 
 
 

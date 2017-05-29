@@ -13,14 +13,16 @@ import Approval from './register/approval';
         let redirectAfterLogin = props.location.pathname;
         loginroute = '/login?next=' + redirectAfterLogin;
       }
-      return (
-            <div>
-                {loginsuccess === true
-                    ? <Component {...props}/>
-                    : <Redirect to={loginroute}/>
-                }
-            </div>
-        );
+
+      if(loginsuccess){
+        return (
+          <Component {...props}/>
+        )
+      }else{
+        return (
+          <Redirect to={loginroute}/>
+        )
+      }
     };
 
     const mapStateToProps =  ({userlogin:{loginsuccess}}) =>{

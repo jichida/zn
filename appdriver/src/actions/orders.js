@@ -14,3 +14,5 @@ export const getcommenttags_request = createAction('getcommenttags_request');
 export const getcommenttags_result = createAction('getcommenttags_result');
 export const updateorder_comment_request = createAction('updateorder_comment_request');
 export const updateorder_comment_result = createAction('updateorder_comment_result');
+
+export const ui_setselcommenttag = createAction('ui_setselcommenttag');

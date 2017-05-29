@@ -4,7 +4,7 @@ import {
   getprice_request,
   nav_drawroute
 } from '../actions';
-import {getcurrentlocationfn} from '../util/geo.js';
+import {getcurrentlocationfn} from '../env/geo.js';
 import L from 'leaflet';
 import {getstringoftime,getstringofdistance} from '../util/geo.js';
 
