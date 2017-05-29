@@ -49,7 +49,12 @@ const OrderlistEdit = (props) => {
                 </ReferenceField>
                 <TextField label="订单类型"  source="triptype" />
                 <DateField label="生成时间"  source="created_at" showTime />
-                <TextField label="订单状态"  source="orderstatus" />
+                <SelectInput source="orderstatus" choices={[
+                    { id: '未支付', name: '未支付' },
+                    { id: '已支付定金', name: '已支付定金' },
+                    { id: '已支付', name: '已支付' },
+                    { id: '已取消', name: '已取消' },
+                ]} />
                 <TextField label="金额" source="orderprice" />
                 </FormTab>
                 <Orderinfo label="resources.order.tabs.info" />
