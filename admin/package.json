@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "admin-on-rest": "^1.0.2",
+    "admin-on-rest": "^1.1.0",
     "antd": "^2.10.2",
     "aor-color-input": "^1.1.0",
     "aor-language-chinese": "^1.0.3",
