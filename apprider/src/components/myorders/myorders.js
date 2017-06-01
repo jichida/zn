@@ -10,18 +10,16 @@ import NavBar from '../tools/nav.js';
 import _ from "lodash";
 import { connect } from 'react-redux';
 import moment from "moment";
-import {
-    getmytriporders_request
-    } from '../../actions';
 const {
     Cells,
     Cell,
     CellBody,
     CellFooter
     } = WeUI;
-
+import {getmytriporders} from '../../actions/sagacallback';
+import InfinitePage from '../controls/listview';
 //快车信息
-export class Kuaiche extends Component{
+class Kuaiche extends Component{
     render(){
         const {info} = this.props;
         return (
@@ -34,7 +32,7 @@ export class Kuaiche extends Component{
 }
 
 //拼车信息
-export class Pinche extends Component{
+class Pinche extends Component{
     render(){
         const {info} = this.props;
         return (
@@ -47,20 +45,50 @@ export class Pinche extends Component{
     }
 }
 
+const OrderItem = (props) => {
+    const {orderinfo,onClickOrderDetail} = props;
+    return (
+      <Cell
+          onClick={onClickOrderDetail}
+          key={orderinfo._id}
+          access>
+          <CellBody>
+              <div className="tt">
+                  <div className="ttinfo">
+                      <span className="i">{orderinfo.isrealtime?'':'预约'}</span>
+                      <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
+                      <span className="type">{orderinfo.triptype}</span>
+                  </div>
+                  <span className="status color_warning">{orderinfo.orderstatus}</span>
+              </div>
+
+              {orderinfo.triptype==="拼车"?(
+                  <Pinche info={orderinfo} />
+              ):""}
+
+              {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
+                  <Kuaiche info={orderinfo} />
+              ):""}
+
+
+          </CellBody>
+          <CellFooter />
+      </Cell>
+    );
+}
 
 class Page extends Component {
-
-    componentWillMount () {
-        this.props.dispatch(getmytriporders_request({
-            query: {
-              triptype:{'$ne':'充值'}
-            },
-            options:{
-                sort:{created_at:-1},
-                offset: 0,
-                limit: 1000,
-            }
-        }));
+    onClickOrderDetail(orderinfo){
+        this.props.history.push(`/orderdetail/${orderinfo._id}`);
+    }
+    updateContent = (orderinfo)=> {
+        return  (
+          <OrderItem
+              key={orderinfo._id}
+              orderinfo={orderinfo}
+              onClickOrderDetail={this.onClickOrderDetail.bind(this,orderinfo)}
+              />
+        );
     }
 
     render() {
@@ -70,48 +98,19 @@ class Page extends Component {
                 <NavBar back={true} title="我的订单" />
                 <div className="list">
                     <Cells>
-                        {
-                            _.map(mytriporderlist,(orderid,index)=>{
-                                let orderinfo = triporders[orderid];
-                                console.log(orderinfo);
-                                return (
-                                    <Cell
-                                        onClick={()=>{history.push(`/orderdetail/${orderinfo._id}`);}}
-                                        key={index}
-                                        access>
-                                        <CellBody>
-                                            <div className="tt">
-                                                <div className="ttinfo">
-                                                    <span className="i">{orderinfo.isrealtime?'':'预约'}</span>
-                                                    <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
-                                                    <span className="type">{orderinfo.triptype}</span>
-                                                </div>
-                                                <span className="status color_warning">{orderinfo.orderstatus}</span>
-                                            </div>
-
-                                            {orderinfo.triptype==="拼车"?(
-                                                <Pinche info={orderinfo} />
-                                            ):""}
-
-                                            {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
-                                                <Kuaiche info={orderinfo} />
-                                            ):""}
-
-
-                                        </CellBody>
-                                        <CellFooter />
-                                    </Cell>
-                                )
-                            })
-                        }
-
+                        <InfinitePage
+                            pagenumber = {30}
+                            updateContent= {this.updateContent}
+                            queryfun= {getmytriporders}
+                            listheight= {window.innerHeight-68}
+                            query = {{triptype:{'$ne':'充值'}}}
+                            sort = {{created_at: -1}}
+                        />
                     </Cells>
                 </div>
             </div>
         )
     }
 }
-const data =({myorders})=>{
-    return {...myorders};
-};
-export default connect(data)(Page);
+
+export default connect()(Page);

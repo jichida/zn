@@ -89,18 +89,30 @@ import {
     getnotifymessage_result,
 
     mycoupongetall_request,
-    mycoupongetall_result
+    mycoupongetall_result,
+
+    md_getrechargerecords,
+    md_getnotifymessage,
+    md_getmytriporders,
+    md_mycoupongetall,
+
+    getnotifymessageone_request,
+    getnotifymessageone_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
-  'mycoupongetall_result':mycoupongetall_result,
-  'getnotifymessage_result':getnotifymessage_result,
+  'getnotifymessageone_result':getnotifymessageone_result,
+
+  'mycoupongetall_result':md_mycoupongetall,
+  'getnotifymessage_result':md_getnotifymessage,
+  'getrechargerecords_result':md_getrechargerecords,
+  'getmytriporders_result':md_getmytriporders,
+
   'getemerygencycontact_result':getemerygencycontact_result,
   'insertemerygencycontact_result':insertemerygencycontact_result,
   'deleteemerygencycontact_result':deleteemerygencycontact_result,
-  'getrechargerecords_result':getrechargerecords_result,
   'serverpush_userbalance':serverpush_userbalance,
   'queryuserbalance_result':queryuserbalance_result,
   'payorder_result':payorder_result,
@@ -129,7 +141,6 @@ exports.recvmessagetoresultpair = {
   'loginsendauth_result':md_loginsendauth_result,
   'serverpush_triprequestandorder':md_serverpush_triprequestandorder,
   'starttriprequestorder_result':md_starttriprequestorder_result,
-  'getmytriporders_result':getmytriporders_result,
 
   'insertorder_result':insertorder_result,
   'updateorder_result':updateorder_result,
@@ -139,7 +150,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
-
+  'getnotifymessageone':`${getnotifymessageone_request}`,
   'getnotifymessage':`${getnotifymessage_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,

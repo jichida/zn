@@ -4,7 +4,12 @@ import {
     canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
     getpaysign_request,wait_getpaysign_request,wait_getpaysign_result,
     insertorder_request,wait_insertorder_request,wait_insertorder_result,
-    updateorder_request,wait_updateorder_request,wait_updateorder_result
+    updateorder_request,wait_updateorder_request,wait_updateorder_result,
+
+    getrechargerecords_request,wait_getrechargerecords_request,wait_getrechargerecords_result,
+    getnotifymessage_request,wait_getnotifymessage_request,wait_getnotifymessage_result,
+    getmytriporders_request,wait_getmytriporders_request,wait_getmytriporders_result,
+    mycoupongetall_request,wait_mycoupongetall_request,wait_mycoupongetall_result,
 } from '../actions/index.js';
 
 import { take, call, race ,takeLatest} from 'redux-saga/effects';
@@ -42,6 +47,19 @@ export function updateorder(payload){
   return synccall(payload,wait_updateorder_request,updateorder_request);
 }
 
+//<--
+export function getrechargerecords(payload){
+  return synccall(payload,wait_getrechargerecords_request,getrechargerecords_request);
+}
+export function getnotifymessage(payload){
+  return synccall(payload,wait_getnotifymessage_request,getnotifymessage_request);
+}
+export function getmytriporders(payload){
+  return synccall(payload,wait_getmytriporders_request,getmytriporders_request);
+}
+export function mycoupongetall(payload){
+  return synccall(payload,wait_mycoupongetall_request,mycoupongetall_request);
+}
 //2.
 function* createflowsz(fnwatres,action){
     let {payload:{resolve,reject,payload:data}} = action;
@@ -71,6 +89,11 @@ export function* createsagacallbackflow(){
   waitfnsz.push([`${wait_getpaysign_request}`,`${wait_getpaysign_result}`]);
   waitfnsz.push([`${wait_insertorder_request}`,`${wait_insertorder_result}`]);
   waitfnsz.push([`${wait_updateorder_request}`,`${wait_updateorder_result}`]);
+
+  waitfnsz.push([`${wait_getrechargerecords_request}`,`${wait_getrechargerecords_result}`]);
+  waitfnsz.push([`${wait_getnotifymessage_request}`,`${wait_getnotifymessage_result}`]);
+  waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);
+  waitfnsz.push([`${wait_mycoupongetall_request}`,`${wait_mycoupongetall_result}`]);
 
   for(let fnsz of waitfnsz){
      yield takeLatest(fnsz[0],createflowsz, fnsz[1]);

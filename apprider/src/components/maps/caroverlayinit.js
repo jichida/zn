@@ -173,10 +173,8 @@ class Page extends React.Component {
                                 {triptype==='出租车'?'预估费用计价器为准':`预估费用${resultpricerequest.totalprice}元`}
                               </span>
                               <div className="btnlist">
-
                                 <a className="btn Primary" onClick={onOK}>叫车</a>
                                 <a className="btn Default" onClick={onCancel}>取消</a>
-
                               </div>
                           </div>
                       ):""

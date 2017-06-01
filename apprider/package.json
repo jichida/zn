@@ -29,6 +29,7 @@
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",
     "reselect": "^3.0.1",
+    "rmc-list-view": "^0.8.1",
     "socket.io-client": "^1.7.4",
     "weui": "^1.1.2"
   },

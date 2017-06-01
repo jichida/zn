@@ -1,17 +1,19 @@
 import { createReducer } from 'redux-act';
-import { getnotifymessage_result } from '../actions';
+import{
+  getnotifymessageone_result
+} from '../actions';
 
 const initial = {
-  messagecenter: {
-    messagelist:[]
+  notifymessage: {
+      notifymessageitem:{}
   },
 };
 
-const messagecenter = createReducer({
-  [getnotifymessage_result]: (state,payload) => {
-    let messagelist = payload.list.docs;
-    return { ...state,messagelist};
-  },
-}, initial.messagecenter);
+const notifymessage = createReducer({
+    [getnotifymessageone_result]:(state,payload)=>{
+        let notifymessageitem = {...payload};
+        return  {...state,notifymessageitem};
+    },
+}, initial.notifymessage);
 
-export default messagecenter;
+export default notifymessage;

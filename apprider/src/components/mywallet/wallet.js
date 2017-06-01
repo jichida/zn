@@ -10,7 +10,6 @@ import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
 import {
     queryuserbalance_request,
-    getrechargerecords_request,
     rechargepay_request
 } from '../../actions';
 const {
@@ -23,20 +22,38 @@ const {
     } = WeUI;
 import _ from 'lodash';
 import moment from 'moment';
+import {getrechargerecords} from '../../actions/sagacallback';
+import InfinitePage from '../controls/listview';
+
+const RechargeItem = (props) => {
+    const {record} = props;
+    return (
+      <Cell key={record._id}>
+        <CellBody>
+            <span className="time">{moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")}</span>
+            <span className="status">{_.get(record,'fromorder.triptype')}</span>
+        </CellBody>
+        <CellFooter>
+            <span className="color_warning">{record.feebonus}</span>
+            <span className="color_warning">{record.feenew}</span>
+        </CellFooter>
+    </Cell>
+  );
+}
 
 class Page extends Component {
 
+    updateContent = (record)=> {
+        return  (
+          <RechargeItem
+              key={record._id}
+              record={record}
+              />
+        );
+    }
+
     componentWillMount () {
       this.props.dispatch(queryuserbalance_request({}));
-
-      this.props.dispatch(getrechargerecords_request({
-        query: {},
-        options:{
-            sort:{created_at:-1},
-            offset: 0,
-            limit: 1000,
-        }
-      }));
     }
 
     render() {
@@ -67,20 +84,15 @@ class Page extends Component {
                     <CellsTitle>账单查询</CellsTitle>
 
                     <div className="l2">
-                        <Cells>{
-                          _.map(rechargelist,(record)=>{
-                            return (<Cell key={record._id}>
-                                <CellBody>
-                                    <span className="time">{moment(record.created_at).format("YYYY-MM-DD HH:mm:ss")}</span>
-                                    <span className="status">{_.get(record,'fromorder.triptype')}</span>
-                                </CellBody>
-                                <CellFooter>
-                                    <span className="color_warning">{record.feebonus}</span>
-                                    <span className="color_warning">{record.feenew}</span>
-                                </CellFooter>
-                            </Cell>)
-                          })
-                        }
+                        <Cells>
+                          <InfinitePage
+                              pagenumber = {30}
+                              updateContent= {this.updateContent}
+                              queryfun= {getrechargerecords}
+                              listheight= {window.innerHeight-168}
+                              query = {{}}
+                              sort = {{created_at: -1}}
+                          />
                         </Cells>
                     </div>
 
@@ -89,8 +101,8 @@ class Page extends Component {
         )
     }
 }
-const data =  ({recharge:{rechargelist},userlogin:{balance}}) =>{
-    return {rechargelist,balance};
+const data =  ({userlogin:{balance}}) =>{
+    return {balance};
 };
 export default connect(
     data,

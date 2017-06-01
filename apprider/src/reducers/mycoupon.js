@@ -9,7 +9,7 @@ const initial = {
 
 const mycoupon = createReducer({
   [mycoupongetall_result]: (state,payload) => {
-    let couponlist = payload.list.docs;
+    let couponlist = payload.result.docs;
     return { ...state,couponlist};
   },
 }, initial.mycoupon);

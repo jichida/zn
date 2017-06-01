@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 import '../../../public/newcss/message.css';
 import NavBar from '../tools/nav.js';
 import moment from 'moment';
-
-import {
-  getnotifymessage_request
-} from '../../actions';
 import _ from 'lodash';
 import WeUI from 'react-weui';
 import 'weui';
@@ -14,6 +10,9 @@ import 'react-weui/lib/react-weui.min.css';
 const {
     LoadMore
     } = WeUI;
+import {getnotifymessageone_result} from '../../actions';
+import {getnotifymessage} from '../../actions/sagacallback';
+import InfinitePage from '../controls/listview';
 
 const NotifymessageItem = (props) => {
     const {notifymessage,onClickMsgDetail} = props;
@@ -33,67 +32,40 @@ export class Page extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentWillMount () {
-        this.props.dispatch(getnotifymessage_request({
-            query:{},
-            options:{
-                sort:{created_at:-1},
-                offset: 0,
-                limit: 10,
-            }
-        }));
-    }
-    onClickMsgDetail(notifymessage){
-        this.props.history.push(`/messagedetail/${notifymessage._id}`);
-    }
-    onClickBack(){
-        this.props.history.goBack();
-    }
-    componentWillUnmount () {
-    }
 
 
-    render() {
-        const {messagelist} = this.props;
-        return (
-            <div className="messagePage AppPage">
-                 <NavBar back={true} title="消息" />
-                 <div className="list">
-                    {messagelist.length>0?(
-                        <div>
-                            {
-                                _.map(messagelist,(msg)=>{
-                                    return (
-                                        <NotifymessageItem 
-                                            key={msg._id} 
-                                            notifymessage={msg}
-                                            onClickMsgDetail={this.onClickMsgDetail.bind(this,msg)}
-                                            />
-                                    )
-                                })
-                            }
-                        </div>
-                    ):(
-                        <LoadMore showLine>No Data</LoadMore>
-                    )}
-                    
-
-                    <div className="li" >
-                        <div className="time">2019-09-09</div>
-                        <div className="cont">
-                            <div className="tit">这里是消息标题</div>
-                            <div className="text">这里是消息内容</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    updateContent = (msg)=> {
+        return  (
+          <NotifymessageItem
+              key={msg._id}
+              notifymessage={msg}
+              onClickMsgDetail={this.onClickMsgDetail.bind(this,msg)}
+              />
         );
     }
+
+    onClickMsgDetail(item){
+        this.props.dispatch( getnotifymessageone_result(item) );
+        this.props.history.push(`/messagedetail/${item._id}`);
+    }
+
+    render() {
+        return (
+          <div className="messagePage AppPage">
+               <NavBar back={true} title="消息" />
+               <div className="list">
+                    <InfinitePage
+                        pagenumber = {30}
+                        updateContent= {this.updateContent}
+                        queryfun= {getnotifymessage}
+                        listheight= {window.innerHeight-68}
+                        query = {{}}
+                        sort = {{created_at: -1}}
+                    />
+                </div>
+            </div>
+        )
+    }
 }
 
-const mapStateToProps = ({messagecenter:{messagelist}}) => {
-    return {messagelist};
-}
-export default connect(
-    mapStateToProps
-)(Page);
+export default connect()(Page);
