@@ -64,7 +64,7 @@ class AppRoot extends React.Component {
                     <Route path="/register1" component={Register1}/>
                     <Route path="/index" component={Index}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
-                    <Route path="/messagedetail/:messageid" component={MessageDetail} />
+                    <Route path="/messagedetail/:msgid" component={MessageDetail} />
                     <Route path="/outcar" component={requireApproval(Outcar)}/>
                     <Route path="/approval" component={requireAuthentication(Approval)}/>
                     <Route path="/mywallet" component={requireAuthentication(Userwallet)}/>

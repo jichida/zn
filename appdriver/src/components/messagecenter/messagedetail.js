@@ -6,36 +6,52 @@ import NavBar from '../tools/nav.js';
 import _ from 'lodash';
 import moment from 'moment';
 
-class Page extends Component {
+import { getnotifymessageone_request } from '../../actions';
+
+export class Page extends React.Component {
+
+    componentWillMount() {
+      const msgid = this.props.match.params.msgid;
+      this.props.dispatch(getnotifymessageone_request({_id:msgid}));
+    }
+
+    onClickBack() {
+        this.props.history.goBack();
+    }
+
+    componentWillUnmount() {
+
+    }
+
     render() {
-        const {notifymessage} = this.props;
-        const createdatestring = moment(notifymessage.created_at).format("YYYY-MM-DD");
+        const {notifymessageitem} = this.props;
+        if(notifymessageitem.hasOwnProperty('_id')){
+          if (typeof notifymessageitem.created_at === 'string') {
+              notifymessageitem.created_at = new Date(Date.parse(notifymessageitem.created_at));
+          }
+        }
+
         return (
             <div className="messagePage AppPage">
-                <NavBar back={true} title="消息" />
-                <div className="list">
-                      <div className="time">{createdatestring}</div>
-                      <div className="cont">
-                        <div className="tit">{notifymessage.messagetitle}</div>
-                        <div className="text">{notifymessage.messageconent}</div>
+                <NavBar back={true} title="消息详情" />
+                {notifymessageitem.hasOwnProperty('_id')?
+                (
+                    <div className="list">
+                          <div className="time">{moment(notifymessageitem.created_at).format("MM月DD日 HH时mm分")}</div>
+                          <div className="cont">
+                              <div className="tit">{notifymessageitem.messagetitle}</div>
+                              <div className="text">{notifymessageitem.messageconent}</div>
+                          </div>
                       </div>
-                </div>
+              ):(<div className="loading">加载中，请稍后</div>)}
             </div>
-        )
+        );
     }
 }
-const mapStateToProps =  ({messagecenter:{messagelist}}, props) =>{
-    let notifymessage = {};
-    let messageid = props.match.params.messageid;
-    let msgindex = _.findIndex(messagelist,
-      (item)=>{
-        return item._id === messageid
-      }
-    );
-    if(msgindex >= 0){
-      notifymessage = messagelist[msgindex];
-    }
-    return {notifymessage};
+
+
+const mapStateToProps = ({notifymessage:{notifymessageitem}}) => {
+    return {notifymessageitem};
 };
 
 export default connect(

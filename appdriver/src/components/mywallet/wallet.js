@@ -18,26 +18,26 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
-import {getrechargerecords_request} from '../../actions';
-import Item from './rechargerecorditem';
+import {getrechargerecords} from '../../actions/sagacallback';
+import InfinitePage from '../controls/listview';
+import RechargeItem from './rechargerecorditem';
 
 class Page extends Component {
   constructor(props) {
       super(props);
    }
-   componentWillMount () {
-     this.props.dispatch(getrechargerecords_request({}));
+   updateContent = (record)=> {
+       return  (
+         <RechargeItem
+             key={record._id}
+             rechargerecord={record}
+             />
+       );
    }
 
     render() {
-      const {rechargerecordlist,balance} = this.props;
-
-      let rechargerecordco = [];
-      _.map(rechargerecordlist,(item,index)=>{
-        rechargerecordco.push(<Item rechargerecord={item}  key={index} />)
-      });
-
-        return (
+      const {balance} = this.props;
+      return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
@@ -64,22 +64,14 @@ class Page extends Component {
 
                     <div className="l2">
                         <Cells>
-                            {
-                                _.map(rechargerecordlist, (item,index)=>{
-                                    return (
-                                        <Cell key="index">
-                                            <CellBody>
-                                                <span className="time">2016-11-12</span>
-                                                <span className="status">正在处理中...</span>
-                                            </CellBody>
-                                            <CellFooter>
-                                                <span className="color_warning">-10</span>
-                                            </CellFooter>
-                                        </Cell>
-                                    )
-                                })
-                            }
-                            
+                          <InfinitePage
+                              pagenumber = {30}
+                              updateContent= {this.updateContent}
+                              queryfun= {getrechargerecords}
+                              listheight= {window.innerHeight-168}
+                              query = {{}}
+                              sort = {{created_at: -1}}
+                          />
                         </Cells>
                     </div>
 
@@ -89,8 +81,8 @@ class Page extends Component {
     }
 }
 
-const mapStateToProps =  ({withdraw,userlogin:{balance}}) =>{
-    return {...withdraw,balance};
+const mapStateToProps =  ({userlogin:{balance}}) =>{
+    return {balance};
 };
 
 export default connect(

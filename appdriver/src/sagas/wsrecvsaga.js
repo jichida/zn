@@ -34,10 +34,51 @@ import {
   withdrawcashapplyauth_result,
   carcreate_result,
   set_weui,
+
+  getnotifymessage_result,
+  wait_getnotifymessage_result,
+  md_getnotifymessage,
+  getrechargerecords_result,
+  wait_getrechargerecords_result,
+  md_getrechargerecords,
+  getmytriporders_result,
+  wait_getmytriporders_result,
+  md_getmytriporders,
+
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
+const waitfnsz = [
+  [
+    getnotifymessage_result,
+    wait_getnotifymessage_result,
+    `${md_getnotifymessage}`,
+  ],
+  [
+    getrechargerecords_result,
+    wait_getrechargerecords_result,
+    `${md_getrechargerecords}`,
+  ],
+  [
+    getmytriporders_result,
+    wait_getmytriporders_result,
+    `${md_getmytriporders}`,
+  ],
+];
+
+
 export function* wsrecvsagaflow() {
+  for(let i = 0; i < waitfnsz.length; i ++){
+      let fnsz = waitfnsz[i];
+      yield takeEvery(fnsz[2], function*(action) {
+          let {payload:result} = action;
+          console.log(`takeEvery===>result:${JSON.stringify(result)}`);
+          yield put(fnsz[0](result));
+          yield put(fnsz[1]({result:result}));
+      });
+  }
+
+
   yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(go(-2));

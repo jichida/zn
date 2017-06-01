@@ -8,3 +8,5 @@ export const withdrawcashapplyauth_result = createAction('withdrawcashapplyauth_
 //
 export const getrechargerecords_request = createAction('getrechargerecords_request');
 export const getrechargerecords_result = createAction('getrechargerecords_result');
+export const wait_getrechargerecords_request = createAction('wait_getrechargerecords_request');
+export const wait_getrechargerecords_result = createAction('wait_getrechargerecords_result');

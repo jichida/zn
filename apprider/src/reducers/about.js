@@ -28,12 +28,16 @@ const initial = {
 
 const about = createReducer({
   [getabouthtml_result]: (state, {aboutdoc}) => {
-    return { ...state,
-            [aboutdoc.keyname]:{
-              title:aboutdoc.title,
-              desc:aboutdoc.desc,
-            }
-        };
+    if(!!aboutdoc){
+      return { ...state,
+              [aboutdoc.keyname]:{
+                title:aboutdoc.title,
+                desc:aboutdoc.desc,
+              }
+          };
+    }
+    return state;
+
   },
 }, initial.about);
 

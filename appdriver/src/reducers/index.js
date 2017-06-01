@@ -14,7 +14,7 @@ import registerfillwizard from './registerfillwizard';
 import createcarwizard from './createcarwizard';
 import withdraw from './withdraw';
 import weui from './weui';
-import messagecenter from './messagecenter';
+import notifymessage from './messagecenter';
 
 import { routerReducer } from 'react-router-redux';
 
@@ -32,7 +32,7 @@ export default combineReducers({
         orderdetail,
         registerfillwizard,
         weui,
-        messagecenter,
+        notifymessage,
         form: formReducer,
         router: routerReducer
     }

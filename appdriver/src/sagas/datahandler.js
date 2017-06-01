@@ -84,13 +84,23 @@ import {
     withdrawcashapplyauth_result,
 
     getnotifymessage_request,
-    getnotifymessage_result
+    getrechargerecords_result,
+    md_getrechargerecords,
+    md_getnotifymessage,
+    md_getmytriporders,
+
+    getnotifymessageone_request,
+    getnotifymessageone_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
-  'getnotifymessage_result':getnotifymessage_result,
+  'getmytriporders_result':md_getmytriporders,
+  'getrechargerecords_result':md_getrechargerecords,
+  'getnotifymessage_result':md_getnotifymessage,
+  'getnotifymessageone_result':getnotifymessageone_result,
+
   'withdrawcashapplyauth_result':withdrawcashapplyauth_result,
   'withdrawcashapplyaddone_result':withdrawcashapplyaddone_result,
   'getsystemconfig_result':getsystemconfig_result,
@@ -120,7 +130,6 @@ exports.recvmessagetoresultpair = {
   'getcurrentlocationandnearestdrivers_result':getcurrentlocationandnearestdrivers_result,
   'serverpush_triprequest':serverpush_triprequest,
   'driveroute_result':driveroute_result,
-  'getmytriporders_result':getmytriporders_result,
   'acceptrequest_result':md_acceptrequest_result,
   'loginsendauth_result':md_loginsendauth_result,
   'serverpush_triporder':md_serverpush_triporder,
@@ -131,6 +140,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'getnotifymessageone':`${getnotifymessageone_request}`,
   'getnotifymessage':`${getnotifymessage_request}`,
   'register':`${register_request}`,
   'getabouthtml':`${getabouthtml_request}`,

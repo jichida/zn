@@ -92,7 +92,6 @@ class Page extends Component {
     }
 
     render() {
-        const {mytriporderlist, triporders, history} = this.props;
         return (
             <div className="userorderlistPage AppPage">
                 <NavBar back={true} title="我的订单" />

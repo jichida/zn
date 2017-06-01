@@ -1,9 +1,14 @@
 import {
     acceptrequest_request,wait_acceptrequest_request,wait_acceptrequest_result,
     updaterequeststatus_request,wait_updaterequeststatus_request,wait_updaterequeststatus_result,
-    canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result
+    canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
+
+    getrechargerecords_request,wait_getrechargerecords_request,wait_getrechargerecords_result,
+    getnotifymessage_request,wait_getnotifymessage_request,wait_getnotifymessage_result,
+    getmytriporders_request,wait_getmytriporders_request,wait_getmytriporders_result,
+
 } from '../actions/index.js';
-import { fork, take, call, put, cancel,race } from 'redux-saga/effects';
+import { fork, take, call, put, cancel,race,takeLatest } from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
 import {getcurrentlocationfn} from '../util/geo.js';
@@ -25,10 +30,9 @@ let synccall=(payload,waitfn,fn)=>{
   }
 }
 
-
-function* createflow(fnwaitreq,fnwatres){
-  while (true) {
-    let {payload:{resolve,reject}} = yield take(fnwaitreq);
+function* createflowsz(fnwatres,action){
+    let {payload:{resolve,reject,payload:data}} = action;
+    console.log('createflowsz==>payload:' +JSON.stringify(data));
     const { response, timeout } = yield race({
        response: take(fnwatres),
        timeout: call(delay, config.requesttimeout)
@@ -45,9 +49,7 @@ function* createflow(fnwaitreq,fnwatres){
         resolve(result);
       }
     }
-  }
 }
-
 
 //以下导出放在视图中
 export function acceptrequest(payload){
@@ -60,15 +62,30 @@ export function canceltriprequestorder(payload){
   return synccall(payload,wait_canceltriprequestorder_request,canceltriprequestorder_request);
 }
 
-
+export function getrechargerecords(payload){
+  return synccall(payload,wait_getrechargerecords_request,getrechargerecords_request);
+}
+export function getnotifymessage(payload){
+  return synccall(payload,wait_getnotifymessage_request,getnotifymessage_request);
+}
+export function getmytriporders(payload){
+  return synccall(payload,wait_getmytriporders_request,getmytriporders_request);
+}
 //2.
+
 //以下导出放在saga中
-export function* startacceptrequestflow(){
-  return yield createflow(`${wait_acceptrequest_request}`,`${wait_acceptrequest_result}`);
-}
-export function* updaterequeststatusflow(payload){
-  return yield createflow(`${wait_updaterequeststatus_request}`,`${wait_updaterequeststatus_result}`);
-}
-export function* canceltriprequestorderflow(payload){
-  return yield createflow(`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`);
+export function* createsagacallbackflow(){
+  let waitfnsz = [];
+  waitfnsz.push([`${wait_acceptrequest_request}`,`${wait_acceptrequest_result}`]);
+  waitfnsz.push([`${wait_updaterequeststatus_request}`,`${wait_updaterequeststatus_result}`]);
+  waitfnsz.push([`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`]);
+
+  waitfnsz.push([`${wait_getrechargerecords_request}`,`${wait_getrechargerecords_result}`]);
+  waitfnsz.push([`${wait_getnotifymessage_request}`,`${wait_getnotifymessage_result}`]);
+  waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);
+
+  for(let fnsz of waitfnsz){
+     yield takeLatest(fnsz[0],createflowsz, fnsz[1]);
+  }
+
 }

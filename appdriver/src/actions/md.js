@@ -10,3 +10,6 @@ export const md_canceltriprequestorder_result = createAction('md_canceltripreque
 export const md_register_result = createAction('md_register_result');
 export const md_login_result = createAction('md_login_result');
 export const md_fillrealnameprofile_result  = createAction('md_fillrealnameprofile_result');
+export const md_getrechargerecords= createAction('md_getrechargerecords');
+export const md_getnotifymessage= createAction('md_getnotifymessage');
+export const md_getmytriporders= createAction('md_getmytriporders');
