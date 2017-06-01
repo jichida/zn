@@ -7,6 +7,9 @@ import {handleChange} from './sagas/subscribereduxstate';
 import {
     postNotifyFromJPush
 } from './env/jpush';
+import {
+  registerandroid
+} from './env/android';
 
 ReactDOM.render(
   <Root />,
@@ -16,5 +19,5 @@ ReactDOM.render(
 sagaMiddleware.run(rootSaga);
 
 store.subscribe(handleChange);
-
+registerandroid();
 postNotifyFromJPush(store.dispatch);

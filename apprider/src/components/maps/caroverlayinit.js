@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Callcardateinput from './callcardateinput';
-import renderHTML from 'react-render-html';
+// import renderHTML from 'react-render-html';
 import moment from 'moment';
 import {getstringoftime,getstringofdistance} from '../../util/geo.js';
 import {ui_setcarmap,carmap_resetmap} from '../../actions';
@@ -24,12 +24,11 @@ class Page extends React.Component {
         dstaddress,
         totaldistance,
         totalduration,
-        resultpricerequest,
         driverlist,
         triptype,
         ispagenow,
         ridedatesel,
-        resulthtmlstring
+        resultpricerequest
       } = this.props;
       let onClickNow=(isnow)=>{
           dispatch(ui_setcarmap({ispagenow:isnow}));
@@ -169,7 +168,9 @@ class Page extends React.Component {
                       isgetaddress?(
                           <div className="isGetaddress">
                               <span className="showprice">
-                                {renderHTML(resulthtmlstring)}
+                                总路程{resultpricerequest.totalkm}公里,
+                                预计{resultpricerequest.totalduringminute}分钟,
+                                {triptype==='出租车'?'预估费用计价器为准':`预估费用${resultpricerequest.totalprice}元`}
                               </span>
                               <div className="btnlist">
 
@@ -196,7 +197,6 @@ const mapStateToProps = (state) => {
       resultpricerequest,
       driverlist,
       triptype,
-      resulthtmlstring,
     },
     appui:{
       carmap:
@@ -224,7 +224,7 @@ const mapStateToProps = (state) => {
     resultpricerequest,
     driverlist,
     triptype,
-    resulthtmlstring,
+    resultpricerequest,
 
     ispagenow,
     ridedatesel,

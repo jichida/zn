@@ -38,10 +38,6 @@ const SystemconfigShow = (props) => (
                <TextField label="最大显示评价数" source="maxshowtags" />
                <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
                <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
-               <TextField  label="旅游大巴预付款(百分比)" source="paytourbus" />
-               <RichTextField label="出租车价格显示" source="pricestring.出租车" stripTags={false}/>
-               <RichTextField label="快车价格显示" source="pricestring.快车" stripTags={false}/>
-               <RichTextField label="代驾价格显示" source="pricestring.代驾" stripTags={false}/>
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -64,11 +60,6 @@ export const SystemconfigCreate = (props) => (
            <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
            <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
            </FormTab>
-           <FormTab label="resources.systemconfig.tabs.price">
-           <RichTextEditorInput label="出租车价格显示" source="pricestring.出租车" addLabel={true}/>
-           <RichTextEditorInput label="快车价格显示" source="pricestring.快车" addLabel={true}/>
-           <RichTextEditorInput label="代驾价格显示" source="pricestring.代驾" addLabel={true}/>
-           </FormTab>
            <FormTab label="resources.systemconfig.tabs.driver">
            <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
            </FormTab>
@@ -84,11 +75,6 @@ export const SystemconfigEdit = (props) => (
             <NumberInput label="最大显示评价数" source="maxshowtags"/>
             <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
             <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
-            </FormTab>
-            <FormTab label="resources.systemconfig.tabs.price">
-            <RichTextEditorInput label="出租车价格显示" source="pricestring.出租车" addLabel={true}/>
-            <RichTextEditorInput label="快车价格显示" source="pricestring.快车" addLabel={true}/>
-            <RichTextEditorInput label="代驾价格显示" source="pricestring.代驾" addLabel={true}/>
             </FormTab>
             <FormTab label="resources.systemconfig.tabs.driver">
             <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>

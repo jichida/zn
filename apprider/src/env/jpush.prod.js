@@ -2,13 +2,24 @@ import * as xview from './xview/Common';
 import {jpushlistenInMessage,jpushpostNotification} from '../actions';
 
 export const cancelJPushAlisa=()=>{
-  xview.cancelJPushAlisa();
+    try{
+        xview.cancelJPushAlisa();
+    }
+    catch(e){
+
+    }
+
 }
 
 export const setJPushAlias = (name)=> {
     //设置jpush名字
     console.log(`设置别名${name}`);
-     xview.jiGuangTuiSong(this.state.txName);
+    try{
+         xview.jiGuangTuiSong(name);
+     }
+     catch(e){
+
+     }
 }
 
 export const postNotifyFromJPush = (dispatch)=>{
@@ -19,11 +30,13 @@ export const postNotifyFromJPush = (dispatch)=>{
             if(typeof jsonobj === 'string'){
                 jsonobj = JSON.parse(jsonobj);
             }
+            dispatch(jpushlistenInMessage(jsonobj));
         }
         catch(e){
 
         }
-        dispatch(jpushlistenInMessage(jsonobj));
+        //window.alert(`listenInMessage==>\n${jsonstr}`);
+
     }
     //点击了推送消息
     window.postNotification=(jsonstr)=>{
@@ -32,10 +45,12 @@ export const postNotifyFromJPush = (dispatch)=>{
             if(typeof jsonobj === 'string'){
                 jsonobj = JSON.parse(jsonobj);
             }
+            dispatch(jpushpostNotification(jsonobj));
         }
         catch(e){
 
         }
-        dispatch(jpushpostNotification(jsonstr));
+        //window.alert(`postNotification==>\n${jsonstr}`);
+
     }
 }

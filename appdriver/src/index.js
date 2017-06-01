@@ -6,6 +6,9 @@ import rootSaga from './sagas';
 import {
     postNotifyFromJPush
 } from './env/jpush';
+import {
+  registerandroid
+} from './env/android';
 
 ReactDOM.render(
     <Root />,
@@ -13,5 +16,5 @@ ReactDOM.render(
 );
 
 sagaMiddleware.run(rootSaga);
-
+registerandroid();
 postNotifyFromJPush(store.dispatch);
