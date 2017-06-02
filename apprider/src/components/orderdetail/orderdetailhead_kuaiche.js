@@ -20,12 +20,16 @@ export default class Page extends Component{
               avatarURL,
             }
          } = orderinfo;
-         let carinfo = `${PlateColor}${Model}·${VehicleNo}`;
+         let carinfo ;
+         if(!!PlateColor && !!Model && !!VehicleNo){
+           carinfo = `${PlateColor}${Model}·${VehicleNo}`;
+         }
+
          let driverinfo = {
-             name,
-             phone,
+             name:name || '',
+             phone:phone || '',
              avatar : avatarURL||"newimg/17.png",
-             carinfo,
+             carinfo:carinfo || '',
              cartype : orderinfo.triptype
          };
         return (
