@@ -60,7 +60,7 @@ class Page extends Component {
     }
     render() {
         console.log(`payprops----->${JSON.stringify(this.props)}`);
-        
+
         const {orderinfo,paytype,realprice,couponnum,couponprice,balance} = this.props;
         const {
           orderprice,
@@ -165,8 +165,9 @@ const mapStateToProps =  (state,props) =>{
     let realprice = orderinfo.orderprice;
     let couponprice = 0;
     if(orderdetail.usecoupon){
-      let minpricediscount = orderinfo.orderprice * (1 - orderdetail.coupon.pricediscountpercent);
-      couponprice = minpricediscount  > orderdetail.pricediscountmax ?orderdetail.pricediscountmax:minpricediscount;
+      let minpricediscount = orderinfo.orderprice * (1 - orderdetail.coupon.pricediscountpercent*0.1);
+      minpricediscount = parseFloat(minpricediscount.toFixed(2));
+      couponprice = minpricediscount  > orderdetail.coupon.pricediscountmax ?orderdetail.coupon.pricediscountmax:minpricediscount;
     }
     realprice = orderinfo.orderprice - couponprice;
     //优惠券／优惠券抵扣金额
