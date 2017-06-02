@@ -83,6 +83,7 @@ import {
     withdrawcashapplyauth_request,
     withdrawcashapplyauth_result,
 
+    getrechargerecords_request,
     getnotifymessage_request,
     getrechargerecords_result,
     md_getrechargerecords,
@@ -163,6 +164,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'getrechargerecords':`${getrechargerecords_request}`,
   'carsetdefault':`${carsetdefault_request}`,
   'fillrealnameprofile':`${fillrealnameprofile_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
