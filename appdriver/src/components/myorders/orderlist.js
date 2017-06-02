@@ -34,7 +34,7 @@ class Page extends Component {
          <OrderItem
              key={orderinfo._id}
              orderinfo={orderinfo}
-             onClickOrderDetail={this.onClickOrderDetail.bind(this,orderinfo)}
+             onClickSelCurOrder={this.onClickOrderDetail.bind(this,orderinfo)}
              />
        );
    }
