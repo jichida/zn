@@ -41,9 +41,17 @@ class Page extends Component {
       let orderinfotopay = {
         paytype,
         realprice,
-        couponprice,
-        couponid:coupon._id
       };
+      if(!!coupon){
+        if(!!coupon._id){
+          orderinfotopay = {
+            ...orderinfotopay,
+            couponprice,
+            couponinfo:coupon,
+            couponid:coupon._id
+          };
+        }
+      }
       if(paytype === 'leftbalance'){
         orderinfotopay.balanceprice = realprice;
         orderinfotopay.realprice = 0;
