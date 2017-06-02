@@ -66,8 +66,8 @@ const MycouponlistCreate = (props) => (
                    { id: '拼车', name: '拼车' },
                ]} />
                <DateInput label="过期时间"  source="expdate" />
-               <NumberInput label="最高抵扣金额"  source="pricediscountmax" />
-               <NumberInput label="最高抵扣（折）"  source="pricediscountpercent" />
+               <NumberInput label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
+               <NumberInput label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
            </SimpleForm>
        </Create>
 );
@@ -93,8 +93,8 @@ const MycouponlistEdit = (props) => {
                 { id: '拼车', name: '拼车' },
             ]} />
             <DateInput label="过期时间"  source="expdate" />
-            <NumberInput label="最高抵扣金额"  source="pricediscountmax" />
-            <NumberInput label="最高抵扣（折）"  source="pricediscountpercent" />
+            <NumberInput label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
+            <NumberInput label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
           </SimpleForm>
       </Edit>);
 
@@ -108,7 +108,8 @@ const MycouponlistShow = (props) => (
                <TextField label="名字" source="name" />
                <TextField label="过期时间"  source="expdate" />
                <TextField label="最高抵扣金额"  source="pricediscountmax" />
-               <TextField label="最高抵扣（折）"  source="pricediscountpercent" />
+               <NumberField label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
+               <NumberField label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
            </SimpleShowLayout>
        </Show>
 );
@@ -124,7 +125,7 @@ const MycouponlistList = (props) => (//
             </ReferenceField>
             <TextField label="优惠类型" source="triptype" />
             <DateField label="过期时间" source="expdate"  />
-            <NumberField label="最高抵扣金额" source="pricediscountmax" locales="zh-cn" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
+            <NumberField label="最高抵扣金额（元)" source="pricediscountmax" locales="zh-cn" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
             <NumberField label="最高抵扣（折）" source="pricediscountpercent" locales="zh-cn" elStyle={{ fontWeight: 'bold' }}/>
         <EditButton />
         </Datagrid>

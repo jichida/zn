@@ -48,7 +48,7 @@ const MycouponItem = (props) => {
                         <span className="bb">有效期至{expdatestring}</span>
                     </div>
                     <div className="zhekou color_warning">
-                        <span className="aa">{pricediscountpercent*10}</span>
+                        <span className="aa">{pricediscountpercent}</span>
                         <span className="bb">折</span>
                     </div>
                 </div>

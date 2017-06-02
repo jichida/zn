@@ -21,10 +21,15 @@ const getmycoupons = createSelector(
     (couponlist,orderinfo)=>{
         let mycoupons = [];
         _.map(couponlist,(coupon)=>{
-            coupon.enabled = (orderinfo._id === 'nosel');
+            if(orderinfo._id !== 'nosel'){
+                coupon.enabled = (coupon.triptype === orderinfo.triptype);
                 if(!coupon.enabled){
-                    coupon.enabled = (coupon.triptype === orderinfo.triptype);
+                  coupon.uselessreason = `当前是${orderinfo.triptype}订单,仅限${coupon.triptype}使用`;
                 }
+                else{
+                  //已过期，已使用就不要判断了，不要发给客户端
+                }
+            }
             mycoupons.push(coupon);
         });
         return {couponlist:mycoupons,sel:true};

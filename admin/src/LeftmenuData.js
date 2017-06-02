@@ -80,40 +80,20 @@ export default [
      'name':'userdriver',
      'icon': <UserdriverIcon />,
    },
+   {
+       'name':'mycar',
+       'icon': <UserriderIcon />,
+   },
   {
     'name':'usermgr',
     'icon': <UsermgrIcon />,
     'children': [
-
       {
         'name':'userrider',
         'icon': <UserriderIcon />,
       },
       { name: 'mycoupon', icon: <UserIcon /> },
       { name: 'withdrawcash', icon: <UserIcon /> },
-    ]
-  },
-  {
-    'name':'carinfo',
-    'icon': <UsermgrIcon />,
-    'children': [
-      {
-        'name':'mycar',
-        'icon': <UserriderIcon />,
-      },
-      {
-        'name':'carbrand',
-        'icon': <UserdriverIcon />,
-      },
-      {
-        'name':'carmodel',
-        'icon': <UserriderIcon />,
-      },
-      {
-        'name':'carcolor',
-        'icon': <UserriderIcon />,
-      },
-
     ]
   },
   {
