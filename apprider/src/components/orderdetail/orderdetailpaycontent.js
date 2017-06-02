@@ -51,24 +51,56 @@ export default class Page extends Component{
           });
         }
 
-        return (
-                <div className="paycontent">
+        let isshowpaycontent = true;
+        if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
+          isshowpaycontent = orderinfo.orderstatus !== '已取消';
+        }
+
+        if(!isshowpaycontent){
+          //已取消的情况
+          return (
+                 <div className="paycontent">
                     <div className="content">
-                        <LoadMore showLine>{orderinfo.paystatus}</LoadMore>
-                        <span className="price color_warning">{orderprice}元</span>
+                        <LoadMore showLine>{orderinfo.orderstatus}</LoadMore>
                     </div>
-                    <div className="pricelist PanelBox">
-                        <div className="tit">车费情况</div>
-                        <div className="list">
-                            {
-                              _.map(paycontentlist,(feeinfo,index)=>{
-                                return (
-                                  <p key={index}><span>{feeinfo.name}</span><span>{feeinfo.fee}</span></p>
-                                )
-                              })
-                            }
-                            <p><span className="color_warning">4.5折券抵扣(最高5元)</span><span className="color_warning">-5.0元</span></p>
-                        </div>
+                  </div>);
+        }
+
+        let hascoupons = false;
+        if(orderinfo.paystatus === '已支付'){
+          //只有已支付才有可能显示优惠券信息
+          if(orderinfo.couponprice > 0 && !!orderinfo.couponinfo){
+            hascoupons = true;
+          }
+        }
+        return (
+               <div className="paycontent">
+                  <div className="content">
+                      <LoadMore showLine>{orderinfo.paystatus}</LoadMore>
+                      <span className="price color_warning">{orderprice}元</span>
+                  </div>
+                  <div className="pricelist PanelBox">
+                      <div className="tit">车费情况</div>
+                      <div className="list">
+                          {
+                            _.map(paycontentlist,(feeinfo,index)=>{
+                              return (
+                                <p key={index}><span>{feeinfo.name}</span><span>{feeinfo.fee}</span></p>
+                              )
+                            })
+                          }
+                          {
+                            hascoupons &&
+                              <p>
+                                 <span className="color_warning">
+                                  {orderinfo.couponinfo.pricediscountpercent}折券抵扣(最高{orderinfo.couponinfo.pricediscountmax}元)
+                                 </span>
+                                 <span className="color_warning">
+                                 -{orderinfo.couponprice}元
+                                 </span>
+                              </p>
+                          }
+                      </div>
                     </div>
                     {orderinfo.paystatus==='未支付' && <div className="getMoney" onClick={this.toPay.bind(this)}><span>去支付</span></div>}
                 </div>
