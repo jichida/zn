@@ -92,11 +92,17 @@ import {
 
     getnotifymessageone_request,
     getnotifymessageone_result,
+
+    serverpush_userbalance,
+    queryuserbalance_request,
+    queryuserbalance_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'queryuserbalance_result':queryuserbalance_result,
+  'serverpush_userbalance':queryuserbalance_result,
   'getmytriporders_result':md_getmytriporders,
   'getrechargerecords_result':md_getrechargerecords,
   'getnotifymessage_result':md_getnotifymessage,
@@ -164,6 +170,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'queryuserbalance':`${queryuserbalance_request}`,
   'getrechargerecords':`${getrechargerecords_request}`,
   'carsetdefault':`${carsetdefault_request}`,
   'fillrealnameprofile':`${fillrealnameprofile_request}`,

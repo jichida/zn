@@ -19,3 +19,7 @@ export const register_result = createAction('register_result');
 
 export const fillrealnameprofile_request = createAction('fillrealnameprofile_request');
 export const fillrealnameprofile_result = createAction('fillrealnameprofile_result');
+
+export const serverpush_userbalance = createAction('serverpush_userbalance');
+export const queryuserbalance_request = createAction('queryuserbalance_request');
+export const queryuserbalance_result = createAction('queryuserbalance_result');

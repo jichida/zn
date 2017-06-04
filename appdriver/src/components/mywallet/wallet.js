@@ -18,6 +18,9 @@ const {
     CellsTitle
     } = WeUI;
 import _ from 'lodash';
+import {
+    queryuserbalance_request,
+} from '../../actions';
 import {getrechargerecords} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
 import RechargeItem from './rechargerecorditem';
@@ -33,6 +36,9 @@ class Page extends Component {
              record={record}
              />
        );
+   }
+   componentWillMount () {
+     this.props.dispatch(queryuserbalance_request({}));
    }
 
     render() {

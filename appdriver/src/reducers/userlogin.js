@@ -5,7 +5,8 @@ import {
     login_err,
     loginsendauth_result,
     logout_result,
-    fillrealnameprofile_result
+    fillrealnameprofile_result,
+    queryuserbalance_result
 } from '../actions';
 
 const initial = {
@@ -32,6 +33,9 @@ const initial = {
 };
 
 const userlogin = createReducer({
+  [queryuserbalance_result]: (state, payload) => {
+    return { ...state,...payload};
+  },
   [logout_result]: (state, payload) => {
     localStorage.removeItem('zhongnan_driver_token');
     return { ...initial.userlogin};
