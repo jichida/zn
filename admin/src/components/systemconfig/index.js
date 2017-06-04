@@ -25,7 +25,7 @@ import {
 
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
-
+import {TextFieldSZ} from '../controls/tags';
 
 import ShowPageOne from '../controls/singlelistpage.js';
 
@@ -35,12 +35,15 @@ const SystemconfigShow = (props) => (
        <ShowPage title={<SystemconfigTitle />} {...props}>
            <SimpleShowLayout>
                <TextField source="id" />
-               <ChipField label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
-               <ChipField label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
+               <TextFieldSZ label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
+               <TextFieldSZ label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
                <TextField label="最大显示评价数" source="maxshowtags" />
-               <ChipField label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
-               <ChipField label="热门城市列表" source="hotcity" addLabel={true}/>
-           </SimpleShowLayout>
+               <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
+               <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+               <TextField label="司机抽成" source="platformdriverfeediscount" />
+               <TextField label="代驾取消价格" source="daijiacancelprice" />
+               <TextField label="客服电话" source="servicephonenumber" />
+         </SimpleShowLayout>
        </ShowPage>
 );
 
@@ -56,6 +59,11 @@ const SystemconfigCreateTitle = ({ record }) => {
 export const SystemconfigCreate = (props) => (
        <Create {...props} title={<SystemconfigCreateTitle />} >
        <TabbedForm>
+           <FormTab label="resources.systemconfig.tabs.sysconfig">
+           <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
+           <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
+           <TextInput label="客服电话" source="servicephonenumber"/>
+           </FormTab>
            <FormTab label="resources.systemconfig.tabs.rider">
            <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
            <NumberInput label="最大显示评价数" source="maxshowtags"/>
@@ -72,6 +80,11 @@ export const SystemconfigCreate = (props) => (
 export const SystemconfigEdit = (props) => (
     <EditPage {...props} title={<SystemconfigTitle />}>
         <TabbedForm>
+            <FormTab label="resources.systemconfig.tabs.sysconfig">
+            <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
+            <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
+            <TextInput label="客服电话" source="servicephonenumber"/>
+            </FormTab>
             <FormTab label="resources.systemconfig.tabs.rider">
             <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
             <NumberInput label="最大显示评价数" source="maxshowtags"/>

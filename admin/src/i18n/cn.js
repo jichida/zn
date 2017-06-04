@@ -195,7 +195,7 @@ export default {
       name: '系统配置 |||| 系统配置',
       tabs:{
         rider:'乘客端设置',
-        price:'叫车价格样式设置',
+        sysconfig:'设置',
         driver:'司机端设置',
         }
     },

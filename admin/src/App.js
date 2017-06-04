@@ -87,6 +87,8 @@ class App extends Component {
                 locale="cn"
                 messages={translations}
             >
+            <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit} create={SystemconfigCreate} />
+  
             <Resource name="carbrand" list={CarbrandlistList}  edit={CarbrandlistEdit} create={CarbrandlistCreate} remove={Delete} />
             <Resource name="carcolor" list={CarcolorlistList}  edit={CarcolorlistEdit} create={CarcolorlistCreate} remove={Delete} />
             <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
@@ -127,7 +129,6 @@ class App extends Component {
             <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} />
             <Resource name="notifymessage" list={NotifyMessagelistList} create={NotifyMessagelistCreate} edit={NotifyMessagelistEdit} show={NotifyMessagelistShow} remove={Delete} />
 
-            <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit} create={SystemconfigCreate} />
             <Resource name="price" list={PricelistList} create={PricelistCreate} edit={PricelistEdit} show={PricelistShow} remove={Delete} />
             <Resource name="about" list={AboutlistList}  edit={AboutlistEdit} create={AboutlistCreate} remove={Delete} />
             <Resource name="buscarpool" list={BuscarpoolList} create={BuscarpoolCreate} edit={BuscarpoolEdit} show={BuscarpoolShow} remove={Delete} />
