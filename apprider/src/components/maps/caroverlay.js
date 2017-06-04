@@ -20,11 +20,16 @@ export class Page extends React.Component {
 
     //取消叫车
     cancelcar =()=>{
+        let canceltext = "您确定要取消叫车吗?";
+        const {curmappageorder,daijiacancelprice} = this.props;
+        if(curmappageorder.triptype === '代驾' &&  !!curmappageorder.driveruserid){
+          canceltext = `您确定要取消叫车吗?取消需要支付${daijiacancelprice}`;
+        }
         this.props.dispatch(set_weui({
             confirm : {
                 show : true,
                 title : "取消叫车",
-                text : "您确定要取消叫车吗",
+                text : canceltext,
                 buttonsCloseText : "取消",
                 buttonsClickText : "确定",
                 buttonsClose : ()=>{},
@@ -148,8 +153,19 @@ export class Page extends React.Component {
  */
 
 
-const mapStateToProps = ({carmap:{mapstage,curmappagerequest,curmappageorder,curlocation}}) => {
-    return {mapstage,curmappagerequest,curmappageorder,curlocation};
+const mapStateToProps = ({
+    carmap:
+    {
+      mapstage,
+      curmappagerequest,
+      curmappageorder,
+      curlocation
+    },
+    app:{
+      daijiacancelprice
+    }
+  }) => {
+    return {mapstage,curmappagerequest,curmappageorder,curlocation,daijiacancelprice};
 }
 
 

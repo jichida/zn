@@ -16,6 +16,7 @@ const initial = {
     commenttagsfordriver:[],
     hotcity:[],
     servicephonenumber:'',
+    daijiacancelprice:50,
     daijialeastbalance:50,
   },
 };
