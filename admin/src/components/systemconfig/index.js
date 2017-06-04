@@ -16,6 +16,8 @@ import {
     TextField,
     TextInput,
     SimpleShowLayout,
+    SelectArrayInput,
+    ChipField,
     Edit as EditPage,
     Show as ShowPage,
     SimpleForm,
@@ -24,7 +26,7 @@ import {
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 
-import {TextFieldSZ,TextInputSZ} from '../controls/tags.js';
+
 import ShowPageOne from '../controls/singlelistpage.js';
 
 
@@ -33,11 +35,11 @@ const SystemconfigShow = (props) => (
        <ShowPage title={<SystemconfigTitle />} {...props}>
            <SimpleShowLayout>
                <TextField source="id" />
-               <TextFieldSZ label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
-               <TextFieldSZ label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
+               <ChipField label="对司机的评价" source="commenttagsfordriver"  addLabel={true}/>
+               <ChipField label="对乘客的评价" source="commenttagsforrider"  addLabel={true}/>
                <TextField label="最大显示评价数" source="maxshowtags" />
-               <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
-               <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+               <ChipField label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
+               <ChipField label="热门城市列表" source="hotcity" addLabel={true}/>
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -55,13 +57,13 @@ export const SystemconfigCreate = (props) => (
        <Create {...props} title={<SystemconfigCreateTitle />} >
        <TabbedForm>
            <FormTab label="resources.systemconfig.tabs.rider">
-           <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
+           <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
            <NumberInput label="最大显示评价数" source="maxshowtags"/>
-           <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
-           <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+           <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
+           <SelectArrayInput label="热门城市列表" source="hotcity"  options={{ fullWidth: true }}/>
            </FormTab>
            <FormTab label="resources.systemconfig.tabs.driver">
-           <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
+           <SelectArrayInput label="对乘客的评价" source="commenttagsforrider"  options={{ fullWidth: true }}/>
            </FormTab>
        </TabbedForm>
        </Create>
@@ -71,13 +73,13 @@ export const SystemconfigEdit = (props) => (
     <EditPage {...props} title={<SystemconfigTitle />}>
         <TabbedForm>
             <FormTab label="resources.systemconfig.tabs.rider">
-            <TextInputSZ label="对司机的评价" source="commenttagsfordriver" addLabel={true}/>
+            <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
             <NumberInput label="最大显示评价数" source="maxshowtags"/>
-            <TextInputSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
-            <TextInputSZ label="热门城市列表" source="hotcity" addLabel={true}/>
+            <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
+            <SelectArrayInput label="热门城市列表" source="hotcity"  options={{ fullWidth: true }}/>
             </FormTab>
             <FormTab label="resources.systemconfig.tabs.driver">
-            <TextInputSZ label="对乘客的评价" source="commenttagsforrider" addLabel={true}/>
+            <SelectArrayInput label="对乘客的评价" source="commenttagsforrider"  options={{ fullWidth: true }}/>
             </FormTab>
         </TabbedForm>
     </EditPage>

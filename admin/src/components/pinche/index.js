@@ -27,6 +27,8 @@ import {
   DateField,
   EditButton,
   Filter,
+  SelectArrayInput,
+  ChipField,
   BooleanInput,
   BooleanField,
   ReferenceField
@@ -37,7 +39,6 @@ import {TabbedForm,FormTab} from 'admin-on-rest/lib/mui';
 import { Field,FieldArray } from 'redux-form';
 
 import { translate } from 'admin-on-rest';
-import {TextFieldSZ,TextInputSZ} from '../controls/tags.js';
 import {TimePickerInput} from '../controls/timepicker.js';
 
 
@@ -61,8 +62,8 @@ const BuscarpoolCreate = (props) => (
            <TimePickerInput label="出发时间" source="starttime" />
            <NumberInput label="座位数"  source="seatnumber" />
            <TextInput label="状态"  source="status" />
-           <TextInputSZ label="开始站点" source="startstations" addLabel={true}/>
-           <TextInputSZ label="目的站点" source="endstations" addLabel={true}/>
+           <SelectArrayInput label="开始站点" source="startstations" options={{ fullWidth: true }}/>
+           <SelectArrayInput label="目的站点" source="endstations" options={{ fullWidth: true }}/>
            <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
            </SimpleForm>
        </Create>
@@ -77,8 +78,8 @@ const BuscarpoolEdit = (props) => {
           <TabbedForm>
               <FormTab label="resources.buscarpool.tabs.citystation">
 
-                <TextInputSZ label="开始站点" source="startstations" addLabel={true}/>
-                <TextInputSZ label="目的站点" source="endstations" addLabel={true}/>
+                <SelectArrayInput label="开始站点" source="startstations" options={{ fullWidth: true }}/>
+                <SelectArrayInput label="目的站点" source="endstations" options={{ fullWidth: true }}/>
                 <RoutePrice label="编辑站点价格" source="carpoolprice" addLabel={true}/>
 
               </FormTab>

@@ -3,7 +3,11 @@ import { List, EmailField } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import {ChipField, NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
+import {ChipField,
+  NumberInput,
+  Create,
+  Edit,
+  SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,SelectInput } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
@@ -46,7 +50,7 @@ const NotifyMessagelistEdit = (props) => {
               ]} />
               <TextInput label="消息标题"  source="messagetitle" />
               <RichTextInput label="消息内容" source="messagecontent" addLabel={false}/>
-             
+
           </SimpleForm>
       </Edit>);
 
@@ -72,7 +76,7 @@ const NotifyMessagelistList = (props) => (//
         <TextField label="消息类型" source="messagetype" />
         <TextField label="消息标题" source="messagetitle" />
         <DateField label="生成时间" source="created_at" showTime />
-        <ShowButton />
+        <EditButton />
         </Datagrid>
     </List>
 );
