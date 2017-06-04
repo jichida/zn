@@ -61,7 +61,6 @@ const BuscarpoolCreate = (props) => (
            <TimePickerInput label="出发时间" source="starttime" />
            <NumberInput label="座位数"  source="seatnumber" />
            <TextInput label="状态"  source="status" />
-           <DisabledInput label="已定座位"  source="takennumber" />
            <TextInputSZ label="开始站点" source="startstations" addLabel={true}/>
            <TextInputSZ label="目的站点" source="endstations" addLabel={true}/>
            <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
@@ -93,8 +92,7 @@ const BuscarpoolEdit = (props) => {
                 <TextInput label="目的城市" source="endcity" />
                 <DateInput label="出发日期" source="startdate" />
                 <TimePickerInput label="出发时间" source="starttime" />
-                <TextField label="座位数" source="seatnumber" />
-                <TextField label="已定座位数" source="takennumber" />
+                <TextInput label="座位数" source="seatnumber" />
                 <TextField label="状态" source="status" />
                 <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
               </FormTab>
@@ -164,7 +162,9 @@ const BuscarpoolList = (props) => (//
         <DateField label="出发日期" source="startdate" type="date" />
         <TextField label="出发时间" source="starttime" />
         <TextField label="目的城市" source="endcity" />
-        <TextField label="已定座位数" source="takennumber" />
+        <TextField label="座位数" source="seatnumber" />
+        <TextField label="下单数" source="seatnumbertotal" />
+
         <BooleanField label="是否启用" source="isenabled" />
         <EditButtonInList />
         <ShowButton />
