@@ -41,6 +41,7 @@ const SystemconfigShow = (props) => (
                <TextFieldSZ label="拼车城市列表" source="pinchecitylist" addLabel={true}/>
                <TextFieldSZ label="热门城市列表" source="hotcity" addLabel={true}/>
                <TextField label="司机抽成" source="platformdriverfeediscount" />
+               <TextField label="代驾要求余额" source="daijialeastbalance" />
                <TextField label="代驾取消价格" source="daijiacancelprice" />
                <TextField label="客服电话" source="servicephonenumber" />
          </SimpleShowLayout>
@@ -61,6 +62,7 @@ export const SystemconfigCreate = (props) => (
        <TabbedForm>
            <FormTab label="resources.systemconfig.tabs.sysconfig">
            <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
+           <NumberInput label="代驾要求余额" source="daijialeastbalance" />
            <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
            <TextInput label="客服电话" source="servicephonenumber"/>
            </FormTab>
@@ -82,6 +84,7 @@ export const SystemconfigEdit = (props) => (
         <TabbedForm>
             <FormTab label="resources.systemconfig.tabs.sysconfig">
             <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
+            <NumberInput label="代驾要求余额" source="daijialeastbalance" />
             <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
             <TextInput label="客服电话" source="servicephonenumber"/>
             </FormTab>
