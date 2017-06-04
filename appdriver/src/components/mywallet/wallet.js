@@ -30,7 +30,7 @@ class Page extends Component {
        return  (
          <RechargeItem
              key={record._id}
-             rechargerecord={record}
+             record={record}
              />
        );
    }
