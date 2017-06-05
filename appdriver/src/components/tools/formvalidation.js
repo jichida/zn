@@ -10,6 +10,8 @@ import {
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
+import idCard from "idcard";
+import BIN from "bankcardinfo";
 const { 
     Form,
     FormCell,
@@ -24,7 +26,8 @@ const {
     } = WeUI;
 
 //判断是否必填
-export const required = value => value ? undefined : '必填项'
+export const required = value => value ? undefined : '必填项';
+export const requiredImg = value => value ? undefined : '图片必须上传';
 //最长输入长度
 export const maxLength = max => value => value && value.length > max ? `超过字段最大长度${max}` : undefined;
 export const maxLength7 = maxLength(7)
@@ -60,7 +63,6 @@ export const length6 = sureLength(6)
 export const length7 = sureLength(7)
 export const length8 = sureLength(8)
 
-
 //年龄必须18岁以上
 export const minValue = min => value => value && value < min ? `必须满${min}岁以上` : undefined
 export const minValue18 = minValue(18);
@@ -76,6 +78,18 @@ export const ischecked = value => value? value:undefined
 let password = '';
 export const passwordA = value => {password = value; return undefined};
 export const passwordB = value => value && value !== password? "两次密码输入不一致":  undefined;
+//身份证输入验证
+export const isidcard = value => idCard.verify(value)? undefined : "请输入正确的身份证号码";
+
+//获取银行卡信息
+export const asyncValidate = value=> BIN.getBankBin(value).then(
+	function (data) { 
+		console.log(data);
+	}).catch(
+		error => {
+	        throw { bankaccount: error }
+	    }
+	)
 
 
 const inputDispatchToProps = (dispatch) => {
@@ -90,6 +104,80 @@ const inputDispatchToProps = (dispatch) => {
 	    },
 	}
 };
+
+//银行卡表单
+// {
+// 	bankName:"中国工商银行",
+// 	bankCode:"ICBC",
+// 	cardType:"DC",
+// 	cardTypeName:"储蓄卡"
+// }
+let InputBankValidation = (props) => {
+
+	const {
+		onError,
+		input, 
+		placeholder, 
+		type, 
+		meta: { asyncValidating, touched, error},
+		Company,
+		InputTit,
+		HeadIcon,
+	} = props;
+	let err = (touched && error);
+	let style = "";
+	style = err?"warning":"";
+	return (
+	    <FormCell className={style}>
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Input {...input} type={type} placeholder={placeholder}/>
+                <span>{Company}</span>
+            </CellBody>
+            { touched && error && <span className="warningtext" onClick={()=>{onError(error)}} >!</span> }
+        </FormCell>
+	);
+}
+
+//单选checkbox表单
+let WeuiCheckboxValidation = (props) => {
+
+	const {
+		onError,
+		input, 
+		placeholder, 
+		type, 
+		meta: { touched, error},
+		Company,
+		InputTit,
+		HeadIcon,
+	} = props;
+	let err = (touched && error);
+	let style = "";
+	style = err?"warning":"";
+	return (
+	    <FormCell className={style}>
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Input {...input} type={type} placeholder={placeholder}/>
+                <span>{Company}</span>
+            </CellBody>
+            { touched && error && <span className="warningtext" onClick={()=>{onError(error)}} >!</span> }
+        </FormCell>
+	);
+}
+
+
 
 //input表单验证
 let InputValidation = (props) => {
@@ -228,11 +316,12 @@ export {WeuiInputValidation};
 WeuiSelectValidation = connect(inputData)(WeuiSelectValidation);
 export {WeuiSelectValidation};
 
+//InputBankValidation
+InputBankValidation = connect(inputData,inputDispatchToProps)(InputBankValidation);
+export {InputBankValidation};
 
-
-
-
-
+WeuiCheckboxValidation = connect(inputData,inputDispatchToProps)(WeuiCheckboxValidation);
+export {WeuiCheckboxValidation};
 
 
 

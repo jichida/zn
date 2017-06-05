@@ -28,11 +28,6 @@ class renderDateField extends React.Component{
     
     render(){
         const { input, label, meta: { touched, error } } = this.props;
-
-
-        console.log("input value"+input.value);
-
-        
         let handleClick1 =()=>{
             this.setDateopen(true);
         }
@@ -50,13 +45,13 @@ class renderDateField extends React.Component{
                         <span>{label}</span>
                     </Label>
                 </CellHeader>
-                <CellFooter>
+                <CellBody>
                     <Input 
                         {...input} 
                         onClick={handleClick1}
                         style={{textAlign:"right"}}
                         />
-                </CellFooter>
+                </CellBody>
                 <DatePicker
                     value={new Date(input.value)}
                     isOpen={this.state.isdateopen}
@@ -65,7 +60,6 @@ class renderDateField extends React.Component{
                     dateFormat={['YYYY', 'MM', 'DD']}
                     theme="ios"
                 />
-                
             </FormCell>
 
         )

@@ -1,40 +1,41 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import { Upload, Icon, message } from 'antd';
+import { connect } from 'react-redux';
 //import 'antd/dist/antd.css';
 import './imageupload.css';
 import config from '../../env/config.js';
+import {
+    set_weui
+} from '../../actions';
 
 const renderImageupload= (props) => {
-  let {input} = props;
-    console.log("input value:" + input.value);
-  // if( Object.prototype.toString.call( input.value ) !== 'string' ) {
-  //     input.value = '';
-  // }
 
-    let usertoken = localStorage.getItem('zhongnan_driver_token');
+    let {input,loading, meta: { touched, error}} = props;
+    let usertype = localStorage.getItem("usertype");
+    let usertoken = localStorage.getItem(`${usertype}_user_token`);
     let getBase64 = (img, callback)=> {
-      const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result));
-      reader.readAsDataURL(img);
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
     }
 
     let beforeUpload =(file)=> {
-      //const isImage = file.type === 'image/jpeg';
-      // if (!isJPG) {
-      //   message.error('You can only upload JPG file!');
-      // }
-      const isLt2M = file.size / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-      }
-      return isLt2M;
+        //const isImage = file.type === 'image/jpeg';
+        // if (!isJPG) {
+        //   message.error('You can only upload JPG file!');
+        // }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isLt2M;
     }
 
     let handleChange = (info) => {
-        console.log("handleChange info:" + JSON.stringify(info));
+        loading(true);
         if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList);
+            loading(false);
         }
         if (info.file.status === 'done') {
           message.success(`${info.file.name} file uploaded successfully`);
@@ -50,6 +51,19 @@ const renderImageupload= (props) => {
     }
   let imageUrl = input.value;
   const {label} = props;
+
+  
+  if(touched && error){
+      window.setTimeout(()=>{
+        let toast = {
+            show : true,
+            text : error,
+            type : "warning"
+        }
+        props.dispatch(set_weui({ toast }));
+      },10)
+  }
+
   return (
     <Upload
        className="avatar-uploader"
@@ -72,5 +86,5 @@ const renderImageupload= (props) => {
 
 }
 
-
+renderImageupload = connect()(renderImageupload);
 export  {renderImageupload};

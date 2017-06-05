@@ -6,7 +6,9 @@
   "dependencies": {
     "antd": "^2.10.4",
     "axios": "^0.15.3",
+    "bankcardinfo": "^2.0.3",
     "geolib": "^2.0.22",
+    "idcard": "^3.2.4",
     "leaflet": "^1.0.3",
     "moment": "^2.18.1",
     "normalizr": "^3.2.3",

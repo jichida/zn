@@ -17,7 +17,9 @@ import {
     phone,
     InputValidation,
     WeuiInputValidation,
-    length4
+    length4,
+    WeuiCheckboxValidation,
+    ischecked
     } from "../tools/formvalidation"
 const {
     FormCell,
@@ -77,7 +79,7 @@ let RegisterForm = (props)=> {
                         name="password"
                         id="password"
                         placeholder="请输入密码"
-                        type="tepasswordxt"
+                        type="password"
                         component={ WeuiInputValidation }
                         validate={[ required ]}
                         InputTit="密码"
@@ -88,10 +90,11 @@ let RegisterForm = (props)=> {
                 <Field
                     name="hasAggree"
                     id="hasAggree"
-                    component="input"
+                    component={ WeuiCheckboxValidation }
                     type="checkbox"
+                    label="我已经阅读并同意中南出行协议"
+                    validate={[ ischecked ]}
                     />
-                <label htmlFor="hasAggree"><span>我已经阅读并同意中南出行协议</span></label>
             </div>
             <div className="submitBtn">
                 <button className="btn Primary" onClick={handleSubmit}><span>下一步</span></button>
@@ -170,7 +173,8 @@ RegisterForm = reduxForm({
         username: '',
         password: '',
         authcode: '',
-    }
+    },
+    //validate,
 })(RegisterForm);
 
 
@@ -198,6 +202,7 @@ export class Page extends React.Component {
         // });
         console.log("onClickRegister:" + JSON.stringify(payload));
         this.props.dispatch(register_request(payload));
+        //this.props.history.replace('/login');
     }
 
     onClickLogin = ()=> {

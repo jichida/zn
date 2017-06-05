@@ -1,4 +1,4 @@
-﻿/*
+/*
     注册代驾司机－基本信息
 */
 import React, { Component } from 'react';
@@ -11,6 +11,7 @@ import '../../../../public/newcss/taxi.css';
 import NavBar from '../../tools/nav.js';
 import validate from './validate';
 import StarRatingComponent from 'react-star-rating-component';
+
 const {
     Cells,
     Cell,
@@ -23,10 +24,23 @@ const {
     Input,
     Select
     } = WeUI;
+
 import {renderInputField,renderSelField} from '../../tools/renderfield';
 import {renderImageupload} from '../../tools/renderimageupload';
 import {renderDateField} from '../../tools/renderdate';
-import {ui_isdateopen} from '../../../actions';
+import {ui_isdateopen,set_weui} from '../../../actions';
+import { 
+    required,
+    requiredImg,
+    WeuiInputValidation, 
+    phone, 
+    isidcard, 
+    WeuiSelectValidation,
+    InputBankValidation,
+    asyncValidate,
+    } from '../../tools/formvalidation';
+
+import moment from "moment";
 
 const databanklist = [
   {
@@ -68,10 +82,43 @@ const datamarriagestatuslist = [
         label: '离异'
     }
   ];
+const driverTypeData = [
+    {
+        value: 'C1',
+        label: 'C1'
+    },
+    {
+        value: 'C2',
+        label: 'C2'
+    },
+    {
+        value: 'B1',
+        label: 'B1'
+    },
+    {
+        value: 'B2',
+        label: 'B2'
+    },
+    {
+        value: 'A1',
+        label: 'A1'
+    },
+    {
+        value: 'A2',
+        label: 'A2'
+    }
+  ];
 
 class Page extends Component {
     setDateopen =(show)=>{
       this.props.dispatch(ui_isdateopen(show));
+    }
+    showLoading =(status)=>{
+        this.props.dispatch(set_weui({
+            loading : {
+                show : status
+            },
+        }));
     }
     render() {
         const { handleSubmit,previousPage,isdateopen,dispatch } = this.props;
@@ -90,19 +137,55 @@ class Page extends Component {
 
                 <div className="list">
                     <div className="avatar">
-                        <Field name="avatarURL" component={renderImageupload}/>
+                        <Field 
+                          name="avatarURL" 
+                          component={renderImageupload}
+                          loading = {this.showLoading.bind(this)}
+                          validate={[ requiredImg ]}
+                          />
                     </div>
                     <FormUI className="formStyle1">
-                        <Field name="DriverName" label="司机姓名" placeholder="请输入司机姓名" type="text" component={renderInputField}/>
-                        <Field name="idcard" label="身份证号" placeholder="请输入身份证号" type="text" component={renderInputField} />
-                        <Field name="bankname" label="选择银行" data={databanklist} component={renderSelField} />
-                        <Field name="bankaccount" label="银行卡号" placeholder="请输入银行卡号" type="text" component={renderInputField} />
-                        <Field name="DriverType" label="准驾类型" placeholder="请输入准驾类型" type="text" component={renderInputField} />
-                        <Field name="DriverType" label="初次领驾照日期" setDateopen={this.setDateopen} isdateopen={isdateopen} component={renderDateField} />
+                        <Field 
+                          name="DriverName" 
+                          InputTit="司机姓名" 
+                          placeholder="请输入司机姓名" 
+                          type="text" 
+                          component={WeuiInputValidation}
+                          validate={[ required ]}
+                          />
+                        <Field 
+                          name="idcard" 
+                          InputTit="身份证号" 
+                          placeholder="请输入身份证号" 
+                          type="text" 
+                          component={WeuiInputValidation}
+                          validate={[ required, isidcard ]}
+                          />
+                        <Field 
+                          name="bankaccount" 
+                          InputTit="银行卡号" 
+                          placeholder="请输入银行卡号" 
+                          type="number" 
+                          component={InputBankValidation}
+                          validate={[ required ]}
+                          />
+                        <Field 
+                          name="DriverType" 
+                          InputTit="准驾类型"
+                          component={WeuiSelectValidation} 
+                          Option={driverTypeData}
+                          validate={[ required ]}
+                          />
+                        <Field 
+                          name="GetDriverLicenseDate" 
+                          label="初次领驾照日期" 
+                          setDateopen={this.setDateopen} 
+                          isdateopen={isdateopen}
+                          component={renderDateField} />
                     </FormUI>
                 </div>
                 <div className="submitBtn">
-                    <button className="btn Primary"  onClick={handleSubmit}><span>确定</span></button>
+                    <button className="btn Primary"  onClick={handleSubmit}><span>下一步</span></button>
                 </div>
             </div>
         )
@@ -120,5 +203,9 @@ export default reduxForm({
   form: 'registerfillwizard',                 // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  validate
+  asyncValidate,
+  asyncBlurFields: ['bankaccount'],
+  initialValues:{
+    GetDriverLicenseDate:moment(new Date()).format('YYYY-MM-DD'),
+  },
 })(Page)
