@@ -78,21 +78,16 @@ export class Page extends React.Component {
         if(!curmappagerequest.hasOwnProperty('_id')){
             return <div>无请求</div>
         }
-        let dataLeft = {
-            title:curmappagerequest.requeststatus
-        };
-
-        if(dataLeft.title === '行程完成'){
-            const itemLeft = {
-                title: '返回'
-            };
-            dataLeft = {
-                title: dataLeft.title,
-                leftNav: [{...itemLeft, icon: 'left-nav'}],
-                onAction: ()=>{
-                    history.replace('/');
-                },
-            };
+        let dataLefttitle = curmappagerequest.requeststatus;
+        let rightnav = [];
+        if(dataLefttitle !== '行程完成'){
+          rightnav = [
+              {
+                  type : 'action',
+                  action : this.cancelcar.bind(this),
+                  text : "取消叫车"
+              },
+          ];
         }
 
         if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
@@ -104,14 +99,8 @@ export class Page extends React.Component {
             <div className="caroverlayPage AppPage">
                 <NavBar
                     back={false}
-                    title={dataLeft.title}
-                    rightnav={[
-                        {
-                            type : 'action',
-                            action : this.cancelcar.bind(this),
-                            text : "取消叫车"
-                        },
-                    ]}
+                    title={dataLefttitle}
+                    rightnav={rightnav}
                     />
                 <div className="list">
                     <MapGaode ref='mapgaode' />
