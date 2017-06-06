@@ -113,8 +113,7 @@ class Page extends React.Component {
     if(!!this.props.renderSeparator){
       return this.props.renderSeparator(sectionID, rowID);
     }
-    return
-    (<div key={`${sectionID}-${rowID}`} style={{ backgroundColor: '#F5F5F9', height: 8 }} />);
+    return (<div key={`${sectionID}-${rowID}`} style={{ backgroundColor: '#F5F5F9', height: 8 }} />);
   }
 
   renderFooter(){

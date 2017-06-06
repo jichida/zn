@@ -27,7 +27,7 @@ const OrderToPayDetail = (props) => {
                                 </div>
                                 <div className="item-desc">租车人：{props.rentusername}</div>
                             </div>
-                            <img src="images/dh.png" alt="img" style={{width:"40px"}}/> </li>
+                            <img src="images/dh.png" alt="img" style={{width:"40px"}} /> </li>
                     </ul>
 
                     <div className="padding"><p className="margin-0">用车时间：{startdatestring}</p>

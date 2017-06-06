@@ -13,10 +13,10 @@ export default class Page extends Component{
               DriverName:name,
               DriverPhone:phone,
               Model,
-              Brand,
+            //  Brand,
               PlateColor,
               VehicleNo,
-              starnum,
+            //  starnum,
               avatarURL,
             }
          } = orderinfo;
@@ -35,7 +35,7 @@ export default class Page extends Component{
         return (
             <div className="kuaicheinfo">
                 <div className="driver">
-                    <img src={driverinfo.avatar} className="avatar"/>
+                    <img src={driverinfo.avatar} className="avatar" alt=""/>
                     <div className="info">
                         <div>
                             <span>{driverinfo.name}</span>
@@ -48,7 +48,7 @@ export default class Page extends Component{
                     <a
                         href={`tel:${driverinfo.phone}`}
                         className="call">
-                        <img src="newimg/20.png" />
+                        <img src="newimg/20.png" alt="" />
                         联系TA
                     </a>
                 </div>

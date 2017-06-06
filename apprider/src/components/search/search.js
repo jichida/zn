@@ -10,7 +10,6 @@ import NavBar from '../tools/nav.js';
 const { SearchBar } = WeUI;
 import {
     setsearchtxt,
-    searchtext_request,
     placesearchresult,
     setoftenuseaddress_request,
     carmap_setstartaddress,

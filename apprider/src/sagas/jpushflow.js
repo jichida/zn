@@ -1,4 +1,4 @@
-import {takeEvery,put,call} from 'redux-saga/effects';
+import {takeEvery,put} from 'redux-saga/effects';
 import {
     login_result,
     logout_result,
@@ -11,18 +11,12 @@ import {
     cancelJPushAlisa
 } from '../env/jpush';
 import _ from 'lodash';
-import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
-function alertmessage(payload){
-   return new Promise((resolve, reject) => {
-       alert(payload);
-       resolve({});
-   });
-}
 
 //获取地理位置信息，封装为promise
 export function* jpushflow(){//仅执行一次
-    yield takeEvery(`${login_result}`, function*(action) {
+   yield takeEvery(`${login_result}`, function*(action) {
       let {payload:{userid}} = action;
       setJPushAlias(userid);
       console.log(`login_result ===>${JSON.stringify(userid)}`);

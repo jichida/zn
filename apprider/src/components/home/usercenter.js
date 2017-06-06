@@ -5,14 +5,12 @@ import React, { Component } from 'react';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import NavBar from '../tools/nav.js';
 const {
     Cells,
     Cell,
     CellBody,
     CellFooter,
     CellHeader,
-    CellsTitle
     } = WeUI;
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -37,14 +35,14 @@ class Page extends Component {
             <div className="usercenterPage AppPage">
                 {loginsuccess &&
                 (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
-                    <img src={avatar}/>
+                    <img src={avatar}  alt=""/>
                     <span className="name">{phonenumbertext}</span>
                     <span className="li">账户余额 ¥{balance}</span>
                     <span className="li">优惠券 {couponnum}张</span>
                 </div>)}
                 {!loginsuccess &&
                 (<div className="head" onClick={this.onClickItem.bind(this,linkeditprofile)}>
-                    <img src={avatar} />
+                    <img src={avatar}  alt=""/>
                     <span className="name">{phonenumbertext}</span>
                 </div>)}
                 <div className="list">
@@ -90,7 +88,7 @@ class Page extends Component {
                                 <img src="newimg/30.png" alt=""/>
                             </CellHeader>
                             <CellBody>
-                                <a 
+                                <a
                                     href={`tel:${this.props.app.servicephonenumber}`}
                                     style={{display:"block",color:"#333"}}
                                 >联系客服</a>

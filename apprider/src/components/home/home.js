@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from "lodash";
-import { Route, Switch } from 'react-router-dom';
 import UserCenter from './usercenter.js';
 import Lvyoudaba from '../tourbus/selbusform.js';
 //import Lvyoudaba from '../tourbus/index.js';
@@ -36,10 +35,19 @@ export class AppIndex extends React.Component {
         that.props.dispatch(set_weui({confirm}));
 
       });
+
+      let currentkeyname = this.props.match.params.keyname;
+      if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
+          this.props.dispatch(ui_setindexmapvisiable(true));
+      }
+      else{
+          this.props.dispatch(ui_setindexmapvisiable(false));
+      }
     }
 
     componentWillUnmount() {
       removebackhandler();
+      this.props.dispatch(ui_setindexmapvisiable(false));
     }
     renderOC =()=> {
         return (<UserCenter />);
@@ -79,15 +87,7 @@ export class AppIndex extends React.Component {
     onClickPagePush(page){
         this.props.history.push(page);
     }
-    componentWillMount () {
-        let currentkeyname = this.props.match.params.keyname;
-        if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
-            this.props.dispatch(ui_setindexmapvisiable(true));
-        }
-        else{
-            this.props.dispatch(ui_setindexmapvisiable(false));
-        }
-    }
+
     componentWillReceiveProps (nextprop) {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){
             const {match} = nextprop;
@@ -100,12 +100,10 @@ export class AppIndex extends React.Component {
             }
         }
     }
-    componentWillUnmount () {
-        this.props.dispatch(ui_setindexmapvisiable(false));
-    }
+
     render() {
         //console.log("thisprops:" + JSON.stringify(this.props));
-        const {issidedbaropen,match,location,history,daijialeastbalance} = this.props;
+        const {issidedbaropen,match,daijialeastbalance} = this.props;
         let pathnamelist = [
             {
                 keyname:'chuzuche',
@@ -142,11 +140,9 @@ export class AppIndex extends React.Component {
         }
 
         let navlinkco = [];
-        let title = '';
-        pathnamelist.forEach((cur)=>{
+          pathnamelist.forEach((cur)=>{
             if(cur.keyname === currentkeyname){
-                title = cur.title;
-                Co = cur.Co;
+                  Co = cur.Co;
             }
             navlinkco.push(' ');
         });
@@ -165,7 +161,7 @@ export class AppIndex extends React.Component {
                     <div className="view">
                         <NavBar
                             back={false}
-                            leftnav = {[
+                            leftnav={[
                                 {
                                     icon : 'newimg/35.png',
                                     icontype : "img",
@@ -204,7 +200,7 @@ export class AppIndex extends React.Component {
                                     )
                                 })
                             }
-                            {currentkeyname=="daijia"?(
+                            {currentkeyname==="daijia"?(
                                 <div className="daijiayueTip color_warning">
                                     呼叫代驾，账户余额必须满{daijialeastbalance}元
                                     <span onClick={()=>{this.onClickPagePush("/mywallet")}}>查看余额</span>

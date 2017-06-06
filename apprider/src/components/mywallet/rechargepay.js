@@ -16,17 +16,7 @@ import {
     required
     } from "../tools/formvalidation.js";
 const {
-    CellHeader,
-    CellBody,
-    Cell,
     Form:FormUI,
-    Radio,
-    FormCell,
-    Label,
-    Input,
-    Select,
-    CellsTitle,
-    CellFooter
     } = WeUI;
 import {payorder_request} from '../../actions';
 
@@ -82,7 +72,7 @@ class Page extends Component {
     }
 
     render() {
-        const {orderinfo,balance} = this.props;
+
         return (
             <div className="userrechargePage AppPage">
                 <NavBar back={true} title="充值" />

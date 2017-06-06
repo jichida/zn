@@ -1,5 +1,5 @@
-import React,{ Component } from 'react';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
+import React from 'react';
+
 import 'iosselect/src/iosSelect.css';
 import IosSelect from 'iosselect';
 import moment from 'moment';
@@ -82,7 +82,7 @@ let Callcardateinput = (props)=> {
   };
 
   let setOption=(e)=>{
-          let temperatureSelect = new IosSelect(3,
+           new IosSelect(3,
               [dataDay, dataHour, dataMinute],
               {
                 title: '预约时间选择',
@@ -98,7 +98,7 @@ let Callcardateinput = (props)=> {
 
                       let seltimestring = `${selectOneObj.id} ${selectTwoObj.id}:${selectThreeObj.id}`;
 
-                      console.log("获取到时间:${seltimestring}");
+                      console.log(`获取到时间:${seltimestring}`);
 
                       let selday = moment(seltimestring,"YYYY-MM-DD HH:mm");
                       props.onChange(selday);

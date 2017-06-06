@@ -2,22 +2,16 @@ import React from 'react';
 import moment from 'moment';
 import {orderconfirm_selpinchestation} from '../../actions';
 import "../../../public/newcss/pinche.css";
-import NavBar from "../tools/nav.js";
 import _ from "lodash";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 const {
-    Cells,
-    Cell,
     CellBody,
-    CellFooter,
     CellHeader,
-    CellsTitle,
     Form,
     FormCell,
     Label,
-    Input,
     Select
     } = WeUI;
 

@@ -58,12 +58,12 @@ let renderTourbusForm = (props)=>{
       orderprice.input.onChange(totalprice);
     }
     let onClickBusAdd=(businfo)=>{
-      busnumberobjv[businfo._id] = busnumberobjv[businfo._id] +1;
+      busnumberobjv[businfo._id] += 1;
       changeprice();
     }
     let onClickBusDec=(businfo)=>{
       if(busnumberobjv[businfo._id] > 0){
-        busnumberobjv[businfo._id] = busnumberobjv[businfo._id] - 1;
+        busnumberobjv[businfo._id] -= 1;
         changeprice();;
       }
     }

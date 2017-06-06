@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Field,Fields, reduxForm,Form  } from 'redux-form';
+import { Fields, reduxForm,Form  } from 'redux-form';
 import DatePicker from 'react-mobile-datepicker';
 import config from '../../config.js';
 import {fileupload} from '../../util/fileupload.js';
@@ -110,7 +110,7 @@ renderEditprofile = connect(mapStateToProps1)(renderEditprofile);
 
 let EditprofileForm = (props)=>{
   let {handleSubmit} = props;
-  let totalprice = 0;
+
   return (
       <Form onSubmit={handleSubmit(props.onClickOK)}>
       <Fields names={['nickname', 'avatar', 'sex', 'birthday']}
@@ -136,16 +136,7 @@ export class Page extends React.Component {
   }
 
    render() {
-      const itemLeft = {
-        title: '返回'
-      };
-      const dataLeft = {
-        title: '编辑资料',
-        leftNav: [{...itemLeft, icon: 'left-nav'}],
-        onAction: ()=>{
-          this.props.history.goBack();
-        },
-      };
+
        let birthday = this.props.birthday;
        if(birthday){
            if (typeof birthday === 'string') {
@@ -169,7 +160,7 @@ export class Page extends React.Component {
       return (
         <div className="userprofilePage AppPage">
            <NavBar title="个人资料" back={true} />
-            <EditprofileForm onClickOK = {this.onClickOK} />
+            <EditprofileForm onClickOK={this.onClickOK} />
          </div>);
     }
 }

@@ -1,5 +1,5 @@
 /*消息中心*/
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import '../../../public/newcss/message.css';
 import NavBar from '../tools/nav.js';

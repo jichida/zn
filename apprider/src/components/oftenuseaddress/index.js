@@ -14,7 +14,6 @@ const {
     CellBody,
     CellFooter,
     CellHeader,
-    CellsTitle
     } = WeUI;
 
 import {

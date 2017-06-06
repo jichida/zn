@@ -1,20 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {canceltriprequestorder} from '../../actions/sagacallback';
-import {changestartposition} from '../../actions';
 import "../../../public/newcss/caroverlay.css";
 import StarRatingComponent from 'react-star-rating-component';
 
 let PageDriverHead =(props)=>{
   const {
     topicinfo,
-      driverinfo:{
+    driverinfo:{
       Model,
       Brand,
       VehicleNo,
-      Seats,
       PlateColor,
-      DriverGender,
       DriverPhone,
       DriverName,
       starnum,
@@ -26,7 +22,7 @@ let PageDriverHead =(props)=>{
     <div className="userorderinfoPage ">
         <div className="kuaicheinfo orderinfohead">
             <div className="driver">
-                <img src={avatarURL} className="avatar"/>
+                <img src={avatarURL} className="avatar" alt=""/>
                 <div className="info">
                     <div className='star'>
                         <span>{DriverName}</span>
@@ -45,12 +41,12 @@ let PageDriverHead =(props)=>{
                 <a
                     href={`tel:${DriverPhone}`}
                     className="call">
-                    <img src="newimg/20.png" />
+                    <img src="newimg/20.png"  alt=""/>
                     联系TA
                 </a>
             </div>
             <div className="topicinfo">
-                <div><img src="newimg/37.png" width={27}/>{topicinfo}</div>
+                <div><img src="newimg/37.png" width={27}  alt=""/>{topicinfo}</div>
             </div>
         </div>
     </div>
@@ -63,12 +59,9 @@ export class Page extends React.Component {
         const {
             curmappageorder,
             curmappagerequest,
-            curlocation,
-            dispatch,
         } = this.props;
         if(curmappageorder.hasOwnProperty('_id')){
             let requestobj = curmappagerequest;
-            let orderobj = curmappageorder;
             let driverinfo = curmappageorder.driverinfo || {
                 DriverName:'无名司机',
                 VehicleNo:'隐藏车牌',
@@ -77,17 +70,7 @@ export class Page extends React.Component {
                 Model:'匿名车辆',
                 starnum:5
             };
-            let cancelrequest =()=>{
-                dispatch(canceltriprequestorder({
-                    triporderid:curmappageorder._id,
-                    triprequestid:curmappagerequest._id
-                })).then((result)=>{
-                    let srclocationstring = curlocation.lng + ',' + curlocation.lat;
-                    dispatch(changestartposition({
-                        location:srclocationstring
-                    }));//重新发送一次附近请求
-                });
-            }
+
 
             let getrequestingcomponents =()=>{
                   return (

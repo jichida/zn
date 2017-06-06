@@ -3,8 +3,7 @@
  */
 import React from 'react';
 import WeuiTool from './tools/weuitool';
-import { hidepopmessage } from '../actions/index.js';
-import { connect } from 'react-redux';
+
 import { Route, Switch, Redirect } from 'react-router-dom';
 import App from './home/home';
 import Login from './login/login';

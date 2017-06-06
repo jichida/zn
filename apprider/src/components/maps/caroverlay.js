@@ -2,13 +2,11 @@ import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
 import NavBar from "../tools/nav";
-import L from 'leaflet';
 import CarOverlayInit from './caroverlayinit.js';
 import CarOverlayOrder from './caroverlayorder.js';
 import "../../../public/newcss/caroverlay.css";
 import {
     carmap_resetmap,
-    getprice_request,
     set_weui,
     changestartposition
     } from '../../actions';
@@ -74,7 +72,7 @@ export class Page extends React.Component {
     }
 
     render() {
-        const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = this.props;
+        const {mapstage,curmappagerequest} = this.props;
         if(!curmappagerequest.requeststatus){
             return <div>无请求</div>
         }
