@@ -1,4 +1,4 @@
-import {getcurrentlocationfn} from '../util/geo.js';
+import {getcurrentlocationfn} from '../env/geo';
 //获取地理位置信息，封装为promise
 let getcurrentpos =()=> {
   return new Promise(resolve => {
