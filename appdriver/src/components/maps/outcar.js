@@ -23,7 +23,9 @@ import {
   selrequest,
   ui_outcarselregistertype,
   ui_outcarexpand,
-  set_weui
+  set_weui,
+  operatelogin,
+  operatelogout
   } from '../../actions';
 
 class Page extends Component {
@@ -31,7 +33,15 @@ class Page extends Component {
     super(props);
   }
   componentWillMount () {
+    const {approvalstatus,loginsuccess} = this.props;
+    this.props.dispatch(operatelogin({approvalstatus,loginsuccess}));
   }
+  onClickReturn(){
+    const {approvalstatus,loginsuccess} = this.props;
+    this.props.dispatch(operatelogout({approvalstatus,loginsuccess}));
+    this.props.history.goBack();
+  }
+
   onClickTitle(regtype){
     this.props.dispatch(ui_outcarselregistertype(regtype));
   }
@@ -60,7 +70,7 @@ class Page extends Component {
           registertypeoptions,
           curlocation
         } = this.props;
-        
+
         let titleco = [];
         _.map(registertypeoptions,(registertype,index)=>{
           if(uiregistertype === registertype){
@@ -71,25 +81,9 @@ class Page extends Component {
           }
         });
 
-        // let cellco = [];
-        // _.map(requestlist,(reqobj,index)=>{
-        //   let triptypename = reqobj.isrealtime?'实时':'预约';
-        //   cellco.push(<Cell key={index} access onClick={this.onClickReq.bind(this,reqobj)}>
-        //       <CellBody>
-        //           <div className="tt">
-        //               <span className="i">{triptypename}</span>
-        //               <span>{reqobj.showtimestring}</span>
-        //           </div>
-        //           <div className="li a">{reqobj.srcaddress.addressname}</div>
-        //           <div className="li b">{reqobj.dstaddress.addressname}</div>
-        //       </CellBody>
-        //       <CellFooter />
-        //   </Cell>);
-        // });
-
         return (
             <div className="outcarPage AppPage">
-                <NavBar back={true} title="中南出行" />
+                <NavBar back={false} title="中南出行" />
                 <div className="headNav">
                     {titleco}
                 </div>
@@ -99,7 +93,7 @@ class Page extends Component {
                         <div
                           className={outcarexpand?"list show":"list"}
                           >
-                            
+
                             <Cells>
                                {
                                   _.map(requestlist,(reqobj,index)=>{
@@ -122,7 +116,7 @@ class Page extends Component {
                             </Cells>
                         </div>
                         <div className="bbtn">
-                            <span>收车</span>
+                            <span onClick={this.onClickReturn.bind(this)}>收车</span>
                             <span onClick={()=>{this.showlist(!outcarexpand)}}>
                               {outcarexpand?"隐藏订单":"展开订单"}
                             </span>
@@ -139,6 +133,7 @@ const mapStateToProps = ({appui:{outcarexpand,pageregistertype:uiregistertype},o
   let requests = operate.nearbyrequests.requests;
   let curlocation = operate.curlocation;
   let userregistertype = userlogin.registertype;
+  const {approvalstatus,loginsuccess} = userlogin;
   let registertypeoptions =[];
   if(userregistertype === '快车'){
     registertypeoptions= ['快车','代驾'];
@@ -165,7 +160,9 @@ const mapStateToProps = ({appui:{outcarexpand,pageregistertype:uiregistertype},o
     uiregistertype,
     requestlist,
     registertypeoptions,
-    curlocation
+    curlocation,
+    approvalstatus,
+    loginsuccess
   };
 }
 
