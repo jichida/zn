@@ -17,9 +17,30 @@ import {
     set_weui
     } from '../../actions';
 import '../../../public/newcss/appriderhome.css';
+import {setbackhandler,removebackhandler,exitAndroidApp} from '../../env/android';
 
 
 export class AppIndex extends React.Component {
+    componentWillMount() {
+      let that = this;
+      setbackhandler(()=>{
+
+        console.log('click android back');
+        let confirm = {
+          show : true,
+          title : "你确定需要退出吗",
+          text : "",
+          buttonsClose : ()=>{console.log('click close');},
+          buttonsClick : ()=>{exitAndroidApp();}
+        };
+        that.props.dispatch(set_weui({confirm}));
+
+      });
+    }
+
+    componentWillUnmount() {
+      removebackhandler();
+    }
     renderOC =()=> {
         return (<UserCenter />);
     }

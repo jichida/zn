@@ -13,10 +13,31 @@ const {
     CellBody,
     CellFooter
     } = WeUI;
+import {setbackhandler,removebackhandler,exitAndroidApp} from '../../env/android';
+import {set_weui} from '../../actions';
 
 class Page extends Component {
-  componentWillMount () {
+  componentWillMount() {
+    let that = this;
+    setbackhandler(()=>{
+
+      console.log('click android back');
+      let confirm = {
+        show : true,
+        title : "你确定需要退出吗",
+        text : "",
+        buttonsClose : ()=>{console.log('click close');},
+        buttonsClick : ()=>{exitAndroidApp();}
+      };
+      that.props.dispatch(set_weui({confirm}));
+
+    });
   }
+
+  componentWillUnmount() {
+    removebackhandler();
+  }
+
   onClickItem =(name)=>{
     this.props.history.push(name);
   }
@@ -103,7 +124,7 @@ class Page extends Component {
 			                    <img src="newimg/9.png" />
 			                </CellHeader>
 			                <CellBody>
-			                   	<a 
+			                   	<a
 			                   		href={`tel:${this.props.app.servicephonenumber}`}
 			                   		style={{display:"block",color:"#333"}}
 			                   	>联系客服</a>
