@@ -1,7 +1,6 @@
 import { put,takeEvery} from 'redux-saga/effects';
 import {
   acceptrequest_result,
-  wait_acceptrequest_result,
   triporder_addone,
 
   loginsendauth_result,
@@ -45,6 +44,7 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
+  carmap_setmapstage
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -129,8 +129,8 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_acceptrequest_result}`, function*(action) {
       let {payload:result} = action;
       yield put(acceptrequest_result(result));
-      yield put(wait_acceptrequest_result({result:result}));
-      yield put(triporder_addone(result.triporder));
+      yield put(carmap_setmapstage('去接乘客'));
+      yield put(replace('/starttrip'));
   });
 
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {

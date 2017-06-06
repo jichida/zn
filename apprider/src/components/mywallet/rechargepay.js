@@ -74,6 +74,7 @@ class Page extends Component {
         console.log(values);
         values.ordertitle = '充值';
         values.orderdetail = `充值${values.realprice}元`;
+        values.orderprice = values.realprice;
         this.props.dispatch(payorder_request({
           query:{_id:this.props.triporderid},
           data:values

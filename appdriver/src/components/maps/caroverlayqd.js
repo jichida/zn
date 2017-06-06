@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import {getdistance} from '../../util/geo.js';
-import {carmap_setmapstage} from '../../actions';
-import {acceptrequest} from '../../actions/sagacallback';
+
 import MapGaode from './mapcar.js';
 import '../../../public/newcss/outcar.css';
 import NavBar from '../tools/nav.js';
 
-export class Page extends React.Component {
+import {acceptrequest_request} from '../../actions';
+import {
+  getdistance,
+  getcurrentlocationfn
+} from '../../util/geo.js';
+
+class Page extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -19,49 +22,53 @@ export class Page extends React.Component {
         let updatedrequest = {
             _id:this.props.selrequest._id,
         };
-        this.props.dispatch(acceptrequest(updatedrequest)).then((result)=>{
-            this.props.dispatch(carmap_setmapstage('去接乘客'));
-            this.props.history.replace('/starttrip');
+        getcurrentlocationfn((locz)=>{
+             if(locz[0] !== 0 && locz[1] !== 0){
+               updatedrequest.driverlocation = locz;
+               this.props.dispatch(acceptrequest_request(updatedrequest));
+             }
         });
+
     }
     render() {
-        const itemLeft = {
-          title: '返回'
-        };
-        const dataLeft = {
-            title: '抢单',
-            leftNav: [{...itemLeft, icon: 'left-nav'}],
-            onAction: ()=>{
-                this.props.history.goBack();
-            },
-        };
-    let curreqobj = this.props.selrequest;
-    let triptypename = curreqobj.isrealtime?'实时':'预约';
-    let showqdbtn = curreqobj.requeststatus === '请求中';
-    const {resultpricedetail} = curreqobj;
-    return (
-        <div className="outcarPage AppPage">
-            <NavBar back={true} title="抢单" />
-            <div className="orderinfohead">
-                <img src="newimg/17.png" className="avatar"/>
-                <div className="address">
-                    <div className="orderprice">全程约: <span className="color_warning">{resultpricedetail.totalkm}公里</span></div>
-                    <div className="orderprice">预计费用: <span className="color_warning">￥{resultpricedetail.totalprice}元</span></div>
-                    <div className="startaddress">{curreqobj.srcaddress.addressname}</div>
-                    <div className="endaddress">{curreqobj.dstaddress.addressname}</div>
+      let curreqobj = this.props.selrequest;
+      let resultpricedetail;
+      let triptypename;
+      let showqdbtn;
+      if(!!curreqobj){
+        resultpricedetail = curreqobj.resultpricedetail;
+        triptypename = curreqobj.isrealtime?'实时':'预约';
+        showqdbtn = curreqobj.requeststatus === '请求中';
+      }
+      return (
+          <div className="outcarPage AppPage">
+              <NavBar back={true} title="抢单" />
+              {
+                !!curreqobj &&
+                <div className="orderinfohead">
+                    <img src="newimg/17.png" className="avatar"/>
+                    <div className="address">
+                        <div className="orderprice">全程约: <span className="color_warning">{resultpricedetail.totalkm}公里</span></div>
+                        <div className="orderprice">预计费用: <span className="color_warning">￥{resultpricedetail.totalprice}元</span></div>
+                        <div className="startaddress">{curreqobj.srcaddress.addressname}</div>
+                        <div className="endaddress">{curreqobj.dstaddress.addressname}</div>
+                    </div>
+                    <span
+                        className="qiangdanLnk"
+                        onClick={this.onClickOK.bind(this)}
+                        >抢单</span>
                 </div>
-                <span
-                    className="qiangdanLnk"
-                    onClick={this.onClickOK.bind(this)}
-                    >抢单</span>
-            </div>
-            <div className="mapcontent list">
-                <MapGaode ref='mapgaode' curreqobj={curreqobj} />
-            </div>
-        </div>
-    );
-}
+              }
 
+              {
+                  !!curreqobj &&
+                <div className="mapcontent list">
+                    <MapGaode ref='mapgaode' curreqobj={curreqobj} />
+                </div>
+              }
+          </div>
+      );
+  }
 }
 
 
@@ -74,5 +81,5 @@ const mapStateToProps = ({operate},props) => {
 }
 
 export default connect(
-mapStateToProps,
+  mapStateToProps,
 )(Page);

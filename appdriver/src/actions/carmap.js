@@ -7,8 +7,6 @@ export const carmap_setmapinited = createAction('carmap_setmapinited');
 export const carmap_setmapstage = createAction('carmap_setmapstage');
 export const acceptrequest_request = createAction('acceptrequest_request');
 export const acceptrequest_result = createAction('acceptrequest_result');
-export const wait_acceptrequest_request = createAction('wait_acceptrequest_request');
-export const wait_acceptrequest_result = createAction('wait_acceptrequest_result');
 //更新状态
 export const updaterequeststatus_request = createAction('updaterequeststatus_request');
 export const updaterequeststatus_result = createAction('updaterequeststatus_result');
