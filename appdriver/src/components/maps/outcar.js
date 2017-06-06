@@ -24,8 +24,8 @@ import {
   ui_outcarselregistertype,
   ui_outcarexpand,
   set_weui,
-  operatelogin,
-  operatelogout
+  startoperate,
+  stopoperate
   } from '../../actions';
 
 class Page extends Component {
@@ -34,11 +34,11 @@ class Page extends Component {
   }
   componentWillMount () {
     const {approvalstatus,loginsuccess} = this.props;
-    this.props.dispatch(operatelogin({approvalstatus,loginsuccess}));
+    this.props.dispatch(startoperate({approvalstatus,loginsuccess}));
   }
   onClickReturn(){
     const {approvalstatus,loginsuccess} = this.props;
-    this.props.dispatch(operatelogout({approvalstatus,loginsuccess}));
+    this.props.dispatch(stopoperate({approvalstatus,loginsuccess}));
     this.props.history.goBack();
   }
 
