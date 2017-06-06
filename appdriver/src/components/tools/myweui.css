@@ -13,3 +13,12 @@
 	text-align: center;
 	margin-bottom: 10px;
 }
+.weui-toast.toastLetter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+    width: 5em;
+    min-height: 5em;
+    margin-left: -2.5em;
+}

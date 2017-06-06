@@ -13,8 +13,8 @@ const {
     Form,
     FormCell,
     CellBody,
-    TextArea,
-    LoadMore } = WeUI;
+    TextArea
+  } = WeUI;
 import _ from 'lodash';
 import {
   ui_setorderdetail,
@@ -25,7 +25,7 @@ import {
 export class Page extends Component{
 
     componentWillUnmount(){
-        this.props.dispatch(ui_setorderdetail({showaddevaluate:false}));
+        this.addevaluatebox(false);
     }
 
     onChangeFieldname(fieldname,value){//e.target.value
@@ -70,7 +70,6 @@ export class Page extends Component{
             commenttagsel,
             showaddevaluate,
             maxshowtags,
-            dispatch,
             ratenum,//评分
             } = this.props;
 
@@ -122,7 +121,8 @@ export class Page extends Component{
                                 <img
                                     src="newimg/12.png"
                                     onClick={()=>{this.addevaluatebox(false)}}
-                                    className="close" />
+                                    className="close"
+                                    alt=""/>
                             </div>
                             <div className="star">
                                 <StarRatingComponent

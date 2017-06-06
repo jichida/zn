@@ -1,8 +1,6 @@
 /**
  * Created by wangxiaoqing on 2017/3/27.
  */
-import React from 'react';
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';

@@ -1,15 +1,10 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
+import React from 'react';
 import '../../../public/newcss/message.css';
 import NavBar from '../tools/nav.js';
 import moment from 'moment';
 import _ from 'lodash';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
-const {
-    LoadMore
-    } = WeUI;
+
 import {getnotifymessageone_result} from '../../actions';
 import {getnotifymessage} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
@@ -29,10 +24,6 @@ const NotifymessageItem = (props) => {
 }
 
 export class Page extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
 
     updateContent = (msg)=> {
         return  (

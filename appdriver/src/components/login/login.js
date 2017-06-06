@@ -17,7 +17,7 @@ export class PageForm extends Component {
         this.props.dispatch(loginsendauth_request({phonenumber:this.props.phonenumber,reason:'login'}));
     }
     render(){
-        const { handleSubmit,onClickLogin,pristine,phonenumber,submitting } = this.props;
+        const { handleSubmit,onClickLogin,pristine,submitting } = this.props;
 
         return (
             <Form
@@ -27,7 +27,7 @@ export class PageForm extends Component {
 
                 <div className="li" >
                     <span className="icon">
-                        <img src="newimg/25.png" />
+                        <img src="newimg/25.png" alt='' />
                     </span>
                     <Field
                         name="phonenumber"
@@ -40,7 +40,7 @@ export class PageForm extends Component {
                 </div>
                 <div className="li">
                     <span className="icon">
-                        <img src="newimg/26.png" />
+                        <img src="newimg/26.png" alt='' />
                     </span>
                     <Field
                         name="authcode"
@@ -116,7 +116,7 @@ export class Page extends Component {
                 <NavBar back={true} title="快速登录" />
                 <div className="content">
                     <div className="logo">
-                        <img src="newimg/24.png" />
+                        <img src="newimg/24.png" alt=''/>
                     </div>
                     <PageForm onClickLogin={this.onClickLogin}/>
                 </div>

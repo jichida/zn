@@ -8,7 +8,6 @@ import { set_weui } from '../../actions/index.js';
 const {
     Toast,
     Dialog,
-    ActionSheet
 } = WeUI;
 
 const icon = {
@@ -18,18 +17,21 @@ const icon = {
     "loading" : "loading"
 }
 
-const tosatDefault = {
-    show : false,
-    text : "",
-    type : ""
-}
+// const tosatDefault = {
+//     show : false,
+//     text : "",
+//     type : ""
+// }
+//
+// const toastLetterDefault = {
+//     show : false,
+//     text : "",
+// }
 
 const confirmDefault = {
     show : false,
     title : "",
     text : "",
-    buttonsCloseText : "",
-    buttonsClickText : "",
     buttonsClose : ()=>{},
     buttonsClick : ()=>{}
 }
@@ -42,18 +44,26 @@ const alertDefault = {
 }
 
 
-let toastTimeout = null;
 
 export class Page extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.toast.show && !this.props.toast.show) {
-            toastTimeout = window.setTimeout(()=> {
+            window.setTimeout(()=> {
                 let toast = {
                     show : false,
                     text : "",
                     type : ""
                 }
                 this.props.dispatch(set_weui({ toast }));
+            }, 1500);
+        }
+        if (nextProps.toastLetter.show && !this.props.toastLetter.show) {
+            window.setTimeout(()=> {
+                let toastLetter = {
+                    show : false,
+                    text : "",
+                }
+                this.props.dispatch(set_weui({ toastLetter }));
             }, 1500);
         }
 
@@ -87,7 +97,7 @@ export class Page extends Component {
             alert,
             confirm,
             loading,
-            action,
+            toastLetter,
         } = this.props;
 
         return (
@@ -100,6 +110,15 @@ export class Page extends Component {
                     {toast.text}
                 </Toast>
 
+                <div style={{display: toastLetter.show?"block":"none"}}>
+                    <div
+                        className="weui-mask_transparent"
+                        style={{pointerEvents:"none"}}
+                        />
+                    <div className="weui-toast toastLetter">
+                        {toastLetter.text}
+                    </div>
+                </div>
 
                 <Dialog
                     id="weuiAlert"
@@ -141,7 +160,6 @@ export class Page extends Component {
                     >
                     {confirm.text}
                 </Dialog>
-
 
                 <Toast
                     id="weuiLoading"

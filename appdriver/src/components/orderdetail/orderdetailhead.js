@@ -12,9 +12,9 @@ export default class Page extends Component {
         return (
             <div className="orderinfohead">
             	{
-            		orderinfo.triptype=="代驾"||
-            		orderinfo.triptype=="快车"||
-            		orderinfo.triptype=="出租车"?
+            		orderinfo.triptype==="代驾"||
+            		orderinfo.triptype==="快车"||
+            		orderinfo.triptype==="出租车"?
             		(
             			<Kuaiche
             				orderinfo={orderinfo}

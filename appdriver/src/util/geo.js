@@ -1,5 +1,15 @@
 import geolib from 'geolib';
-export * from '../env/geo';
+import {getcurrentlocationfn} from '../env/geo';
+
+export const getcurrentpos =()=> {
+  return new Promise(resolve => {
+     getcurrentlocationfn((locz)=>{
+        if(locz[0] !== 0 && locz[1] !== 0){
+          resolve({lat:locz[1],lng:locz[0]});
+        }
+      });
+  });
+}
 
 let getstringofdistance2 = (leftdistance)=>{
     let leftdistancetxt = '';

@@ -16,6 +16,10 @@ const initial = {
         	text : "",
         	type : ""
         },
+        toastLetter:{
+            show : false,
+            text : "",
+        },
         alert : {
             show : false,
             title : "",
@@ -26,6 +30,8 @@ const initial = {
             show : false,
             title : "",
             text : "",
+            buttonsCloseText : "取消",
+            buttonsClickText : "确定",
             buttonsClose : ()=>{},
             buttonsClick : ()=>{}
         },
