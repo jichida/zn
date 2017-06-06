@@ -11,7 +11,7 @@ import {getcurrentpos} from './getcurrentpos';
 
 export function* createstartoperateloginoutflow(){
   yield takeEvery(`${startoperate}`, function*(action) {
-    let {payload:{loginresult}} = action;
+    let {payload:loginresult} = action;
     if(loginresult.approvalstatus === '已审核' && loginresult.loginsuccess){
       let curlocation = yield call(getcurrentpos);
       let operateLogindoc = {
@@ -25,7 +25,7 @@ export function* createstartoperateloginoutflow(){
   });
 
   yield takeEvery(`${stopoperate}`, function*(action) {
-    let {payload:{loginresult}} = action;
+    let {payload:loginresult} = action;
     if(loginresult.approvalstatus === '已审核' && loginresult.loginsuccess){
       let curlocation = yield call(getcurrentpos);
       let operateLogoutdoc = {
