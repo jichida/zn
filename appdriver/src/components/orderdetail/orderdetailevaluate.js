@@ -77,7 +77,7 @@ export class Page extends Component{
         let iscommented = false;
         const {commentflag} = orderinfo;
         if(!!commentflag){
-          if((commentflag & 1) > 0 ){
+          if((commentflag & 2) > 0 ){
             iscommented = true;
           }
         }
@@ -98,7 +98,7 @@ export class Page extends Component{
                           className="tt"
                           onClick={()=>{this.addevaluatebox(true)}}
                           >
-                          评价司机
+                          评价乘客
                       </div>
                     }
 
@@ -118,7 +118,7 @@ export class Page extends Component{
                     <div className={showaddevaluate?"addevaluate show":"addevaluate"}>
                         <div className="wamp">
                             <div className="tit">
-                                <span>评价司机</span>
+                                <span>评价乘客</span>
                                 <img
                                     src="newimg/12.png"
                                     onClick={()=>{this.addevaluatebox(false)}}

@@ -75,12 +75,12 @@ export class Page extends React.Component {
 
     render() {
         const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = this.props;
-        if(!curmappagerequest.hasOwnProperty('_id')){
+        if(!curmappagerequest.requeststatus){
             return <div>无请求</div>
         }
         let dataLefttitle = curmappagerequest.requeststatus;
         let rightnav = [];
-        if(dataLefttitle !== '行程完成'){
+        if(dataLefttitle !== '行程中'){
           rightnav = [
               {
                   type : 'action',
@@ -90,7 +90,7 @@ export class Page extends React.Component {
           ];
         }
 
-        if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
+        if(mapstage === 'pageorder' && dataLefttitle === '行程完成'){
               return (
                         <div>行程完成,正在生成订单</div>
                     );
