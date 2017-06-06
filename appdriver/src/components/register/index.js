@@ -39,7 +39,7 @@ let RegisterForm = (props)=> {
     let {handleSubmit,onClickRegister,onClickReturn,username} = props;
     let onClickAuth = (e)=> {
         // const name = fields.username.input.value;
-            props.dispatch(loginsendauth_request({phonenumber:username}));
+            props.dispatch(loginsendauth_request({phonenumber:username,reason:'register'}));
             console.log("发送验证码:" + username);
     }
     let handleLogin =()=>{

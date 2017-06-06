@@ -14,7 +14,7 @@ import {
 
 export class PageForm extends Component {
     onClickSendAuth =()=>{
-        this.props.dispatch(loginsendauth_request({phonenumber:this.props.phonenumber}));
+        this.props.dispatch(loginsendauth_request({phonenumber:this.props.phonenumber,reason:'login'}));
     }
     render(){
         const { handleSubmit,onClickLogin,pristine,phonenumber,submitting } = this.props;
