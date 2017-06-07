@@ -8,7 +8,7 @@ import NavBar from '../tools/nav.js';
 import {acceptrequest_request} from '../../actions';
 import {
   getcurrentlocationfn
-} from '../../util/geo.js';
+} from '../../env/geo.js';
 
 class Page extends React.Component {
     // constructor(props) {

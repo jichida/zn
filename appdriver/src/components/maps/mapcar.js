@@ -5,7 +5,7 @@ import Script from 'react-load-script';
 import {
   carmap_setzoomlevel,
   carmap_setmapcenter,
-  nav_drawroute,
+  driveroute_request,
   carmap_setmapinited
 } from '../../actions';
 import Popinfotrip from './popinfocar';
@@ -95,7 +95,7 @@ export class Page extends React.Component {
      }
 
      const {curlocation,curreqobj} = nextProps;
-     if(curreqobj){
+     if(!!curreqobj){
        const {curlocation:prevlocation} = this.props;
        if((curlocation.lng !== prevlocation.lng || curlocation.lat !== prevlocation.lat)
        && curreqobj.requeststatus){
@@ -119,7 +119,7 @@ export class Page extends React.Component {
          }
          else if(curreqobj.requeststatus === '行程完成'){
          }
-         nextProps.dispatch(nav_drawroute({drawroute,startlnglat,endlnglat}));
+         nextProps.dispatch(driveroute_request({drawroute,startlnglat,endlnglat}));
         }
      }
    }

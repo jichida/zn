@@ -1,6 +1,7 @@
 import {takeLatest, call, put } from 'redux-saga/effects';
 import {
-  nav_drawroute,
+  driveroute_request,
+  driveroute_result,
 } from '../actions';
 import {
   getstringoftime,
@@ -10,7 +11,7 @@ import {
 let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
   console.log('获取一个实时导航:' + drawroute);
   return new Promise(resolve => {
-    if(drawroute){
+    if(!!drawroute && !!startlnglat && !!endlnglat ){
       console.log('获取一个实时导航:' + JSON.stringify(startlnglat));
       console.log('获取一个实时导航:' + JSON.stringify(endlnglat));
       let driving = new window.AMap.Driving({extensions:'base'});
@@ -50,17 +51,18 @@ let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
     }//if
     else{
       resolve({
-        drawroute
+        drawroute:false
         });
     }
   });//return new Promise(resolve => {
 }//getnavdrawroute
 
 export function* createnavdrawrouteflow(){
-  yield takeLatest(`${nav_drawroute}`, function*(action) {
+  yield takeLatest(`${driveroute_request}`, function*(action) {
     let {payload} = action;
     console.log("createnavdrawrouteflow===>" + JSON.stringify(payload));
     let result = yield call(getnavdrawroute,payload);
-    yield put(nav_drawroute(result));
+    yield put(driveroute_result(result));
+
   });
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_resetmap,carmap_setmapstage,initdriverroute} from '../../actions';
+import {carmap_resetmap,carmap_setmapstage} from '../../actions';
 import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
 import '../../../public/newcss/outcar.css';
 //import CaroverlayLxck from './embmapstep1lxck';
@@ -11,7 +11,6 @@ import CaroverlayKsxc from './embmapstep4ksxc';
 export class Page extends React.Component {
 
   componentWillMount () {
-    this.props.dispatch(initdriverroute());
   }
 
   componentWillReceiveProps (nextProps) {

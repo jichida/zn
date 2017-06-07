@@ -10,7 +10,7 @@ import {
 import { take, call,race,takeLatest } from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
-import {getcurrentlocationfn} from '../util/geo.js';
+import {getcurrentlocationfn} from '../env/geo.js';
 //注：获取地理位置放这里，可以达到实时效果，放视图中并不实时！
 let synccall=(payload,waitfn,fn)=>{
   return (dispatch) => {

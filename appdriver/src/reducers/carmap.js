@@ -12,7 +12,7 @@ import {
   serverpush_triprequestandorder,
   updaterequeststatus_result,
   carmap_setmapinited,
-  nav_drawroute,
+  driveroute_result,
   serverpush_driverlocation,
   serverpush_orderprice,
   serverpush_restoreorder
@@ -86,7 +86,7 @@ const carmap = createReducer({
         realtimepricedetail
       }};
     },
-    [nav_drawroute]:(state,payload)=>{
+    [driveroute_result]:(state,payload)=>{
       let {drawroute} = payload;
       let enableddrawmapflag = state.enableddrawmapflag;
       if(drawroute){

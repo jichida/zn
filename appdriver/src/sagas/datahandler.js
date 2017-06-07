@@ -4,7 +4,7 @@ import {
     getbuscarpoolcitylist_request,
     getbuscarpool_request,
     getemerygencycontact_request,
-    driveroute_request,
+
 
     getabouthtml_request,
 
@@ -55,7 +55,7 @@ import {
     getoftenuseaddress_result,
     getcurrentlocationandnearestdrivers_result,
     serverpush_triprequest,
-    driveroute_result,
+
 
     md_acceptrequest_result,
     md_loginsendauth_result,
@@ -132,7 +132,7 @@ exports.recvmessagetoresultpair = {
   'getoftenuseaddress_result':getoftenuseaddress_result,
   'getcurrentlocationandnearestdrivers_result':getcurrentlocationandnearestdrivers_result,
   'serverpush_triprequest':serverpush_triprequest,
-  'driveroute_result':driveroute_result,
+
   'acceptrequest_result':md_acceptrequest_result,
   'loginsendauth_result':md_loginsendauth_result,
   'serverpush_triporder':md_serverpush_triporder,
@@ -154,7 +154,6 @@ exports.sendmessagefnsz = {
   'getbuscarpool':`${getbuscarpool_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'searchtext':`${searchtext_request}`,
-  'driveroute':`${driveroute_request}`,
   'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
   'operatelogin':`${operatelogin}`,
   'operatelogout':`${operatelogout}`,
