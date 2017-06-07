@@ -6,7 +6,6 @@ import {
     getemerygencycontact_request,
     driveroute_request,
 
-    disconnect,
     getabouthtml_request,
 
     loginsendauth_request,
@@ -26,8 +25,7 @@ import {
 
     operatelogin,
     operatelogout,
-    notify_socket_connected,
-    logout_request,logout_result,
+    logout_result,
     updateorder_comment_request,
 
     carcreate_request,
@@ -58,7 +56,6 @@ import {
     getcurrentlocationandnearestdrivers_result,
     serverpush_triprequest,
     driveroute_result,
-    getmytriporders_result,
 
     md_acceptrequest_result,
     md_loginsendauth_result,
@@ -85,7 +82,6 @@ import {
 
     getrechargerecords_request,
     getnotifymessage_request,
-    getrechargerecords_result,
     md_getrechargerecords,
     md_getnotifymessage,
     md_getmytriporders,
@@ -93,7 +89,7 @@ import {
     getnotifymessageone_request,
     getnotifymessageone_result,
 
-    serverpush_userbalance,
+
     queryuserbalance_request,
     queryuserbalance_result,
 } from '../actions';

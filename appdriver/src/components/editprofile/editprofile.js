@@ -36,7 +36,7 @@ class Page extends Component {
                                 头像
                             </CellBody>
                             <CellFooter>
-                                <img src={PhotoandCarmanURL||"newimg/17.png"} />
+                                <img src={PhotoandCarmanURL||"newimg/17.png"} alt=""/>
                             </CellFooter>
                         </Cell>
                         <Cell>

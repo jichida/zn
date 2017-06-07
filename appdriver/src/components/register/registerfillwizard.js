@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import WeUI from 'react-weui';
 import 'weui';
@@ -28,9 +27,6 @@ import {
 } from '../../actions';
 
 class RegisterFillWizardForm extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   nextPage = ()=> {
     this.props.dispatch(ui_registerfillwizard({
@@ -52,8 +48,6 @@ class RegisterFillWizardForm extends Component {
   }
 
   onSubmit =(values)=>{
-    const { registertype } = this.props;
-    console.log(`FINALL===========>values:${JSON.stringify(values)}`);
     //alert(`注册类型:${registertype},数据:${JSON.stringify(values)}`);
     // idcard:String,//身份证号<---
     // bankname:String,//银行名字<---
@@ -110,7 +104,7 @@ class RegisterFillWizardForm extends Component {
 				<Cells>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>
-		                    <img src="newimg/1.png" />
+		                    <img src="newimg/1.png" alt=""/>
 		                </CellHeader>
 		                <CellBody>
 		                    <div className="tit">我要成为快车司机</div>
@@ -120,7 +114,7 @@ class RegisterFillWizardForm extends Component {
 		            </Cell>
 		            <Cell access onClick={()=>this.setcurPage('出租车')}>
 		                <CellHeader>
-		                    <img src="newimg/2.png" />
+		                    <img src="newimg/2.png"  alt=""/>
 		                </CellHeader>
 		                <CellBody>
 		                    <div className="tit">我要成为出租车司机</div>
@@ -130,7 +124,7 @@ class RegisterFillWizardForm extends Component {
 		            </Cell>
 		          <Cell access onClick={()=>this.setcurPage('代驾')}>
 		                <CellHeader>
-		                    <img src="newimg/3.png" />
+		                    <img src="newimg/3.png"  alt=""/>
 		                </CellHeader>
 		                <CellBody>
 		                    <div className="tit">我要成为代驾司机</div>

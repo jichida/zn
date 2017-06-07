@@ -36,16 +36,11 @@ import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 //支付界面
 
-import {hidepopmessage} from '../actions/index.js';
-import { connect } from 'react-redux';
 import {
-    HashRouter as Router,
     Route,Redirect,
     Switch
 } from 'react-router-dom';
 import '../../public/newcss/common.css';
-import {getcurrentlocationfn,getcurrentlocationstring} from '../util/geo.js';
-import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '../actions';
 import {requireAuthentication,requireApproval} from './requireauthentication';
 class AppRoot extends React.Component {
     render() {

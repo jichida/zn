@@ -2,7 +2,6 @@
  * Created by wangxiaoqing on 2017/3/21.
  */
 import React from 'react';
-import moment from 'moment';
 import WeUI from 'react-weui';
 const {
     MediaBox,
@@ -49,7 +48,7 @@ let CarItem =(props)=> {
         }
       }}>
           <MediaBoxHeader>
-              <img src={carinfo.PhotoandCarmanURL} />
+              <img src={carinfo.PhotoandCarmanURL} alt=""/>
           </MediaBoxHeader>
           {co}
       </MediaBox>

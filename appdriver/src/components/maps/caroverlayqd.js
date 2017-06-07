@@ -7,14 +7,13 @@ import NavBar from '../tools/nav.js';
 
 import {acceptrequest_request} from '../../actions';
 import {
-  getdistance,
   getcurrentlocationfn
 } from '../../util/geo.js';
 
 class Page extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     componentWillMount () {
     }
 
@@ -33,12 +32,12 @@ class Page extends React.Component {
     render() {
       let curreqobj = this.props.selrequest;
       let resultpricedetail;
-      let triptypename;
-      let showqdbtn;
+      // let triptypename=undefined;
+      // let showqdbtn=undefined;
       if(!!curreqobj){
         resultpricedetail = curreqobj.resultpricedetail;
-        triptypename = curreqobj.isrealtime?'实时':'预约';
-        showqdbtn = curreqobj.requeststatus === '请求中';
+        // triptypename = curreqobj.isrealtime?'实时':'预约';
+        // showqdbtn = curreqobj.requeststatus === '请求中';
       }
       return (
           <div className="outcarPage AppPage">
@@ -46,7 +45,7 @@ class Page extends React.Component {
               {
                 !!curreqobj &&
                 <div className="orderinfohead">
-                    <img src="newimg/17.png" className="avatar"/>
+                    <img src="newimg/17.png" className="avatar" alt=""/>
                     <div className="address">
                         <div className="orderprice">全程约: <span className="color_warning">{resultpricedetail.totalkm}公里</span></div>
                         <div className="orderprice">预计费用: <span className="color_warning">￥{resultpricedetail.totalprice}元</span></div>

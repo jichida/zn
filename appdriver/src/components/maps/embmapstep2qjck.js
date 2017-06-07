@@ -1,13 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import NavBar from '../tools/nav.js';
 import MapGaode from './mapcar.js';
 import PageRiderHead from './pageriderheader';
 
 export default class Page extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     componentWillMount () {
     }
     onClickNext(btnname){

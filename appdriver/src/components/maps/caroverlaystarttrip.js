@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_resetmap,carmap_setmapstage,initdriverroute,driveroute_request} from '../../actions';
+import {carmap_resetmap,carmap_setmapstage,initdriverroute} from '../../actions';
 import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
 import '../../../public/newcss/outcar.css';
 //import CaroverlayLxck from './embmapstep1lxck';
@@ -81,9 +81,6 @@ export class Page extends React.Component {
   render() {
       const {mapstage,curmappagerequest:currentrequest,curmappageorder:currentorder,
         curlocation,driveroute,} = this.props;
-      const dataLeft = {
-        title:mapstage
-      };
 
       let CaroverlayCo;
       if(currentrequest.requeststatus !== "已取消" && currentrequest.requeststatus){

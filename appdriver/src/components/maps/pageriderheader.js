@@ -16,7 +16,7 @@ let PageRiderHead =(props)=>{
 
   return (
     <div className="orderinfohead">
-        <div className="userinfo"><img src={avatarURL} className="avatar"/>
+        <div className="userinfo"><img src={avatarURL} className="avatar" alt=""/>
         <span>{RiderName}</span>
         </div>
         <div className="address">
@@ -26,7 +26,7 @@ let PageRiderHead =(props)=>{
         <a
             href={`tel:${RiderPhone}`}
             className="call">
-            <img src="newimg/p20.png" />
+            <img src="newimg/p20.png"  alt=""/>
             联系TA
         </a>
     </div>

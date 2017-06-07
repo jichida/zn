@@ -8,12 +8,11 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/outcar.css';
 import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
-import {getdistance} from '../../util/geo';
+// import {getdistance} from '../../util/geo';
 
 const {
     Cells,
     Cell,
-    CellHeader,
     CellBody,
     CellFooter
     } = WeUI;
@@ -29,9 +28,9 @@ import {
   } from '../../actions';
 
 class Page extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   componentWillMount () {
     const {approvalstatus,loginsuccess} = this.props;
     this.props.dispatch(startoperate({approvalstatus,loginsuccess}));
@@ -50,7 +49,7 @@ class Page extends Component {
     this.props.history.push(`/selrequest/${reqobj._id}`);
   }
   showlist=(outcarexpand)=>{
-      if(this.props.requestlist.length==0){
+      if(this.props.requestlist.length===0){
           this.props.dispatch(set_weui({
             toast: {
               show : true,
@@ -68,7 +67,6 @@ class Page extends Component {
           requestlist,
           outcarexpand,
           registertypeoptions,
-          curlocation
         } = this.props;
 
         let titleco = [];

@@ -3,24 +3,11 @@
     withdrawals
 */
 import React, { Component } from 'react';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwithdrawals.css';
 import NavBar from '../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
+import { Field,reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import {loginsendauth_request,withdrawcashapplyauth_request} from '../../actions';
-const {
-    CellHeader,
-    CellBody,
-    Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
-    } = WeUI;
 
 let WithdrawauthForm = (props)=>{
     const {showphonenumber,phonenumber,handleSubmit,dispatch}  = props;

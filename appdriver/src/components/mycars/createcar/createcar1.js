@@ -2,29 +2,18 @@
     注册司机－车辆信息
 */
 import React, { Component } from 'react';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
-import { connect } from 'react-redux';
+import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
 import NavBar from '../../tools/nav.js';
 import validate from './validate';
-import StarRatingComponent from 'react-star-rating-component';
 const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
     CellsTitle,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
     } = WeUI;
-import {renderInputField,renderSelField} from '../../tools/renderfield';
+import {renderInputField} from '../../tools/renderfield';
 
 class Page extends Component {
 
@@ -32,8 +21,8 @@ class Page extends Component {
         const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
-                <NavBar 
-                    back={false} 
+                <NavBar
+                    back={false}
                     title="车辆信息"
                     leftnav={[
                         {

@@ -1,4 +1,3 @@
-import config from '../config.js';
 import {takeLatest, call, put } from 'redux-saga/effects';
 import {
   nav_drawroute,

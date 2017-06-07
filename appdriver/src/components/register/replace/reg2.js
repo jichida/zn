@@ -3,33 +3,21 @@
 */
 import React, { Component } from 'react';
 import NavBar from '../../tools/nav.js';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
+import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import validate from './validate';
 const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select,
-    CellsTitle
     } = WeUI;
-import { renderInputField } from '../../tools/renderfield';
 import { renderImageupload } from '../../tools/renderimageupload';
 import { set_weui } from "../../../actions";
 
-import { 
+import {
     required,
     requiredImg,
-    WeuiInputValidation, 
+    WeuiInputValidation,
     } from '../../tools/formvalidation';
 
 class Page extends Component {
@@ -59,20 +47,20 @@ class Page extends Component {
                     <div className="li">
                         <div className="tit">驾驶证</div>
                         <FormUI>
-                          <Field 
-                            name="Licenseld" 
-                            InputTit="驾驶证号" 
-                            placeholder="请输入驾驶证号" 
-                            type="text" 
+                          <Field
+                            name="Licenseld"
+                            InputTit="驾驶证号"
+                            placeholder="请输入驾驶证号"
+                            type="text"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />
                         </FormUI>
                         <div className="desc">有效期内，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL" 
+                            <Field name="LicensePhotoldURL"
                               component={renderImageupload}
-                              loading = {this.showLoading.bind(this)}
+                              loading={this.showLoading.bind(this)}
                               validate={[ requiredImg ]}
                             />
                         </div>

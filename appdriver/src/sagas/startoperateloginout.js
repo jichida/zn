@@ -1,4 +1,3 @@
-import config from '../config.js';
 import {takeEvery, call, put } from 'redux-saga/effects';
 import {
   startoperate,

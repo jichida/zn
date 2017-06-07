@@ -45,7 +45,7 @@ const renderAuthField = (props) => {
 };
 
 const renderSelField = (props) => {
-      const { input, label, type, data,meta: { touched, error },onClickAuth } = props;
+      const {  label, data,meta: { touched, error } } = props;
       return (<FormCell select selectPos="after">
           <CellHeader>
               <Label>{label}</Label>

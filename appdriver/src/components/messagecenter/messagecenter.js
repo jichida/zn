@@ -46,12 +46,12 @@ export class Page extends React.Component {
                <NavBar back={true} title="消息" />
                <div className="list">
                     <InfinitePage
-                        pagenumber = {30}
-                        updateContent= {this.updateContent}
-                        queryfun= {getnotifymessage}
-                        listheight= {window.innerHeight-68}
-                        query = {{}}
-                        sort = {{created_at: -1}}
+                        pagenumber={30}
+                        updateContent={this.updateContent}
+                        queryfun={getnotifymessage}
+                        listheight={window.innerHeight-68}
+                        query={{}}
+                        sort={{created_at: -1}}
                     />
                 </div>
             </div>

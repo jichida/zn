@@ -1,10 +1,7 @@
 import { put,takeEvery} from 'redux-saga/effects';
 import {
   acceptrequest_result,
-  triporder_addone,
-
   loginsendauth_result,
-  showpopmessage,
   serverpush_triporder,
   triporder_updateone,
   serverpush_triprequestandorder,
@@ -80,7 +77,7 @@ export function* wsrecvsagaflow() {
 
 
   yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
-      let {payload:result} = action;
+      //let {payload:result} = action;
       yield put(go(-2));
   });
 
@@ -91,7 +88,6 @@ export function* wsrecvsagaflow() {
 
 
   yield takeEvery(`${carcreate_result}`, function*(action) {
-      let {payload:result} = action;
       yield put(goBack());
   });
 
@@ -169,10 +165,10 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
-      const {triprequest, triporder} = result;
+      const {triporder} = result;
       if(!!triporder){
         //最后会有一个顺序
-        yield put(triporder_updateone(result.triporder));
+        yield put(triporder_updateone(triporder));
       }
       yield put(updaterequeststatus_result(result));
       yield put(wait_updaterequeststatus_result({result:result}));

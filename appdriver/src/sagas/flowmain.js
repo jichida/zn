@@ -111,7 +111,7 @@ function* handleIOWithAuth(socket) {
         console.log("登出APP发送当前位置(注销)：" + JSON.stringify(operateLogoutdoc));
         socket.emit('appdriver',{cmd:'operatelogout',data:operateLogoutdoc});
         socket.emit('appdriver',{cmd:'logout',data:actionlogoutrequest.payload});
-        let actionlogoutresult = yield take(`${logout_result}`);
+        yield take(`${logout_result}`);
         for (var task of tasksz) {
             yield cancel(task);
         }
@@ -131,8 +131,8 @@ export function* flowmain() {
     //连接上以后直接发送-----》
     sendmsgwhenreconnect(socket);
 
-    const taskread = yield fork(read, socket);
-    const taskwritewithauth = yield fork(handleIOWithAuth, socket);
-    const taskwrite = yield fork(handleIO, socket);
+    yield fork(read, socket);
+    yield fork(handleIOWithAuth, socket);
+    yield fork(handleIO, socket);
 
 }

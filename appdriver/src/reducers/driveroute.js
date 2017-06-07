@@ -3,7 +3,6 @@ import {
   nav_drawroute
 } from '../actions';
 
-const locz = [0,0];
 const initial = {
     driveroute: {
       drawroute:false,

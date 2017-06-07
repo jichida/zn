@@ -23,9 +23,9 @@ let markerstart,markerend,markerdriver,polylineleft,polylinepast;
 
 window.initamaploaded = false;
 export class Page extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   componentWillMount () {
     window.amap = null;
     this.props.dispatch(carmap_setmapinited(window.initamaploaded));
@@ -142,7 +142,7 @@ export class Page extends React.Component {
     }
     shouldComponentUpdate(nextprop){
  //componentDidUpdate(){
-     const {enableddrawmapflag,markerstartlatlng,markerendlatlng,curlocation,
+     const {enableddrawmapflag,markerstartlatlng,markerendlatlng,
      driverlocation,routeleftpts,routepastpts} = nextprop;
      if(window.amap){
          const isenableddrawmapflag = (flag)=>{

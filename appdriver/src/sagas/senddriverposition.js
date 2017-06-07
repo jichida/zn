@@ -1,22 +1,13 @@
 import config from '../config.js';
-import {select, fork, take, call, put, cancel,race } from 'redux-saga/effects';
+import {select, take, call, put,race } from 'redux-saga/effects';
 import {
-  getcurrentlocationandnearestdrivers_request,
   sendcurlocationtoserver,
   setcurlocation,
-  changestartposition,
   carmap_setmapcenter,
-  login_result,
-  operatelogin,
-  operatelogout,
-  notify_exit_app,
-  logout_result,
-  tosaga_getcurrentloc,
-  nav_drawroute
+  tosaga_getcurrentloc
 } from '../actions';
 import {delay} from 'redux-saga';
 import L from 'leaflet';
-import {getstringoftime,getstringofdistance} from '../util/geo.js';
 
 //业务需求：
 //必须先登录，登录后一直发送位置
@@ -28,10 +19,6 @@ const getoperateprops = (state) => {
   let approvalstatus = state.userlogin.approvalstatus;
   let loginsuccess = state.userlogin.loginsuccess;
   let socketconnected = state.app.socketconnected;
-  let triporderid = '0';
-  if(state.carmap.curmappageorder.hasOwnProperty('_id')){
-    triporderid = state.carmap.curmappageorder._id;
-  }
   return {...state.operate,loginsuccess,socketconnected,approvalstatus};
 };
 

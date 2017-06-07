@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field } from 'redux-form';
 import { Upload, Icon, message } from 'antd';
 import { connect } from 'react-redux';
 //import 'antd/dist/antd.css';
@@ -9,16 +8,16 @@ import {
     set_weui
 } from '../../actions';
 
-const renderImageupload= (props) => {
+let renderImageupload= (props) => {
 
     let {input,loading, meta: { touched, error}} = props;
     let usertype = localStorage.getItem("usertype");
     let usertoken = localStorage.getItem(`${usertype}_user_token`);
-    let getBase64 = (img, callback)=> {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => callback(reader.result));
-        reader.readAsDataURL(img);
-    }
+    // let getBase64 = (img, callback)=> {
+    //     const reader = new FileReader();
+    //     reader.addEventListener('load', () => callback(reader.result));
+    //     reader.readAsDataURL(img);
+    // }
 
     let beforeUpload =(file)=> {
         //const isImage = file.type === 'image/jpeg';
@@ -50,9 +49,7 @@ const renderImageupload= (props) => {
 
     }
   let imageUrl = input.value;
-  const {label} = props;
 
-  
   if(touched && error){
       window.setTimeout(()=>{
         let toast = {
@@ -69,7 +66,7 @@ const renderImageupload= (props) => {
        className="avatar-uploader"
        name="file"
        showUploadList={false}
-       action= {config.serverurl + "/uploadavatar"}
+       action={config.serverurl + "/uploadavatar"}
        headers={{
           'Authorization':'Bearer '+usertoken
        }}

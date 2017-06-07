@@ -10,7 +10,7 @@ export default class Page extends Component{
         return (
             <div className="kuaicheinfo">
                 <div className="driver">
-                    <img src="newimg/4.png" className="avatar"/>
+                    <img src="newimg/4.png" className="avatar" alt=""/>
                     <div className="address">
                         <div className="startaddress">{orderinfo.srcaddress.addressname}</div>
                         <div className="endaddress">{orderinfo.dstaddress.addressname}</div>
@@ -18,7 +18,7 @@ export default class Page extends Component{
                     <a
                         href={`tel:${19999999999}`}
                         className="call">
-                        <img src="newimg/19.png" />
+                        <img src="newimg/19.png"  alt=""/>
                     </a>
                 </div>
 

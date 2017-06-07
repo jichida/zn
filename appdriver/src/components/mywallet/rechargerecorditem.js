@@ -4,7 +4,6 @@
 import React from 'react';
 import WeUI from 'react-weui';
 const {
-    Cells,
     Cell,
     CellBody,
     CellFooter

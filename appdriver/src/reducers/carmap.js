@@ -5,7 +5,6 @@ import {
   selrequest,
   carmap_setmapcenter,
   acceptrequest_result,
-  driveroute_result,
   carmap_resetmap,
   setcurlocation,
   serverpush_triprequest,
@@ -20,13 +19,13 @@ import {
 } from '../actions';
 
 import L from 'leaflet';
-    const ISENABLEEDRAW_MARKERSTART = 1;
-    const ISENABLEDDRAW_MARKEREND = 2;
-    const ISENABLEDDRAW_MARKERDIRVER = 4;
-    const ISENABLEDDRAW_ROUTELEFT = 32;
-    const ISENABLEDDRAW_ROUTEPASTPTS = 64;
-    const ISENABLEDDRAW_POPWITHSTART = 128;
-    const ISENABLEDDRAW_POPWITHCUR  = 256;
+const ISENABLEEDRAW_MARKERSTART = 1;
+const ISENABLEDDRAW_MARKEREND = 2;
+const ISENABLEDDRAW_MARKERDIRVER = 4;
+const ISENABLEDDRAW_ROUTELEFT = 32;
+// const ISENABLEDDRAW_ROUTEPASTPTS = 64;
+// const ISENABLEDDRAW_POPWITHSTART = 128;
+const ISENABLEDDRAW_POPWITHCUR  = 256;
 
 const locz =[0,0];
 const initial = {
@@ -76,7 +75,8 @@ const carmap = createReducer({
     },
     [serverpush_driverlocation]:(state,payload)=>{
       let {driverlocation} = payload;
-      return {...state};
+      //to test
+      return {...state,driverlocation};
     },
     [serverpush_orderprice]:(state,payload)=>{
       let {realtimepricedetail} = payload;

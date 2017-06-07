@@ -13,17 +13,12 @@ import NavBar from '../tools/nav.js';
 
 const {
     Cells,
-    Cell,
-    CellBody,
-    CellFooter
+
     } = WeUI;
 import {getmytriporders} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
 
 class Page extends Component {
-  constructor(props) {
-      super(props);
-   }
 
    onClickOrderDetail(orderinfo){
        this.props.history.push(`/orderdetail/${orderinfo._id}`);
@@ -46,12 +41,12 @@ class Page extends Component {
                <div className="list">
                    <Cells>
                        <InfinitePage
-                           pagenumber = {30}
-                           updateContent= {this.updateContent}
-                           queryfun= {getmytriporders}
-                           listheight= {window.innerHeight-68}
-                           query = {{triptype:{'$ne':'充值'}}}
-                           sort = {{created_at: -1}}
+                           pagenumber={30}
+                           updateContent={this.updateContent}
+                           queryfun={getmytriporders}
+                           listheight={window.innerHeight-68}
+                           query={{triptype:{'$ne':'充值'}}}
+                           sort={{created_at: -1}}
                        />
                    </Cells>
                </div>
