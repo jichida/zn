@@ -17,8 +17,8 @@ import store from '../env/store.js';
 //获取地理位置坐标，初始化地图
 //如果和服务端连接，要获取地理位置名字
 export function* createinitflow(){//仅执行一次
-  const curlocation = yield call(getcurrentpos);
-  yield put(carmap_setcurlocation(curlocation));
+   const curlocation = yield call(getcurrentpos);
+   yield put(carmap_setcurlocation(curlocation));
 
    let srclocationstring = curlocation.lng + ',' + curlocation.lat;
    let markerstartlatlng = L.latLng(curlocation.lat, curlocation.lng);//lat,lng

@@ -1,18 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
-import '../../../../public/newcss/register.css';
-const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter
-    } = WeUI;
 
+import '../../../../public/newcss/register.css';
 import CreatecarPage1 from './createcar1.js';
 import CreatecarPage2 from './createcar2.js';
 
@@ -20,13 +9,12 @@ import CreatecarPage2 from './createcar2.js';
 import {
   ui_createcarwizard,
   carcreate_request,
-  fillrealnameprofile_request
-} from '../../../actions';
+  } from '../../../actions';
 
 class CreateCarWizardForm extends Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   nextPage = ()=> {
     this.props.dispatch(ui_createcarwizard({

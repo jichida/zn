@@ -1,11 +1,7 @@
 import { put,takeEvery} from 'redux-saga/effects';
 import {
   acceptrequest_result,
-  wait_acceptrequest_result,
-  triporder_addone,
-
   loginsendauth_result,
-  showpopmessage,
   serverpush_triporder,
   triporder_updateone,
   serverpush_triprequestandorder,
@@ -45,6 +41,7 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
+  carmap_setmapstage
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -80,7 +77,7 @@ export function* wsrecvsagaflow() {
 
 
   yield takeEvery(`${withdrawcashapplyauth_result}`, function*(action) {
-      let {payload:result} = action;
+      //let {payload:result} = action;
       yield put(go(-2));
   });
 
@@ -91,7 +88,6 @@ export function* wsrecvsagaflow() {
 
 
   yield takeEvery(`${carcreate_result}`, function*(action) {
-      let {payload:result} = action;
       yield put(goBack());
   });
 
@@ -129,19 +125,19 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_acceptrequest_result}`, function*(action) {
       let {payload:result} = action;
       yield put(acceptrequest_result(result));
-      yield put(wait_acceptrequest_result({result:result}));
-      yield put(triporder_addone(result.triporder));
+      yield put(carmap_setmapstage('去接乘客'));
+      yield put(replace('/starttrip'));
   });
 
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(set_weui({
-        toast:{
-        text:result.popmessage,
-        show: true,
-        type:'success'
-      }}));
+      let toast = {
+          show : true,
+          text : '发送验证码成功',
+          type : "success"
+      }
+      yield put(set_weui({ toast }));
   });
 
   yield takeEvery(`${md_serverpush_triporder}`, function*(action) {
@@ -169,10 +165,10 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
-      const {triprequest, triporder} = result;
+      const {triporder} = result;
       if(!!triporder){
         //最后会有一个顺序
-        yield put(triporder_updateone(result.triporder));
+        yield put(triporder_updateone(triporder));
       }
       yield put(updaterequeststatus_result(result));
       yield put(wait_updaterequeststatus_result({result:result}));

@@ -27,7 +27,7 @@ class Page extends Component {
                 <Form radio>
                     <FormCell radio>
                         <CellHeader>
-                            <img src="newimg/p14.png" />
+                            <img src="newimg/p14.png" alt="" />
                         </CellHeader>
                         <CellBody>微信</CellBody>
                         <CellFooter>
@@ -36,7 +36,7 @@ class Page extends Component {
                     </FormCell>
                     <FormCell radio>
                         <CellHeader>
-                            <img src="newimg/p15.png" />
+                            <img src="newimg/p15.png" alt="" />
                         </CellHeader>
                         <CellBody>支付宝</CellBody>
                         <CellFooter>
@@ -45,7 +45,7 @@ class Page extends Component {
                     </FormCell>
                     <FormCell radio>
                         <CellHeader>
-                            <img src="newimg/p22.png" />
+                            <img src="newimg/p22.png" alt="" />
                         </CellHeader>
                         <CellBody>余额支付</CellBody>
                         <CellFooter>

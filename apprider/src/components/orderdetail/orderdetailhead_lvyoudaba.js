@@ -19,7 +19,7 @@ export default class Page extends Component{
         return (
             <div className="kuaicheinfo">
                 <div className="driver">
-                    <img src="newimg/17.png" className="avatar"/>
+                    <img src="newimg/17.png" className="avatar" alt=""/>
                     <div className="info">
                         <div>
                             <span>{rentusername}({rentuserphone})</span>
@@ -30,13 +30,13 @@ export default class Page extends Component{
                         </div>
                     </div>
                     <div className="call">
-                        <img src="newimg/20.png" />
+                        <img src="newimg/20.png"  alt=""/>
                     </div>
                 </div>
                 <div className="busslist">
-                    <div><img src="newimg/18.png" />用车时间:  {moment(startdate).format('YYYY-MM-DD')}</div>
-                    <div><img src="newimg/18.png" />用车时间:  {moment(enddate).format('YYYY-MM-DD')}</div>
-                    <div><img src="newimg/21.png" />{orderdetail}</div>
+                    <div><img src="newimg/18.png"  alt=""/>用车时间:  {moment(startdate).format('YYYY-MM-DD')}</div>
+                    <div><img src="newimg/18.png"  alt=""/>用车时间:  {moment(enddate).format('YYYY-MM-DD')}</div>
+                    <div><img src="newimg/21.png"  alt=""/>{orderdetail}</div>
                 </div>
             </div>
         )

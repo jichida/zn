@@ -1,5 +1,4 @@
 import {
-    acceptrequest_request,wait_acceptrequest_request,wait_acceptrequest_result,
     updaterequeststatus_request,wait_updaterequeststatus_request,wait_updaterequeststatus_result,
     canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
 
@@ -8,10 +7,10 @@ import {
     getmytriporders_request,wait_getmytriporders_request,wait_getmytriporders_result,
 
 } from '../actions/index.js';
-import { fork, take, call, put, cancel,race,takeLatest } from 'redux-saga/effects';
+import { take, call,race,takeLatest } from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
-import {getcurrentlocationfn} from '../util/geo.js';
+import {getcurrentlocationfn} from '../env/geo.js';
 //注：获取地理位置放这里，可以达到实时效果，放视图中并不实时！
 let synccall=(payload,waitfn,fn)=>{
   return (dispatch) => {
@@ -52,9 +51,6 @@ function* createflowsz(fnwatres,action){
 }
 
 //以下导出放在视图中
-export function acceptrequest(payload){
-  return synccall(payload,wait_acceptrequest_request,acceptrequest_request);
-}
 export function updaterequeststatus(payload){
   return synccall(payload,wait_updaterequeststatus_request,updaterequeststatus_request);
 }
@@ -76,7 +72,6 @@ export function getmytriporders(payload){
 //以下导出放在saga中
 export function* createsagacallbackflow(){
   let waitfnsz = [];
-  waitfnsz.push([`${wait_acceptrequest_request}`,`${wait_acceptrequest_result}`]);
   waitfnsz.push([`${wait_updaterequeststatus_request}`,`${wait_updaterequeststatus_result}`]);
   waitfnsz.push([`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`]);
 

@@ -2,13 +2,11 @@ import React from 'react';
 import MapGaode from './mapcar.js';
 import { connect } from 'react-redux';
 import NavBar from "../tools/nav";
-import L from 'leaflet';
 import CarOverlayInit from './caroverlayinit.js';
 import CarOverlayOrder from './caroverlayorder.js';
 import "../../../public/newcss/caroverlay.css";
 import {
     carmap_resetmap,
-    getprice_request,
     set_weui,
     changestartposition
     } from '../../actions';
@@ -74,28 +72,23 @@ export class Page extends React.Component {
     }
 
     render() {
-        const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = this.props;
-        if(!curmappagerequest.hasOwnProperty('_id')){
+        const {mapstage,curmappagerequest} = this.props;
+        if(!curmappagerequest.requeststatus){
             return <div>无请求</div>
         }
-        let dataLeft = {
-            title:curmappagerequest.requeststatus
-        };
-
-        if(dataLeft.title === '行程完成'){
-            const itemLeft = {
-                title: '返回'
-            };
-            dataLeft = {
-                title: dataLeft.title,
-                leftNav: [{...itemLeft, icon: 'left-nav'}],
-                onAction: ()=>{
-                    history.replace('/');
-                },
-            };
+        let dataLefttitle = curmappagerequest.requeststatus;
+        let rightnav = [];
+        if(dataLefttitle !== '行程中'){
+          rightnav = [
+              {
+                  type : 'action',
+                  action : this.cancelcar.bind(this),
+                  text : "取消叫车"
+              },
+          ];
         }
 
-        if(mapstage === 'pageorder' && curmappagerequest.requeststatus === '行程完成'){
+        if(mapstage === 'pageorder' && dataLefttitle === '行程完成'){
               return (
                         <div>行程完成,正在生成订单</div>
                     );
@@ -104,14 +97,8 @@ export class Page extends React.Component {
             <div className="caroverlayPage AppPage">
                 <NavBar
                     back={false}
-                    title={dataLeft.title}
-                    rightnav={[
-                        {
-                            type : 'action',
-                            action : this.cancelcar.bind(this),
-                            text : "取消叫车"
-                        },
-                    ]}
+                    title={dataLefttitle}
+                    rightnav={rightnav}
                     />
                 <div className="list">
                     <MapGaode ref='mapgaode' />

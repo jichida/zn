@@ -43,7 +43,7 @@ class Page extends Component {
     }
 
     render() {
-        const {rechargelist,balance} = this.props;
+        const {balance} = this.props;
         return (
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
@@ -72,12 +72,12 @@ class Page extends Component {
                     <div className="l2">
                         <Cells>
                           <InfinitePage
-                              pagenumber = {30}
-                              updateContent= {this.updateContent}
-                              queryfun= {getrechargerecords}
-                              listheight= {window.innerHeight-168}
-                              query = {{}}
-                              sort = {{created_at: -1}}
+                              pagenumber={30}
+                              updateContent={this.updateContent}
+                              queryfun={getrechargerecords}
+                              listheight={window.innerHeight-168}
+                              query={{}}
+                              sort={{created_at: -1}}
                           />
                         </Cells>
                     </div>

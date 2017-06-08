@@ -11,26 +11,33 @@ import {
     cancelJPushAlisa
 } from '../env/jpush';
 import _ from 'lodash';
-import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
-function alertmessage(payload){
-   return new Promise((resolve, reject) => {
-       alert(payload);
-       resolve({});
+let async_setJPushAlias =(userid)=> {
+  return new Promise(resolve => {
+    setJPushAlias(userid);
+    resolve();
    });
-}
+};
+
+let async_cancelJPushAlisa =()=> {
+  return new Promise(resolve => {
+    cancelJPushAlisa();
+    resolve();
+  });
+};
 
 //获取地理位置信息，封装为promise
 export function* jpushflow(){//仅执行一次
     yield takeEvery(`${login_result}`, function*(action) {
       let {payload:{userid}} = action;
-      setJPushAlias(userid);
+      yield call(async_setJPushAlias,userid);
       console.log(`login_result ===>${JSON.stringify(userid)}`);
     });
 
     yield takeEvery(`${logout_result}`, function*(action) {
       let {payload:msgobj} = action;
-      cancelJPushAlisa();
+      yield call(async_cancelJPushAlisa);
       console.log(`logout_result ===>${JSON.stringify(msgobj)}`);
     });
 

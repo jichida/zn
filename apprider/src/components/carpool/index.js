@@ -1,31 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
 import '../../../public/newcss/carpool.css';
-import config from '../../config.js';
 import {
-    ui_pinchesetdateshow,
     ui_clickpinchetypebtn,
     getbuscarpool_request,
     orderconfirm_setpinche
 } from '../../actions';
 import _ from "lodash";
-import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
-    required,
-    InputValidation,
-    WeuiInputValidation,
     WeuiSelectValidation
     } from "../tools/formvalidation";
+import {Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {renderDateField} from "../tools/renderdate";
-import WeUI from 'react-weui';
+
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 //最新的代码
 class PincheForm extends React.Component{
     render(){
-        const { handleSubmit,citylist,FormSubmit,starttime } = this.props;
+        const { handleSubmit,citylist,FormSubmit } = this.props;
         let newcitylist = _.map(citylist,(city,index)=>{
             return {
                 value:city,
@@ -109,21 +103,19 @@ class Pinche extends React.Component {
         this.props.dispatch(getbuscarpool_request(querydata));
     }
     render() {
-        let resultrouteco = [];
-        let index =0;
-        let tabtitle = ['专线','人气团拼'];
+
         const {  pinchetypetabbtn } = this.props;
         return (
             <div className="carpoolPage AppPage">
                 <div className="pageNav">
                     <span
-                        className={pinchetypetabbtn==0?"sel":""}
+                        className={pinchetypetabbtn===0?"sel":""}
                         onClick={()=>{this.onClickTabbtn(0)}}
                         >
                         专线
                     </span>
                     <span
-                        className={pinchetypetabbtn==1?"sel":""}
+                        className={pinchetypetabbtn===1?"sel":""}
                         onClick={()=>{this.onClickTabbtn(1)}}
                         >
                         人气团拼
@@ -142,7 +134,7 @@ class Pinche extends React.Component {
                                     key={index}
                                     >
                                     {
-                                        routeobj.pinchetype=="专线"?(
+                                        routeobj.pinchetype==="专线"?(
                                             <div className="licontent">
                                                 <div className="time">{routeobj.starttime}</div>
                                                 <div className="city">

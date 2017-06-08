@@ -3,24 +3,14 @@
 */
 import React, { Component } from 'react';
 import NavBar from '../../tools/nav.js';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
+import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
 import validate from './validate';
 const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select,
-    CellsTitle
     } = WeUI;
 import {renderInputField} from '../../tools/renderfield';
 import {renderImageupload} from '../../tools/renderimageupload';
@@ -31,8 +21,8 @@ class Page extends Component {
         const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
-                <NavBar 
-                    back={false} 
+                <NavBar
+                    back={false}
                     title="上传照片"
                     leftnav={[
                         {

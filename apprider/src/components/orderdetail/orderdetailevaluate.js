@@ -13,8 +13,8 @@ const {
     Form,
     FormCell,
     CellBody,
-    TextArea,
-    LoadMore } = WeUI;
+    TextArea
+  } = WeUI;
 import _ from 'lodash';
 import {
   updateorder_comment_request,
@@ -70,7 +70,6 @@ export class Page extends Component{
             commenttagsel,
             showaddevaluate,
             maxshowtags,
-            dispatch,
             ratenum,//评分
             } = this.props;
 
@@ -122,7 +121,8 @@ export class Page extends Component{
                                 <img
                                     src="newimg/12.png"
                                     onClick={()=>{this.addevaluatebox(false)}}
-                                    className="close" />
+                                    className="close"
+                                    alt=""/>
                             </div>
                             <div className="star">
                                 <StarRatingComponent

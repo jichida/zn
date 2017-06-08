@@ -8,7 +8,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwallet.css';
 import NavBar from '../tools/nav.js';
-import moment from "moment";
+
 const {
     Cells,
     Cell,
@@ -26,9 +26,9 @@ import InfinitePage from '../controls/listview';
 import RechargeItem from './rechargerecorditem';
 
 class Page extends Component {
-  constructor(props) {
-      super(props);
-   }
+  // constructor(props) {
+  //     super(props);
+  //  }
    updateContent = (record)=> {
        return  (
          <RechargeItem
@@ -47,7 +47,7 @@ class Page extends Component {
             <div className="userwalletPage AppPage">
                 <NavBar back={true} title="我的钱包" />
                 <div className="head">
-                    <img src="newimg/20.png" />
+                    <img src="newimg/20.png" alt=""/>
                     <div>
                         <span className="tit">余额(元)</span>
                         <span className="myprice">{balance}</span>
@@ -71,12 +71,12 @@ class Page extends Component {
                     <div className="l2">
                         <Cells>
                           <InfinitePage
-                              pagenumber = {30}
-                              updateContent= {this.updateContent}
-                              queryfun= {getrechargerecords}
-                              listheight= {window.innerHeight-168}
-                              query = {{}}
-                              sort = {{created_at: -1}}
+                              pagenumber={30}
+                              updateContent={this.updateContent}
+                              queryfun={getrechargerecords}
+                              listheight={window.innerHeight-168}
+                              query={{}}
+                              sort={{created_at: -1}}
                           />
                         </Cells>
                     </div>

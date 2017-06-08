@@ -5,18 +5,15 @@ import DatePicker from 'react-mobile-datepicker';
 const {
     FormCell,
     CellHeader,
-    CellBody,
     CellFooter,
-    Button,
     Input,
     Label,
-    Select
   } = WeUI;
 
 import moment from 'moment';
 
 class renderDateField extends React.Component{
-    constructor(props) {  
+    constructor(props) {
         super(props);
         this.state = {
             isdateopen : false,
@@ -25,14 +22,14 @@ class renderDateField extends React.Component{
     setDateopen =(v)=>{
         this.setState({isdateopen : v});
     }
-    
+
     render(){
-        const { input, label, meta: { touched, error } } = this.props;
+        const { input, label} = this.props;
 
 
         console.log("input value"+input.value);
 
-        
+
         let handleClick1 =()=>{
             this.setDateopen(true);
         }
@@ -51,8 +48,8 @@ class renderDateField extends React.Component{
                     </Label>
                 </CellHeader>
                 <CellFooter>
-                    <Input 
-                        {...input} 
+                    <Input
+                        {...input}
                         onClick={handleClick1}
                         style={{textAlign:"right"}}
                         />
@@ -65,7 +62,7 @@ class renderDateField extends React.Component{
                     dateFormat={['YYYY', 'MM', 'DD']}
                     theme="ios"
                 />
-                
+
             </FormCell>
 
         )

@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 
 import '../../../public/css/popinfocar.css';
 let Popinfocar = ({positiondiv,totaldistancetxt,totaldurationtxt,realtimepricedetail=null})=> {

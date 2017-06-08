@@ -13,14 +13,12 @@ import 'react-weui/lib/react-weui.min.css';
 import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
 const {
-    Form,
     FormCell,
     CellHeader,
     CellBody,
     Label,
     Input,
     Select,
-    Checkbox,
     Switch,
     CellFooter
     } = WeUI;
@@ -142,7 +140,7 @@ let WeuiInputValidation = (props) => {
 	    <FormCell className={style}>
             <CellHeader>
                 <Label>
-                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	{HeadIcon?(<img src={HeadIcon}  alt=""/> ):""}
                 	<span>{InputTit}</span>
                 </Label>
             </CellHeader>
@@ -180,7 +178,7 @@ let WeuiSelectValidation = (props) => {
 		<FormCell select selectPos="after">
             <CellHeader>
                 <Label>
-                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	{HeadIcon?(<img src={HeadIcon}  alt=""/> ):""}
                 	<span>{InputTit}</span>
                 </Label>
             </CellHeader>
@@ -194,7 +192,6 @@ let WeuiSelectValidation = (props) => {
 // weui switch
 let WeuiSwitchValidation = (props) => {
 	const {
-		Option,
 		HeadIcon,
 		InputTit,
 		input
@@ -203,7 +200,7 @@ let WeuiSwitchValidation = (props) => {
 		<FormCell switch>
             <CellHeader>
             	<Label>
-                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	{HeadIcon?(<img src={HeadIcon}  alt=""/> ):""}
                 	<span>{InputTit}</span>
                 </Label>
             </CellHeader>

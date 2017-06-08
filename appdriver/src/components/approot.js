@@ -35,18 +35,12 @@ import Approval from './register/approval';
 import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 //支付界面
-import Pay from './pay/pay';
-import Selpay from './pay/selpay';
-import {hidepopmessage} from '../actions/index.js';
-import { connect } from 'react-redux';
+
 import {
-    HashRouter as Router,
     Route,Redirect,
     Switch
 } from 'react-router-dom';
 import '../../public/newcss/common.css';
-import {getcurrentlocationfn,getcurrentlocationstring} from '../util/geo.js';
-import {carmap_setpageinit,getcurrentlocationandnearestdrivers_request} from '../actions';
 import {requireAuthentication,requireApproval} from './requireauthentication';
 class AppRoot extends React.Component {
     render() {
@@ -74,8 +68,6 @@ class AppRoot extends React.Component {
                     <Route path="/mycars" component={requireAuthentication(Mycars)}/>
                     <Route path="/createcar" component={requireAuthentication(Createcar)}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
-                    <Route path="/selpay" component={requireAuthentication(Selpay)}/>
-                    <Route path="/pay" component={requireAuthentication(Pay)}/>
                 </Switch>
             </div>
         );

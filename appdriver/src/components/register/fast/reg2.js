@@ -2,32 +2,19 @@
     注册司机－车辆信息
 */
 import React, { Component } from 'react';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
-import { connect } from 'react-redux';
+import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
 import NavBar from '../../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
-import {renderInputField,renderSelField} from '../../tools/renderfield';
 const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
     CellsTitle,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
     } = WeUI;
-import { 
+import {
     required,
-    requiredImg,
-    WeuiInputValidation, 
+    WeuiInputValidation,
     WeuiSelectValidation,
     } from '../../tools/formvalidation';
 
@@ -36,7 +23,7 @@ class Page extends Component {
         const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
-                <NavBar back={false} title="车辆信息" leftnav = {[
+                <NavBar back={false} title="车辆信息" leftnav={[
                 {
                     text : '上一步',
                     type : 'action',//push, action,
@@ -46,42 +33,42 @@ class Page extends Component {
                 <div className="list">
                     <FormUI className="formStyle1">
                         <CellsTitle>请认真填写车辆基本信息</CellsTitle>
-                        <Field 
-                            name="OwnerName" 
-                            InputTit="所属公司" 
-                            placeholder="请输入公司名" 
-                            type="text" 
+                        <Field
+                            name="OwnerName"
+                            InputTit="所属公司"
+                            placeholder="请输入公司名"
+                            type="text"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />
-                        <Field 
-                            name="VehicleNo" 
-                            InputTit="车牌号" 
-                            placeholder="请输入车牌号" 
-                            type="text" 
+                        <Field
+                            name="VehicleNo"
+                            InputTit="车牌号"
+                            placeholder="请输入车牌号"
+                            type="text"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />
-                        <Field 
-                            name="Seats" 
-                            InputTit="核定载客位" 
-                            placeholder="请输入数字" 
-                            type="number" 
+                        <Field
+                            name="Seats"
+                            InputTit="核定载客位"
+                            placeholder="请输入数字"
+                            type="number"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />
-                        <Field 
-                          name="CheckState" 
+                        <Field
+                          name="CheckState"
                           InputTit="年度审核状态"
-                          component={WeuiSelectValidation} 
+                          component={WeuiSelectValidation}
                           Option={[{label:"已审",value:"已审"},{label:"未审",value:"未审"}]}
                           validate={[ required ]}
                           />
-                        <Field 
-                            name="Certificate" 
-                            InputTit="网络预约出租车运输证号" 
-                            placeholder="请输入证件号" 
-                            type="text" 
+                        <Field
+                            name="Certificate"
+                            InputTit="网络预约出租车运输证号"
+                            placeholder="请输入证件号"
+                            type="text"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />

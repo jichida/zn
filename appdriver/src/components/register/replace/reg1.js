@@ -2,39 +2,28 @@
     注册代驾司机－基本信息
 */
 import React, { Component } from 'react';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
 import { connect } from 'react-redux';
+import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
 import NavBar from '../../tools/nav.js';
-import validate from './validate';
-import StarRatingComponent from 'react-star-rating-component';
 
 const {
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
+
     } = WeUI;
 
-import {renderInputField,renderSelField} from '../../tools/renderfield';
 import {renderImageupload} from '../../tools/renderimageupload';
 import {renderDateField} from '../../tools/renderdate';
 import {ui_isdateopen,set_weui} from '../../../actions';
-import { 
+import {
     required,
     requiredImg,
-    WeuiInputValidation, 
-    phone, 
-    isidcard, 
+    WeuiInputValidation,
+
+    isidcard,
     WeuiSelectValidation,
     InputBankValidation,
     asyncValidate,
@@ -42,46 +31,46 @@ import {
 
 import moment from "moment";
 
-const databanklist = [
-  {
-      value: 0,
-      label: '请选择'
-  },
-  {
-      value: 1,
-      label: '建设银行'
-  },
-  {
-      value: 2,
-      label: '中国银行'
-  }
-];
+// const databanklist = [
+//   {
+//       value: 0,
+//       label: '请选择'
+//   },
+//   {
+//       value: 1,
+//       label: '建设银行'
+//   },
+//   {
+//       value: 2,
+//       label: '中国银行'
+//   }
+// ];
 
-const datasexlist = [
-  {
-      value: '男',
-      label: '男'
-  },
-  {
-      value: '女',
-      label: '女'
-  },
-];
+// const datasexlist = [
+//   {
+//       value: '男',
+//       label: '男'
+//   },
+//   {
+//       value: '女',
+//       label: '女'
+//   },
+// ];
 
-const datamarriagestatuslist = [
-    {
-        value: '未婚',
-        label: '未婚'
-    },
-    {
-        value: '已婚',
-        label: '已婚'
-    },
-    {
-        value: '离异',
-        label: '离异'
-    }
-  ];
+// const datamarriagestatuslist = [
+//     {
+//         value: '未婚',
+//         label: '未婚'
+//     },
+//     {
+//         value: '已婚',
+//         label: '已婚'
+//     },
+//     {
+//         value: '离异',
+//         label: '离异'
+//     }
+//   ];
 const driverTypeData = [
     {
         value: 'C1',
@@ -121,7 +110,7 @@ class Page extends Component {
         }));
     }
     render() {
-        const { handleSubmit,previousPage,isdateopen,dispatch } = this.props;
+        const { handleSubmit,previousPage,isdateopen } = this.props;
         return (
             <div className="taxiPage taxiregisterPage AppPage">
 
@@ -137,49 +126,49 @@ class Page extends Component {
 
                 <div className="list">
                     <div className="avatar">
-                        <Field 
-                          name="avatarURL" 
+                        <Field
+                          name="avatarURL"
                           component={renderImageupload}
-                          loading = {this.showLoading.bind(this)}
+                          loading={this.showLoading.bind(this)}
                           validate={[ requiredImg ]}
                           />
                     </div>
                     <FormUI className="formStyle1">
-                        <Field 
-                          name="DriverName" 
-                          InputTit="司机姓名" 
-                          placeholder="请输入司机姓名" 
-                          type="text" 
+                        <Field
+                          name="DriverName"
+                          InputTit="司机姓名"
+                          placeholder="请输入司机姓名"
+                          type="text"
                           component={WeuiInputValidation}
                           validate={[ required ]}
                           />
-                        <Field 
-                          name="idcard" 
-                          InputTit="身份证号" 
-                          placeholder="请输入身份证号" 
-                          type="text" 
+                        <Field
+                          name="idcard"
+                          InputTit="身份证号"
+                          placeholder="请输入身份证号"
+                          type="text"
                           component={WeuiInputValidation}
                           validate={[ required, isidcard ]}
                           />
-                        <Field 
-                          name="bankaccount" 
-                          InputTit="银行卡号" 
-                          placeholder="请输入银行卡号" 
-                          type="number" 
+                        <Field
+                          name="bankaccount"
+                          InputTit="银行卡号"
+                          placeholder="请输入银行卡号"
+                          type="number"
                           component={InputBankValidation}
                           validate={[ required ]}
                           />
-                        <Field 
-                          name="DriverType" 
+                        <Field
+                          name="DriverType"
                           InputTit="准驾类型"
-                          component={WeuiSelectValidation} 
+                          component={WeuiSelectValidation}
                           Option={driverTypeData}
                           validate={[ required ]}
                           />
-                        <Field 
-                          name="GetDriverLicenseDate" 
-                          label="初次领驾照日期" 
-                          setDateopen={this.setDateopen} 
+                        <Field
+                          name="GetDriverLicenseDate"
+                          label="初次领驾照日期"
+                          setDateopen={this.setDateopen}
                           isdateopen={isdateopen}
                           component={renderDateField} />
                     </FormUI>

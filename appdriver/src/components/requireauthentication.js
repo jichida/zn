@@ -42,7 +42,7 @@ export function requireApproval(Component) {
       let redirectAfterLogin = props.location.pathname;
       loginroute = '/login?next=' + redirectAfterLogin;
     }
-    let ComponentShow;
+
     if(loginsuccess){//未递交/待审核/审核中/已审核/已拒绝
       if(approvalstatus=== '未递交'){
         return (<Redirect to={'/register1'}/>);
@@ -57,10 +57,6 @@ export function requireApproval(Component) {
     else{
       return (<Redirect to={loginroute}/>);
     }
-    return (
-          <div>
-          </div>
-      );
   };
 
   const mapStateToProps =  ({userlogin:{loginsuccess,approvalstatus}}) =>{

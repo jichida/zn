@@ -98,12 +98,12 @@ class Page extends Component {
                 <div className="list">
                     <Cells>
                         <InfinitePage
-                            pagenumber = {30}
-                            updateContent= {this.updateContent}
-                            queryfun= {getmytriporders}
-                            listheight= {window.innerHeight-68}
-                            query = {{triptype:{'$ne':'充值'}}}
-                            sort = {{created_at: -1}}
+                            pagenumber={30}
+                            updateContent={this.updateContent}
+                            queryfun={getmytriporders}
+                            listheight={window.innerHeight-68}
+                            query={{triptype:{'$ne':'充值'}}}
+                            sort={{created_at: -1}}
                         />
                     </Cells>
                 </div>

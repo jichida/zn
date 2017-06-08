@@ -38,7 +38,7 @@ const ISENABLEDDRAW_MARKERSELF = 4;
 const ISENABLEDDRAW_MARKERDIRVER = 8;
 const ISENABLEDRAW_NEARBYDRIVERS = 16;
 const ISENABLEDDRAW_ROUTELEFT = 32;
-const ISENABLEDDRAW_ROUTEPASTPTS = 64;
+// const ISENABLEDDRAW_ROUTEPASTPTS = 64;
 const ISENABLEDDRAW_POPWITHSTART = 128;
 const ISENABLEDDRAW_POPWITHCUR  = 256;
 
@@ -107,7 +107,7 @@ const carmap = createReducer({
       let driverlocation = L.latLng(payload.driverlocation[1], payload.driverlocation[0]);
       //显示司机位置/动态显示路线
       let enableddrawmapflag = state.enableddrawmapflag;
-      enableddrawmapflag = enableddrawmapflag|ISENABLEDDRAW_MARKERDIRVER;
+      enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;
       return {...state,driverlocation,enableddrawmapflag};
     },
     [serverpush_orderprice]:(state,payload)=>{
@@ -164,7 +164,7 @@ const carmap = createReducer({
         let enableddrawmapflag = state.enableddrawmapflag;
         let routeleftpts = [];
         if(state.iswaitingforcallpage){//在叫车页面,画导航线
-            enableddrawmapflag = enableddrawmapflag | ISENABLEDDRAW_ROUTELEFT;
+            enableddrawmapflag |= ISENABLEDDRAW_ROUTELEFT;
             for(let curloc of latlngs){
                 routeleftpts.push(L.latLng(curloc.lat, curloc.lng));
             }

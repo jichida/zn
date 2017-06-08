@@ -1,45 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import WeUI from 'react-weui';
 import 'react-weui/lib/react-weui.min.css';
-import { Field,Fields,reduxForm,Form,formValueSelector} from 'redux-form';
+import { Field,reduxForm,Form,formValueSelector} from 'redux-form';
 import { connect } from 'react-redux';
-import {renderInputField,renderAuthField} from '../tools/renderfield';
-import NavBar from '../tools/nav.js';
+
 import '../../../public/newcss/register.css';
 import { withRouter } from 'react-router-dom';
 import {
     loginsendauth_request,
     register_request,
-    login_request
-} from '../../actions/index.js';
+  } from '../../actions/index.js';
 import {
     required,
     phone,
-    InputValidation,
     WeuiInputValidation,
     length4,
     WeuiCheckboxValidation,
     ischecked
     } from "../tools/formvalidation"
 const {
-    FormCell,
-    Checkbox,
-    CellHeader,
-    CellBody,
     Form:FormUI,
-    Agreement,
-    Input,
-    Label,
-    CellFooter,
   } = WeUI;
 
 
 let RegisterForm = (props)=> {
     console.log(`RegisterForm===>${JSON.stringify(props)}`);
-    let {handleSubmit,onClickRegister,onClickReturn,username} = props;
+    let {handleSubmit,onClickRegister,username} = props;
     let onClickAuth = (e)=> {
         // const name = fields.username.input.value;
-            props.dispatch(loginsendauth_request({phonenumber:username}));
+            props.dispatch(loginsendauth_request({phonenumber:username,reason:'register'}));
             console.log("发送验证码:" + username);
     }
     let handleLogin =()=>{

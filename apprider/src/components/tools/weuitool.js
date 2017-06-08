@@ -8,7 +8,6 @@ import { set_weui } from '../../actions/index.js';
 const {
     Toast,
     Dialog,
-    ActionSheet
 } = WeUI;
 
 const icon = {
@@ -18,16 +17,16 @@ const icon = {
     "loading" : "loading"
 }
 
-const tosatDefault = {
-    show : false,
-    text : "",
-    type : ""
-}
-
-const toastLetterDefault = {
-    show : false,
-    text : "",
-}
+// const tosatDefault = {
+//     show : false,
+//     text : "",
+//     type : ""
+// }
+//
+// const toastLetterDefault = {
+//     show : false,
+//     text : "",
+// }
 
 const confirmDefault = {
     show : false,
@@ -44,12 +43,12 @@ const alertDefault = {
     buttonsClick : ()=>{}
 }
 
-let toastTimeout = null;
+
 
 export class Page extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.toast.show && !this.props.toast.show) {
-            toastTimeout = window.setTimeout(()=> {
+            window.setTimeout(()=> {
                 let toast = {
                     show : false,
                     text : "",
@@ -98,7 +97,6 @@ export class Page extends Component {
             alert,
             confirm,
             loading,
-            action,
             toastLetter,
         } = this.props;
 
@@ -113,7 +111,7 @@ export class Page extends Component {
                 </Toast>
 
                 <div style={{display: toastLetter.show?"block":"none"}}>
-                    <div 
+                    <div
                         className="weui-mask_transparent"
                         style={{pointerEvents:"none"}}
                         />

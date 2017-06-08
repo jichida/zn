@@ -11,12 +11,6 @@ import { connect } from 'react-redux';
 const {
     Panel,
     PanelBody,
-    MediaBox,
-    MediaBoxHeader,
-    MediaBoxBody,
-    MediaBoxTitle,
-    MediaBoxDescription,
-    Button,
     } = WeUI;
 import {
   cargetall_request,
@@ -51,20 +45,20 @@ class Page extends Component {
         const {carlist,defaultmycar} = this.props;
         return (
             <div className="usercarlistPage AppPage">
-                <NavBar 
-                  back={true} 
-                  title="我的车辆" 
+                <NavBar
+                  back={true}
+                  title="我的车辆"
                   rightnav={titleRightNav} />
                 <div className="list">
                     <Panel>
                         <PanelBody>
                             {_.map(carlist,(caritem,index)=>{
                                 return (
-                                    <CarItem 
-                                      carinfo={caritem}  
-                                      key={index} 
+                                    <CarItem
+                                      carinfo={caritem}
+                                      key={index}
                                       isdefault={defaultmycar === caritem._id }
-                                      onClickSelCurCar={this.onClickSelCurCar.bind(this)} 
+                                      onClickSelCurCar={this.onClickSelCurCar.bind(this)}
                                       />
                                 )
                             })}

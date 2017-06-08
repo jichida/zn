@@ -1,10 +1,12 @@
 import { fork } from 'redux-saga/effects';
 import {flowmain} from './flowmain';
 import {createsagacallbackflow} from '../actions/sagacallback';
-import {getcurpositionflow,createstartoperateloginoutflow,createnavdrawrouteflow} from './senddriverposition';
+import {getcurpositionflow} from './senddriverposition';
 import {createrestoreorderflow} from './restoreorder';
 import {wsrecvsagaflow} from './wsrecvsaga';
 import {jpushflow} from './jpushflow';
+import {createstartoperateloginoutflow} from './startoperateloginout';
+import {createnavdrawrouteflow} from './navdrawroute';
 
 export default function* rootSaga() {
   yield fork(jpushflow);

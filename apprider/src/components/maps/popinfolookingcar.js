@@ -1,9 +1,9 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import '../../../public/css/popinfocar.css';
 let Popinfocar = (props)=> {
     return (
-        <div 
-            className="mapCoverInfo" 
+        <div
+            className="mapCoverInfo"
             style={{
                 left:props.positiondiv[0]+'px',
                 top:props.positiondiv[1]+'px',

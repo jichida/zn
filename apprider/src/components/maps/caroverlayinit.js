@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import Callcardateinput from './callcardateinput';
 // import renderHTML from 'react-render-html';
 import moment from 'moment';
-import {getstringoftime,getstringofdistance} from '../../util/geo.js';
 import {ui_setcarmap,carmap_resetmap} from '../../actions';
 import {starttriprequestorder} from '../../actions/sagacallback';
-import {pushrequesttodrivers_request,changestartposition} from '../../actions';
+import {pushrequesttodrivers_request} from '../../actions';
 import './caroverlayinit.css';
 import { withRouter } from 'react-router-dom';
 
@@ -101,17 +100,16 @@ class Page extends React.Component {
       let srcname ='正在获取当前上车点...';
       let dstname = '请选择你要去的地方';
 
-      if(srcaddress.addressname!=''){
+      if(!!srcaddress.addressname){
           srcname = srcaddress.addressname;
           isgetsrc = true;
       }
 
-      if(dstaddress.addressname!=''){
+      if(!!dstaddress.addressname){
           dstname = dstaddress.addressname;
           isgetdst = true;
       }
 
-      let floatcomponents;
       let isgetaddress = isgetdst&&isgetsrc;
 
       return (
@@ -143,7 +141,7 @@ class Page extends React.Component {
                       !ispagenow&&!isgetaddress?(
                           <div className="setordertime">
                               <span>
-                                  <img src="newimg/33.png" />
+                                  <img src="newimg/33.png"  alt=""/>
                                   预约时间:
                               </span>
                               <Callcardateinput
@@ -222,8 +220,7 @@ const mapStateToProps = (state) => {
     resultpricerequest,
     driverlist,
     triptype,
-    resultpricerequest,
-
+    
     ispagenow,
     ridedatesel,
 

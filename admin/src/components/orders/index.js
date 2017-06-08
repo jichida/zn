@@ -44,9 +44,12 @@ const OrderlistEdit = (props) => {
       return (<Edit title={<OrderlistTitle />} {...props}>
           <TabbedForm>
               <FormTab label="resources.order.tabs.basic">
-               <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={true} >
+                <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={true} >
                 <TextField source="username" />
                 </ReferenceField>
+
+
+
                 <TextField label="订单类型"  source="triptype" />
                 <DateField label="生成时间"  source="created_at" showTime />
                 <SelectInput source="orderstatus" choices={[

@@ -6,7 +6,6 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/addresscommon.css';
-import NavBar from '../tools/nav.js';
 const {
     FormCell,
     Form,
@@ -53,7 +52,7 @@ class Page extends Component {
                         return (
                           <FormCell radio key={paytype}>
                               <CellHeader>
-                                  <img src={paytypeui.imgurl}/>
+                                  <img src={paytypeui.imgurl} alt=""/>
                               </CellHeader>
                               <CellBody>{paytypeui.name}</CellBody>
                               <CellFooter>

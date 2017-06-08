@@ -3,24 +3,11 @@
     withdrawals
 */
 import React, { Component } from 'react';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwithdrawals.css';
 import NavBar from '../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
-import { Field,Fields,reduxForm,Form} from 'redux-form';
+import { Field,reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import {loginsendauth_request,withdrawcashapplyauth_request} from '../../actions';
-const {
-    CellHeader,
-    CellBody,
-    Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
-    } = WeUI;
 
 let WithdrawauthForm = (props)=>{
     const {showphonenumber,phonenumber,handleSubmit,dispatch}  = props;
@@ -32,20 +19,22 @@ let WithdrawauthForm = (props)=>{
                     <span className="tit">请输入<span className="phone color_warning">{showphonenumber}</span>收到的短信验证码</span>
                     <div className="messageCodeInput">
                         <Field name="authcode" label="验证码" placeholder="请输入验证码" type="text" component="input" />
-                        <span className="getcode btn Primary" onClick={()=>{dispatch(loginsendauth_request({phonenumber}));}}>获取验证码</span>
+                        <span className="getcode btn Primary" onClick={
+                          ()=>{dispatch(loginsendauth_request({phonenumber,reason:'withdraw'}));
+                        }}>获取验证码</span>
                     </div>
                 </div>
                 <div className="submitBtn">
                     <button className="btn Primary"  onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
-            
+
         </div>
     );
 }
 
 WithdrawauthForm = reduxForm({
-    form: 'withdrawformauth', 
+    form: 'withdrawformauth',
 })(WithdrawauthForm);
 
 class Page extends Component {
@@ -61,10 +50,10 @@ class Page extends Component {
     render() {
         const {showphonenumber,phonenumber,dispatch} = this.props;
         return (
-            <WithdrawauthForm 
+            <WithdrawauthForm
                 onSubmit={this.onClickWithdraw}
                 phonenumber={phonenumber}
-                showphonenumber={showphonenumber} 
+                showphonenumber={showphonenumber}
                 dispatch={dispatch}
             />
         );

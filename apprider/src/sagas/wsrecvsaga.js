@@ -108,12 +108,12 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(loginsendauth_result(result));
-      yield put(set_weui({
-        toast:{
-        text:result.popmessage,
-        show: true,
-        type:'success'
-      }}));
+      let toast = {
+          show : true,
+          text : '发送验证码成功',
+          type : "success"
+      }
+      yield put(set_weui({ toast }));
   });
 
   yield takeEvery(`${common_err}`, function*(action) {

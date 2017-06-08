@@ -55,7 +55,7 @@ import {
     getnearestdrivers_result,
     serverpush_triprequest,
 
-    getmytriporders_result,
+
 
     insertorder_result,
     updateorder_result,
@@ -78,7 +78,6 @@ import {
     queryuserbalance_result,
 
     getrechargerecords_request,
-    getrechargerecords_result,
 
     insertemerygencycontact_request,
     insertemerygencycontact_result,
@@ -86,10 +85,8 @@ import {
     deleteemerygencycontact_result,
 
     getnotifymessage_request,
-    getnotifymessage_result,
 
     mycoupongetall_request,
-    mycoupongetall_result,
 
     md_getrechargerecords,
     md_getnotifymessage,

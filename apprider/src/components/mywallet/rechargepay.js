@@ -16,17 +16,7 @@ import {
     required
     } from "../tools/formvalidation.js";
 const {
-    CellHeader,
-    CellBody,
-    Cell,
     Form:FormUI,
-    Radio,
-    FormCell,
-    Label,
-    Input,
-    Select,
-    CellsTitle,
-    CellFooter
     } = WeUI;
 import {payorder_request} from '../../actions';
 
@@ -74,6 +64,7 @@ class Page extends Component {
         console.log(values);
         values.ordertitle = '充值';
         values.orderdetail = `充值${values.realprice}元`;
+        values.orderprice = values.realprice;
         this.props.dispatch(payorder_request({
           query:{_id:this.props.triporderid},
           data:values
@@ -81,7 +72,7 @@ class Page extends Component {
     }
 
     render() {
-        const {orderinfo,balance} = this.props;
+
         return (
             <div className="userrechargePage AppPage">
                 <NavBar back={true} title="充值" />

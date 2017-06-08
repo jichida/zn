@@ -4,7 +4,6 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/index.css';
 import NavBar from '../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
 const {
     Cells,
@@ -13,15 +12,36 @@ const {
     CellBody,
     CellFooter
     } = WeUI;
+import {setbackhandler,removebackhandler,exitAndroidApp} from '../../env/android';
+import {set_weui} from '../../actions';
 
 class Page extends Component {
-  componentWillMount () {
+  componentWillMount() {
+    let that = this;
+    setbackhandler(()=>{
+
+      console.log('click android back');
+      let confirm = {
+        show : true,
+        title : "你确定需要退出吗",
+        text : "",
+        buttonsClose : ()=>{console.log('click close');},
+        buttonsClick : ()=>{exitAndroidApp();}
+      };
+      that.props.dispatch(set_weui({confirm}));
+
+    });
   }
+
+  componentWillUnmount() {
+    removebackhandler();
+  }
+
   onClickItem =(name)=>{
     this.props.history.push(name);
   }
 	render() {
-    const {loginsuccess,registertype,username,PhotoandCarmanURL,Platform_baseInfoDriver,Platform_baseInfoVehicle} = this.props;
+    const {loginsuccess,registertype,PhotoandCarmanURL,Platform_baseInfoDriver,Platform_baseInfoVehicle} = this.props;
     let phonenumbertext = loginsuccess?Platform_baseInfoDriver.DriverName:'未登录';
     let linkeditprofile = loginsuccess?'/editprofile':'/login';
 
@@ -33,7 +53,7 @@ class Page extends Component {
 					<Cells>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src={PhotoandCarmanURL||"newimg/17.png"} />
+			                    <img src={PhotoandCarmanURL||"newimg/17.png"} alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                    <div className="tit">
@@ -64,7 +84,7 @@ class Page extends Component {
 					<Cells>
 			            <Cell access onClick={()=>{this.onClickItem('/myorders')}}>
 			                <CellHeader>
-			                    <img src="newimg/5.png" />
+			                    <img src="newimg/5.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                   	我的行程
@@ -73,7 +93,7 @@ class Page extends Component {
 			            </Cell>
 			            <Cell access onClick={()=>{this.onClickItem('/mywallet')}}>
 			                <CellHeader>
-			                    <img src="newimg/6.png" />
+			                    <img src="newimg/6.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                   	我的钱包
@@ -82,7 +102,7 @@ class Page extends Component {
 			            </Cell>
 			            <Cell access onClick={()=>{this.onClickItem('/mycars')}}>
 			                <CellHeader>
-			                    <img src="newimg/7.png" />
+			                    <img src="newimg/7.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                   	我的车辆
@@ -91,7 +111,7 @@ class Page extends Component {
 			            </Cell>
 			            <Cell access onClick={()=>{this.onClickItem('/messagecenter')}}>
 			                <CellHeader>
-			                    <img src="newimg/8.png" />
+			                    <img src="newimg/8.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                   	消息中心
@@ -100,10 +120,10 @@ class Page extends Component {
 			            </Cell>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src="newimg/9.png" />
+			                    <img src="newimg/9.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
-			                   	<a 
+			                   	<a
 			                   		href={`tel:${this.props.app.servicephonenumber}`}
 			                   		style={{display:"block",color:"#333"}}
 			                   	>联系客服</a>
@@ -114,7 +134,7 @@ class Page extends Component {
 				</div>
 				<div className="pointLnk" onClick={()=>{this.onClickItem('/outcar')}}>
 					<a>
-						<img src="newimg/10.png" />
+						<img src="newimg/10.png"  alt=""/>
 						<span>出车</span>
 					</a>
 				</div>

@@ -2,9 +2,6 @@
     审核
 */
 import React, { Component } from 'react';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/examine.css';
 import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
@@ -20,7 +17,7 @@ class Page extends Component {
                 <div className="list">
                     {approvalstatus === '已审核' &&
                       <div className="success li">
-                          <img src="newimg/13.png" />
+                          <img src="newimg/13.png" alt=""/>
                           <div className="tit">
                               你好，<span className="color_warning">审核已通过</span>
                           </div>
@@ -36,7 +33,7 @@ class Page extends Component {
 
                     {approvalstatus === '已拒绝' &&
                     <div className="false li">
-                        <img src="newimg/14.png" />
+                        <img src="newimg/14.png" alt=""/>
                         <div className="tit">
                             你好，<span className="color_warning">审核没有通过</span>
                         </div>
@@ -52,7 +49,7 @@ class Page extends Component {
 
                     {approvalstatus === '审核中' &&
                      <div className="warting li">
-                        <img src="newimg/15.png" />
+                        <img src="newimg/15.png" alt=""/>
                         <div className="tit">
                             你好，正在加紧<span className="color_warning">审核中</span>
                         </div>
@@ -63,7 +60,7 @@ class Page extends Component {
 
                     {approvalstatus === '待审核' &&
                     <div className="updata li">
-                        <img src="newimg/16.png" />
+                        <img src="newimg/16.png" alt=""/>
                         <div className="tit">
                             注册资料已提交，<span className="color_warning">待审核</span>
                         </div>

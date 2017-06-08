@@ -15,17 +15,19 @@ import {
     login_result,
     logout_result,
     logout_request,
-    notify_socket_connected
+    notify_socket_connected,
+    common_err
 } from '../actions';
 
+let issocketconnected = false;
 let sendmsgwhenreconnect =(socket)=>{
     let token = localStorage.getItem('zhongnan_driver_token');
     if (token !== null) {
         //take token to login...
         socket.emit('appdriver',{cmd:'loginwithtoken',data:{token:token}});
     }
-    store.dispatch(notify_socket_connected(true));
 
+    store.dispatch(notify_socket_connected(issocketconnected));
     socket.emit('appdriver',{cmd:'getsystemconfig',data:{}});
 }
 
@@ -38,6 +40,7 @@ function connect() {
     const socket = io(config.serverurl);
     return new Promise(resolve => {
         socket.on('connect', () => {
+            issocketconnected = true;
             resolve(socket);
         });
     });
@@ -47,9 +50,11 @@ function subscribe(socket) {
     return eventChannel(emit => {
         wsrecvhandler(socket,emit);
         socket.on('connect',()=>{
+            issocketconnected = true;
             sendmsgwhenreconnect(socket);
         });
         socket.on('disconnect',()=>{
+            issocketconnected = false;
             store.dispatch(notify_socket_connected(false));
         });
         socket.on('error',()=>{
@@ -72,7 +77,12 @@ function* write(socket,fun,cmd) {
     while (true) {
         let { payload } = yield take(fun);
         console.log(`${cmd}:` + JSON.stringify(payload));
-        socket.emit('appdriver',{cmd:cmd,data:payload});
+        if(issocketconnected){
+          socket.emit('appdriver',{cmd:cmd,data:payload});
+        }
+        else{
+          yield put(common_err({type:cmd,errmsg:'服务器连接断开!'}))
+        }
     }
 }
 
@@ -101,7 +111,7 @@ function* handleIOWithAuth(socket) {
         console.log("登出APP发送当前位置(注销)：" + JSON.stringify(operateLogoutdoc));
         socket.emit('appdriver',{cmd:'operatelogout',data:operateLogoutdoc});
         socket.emit('appdriver',{cmd:'logout',data:actionlogoutrequest.payload});
-        let actionlogoutresult = yield take(`${logout_result}`);
+        yield take(`${logout_result}`);
         for (var task of tasksz) {
             yield cancel(task);
         }
@@ -121,8 +131,8 @@ export function* flowmain() {
     //连接上以后直接发送-----》
     sendmsgwhenreconnect(socket);
 
-    const taskread = yield fork(read, socket);
-    const taskwritewithauth = yield fork(handleIOWithAuth, socket);
-    const taskwrite = yield fork(handleIO, socket);
+    yield fork(read, socket);
+    yield fork(handleIOWithAuth, socket);
+    yield fork(handleIO, socket);
 
 }

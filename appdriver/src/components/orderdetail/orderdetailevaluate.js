@@ -13,8 +13,8 @@ const {
     Form,
     FormCell,
     CellBody,
-    TextArea,
-    LoadMore } = WeUI;
+    TextArea
+  } = WeUI;
 import _ from 'lodash';
 import {
   ui_setorderdetail,
@@ -25,7 +25,7 @@ import {
 export class Page extends Component{
 
     componentWillUnmount(){
-        this.props.dispatch(ui_setorderdetail({showaddevaluate:false}));
+        this.addevaluatebox(false);
     }
 
     onChangeFieldname(fieldname,value){//e.target.value
@@ -70,14 +70,13 @@ export class Page extends Component{
             commenttagsel,
             showaddevaluate,
             maxshowtags,
-            dispatch,
             ratenum,//评分
             } = this.props;
 
         let iscommented = false;
         const {commentflag} = orderinfo;
         if(!!commentflag){
-          if((commentflag & 1) > 0 ){
+          if((commentflag & 2) > 0 ){
             iscommented = true;
           }
         }
@@ -98,7 +97,7 @@ export class Page extends Component{
                           className="tt"
                           onClick={()=>{this.addevaluatebox(true)}}
                           >
-                          评价司机
+                          评价乘客
                       </div>
                     }
 
@@ -118,11 +117,12 @@ export class Page extends Component{
                     <div className={showaddevaluate?"addevaluate show":"addevaluate"}>
                         <div className="wamp">
                             <div className="tit">
-                                <span>评价司机</span>
+                                <span>评价乘客</span>
                                 <img
                                     src="newimg/12.png"
                                     onClick={()=>{this.addevaluatebox(false)}}
-                                    className="close" />
+                                    className="close"
+                                    alt=""/>
                             </div>
                             <div className="star">
                                 <StarRatingComponent

@@ -14,9 +14,9 @@ export default class Page extends Component {
         return (
             <div className="orderinfohead">
             	{
-            		orderinfo.triptype=="代驾"||
-            		orderinfo.triptype=="快车"||
-            		orderinfo.triptype=="出租车"?
+            		orderinfo.triptype==="代驾"||
+            		orderinfo.triptype==="快车"||
+            		orderinfo.triptype==="出租车"?
             		(
             			<Kuaiche
             				orderinfo={orderinfo}
@@ -24,7 +24,7 @@ export default class Page extends Component {
             		):""
             	}
             	{
-            		orderinfo.triptype=="旅游大巴"?
+            		orderinfo.triptype==="旅游大巴"?
             		(
             			<Lvyoudaba
             				orderinfo={orderinfo}
@@ -32,7 +32,7 @@ export default class Page extends Component {
             		):""
             	}
             	{
-            		orderinfo.triptype=="拼车"?
+            		orderinfo.triptype==="拼车"?
             		(
             			<Pinche
             				orderinfo={orderinfo}

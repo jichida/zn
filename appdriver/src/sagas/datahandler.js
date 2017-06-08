@@ -4,9 +4,8 @@ import {
     getbuscarpoolcitylist_request,
     getbuscarpool_request,
     getemerygencycontact_request,
-    driveroute_request,
 
-    disconnect,
+
     getabouthtml_request,
 
     loginsendauth_request,
@@ -26,8 +25,7 @@ import {
 
     operatelogin,
     operatelogout,
-    notify_socket_connected,
-    logout_request,logout_result,
+    logout_result,
     updateorder_comment_request,
 
     carcreate_request,
@@ -57,8 +55,7 @@ import {
     getoftenuseaddress_result,
     getcurrentlocationandnearestdrivers_result,
     serverpush_triprequest,
-    driveroute_result,
-    getmytriporders_result,
+
 
     md_acceptrequest_result,
     md_loginsendauth_result,
@@ -85,7 +82,6 @@ import {
 
     getrechargerecords_request,
     getnotifymessage_request,
-    getrechargerecords_result,
     md_getrechargerecords,
     md_getnotifymessage,
     md_getmytriporders,
@@ -93,7 +89,7 @@ import {
     getnotifymessageone_request,
     getnotifymessageone_result,
 
-    serverpush_userbalance,
+
     queryuserbalance_request,
     queryuserbalance_result,
 } from '../actions';
@@ -136,7 +132,7 @@ exports.recvmessagetoresultpair = {
   'getoftenuseaddress_result':getoftenuseaddress_result,
   'getcurrentlocationandnearestdrivers_result':getcurrentlocationandnearestdrivers_result,
   'serverpush_triprequest':serverpush_triprequest,
-  'driveroute_result':driveroute_result,
+
   'acceptrequest_result':md_acceptrequest_result,
   'loginsendauth_result':md_loginsendauth_result,
   'serverpush_triporder':md_serverpush_triporder,
@@ -158,7 +154,6 @@ exports.sendmessagefnsz = {
   'getbuscarpool':`${getbuscarpool_request}`,
   'getemerygencycontact':`${getemerygencycontact_request}`,
   'searchtext':`${searchtext_request}`,
-  'driveroute':`${driveroute_request}`,
   'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
   'operatelogin':`${operatelogin}`,
   'operatelogout':`${operatelogout}`,

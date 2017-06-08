@@ -8,24 +8,17 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userwithdrawals.css';
 import NavBar from '../tools/nav.js';
-import StarRatingComponent from 'react-star-rating-component';
-import { Field,Fields,reduxForm,Form,formValueSelector} from 'redux-form';
+import { Field,reduxForm,Form,formValueSelector} from 'redux-form';
 import { connect } from 'react-redux';
-import {renderInputField,renderSelField} from '../tools/renderfield';
 import {withdrawcashapplyaddone_request} from '../../actions';
 const {
-    CellHeader,
-    CellBody,
     Form:FormUI,
-    FormCell,
-    Label,
-    Input,
-    Select
     } = WeUI;
 import {
-    WeuiSelectValidation, 
-    WeuiInputValidation, 
-    required}  from "../tools/formvalidation";
+    WeuiSelectValidation,
+    WeuiInputValidation,
+    required
+  }  from "../tools/formvalidation";
 
 const databanklist = [
     {
@@ -41,33 +34,33 @@ const databanklist = [
 let WithdrawForm = (props)=>{
     const { balance,handleSubmit,clicksubmit }  = props;
     return (
-        <Form 
+        <Form
             className="withdrawalsPage AppPage"
-            onSubmit = {handleSubmit(clicksubmit)}
+            onSubmit={handleSubmit(clicksubmit)}
         >
             <NavBar back={true} title="提现" />
             <div className="list">
                 <FormUI>
-                    <Field 
-                        name="bankname" 
-                        InputTit="选择银行" 
-                        data={databanklist} 
-                        component={WeuiSelectValidation} 
+                    <Field
+                        name="bankname"
+                        InputTit="选择银行"
+                        data={databanklist}
+                        component={WeuiSelectValidation}
                         Option={databanklist}
                         />
-                    <Field 
-                        name="bankaccount" 
-                        InputTit="银行卡号" 
-                        placeholder="请输入银行卡号" 
-                        type="text" 
+                    <Field
+                        name="bankaccount"
+                        InputTit="银行卡号"
+                        placeholder="请输入银行卡号"
+                        type="text"
                         component={WeuiInputValidation}
                         validate={[ required ]}
                         />
-                    <Field 
-                        name="cashmoney" 
-                        InputTit="提现金额" 
-                        placeholder="请输入提现金额" 
-                        type="number" 
+                    <Field
+                        name="cashmoney"
+                        InputTit="提现金额"
+                        placeholder="请输入提现金额"
+                        type="number"
                         component={WeuiInputValidation}
                         validate={[ required ]}
                         />
@@ -80,7 +73,7 @@ let WithdrawForm = (props)=>{
                     <button className="btn Primary"><span>确定</span></button>
                 </div>
             </div>
-          
+
         </Form>
     );
 }
@@ -102,7 +95,7 @@ WithdrawForm = connect(({state}) => {
 
 class Page extends Component {
     onClickWithdraw = (values)=>{
-        values.cashmoney = parseInt(values.cashmoney);
+        values.cashmoney = parseFloat(values.cashmoney);
         this.props.dispatch(withdrawcashapplyaddone_request(values));
     }
     render() {

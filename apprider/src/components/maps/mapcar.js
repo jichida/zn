@@ -21,7 +21,7 @@ const ISENABLEEDRAW_MARKERSTART = 1;
 const ISENABLEDDRAW_MARKEREND = 2;
 const ISENABLEDDRAW_MARKERSELF = 4;
 const ISENABLEDDRAW_MARKERDIRVER = 8;
-const ISENABLEDRAW_NEARBYDRIVERS = 16;
+// const ISENABLEDRAW_NEARBYDRIVERS = 16;
 const ISENABLEDDRAW_ROUTELEFT = 32;
 const ISENABLEDDRAW_ROUTEPASTPTS = 64;
 const ISENABLEDDRAW_POPWITHSTART = 128;
@@ -32,9 +32,9 @@ let markerstart,markerend,markerself,markerdriver,polylineleft,polylinepast;
 
 window.initamaploaded = false;
 class Page extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   componentWillMount () {
     window.amap = null;
     this.props.dispatch(carmap_setmapinited(window.initamaploaded));
@@ -327,9 +327,6 @@ class Page extends React.Component {
         }
 
 
-        const getamppos = (curloc)=>{
-            return {longitude:curloc.lng, latitude:curloc.lat};
-        };
         const isenableddrawmapflag = (flag)=>{
             //return true;
             return (this.props.enableddrawmapflag & flag)>0;
@@ -394,7 +391,7 @@ class Page extends React.Component {
                 {
                     this.props.enabledragging?
                     <div className="startIcon">
-                        <img src='images/start.png' />
+                        <img src='images/start.png' alt="" />
                     </div>:null
                 }
                 {scriptco}

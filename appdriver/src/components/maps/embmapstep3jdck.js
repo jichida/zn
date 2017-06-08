@@ -1,20 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import NavBar from '../tools/nav.js';
 import MapGaode from './mapcar.js';
 import PageRiderHead from './pageriderheader';
 
 export default class Page extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   componentWillMount () {
   }
   onClickNext(btnname){
     this.props.onClickNext(btnname);
   }
     render() {
-        const {driveroute:routeshow,currentrequest:curreqobj,currentorder,onClickCancel} = this.props;
+        const {currentrequest:curreqobj,currentorder,onClickCancel} = this.props;
         //curreqobj.requeststatus
         return (
             <div className="outcarPage AppPage">

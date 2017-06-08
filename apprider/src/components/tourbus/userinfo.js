@@ -3,9 +3,9 @@
 */
 import React from 'react';
 import { connect } from 'react-redux';
-import DatePicker from 'react-mobile-datepicker';
-import { Field,Fields,reduxForm,Form,getFormValues  } from 'redux-form';
-import moment from 'moment';
+
+import { Field,reduxForm,Form,getFormValues  } from 'redux-form';
+
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -13,25 +13,15 @@ import "./tourbusUserinfo.css";
 import NavBar from '../tools/nav.js';
 import {
     required,
-    InputValidation,
     WeuiInputValidation,
-    WeuiSelectValidation,
     DatePickerInput
     } from "../tools/formvalidation"
 const {
     FormCell,
-    Checkbox,
     Form:FormUI,
-    Select,
-    Panel,
-    PanelBody,
-    MediaBox,
-    Cells,
     Cell,
     CellHeader,
     CellBody,
-    CellFooter,
-    Input,
     Label,
     CellsTitle
     } = WeUI;
@@ -41,9 +31,9 @@ import {
 } from '../../actions/sagacallback';
 
 
-const PageForm = (props) => {
+let PageForm = (props) => {
 
-   	const {handleSubmit,onClickOK,totalorderprice,startdate,enddate} = props;
+   	const {handleSubmit,onClickOK,totalorderprice,startdate} = props;
 
     let yesterdayDate = new Date();
     yesterdayDate.setDate(yesterdayDate.getDate() - 1);
@@ -110,7 +100,7 @@ const PageForm = (props) => {
 	                </CellBody>
 	            </Cell>
 	            <CellsTitle className="pricenum">
-	            	<img src="newimg/39.png" />
+	            	<img src="newimg/39.png"  alt=""/>
 	            	<span>购买说明: 您购买的是不含过路费的，如有疑问请联系客服</span>
 	            </CellsTitle>
 	            <div className="submitBtn">
@@ -142,7 +132,7 @@ PageForm = reduxForm({
 })(PageForm);
 
 
-const Page = (props) => {
+let Page = (props) => {
     let onClickOK =(values)=>{
       console.log("ok:" + JSON.stringify(values));
       const {startdate,enddate,orderprice,zucheren,zuchephone} = values;
@@ -175,7 +165,7 @@ const Page = (props) => {
         		<div className="li">
               {
                 _.map(buslistsel,(businfosel)=>{
-                  return (<span key={businfosel._id}><img src={businfosel.icon} /><i>{businfosel.num}</i></span>);
+                  return (<span key={businfosel._id}><img src={businfosel.icon}  alt=""/><i>{businfosel.num}</i></span>);
                 })
               }
         		</div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { 
+import {
     TextField,
     DateField,
     FormTab,
+    ReferenceField,
 } from 'admin-on-rest';
 
 
@@ -50,6 +51,9 @@ export const Orderinfo = (props) => {
                 <TextField label="目的城市"  source="endcity"  {...rest}/>
                 <TextField label="目的站点"  source="endstation"  {...rest}/>
                 <TextField label="乘客数量"  source="seatnumber"  {...rest}/>
+                <ReferenceField label="路线" source="buscarpoolid" reference="buscarpool"  addLabel={true} allowEmpty {...rest}   >
+                <TextField source="id" />
+                </ReferenceField>
             </FormTab>
         );
     }

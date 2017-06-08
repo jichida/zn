@@ -2,18 +2,8 @@
     优惠券
 */
 import React, { Component } from 'react';
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/discount.css';
 import NavBar from '../tools/nav.js';
-const {
-    Cells,
-    Cell,
-    CellBody,
-    CellFooter,
-    CellHeader,
-    } = WeUI;
 import {
   ui_setorderdetail,
   mycoupongetall_request
@@ -34,8 +24,7 @@ import getmycoupons from '../../selectors/selcoupons';
 // used_at:Date,
 const MycouponItem = (props) => {
   const {mycoupon,onClickItem} = props;
-  const {name,usestatus,pricediscountpercent,pricediscountmax,expdate,enabled,triptype} = mycoupon;
-  const createdatestring = moment(mycoupon.created_at).format("YYYY-MM-DD");
+  const {name,pricediscountpercent,pricediscountmax,expdate,enabled,triptype} = mycoupon;
   const expdatestring = moment(expdate).format("YYYY-MM-DD");
   return (
     <div className="li" onClick={onClickItem}>

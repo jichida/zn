@@ -2,7 +2,6 @@ import { createReducer } from 'redux-act';
 import {
   //登录
     login_result,
-    login_err,
     loginsendauth_result,
     logout_result,
     fillrealnameprofile_result,
