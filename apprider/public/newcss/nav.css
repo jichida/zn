@@ -5,6 +5,7 @@
     height: 48px;
     position: relative;
     flex-shrink: 0;
+    padding-top: 20px;
 }
 #newNavHeadContent .title {
     flex-grow: 1;
@@ -21,7 +22,7 @@
     width: 50%;
     z-index: 2;
     left: 0;
-    top:0;
+    top:20px;
 }
 #newNavHeadContent .rightlnk{
     height: 48px;
@@ -29,7 +30,7 @@
     width: 50%;
     z-index: 2;
     right: 0;
-    top: 0;
+    top: 20px;
 }
 #newNavHeadContent .leftlnk,
 #newNavHeadContent .rightlnk{
