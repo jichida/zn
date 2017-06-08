@@ -44,6 +44,7 @@ const SystemconfigShow = (props) => (
                <TextField label="代驾要求余额" source="daijialeastbalance" />
                <TextField label="代驾取消价格" source="daijiacancelprice" />
                <TextField label="客服电话" source="servicephonenumber" />
+               <TextField label="未支付自动取消时间（单位分钟）" source="pinchetimecancelwhennotpaid" />
          </SimpleShowLayout>
        </ShowPage>
 );
@@ -66,10 +67,13 @@ export const SystemconfigCreate = (props) => (
            <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
            <TextInput label="客服电话" source="servicephonenumber"/>
            </FormTab>
+           <FormTab label="resources.systemconfig.tabs.pinche">
+           <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
+           <NumberInput label="未支付自动取消时间（单位分钟）" source="pinchetimecancelwhennotpaid"/>
+           </FormTab>
            <FormTab label="resources.systemconfig.tabs.rider">
            <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
            <NumberInput label="最大显示评价数" source="maxshowtags"/>
-           <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
            <SelectArrayInput label="热门城市列表" source="hotcity"  options={{ fullWidth: true }}/>
            </FormTab>
            <FormTab label="resources.systemconfig.tabs.driver">
@@ -88,10 +92,13 @@ export const SystemconfigEdit = (props) => (
             <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
             <TextInput label="客服电话" source="servicephonenumber"/>
             </FormTab>
+            <FormTab label="resources.systemconfig.tabs.pinche">
+            <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
+            <NumberInput label="未支付自动取消时间（单位分钟）" source="pinchetimecancelwhennotpaid"/>
+            </FormTab>
             <FormTab label="resources.systemconfig.tabs.rider">
             <SelectArrayInput label="对司机的评价" source="commenttagsfordriver" options={{ fullWidth: true }}/>
             <NumberInput label="最大显示评价数" source="maxshowtags"/>
-            <SelectArrayInput label="拼车城市列表" source="pinchecitylist"  options={{ fullWidth: true }}/>
             <SelectArrayInput label="热门城市列表" source="hotcity"  options={{ fullWidth: true }}/>
             </FormTab>
             <FormTab label="resources.systemconfig.tabs.driver">

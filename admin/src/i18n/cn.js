@@ -195,6 +195,7 @@ export default {
       name: '系统配置 |||| 系统配置',
       tabs:{
         rider:'乘客端设置',
+        pinche:'拼车设置',
         sysconfig:'设置',
         driver:'司机端设置',
         }

@@ -61,6 +61,7 @@ const BuscarpoolCreate = (props) => (
            <DateInput label="出发日期" source="startdate" />
            <TimePickerInput label="出发时间" source="starttime" />
            <NumberInput label="座位数"  source="seatnumber" />
+           <NumberInput label="成团数"  source="groupnumber" />
            <TextInput label="状态"  source="status" />
            <SelectArrayInput label="开始站点" source="startstations" options={{ fullWidth: true }}/>
            <SelectArrayInput label="目的站点" source="endstations" options={{ fullWidth: true }}/>
@@ -94,6 +95,7 @@ const BuscarpoolEdit = (props) => {
                 <DateInput label="出发日期" source="startdate" />
                 <TimePickerInput label="出发时间" source="starttime" />
                 <TextInput label="座位数" source="seatnumber" />
+                <NumberInput label="成团数"  source="groupnumber" />
                 <TextField label="状态" source="status" />
                 <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
               </FormTab>
@@ -131,6 +133,7 @@ const BuscarpoolShow = (props) => {
                     <TextField label="开始站点" source="startstation" />
                     <TextField label="目的站点" source="endstation" />
                     <TextField label="座位数" source="seatnumber" />
+                    <TextField label="成团数"  source="groupnumber" />
                     <TextField label="订单状态" source="orderstatus" />
                     <EditButton />
                 </Datagrid>
@@ -165,7 +168,7 @@ const BuscarpoolList = (props) => (//
         <TextField label="目的城市" source="endcity" />
         <TextField label="座位数" source="seatnumber" />
         <TextField label="下单数" source="seatnumbertotal" />
-
+        <TextField label="成团数"  source="groupnumber" />
         <BooleanField label="是否启用" source="isenabled" />
         <EditButtonInList />
         <ShowButton />
