@@ -12,6 +12,8 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
+import idCard from "idcard";
+import BIN from "bankcardinfo";
 const {
     FormCell,
     CellHeader,

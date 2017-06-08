@@ -12,6 +12,8 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import DatePicker from 'react-mobile-datepicker';
 import moment from 'moment';
+import idCard from "idcard";
+import BIN from "bankcardinfo";
 const {
     FormCell,
     CellHeader,
@@ -75,6 +77,19 @@ export const ischecked = value => value? value:undefined
 let password = '';
 export const passwordA = value => {password = value; return undefined};
 export const passwordB = value => value && value !== password? "两次密码输入不一致":  undefined;
+
+//身份证输入验证
+export const isidcard = value => idCard.verify(value)? undefined : "请输入正确的身份证号码";
+
+//获取银行卡信息
+export const asyncValidate = value=> BIN.getBankBin(parseInt(value)).then(
+	function (data) { 
+		console.log(data);
+	}).catch(
+		error => {
+	        throw { bankaccount: error }
+	    }
+	)
 
 
 const inputDispatchToProps = (dispatch) => {

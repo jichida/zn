@@ -27,9 +27,9 @@ const MycouponItem = (props) => {
   const {name,pricediscountpercent,pricediscountmax,expdate,enabled,triptype} = mycoupon;
   const expdatestring = moment(expdate).format("YYYY-MM-DD");
   return (
-    <div className="li" onClick={onClickItem}>
+    <div className={enabled?"li":"li enabled"} onClick={onClickItem}>
         <div className="w">
-            <div className="a">是否启用{enabled},仅{triptype}使用</div>
+            <div className="a"></div>
             <div className="b">
                 <div className="c">
                     <div className="price color_warning">
@@ -41,7 +41,10 @@ const MycouponItem = (props) => {
                         <span className="bb">折</span>
                     </div>
                 </div>
-                <div className="d">最高抵扣{pricediscountmax}元</div>
+                <div className="d">
+                    <span>最高抵扣{pricediscountmax}元</span>
+                    <span>仅{triptype}使用</span>
+                </div>
             </div>
         </div>
     </div>
