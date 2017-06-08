@@ -1,7 +1,6 @@
 /**
  * Created by wangxiaoqing on 2017/3/27.
  */
-import React from 'react';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -14,7 +13,6 @@ const history = createHistory();
 const middleware = routerMiddleware(history);
 
 import reducer from '../reducers';
-import DevTools from './devtools';
 
 let initialState = {
 

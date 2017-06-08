@@ -134,7 +134,7 @@ export function* wsrecvsagaflow() {
       yield put(loginsendauth_result(result));
       let toast = {
           show : true,
-          text : '发送验证码成功',
+          text : result.msg,
           type : "success"
       }
       yield put(set_weui({ toast }));
