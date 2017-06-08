@@ -10,6 +10,9 @@ export const getcurrentlocationfn = (fncallback)=> {
         try{
             xview.geographyLocationCallbackMethod((data)=>{
                 //alert(JSON.stringify(data));
+                if(typeof data=='string'){
+                  data=JSON.parse(data);
+                }
                 locationsz = [data.longitude,data.latitude];
                 fncallback(locationsz);
             })
