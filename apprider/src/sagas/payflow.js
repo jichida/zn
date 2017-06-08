@@ -11,6 +11,7 @@ import {
   payorder_result,
   getpaysign_request,
   getpaysign_result,
+  triporder_updateone,
   serverpush_userbalance,
   queryuserbalance_result,
 } from '../actions';
@@ -56,6 +57,10 @@ export function* payflow() {
             if(!!timeout){
               yield put(queryuserbalance_result(response.payload));
             }
+          }
+          else if(orderinfo.paytype === 'leftbalance'){
+            //payresult为orderinfo
+            yield put(triporder_updateone(payresult));
           }
           yield put(goBack());//返回上一页面
     });

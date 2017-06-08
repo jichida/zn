@@ -121,7 +121,9 @@ const BuscarpoolShow = (props) => {
                <TextField label="开始城市" source="startcity" />
                <TextField label="目的城市" source="endcity" />
                <DateField label="出发日期" source="startdate" type="date" />
-               <TextField label="出发时间" source="starttime" />
+               <DateField label="出发时间" source="starttime" showTime/>
+               <TextField label="座位数" source="seatnumber" />
+               <TextField label="成团数"  source="groupnumber" />
                <BooleanField label="是否启用" source="isenabled" />
                </FormTab>
                <FormTab label="resources.buscarpool.tabs.passenager">
@@ -132,9 +134,8 @@ const BuscarpoolShow = (props) => {
                     </ReferenceField>
                     <TextField label="开始站点" source="startstation" />
                     <TextField label="目的站点" source="endstation" />
-                    <TextField label="座位数" source="seatnumber" />
-                    <TextField label="成团数"  source="groupnumber" />
                     <TextField label="订单状态" source="orderstatus" />
+                    <DateField label="下单时间" source="created_at" showTime/>
                     <EditButton />
                 </Datagrid>
             </ReferenceManyField>
