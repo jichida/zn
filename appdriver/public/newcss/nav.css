@@ -6,6 +6,7 @@
     position: relative;
     flex-shrink: 0;
     z-index: 1000;
+    padding-top: 20px;
 }
 #newNavHeadContent .title {
     flex-grow: 1;
@@ -22,7 +23,7 @@
     width: 50%;
     z-index: 2;
     left: 0;
-    top:0;
+    top:20px;
 }
 #newNavHeadContent .rightlnk{
     height: 48px;
@@ -30,7 +31,7 @@
     width: 50%;
     z-index: 2;
     right: 0;
-    top: 0;
+    top: 20px;
 }
 #newNavHeadContent .leftlnk,
 #newNavHeadContent .rightlnk{
@@ -51,9 +52,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 15px;
+    padding-left: 20px;
     height: 48px;
-    width: 50px;
+    width: 45px;
 }
 #newNavHeadContent .back:active{
     background: #EEE;

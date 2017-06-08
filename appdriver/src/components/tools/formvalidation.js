@@ -72,7 +72,7 @@ export const phone = value => value && (value.match(/\D/g)||value.length !== 11|
 //不能有空格
 export const space = value => value && value.match(/\s/g) ? '不能有空格' : undefined
 //判断是否被选中
-export const ischecked = value => value? value:undefined
+export const ischecked = value => value? undefined: "您还没有同意该项"
 //二次密码验证
 let password = '';
 export const passwordA = value => {password = value; return undefined};
@@ -271,10 +271,55 @@ class DatePickerInput extends React.Component{
 	}
 }
 
+let WeuiCheckboxValidation = (props) => {
+	const {
+		onError,
+	    labelinfo,
+	    lnkurl,
+	    lnktxt,
+	    input,
+	    meta: { touched, error, warning },
+	    type
+	} = props;
+	let err1 = (touched && error);
+	let err2 = (touched && warning);
+	let style = "";
+	style = err1||err2?"warning":"";
+	return (
+		<FormCell className={style}>
+			<label className="weui-agree">
+				<input { ...input } class="weui-agree__checkbox" type={type} />
+				<span className="weui-agree__text">
+					&nbsp;&nbsp;{labelinfo}
+					{!!lnktxt?(<a href={lnkurl}>{lnktxt}</a>):""}
+				</span>
+			</label>
+			{	touched &&
+		    	((error &&
+		    		<span
+		    			className="warningtext"
+		    			onClick={()=>{onError(error)}}
+		    			>!</span>
+		    		)
+		    		|| (warning &&
+		    			<span
+			    			className="warningtext"
+			    			onClick={()=>{onError(warning)}}
+			    			>!</span>
+		    		))
+		    }
+		</FormCell>
+	);
+}
+
 
 const inputData = (state) => {
     return state;
 };
+
+
+WeuiCheckboxValidation = connect(inputData,inputDispatchToProps)(WeuiCheckboxValidation);
+export {WeuiCheckboxValidation};
 
 DatePickerInput = connect(inputData)(DatePickerInput);
 export {DatePickerInput};

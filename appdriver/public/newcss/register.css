@@ -1,3 +1,4 @@
+
 .registerPage .submitBtn {
 	display: flex;
 	flex-direction: column;
@@ -64,7 +65,6 @@
 	padding: 0 15px;
 }
 .registerPage .aggreeForm{
-	padding: 15px;
 	flex-shrink: 0;
 }
 

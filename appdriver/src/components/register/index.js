@@ -10,6 +10,7 @@ import {
     loginsendauth_request,
     register_request,
   } from '../../actions/index.js';
+import NavBar from '../tools/nav.js';
 import {
     required,
     phone,
@@ -74,17 +75,20 @@ let RegisterForm = (props)=> {
                         InputTit="密码"
                     />
                 </div>
+            
+                <div className="aggreeForm">
+                    <Field
+                        name="hasAggree"
+                        id="hasAggree"
+                        component={ WeuiCheckboxValidation }
+                        type="checkbox"
+                        labelinfo="我已经阅读并同意"
+                        validate={[ ischecked ]}
+                        lnkurl = "/"
+                        lnktxt = "中南出行协议"
+                        />
+                </div>
             </FormUI>
-            <div className="aggreeForm">
-                <Field
-                    name="hasAggree"
-                    id="hasAggree"
-                    component={ WeuiCheckboxValidation }
-                    type="checkbox"
-                    label="我已经阅读并同意中南出行协议"
-                    validate={[ ischecked ]}
-                    />
-            </div>
             <div className="submitBtn">
                 <button className="btn Primary" onClick={handleSubmit}><span>下一步</span></button>
                 <a className="blue" onClick={handleLogin}>已有账号，去登录</a>
@@ -201,6 +205,9 @@ export class Page extends React.Component {
     render() {
         return (
             <div className="registerPage AppPage">
+                <NavBar
+                  back={true}
+                  title="注册用户" />
                 <RegisterForm onClickRegister={this.onClickRegister}
                               onClickReturn={this.onClickReturn}/>
             </div>

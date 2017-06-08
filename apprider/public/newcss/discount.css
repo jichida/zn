@@ -31,6 +31,12 @@
 	display: flex;
 	justify-content: space-between;
 }
+.discountPage .list .li .w .d{
+	flex-grow: 1;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
 .discountPage .list .li .w .c .price{
 	display: flex;
 	flex-direction: column;
@@ -56,5 +62,18 @@
 	position: absolute;
 	bottom: 3px;
 	font-size: 12px;
-	left: 15px;
+}
+.discountPage .list .li .w .d span:first-child{
+	margin-left: 15px;
+}
+.discountPage .list .li .w .d span:last-child{
+	margin-right: 15px;
+}
+
+
+.discountPage .list .li.enabled .color_warning{
+	color: #999
+}
+.discountPage .list .li.enabled .w{
+	border-bottom-color: #CCC;
 }
