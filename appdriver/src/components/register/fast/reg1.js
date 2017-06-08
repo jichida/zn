@@ -8,7 +8,6 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import validate from './validate';
 import _ from "lodash";
 import StarRatingComponent from 'react-star-rating-component';
 const {

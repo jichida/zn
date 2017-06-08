@@ -82,7 +82,7 @@ export const passwordB = value => value && value !== password? "两次密码输�
 export const isidcard = value => idCard.verify(value)? undefined : "请输入正确的身份证号码";
 
 //获取银行卡信息
-export const asyncValidate = value=> BIN.getBankBin(value).then(
+export const asyncValidate = value=> BIN.getBankBin(parseInt(value)).then(
 	function (data) { 
 		console.log(data);
 	}).catch(

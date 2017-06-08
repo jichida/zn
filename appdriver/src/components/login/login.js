@@ -5,6 +5,7 @@ import {loginsendauth_request,loginwithauth_request} from '../../actions';
 import NavBar from '../tools/nav.js';
 import '../../../public/newcss/login.css';
 import { withRouter } from 'react-router-dom';
+import { set_weui } from '../../actions';
 import {
     required,
     phone,
@@ -103,11 +104,27 @@ export class Page extends Component {
     onClickReturn =()=>{
         this.props.history.goBack();
     }
+
+    componentWillUnmount(){
+        this.props.dispatch(set_weui({
+            loading : {
+                show : false
+            },
+        }));
+    }
+
     onClickLogin = (values)=>{
         let payload = {
             phonenumber:values.phonenumber,
             authcode:values.authcode,
         };
+
+        this.props.dispatch(set_weui({
+            loading : {
+                show : true
+            },
+        }));
+
         this.props.dispatch(loginwithauth_request(payload));
     }
     render(){
