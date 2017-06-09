@@ -55,7 +55,7 @@ class PincheForm extends React.Component{
                     <botton
                         className="btn Primary"
                         onClick={handleSubmit}>
-                        确定
+                        查询
                     </botton>
                 </div>
             </Form>
@@ -142,14 +142,15 @@ class Pinche extends React.Component {
                                                     <p
                                                         className="text-warning margin-top-0"
                                                         >
-                                                        剩余{routeobj.seatnumber-routeobj.seatnumbertotal}座
+                                                        {routeobj.groupnumber}成团
+                                                        {routeobj.seatnumbertotal}人已参与
                                                     </p>
                                                 </div>
                                                 <div className="bbtn">
                                                     <span
                                                         onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
                                                         className="btn Primary">
-                                                        出行
+                                                        参团
                                                     </span>
                                                 </div>
                                             </div>

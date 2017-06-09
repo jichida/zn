@@ -218,7 +218,9 @@ export default {
           startstation:'出发站点',
           endstation:'目的站点',
           price:'价格',
-          passenager:'乘客信息'
+          passenager:'乘客信息',
+          stationname:'站点名称',
+          starttime:'到站时间'
         },
         tabs: {
             basicinfo: '基本信息',

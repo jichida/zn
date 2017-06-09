@@ -44,6 +44,8 @@ import {TimePickerInput} from '../controls/timepicker.js';
 
 import RoutePrice from './routeprice.js';
 import RoutePriceShow from './routepriceshow.js';
+import RouteTime from './routetime.js';
+import RouteTimeShow from './routetimeshow.js';
 import MyCopyButton from './mycopybutton.js';
 
 const BuscarpoolcreateTitle = translate(({ record, translate })  => {
@@ -82,6 +84,7 @@ const BuscarpoolEdit = (props) => {
                 <SelectArrayInput label="开始站点" source="startstations" options={{ fullWidth: true }}/>
                 <SelectArrayInput label="目的站点" source="endstations" options={{ fullWidth: true }}/>
                 <RoutePrice label="编辑站点价格" source="carpoolprice" addLabel={true}/>
+                <RouteTime label="编辑站点时间" source="carpoolstationtime" addLabel={true}/>
 
               </FormTab>
               <FormTab label="resources.buscarpool.tabs.basicinfo">
@@ -114,6 +117,7 @@ const BuscarpoolShow = (props) => {
               <TabbedForm>
               <FormTab label="resources.buscarpool.tabs.citystation">
                 <RoutePriceShow label="路线价格" source="carpoolprice" />
+                <RouteTimeShow label="站点时间" source="carpoolstationtime" />
                </FormTab>
                <FormTab label="resources.buscarpool.tabs.basicinfo">
                <TextField source="id" />
