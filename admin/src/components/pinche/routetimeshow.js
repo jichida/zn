@@ -17,9 +17,9 @@ class OrderProductDetail extends Component {
     let {source, record,translate} = this.props;
     let rows = [];
     let starttime = record.starttime;
-    let startstations = record.startstations;
-    let endstations = record.endstations;
-    let carpooltime = record.carpoolstationtime;
+    let startstations = record.startstations||[];
+    let endstations = record.endstations||[];
+    let carpooltime = record.carpoolstationtime||{};
     for(let i = 0;i < startstations.length ;i++){
       if(!carpooltime[startstations[i]]){
         carpooltime[startstations[i]]  = starttime;
