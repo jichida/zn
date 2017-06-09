@@ -46,7 +46,7 @@ const OrderToPayDetail = (props) => {
         return {value:endstation ,label:endstation }
     });
     //<------------
-    const {carpoolstationtime,groupnumber,seatnumbertotal,starttime} = props;
+    const {carpoolstationtime,groupnumber,seatnumber,seatnumbertotal,starttime} = props;
     let timedetail = [];
     _.map(carpoolstationtime,(starttime,stationname)=>{
       timedetail.push({starttime,stationname});
@@ -54,7 +54,7 @@ const OrderToPayDetail = (props) => {
     timedetail = _.sortBy(timedetail, ['starttime']);
 
     let takennumbersz = [];
-    for(let i = 0;i < groupnumber - seatnumbertotal ; i++ ){
+    for(let i = 0;i < seatnumber - seatnumbertotal ; i++ ){
       takennumbersz.push({value:i+1 ,label:`${i+1}人` });
     }
     return (
@@ -68,6 +68,8 @@ const OrderToPayDetail = (props) => {
                 </div>
                 <div className="time">{starttime}</div>
                 <div className="lastnum">{groupnumber}人成团</div>
+                <div className="lastnum">载客{seatnumber}人</div>
+                <div className="lastnum">参与{seatnumbertotal}人</div>
             </div>
             <div className="pageForm formStyle1">
               站点详情

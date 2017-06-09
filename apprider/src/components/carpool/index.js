@@ -129,30 +129,43 @@ class Pinche extends React.Component {
                     {
                         _.map(this.props.resultroute, (routeobj, index)=>{
                             console.log(routeobj);
+                            const {
+                              pinchetype,
+                              starttime,
+                              startcity,
+                              endcity,
+                              groupnumber,
+                              seatnumbertotal,
+                              seatnumber,
+                            } = routeobj;
                             return (
                                 <div
                                     className="li"
                                     key={index}
                                     >
                                     {
-                                        routeobj.pinchetype==="专线"?(
+                                          pinchetype==="专线"?(
                                             <div className="licontent">
-                                                <div className="time">{routeobj.starttime}</div>
+                                                <div className="time">{starttime}</div>
                                                 <div className="city">
-                                                    {routeobj.startcity}——{routeobj.endcity}
+                                                    {startcity}——{endcity}
                                                     <p
                                                         className="text-warning margin-top-0"
                                                         >
-                                                        {routeobj.groupnumber}成团
-                                                        {routeobj.seatnumbertotal}人已参与
+                                                        {groupnumber}成团
+                                                        载客{seatnumber}
+                                                        {seatnumbertotal}人已参与
                                                     </p>
                                                 </div>
                                                 <div className="bbtn">
+                                                {seatnumber > seatnumbertotal?
                                                     <span
                                                         onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
                                                         className="btn Primary">
                                                         参团
-                                                    </span>
+                                                    </span>:
+                                                    <span> 已满 </span>
+                                                  }
                                                 </div>
                                             </div>
                                         ):""
