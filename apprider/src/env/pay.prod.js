@@ -14,7 +14,7 @@ import Common from './xview/Common.js';
      });
    }
    else if(orderinfo.paytype === 'leftbalance'){
-     callbackfn({});
+     callbackfn(paysign);
    }
  }
 

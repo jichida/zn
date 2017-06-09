@@ -75,7 +75,7 @@ let RegisterForm = (props)=> {
                         InputTit="密码"
                     />
                 </div>
-            
+
                 <div className="aggreeForm">
                     <Field
                         name="hasAggree"
@@ -84,8 +84,8 @@ let RegisterForm = (props)=> {
                         type="checkbox"
                         labelinfo="我已经阅读并同意"
                         validate={[ ischecked ]}
-                        lnkurl = "/"
-                        lnktxt = "中南出行协议"
+                        lnkurl="/"
+                        lnktxt="中南出行协议"
                         />
                 </div>
             </FormUI>

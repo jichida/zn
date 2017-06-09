@@ -19,3 +19,8 @@
 /appdriver/src/components/register/tools/renderimageupload.js
 /appdriver/src/reducers/registerfillwizard.js
 appdriver/node_modules/
+admin/node_modules/
+appdriver/build/
+appdriver/npm.txt
+apprider/npm.txt
+appdriver/npm-debug.log

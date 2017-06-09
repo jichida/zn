@@ -3,7 +3,6 @@
  */
 import { createReducer } from 'redux-act';
 import {
-    getpaysign_result,
     ui_setorderdetail,
     ui_setselcommenttag
 } from '../actions';
@@ -11,7 +10,6 @@ import _ from 'lodash';
 
 const initial = {
     orderdetail: {
-        paysign:'',
         paytype:'alipay',
         usecoupon:false,
         coupon:{},
@@ -39,13 +37,6 @@ const orderdetail = createReducer({
         return {
             ...state,
             commenttagsel
-        };
-    },
-    [getpaysign_result]: (state, payload) => {
-        let resultroute = [...payload];
-        return {
-            ...state,
-            resultroute
         };
     },
     //设置订单临时数据
