@@ -113,7 +113,7 @@ class Page extends React.Component {
     if(!!this.props.renderSeparator){
       return this.props.renderSeparator(sectionID, rowID);
     }
-    return (<div key={`${sectionID}-${rowID}`} style={{ backgroundColor: '#F5F5F9', height: 8 }} />);
+    return (<div key={`${sectionID}-${rowID}`} style={{height: 8 }} />);
   }
 
   renderFooter(){
@@ -149,11 +149,7 @@ class Page extends React.Component {
         onScroll={() => { console.log('scroll'); } }
         onEndReached={this._onEndReached}
         onEndReachedThreshold={10}
-        style={{
-          height: this.props.listheight,
-          border: '1px solid #ddd',
-          margin: '10px 0',
-        }}
+        style={{height: this.props.listheight}}
         useZscroller
         scrollerOptions={{ scrollbars: false }}
         refreshControl={<ListView.RefreshControl

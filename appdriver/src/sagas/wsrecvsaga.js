@@ -88,6 +88,12 @@ export function* wsrecvsagaflow() {
 
 
   yield takeEvery(`${carcreate_result}`, function*(action) {
+      let toast = {
+          show : true,
+          text : "添加车辆成功",
+          type : "success"
+      }
+      yield put(set_weui({ toast }));
       yield put(goBack());
   });
 

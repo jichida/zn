@@ -58,7 +58,8 @@ class Page extends Component {
                                 name="LicensePhotoldURL"
                                 loading={this.showLoading.bind(this)}
                                 component={renderImageupload}
-                                validate={[ requiredImg ]} />
+                                validate={[ requiredImg ]}
+                                />
                         </div>
                     </div>
 

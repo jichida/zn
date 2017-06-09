@@ -28,6 +28,8 @@ import { _getBankInfoByCardNo } from "./validationbank"
 
 //判断是否必填
 export const required = value => value ? undefined : '必填项'
+export const requiredImg = value => value ? undefined : '图片必须上传';
+
 //最长输入长度
 export const maxLength = max => value => value && value.length > max ? `超过字段最大长度${max}` : undefined;
 export const maxLength7 = maxLength(7)
@@ -179,12 +181,15 @@ let WeuiInputValidation = (props) => {
 	style = err1||err2?"warning":"";
 	return (
 	    <FormCell className={style}>
-            <CellHeader>
-                <Label>
-                	{HeadIcon?(<img src={HeadIcon}  alt=""/> ):""}
-                	<span>{InputTit}</span>
-                </Label>
-            </CellHeader>
+	    	{(!!InputTit||!!HeadIcon)?(
+	    		<CellHeader>
+	                <Label>
+	                	{HeadIcon?(<img src={HeadIcon}  alt=""/> ):""}
+	                	<span>{InputTit}</span>
+	                </Label>
+	            </CellHeader>
+	    	):''}
+            
             <CellBody>
                 <Input {...input} type={type} placeholder={placeholder}/>
                 <span>{Company}</span>
