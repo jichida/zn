@@ -149,11 +149,7 @@ class Page extends React.Component {
         onScroll={() => { console.log('scroll'); } }
         onEndReached={this._onEndReached}
         onEndReachedThreshold={10}
-        style={{
-          height: this.props.listheight,
-          border: '1px solid #ddd',
-          margin: '10px 0',
-        }}
+        style={{height: this.props.listheight}}
         useZscroller
         scrollerOptions={{ scrollbars: false }}
         refreshControl={<ListView.RefreshControl

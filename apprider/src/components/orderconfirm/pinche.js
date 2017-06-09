@@ -12,10 +12,14 @@ import 'react-weui/lib/react-weui.min.css';
 const {
     CellBody,
     CellHeader,
+    CellsTitle,
+    Cells,
+    Cell,
     Form,
     FormCell,
     Label,
-    Select
+    Select,
+    CellFooter
     } = WeUI;
 
 const OrderToPayDetail = (props) => {
@@ -57,6 +61,15 @@ const OrderToPayDetail = (props) => {
     for(let i = 0;i < seatnumber - seatnumbertotal ; i++ ){
       takennumbersz.push({value:i+1 ,label:`${i+1}人` });
     }
+
+    let pingcheline_groupnumber = parseInt(parseFloat((groupnumber/seatnumber).toFixed(2))*100);
+    let pingcheline_seatnumbertotal = parseInt(parseFloat((seatnumbertotal/seatnumber).toFixed(2))*100);
+
+    let pinechelinestyle_groupnumber = { "width" : pingcheline_groupnumber + "%" };
+    let pinechelinestyle_seatnumbertotal = { "width" : pingcheline_seatnumbertotal + "%" };
+    let pinechelinenumstyle_groupnumber = { "left" : pingcheline_groupnumber + "%" };
+    let pinechelinenumstyle_seatnumbertotal = { "left" : pingcheline_seatnumbertotal + "%" };
+
     return (
         <div className="orderconfirmPinchePage">
             <div className="head">
@@ -66,19 +79,22 @@ const OrderToPayDetail = (props) => {
                     <span className="line"></span>
                     <span>{props.endcity}</span>
                 </div>
-                <div className="time">{starttime}</div>
-                <div className="lastnum">{groupnumber}人成团</div>
-                <div className="lastnum">载客{seatnumber}人</div>
-                <div className="lastnum">参与{seatnumbertotal}人</div>
+                <div className="pingchetime">
+                    <div className="lastnum">{starttime}出发</div>
+                    <div className="lastnum">{groupnumber}人成团</div>
+                    <div className="lastnum">载客{seatnumber}人</div>
+                    <div className="lastnum">已参与{seatnumbertotal}人</div>
+                </div>
             </div>
-            <div className="pageForm formStyle1">
-              站点详情
-              {
-                _.map(timedetail,(item,i)=>{
-                  return (<div key={i}>{item.starttime} 到达 {item.stationname}</div>)
-                })
-              }
+
+            <div className="pinecheline">
+                <div className="groupnumber" style={pinechelinestyle_groupnumber}></div>
+                <div className="seatnumbertotal" style={pinechelinestyle_seatnumbertotal}></div>
+                <span className="groupnumber_num" style={pinechelinenumstyle_groupnumber}><span>{groupnumber}成团</span></span>
+                <span className="seatnumbertotal_num" style={pinechelinenumstyle_seatnumbertotal}><span>当前{seatnumbertotal}</span></span>
+                <span className="seatnumber_num">总载{seatnumber}</span>
             </div>
+            
             <div className="pageForm formStyle1">
                 <Form>
                     <FormCell select selectPos="after">
@@ -112,8 +128,27 @@ const OrderToPayDetail = (props) => {
                         </CellBody>
                     </FormCell>
                 </Form>
-                <div>{groupnumber}人成团 {seatnumbertotal}人参与</div>
-                <div>参团结果会以短信形式发送到你手机上，请注意查收!</div>
+                
+                
+            </div>
+
+            <div className="shuoming">参团结果会以短信形式发送到你手机上，请注意查收!</div>
+
+            <div className="state_list">
+                <CellsTitle>站点详情</CellsTitle>
+                <Cells>
+                    {
+                        _.map(timedetail,(item,i)=>{
+                            return (
+                                <Cell key={i}>
+                                    <CellBody>
+                                        {item.starttime} 到达 {item.stationname}
+                                    </CellBody>
+                                </Cell>
+                            )
+                        })
+                    }
+                </Cells>
             </div>
         </div>
     );
