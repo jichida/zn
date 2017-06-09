@@ -139,6 +139,7 @@ const BuscarpoolShow = (props) => {
                     <TextField label="开始站点" source="startstation" />
                     <TextField label="目的站点" source="endstation" />
                     <TextField label="订单状态" source="orderstatus" />
+                    <TextField label="预定座位数" source="seatnumber" />
                     <DateField label="下单时间" source="created_at" showTime/>
                     <EditButton />
                 </Datagrid>
