@@ -116,10 +116,7 @@ export default [
         'name':'about',
         'icon': <AboutIcon />,
       },
-      {
-        'name':'coupon',
-        'icon': <CouponIcon />,
-      },
+
       ]
   },
   {

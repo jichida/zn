@@ -5,6 +5,9 @@ import { createAction } from 'redux-act';
 
 
 //获取当前订单
+export const getorderdetail_request = createAction('getorderdetail_request');
+export const getorderdetail_result = createAction('getorderdetail_result');
+
 export const getmytriporders_request = createAction('getmytriporders_request');
 export const getmytriporders_result = createAction('getmytriporders_result');
 export const wait_getmytriporders_request = createAction('wait_getmytriporders_request');

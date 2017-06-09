@@ -16,7 +16,12 @@ const {
     CellBody,
     CellFooter
     } = WeUI;
-import {getmytriporders} from '../../actions/sagacallback';
+import {
+  getorderdetail_request
+} from '../../actions';
+import {
+  getmytriporders,
+} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
 //快车信息
 class Kuaiche extends Component{
@@ -79,6 +84,12 @@ const OrderItem = (props) => {
 
 class Page extends Component {
     onClickOrderDetail(orderinfo){
+        this.props.dispatch(getorderdetail_request({
+            query:{
+              _id:orderinfo._id,
+              triptype:orderinfo.triptype
+            }
+          }));
         this.props.history.push(`/orderdetail/${orderinfo._id}`);
     }
     updateContent = (orderinfo)=> {

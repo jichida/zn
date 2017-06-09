@@ -46,6 +46,8 @@ import {
   getmytriporders_result,
   wait_getmytriporders_result,
   md_getmytriporders,
+
+  getorderdetail_result
 } from '../actions';
 import { push } from 'react-router-redux';
 const waitfnsz = [
@@ -89,6 +91,13 @@ export function* wsrecvsagaflow() {
       yield put(triporder_updateone(result));
       yield put(ui_setorderdetail({showaddevaluate:false}));
   });
+
+  yield takeEvery(`${getorderdetail_result}`, function*(action) {
+      let {payload:result} = action;
+      //返回一个订单object
+      yield put(triporder_updateone(result.triporder));
+  });
+
 
 
   yield takeEvery(`${rechargepay_result}`, function*(action) {

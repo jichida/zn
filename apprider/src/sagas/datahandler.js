@@ -94,12 +94,16 @@ import {
     md_mycoupongetall,
 
     getnotifymessageone_request,
-    getnotifymessageone_result
+    getnotifymessageone_result,
+
+    getorderdetail_request,
+    getorderdetail_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getorderdetail_result':getorderdetail_result,
   'getnotifymessageone_result':getnotifymessageone_result,
 
   'mycoupongetall_result':md_mycoupongetall,
@@ -165,6 +169,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'getorderdetail':`${getorderdetail_request}`,
   'mycoupongetall':`${mycoupongetall_request}`,
   'insertemerygencycontact':`${insertemerygencycontact_request}`,
   'deleteemerygencycontact':`${deleteemerygencycontact_request}`,
