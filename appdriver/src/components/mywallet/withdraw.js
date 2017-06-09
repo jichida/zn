@@ -10,15 +10,18 @@ import '../../../public/newcss/userwithdrawals.css';
 import NavBar from '../tools/nav.js';
 import { Field,reduxForm,Form,formValueSelector} from 'redux-form';
 import { connect } from 'react-redux';
-import {withdrawcashapplyaddone_request} from '../../actions';
+import {withdrawcashapplyaddone_request,set_weui} from '../../actions';
 const {
     Form:FormUI,
     } = WeUI;
 import {
-    WeuiSelectValidation,
+    InputBankValidation,
     WeuiInputValidation,
-    required
+    required,
+    validatebank,
+    InputHidden
   }  from "../tools/formvalidation";
+import { _getBankInfoByCardNo } from "../tools/validationbank"
 
 const databanklist = [
     {
@@ -31,8 +34,21 @@ const databanklist = [
     }
 ];
 
+const warn = values => {
+    const warnings = {}
+    _getBankInfoByCardNo(values.bankaccount, (err, info)=>{
+        if(err){
+            warnings.bankaccount = "该银行卡无法识别";
+        }else{
+            console.log(info);
+            //warnings.bankaccount = info.bankName;
+        }
+    })
+}
+
 let WithdrawForm = (props)=>{
-    const { balance,handleSubmit,clicksubmit }  = props;
+    const { balance,handleSubmit,clicksubmit,bankinfo,bankname }  = props;
+
     return (
         <Form
             className="withdrawalsPage AppPage"
@@ -42,20 +58,29 @@ let WithdrawForm = (props)=>{
             <div className="list">
                 <FormUI>
                     <Field
-                        name="bankname"
-                        InputTit="选择银行"
-                        data={databanklist}
-                        component={WeuiSelectValidation}
-                        Option={databanklist}
-                        />
-                    <Field
                         name="bankaccount"
                         InputTit="银行卡号"
                         placeholder="请输入银行卡号"
-                        type="text"
-                        component={WeuiInputValidation}
-                        validate={[ required ]}
+                        type="number"
+                        component={InputBankValidation}
+                        validate={[ required,validatebank ]}
                         />
+                    {bankinfo===''?"":(
+                        <div className="weui-cell">
+                            <div className="weui-cell__hd">
+                                <div>
+                                    <label className="weui-label">
+                                        <span>卡号信息</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="weui-cell__bd">
+                                <div>
+                                    {bankinfo}
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <Field
                         name="cashmoney"
                         InputTit="提现金额"
@@ -80,23 +105,41 @@ let WithdrawForm = (props)=>{
 
 WithdrawForm = reduxForm({
     form: 'withdrawform',
-    initialValues:{
-        bankname : "中国银行",
-    }
+    warn,
 })(WithdrawForm);
-const selector = formValueSelector('withdrawform');
-WithdrawForm = connect(({state}) => {
-    const bankname = selector(state, 'bankname');
+
+const selector = formValueSelector('withdrawform') // <-- same as form name
+WithdrawForm = connect(state => {
+    const bankaccount = selector(state, 'bankaccount');
+    let bankinfo = "";
+    _getBankInfoByCardNo(bankaccount, (info)=>{
+        if(!!info && bankaccount.length>=15 && bankaccount.length<=19){
+            bankinfo = info.bankName +","+ info.cardTypeName;
+        }
+    })
     return {
-        bankname
-    };
-})(WithdrawForm);
+        bankinfo
+    }
+})(WithdrawForm)
 
 
 class Page extends Component {
     onClickWithdraw = (values)=>{
+        _getBankInfoByCardNo(values.bankaccount, (info)=>{
+            values.bankname = info.bankName;
+        })
         values.cashmoney = parseFloat(values.cashmoney);
-        this.props.dispatch(withdrawcashapplyaddone_request(values));
+        if(this.props.balance<values.cashmoney){
+            let toast = {
+                show : true,
+                text : "提现超出余额",
+                type : "warning"
+            }
+            this.props.dispatch(set_weui({ toast }));
+        }else{
+            this.props.dispatch(withdrawcashapplyaddone_request(values));
+        }
+
     }
     render() {
         return (<WithdrawForm clicksubmit={this.onClickWithdraw} balance={this.props.balance}/>);

@@ -24,6 +24,7 @@ const {
     Switch,
     CellFooter
     } = WeUI;
+import { _getBankInfoByCardNo } from "./validationbank"
 
 //判断是否必填
 export const required = value => value ? undefined : '必填项'
@@ -77,20 +78,45 @@ export const ischecked = value => value? undefined: "您还没有同意该项"
 let password = '';
 export const passwordA = value => {password = value; return undefined};
 export const passwordB = value => value && value !== password? "两次密码输入不一致":  undefined;
-
 //身份证输入验证
 export const isidcard = value => idCard.verify(value)? undefined : "请输入正确的身份证号码";
 
 //获取银行卡信息
 export const asyncValidate = value=> BIN.getBankBin(parseInt(value)).then(
 	function (data) { 
-		console.log(data);
+		//console.log(data);
 	}).catch(
 		error => {
 	        throw { bankaccount: error }
 	    }
 	)
 
+
+//验证银行卡信息
+let myvalidatebank =(cardNo)=>{
+    var errMsg = '';
+    if (isNaN(cardNo)) {
+      	cardNo = parseInt(cardNo);
+      	if (isNaN(cardNo)) {
+        	errMsg = cardNo + ':银行卡号必须是数字';
+        	return errMsg
+      	}
+    }
+    if (cardNo.toString().length < 15 || cardNo.toString().length > 19) {
+      	errMsg = cardNo + ':银行卡位数必须是15到19位';
+      	return errMsg;
+    }else{
+    	_getBankInfoByCardNo(cardNo, (info)=>{
+	        if(!!info){
+	            errMsg = "0";
+	        }else{
+	            errMsg = "该银行卡无法识别";
+	        }
+	    })
+	    return errMsg;
+    }
+}
+export const validatebank = value => myvalidatebank(value)==="0"? undefined : myvalidatebank(value);
 
 const inputDispatchToProps = (dispatch) => {
   	return {
@@ -317,6 +343,38 @@ const inputData = (state) => {
     return state;
 };
 
+let InputBankValidation = (props) => {
+
+	const {
+		onError,
+		input, 
+		placeholder, 
+		type, 
+		meta: { asyncValidating, touched, error, warning},
+		Company,
+		InputTit,
+		HeadIcon,
+	} = props;
+	let err = (touched && error);
+	let style = "";
+	style = err?"warning":"";
+	return (
+	    <FormCell className={style}>
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Input {...input} type={type} placeholder={placeholder}/>
+                <span>{Company}</span>
+            </CellBody>
+            { touched && error && <span className="warningtext" onClick={()=>{onError(error)}} >!</span> }
+            { touched && warning && <span className="warninginfo">{warning}</span> }
+        </FormCell>
+	);
+}
 
 WeuiCheckboxValidation = connect(inputData,inputDispatchToProps)(WeuiCheckboxValidation);
 export {WeuiCheckboxValidation};
@@ -335,3 +393,6 @@ export {WeuiInputValidation};
 
 WeuiSelectValidation = connect(inputData)(WeuiSelectValidation);
 export {WeuiSelectValidation};
+
+InputBankValidation = connect(inputData,inputDispatchToProps)(InputBankValidation);
+export {InputBankValidation};
