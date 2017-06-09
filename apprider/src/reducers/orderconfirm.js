@@ -4,7 +4,11 @@
 // gettourbus
 import { createReducer } from 'redux-act';
 import {
-    orderconfirm_settourbus,orderconfirm_setpinche,orderconfirm_setpayway,orderconfirm_selpinchestation
+    orderconfirm_settourbus,
+    orderconfirm_setpinche,
+    orderconfirm_setpincheseatnumber,
+    orderconfirm_setpayway,
+    orderconfirm_selpinchestation
 } from '../actions';
 
 
@@ -14,6 +18,7 @@ const initial = {
             beginstation:'',
             endstation:'',
             orderprice:0,
+            orderseatnumber:1,
         },
         tourbus:{
             rentusername:'',
@@ -43,6 +48,29 @@ const orderconfirm = createReducer({
             tourbus
         };
     },
+    [orderconfirm_setpincheseatnumber]:(state,payload)=>{
+      let orderseatnumber = payload;
+      let pinche = state.pinche;
+      let beginstation = pinche.startstations[0];
+      let endstation = pinche.endstations[0];
+      let orderprice = 0;
+      if(pinche.hasOwnProperty('carpoolprice')){
+          if(pinche.carpoolprice.hasOwnProperty(beginstation)){
+              if(pinche.carpoolprice[beginstation].hasOwnProperty(endstation)){
+                  orderprice = pinche.carpoolprice[beginstation][endstation];
+                  orderprice *= orderseatnumber;
+              }
+          }
+      }
+      return {
+          ...state,
+          pinche:{
+              ...pinche,
+              orderprice,
+              orderseatnumber
+          }
+      };
+    },
     [orderconfirm_setpinche]: (state, payload) => {
         let pinche = payload;
         let beginstation = pinche.startstations[0];
@@ -52,6 +80,7 @@ const orderconfirm = createReducer({
             if(pinche.carpoolprice.hasOwnProperty(beginstation)){
                 if(pinche.carpoolprice[beginstation].hasOwnProperty(endstation)){
                     orderprice = pinche.carpoolprice[beginstation][endstation];
+                    orderprice *= (pinche.orderseatnumber || 1);
                 }
             }
         }
@@ -76,6 +105,7 @@ const orderconfirm = createReducer({
             if(pinche.carpoolprice.hasOwnProperty(beginstation)){
                 if(pinche.carpoolprice[beginstation].hasOwnProperty(endstation)){
                     orderprice = pinche.carpoolprice[beginstation][endstation];
+                    orderprice *= pinche.orderseatnumber;
                 }
             }
         }

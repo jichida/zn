@@ -47,6 +47,7 @@ export const wait_updateorder_result= createAction('wait_updateorder_result');
 //订单确认页面，传递数据
 export const orderconfirm_settourbus = createAction('orderconfirm_settourbus');
 export const orderconfirm_setpinche = createAction('orderconfirm_setpinche');
+export const orderconfirm_setpincheseatnumber = createAction('orderconfirm_setpincheseatnumber');
 export const orderconfirm_setpayway= createAction('orderconfirm_setpayway');
 export const orderconfirm_selpinchestation = createAction('orderconfirm_selpinchestation');
 

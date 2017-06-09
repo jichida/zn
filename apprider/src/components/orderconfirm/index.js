@@ -30,7 +30,7 @@ export class Page extends React.Component {
                 endcity:this.props.endcity,//关联拼车信息
                 orderprice:this.props.orderprice,
                 buscarpoolid:this.props._id,
-                seatnumber:1,
+                seatnumber:this.props.orderseatnumber || 1,
                 frontmoney:0
             };
         }

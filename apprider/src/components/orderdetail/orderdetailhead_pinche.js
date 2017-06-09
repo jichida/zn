@@ -15,7 +15,7 @@ export default class Page extends Component{
           endstation,
           startdate,
           starttime,
-          seatnumber
+          groupnumber
         } = orderinfo;
         return (
                 <div className="pinche">
@@ -25,7 +25,7 @@ export default class Page extends Component{
                         <span className="line"></span>
                         <span className="end">{endcity}({endstation})</span>
                     </div>
-                    <div className="time2">{starttime} <span>{seatnumber}人成团</span></div>
+                    <div className="time2">{starttime} <span>{groupnumber}人成团</span></div>
                 </div>
         )
     }

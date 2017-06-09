@@ -62,6 +62,7 @@ export function* payflow() {
             //payresult为orderinfo
             yield put(triporder_updateone(payresult));
           }
+          console.log(`返回到上一页面`);
           yield put(goBack());//返回上一页面
     });
 

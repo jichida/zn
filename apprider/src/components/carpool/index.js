@@ -5,7 +5,8 @@ import '../../../public/newcss/carpool.css';
 import {
     ui_clickpinchetypebtn,
     getbuscarpool_request,
-    orderconfirm_setpinche
+    orderconfirm_setpinche,
+    orderconfirm_setpincheseatnumber
 } from '../../actions';
 import _ from "lodash";
 import {
