@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import Callcardateinput from './callcardateinput';
 // import renderHTML from 'react-render-html';
 import moment from 'moment';
-import {ui_setcarmap,carmap_resetmap} from '../../actions';
+import {
+  ui_setcarmap,
+  carmap_resetmap,
+  set_weui
+} from '../../actions';
 import {starttriprequestorder} from '../../actions/sagacallback';
 import {pushrequesttodrivers_request} from '../../actions';
 import './caroverlayinit.css';
@@ -48,6 +52,22 @@ class Page extends React.Component {
               },0);
               return;
           }
+          //代驾，并且余额不足
+          //代驾余额不足//mywallet
+          const {balance,daijialeastbalance} = this.props;
+          if(triptype === '代驾' && balance < daijialeastbalance){
+              let confirm = {
+                  show : true,
+                  title : "余额不足",
+                  text : `您好，您的帐户余额${balance}不足${daijialeastbalance}元，需要充值，才能使用代驾`,
+                  buttonsCloseText : "暂不充值",
+                  buttonsClickText : "去充值",
+                  buttonsClick : ()=>{history.push("/mywallet")}
+              }
+              this.props.dispatch(set_weui({confirm}));
+              return;
+          }
+
           let param = {
               triprequest:{
                   srcaddress:srcaddress,
@@ -220,7 +240,7 @@ const mapStateToProps = (state) => {
     resultpricerequest,
     driverlist,
     triptype,
-    
+
     ispagenow,
     ridedatesel,
 
