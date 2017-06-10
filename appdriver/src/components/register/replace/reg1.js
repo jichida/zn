@@ -22,7 +22,7 @@ import {
     required,
     requiredImg,
     WeuiInputValidation,
-
+    validatebank,
     isidcard,
     WeuiSelectValidation,
     InputBankValidation,
@@ -156,7 +156,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required ]}
+                          validate={[ required,validatebank ]}
                           />
                         <Field
                           name="DriverType"

@@ -21,6 +21,7 @@ import {
     isidcard,
     WeuiSelectValidation,
     InputBankValidation,
+    validatebank,
     asyncValidate,
     } from '../../tools/formvalidation';
 
@@ -166,7 +167,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required ]}
+                          validate={[ required,validatebank ]}
                           />
 
                         <Field
