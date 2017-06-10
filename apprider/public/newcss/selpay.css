@@ -12,10 +12,3 @@
 .selpayPage .weui-check{
 	opacity: 0;
 }
-.selpayPage .userrechargePage .weui-cells_radio .weui-icon-checked:before{
-	font-size: 24px;
-}
-
-.selpayPage .userrechargePage .weui-cells_radio .weui-check:checked + .weui-icon-checked:before{
-	font-size: 24px;
-}

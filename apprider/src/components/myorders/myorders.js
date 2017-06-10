@@ -59,7 +59,7 @@ const OrderItem = (props) => {
             return <span style={{width:"15px",display:"inline-block"}}></span>;
         }else{
             if(isrealtime){
-                return (<span className="i">实时</span>);
+                return (<span className="i j">实时</span>);
             }else{
                 return (<span className="i">预约</span>);
             }

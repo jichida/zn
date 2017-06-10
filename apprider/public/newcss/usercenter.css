@@ -12,6 +12,7 @@
    	align-items: center;
    	flex-direction: column;
    	color: #FFF;
+   	padding-top: 35px;
 }
 .usercenterPage .head img{
 	width: 50px;

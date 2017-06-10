@@ -7,6 +7,7 @@ import '../../../public/newcss/userorderinfo.css';
 import Kuaiche from './orderdetailhead_kuaiche';
 import Pinche from './orderdetailhead_pinche';
 import Lvyoudaba from './orderdetailhead_lvyoudaba';
+import moment from "moment";
 
 export default class Page extends Component {
     render() {
@@ -39,6 +40,7 @@ export default class Page extends Component {
             			/>
             		):""
             	}
+                <span className="ordertime">{moment(new Date(orderinfo.created_at)).format("YYYY/MM/DD H:mm:ss")}</span>
             </div>
         )
     }
