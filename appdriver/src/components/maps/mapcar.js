@@ -163,7 +163,7 @@ export class Page extends React.Component {
                  if (!marker) {
                      let startIcon = new window.AMap.Icon({
                          image: image,
-                         imageSize: new window.AMap.Size(25, 45)
+                         imageSize: new window.AMap.Size(25, 31)
                      });
                      let markstartprops = {
                          position: getamppos(markerloc),

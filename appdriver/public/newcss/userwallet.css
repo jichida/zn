@@ -68,3 +68,10 @@
     color: #999;
     font-size: 14px;
 }
+
+.userwalletPage .list .l2 .weui-cell__ft{
+    display: flex;
+    flex-direction: column;
+}
+
+
