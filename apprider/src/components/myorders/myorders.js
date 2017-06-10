@@ -49,6 +49,19 @@ class Pinche extends Component{
         )
     }
 }
+// 旅游大巴
+class Daba extends Component{
+    render(){
+        const {info} = this.props;
+        return (
+            <div className="pinchelistli">
+                <div>用车时间:  {moment(info.startdate).format('YYYY-MM-DD')}</div>
+                <div>还车时间:  {moment(info.enddate).format('YYYY-MM-DD')}</div>
+                <div>{info.orderdetail}</div>
+            </div>
+        )
+    }
+}
 
 const OrderItem = (props) => {
     const {orderinfo,onClickOrderDetail} = props;
@@ -91,6 +104,9 @@ const OrderItem = (props) => {
                   <Kuaiche info={orderinfo} />
               ):""}
 
+              {orderinfo.triptype==="旅游大巴"?(
+                  <Daba info={orderinfo} />
+              ):""}
 
           </CellBody>
           <CellFooter />

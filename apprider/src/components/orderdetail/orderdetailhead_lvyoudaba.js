@@ -35,7 +35,7 @@ export default class Page extends Component{
                 </div>
                 <div className="busslist">
                     <div><img src="newimg/18.png"  alt=""/>用车时间:  {moment(startdate).format('YYYY-MM-DD')}</div>
-                    <div><img src="newimg/18.png"  alt=""/>用车时间:  {moment(enddate).format('YYYY-MM-DD')}</div>
+                    <div><img src="newimg/18.png"  alt=""/>还车时间:  {moment(enddate).format('YYYY-MM-DD')}</div>
                     <div><img src="newimg/21.png"  alt=""/>{orderdetail}</div>
                 </div>
             </div>
