@@ -176,8 +176,10 @@ const mapStateToProps =  (state,props) =>{
       let minpricediscount = orderinfo.orderprice * (1 - orderdetail.coupon.pricediscountpercent*0.1);
       minpricediscount = parseFloat(minpricediscount.toFixed(2));
       couponprice = minpricediscount  > orderdetail.coupon.pricediscountmax ?orderdetail.coupon.pricediscountmax:minpricediscount;
+      couponprice = parseFloat(couponprice.toFixed(2));
     }
     realprice = orderinfo.orderprice - couponprice;
+    realprice = parseFloat(realprice.toFixed(2));
     //优惠券／优惠券抵扣金额
     return {...orderdetail,balance,
       orderinfo,realprice,couponprice,couponnum:couponlist.length};
