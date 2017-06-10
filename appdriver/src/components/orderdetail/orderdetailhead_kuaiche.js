@@ -16,7 +16,7 @@ export default class Page extends Component{
                         <div className="endaddress">{orderinfo.dstaddress.addressname}</div>
                     </div>
                     <a
-                        href={`tel:${19999999999}`}
+                        href={`tel:${orderinfo.riderinfo.RiderPhone}`}
                         className="call">
                         <img src="newimg/19.png"  alt=""/>
                     </a>
