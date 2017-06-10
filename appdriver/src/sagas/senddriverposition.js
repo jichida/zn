@@ -32,30 +32,35 @@ export function* getcurpositionflow(){
   while (true) {
     //定时获取当前位置并发送
     //接单或者更新订单状态时，需要获取当前数据，所以可以立即得到而不用等待
-    const { currentlocresult, timeout } = yield race({
-       currentlocresult: take(`${tosaga_getcurrentloc}`),
-       timeout: call(delay, config.sendlocationinterval)
-    });
-    let curposition;
-    if(timeout){
-      curposition = yield call(getcurrentpos);
-    }
-    else{
-      curposition = currentlocresult.payload;
-    }
-    //定时获取地理位置，存入store
-    yield put(setcurlocation(curposition));//存入store
+    try{
+      const { currentlocresult, timeout } = yield race({
+         currentlocresult: take(`${tosaga_getcurrentloc}`),
+         timeout: call(delay, config.sendlocationinterval)
+      });
+      let curposition;
+      if(timeout){
+        curposition = yield call(getcurrentpos);
+      }
+      else{
+        curposition = currentlocresult.payload;
+      }
+      //定时获取地理位置，存入store
+      yield put(setcurlocation(curposition));//存入store
 
-    const operate = yield select(getoperateprops);
-    if(operate.socketconnected && operate.loginsuccess && operate.approvalstatus === '已审核'){
-      //如果连接并且已经登录,发送给服务端
-      yield put(sendcurlocationtoserver({//RiverRegionCode/bizstatus/
-        driverlocation:[curposition.lng,curposition.lat],
-        // driverstatus:operate.driverstatus,//未接单／已接单
-        // bizstatusstring:operate.bizstatusstring,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
-        // bizstatus:operate.bizstatus,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
-        // triporderid:operate.triporderid
-      }));//发送给server
+      const operate = yield select(getoperateprops);
+      if(operate.socketconnected && operate.loginsuccess && operate.approvalstatus === '已审核'){
+        //如果连接并且已经登录,发送给服务端
+        yield put(sendcurlocationtoserver({//RiverRegionCode/bizstatus/
+          driverlocation:[curposition.lng,curposition.lat],
+          // driverstatus:operate.driverstatus,//未接单／已接单
+          // bizstatusstring:operate.bizstatusstring,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
+          // bizstatus:operate.bizstatus,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
+          // triporderid:operate.triporderid
+        }));//发送给server
+      }
+    }
+    catch(e){
+      alert(`上报地理位置信息错误.${JSON.stringify(e)}`);
     }
 
   }
