@@ -12,7 +12,7 @@ import {
 import {changestartposition} from '../../actions';
 import Popinfotrip from './popinfocar';
 import Popinfowaiting from './popinfolookingcar';
-import Script from 'react-load-script';
+
 import "../../../public/newcss/mapcontainer.css";
 
 
@@ -37,7 +37,6 @@ class Page extends React.Component {
   // }
   componentWillMount () {
     window.amap = null;
-    this.props.dispatch(carmap_setmapinited(window.initamaploaded));
     console.log('地图---->componentWillMount---------');
   }
   componentWillUnmount(){
@@ -298,34 +297,9 @@ class Page extends React.Component {
 
 
 
-    handleScriptCreate() {
-    }
-
-    handleScriptError() {
-    }
-
-    handleScriptLoad() {
-      window.init = ()=>{
-        this.props.dispatch(carmap_setmapinited(true));
-        window.initamaploaded = true;
-        console.log("windowAmap:" + window.AMap);
-
-      };
-    }
-
 
     render() {
       console.log('地图---->render---------');
-      let scriptco = <Script
-          url="http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving"
-          onCreate={this.handleScriptCreate.bind(this)}
-          onError={this.handleScriptError.bind(this)}
-          onLoad={this.handleScriptLoad.bind(this)}
-          />;
-        if(this.props.isMapInited){
-          scriptco = null;
-        }
-
 
         const isenableddrawmapflag = (flag)=>{
             //return true;
@@ -394,7 +368,6 @@ class Page extends React.Component {
                         <img src='images/start.png' alt="" />
                     </div>:null
                 }
-                {scriptco}
             </div>
         );
     }

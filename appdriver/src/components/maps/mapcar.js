@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import L from 'leaflet';
-import Script from 'react-load-script';
+
 import {
   carmap_setzoomlevel,
   carmap_setmapcenter,
@@ -28,7 +28,6 @@ export class Page extends React.Component {
   // }
   componentWillMount () {
     window.amap = null;
-    this.props.dispatch(carmap_setmapinited(window.initamaploaded));
     console.log('地图---->componentWillMount---------');
   }
   componentWillUnmount(){
@@ -230,20 +229,6 @@ export class Page extends React.Component {
      return true;//地图不刷新，直接操作了！
  }
 
- handleScriptCreate() {
- }
-
- handleScriptError() {
- }
-
- handleScriptLoad() {
-   window.init = ()=>{
-     this.props.dispatch(carmap_setmapinited(true));
-     window.initamaploaded = true;
-     console.log("windowAmap:" + window.AMap);
-
-   };
- }
 
   render() {
       const isenableddrawmapflag = (flag)=>{
@@ -252,15 +237,6 @@ export class Page extends React.Component {
       };
 
       console.log('地图---->render---------');
-      let scriptco = <Script
-          url="http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving"
-          onCreate={this.handleScriptCreate.bind(this)}
-          onError={this.handleScriptError.bind(this)}
-          onLoad={this.handleScriptLoad.bind(this)}
-          />;
-        if(this.props.isMapInited){
-          scriptco = null;
-        }
 
         let pophtmlofstartlatlng = null;
         let positiondiv = [0,0];
@@ -289,7 +265,6 @@ export class Page extends React.Component {
         alignItems: 'center',
         position:'relative'
       }}>
-      {scriptco}
       {pophtmlofstartlatlng}
         <div  id="gaodemap"  style={{
                   width: '100%',
