@@ -30,6 +30,12 @@ input, textarea{
     margin:0;
     border:none;
 }
+.AppPage .btn>span{
+    display: block;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 16px;
+}
 .AppPage .submitBtn{
     display: flex;
 }
@@ -145,6 +151,7 @@ input, textarea{
 .formStyle1 .weui-cell.weui-check__label .weui-check:checked+.weui-icon-checked:before{
     content: '\EA06';
     color: #3479e1;
+    font-size: 23px;
 }
 .formStyle1 .weui-cell.weui-check__label .weui-icon-checked:before{
     content: '\EA01';

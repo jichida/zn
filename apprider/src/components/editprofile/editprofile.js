@@ -116,7 +116,7 @@ let EditprofileForm = (props)=>{
       <Fields names={['nickname', 'avatar', 'sex', 'birthday']}
               component={renderEditprofile}/>
       <div className="pagebtn">
-        <button className="btn Primary">确定</button>
+        <button className="btn Primary"><span>确定</span></button>
       </div>
       </Form>
     );

@@ -54,7 +54,7 @@ let locationsz =[0,0];
 
 export const getcurrentlocationfn = (fncallback)=> {
     window.setTimeout(()=>{
-        locationsz = getRandomLocation(31.9931551257,118.7294151918,300);
+        locationsz = getRandomLocation(31.6845100000,119.9616500000,300);
         fncallback(locationsz);
     },0);
 }

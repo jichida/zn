@@ -183,7 +183,6 @@ class Page extends Component {
                           InputTit="准驾类型"
                           component={WeuiSelectValidation}
                           Option={driverTypeData}
-                          validate={[ required ]}
                           />
 
                         <Field
@@ -191,7 +190,6 @@ class Page extends Component {
                           InputTit="性别"
                           component={WeuiSelectValidation}
                           Option={datasexlist}
-                          validate={[ required ]}
                           />
 
                         <Field
@@ -199,7 +197,6 @@ class Page extends Component {
                           InputTit="户籍"
                           component={WeuiSelectValidation}
                           Option={myProvince}
-                          validate={[ required ]}
                           />
 
                         <Field
@@ -216,7 +213,6 @@ class Page extends Component {
                           InputTit="民族"
                           component={WeuiSelectValidation}
                           Option={myFamilyName}
-                          validate={[ required ]}
                           />
 
                         <Field
@@ -224,7 +220,6 @@ class Page extends Component {
                           InputTit="婚姻情况"
                           component={WeuiSelectValidation}
                           Option={datamarriagestatuslist}
-                          validate={[ required ]}
                           />
 
                         <Field
@@ -272,6 +267,14 @@ export default reduxForm({
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
   //asyncValidate,
   //asyncBlurFields: ['bankaccount']
+  //DriverType DriverGender huji DriverNation DriverMaritalStatus
+  initialValues:{
+      DriverType: "C1",
+      DriverGender: "男",
+      huji: "江苏省",
+      DriverNation: "汉族",
+      DriverMaritalStatus: "未婚",
+  }
 })(Page)
 
 

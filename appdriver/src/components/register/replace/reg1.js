@@ -162,7 +162,6 @@ class Page extends Component {
                           InputTit="准驾类型"
                           component={WeuiSelectValidation}
                           Option={driverTypeData}
-                          validate={[ required ]}
                           />
                         <Field
                           name="GetDriverLicenseDate"
@@ -193,6 +192,7 @@ export default reduxForm({
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
   
   initialValues:{
-    GetDriverLicenseDate:moment(new Date()).format('YYYY-MM-DD'),
+      GetDriverLicenseDate:moment(new Date()).format('YYYY-MM-DD'),
+      DriverType: "C1",
   },
 })(Page)

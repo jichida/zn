@@ -104,7 +104,7 @@ let PageForm = (props) => {
 	            	<span>购买说明: 您购买的是不含过路费的，如有疑问请联系客服</span>
 	            </CellsTitle>
 	            <div className="submitBtn">
-	                <button className="btn Primary">确定</button>
+	                <button className="btn Primary"><span>确定</span></button>
 	            </div>
             </FormUI>
 

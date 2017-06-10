@@ -158,9 +158,9 @@ export class Search extends React.Component {
                         <div
                             onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.home)}
                             >
-                            <span className="icon icon-home"></span>
+                            <img src="newimg/8.png" alt=""/>
                             <div>
-                                <span className="tit">家庭</span>
+                                <span className="tit">家</span>
                                 <span className="address">
                                     {this.props.oftenuseaddress.home.name}
                                 </span>
@@ -171,7 +171,7 @@ export class Search extends React.Component {
                         <div
                             onClick={this.onClickSelAddress.bind(this,this.props.oftenuseaddress.company)}
                             >
-                            <span className="icon icon-home"></span>
+                            <img src="newimg/9.png" alt=""/>
                             <div>
                                 <span className="tit">公司</span>
                                 <span className="address">
@@ -182,7 +182,6 @@ export class Search extends React.Component {
                     ):""}
                 </div>
                 <div className="searchContent">
-
                     <SearchBar
                         onChange={this.handleChangeSearchTxt.bind(this)}
                         placeholder="请输入地址关键字"

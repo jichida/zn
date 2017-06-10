@@ -125,6 +125,7 @@ input, textarea{
 .formStyle1 .weui-cell.weui-check__label .weui-check:checked+.weui-icon-checked:before{
     content: '\EA06';
     color: #3479e1;
+    font-size: 23px;    
 }
 .formStyle1 .weui-cell.weui-check__label .weui-icon-checked:before{
     content: '\EA01';

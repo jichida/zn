@@ -41,7 +41,7 @@ class PageForm extends Component{
                     <Field name="paytype" paytypelist={['weixin','alipay']}
                       component={ Selpay } />
                     <div className="submitBtn">
-                        <button className="btn Primary">确定</button>
+                        <button className="btn Primary"><span>确定</span></button>
                     </div>
                 </FormUI>
             </Form>
