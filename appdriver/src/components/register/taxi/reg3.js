@@ -30,7 +30,7 @@ class Page extends Component {
         }));
     }
     render() {
-        const { previousPage } = this.props;
+        const { handleSubmit,previousPage } = this.props;
         return (
             <div className="taxiPage AppPage">
                 <NavBar back={false} title="上传照片" leftnav={[
@@ -59,7 +59,7 @@ class Page extends Component {
                         <div className="tit">监督卡</div>
                         <div className="desc">证件有效期内，需证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            
+
                             <Field
                                 name="PhotoJiandukaURL"
                                 loading={this.showLoading.bind(this)}
@@ -121,7 +121,7 @@ class Page extends Component {
                 </div>
 
                 <div className="submitBtn">
-                    <button className="btn Primary"  onClick={previousPage}><span>上一步</span></button>
+                    <button className="btn Primary" onClick={handleSubmit}><span>确定</span></button>
                 </div>
             </div>
         )

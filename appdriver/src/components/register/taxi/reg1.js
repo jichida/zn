@@ -119,7 +119,7 @@ class Page extends Component {
         return (
             <div className="taxiPage taxiregisterPage AppPage">
 
-                <NavBar back={false} title="注册快车司机"
+                <NavBar back={false} title="注册出租车司机"
                   leftnav={[
                     {
                       type:"action",
@@ -261,5 +261,5 @@ export default reduxForm({
   form: 'registerfillwizard',      // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  
+
 })(Page)
