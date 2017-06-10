@@ -17,12 +17,16 @@ class Page extends Component{
         //   }));
     componentWillMount(){
         const {orderinfo} = this.props;
-        this.props.dispatch(getorderdetail_request({
-            query:{
-                _id:orderinfo._id,
-                triptype:orderinfo.triptype
-            }
-        }));
+        if(orderinfo.triptype === '拼车'){
+          if(typeof orderinfo.buscarpoolid === 'string'){
+            this.props.dispatch(getorderdetail_request({
+                query:{
+                    _id:orderinfo._id,
+                    triptype:orderinfo.triptype
+                }
+            }));
+          }
+        }
     }
 
     render(){
@@ -35,6 +39,13 @@ class Page extends Component{
           startdate,
           buscarpoolid
         } = orderinfo;
+        let getbuscarpoolobj = false;
+        if(!!buscarpoolid){
+          if(typeof buscarpoolid !== 'string'){
+            getbuscarpoolobj = true;
+          }
+        }
+
         return (
                 <div className="pinche">
                     <div className="time">{moment(startdate).format('YYYY-MM-DD')}</div>
@@ -43,7 +54,14 @@ class Page extends Component{
                         <span className="line"></span>
                         <span className="end">{endcity}({endstation})</span>
                     </div>
-                    <div className="time2">{buscarpoolid.starttime} <span>{buscarpoolid.groupnumber}人成团</span></div>
+                    {
+                      getbuscarpoolobj &&
+                      <div className="time2">{buscarpoolid.starttime}
+                      <span>{buscarpoolid.groupnumber}人成团</span>
+                      <span>{buscarpoolid.seatnumbertotal}人参与</span>
+                      </div>
+
+                    }
                 </div>
         )
     }
