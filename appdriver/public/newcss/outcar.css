@@ -100,6 +100,8 @@
     height: 40px;
     display: flex;
     align-items: center;
+    margin-top: -15px;
+    margin-left: -15px;
 }
 .outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.i{
     background: #83cb7a;
@@ -109,6 +111,10 @@
     color: #FFF;
     margin-right: 10px;
 }
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.li{
+    display: flex;
+
+}
 .outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.li:before{
     content: "";
     display: inline-block;
@@ -116,6 +122,8 @@
     height: 8px;
     border-radius: 8px;
     margin-right: 5px;
+    flex-shrink: 0;
+    margin-top: 7px;
 }
 .outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd .a:before{
     border: 1px solid #1aae66;
@@ -137,7 +145,7 @@
 }
 .outcarPage .mapcontent .outcarControl  .list.show{
     display: block;
-    margin-bottom: 33px;
+    margin-bottom: 48px;
     animation:listshow 1s;
     -webkit-animation:listshow .5s;
 }
@@ -167,6 +175,8 @@
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    flex-shrink: 0;
+    align-self: flex-start;
 }
 
 .outcarPage .orderinfohead .call{
@@ -191,8 +201,12 @@
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    align-self: center;
+    align-self: flex-start;
     flex-shrink: 0;
+}
+
+.outcarPage .orderinfohead .userinfo img.avatar{
+    align-self: center;
 }
 .outcarPage .address{
     display: flex;
@@ -200,6 +214,7 @@
     padding-left: 8px;
     flex-grow: 1;
 }
+
 .outcarPage .orderinfohead img.phone{
     width: 40px;
     margin-left: 10px;
@@ -218,6 +233,10 @@
     flex-shrink: 0;
     align-self: center;
 }
+.outcarPage .orderinfohead .address >div.startaddress{
+    display: flex;
+    align-items: center;
+}
 .outcarPage .orderinfohead .address >div.startaddress:before,
 .outcarPage .orderinfohead .address >div.endaddress:before{
     content: "";
@@ -226,7 +245,9 @@
     height: 10px;
     border-radius: 10px;
     margin-right: 10px;
+    margin-top: 7px;
     flex-shrink: 0;
+    align-self: flex-start;
 }
 .outcarPage .orderinfohead .address >div.startaddress:before{
     border: 1px solid #02ae62;
