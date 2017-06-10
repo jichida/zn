@@ -21,8 +21,7 @@ import {
     isidcard,
     WeuiSelectValidation,
     InputBankValidation,
-    validatebank,
-    asyncValidate,
+    validatebank
     } from '../../tools/formvalidation';
 
 import {set_weui} from '../../../actions';
@@ -271,8 +270,8 @@ export default reduxForm({
   form: 'registerfillwizard',                 // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  asyncValidate,
-  asyncBlurFields: ['bankaccount']
+  //asyncValidate,
+  //asyncBlurFields: ['bankaccount']
 })(Page)
 
 

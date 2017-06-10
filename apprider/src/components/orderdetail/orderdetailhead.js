@@ -40,7 +40,7 @@ export default class Page extends Component {
             			/>
             		):""
             	}
-                <span className="ordertime">{moment(new Date(orderinfo.created_at)).format("YYYY/MM/DD H:mm:ss")}</span>
+                <span className="ordertime">下单时间: {moment(new Date(orderinfo.created_at)).format("YYYY/MM/DD H:mm:ss")}</span>
             </div>
         )
     }
