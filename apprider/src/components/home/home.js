@@ -23,7 +23,6 @@ export class AppIndex extends React.Component {
     componentWillMount() {
       let that = this;
       setbackhandler(()=>{
-
         console.log('click android back');
         let confirm = {
           show : true,
@@ -39,10 +38,21 @@ export class AppIndex extends React.Component {
       let currentkeyname = this.props.match.params.keyname;
       if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
           this.props.dispatch(ui_setindexmapvisiable(true));
+
+          if(currentkeyname === 'chuzuche'){
+              this.props.dispatch(carmap_settriptype('出租车'));
+          }
+          else if(currentkeyname === 'kuaiche'){
+              this.props.dispatch(carmap_settriptype('快车'));
+          }
+          else if(currentkeyname === 'daijia'){
+              this.props.dispatch(carmap_settriptype('代驾'));
+          }
       }
       else{
           this.props.dispatch(ui_setindexmapvisiable(false));
       }
+
     }
 
     componentWillUnmount() {
@@ -60,15 +70,6 @@ export class AppIndex extends React.Component {
     }
     onClickPage(page){
         this.props.history.replace('/index/'+page);
-        if(page === 'chuzuche'){
-            this.props.dispatch(carmap_settriptype('出租车'));
-        }
-        else if(page === 'kuaiche'){
-            this.props.dispatch(carmap_settriptype('快车'));
-        }
-        else if(page === 'daijia'){
-            this.props.dispatch(carmap_settriptype('代驾'));
-        }
 
         //代驾余额不足//mywallet
         const {balance,daijialeastbalance} = this.props;
@@ -94,6 +95,15 @@ export class AppIndex extends React.Component {
             let currentkeyname = match.params.keyname;
             if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
                 this.props.dispatch(ui_setindexmapvisiable(true));
+                if(currentkeyname === 'chuzuche'){
+                    this.props.dispatch(carmap_settriptype('出租车'));
+                }
+                else if(currentkeyname === 'kuaiche'){
+                    this.props.dispatch(carmap_settriptype('快车'));
+                }
+                else if(currentkeyname === 'daijia'){
+                    this.props.dispatch(carmap_settriptype('代驾'));
+                }
             }
             else{
                 this.props.dispatch(ui_setindexmapvisiable(false));
