@@ -152,9 +152,9 @@ class Pinche extends React.Component {
                                                     <p
                                                         className="text-warning margin-top-0"
                                                         >
-                                                        {groupnumber}成团
-                                                        载客{seatnumber}
-                                                        {seatnumbertotal}人已参与
+                                                        <span>{groupnumber}成团</span>
+                                                        <span>载客{seatnumber}</span>
+                                                        <span>{seatnumbertotal}人已参与</span>
                                                     </p>
                                                 </div>
                                                 <div className="bbtn">

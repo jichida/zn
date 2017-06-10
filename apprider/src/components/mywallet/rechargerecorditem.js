@@ -20,8 +20,8 @@ let Item =(props)=> {
           <span className="status">{_.get(record,'fromorder.triptype')}</span>
       </CellBody>
       <CellFooter>
-          <span className="color_warning">{record.feebonus}</span>
-          <span className="color_warning">{record.feenew}</span>
+          <span className="color_warning">{record.feebonus>0?"+":""}{record.feebonus}</span>
+          <span className="">余额:{record.feenew}</span>
       </CellFooter>
   </Cell>
 );
