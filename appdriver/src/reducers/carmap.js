@@ -119,9 +119,9 @@ const carmap = createReducer({
       return { ...state,driverlocation,enableddrawmapflag};
     },
     [carmap_resetmap]:(state,initobj)=> {
-        const {driverlocation,mapcenterlocation} = state;
+        const {driverlocation,mapcenterlocation,isMapInited} = state;
         let enableddrawmapflag = ISENABLEDDRAW_MARKERDIRVER;
-        return {...initial.carmap,driverlocation,mapcenterlocation,enableddrawmapflag};
+        return {...initial.carmap,isMapInited,driverlocation,mapcenterlocation,enableddrawmapflag};
     },
     [serverpush_triprequest]:(state,payload)=> {
         let curmappagerequest = {...payload.triprequest};
