@@ -41,7 +41,8 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
-  carmap_setmapstage
+  carmap_setmapstage,
+  payorderwithcash_result
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -145,6 +146,13 @@ export function* wsrecvsagaflow() {
       }
       yield put(set_weui({ toast }));
   });
+
+  yield takeEvery(`${payorderwithcash_result}`, function*(action) {
+      let {payload:result} = action;
+      yield put(serverpush_triporder(result));
+      yield put(triporder_updateone(result.triporder));
+  });
+
 
   yield takeEvery(`${md_serverpush_triporder}`, function*(action) {
       let {payload:result} = action;
