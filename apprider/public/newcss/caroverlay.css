@@ -42,7 +42,7 @@
     position: absolute;
     top: 0;
     width: 100%;
-    top: 48px;
+    top: 68px;
     border-top: 1px solid #EEE;
 }
 .caroverlayPage .userorderinfoPage .orderinfohead:after{
@@ -60,5 +60,5 @@
     flex-direction: column
 }
 .caroverlayPage .dv-star-rating.dv-star-rating-non-editable{
-    width: 70px;
+    width: 82px;
 }

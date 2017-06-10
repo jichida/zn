@@ -7,8 +7,9 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userorderinfo.css';
-const { LoadMore } = WeUI;
+import moment from "moment";
 import _ from 'lodash';
+const { LoadMore } = WeUI;
 
 export default class Page extends Component{
     toPay(){
@@ -76,7 +77,8 @@ export default class Page extends Component{
         return (
                <div className="paycontent">
                   <div className="content">
-                      <LoadMore showLine>{orderinfo.paystatus}</LoadMore>
+                      <LoadMore showLine>下单: {moment(new Date(orderinfo.created_at)).format("YYYY/MM/DD H:mm:ss")} </LoadMore>
+                      <LoadMore showLine style={{marginTop:"1.0em"}}>{orderinfo.paystatus}</LoadMore>
                       <span className="price color_warning">{orderprice}元</span>
                   </div>
                   <div className="pricelist PanelBox">

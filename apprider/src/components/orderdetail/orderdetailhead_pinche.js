@@ -4,8 +4,27 @@
 import React, { Component } from 'react';
 import '../../../public/newcss/userorderinfo.css';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { getorderdetail_request } from '../../actions';
 
-export default class Page extends Component{
+class Page extends Component{
+
+        // this.props.dispatch(getorderdetail_request({
+        //     query:{
+        //       _id:orderinfo._id,
+        //       triptype:orderinfo.triptype
+        //     }
+        //   }));
+    componentWillMount(){
+        const {orderinfo} = this.props;
+        this.props.dispatch(getorderdetail_request({
+            query:{
+                _id:orderinfo._id,
+                triptype:orderinfo.triptype
+            }
+        }));
+    }
+
     render(){
         const {orderinfo} = this.props;
         const {
@@ -14,8 +33,7 @@ export default class Page extends Component{
           startstation,
           endstation,
           startdate,
-          starttime,
-          groupnumber
+          buscarpoolid
         } = orderinfo;
         return (
                 <div className="pinche">
@@ -25,8 +43,9 @@ export default class Page extends Component{
                         <span className="line"></span>
                         <span className="end">{endcity}({endstation})</span>
                     </div>
-                    <div className="time2">{starttime} <span>{groupnumber}人成团</span></div>
+                    <div className="time2">{buscarpoolid.starttime} <span>{buscarpoolid.groupnumber}人成团</span></div>
                 </div>
         )
     }
 }
+export default connect()(Page);

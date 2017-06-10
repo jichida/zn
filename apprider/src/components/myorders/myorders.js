@@ -52,6 +52,20 @@ class Pinche extends Component{
 
 const OrderItem = (props) => {
     const {orderinfo,onClickOrderDetail} = props;
+
+    const getheadtipc = (orderinfo)=>{
+        const { triptype,isrealtime } = orderinfo;
+        if(triptype==="旅游大巴" || triptype==="拼车"){
+            return <span style={{width:"15px",display:"inline-block"}}></span>;
+        }else{
+            if(isrealtime){
+                return (<span className="i">实时</span>);
+            }else{
+                return (<span className="i">预约</span>);
+            }
+        }
+    }
+
     return (
       <Cell
           onClick={onClickOrderDetail}
@@ -60,9 +74,11 @@ const OrderItem = (props) => {
           <CellBody>
               <div className="tt">
                   <div className="ttinfo">
-                      <span className="i">{orderinfo.isrealtime?'':'预约'}</span>
+
+                      {getheadtipc(orderinfo)}
                       <span className="time">{moment(orderinfo.created_at).format("YYYY-MM-DD H:mm:ss")}</span>
                       <span className="type">{orderinfo.triptype}</span>
+
                   </div>
                   <span className="status color_warning">{orderinfo.orderstatus}</span>
               </div>
@@ -84,13 +100,14 @@ const OrderItem = (props) => {
 
 class Page extends Component {
     onClickOrderDetail(orderinfo){
-        this.props.dispatch(getorderdetail_request({
-            query:{
-              _id:orderinfo._id,
-              triptype:orderinfo.triptype
-            }
-          }));
+        // this.props.dispatch(getorderdetail_request({
+        //     query:{
+        //       _id:orderinfo._id,
+        //       triptype:orderinfo.triptype
+        //     }
+        //   }));
         this.props.history.push(`/orderdetail/${orderinfo._id}`);
+        //return ;
     }
     updateContent = (orderinfo)=> {
         return  (
