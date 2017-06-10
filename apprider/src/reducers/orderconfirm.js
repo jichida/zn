@@ -49,10 +49,10 @@ const orderconfirm = createReducer({
         };
     },
     [orderconfirm_setpincheseatnumber]:(state,payload)=>{
-      let orderseatnumber = payload;
+      let orderseatnumber = payload || 1;
       let pinche = state.pinche;
-      let beginstation = pinche.startstations[0];
-      let endstation = pinche.endstations[0];
+      let beginstation = pinche.beginstation;
+      let endstation = pinche.endstation;
       let orderprice = 0;
       if(pinche.hasOwnProperty('carpoolprice')){
           if(pinche.carpoolprice.hasOwnProperty(beginstation)){
@@ -71,16 +71,17 @@ const orderconfirm = createReducer({
           }
       };
     },
-    [orderconfirm_setpinche]: (state, payload) => {
+    [orderconfirm_setpinche]: (state, payload) => {//init
         let pinche = payload;
         let beginstation = pinche.startstations[0];
         let endstation = pinche.endstations[0];
         let orderprice = 0;
+        let orderseatnumber = pinche.orderseatnumber || 1;
         if(pinche.hasOwnProperty('carpoolprice')){
             if(pinche.carpoolprice.hasOwnProperty(beginstation)){
                 if(pinche.carpoolprice[beginstation].hasOwnProperty(endstation)){
                     orderprice = pinche.carpoolprice[beginstation][endstation];
-                    orderprice *= (pinche.orderseatnumber || 1);
+                    orderprice *= orderseatnumber;
                 }
             }
         }
@@ -88,6 +89,7 @@ const orderconfirm = createReducer({
             ...state,
             pinche:{
                 ...pinche,
+                orderseatnumber,
                 orderprice,
                 beginstation,
                 endstation
@@ -112,7 +114,9 @@ const orderconfirm = createReducer({
         return {
             ...state,
             pinche:{
-                ...state.pinche,
+                ...pinche,
+                beginstation,
+                endstation,
                 orderprice,
                 ...payload
             }
