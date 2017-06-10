@@ -82,7 +82,16 @@
     border-radius: 6px;
     padding: 0 5px;
     color: #999;
+    margin-left: 8px;
 }
+.userorderinfoPage .orderinfohead {
+    padding-bottom: 0;
+}
+.userorderinfoPage .orderinfohead .ordertime{
+    margin: 10px 0 10px 0;
+    color: #999;
+}
+
 .userorderinfoPage .orderinfohead .pinche .city .start,
 .userorderinfoPage .orderinfohead .pinche .city .end{
     margin:  0 15px;

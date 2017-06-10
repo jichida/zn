@@ -26,7 +26,6 @@ import {
     isidcard,
     WeuiSelectValidation,
     InputBankValidation,
-    asyncValidate,
     } from '../../tools/formvalidation';
 
 import moment from "moment";
@@ -192,8 +191,7 @@ export default reduxForm({
   form: 'registerfillwizard',                 // <------ same form name
   destroyOnUnmount: false,        // <------ preserve form data
   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  asyncValidate,
-  asyncBlurFields: ['bankaccount'],
+  
   initialValues:{
     GetDriverLicenseDate:moment(new Date()).format('YYYY-MM-DD'),
   },

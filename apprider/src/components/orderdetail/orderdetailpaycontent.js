@@ -77,7 +77,7 @@ export default class Page extends Component{
         return (
                <div className="paycontent">
                   <div className="content">
-                      <LoadMore showLine style={{marginTop:"1.0em"}}>{orderinfo.paystatus}</LoadMore>
+                      <LoadMore showLine>{orderinfo.paystatus}</LoadMore>
                       <span className="price color_warning">{orderprice}元</span>
                   </div>
                   <div className="pricelist PanelBox">
