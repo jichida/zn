@@ -39,9 +39,9 @@ const BaseInfoCompanyPermitShow = (props) => (
            <TextField label="经营区域"  source="OperationArea" />
            <TextField label="公司名称"  source="OwnerName" />
            <TextField label="发证机构名称"  source="Organization" />
-            <DateInput label="有效期起" source="StartDate" />
-            <DateInput label="有效期止" source="StopDate" />
-            <DateField label="初次发证日期" source="CertifyDate" />
+           <DateField label="有效期起" source="StartDate" />
+           <DateField label="有效期止" source="StopDate" />
+           <DateField label="初次发证日期" source="CertifyDate" />
            <TextField label="状态"  source="State" />
            <DateField label="数据更新时间" source="UpdateTime" showTime />
            </SimpleShowLayout>
@@ -50,9 +50,27 @@ const BaseInfoCompanyPermitShow = (props) => (
 
 export {BaseInfoCompanyPermitShow};
 export const BaseInfoCompanyPermitList = props => (
-    <ShowPageOne resource={props.resource} location={props.location} ShowPage={BaseInfoCompanyPermitShow}  hasEdit={true}/>
+    <ShowPageOne resource={props.resource} location={props.location}
+    ShowPage={BaseInfoCompanyPermitShow}  hasEdit={true}/>
 );
 
+export const BaseInfoCompanyPermitCreate = (props) => (
+    <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
+        <SimpleForm>
+            <DisabledInputEx  label="公司名称" source="CompanyName" />
+            <TextInputEx label="行政区划代码"  source="Address" />
+            <TextInputEx label="网络预约出租汽车经营许可证号"  source="Certificate" />
+            <TextInputEx label="经营区域"  source="OperationArea" />
+            <TextInputEx label="公司名称"  source="OwnerName" />
+            <TextInputEx label="发证机构名称"  source="Organization" />
+            <DateInput label="有效期起" source="StartDate" />
+            <DateInput label="有效期止" source="StopDate" />
+            <DateInput label="初次发证日期" source="CertifyDate" />
+            <DisabledInputEx label="状态"  source="State" />
+            <DateField label="数据更新时间" source="UpdateTime" showTime />
+        </SimpleForm>
+    </EditPage>
+);
 
 export const BaseInfoCompanyPermitEdit = (props) => (
     <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
@@ -63,9 +81,9 @@ export const BaseInfoCompanyPermitEdit = (props) => (
             <TextInputEx label="经营区域"  source="OperationArea" />
             <TextInputEx label="公司名称"  source="OwnerName" />
             <TextInputEx label="发证机构名称"  source="Organization" />
-            <DateField label="有效期起" source="StartDate" />
-            <DateField label="有效期止" source="StopDate" />
-            <DateField label="初次发证日期" source="CertifyDate" />
+            <DateInput label="有效期起" source="StartDate" />
+            <DateInput label="有效期止" source="StopDate" />
+            <DateInput label="初次发证日期" source="CertifyDate" />
             <DisabledInputEx label="状态"  source="State" />
             <DateField label="数据更新时间" source="UpdateTime" showTime />
         </SimpleForm>

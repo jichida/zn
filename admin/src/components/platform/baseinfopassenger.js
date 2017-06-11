@@ -23,7 +23,7 @@ const BaseInfoPassengerTitle = ({ record }) => {
 const BaseInfoPassengerShow = (props) => (
        <Show title={<BaseInfoPassengerTitle />} {...props}>
            <SimpleShowLayout>
-               <TextField label="注册日期" source="RegisterDate" />
+               <DateField label="注册日期" source="RegisterDate" showTime/>
                <TextField label="乘客手机号"  source="PassgngerPhone" />
                <TextField label="乘客称谓"  source="PassengerName" />
                <TextField label="乘客性别"  source="PassengerGender" />
@@ -36,7 +36,7 @@ const BaseInfoPassengerShow = (props) => (
 const BaseInfoPassengerList = (props) => (//
      <List title="乘客信息列表" {...props} >
         <Datagrid>
-        <TextField label="注册日期" source="RegisterDate" />
+        <DateField label="注册日期" source="RegisterDate" showTime/>
         <TextField label="乘客手机号"  source="PassgngerPhone" />
         <TextField label="乘客称谓"  source="PassengerName" />
         <TextField label="乘客性别"  source="PassengerGender" />

@@ -31,7 +31,7 @@ import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/in
 import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit,BaseInfoCompanyCreate} from './components/platform/baseinfocompany.js';
 import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow,BaseInfoCompanyStatCreate,BaseInfoCompanyStatEdit} from './components/platform/baseinfocompanystat.js';
 import {BaseInfoCompanyServiceList,BaseInfoCompanyServiceShow,BaseInfoCompanyServiceEdit} from './components/platform/baseinfocompanyservice.js';
-import {BaseInfoCompanyPermitList,BaseInfoCompanyPermitShow,BaseInfoCompanyPermitEdit} from './components/platform/baseinfocompanypermit.js';
+import {BaseInfoCompanyPermitList,BaseInfoCompanyPermitShow,BaseInfoCompanyPermitCreate,BaseInfoCompanyPermitEdit} from './components/platform/baseinfocompanypermit.js';
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow}  from './components/platform/baseinfocompanypay.js';
 import {BaseInfoCompanyFareList,BaseInfoCompanyFareCreate,BaseInfoCompanyFareEdit}  from './components/platform/baseinfocompanyfare.js';
 import {BaseInfoVehicleList,BaseInfoVehicleCreate,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
@@ -88,7 +88,7 @@ class App extends Component {
                 messages={translations}
             >
             <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit} create={SystemconfigCreate} />
-  
+
             <Resource name="carbrand" list={CarbrandlistList}  edit={CarbrandlistEdit} create={CarbrandlistCreate} remove={Delete} />
             <Resource name="carcolor" list={CarcolorlistList}  edit={CarcolorlistEdit} create={CarcolorlistCreate} remove={Delete} />
             <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
@@ -97,7 +97,7 @@ class App extends Component {
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} create={BaseInfoCompanyCreate}/>
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList} show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
             <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} create={BaseInfoCompanyStatCreate} edit={BaseInfoCompanyStatEdit} />
-            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow}  edit={BaseInfoCompanyPermitEdit} />
+            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow} create={BaseInfoCompanyPermitCreate} edit={BaseInfoCompanyPermitEdit} />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
             <Resource name="baseinfovehicle" list={BaseInfoVehicleList} create={BaseInfoVehicleCreate}  edit={BaseInfoVehicleEdit}/>

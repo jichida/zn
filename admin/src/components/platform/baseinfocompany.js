@@ -54,7 +54,8 @@ const BaseInfoCompanyShow = (props) => (
 
 export {BaseInfoCompanyShow};
 export const BaseInfoCompanyList = props => (
-    <ShowPageOne resource={props.resource} location={props.location} ShowPage={BaseInfoCompanyShow}  hasEdit={true}/>
+    <ShowPageOne resource={props.resource} location={props.location}
+    ShowPage={BaseInfoCompanyShow}  hasEdit={true}/>
 );
 
 
