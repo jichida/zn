@@ -38,7 +38,7 @@ import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 import {requireAuthentication} from './requireauthentication';
 
-
+import PincheQuery from './carpool/pinchequery.js';
 
 class AppRoot extends React.Component {
   componentWillMount() {
@@ -80,6 +80,9 @@ class AppRoot extends React.Component {
                     <Route path="/tourbusfillform" component={requireAuthentication(Tourbusfillform)}/>
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
                     <Route path="/seladdressbook" component={requireAuthentication(Seladdressbook)}/>
+                    <Route path="/pinchequery" component={PincheQuery}/>
+
+
                     <Route component={App}/>
                 </Switch>
             </div>

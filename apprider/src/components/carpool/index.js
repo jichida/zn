@@ -4,9 +4,7 @@ import moment from 'moment';
 import '../../../public/newcss/carpool.css';
 import {
     ui_clickpinchetypebtn,
-    getbuscarpool_request,
-    orderconfirm_setpinche,
-    orderconfirm_setpincheseatnumber
+    setpinchequery
 } from '../../actions';
 import _ from "lodash";
 import {
@@ -86,10 +84,6 @@ PincheForm = connect(({state,pinche,appui,app:{pinchecitylist:citylist}}) => {
 })(PincheForm);
 
 class Pinche extends React.Component {
-    onClickPage(name,routeobj){
-        this.props.dispatch(orderconfirm_setpinche(routeobj));
-        this.props.history.push(name);
-    }
     onClickTabbtn =(newvalue)=>{
         this.props.dispatch(ui_clickpinchetypebtn(newvalue));
     }
@@ -101,10 +95,10 @@ class Pinche extends React.Component {
             pinchetype:tabtitle[value.pinchetype],
             startdate:value.starttime
         };
-        this.props.dispatch(getbuscarpool_request(querydata));
+        this.props.dispatch(setpinchequery(querydata));
+        this.props.history.push('/pinchequery');
     }
     render() {
-
         const {  pinchetypetabbtn } = this.props;
         return (
             <div className="carpoolPage AppPage">
@@ -125,56 +119,6 @@ class Pinche extends React.Component {
 
                 <PincheForm FormSubmit={this.formSubmit}/>
 
-                <div className="listcontent">
-                    {
-                        _.map(this.props.resultroute, (routeobj, index)=>{
-                            console.log(routeobj);
-                            const {
-                              pinchetype,
-                              starttime,
-                              startcity,
-                              endcity,
-                              groupnumber,
-                              seatnumbertotal,
-                              seatnumber,
-                            } = routeobj;
-                            return (
-                                <div
-                                    className="li"
-                                    key={index}
-                                    >
-                                    {
-                                          pinchetype==="专线"?(
-                                            <div className="licontent">
-                                                <div className="time">{starttime}</div>
-                                                <div className="city">
-                                                    {startcity}——{endcity}
-                                                    <p
-                                                        className="text-warning margin-top-0"
-                                                        >
-                                                        <span>{groupnumber}成团</span>
-                                                        <span>载客{seatnumber}</span>
-                                                        <span>{seatnumbertotal}人已参与</span>
-                                                    </p>
-                                                </div>
-                                                <div className="bbtn">
-                                                {seatnumber > seatnumbertotal?
-                                                    <span
-                                                        onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
-                                                        className="btn Primary">
-                                                        参团
-                                                    </span>:
-                                                    <span> 已满 </span>
-                                                  }
-                                                </div>
-                                            </div>
-                                        ):""
-                                    }
-                                </div>
-                            )
-                        })
-                    }
-                </div>
             </div>
         );
     }
