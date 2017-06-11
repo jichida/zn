@@ -66,10 +66,9 @@ export class Page extends Component{
     render(){
         const {
             orderinfo,
-            commenttagsfordriver,
+            commenttagsfordriverselmax,
             commenttagsel,
             showaddevaluate,
-            maxshowtags,
             ratenum,//评分
             } = this.props;
 
@@ -81,13 +80,6 @@ export class Page extends Component{
           }
         }
 
-        let commenttagsfordriverselmaxleft = _.xor(commenttagsfordriver,commenttagsel);
-        commenttagsfordriverselmaxleft = _.shuffle(commenttagsfordriverselmaxleft);
-        let commenttagsfordriverselmax = [...commenttagsel,...commenttagsfordriverselmaxleft];
-        if(commenttagsfordriverselmax.length > maxshowtags){
-          let drops = commenttagsfordriverselmax.length - maxshowtags;
-          commenttagsfordriverselmax = _.dropRight(commenttagsfordriverselmax,drops);
-        }
 
 
         return (
@@ -167,7 +159,20 @@ export class Page extends Component{
     }
 }
 
-const data =  ({orderdetail,app:{commenttagsfordriver,maxshowtags}}) =>{
-    return {...orderdetail,commenttagsfordriver,maxshowtags};
+const data =  ({orderdetail}) =>{
+    const {
+      ratenum,
+      commenttagsel,
+      comment,
+      commenttagsfordriverselmax,
+      showaddevaluate,
+    } = orderdetail;//评分
+    return {
+      ratenum,
+      commenttagsel,
+      comment,
+      commenttagsfordriverselmax,
+      showaddevaluate,
+    };
 };
 export default connect(data)(Page);

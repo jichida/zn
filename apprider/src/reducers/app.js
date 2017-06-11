@@ -13,7 +13,7 @@ const initial = {
     msg:'',
     ispop:false,
     pinchecitylist:[],
-    commenttagsfordriver:[],
+
     hotcity:[],
     servicephonenumber:'',
     daijiacancelprice:50,
