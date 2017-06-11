@@ -15,6 +15,7 @@ export const triporder_addone = createAction('triporder_addone');
 export const triporder_updateone = createAction('triporder_updateone');
 //订单详情
 export const ui_setorderdetail = createAction('ui_setorderdetail');
+export const ui_setorderdetail_reset = createAction('ui_setorderdetail_reset');
 export const getcommenttags_request = createAction('getcommenttags_request');
 export const getcommenttags_result = createAction('getcommenttags_result');
 export const updateorder_comment_request = createAction('updateorder_comment_request');

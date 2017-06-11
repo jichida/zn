@@ -18,12 +18,15 @@ const {
 import _ from 'lodash';
 import {
   updateorder_comment_request,
+  ui_setorderdetail_reset,
   ui_setorderdetail,
   ui_setselcommenttag
 } from '../../actions';
 
 export class Page extends Component{
-
+    componentWillMount(){
+      this.props.dispatch(ui_setorderdetail_reset({}))
+    }
     componentWillUnmount(){
         this.addevaluatebox(false);
     }
@@ -66,7 +69,7 @@ export class Page extends Component{
     render(){
         const {
             orderinfo,
-            commenttagsfordriverselmax,
+            commenttags_selmax,
             commenttagsel,
             showaddevaluate,
             ratenum,//评分
@@ -128,7 +131,7 @@ export class Page extends Component{
                             </div>
                             <div className="hottag">
                                 {
-                                  _.map(commenttagsfordriverselmax,(tag,index)=>{
+                                  _.map(commenttags_selmax,(tag,index)=>{
                                     if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
                                       return (<span key={index} className="sel"
                                       onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
@@ -164,14 +167,14 @@ const data =  ({orderdetail}) =>{
       ratenum,
       commenttagsel,
       comment,
-      commenttagsfordriverselmax,
+      commenttags_selmax,
       showaddevaluate,
     } = orderdetail;//评分
     return {
       ratenum,
       commenttagsel,
       comment,
-      commenttagsfordriverselmax,
+      commenttags_selmax,
       showaddevaluate,
     };
 };

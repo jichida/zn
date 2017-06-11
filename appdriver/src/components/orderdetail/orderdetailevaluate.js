@@ -18,12 +18,15 @@ const {
 import _ from 'lodash';
 import {
   ui_setorderdetail,
+  ui_setorderdetail_reset,
   ui_setselcommenttag,
   updateorder_comment_request,
 } from '../../actions';
 
 export class Page extends Component{
-
+    componentWillMount(){
+      this.props.dispatch(ui_setorderdetail_reset({}))
+    }
     componentWillUnmount(){
         this.addevaluatebox(false);
     }
@@ -42,7 +45,7 @@ export class Page extends Component{
       const {ratenum,commenttagsel,comment,orderinfo} = this.props;
       let commentflag = orderinfo.commentflag | 1;
       let commentinfo = {
-        ratedriverinfo:{
+        rateriderinfo:{
           ratenum,
           commenttagsel,
           comment
@@ -66,7 +69,7 @@ export class Page extends Component{
     render(){
         const {
             orderinfo,
-            commenttagsforrider,
+            commenttags_selmax,
             commenttagsel,
             showaddevaluate,
             maxshowtags,
@@ -80,15 +83,6 @@ export class Page extends Component{
             iscommented = true;
           }
         }
-
-        let commenttagsforriderselmaxleft = _.xor(commenttagsforrider,commenttagsel);
-        commenttagsforriderselmaxleft = _.shuffle(commenttagsforriderselmaxleft);
-        let commenttagsforriderselmax = [...commenttagsel,...commenttagsforriderselmaxleft];
-        if(commenttagsforriderselmax.length > maxshowtags){
-          let drops = commenttagsforriderselmax.length - maxshowtags;
-          commenttagsforriderselmax = _.dropRight(commenttagsforriderselmax,drops);
-        }
-
 
         return (
                 <div className="evaluatecontent">
@@ -107,7 +101,7 @@ export class Page extends Component{
                               name="star"
                               editing={false}
                               starCount={5}
-                              value={4}
+                              value={ratenum}
                               emptyStarColor="#EEEEEE"
 
                           />
@@ -136,7 +130,7 @@ export class Page extends Component{
                             </div>
                             <div className="hottag">
                                 {
-                                  _.map(commenttagsforriderselmax,(tag,index)=>{
+                                  _.map(commenttags_selmax,(tag,index)=>{
                                     if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
                                       return (<span key={index} className="sel"
                                       onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
@@ -167,7 +161,20 @@ export class Page extends Component{
     }
 }
 
-const data =  ({orderdetail,app:{commenttagsforrider,maxshowtags}}) =>{
-    return {...orderdetail,commenttagsforrider,maxshowtags};
+const data =  ({orderdetail}) =>{
+    const {
+      ratenum,
+      commenttagsel,
+      comment,
+      commenttags_selmax,
+      showaddevaluate,
+    } = orderdetail;//评分
+    return {
+      ratenum,
+      commenttagsel,
+      comment,
+      commenttags_selmax,
+      showaddevaluate,
+    };
 };
 export default connect(data)(Page);

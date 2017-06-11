@@ -4,6 +4,7 @@
 import { createReducer } from 'redux-act';
 import {
     ui_setorderdetail,
+    ui_setorderdetail_reset,
     getsystemconfig_result,
     ui_setselcommenttag
 } from '../actions';
@@ -11,9 +12,9 @@ import _ from 'lodash';
 
 const initial = {
     orderdetail: {
-        commenttagsfordriver:[],
+        commenttags_:[],
         maxshowtags:9,
-        commenttagsfordriverselmax:[],
+        commenttags_selmax:[],
 
         paytype:'alipay',
         usecoupon:false,
@@ -29,8 +30,8 @@ const initial = {
 
 const orderdetail = createReducer({
     [getsystemconfig_result]:(state,payload)=>{
-      const {commenttagsfordriver,maxshowtags} = payload;
-      return {...state,commenttagsfordriver,maxshowtags};
+      const {commenttagsfordriver:commenttags_,maxshowtags} = payload;
+      return {...state,commenttags_,maxshowtags};
     },
     [ui_setselcommenttag]: (state, payload) => {
         const {addflag,comments} = payload;
@@ -43,40 +44,50 @@ const orderdetail = createReducer({
             return comments === sel;
           });
         }
-        const {commenttagsfordriver,maxshowtags} = state;
-        let commenttagsfordriverselmaxleft = _.xor(commenttagsfordriver,commenttagsel);
-        commenttagsfordriverselmaxleft = _.shuffle(commenttagsfordriverselmaxleft);
-        let commenttagsfordriverselmax = [...commenttagsel,...commenttagsfordriverselmaxleft];
-        if(commenttagsfordriverselmax.length > maxshowtags){
-          let drops = commenttagsfordriverselmax.length - maxshowtags;
-          commenttagsfordriverselmax = _.dropRight(commenttagsfordriverselmax,drops);
+        const {commenttags_,maxshowtags} = state;
+        let commenttags_selmaxleft = _.xor(commenttags_,commenttagsel);
+        commenttags_selmaxleft = _.shuffle(commenttags_selmaxleft);
+        let commenttags_selmax = [...commenttagsel,...commenttags_selmaxleft];
+        if(commenttags_selmax.length > maxshowtags){
+          let drops = commenttags_selmax.length - maxshowtags;
+          commenttags_selmax = _.dropRight(commenttags_selmax,drops);
         }
 
         return {
             ...state,
-            commenttagsfordriverselmax,
+            commenttags_selmax,
             commenttagsel
         };
     },
     //设置订单临时数据
+    [ui_setorderdetail_reset]:(state, payload) => {
+      let commenttags_selmax = [];
+      let commenttagsel = [];//clear
+      let ratenum = 0;
+      let comment = '';
+        //初始化
+       commenttags_selmax = [...state.commenttags_];
+       commenttags_selmax = _.shuffle(commenttags_selmax);
+       if(commenttags_selmax.length > state.maxshowtags){
+         let drops = commenttags_selmax.length - state.maxshowtags;
+         commenttags_selmax = _.dropRight(commenttags_selmax,drops);
+       }
+       commenttagsel = [];
+       ratenum = 0;
+       return {
+           ...state,
+           ratenum,
+           commenttags_selmax,
+           commenttagsel,
+           comment
+       };
+    },
     [ui_setorderdetail]: (state, payload) => {
-        let commenttagsfordriverselmax = state.commenttagsfordriverselmax;
-        if(!!payload.showaddevaluate){
-          //初始化
-           commenttagsfordriverselmax = [...state.commenttagsfordriver];
-           commenttagsfordriverselmax = _.shuffle(commenttagsfordriverselmax);
-           if(commenttagsfordriverselmax.length > state.maxshowtags){
-             let drops = commenttagsfordriverselmax.length - state.maxshowtags;
-             commenttagsfordriverselmax = _.dropRight(commenttagsfordriverselmax,drops);
-           }
-        }
-         return {
+        return {
             ...state,
-            commenttagsfordriverselmax,
             ...payload
         };
     },
-
 
 }, initial.orderdetail);
 
