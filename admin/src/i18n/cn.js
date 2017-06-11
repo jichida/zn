@@ -243,11 +243,11 @@ export default {
         tabs:{
           basic:'基本信息',
           info:'订单详情',
-            daijia:'代驾信息',
-            chuzuche:'出租车信息',
-            kuaiche:'快车信息',
-            lvyoudaba:'旅游大巴信息',
-            pinche:'拼车信息'
+          daijia:'代驾信息',
+          chuzuche:'出租车信息',
+          kuaiche:'快车信息',
+          lvyoudaba:'旅游大巴信息',
+          pinche:'拼车信息'
         }
     },
     triprequest: {

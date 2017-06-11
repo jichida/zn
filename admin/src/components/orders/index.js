@@ -47,12 +47,9 @@ const OrderlistEdit = (props) => {
                 <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={true} >
                 <TextField source="username" />
                 </ReferenceField>
-
-
-
                 <TextField label="订单类型"  source="triptype" />
                 <DateField label="生成时间"  source="created_at" showTime />
-                <SelectInput source="orderstatus" choices={[
+                <SelectInput label="订单状态"  source="orderstatus" choices={[
                     { id: '未支付', name: '未支付' },
                     { id: '已支付定金', name: '已支付定金' },
                     { id: '已支付', name: '已支付' },
@@ -78,7 +75,7 @@ const OrderFilter = (props) => (
        <ReferenceInput label="乘客信息" source="rideruserid" reference="userrider" addLabel={false}>
             <SelectInput optionText="username" />
         </ReferenceInput>
-        <SelectInput source="orderstatus" choices={[
+        <SelectInput label="订单状态"  source="orderstatus" choices={[
             { id: '未支付', name: '未支付' },
             { id: '已支付定金', name: '已支付定金' },
             { id: '已支付', name: '已支付' },
