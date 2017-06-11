@@ -9,8 +9,20 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/userorderinfo.css';
 const { LoadMore } = WeUI;
 import _ from 'lodash';
+import { connect } from 'react-redux';
+import {payorderwithcash_request} from '../../actions';
 
-export default class Page extends Component{
+class Page extends Component{
+    toPay(){
+      const {orderinfo} = this.props;
+      this.props.dispatch(payorderwithcash_request({
+        query:{
+          _id:orderinfo._id,
+          paystatus: { $ne: '已支付' }
+        }
+      }));
+    }
+
     render(){
       const {orderinfo} = this.props;
       const {
@@ -70,7 +82,8 @@ export default class Page extends Component{
           hascoupons = true;
         }
       }
-        return (
+
+      return (
                 <div className="paycontent">
                     <div className="content">
                         <LoadMore showLine>{orderinfo.paystatus}</LoadMore>
@@ -99,7 +112,10 @@ export default class Page extends Component{
                             }
                         </div>
                     </div>
+                    {orderinfo.orderstatus === '未支付' && <div className="getMoney" onClick={this.toPay.bind(this)}><span>现金支付</span></div>}
                 </div>
         )
     }
 }
+
+export default connect()(Page);

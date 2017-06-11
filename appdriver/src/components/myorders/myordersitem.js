@@ -43,7 +43,7 @@ let OrderItem =(props)=> {
                       <span className="time">{createtimestring}</span>
                       <span className="type">{orderinfo.triptype}</span>
                   </div>
-                  <span className="status color_warning">{orderinfo.paystatus}</span>
+                  <span className="status color_warning">{orderinfo.orderstatus}</span>
               </div>
               <div className="li a">{srcaddressname}</div>
               <div className="li b">{dstaddressname}</div>
