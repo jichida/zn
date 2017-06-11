@@ -206,7 +206,7 @@ const carmap = createReducer({
     },
     [canceltriprequestorder_result]:(state,result)=> {
         //叫车中取消叫车后,目的地不显示,路线不显示,store恢复初始化
-        let {mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress,enableddrawmapflag} = state;
+        let {isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress,enableddrawmapflag} = state;
         let autozoomenabled = true;
         if((enableddrawmapflag & ISENABLEDDRAW_MARKERSELF) > 0){
             enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEDDRAW_POPWITHSTART;
@@ -215,7 +215,7 @@ const carmap = createReducer({
             enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_POPWITHSTART;
         }
         mapcenterlocation = markerstartlatlng;
-        return {...initial.carmap,mapcenterlocation,triptype,curlocation,markerstartlatlng,
+        return {...initial.carmap,isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,
             srcaddress,autozoomenabled};
     },
     [carmap_resetmap]:(state,initobj)=> {
