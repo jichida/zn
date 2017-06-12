@@ -325,7 +325,7 @@ class Page extends React.Component {
         if(window.amap){
           if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
             let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
-            positiondiv = [pixel.getX()-58,pixel.getY()-40];
+            positiondiv = [pixel.getX()-73,pixel.getY()-73];
             //positiondiv = [0,0];
             pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
           }

@@ -14,9 +14,11 @@ export const getcurrentpos =()=> {
 let getstringofdistance2 = (leftdistance)=>{
   let leftdistancetxt = '';
   if(leftdistance >= 1000){
-    leftdistancetxt = (leftdistance/1000) + '千米';
+    leftdistance = parseFloat((leftdistance/1000).toFixed(1));
+    leftdistancetxt =  leftdistance + '千米';
   }
   else{
+    leftdistance = parseInt(leftdistance,10);
     leftdistancetxt = leftdistance + '米';
   }
   return leftdistancetxt;
@@ -37,9 +39,11 @@ export const getstringofdistance=(distance)=>{
 export const getstringoftime=(leftduring)=>{
   let leftduringtxt = '';
   if(leftduring >= 60){
-    leftduringtxt = leftduring/60 + '分';
+    leftduring = parseFloat((leftduring/60).toFixed(1));
+    leftduringtxt = leftduring + '分';
   }
   else{
+    leftduring = parseInt(leftduring,10);
     leftduringtxt = leftduring + '秒';
   }
   return leftduringtxt;
