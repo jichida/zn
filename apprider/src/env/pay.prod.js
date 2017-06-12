@@ -19,7 +19,9 @@ import Common from './xview/Common.js';
      }
    }
    catch(e){
-     alert(`payorder错误.${JSON.stringify(e)}`);
+     alert(`paytype:${orderinfo.paytype}
+       paysign:${paysign}
+       payorder错误.${JSON.stringify(e)}`);
      callbackfn(paysign);
    }
 
