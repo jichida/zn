@@ -6,9 +6,7 @@ import { connect } from 'react-redux';
 
 import OrderToPayDetailPinche from './pinche';
 import OrderToPayDetailTourbus from './tourbus';
-import {insertorder} from '../../actions/sagacallback';
-
-import {orderconfirm_setpayway} from '../../actions';
+import {orderconfirm_setpayway,insertorder_request} from '../../actions';
 import NavBar from "../tools/nav.js";
 import "../../../public/newcss/orderconfirm.css";
 
@@ -50,9 +48,7 @@ export class Page extends React.Component {
             return;
         }
         console.log(`insertorder order:` + JSON.stringify(order));
-        this.props.dispatch(insertorder(order)).then(({triporder})=>{
-            this.props.history.replace(`/orderdetail/${triporder._id}`);
-        });
+        this.props.dispatch(insertorder_request(order));
     }
 
     onClickPayway(name){

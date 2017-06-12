@@ -20,11 +20,8 @@ export const triporder_updateone = createAction('triporder_updateone');
 export const payorder_request =  createAction('payorder_request');
 export const payorder_result = createAction('payorder_result');
 
-export const wait_getpaysign_request= createAction('wait_getpaysign_request');
-export const wait_getpaysign_result= createAction('wait_getpaysign_result');
 export const getpaysign_request = createAction('getpaysign_request');
 export const getpaysign_result = createAction('getpaysign_result');
-export const getpaysign_err = createAction('getpaysign_err');
 
 export const ui_setorderdetail = createAction('ui_setorderdetail');
 export const ui_setorderdetail_reset = createAction('ui_setorderdetail_reset');
@@ -33,19 +30,12 @@ export const ui_setselcommenttag = createAction('ui_setselcommenttag');
 
 export const getcommenttags_request = createAction('getcommenttags_request');
 export const getcommenttags_result = createAction('getcommenttags_result');
+
 export const updateorder_comment_request = createAction('updateorder_comment_request');
 export const updateorder_comment_result = createAction('updateorder_comment_result');
 
 export const insertorder_request = createAction('insertorder_request');
-export const wait_insertorder_request= createAction('wait_insertorder_request');
-export const wait_insertorder_result= createAction('wait_insertorder_result');
 export const insertorder_result = createAction('insertorder_result');
-export const insertorder_err = createAction('insertorder_err');
-
-export const updateorder_request = createAction('updateorder_request');
-export const updateorder_result = createAction('updateorder_result');
-export const wait_updateorder_request= createAction('wait_updateorder_request');
-export const wait_updateorder_result= createAction('wait_updateorder_result');
 
 
 //订单确认页面，传递数据

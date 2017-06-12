@@ -8,8 +8,8 @@ import {
   carmap_resetmap,
   set_weui
 } from '../../actions';
-import {starttriprequestorder} from '../../actions/sagacallback';
-import {pushrequesttodrivers_request} from '../../actions';
+
+import {pushrequesttodrivers_request,starttriprequestorder_request} from '../../actions';
 import './caroverlayinit.css';
 import { withRouter } from 'react-router-dom';
 
@@ -86,21 +86,7 @@ class Page extends React.Component {
               param.triprequest.dated_at = ridedatesel;
           }
 
-          dispatch(starttriprequestorder(param)).then((result)=>{
-              //推送给所有司机该订单
-              let driveridlist =[];
-              driverlist.forEach((driver)=>{
-                  driveridlist.push(driver.driverid);
-              });
-              dispatch(pushrequesttodrivers_request({
-                  orderid:result.triporder._id,
-                  requestid:result.triprequest._id,
-                  driveridlist:driveridlist
-              }));
-              history.push('/requestorderstarting');
-
-          }).catch((error)=>{
-          });
+          dispatch(starttriprequestorder_request(param));
       }
 
       let handleSelect=(time)=> {

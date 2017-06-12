@@ -26,7 +26,6 @@ import {
     getmytriporders_request,
     getprice_request,
     getpaysign_request,
-    updateorder_request,
     fillprofile_request,
 
     updateorder_comment_request,
@@ -58,7 +57,6 @@ import {
 
 
     insertorder_result,
-    updateorder_result,
     getpaysign_result,
     md_serverpush_triporder,
     md_loginsendauth_result,
@@ -148,7 +146,6 @@ exports.recvmessagetoresultpair = {
   'starttriprequestorder_result':md_starttriprequestorder_result,
 
   'insertorder_result':insertorder_result,
-  'updateorder_result':updateorder_result,
   'canceltriprequestorder_result':md_canceltriprequestorder_result,
   'getpaysign_result':getpaysign_result
 };
@@ -190,7 +187,6 @@ exports.sendmessageauthfnsz = {
   'pushrequesttodrivers':`${pushrequesttodrivers_request}`,
   'getmytriporders':`${getmytriporders_request}`,
   'insertorder':`${insertorder_request}`,
-  'updateorder':`${updateorder_request}`,
   'getpaysign':`${getpaysign_request}`,
   'fillprofile':`${fillprofile_request}`,
   'updateorder_comment':`${updateorder_comment_request}`,

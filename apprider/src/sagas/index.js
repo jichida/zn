@@ -7,6 +7,7 @@ import {wsrecvsagaflow} from './wsrecvsaga';
 import {payflow} from './payflow';
 import {getcurcityflow} from './getcurcityflow';
 import {jpushflow} from './jpushflow';
+import {createupdatestatusflow} from './updatestatus';
 
 export default function* rootSaga() {
   yield fork(jpushflow);
@@ -18,4 +19,5 @@ export default function* rootSaga() {
   yield fork(createsagacallbackflow);
   yield fork(sendstartpositionflow);
   yield fork(createinitflow);
+  yield fork(createupdatestatusflow);
 }

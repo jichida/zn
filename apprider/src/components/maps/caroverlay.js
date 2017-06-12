@@ -11,8 +11,8 @@ import {
     changestartposition
     } from '../../actions';
 import {
-    canceltriprequestorder
-    } from '../../actions/sagacallback';
+    canceltriprequestorder_request
+    } from '../../actions';
 
 export class Page extends React.Component {
 
@@ -38,14 +38,10 @@ export class Page extends React.Component {
 
     cancelrequest =()=>{
         const {curmappageorder,curmappagerequest,curlocation,dispatch} = this.props;
-        dispatch(canceltriprequestorder({
+        dispatch(canceltriprequestorder_request({
             triporderid:curmappageorder._id,
             triprequestid:curmappagerequest._id
-        })).then((result)=>{
-            dispatch(changestartposition({
-                location:`${curlocation.lng},${curlocation.lat}`
-            }));//重新发送一次附近请求
-        });
+        }));
     }
 
     componentWillReceiveProps (nextProps) {

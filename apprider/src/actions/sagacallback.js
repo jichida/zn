@@ -1,11 +1,5 @@
 
 import {
-    starttriprequestorder_request,wait_starttriprequestorder_request,wait_starttriprequestorder_result,
-    canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
-    getpaysign_request,wait_getpaysign_request,wait_getpaysign_result,
-    insertorder_request,wait_insertorder_request,wait_insertorder_result,
-    updateorder_request,wait_updateorder_request,wait_updateorder_result,
-
     getrechargerecords_request,wait_getrechargerecords_request,wait_getrechargerecords_result,
     getnotifymessage_request,wait_getnotifymessage_request,wait_getnotifymessage_result,
     getmytriporders_request,wait_getmytriporders_request,wait_getmytriporders_result,
@@ -27,26 +21,6 @@ let synccall=(payload,waitfn,fn)=>{
 
 
 //以下导出放在视图中
-export function starttriprequestorder(payload){
-  return synccall(payload,wait_starttriprequestorder_request,starttriprequestorder_request);
-}
-
-export function canceltriprequestorder(payload){
-  return synccall(payload,wait_canceltriprequestorder_request,canceltriprequestorder_request);
-}
-
-export function getpaysign(payload){
-  return synccall(payload,wait_getpaysign_request,getpaysign_request);
-}
-
-export function insertorder(payload){
-  return synccall(payload,wait_insertorder_request,insertorder_request);
-}
-
-export function updateorder(payload){
-  return synccall(payload,wait_updateorder_request,updateorder_request);
-}
-
 //<--
 export function getrechargerecords(payload){
   return synccall(payload,wait_getrechargerecords_request,getrechargerecords_request);
@@ -84,12 +58,6 @@ function* createflowsz(fnwatres,action){
 //以下导出放在saga中
 export function* createsagacallbackflow(){
   let waitfnsz = [];
-  waitfnsz.push([`${wait_starttriprequestorder_request}`,`${wait_starttriprequestorder_result}`]);
-  waitfnsz.push([`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`]);
-  waitfnsz.push([`${wait_getpaysign_request}`,`${wait_getpaysign_result}`]);
-  waitfnsz.push([`${wait_insertorder_request}`,`${wait_insertorder_result}`]);
-  waitfnsz.push([`${wait_updateorder_request}`,`${wait_updateorder_result}`]);
-
   waitfnsz.push([`${wait_getrechargerecords_request}`,`${wait_getrechargerecords_result}`]);
   waitfnsz.push([`${wait_getnotifymessage_request}`,`${wait_getnotifymessage_result}`]);
   waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);

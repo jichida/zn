@@ -11,6 +11,18 @@ export const getcurrentpos =()=> {
   });
 }
 
+let getcurrentpos_sz =()=> {
+  return new Promise(resolve => {
+     getcurrentlocationfn((locz)=>{
+        if(locz[0] !== 0 && locz[1] !== 0){
+          resolve(locz);
+        }
+      });
+  });
+}
+
+export {getcurrentpos_sz};
+
 let getstringofdistance2 = (leftdistance)=>{
   let leftdistancetxt = '';
   if(leftdistance >= 1000){

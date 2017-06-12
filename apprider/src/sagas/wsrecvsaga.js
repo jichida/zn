@@ -1,4 +1,4 @@
-import { put,takeEvery } from 'redux-saga/effects';
+import { put,takeEvery,call } from 'redux-saga/effects';
 import {
   loginsendauth_result,
 
@@ -8,24 +8,17 @@ import {
   serverpush_triprequestandorder,
   starttriprequestorder_result,
 
-  wait_insertorder_result,
-  wait_getpaysign_result,
-  wait_starttriprequestorder_result,
-
   insertorder_result,
-  updateorder_result,
   canceltriprequestorder_result,
   getpaysign_result,
   triporder_addone,
 
   common_err,
-  wait_updateorder_result,
-  wait_canceltriprequestorder_result,
+  changestartposition,
 
   md_serverpush_triporder,
   md_loginsendauth_result,
   md_serverpush_triprequestandorder,
-  md_starttriprequestorder_result,
   md_canceltriprequestorder_result,
 
   updateorder_comment_result,
@@ -47,9 +40,13 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
-  getorderdetail_result
+  getorderdetail_result,
+  md_starttriprequestorder_result,
+
 } from '../actions';
-import { push } from 'react-router-redux';
+import { push,replace } from 'react-router-redux';
+import {getcurrentpos} from '../util/geo';
+
 const waitfnsz = [
   [
     mycoupongetall_result,
@@ -127,20 +124,13 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${common_err}`, function*(action) {
       let {payload:result} = action;
-      if(result.type === 'insertorder'){
-        yield put(wait_insertorder_result({err:result.errmsg}));
-      }
-      else if(result.type === 'getpaysign'){
-        yield put(wait_getpaysign_result({err:result.errmsg}));
-      }
-      else{
-        yield put(set_weui({
-          toast:{
-          text:result.errmsg,
-          show: true,
-          type:'warning'
-        }}));
-      }
+      yield put(set_weui({
+        toast:{
+        text:result.errmsg,
+        show: true,
+        type:'warning'
+      }}));
+
   });
 
   yield takeEvery(`${md_serverpush_triprequestandorder}`, function*(action) {
@@ -152,29 +142,35 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_starttriprequestorder_result}`, function*(action) {
       let {payload:result} = action;
       yield put(starttriprequestorder_result(result));
-      yield put(wait_starttriprequestorder_result({result:result}));
       yield put(triporder_addone(result.triporder));
+
+      //推送给所有司机该订单
+      // let driveridlist =[];
+      // driverlist.forEach((driver)=>{
+      //     driveridlist.push(driver.driverid);
+      // });
+      // dispatch(pushrequesttodrivers_request({
+      //     orderid:result.triporder._id,
+      //     requestid:result.triprequest._id,
+      //     driveridlist:driveridlist
+      // }));
+      yield put(push('/requestorderstarting'));
   });
 
   //===========
   yield takeEvery(`${insertorder_result}`, function*(action) {
       let {payload:result} = action;
       yield put(triporder_addone(result.triporder));
-      yield put(wait_insertorder_result({result:result}));
+      yield put(replace(`/orderdetail/${result.triporder._id}`));
   });
-  yield takeEvery(`${updateorder_result}`, function*(action) {
-      let {payload:result} = action;
-      yield put(triporder_updateone(result.triporder));
-      yield put(wait_updateorder_result({result:result}));
-  });
+
   yield takeEvery(`${md_canceltriprequestorder_result}`, function*(action) {
       let {payload:result} = action;
       yield put(canceltriprequestorder_result(result));
-      yield put(wait_canceltriprequestorder_result({result:result}));
       yield put(triporder_updateone(result.triporder));
-  });
-  yield takeEvery(`${getpaysign_result}`, function*(action) {
-      let {payload:result} = action;
-      yield put(wait_getpaysign_result({result:result}));
+      let curlocation = yield call(getcurrentpos);
+      yield put(changestartposition({
+          location:`${curlocation.lng},${curlocation.lat}`
+      }));//重新发送一次附近请求
   });
 }

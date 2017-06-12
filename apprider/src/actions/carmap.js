@@ -44,14 +44,9 @@ export const carmap_setcurlocation = createAction('carmap_setcurlocation');
 export const carmap_settriptype = createAction('carmap_settriptype');
 //开始请求
 export const starttriprequestorder_request= createAction('starttriprequestorder_request');
-export const wait_starttriprequestorder_request= createAction('wait_starttriprequestorder_request');
-export const wait_starttriprequestorder_result= createAction('wait_starttriprequestorder_result');
 export const starttriprequestorder_result= createAction('starttriprequestorder_result');
-export const starttriprequestorder_err= createAction('starttriprequestorder_err');
 //取消请求
 export const canceltriprequestorder_request= createAction('canceltriprequestorder_request');
-export const wait_canceltriprequestorder_request= createAction('wait_canceltriprequestorder_request');
-export const wait_canceltriprequestorder_result= createAction('wait_canceltriprequestorder_result');
 export const canceltriprequestorder_result= createAction('canceltriprequestorder_result');
 export const canceltriprequestorder_err= createAction('canceltriprequestorder_err');
 //重置

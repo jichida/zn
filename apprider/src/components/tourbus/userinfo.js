@@ -27,8 +27,8 @@ const {
     } = WeUI;
 import _ from 'lodash';
 import {
-    insertorder
-} from '../../actions/sagacallback';
+    insertorder_request
+} from '../../actions';
 
 
 let PageForm = (props) => {
@@ -153,9 +153,7 @@ let Page = (props) => {
           orderprice:totalorderprice,
       };
       console.log(`insertorder order:` + JSON.stringify(order));
-      props.dispatch(insertorder(order)).then(({triporder})=>{
-          props.history.replace(`/orderdetail/${triporder._id}`);
-      });
+      props.dispatch(insertorder_request(order));
     }
     const {buslistsel,totalnumber} = props;
     return (
