@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_resetmap,carmap_setmapstage} from '../../actions';
+import {carmap_resetmap,carmap_setmapstage,set_weui} from '../../actions';
 import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
 import '../../../public/newcss/outcar.css';
 //import CaroverlayLxck from './embmapstep1lxck';
@@ -66,16 +66,28 @@ export class Page extends React.Component {
 
    cancelrequest =()=>{
      const {curmappagerequest,curmappageorder,dispatch,history}= this.props;
+     let cancelr = ()=>{
+         dispatch(canceltriprequestorder({
+          triporderid:curmappageorder._id,
+          triprequestid:curmappagerequest._id
+        })).then((result)=>{
+          history.goBack();//replace(`/orderdetail/${triporderid}`);
+          window.setTimeout(()=>{
+              dispatch(carmap_resetmap());
+          },0);
+        });
+     }
+     let confirm = {
+       show : true,
+       title : "取消订单",
+       text : "你确定需要取消吗?",
+       buttonsCloseText : "取消",
+       buttonsClickText : "确定",
+       buttonsClose : ()=>{console.log('click close');},
+       buttonsClick : ()=>{cancelr();}
+     };
+     this.props.dispatch(set_weui({confirm}));
 
-     dispatch(canceltriprequestorder({
-      triporderid:curmappageorder._id,
-      triprequestid:curmappagerequest._id
-    })).then((result)=>{
-      history.goBack();//replace(`/orderdetail/${triporderid}`);
-      window.setTimeout(()=>{
-          dispatch(carmap_resetmap());
-      },0);
-    });
   }
   render() {
       const {mapstage,curmappagerequest:currentrequest,curmappageorder:currentorder,

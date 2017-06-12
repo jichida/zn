@@ -10,17 +10,30 @@ import '../../../public/newcss/userorderinfo.css';
 const { LoadMore } = WeUI;
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import {payorderwithcash_request} from '../../actions';
+import {payorderwithcash_request,set_weui} from '../../actions';
 
 class Page extends Component{
     toPay(){
-      const {orderinfo} = this.props;
-      this.props.dispatch(payorderwithcash_request({
-        query:{
-          _id:orderinfo._id,
-          paystatus: { $ne: '已支付' }
-        }
-      }));
+      let getMoney = ()=>{
+        const {orderinfo} = this.props;
+        this.props.dispatch(payorderwithcash_request({
+          query:{
+            _id:orderinfo._id,
+            paystatus: { $ne: '已支付' }
+          }
+        }));
+      }
+      let confirm = {
+        show : true,
+        title : "确定支付",
+        text : "你确定收到现金了吗?",
+        buttonsCloseText : "取消",
+        buttonsClickText : "确定",
+        buttonsClose : ()=>{console.log('click close');},
+        buttonsClick : ()=>{getMoney();}
+      };
+      this.props.dispatch(set_weui({confirm}));
+
     }
 
     render(){
