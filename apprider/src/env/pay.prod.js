@@ -50,7 +50,7 @@ export const onclickpay = ({orderinfo,paytype,dispatch})=> {
            });
          }
          else if(orderinfo.paytype === 'leftbalance'){
-           callbackfn(paysign);
+
          }
       });
   }
@@ -58,6 +58,6 @@ export const onclickpay = ({orderinfo,paytype,dispatch})=> {
     alert(`onclickpay paytype:${orderinfo.paytype}
       paysign:${JSON.stringify(paysign)}
       payorder错误.${JSON.stringify(e)}`);
-    callbackfn(paysign);
+  
   }
 }
