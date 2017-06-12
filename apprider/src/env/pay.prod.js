@@ -55,9 +55,8 @@ export const onclickpay = ({orderinfo,paytype,dispatch})=> {
       });
   }
   catch(e){
-    alert(`onclickpay paytype:${orderinfo.paytype}
-      paysign:${JSON.stringify(paysign)}
+    alert(`onclickpay paytype:${paytype}
       payorder错误.${JSON.stringify(e)}`);
-  
+
   }
 }
