@@ -119,16 +119,6 @@ class Page extends Component {
                             <CellFooter/>
                         </Cell>
 
-                        <Cell access onClick={this.onClickItem.bind(this,'/test')}>
-                            <CellHeader>
-                                <img src="newimg/32.png" alt=""/>
-                            </CellHeader>
-                            <CellBody>
-                                <span className="tit">仅测试</span>
-                                <span className="cont">仅测试</span>
-                            </CellBody>
-                            <CellFooter/>
-                        </Cell>
                     </Cells>
 
                 </div>
