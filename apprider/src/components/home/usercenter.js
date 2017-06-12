@@ -19,6 +19,10 @@ import '../../../public/newcss/usercenter.css';
 class Page extends Component {
 
     onClickItem(name,e){
+      if(name === '/test'){
+        window.location.href='http://baiye.com28.cn/build2/';
+        return;
+      }
       this.props.history.push(name);
       e.stopPropagation();
     }
@@ -111,6 +115,17 @@ class Page extends Component {
                             <CellBody>
                                 <span className="tit">集团信息</span>
                                 <span className="cont">这里可以投诉</span>
+                            </CellBody>
+                            <CellFooter/>
+                        </Cell>
+
+                        <Cell access onClick={this.onClickItem.bind(this,'/test')}>
+                            <CellHeader>
+                                <img src="newimg/32.png" alt=""/>
+                            </CellHeader>
+                            <CellBody>
+                                <span className="tit">仅测试</span>
+                                <span className="cont">仅测试</span>
                             </CellBody>
                             <CellFooter/>
                         </Cell>
