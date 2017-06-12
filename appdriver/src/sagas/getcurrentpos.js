@@ -10,4 +10,14 @@ let getcurrentpos =()=> {
   });
 }
 
-export {getcurrentpos};
+let getcurrentpos_sz =()=> {
+  return new Promise(resolve => {
+     getcurrentlocationfn((locz)=>{
+        if(locz[0] !== 0 && locz[1] !== 0){
+          resolve(locz);
+        }
+      });
+  });
+}
+
+export {getcurrentpos,getcurrentpos_sz};

@@ -6,7 +6,7 @@ import {
   triporder_updateone,
   serverpush_triprequestandorder,
   updaterequeststatus_result,
-  wait_updaterequeststatus_result,
+
   canceltriprequestorder_result,
   wait_canceltriprequestorder_result,
 
@@ -16,7 +16,7 @@ import {
   md_loginsendauth_result,
   md_serverpush_triporder,
   md_serverpush_triprequestandorder,
-  md_updaterequeststatus_result,
+
   md_canceltriprequestorder_result,
 
   md_register_result,
@@ -41,7 +41,10 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
-  payorderwithcash_result
+  payorderwithcash_result,
+
+  md_updaterequeststatus_result,
+  carmap_resetmap
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -177,13 +180,16 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${md_updaterequeststatus_result}`, function*(action) {
       let {payload:result} = action;
-      const {triporder} = result;
+      const {triprequest,triporder} = result;
       if(!!triporder){
         //最后会有一个顺序
         yield put(triporder_updateone(triporder));
       }
       yield put(updaterequeststatus_result(result));
-      yield put(wait_updaterequeststatus_result({result:result}));
+      if(triprequest.requeststatus === '行程完成'){
+        yield put(carmap_resetmap());
+        yield put(replace(`/orderdetail/${result.triporder._id}`));
+      }
   });
 
   yield takeEvery(`${md_canceltriprequestorder_result}`, function*(action) {

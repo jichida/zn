@@ -7,6 +7,7 @@ import {wsrecvsagaflow} from './wsrecvsaga';
 import {jpushflow} from './jpushflow';
 import {createstartoperateloginoutflow} from './startoperateloginout';
 import {createnavdrawrouteflow} from './navdrawroute';
+import {createupdatestatusflow} from './updatestatus';
 
 export default function* rootSaga() {
   yield fork(jpushflow);
@@ -17,4 +18,5 @@ export default function* rootSaga() {
   yield fork(flowmain);
   yield fork(getcurpositionflow);
   yield fork(createsagacallbackflow);
+  yield fork(createupdatestatusflow);
 }

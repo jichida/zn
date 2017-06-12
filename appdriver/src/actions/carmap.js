@@ -4,13 +4,14 @@
 import { createAction } from 'redux-act';
 export const carmap_setmapinited = createAction('carmap_setmapinited');
 //抢单模式开启
+export const acceptrequest = createAction('acceptrequest');
 export const acceptrequest_request = createAction('acceptrequest_request');
 export const acceptrequest_result = createAction('acceptrequest_result');
 //更新状态
+export const updaterequeststatus = createAction('updaterequeststatus');
 export const updaterequeststatus_request = createAction('updaterequeststatus_request');
 export const updaterequeststatus_result = createAction('updaterequeststatus_result');
-export const wait_updaterequeststatus_request = createAction('wait_updaterequeststatus_request');
-export const wait_updaterequeststatus_result = createAction('wait_updaterequeststatus_result');
+
 //取消订单
 export const canceltriprequestorder_request = createAction('canceltriprequestorder_request');
 export const canceltriprequestorder_result = createAction('canceltriprequestorder_result');

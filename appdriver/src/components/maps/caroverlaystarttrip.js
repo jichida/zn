@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_resetmap,set_weui} from '../../actions';
-import {updaterequeststatus,canceltriprequestorder} from '../../actions/sagacallback';
+import {carmap_resetmap,set_weui,updaterequeststatus} from '../../actions';
+import {canceltriprequestorder} from '../../actions/sagacallback';
 import '../../../public/newcss/outcar.css';
 //import CaroverlayLxck from './embmapstep1lxck';
 import CaroverlayQjck from './embmapstep2qjck';
@@ -26,39 +26,18 @@ export class Page extends React.Component {
 
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);
-    const {curmappagerequest,curmappageorder,dispatch,history}= this.props;
-
-    if(curmappagerequest.requeststatus === '已接单'){
-        //更新请求状态（接到乘客）
-        dispatch(updaterequeststatus({
-            triprequestid:curmappagerequest._id,
-            triporderid:curmappageorder._id,
-            requeststatus: "待上车"
-        })).then((result)=>{
-        });
-     }
-    else if(curmappagerequest.requeststatus === '待上车'){
-        dispatch(updaterequeststatus({
-            triprequestid:curmappagerequest._id,
-            triporderid:curmappageorder._id,
-            requeststatus: "行程中",
-        })).then((result)=>{
-        });
-      }
-     else if(curmappagerequest.requeststatus === '行程中'){
-      //更新请求状态（送到乘客目的地）
-      //重定向到订单页面！
-        dispatch(updaterequeststatus({
-            triprequestid:curmappagerequest._id,
-            triporderid:curmappageorder._id,
-            requeststatus: "行程完成",
-        })).then((result)=>{
-            window.setTimeout(()=>{
-                dispatch(carmap_resetmap());
-                history.replace(`/orderdetail/${result.triporder._id}`);
-            },0);
-
-        });
+    const {curmappagerequest,curmappageorder,dispatch}= this.props;
+    const stagenext = {
+      '已接单':'待上车',
+      '待上车':'行程中',
+      '行程中':'行程完成',
+    };
+    if(!!stagenext[curmappagerequest.requeststatus]){
+      dispatch(updaterequeststatus({
+          triprequestid:curmappagerequest._id,
+          triporderid:curmappageorder._id,
+          requeststatus: stagenext[curmappagerequest.requeststatus]
+      }));
     }
   }
 

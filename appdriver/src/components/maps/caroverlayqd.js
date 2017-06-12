@@ -5,10 +5,8 @@ import MapGaode from './mapcar.js';
 import '../../../public/newcss/outcar.css';
 import NavBar from '../tools/nav.js';
 
-import {acceptrequest_request} from '../../actions';
-import {
-  getcurrentlocationfn
-} from '../../env/geo.js';
+import {acceptrequest} from '../../actions';
+
 
 class Page extends React.Component {
     // constructor(props) {
@@ -18,16 +16,9 @@ class Page extends React.Component {
     }
 
     onClickOK(){
-        let updatedrequest = {
-            _id:this.props.selrequest._id,
-        };
-        getcurrentlocationfn((locz)=>{
-             if(locz[0] !== 0 && locz[1] !== 0){
-               updatedrequest.driverlocation = locz;
-               this.props.dispatch(acceptrequest_request(updatedrequest));
-             }
-        });
-
+      this.props.dispatch(acceptrequest({
+          _id:this.props.selrequest._id,
+      }));
     }
     render() {
       let curreqobj = this.props.selrequest;
