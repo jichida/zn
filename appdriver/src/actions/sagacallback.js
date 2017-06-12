@@ -1,5 +1,4 @@
 import {
-    canceltriprequestorder_request,wait_canceltriprequestorder_request,wait_canceltriprequestorder_result,
 
     getrechargerecords_request,wait_getrechargerecords_request,wait_getrechargerecords_result,
     getnotifymessage_request,wait_getnotifymessage_request,wait_getnotifymessage_result,
@@ -51,9 +50,6 @@ function* createflowsz(fnwatres,action){
 
 //以下导出放在视图中
 
-export function canceltriprequestorder(payload){
-  return synccall(payload,wait_canceltriprequestorder_request,canceltriprequestorder_request);
-}
 
 export function getrechargerecords(payload){
   return synccall(payload,wait_getrechargerecords_request,getrechargerecords_request);
@@ -69,8 +65,7 @@ export function getmytriporders(payload){
 //以下导出放在saga中
 export function* createsagacallbackflow(){
   let waitfnsz = [];
-  waitfnsz.push([`${wait_canceltriprequestorder_request}`,`${wait_canceltriprequestorder_result}`]);
-
+  
   waitfnsz.push([`${wait_getrechargerecords_request}`,`${wait_getrechargerecords_result}`]);
   waitfnsz.push([`${wait_getnotifymessage_request}`,`${wait_getnotifymessage_result}`]);
   waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);

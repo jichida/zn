@@ -8,7 +8,7 @@ import {
   updaterequeststatus_result,
 
   canceltriprequestorder_result,
-  wait_canceltriprequestorder_result,
+  canceltriprequestorder,
 
   common_err,
 
@@ -195,7 +195,8 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_canceltriprequestorder_result}`, function*(action) {
       let {payload:result} = action;
       yield put(canceltriprequestorder_result(result));
-      yield put(wait_canceltriprequestorder_result({result:result}));
+      yield put(carmap_resetmap());
+      yield put(goBack());
   });
 
 }

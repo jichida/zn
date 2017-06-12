@@ -15,8 +15,7 @@ export const updaterequeststatus_result = createAction('updaterequeststatus_resu
 //取消订单
 export const canceltriprequestorder_request = createAction('canceltriprequestorder_request');
 export const canceltriprequestorder_result = createAction('canceltriprequestorder_result');
-export const wait_canceltriprequestorder_request = createAction('wait_canceltriprequestorder_request');
-export const wait_canceltriprequestorder_result = createAction('wait_canceltriprequestorder_result');
+
 //设置放大级别
 export const carmap_setzoomlevel = createAction('carmap_setzoomlevel');
 //重置状态

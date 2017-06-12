@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_resetmap,set_weui,updaterequeststatus} from '../../actions';
-import {canceltriprequestorder} from '../../actions/sagacallback';
+import {
+  carmap_resetmap,
+  set_weui,
+  updaterequeststatus,
+  canceltriprequestorder_request
+} from '../../actions';
+
 import '../../../public/newcss/outcar.css';
 //import CaroverlayLxck from './embmapstep1lxck';
 import CaroverlayQjck from './embmapstep2qjck';
@@ -42,17 +47,12 @@ export class Page extends React.Component {
   }
 
    cancelrequest =()=>{
-     const {curmappagerequest,curmappageorder,dispatch,history}= this.props;
+     const {curmappagerequest,curmappageorder,dispatch}= this.props;
      let cancelr = ()=>{
-         dispatch(canceltriprequestorder({
+         dispatch(canceltriprequestorder_request({
           triporderid:curmappageorder._id,
           triprequestid:curmappagerequest._id
-        })).then((result)=>{
-          history.goBack();//replace(`/orderdetail/${triporderid}`);
-          window.setTimeout(()=>{
-              dispatch(carmap_resetmap());
-          },0);
-        });
+        }));
      }
      let confirm = {
        show : true,
