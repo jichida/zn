@@ -279,7 +279,6 @@ export class Page extends React.Component {
   }
 }
 
-//mapstage:请求前/请求中/已接单/行程中/行程结束
 const mapStateToProps = ({operate,carmap,driveroute}) => {
   let curlocation = operate.curlocation;
   let routeleftpts = driveroute.latlngs;

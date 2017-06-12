@@ -1,6 +1,5 @@
 import { createReducer } from 'redux-act';
 import {
-  carmap_setmapstage,
   carmap_setzoomlevel,
   selrequest,
   carmap_setmapcenter,
@@ -31,7 +30,6 @@ const locz =[0,0];
 const initial = {
     carmap: {
         isMapInited:false,
-        mapstage:'联系乘客',
         zoomlevel:15,
         markerstartlatlng:L.latLng(locz[1], locz[0]),//起始位置
         markerendlatlng:L.latLng(locz[1], locz[0]),//目的位置
@@ -53,16 +51,8 @@ const carmap = createReducer({
     [serverpush_restoreorder]:(state,payload)=>{
       let curmappagerequest = payload.triprequest;
       let curmappageorder = payload.triporder;
-      let mapstage = state.mapstage;
       let enableddrawmapflag = 0;
-      if(curmappagerequest.requeststatus === '已接单'){
-        mapstage = '去接乘客';//去接乘客
-      }
-      else if(curmappagerequest.requeststatus === '待上车'){
-        mapstage = '接到乘客';
-      }
-      else if(curmappagerequest.requeststatus === '行程中'){
-        mapstage = '开始行程';
+      if(curmappagerequest.requeststatus === '行程中'){
         enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
       }
       let markerstartlatlng = L.latLng(curmappagerequest.srcaddress.location.lat,curmappagerequest.srcaddress.location.lng);//lat,lng
@@ -70,7 +60,7 @@ const carmap = createReducer({
       enableddrawmapflag |= ISENABLEEDRAW_MARKERSTART;
       enableddrawmapflag |= ISENABLEDDRAW_MARKEREND;
       let mapcenterlocation = markerstartlatlng;
-      return {...state,curmappagerequest,curmappageorder,mapstage,enableddrawmapflag,
+      return {...state,curmappagerequest,curmappageorder,enableddrawmapflag,
       markerstartlatlng,markerendlatlng,mapcenterlocation};
     },
     [serverpush_driverlocation]:(state,payload)=>{
@@ -160,20 +150,6 @@ const carmap = createReducer({
           enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
         }
         return { ...state,enableddrawmapflag,curmappagerequest };
-    },
-    // [driveroute_result]:(state,payload)=> {
-    //     let mapstage = state.mapstage;
-    //     if(state.mapstage === '联系乘客'){
-    //       mapstage = '去接乘客';
-    //     }
-    //     else if(state.mapstage === '去接乘客'){
-    //       mapstage = '开始行程';
-    //     }
-    //     return {...state,mapstage};
-    // },
-    [carmap_setmapstage]:(state,payload)=> {
-        let mapstage = payload;
-        return {...state,mapstage};
     },
     [carmap_setzoomlevel]:(state,zoomlevel)=>{
         return { ...state, zoomlevel };

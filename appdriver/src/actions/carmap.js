@@ -4,7 +4,6 @@
 import { createAction } from 'redux-act';
 export const carmap_setmapinited = createAction('carmap_setmapinited');
 //抢单模式开启
-export const carmap_setmapstage = createAction('carmap_setmapstage');
 export const acceptrequest_request = createAction('acceptrequest_request');
 export const acceptrequest_result = createAction('acceptrequest_result');
 //更新状态

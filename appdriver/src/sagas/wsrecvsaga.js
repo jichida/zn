@@ -41,7 +41,6 @@ import {
   wait_getmytriporders_result,
   md_getmytriporders,
 
-  carmap_setmapstage,
   payorderwithcash_result
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
@@ -132,7 +131,6 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_acceptrequest_result}`, function*(action) {
       let {payload:result} = action;
       yield put(acceptrequest_result(result));
-      yield put(carmap_setmapstage('去接乘客'));
       yield put(replace('/starttrip'));
   });
 
