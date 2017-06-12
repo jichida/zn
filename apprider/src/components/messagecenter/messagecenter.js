@@ -37,7 +37,7 @@ export class Page extends React.Component {
 
     onClickMsgDetail(item){
         this.props.dispatch( getnotifymessageone_result(item) );
-        this.props.history.push(`/messagedetail/${item._id}`);
+        this.props.history.push(`/mymessagedetail/${item._id}`);
     }
 
     render() {
