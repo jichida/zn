@@ -1,16 +1,16 @@
 //import {updateorder_request,ui_setorderdetail} from '../../actions';
 import {getpaysign} from '../actions/sagacallback';
-import Common from './xview/Common.js';
+import * as xview from './xview/Common.js';
 
  export const payorder = (paysign,orderinfo,callbackfn)=>{
    try{
      if(orderinfo.paytype === 'weixin'){
-       Common.wxpayUrl(paysign,(result)=>{
+       xview.wxpayUrl(paysign,(result)=>{
          callbackfn(result);
       });
      }
      else if(orderinfo.paytype === 'alipay'){
-        Common.alipayUrl(paysign,(result)=>{
+        xview.alipayUrl(paysign,(result)=>{
           callbackfn(result);
        });
      }
@@ -20,7 +20,7 @@ import Common from './xview/Common.js';
    }
    catch(e){
      alert(`paytype:${orderinfo.paytype}
-       paysign:${paysign}
+       paysign:${JSON.stringify(paysign)}
        payorder错误.${JSON.stringify(e)}`);
      callbackfn(paysign);
    }
@@ -42,20 +42,22 @@ export const onclickpay = ({orderinfo,paytype,dispatch})=> {
       })).then((paysign)=>{
 
          if(this.props.paytype === 'weixin'){
-           Common.wxpayUrl(paysign,(result)=>{
+           xview.wxpayUrl(paysign,(result)=>{
           });
          }
          else if(this.props.paytype === 'alipay'){
-            Common.alipayUrl(paysign,(result)=>{
+            xview.alipayUrl(paysign,(result)=>{
            });
          }
          else if(orderinfo.paytype === 'leftbalance'){
-           //callbackfn(paysign);
+           callbackfn(paysign);
          }
       });
   }
   catch(e){
-    alert(`onclickpay错误.${JSON.stringify(e)}`);
-    //callbackfn(paysign);
+    alert(`onclickpay paytype:${orderinfo.paytype}
+      paysign:${JSON.stringify(paysign)}
+      payorder错误.${JSON.stringify(e)}`);
+    callbackfn(paysign);
   }
 }
