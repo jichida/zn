@@ -94,12 +94,16 @@ import {
     queryuserbalance_result,
 
     payorderwithcash_request,
-    payorderwithcash_result
+    payorderwithcash_result,
+
+    serverpush_userloginsuccess_notify,
+    queryorder
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'payorderwithcash_result':payorderwithcash_result,
   'queryuserbalance_result':queryuserbalance_result,
   'serverpush_userbalance':queryuserbalance_result,
@@ -169,6 +173,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'queryorder':`${queryorder}`,
   'payorderwithcash':`${payorderwithcash_request}`,
   'queryuserbalance':`${queryuserbalance_request}`,
   'getrechargerecords':`${getrechargerecords_request}`,

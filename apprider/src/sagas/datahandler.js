@@ -98,11 +98,15 @@ import {
 
     getorderdetail_request,
     getorderdetail_result,
+
+    serverpush_userloginsuccess_notify,
+    queryorder
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'getorderdetail_result':getorderdetail_result,
   'getnotifymessageone_result':getnotifymessageone_result,
 
@@ -169,6 +173,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+  'queryorder':`${queryorder}`,
   'getorderdetail':`${getorderdetail_request}`,
   'mycoupongetall':`${mycoupongetall_request}`,
   'insertemerygencycontact':`${insertemerygencycontact_request}`,
