@@ -12,9 +12,8 @@ import '../../../public/newcss/userorderlist.css';
 import NavBar from '../tools/nav.js';
 
 const {
-    Cells,
-
-    } = WeUI;
+  Cells,
+} = WeUI;
 import {getmytriporders} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
 

@@ -25,6 +25,8 @@ class Page extends Component {
         show : true,
         title : "你确定需要退出吗",
         text : "",
+        buttonsCloseText : "取消",
+        buttonsClickText : "确定",
         buttonsClose : ()=>{console.log('click close');},
         buttonsClick : ()=>{exitAndroidApp();}
       };

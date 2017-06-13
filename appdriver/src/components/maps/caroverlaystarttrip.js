@@ -19,13 +19,19 @@ export class Page extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-      const {curmappagerequest,history,dispatch} = nextProps;
+      const {curmappagerequest,curmappageorder,history,dispatch} = nextProps;
       if(curmappagerequest.requeststatus === "已取消"){
           //let triporderid = nextProps.curmappageorder._id;
          window.setTimeout(()=>{
               history.goBack();//replace(`/orderdetail/${triporderid}`);
               dispatch(carmap_resetmap());
           },0);
+      }
+      else if(curmappagerequest.requeststatus === '行程完成'){
+        window.setTimeout(()=>{
+            dispatch(carmap_resetmap());
+            history.replace(`/orderdetail/${curmappageorder._id}`);
+         },0);
       }
   }
 
