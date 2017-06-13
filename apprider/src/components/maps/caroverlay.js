@@ -44,9 +44,25 @@ export class Page extends React.Component {
         }));
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+      //不显示中间页面！
+      const {mapstage,curmappagerequest} = nextProps;
+      let needrender = true;
+      if(mapstage === 'pageinit' || !curmappagerequest){
+        needrender = false;
+      }
+      else {
+          if(curmappagerequest.requeststatus === '行程完成' ||
+            curmappagerequest.requeststatus === '已取消'){
+              needrender = false;
+            }
+      }
+      return needrender;
+    }
+
     componentWillReceiveProps (nextProps) {
         const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
-        if(mapstage === 'pageinit'){
+        if(mapstage === 'pageinit'|| !curmappagerequest){
             //重置状态
             window.setTimeout(()=>{
               dispatch(carmap_resetmap({}));
