@@ -1,4 +1,5 @@
-import {takeLatest, call, put } from 'redux-saga/effects';
+import {takeLatest, call, put,race } from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   driveroute_request,
   driveroute_result,
@@ -63,7 +64,7 @@ export function* createnavdrawrouteflow(){
     console.log("createnavdrawrouteflow===>" + JSON.stringify(payload));
 
     const { result, timeout } = yield race({
-       result: call(getnavdrawroute,payload);
+       result: call(getnavdrawroute,payload),
        timeout: call(delay, 5000)
     });
 
