@@ -30,14 +30,12 @@ import {
 
     updateorder_comment_request,
 
-    driveroute_request,
-
     getsystemconfig_result,
     updateorder_comment_result,
     serverpush_restoreorder,
     serverpush_driverlocation,
     serverpush_orderprice,
-    driveroute_result,
+
     getprice_result,
 
     getabouthtml_result,
@@ -125,7 +123,7 @@ exports.recvmessagetoresultpair = {
   'serverpush_restoreorder':serverpush_restoreorder,
   'serverpush_driverlocation':serverpush_driverlocation,
   'serverpush_orderprice':serverpush_orderprice,
-  'driveroute_result':driveroute_result,
+
   'getprice_result':getprice_result,
   'logout_result':logout_result,
   'getabouthtml_result':getabouthtml_result,
@@ -160,8 +158,6 @@ exports.sendmessagefnsz = {
   'loginwithtoken':`${loginwithtoken_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
 
-  'searchtext':`${searchtext_request}`,
-  'driveroute':`${driveroute_request}`,
   'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
   'getnearestdrivers':`${getnearestdrivers_request}`,
   'gettourbus':`${gettourbus_request}`,

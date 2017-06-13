@@ -8,8 +8,10 @@ import {payflow} from './payflow';
 import {getcurcityflow} from './getcurcityflow';
 import {jpushflow} from './jpushflow';
 import {createupdatestatusflow} from './updatestatus';
+import {createnavdrawrouteflow} from './navdrawroute';
 
 export default function* rootSaga() {
+  yield fork(createnavdrawrouteflow);
   yield fork(jpushflow);
   yield fork(getcurcityflow);
   yield fork(payflow);

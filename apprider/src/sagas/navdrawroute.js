@@ -76,9 +76,7 @@ export function* createnavdrawrouteflow(){
       yield put(driveroute_result(result));
     }
     else{
-      yield put(driveroute_result({
-        drawroute:false
-        }));
+      yield put(driveroute_result({drawroute:false}));
     }
   });
 }

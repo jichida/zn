@@ -21,6 +21,7 @@ export const getnearestdrivers_result = createAction('getnearestdrivers_result')
 export const pushrequesttodrivers_request = createAction('pushrequesttodrivers_request');
 
 //==============地图相关==============
+export const carmap_setenableddrawmapflag= createAction('carmap_setenableddrawmapflag');
 //设置起始位置&坐标【搜索页】
 export const carmap_setstartaddress = createAction('carmap_setstartaddress');
 //设置目的位置&坐标【搜索页】

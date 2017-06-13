@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-act';
 import {
+    carmap_setenableddrawmapflag,
     carmap_setmapcenter,
     carmap_changemarkerstartlatlng,
     carmap_setdragging,
@@ -24,23 +25,15 @@ import {
     nav_drawroute,
     serverpush_driverlocation,
     serverpush_orderprice,
-    serverpush_restoreorder
+    serverpush_restoreorder,
+    driveroute_request
 } from '../actions';
-
+import _ from 'lodash';
 
 import L from 'leaflet';
 
 const locz = [0,0];
 
-const ISENABLEEDRAW_MARKERSTART = 1;
-const ISENABLEDDRAW_MARKEREND = 2;
-const ISENABLEDDRAW_MARKERSELF = 4;
-const ISENABLEDDRAW_MARKERDIRVER = 8;
-const ISENABLEDRAW_NEARBYDRIVERS = 16;
-const ISENABLEDDRAW_ROUTELEFT = 32;
-// const ISENABLEDDRAW_ROUTEPASTPTS = 64;
-const ISENABLEDDRAW_POPWITHSTART = 128;
-const ISENABLEDDRAW_POPWITHCUR  = 256;
 
 const initial = {
     carmap: {
@@ -56,11 +49,12 @@ const initial = {
         markerstartlatlng:L.latLng(locz[1], locz[0]),//起始位置
         markerendlatlng:L.latLng(locz[1], locz[0]),//目的位置
         driverlocation:L.latLng(locz[1], locz[0]),//司机位置
+        lastsend_navtime:new Date(),
         mapcenterlocation:L.latLng(locz[1], locz[0]),//地图中心位置
         driverlist:[],//所有司机位置
         routeleftpts:[],//剩余路线
         routepastpts:[],//已经走过的路线
-        enableddrawmapflag:ISENABLEEDRAW_MARKERSTART|ISENABLEDDRAW_POPWITHSTART,//画图标志
+        enableddrawmapflag:0,//画图标志
         srcaddress:{
             addressname:'',
             location:L.latLng(locz[1], locz[0]),//起始位置
@@ -97,18 +91,32 @@ const initial = {
 };
 
 const carmap = createReducer({
+    [driveroute_request]:(state,payload)=>{
+      let lastsend_navtime = new Date();
+      return {...state,lastsend_navtime};
+    },
+    [carmap_setenableddrawmapflag]:(state,payload)=>{
+      let enableddrawmapflag = payload;
+      return {...state,enableddrawmapflag};
+    },
     [serverpush_restoreorder]:(state,payload)=>{
+      //恢复一个订单
+      let enabledragging = false;//不允许拖动
       let curmappagerequest = payload.triprequest;
       let curmappageorder = payload.triporder;
       let mapstage = 'pageorder';
-      return {...state,curmappagerequest,curmappageorder,mapstage};
+      //还原起始点，终点
+      let driverlocation = L.latLng(curmappageorder.driverlocation[1],
+        curmappageorder.driverlocation[0]);
+      let markerstartlatlng = curmappageorder.srcaddress.location;
+      let markerendlatlng = curmappageorder.dstaddress.location;
+      return {...state,enabledragging,curmappagerequest,curmappageorder,mapstage,
+        driverlocation,markerstartlatlng,markerendlatlng};
     },
     [serverpush_driverlocation]:(state,payload)=>{
       let driverlocation = L.latLng(payload.driverlocation[1], payload.driverlocation[0]);
-      //显示司机位置/动态显示路线
-      let enableddrawmapflag = state.enableddrawmapflag;
-      enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;
-      return {...state,driverlocation,enableddrawmapflag};
+      //显示司机位置
+      return {...state,driverlocation};
     },
     [serverpush_orderprice]:(state,payload)=>{
       let {realtimepricedetail,triporderid} = payload;
@@ -122,11 +130,10 @@ const carmap = createReducer({
       return {...state};
     },
     [nav_drawroute]:(state,payload)=>{
-      let enableddrawmapflag = state.enableddrawmapflag | ISENABLEDDRAW_POPWITHCUR |ISENABLEDDRAW_ROUTELEFT; //显示弹框信息
       let totaldistancetxt = payload.totaldistancetxt;
       let totaldurationtxt = payload.totaldurationtxt;
       let routeleftpts = payload.latlngs;
-      return {...state,totaldistancetxt,totaldurationtxt,routeleftpts,enableddrawmapflag};
+      return {...state,totaldistancetxt,totaldurationtxt,routeleftpts};
     },
     [carmap_setmapinited]:(state,isMapInited)=>{
       return {...state,isMapInited}
@@ -141,12 +148,7 @@ const carmap = createReducer({
         };
     },
     [carmap_setendaddress]:(state,data)=>{//改变目的地
-        let enableddrawmapflag = state.enableddrawmapflag | ISENABLEDDRAW_MARKEREND; //显示目的地
-        enableddrawmapflag &= (~ISENABLEDRAW_NEARBYDRIVERS);//不显示附近的车辆
-        enableddrawmapflag &= (~ISENABLEDDRAW_POPWITHSTART);//不显示在这里上车
-
         return {...state,
-                enableddrawmapflag,
                 dstaddress:
                 {
                     addressname:data.addressname,
@@ -161,15 +163,16 @@ const carmap = createReducer({
     [driveroute_result]:(state,result)=>{
         //获取到路线后
         const {latlngs,...rest} = result;
-        let enableddrawmapflag = state.enableddrawmapflag;
-        let routeleftpts = [];
-        if(state.iswaitingforcallpage){//在叫车页面,画导航线
-            enableddrawmapflag |= ISENABLEDDRAW_ROUTELEFT;
-            for(let curloc of latlngs){
-                routeleftpts.push(L.latLng(curloc.lat, curloc.lng));
-            }
+        let routeleftpts = state.routeleftpts;
+        if(rest.drawroute){
+            routeleftpts = [];
+          //if(state.iswaitingforcallpage){//在叫车页面,画导航线
+              for(let curloc of latlngs){
+                  routeleftpts.push(L.latLng(curloc.lat, curloc.lng));
+              }
+          //}
         }
-        return { ...state,...rest,enableddrawmapflag,routeleftpts};
+        return { ...state,...rest,routeleftpts};
     },
     [getprice_result]:(state,result)=>{
         const {resulthtmlstring,...rest} = result;
@@ -206,29 +209,17 @@ const carmap = createReducer({
     },
     [canceltriprequestorder_result]:(state,result)=> {
         //叫车中取消叫车后,目的地不显示,路线不显示,store恢复初始化
-        let {isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress,enableddrawmapflag} = state;
+        let {isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress} = state;
         let autozoomenabled = true;
-        if((enableddrawmapflag & ISENABLEDDRAW_MARKERSELF) > 0){
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEDDRAW_POPWITHSTART;
-        }
-        else{
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_POPWITHSTART;
-        }
         mapcenterlocation = markerstartlatlng;
         return {...initial.carmap,isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,
             srcaddress,autozoomenabled};
     },
     [carmap_resetmap]:(state,initobj)=> {
         //被行程完成 和 取消叫车后调用,路线不显示,store恢复初始化
-        let {isMapInited,mapcenterlocation,enableddrawmapflag,triptype,curlocation,markerstartlatlng,srcaddress,zoomlevel} = state;
-        if((enableddrawmapflag & ISENABLEDDRAW_MARKERSELF) > 0){
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_MARKERSELF |ISENABLEDDRAW_POPWITHSTART;
-        }
-        else{
-            enableddrawmapflag = ISENABLEEDRAW_MARKERSTART | ISENABLEDDRAW_POPWITHSTART;
-        }
+        let {isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,srcaddress,zoomlevel} = state;
         mapcenterlocation = markerstartlatlng;
-        return {...initial.carmap,isMapInited,mapcenterlocation,enableddrawmapflag,triptype,curlocation,markerstartlatlng,
+        return {...initial.carmap,isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,
             srcaddress,zoomlevel};
     },
     [carmap_setmapcenter]:(state,mapcenterlocation)=>{
@@ -236,8 +227,7 @@ const carmap = createReducer({
     },
     [carmap_setcurlocation]:(state,curlocation)=>{
         //获取到当前位置,显示在地图上
-        let enableddrawmapflag = state.enableddrawmapflag|ISENABLEDDRAW_MARKERSELF;
-        return {...state,curlocation,enableddrawmapflag};
+        return {...state,curlocation};
     },
     [carmap_settriptype]:(state,triptype)=>{
         return {...state,triptype};
@@ -247,23 +237,8 @@ const carmap = createReducer({
         return { ...state, markerstartlatlng };
     },
     [carmap_setdragging]:(state,dragging)=>{
-        let enableddrawmapflag = state.enableddrawmapflag;
-        let enableddrawmapflagbeforedragging = state.enableddrawmapflagbeforedragging;
-        if(dragging){//拖动时隐藏
-            if(!state.dragging){
-                enableddrawmapflagbeforedragging = enableddrawmapflag;
-            }
-            enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHSTART;
-            enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
-        }
-        else{
-            if(state.dragging){
-                enableddrawmapflag = enableddrawmapflagbeforedragging;
-                enableddrawmapflagbeforedragging = 0;
-            }
-        }
         //判断是否正在拖动
-        return { ...state, dragging,enableddrawmapflag,enableddrawmapflagbeforedragging};
+        return { ...state, dragging};
     },
     [carmap_setzoomlevel]:(state,zoomlevel)=>{
         //改变地图缩放等级
@@ -278,23 +253,19 @@ const carmap = createReducer({
         //     driverlist.push(carlatlng);
         // };
         //把附近司机显示在地图上
-        let enableddrawmapflag = state.enableddrawmapflag|ISENABLEDRAW_NEARBYDRIVERS;
-        return { ...state,
-            enableddrawmapflag,
+          return { ...state,
             driverlist:[...driverlist]
          };
     },
     [getnearestdrivers_result]:(state,result)=>{
         //获取起始地址并且返回附近司机列表
         let driverlist = [];
-        for(let cardriver of result.neardrivers){
+        _.map(result.neardrivers,(cardriver)=>{
             let carlatlng = L.latLng([cardriver.driverlocation[1], cardriver.driverlocation[0]]);
             driverlist.push(carlatlng);
-        };
+        });
         //把附近司机显示在地图上
-        let enableddrawmapflag = state.enableddrawmapflag|ISENABLEDRAW_NEARBYDRIVERS;
-        return { ...state,
-            enableddrawmapflag,
+      return { ...state,
             driverlist:[...driverlist]
          };
     },

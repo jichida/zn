@@ -14,7 +14,6 @@ import {
     setoftenuseaddress_request,
     carmap_setstartaddress,
     carmap_setendaddress,
-    driveroute_result,
     getprice_request,
     getcurcity
 } from '../../actions';
@@ -66,70 +65,12 @@ export class Search extends React.Component {
 
             }
             else if(this.props.match.params.searchfrom === 'dstaddress'){
-
-                // console.log("window.amap:" + (window.amap!=undefined));
-                // console.log("window.AMap:" + (window.AMap!=undefined));
-                // if(window.amap){
-                //     window.amap.setFitView();
-                //     let zoomlevel = window.amap.getZoom();
-                //     this.props.dispatch(carmap_setzoomlevel(zoomlevel));
-                //     console.log("设置目的地？？zoomlevel"+zoomlevel);
-                // }
-
-
                 //this.props.onUpdatePage('mapcarpage_zoomlevel',zoomlevel);
                 this.props.dispatch(carmap_setendaddress({
                     addressname:addressname,
                     location:location,
                     //zoomlevel:zoomlevel
                 }));
-
-                // let origin = this.props.markerstartlatlng.lng + "," + this.props.markerstartlatlng.lat;
-                // let destination =  location.lng + "," + location.lat;
-                // let param = {
-                //     origin:origin,
-                //     destination:destination,
-                //     registertype:this.props.triptype
-                // }
-                // this.props.dispatch(driveroute_request(param));
-                let driving = new window.AMap.Driving({extensions:'base'});
-                // 根据起终点经纬度规划驾车导航路线
-                driving.search(new window.AMap.LngLat(this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat), new window.AMap.LngLat(location.lng, location.lat),
-                (status,result)=>{
-                      console.log("status:" + status);
-                      console.log("result:" + JSON.stringify(result));
-                      if(status === 'complete'){
-                        for(let route of result.routes){
-                          let totaldistance = route.distance;
-                          let totalduration = route.time;
-                          let latlngs = [];
-                          for(let drivestep of route.steps){
-                            for(let pt of drivestep.path){
-                                latlngs.push({
-                                  lat:pt.lat,
-                                  lng:pt.lng
-                                });
-                            }
-                          }
-                          this.props.dispatch(driveroute_result(
-                            {
-                              totaldistance,
-                              totalduration,
-                              latlngs
-                            }));
-                           this.props.dispatch(getprice_request(
-                            {
-                                    registertype:this.props.triptype,
-                                    totaldistance,
-                                    totalduration
-                            }
-                          ));
-                          this.props.history.goBack();
-                          return;
-                        }
-                      }
-
-                });
                 return;
             }//else if(this.props.match.params.searchfrom === 'dstaddress'){
         }
