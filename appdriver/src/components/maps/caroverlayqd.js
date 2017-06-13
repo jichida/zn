@@ -34,6 +34,9 @@ class Page extends React.Component {
           <div className="outcarPage AppPage">
               <NavBar back={true} title="抢单" />
               {
+                !curreqobj && <div>【该请求已取消或已被其他司机接单了】</div>
+              }
+              {
                 !!curreqobj &&
                 <div className="orderinfohead">
                     <img src="newimg/17.png" className="avatar" alt=""/>

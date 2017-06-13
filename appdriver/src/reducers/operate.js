@@ -19,7 +19,6 @@ const initial = {
     nearbyrequests:{
         list:[],
         requests:{
-
         }
     }
   },
@@ -54,8 +53,8 @@ const operate = createReducer({
     const {list} = payload;
     let nearbyrequestsresult = normalizr_requestlist({list});
     let nearbyrequests = {
-      list:nearbyrequestsresult.result.list,
-      requests:nearbyrequestsresult.entities.requests
+      list:nearbyrequestsresult.result.list||[],
+      requests:nearbyrequestsresult.entities.requests||{}
     };
     return { ...state,nearbyrequests};
   },
