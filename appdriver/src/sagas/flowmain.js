@@ -27,7 +27,7 @@ let sendmsgwhenreconnect =(socket)=>{
         socket.emit('appdriver',{cmd:'loginwithtoken',data:{token:token}});
     }
 
-    store.dispatch(notify_socket_connected(issocketconnected));
+    store.dispatch(notify_socket_connected(true));
     socket.emit('appdriver',{cmd:'getsystemconfig',data:{}});
 }
 
@@ -81,7 +81,7 @@ function* write(socket,fun,cmd) {
           socket.emit('appdriver',{cmd:cmd,data:payload});
         }
         else{
-          yield put(common_err({type:cmd,errmsg:'服务器连接断开!'}))
+          yield put(common_err({type:cmd,errmsg:`服务器连接断开!无法发送命令${cmd}`}))
         }
     }
 }
@@ -111,6 +111,8 @@ function* handleIOWithAuth(socket) {
         console.log("登出APP发送当前位置(注销)：" + JSON.stringify(operateLogoutdoc));
         socket.emit('appdriver',{cmd:'operatelogout',data:operateLogoutdoc});
         socket.emit('appdriver',{cmd:'logout',data:actionlogoutrequest.payload});
+
+
         yield take(`${logout_result}`);
         for (var task of tasksz) {
             yield cancel(task);

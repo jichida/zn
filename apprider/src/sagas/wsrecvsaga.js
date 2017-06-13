@@ -42,7 +42,6 @@ import {
 
   getorderdetail_result,
   md_starttriprequestorder_result,
-
 } from '../actions';
 import { push,replace } from 'react-router-redux';
 import {getcurrentpos} from '../util/geo';
@@ -124,6 +123,9 @@ export function* wsrecvsagaflow() {
 
   yield takeEvery(`${common_err}`, function*(action) {
       let {payload:result} = action;
+      if(result.type === 'getpaysign'){
+        yield put(getpaysign_result());//payload:null
+      }
       yield put(set_weui({
         toast:{
         text:result.errmsg,

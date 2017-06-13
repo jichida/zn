@@ -32,4 +32,3 @@ export const serverpush_triprequestandorder = createAction('serverpush_tripreque
 
 export const selrequest = createAction('selrequest');
 export const carmap_setmapcenter = createAction('carmap_setmapcenter');
-export const tosaga_getcurrentloc = createAction('tosaga_getcurrentloc');

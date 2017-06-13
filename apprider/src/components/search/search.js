@@ -15,10 +15,14 @@ import {
     carmap_setstartaddress,
     carmap_setendaddress,
     driveroute_result,
-    getprice_request
-    } from '../../actions';
+    getprice_request,
+    getcurcity
+} from '../../actions';
 
 export class Search extends React.Component {
+    componentWillMount () {
+        this.props.dispatch(getcurcity({}));
+    }
     handleChangeSearchTxt(text){
         let searchtxt = text;
         console.log("text:" + text);

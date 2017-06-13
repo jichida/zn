@@ -62,9 +62,9 @@ export function* jpushflow(){//仅执行一次
             }
           }
         }
-          catch(e){
-            alert(`err->jpushlistenInMessage ===>${JSON.stringify(msgobj)},e:${JSON.stringify(e)}`);
-          }
+        catch(e){
+          alert(`err->jpushlistenInMessage ===>${JSON.stringify(msgobj)},e:${JSON.stringify(e)}`);
+        }
 
     });
 

@@ -1,4 +1,5 @@
-import {takeEvery,put,call} from 'redux-saga/effects';
+import {takeEvery,put,call,race} from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {getcurcity,setcurcity} from '../actions';
 import {getcurrentpos} from '../util/geo.js';
 import _ from 'lodash';
@@ -30,9 +31,25 @@ let getcurcityfn =(loc)=> {
 //获取地理位置信息，封装为promise
 export function* getcurcityflow(){//仅执行一次
   yield takeEvery(`${getcurcity}`, function*(action) {
-    const curlocation = yield call(getcurrentpos);
-    const curcity = yield call(getcurcityfn,curlocation);
-    yield put(setcurcity(curcity));
-    console.log(`getcurcityflow curcity===>${JSON.stringify(curcity)}`);
+    try{
+      const { curlocation, timeout } = yield race({
+         curlocation: call(getcurrentpos),
+         timeout: call(delay, 5000)
+      });
+      if(!!curlocation){
+        const { curcity, timeout2 } = yield race({
+           curcity: call(getcurcityfn,curlocation),
+           timeout2: call(delay, 5000)
+        });
+
+        if(!!curcity){
+          yield put(setcurcity(curcity));
+          console.log(`获取当前城市===>${JSON.stringify(curcity)}`);
+        }
+      }
+    }
+    catch(e){
+
+    }
   });
 }

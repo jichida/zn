@@ -13,8 +13,10 @@ import {
     login_result,
     logout_result,
     notify_socket_connected,
+    common_err,
 } from '../actions';
 
+let issocketconnected = false;
 let sendmsgwhenreconnect =(socket)=>{
     //连接上以后直接发送-----》
     let token = localStorage.getItem('zhongnan_rider_token');
@@ -31,6 +33,7 @@ function connect() {
     const socket = io(config.serverurl);
     return new Promise(resolve => {
         socket.on('connect', () => {
+            issocketconnected = true;
             resolve(socket);
         });
     });
@@ -40,9 +43,11 @@ function subscribe(socket) {
     return eventChannel(emit => {
         wsrecvhandler(socket,emit);
         socket.on('connect',()=>{
+            issocketconnected = true;
             sendmsgwhenreconnect(socket);
         });
         socket.on('disconnect',()=>{
+            issocketconnected = false;
             store.dispatch(notify_socket_connected(false));
         });
         socket.on('error',()=>{
@@ -65,7 +70,12 @@ function* write(socket,fun,cmd) {
     while (true) {
         let { payload } = yield take(fun);
         console.log(`写命令--》${cmd}:` + JSON.stringify(payload));
-        socket.emit('apprider',{cmd:cmd,data:payload});
+        if(issocketconnected){
+          socket.emit('apprider',{cmd:cmd,data:payload});
+        }
+        else{
+          yield put(common_err({type:cmd,errmsg:`服务器连接断开!无法发送命令${cmd}`}))
+        }
     }
 }
 
