@@ -9,7 +9,7 @@ import {
   carmap_setmapinited
 } from '../../actions';
 import Popinfotrip from './popinfocar';
-
+import _ from 'lodash';
 //import Popinfowaiting from './popinfolookingcar';
 
 const ISENABLEEDRAW_MARKERSTART = 1;
@@ -19,7 +19,7 @@ const ISENABLEDDRAW_ROUTELEFT = 32;
 const ISENABLEDDRAW_ROUTEPASTPTS = 64;
 const ISENABLEDDRAW_POPWITHCUR  = 256;
 
-let markerstart,markerend,markerdriver,polylineleft,polylinepast;
+let markerstart,markerend,markerdriver,polylineleft,polylinepast,infoWindow;
 
 window.initamaploaded = false;
 export class Page extends React.Component {
@@ -168,9 +168,10 @@ export class Page extends React.Component {
          }
          //驾车路线（导航的路线）
          let leftpts = [];
-         for(let pt of routeleftpts){
-             leftpts.push(getAMappos(pt));
-         }
+         _.map(routeleftpts,(pt)=>{
+           leftpts.push(getAMappos(pt));
+         });
+
          let routeleftprops ={
              path: leftpts,//设置多边形边界路径
              strokeColor: "#FF0000", //线颜色
@@ -182,9 +183,10 @@ export class Page extends React.Component {
          polylineleft = showpolyline(ISENABLEDDRAW_ROUTELEFT,polylineleft,routeleftprops);
          //驾车路线（走过的路线）
          let pastpts = [];
-         for(let pt of routepastpts){
-             pastpts.push(getAMappos(pt));
-         }
+         _.map(routepastpts,(pt)=>{
+           pastpts.push(getAMappos(pt));
+         });
+
          let routelpastprops ={
              path: pastpts,//设置多边形边界路径
              strokeColor: "#FF33FF", //线颜色
@@ -194,6 +196,24 @@ export class Page extends React.Component {
              fillOpacity: 0.35//填充透明度
          };
          polylinepast = showpolyline(ISENABLEDDRAW_ROUTEPASTPTS,polylinepast,routelpastprops);
+
+         if(!!infoWindow){
+           infoWindow.setMap(null);
+         }
+         if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
+           let info = [];
+           let totaldistancetxt = _.get(nextprop,'driveroute.totaldistancetxt','');
+           let totaldurationtxt = _.get(nextprop,'driveroute.totaldurationtxt','');
+           let price = _.get(nextprop,'curmappageorder.realtimepricedetail.price',0);
+           info.push(`<p>距离终点<span>${totaldistancetxt}</span></p>`);
+           info.push(`<p>预计行驶<span>${totaldurationtxt}</span></p>`);
+           info.push(`<p>费用<span>${price}元</span></p>`);
+
+           infoWindow = new window.AMap.InfoWindow({
+               content: info.join("<br>")  //使用默认信息窗体框样式，显示信息内容
+           });
+           infoWindow.open(window.amap, [this.props.driverlocation.lng, this.props.driverlocation.lat]);
+         }
      }
 
 
@@ -202,30 +222,30 @@ export class Page extends React.Component {
 
 
   render() {
-      const isenableddrawmapflag = (flag)=>{
-          //return true;
-          return (this.props.enableddrawmapflag & flag)>0;
-      };
-
-      console.log('地图---->render---------');
-
-        let pophtmlofstartlatlng = null;
-        let positiondiv = [0,0];
-        if(window.amap){
-          if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
-            //行程中生效！
-            const {totaldistancetxt,totaldurationtxt} = this.props.driveroute;
-            const {realtimepricedetail} = this.props.curmappageorder;
-            let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-            positiondiv = [pixel.getX(),pixel.getY()];
-            pophtmlofstartlatlng = <Popinfotrip positiondiv={positiondiv}
-            totaldistancetxt={totaldistancetxt}
-            totaldurationtxt={totaldurationtxt}
-            realtimepricedetail={realtimepricedetail}
-            />;
-          }
-          console.log(`当前位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
-        }
+      // const isenableddrawmapflag = (flag)=>{
+      //     //return true;
+      //     return (this.props.enableddrawmapflag & flag)>0;
+      // };
+      //
+      // console.log('地图---->render---------');
+      //
+      //   let pophtmlofstartlatlng = null;
+      //   let positiondiv = [0,0];
+      //   if(window.amap){
+      //     if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
+      //       //行程中生效！
+      //       const {totaldistancetxt,totaldurationtxt} = this.props.driveroute;
+      //       const {realtimepricedetail} = this.props.curmappageorder;
+      //       let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
+      //       positiondiv = [pixel.getX(),pixel.getY()];
+      //       pophtmlofstartlatlng = <Popinfotrip positiondiv={positiondiv}
+      //       totaldistancetxt={totaldistancetxt}
+      //       totaldurationtxt={totaldurationtxt}
+      //       realtimepricedetail={realtimepricedetail}
+      //       />;
+      //     }
+      //     console.log(`当前位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
+      //   }
 
     return (
       <div style={{
@@ -236,7 +256,7 @@ export class Page extends React.Component {
         alignItems: 'center',
         position:'relative'
       }}>
-      {pophtmlofstartlatlng}
+
         <div  id="gaodemap"  style={{
                   width: '100%',
                   height: '100%',

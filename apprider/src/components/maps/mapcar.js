@@ -15,7 +15,7 @@ import Popinfowaiting from './popinfolookingcar';
 
 import "../../../public/newcss/mapcontainer.css";
 
-
+import _ from 'lodash';
 
 const ISENABLEEDRAW_MARKERSTART = 1;
 const ISENABLEDDRAW_MARKEREND = 2;
@@ -28,7 +28,7 @@ const ISENABLEDDRAW_POPWITHSTART = 128;
 const ISENABLEDDRAW_POPWITHCUR  = 256;
 
 let markerdriverlist = [];
-let markerstart,markerend,markerself,markerdriver,polylineleft,polylinepast;
+let markerstart,markerend,markerself,markerdriver,polylineleft,polylinepast,infoWindow;
 
 window.initamaploaded = false;
 class Page extends React.Component {
@@ -228,9 +228,10 @@ class Page extends React.Component {
             markerself = showmarker(ISENABLEDDRAW_MARKERSELF,markerself, L.latLng(curlocation.lat, curlocation.lng),'images/me.png');
             markerdriver = showmarker(ISENABLEDDRAW_MARKERDIRVER,markerdriver,L.latLng(driverlocation.lat,driverlocation.lng),'images/mycar.png');
             //附近车辆／先清空
-            for(let marker of markerdriverlist){
-                marker.setMap(null);
-            }
+            _.map(markerdriverlist,(marker)=>{
+              marker.setMap(null);
+            });
+
             markerdriverlist = [];
             if(isenableddrawmapflag(enableddrawmapflag)) {//显示
                 if (driverlist.length > 0) {
@@ -238,15 +239,16 @@ class Page extends React.Component {
                         image: 'images/mycar.png',
                         imageSize: new window.AMap.Size(20, 30)
                     });
-                    for (let curloc of driverlist){
-                        let drivercarprops = {
-                            position:[curloc.lng,curloc.lat],
-                            icon:carIcon
-                        };
-                        let marker = new window.AMap.Marker(drivercarprops);
-                        marker.setMap(window.amap);
-                        markerdriverlist.push(marker);
-                    }
+
+                    _.map(driverlist,(curloc)=>{
+                      let drivercarprops = {
+                          position:[curloc.lng,curloc.lat],
+                          icon:carIcon
+                      };
+                      let marker = new window.AMap.Marker(drivercarprops);
+                      marker.setMap(window.amap);
+                      markerdriverlist.push(marker);
+                    });
                 }
             }
             //画线
@@ -263,9 +265,9 @@ class Page extends React.Component {
             }
             //驾车路线（导航的路线）
             let leftpts = [];
-            for(let pt of routeleftpts){
-                leftpts.push(getAMappos(pt));
-            }
+            _.map(routeleftpts,(pt)=>{
+              leftpts.push(getAMappos(pt));
+            });
             let routeleftprops ={
                 path: leftpts,//设置多边形边界路径
                 strokeColor: "#FF0000", //线颜色
@@ -277,9 +279,10 @@ class Page extends React.Component {
             polylineleft = showpolyline(ISENABLEDDRAW_ROUTELEFT,polylineleft,routeleftprops);
             //驾车路线（走过的路线）
             let pastpts = [];
-            for(let pt of routepastpts){
-                pastpts.push(getAMappos(pt));
-            }
+            _.map(routepastpts,(pt)=>{
+              pastpts.push(getAMappos(pt));
+            });
+
             let routelpastprops ={
                 path: pastpts,//设置多边形边界路径
                 strokeColor: "#FF33FF", //线颜色
@@ -289,6 +292,26 @@ class Page extends React.Component {
                 fillOpacity: 0.35//填充透明度
             };
             polylinepast = showpolyline(ISENABLEDDRAW_ROUTEPASTPTS,polylinepast,routelpastprops);
+
+            if(!!infoWindow){
+              infoWindow.setMap(null);
+            }
+            if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
+              let info = [];
+              const {totaldistancetxt,totaldurationtxt} = nextprop;
+              info.push(`<p>距离终点<span>${totaldistancetxt}</span></p>`);
+              info.push(`<p>预计行驶<span>${totaldurationtxt}</span></p>`);
+              const {requeststatus} = nextprop.curmappagerequest;
+              if(requeststatus === '行程中'){
+                const {realtimepricedetail} = nextprop.curmappageorder;
+                info.push(`<p>费用<span>${realtimepricedetail.price}元</span></p>`);
+              }
+
+              infoWindow = new window.AMap.InfoWindow({
+                  content: info.join("<br>")  //使用默认信息窗体框样式，显示信息内容
+              });
+              infoWindow.open(window.amap, [this.props.driverlocation.lng, this.props.driverlocation.lat]);
+            }
         }
 
 
@@ -301,10 +324,10 @@ class Page extends React.Component {
     render() {
       console.log('地图---->render---------');
 
-        const isenableddrawmapflag = (flag)=>{
-            //return true;
-            return (this.props.enableddrawmapflag & flag)>0;
-        };
+        // const isenableddrawmapflag = (flag)=>{
+        //     //return true;
+        //     return (this.props.enableddrawmapflag & flag)>0;
+        // };
         // const events = {
         //     created: (ins) => {
         //         window.amap = ins;
@@ -320,54 +343,47 @@ class Page extends React.Component {
         //     zoomend:()=>{this.onZoomend();}
         // }
         //console.log(`画坐标${marks.length},画折线${polylines.length}`);
-        let pophtmlofstartlatlng = null;
-        let positiondiv = [0,0];
-        if(window.amap){
-          if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
-            let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
-            positiondiv = [pixel.getX()-73,pixel.getY()-73];
-            //positiondiv = [0,0];
-            pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
-          }
-          console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
-          if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
-            let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-            positiondiv = [pixel.getX()-100,pixel.getY()-100];
-            //positiondiv = [0,0];
-            const {totaldistancetxt,totaldurationtxt} = this.props;
-            const {requeststatus} = this.props.curmappagerequest;
-            if(requeststatus === '行程中'){
-              const {realtimepricedetail} = this.props.curmappageorder;
-              pophtmlofstartlatlng = <Popinfotrip
-                positiondiv={positiondiv}
-                totaldistancetxt={totaldistancetxt}
-                totaldurationtxt={totaldurationtxt}
-                realtimepricedetail={realtimepricedetail}
-                triporderid={this.props.curmappageorder._id}
-                history={this.props.history}
-                />;
-            }
-            else{
-              pophtmlofstartlatlng = <Popinfotrip
-                positiondiv={positiondiv}
-                totaldistancetxt={totaldistancetxt}
-                totaldurationtxt={totaldurationtxt}
-                triporderid={this.props.curmappageorder._id}
-                history={this.props.history}
-                />;
-            }
-          }
-        }
+        // let pophtmlofstartlatlng = null;
+        // let positiondiv = [0,0];
+        // if(window.amap){
+        //   if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
+        //     let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
+        //     positiondiv = [pixel.getX()-73,pixel.getY()-73];
+        //     //positiondiv = [0,0];
+        //     pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
+        //   }
+        //   console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
+        //   if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
+        //     let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
+        //     positiondiv = [pixel.getX()-100,pixel.getY()-100];
+        //     //positiondiv = [0,0];
+        //     const {totaldistancetxt,totaldurationtxt} = this.props;
+        //     const {requeststatus} = this.props.curmappagerequest;
+        //     if(requeststatus === '行程中'){
+        //       const {realtimepricedetail} = this.props.curmappageorder;
+        //       pophtmlofstartlatlng = <Popinfotrip
+        //         positiondiv={positiondiv}
+        //         totaldistancetxt={totaldistancetxt}
+        //         totaldurationtxt={totaldurationtxt}
+        //         realtimepricedetail={realtimepricedetail}
+        //         triporderid={this.props.curmappageorder._id}
+        //         history={this.props.history}
+        //         />;
+        //     }
+        //     else{
+        //       pophtmlofstartlatlng = <Popinfotrip
+        //         positiondiv={positiondiv}
+        //         totaldistancetxt={totaldistancetxt}
+        //         totaldurationtxt={totaldurationtxt}
+        //         triporderid={this.props.curmappageorder._id}
+        //         history={this.props.history}
+        //         />;
+        //     }
+        //   }
+        // }
         return (
             <div className="mapcontainer">
-                {pophtmlofstartlatlng}
                 <div id="gaodemap" />
-                {
-                    this.props.enabledragging?
-                    <div className="startIcon">
-                        <img src='images/start.png' alt="" />
-                    </div>:null
-                }
             </div>
         );
     }
