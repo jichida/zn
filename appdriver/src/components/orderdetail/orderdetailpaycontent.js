@@ -125,7 +125,7 @@ class Page extends Component{
                             }
                         </div>
                     </div>
-                    {orderinfo.orderstatus === '未支付' && <div className="getMoney" onClick={this.toPay.bind(this)}><span>现金支付</span></div>}
+                    {orderinfo.orderstatus === '待支付' && <div className="getMoney" onClick={this.toPay.bind(this)}><span>现金支付</span></div>}
                 </div>
         )
     }
