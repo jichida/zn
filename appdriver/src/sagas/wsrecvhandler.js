@@ -5,7 +5,6 @@ const handlerlist = {};
 const recvmessagetoresultpair = data.recvmessagetoresultpair;
 
 export function wsrecvhandler(socket,emit){
-
   _.map(recvmessagetoresultpair,(fnresult,keyname)=>{
     handlerlist[keyname] = (socket, emit)=> {
       return ((result)=> {
@@ -13,8 +12,7 @@ export function wsrecvhandler(socket,emit){
         emit(fnresult(result));
       });
     }
-  })
-
+  });
   _.map(handlerlist,(handlersocket,handlername)=>{
     socket.on(handlername,handlersocket(socket,emit));
   });

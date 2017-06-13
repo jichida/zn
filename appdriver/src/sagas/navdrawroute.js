@@ -61,8 +61,19 @@ export function* createnavdrawrouteflow(){
   yield takeLatest(`${driveroute_request}`, function*(action) {
     let {payload} = action;
     console.log("createnavdrawrouteflow===>" + JSON.stringify(payload));
-    let result = yield call(getnavdrawroute,payload);
-    yield put(driveroute_result(result));
 
+    const { result, timeout } = yield race({
+       result: call(getnavdrawroute,payload);
+       timeout: call(delay, 5000)
+    });
+
+    if(!!result){
+      yield put(driveroute_result(result));
+    }
+    else{
+      yield put(driveroute_result({
+        drawroute:false
+        }));
+    }
   });
 }
