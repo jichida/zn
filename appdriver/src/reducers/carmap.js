@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-act';
 import {
+  carmap_setenableddrawmapflag,
   carmap_setzoomlevel,
   selrequest,
   carmap_setmapcenter,
@@ -11,7 +12,6 @@ import {
   serverpush_triprequestandorder,
   updaterequeststatus_result,
   carmap_setmapinited,
-  driveroute_result,
   serverpush_driverlocation,
   serverpush_orderprice,
   serverpush_restoreorder
@@ -35,9 +35,8 @@ const initial = {
         markerendlatlng:L.latLng(locz[1], locz[0]),//目的位置
         driverlocation:L.latLng(locz[1], locz[0]),//司机位置
         mapcenterlocation:L.latLng(locz[1], locz[0]),//地图中心位置
-        routeleftpts:[],//剩余路线
-        routepastpts:[],//已经走过的路线
-        enableddrawmapflag:ISENABLEDDRAW_MARKERDIRVER,//画图标志
+        enableddrawmapflag:0,//画图标志
+        routepastpts:[],
         curmappageorder:{
 
         },
@@ -48,25 +47,18 @@ const initial = {
 };
 
 const carmap = createReducer({
+    [carmap_setenableddrawmapflag]:(state,payload)=>{
+      let enableddrawmapflag = payload;
+      return {...state,enableddrawmapflag};
+    },
     [serverpush_restoreorder]:(state,payload)=>{
       let curmappagerequest = payload.triprequest;
       let curmappageorder = payload.triporder;
-      let enableddrawmapflag = 0;
-      if(curmappagerequest.requeststatus === '行程中'){
-        enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
-      }
       let markerstartlatlng = L.latLng(curmappagerequest.srcaddress.location.lat,curmappagerequest.srcaddress.location.lng);//lat,lng
       let markerendlatlng = L.latLng(curmappagerequest.dstaddress.location.lat, curmappagerequest.dstaddress.location.lng);//lat,lng
-      enableddrawmapflag |= ISENABLEEDRAW_MARKERSTART;
-      enableddrawmapflag |= ISENABLEDDRAW_MARKEREND;
       let mapcenterlocation = markerstartlatlng;
-      return {...state,curmappagerequest,curmappageorder,enableddrawmapflag,
+      return {...state,curmappagerequest,curmappageorder,
       markerstartlatlng,markerendlatlng,mapcenterlocation};
-    },
-    [serverpush_driverlocation]:(state,payload)=>{
-      let {driverlocation} = payload;
-      //to test
-      return {...state,driverlocation};
     },
     [serverpush_orderprice]:(state,payload)=>{
       let {realtimepricedetail} = payload;
@@ -76,17 +68,6 @@ const carmap = createReducer({
         realtimepricedetail
       }};
     },
-    [driveroute_result]:(state,payload)=>{
-      let {drawroute} = payload;
-      let enableddrawmapflag = state.enableddrawmapflag;
-      if(drawroute){
-        enableddrawmapflag |= ISENABLEDDRAW_ROUTELEFT;
-      }
-      else{
-        enableddrawmapflag &= ~ISENABLEDDRAW_ROUTELEFT;
-      }
-      return {...state,enableddrawmapflag};
-    },
     [carmap_setmapinited]:(state,isMapInited)=>{
       return {...state,isMapInited}
     },
@@ -94,35 +75,22 @@ const carmap = createReducer({
       return {...state,mapcenterlocation}
     },
     [selrequest]:(state, curreqobj) => {
-      let enableddrawmapflag = state.enableddrawmapflag;
       let markerstartlatlng = L.latLng(curreqobj.srcaddress.location.lat,curreqobj.srcaddress.location.lng);//lat,lng
       let markerendlatlng = L.latLng(curreqobj.dstaddress.location.lat, curreqobj.dstaddress.location.lng);//lat,lng
-      enableddrawmapflag |= ISENABLEEDRAW_MARKERSTART;
-      enableddrawmapflag |= ISENABLEDDRAW_MARKEREND;
       let mapcenterlocation = markerstartlatlng;
-      return { ...state,markerstartlatlng,markerendlatlng,mapcenterlocation,enableddrawmapflag};
+      return { ...state,markerstartlatlng,markerendlatlng,mapcenterlocation};
     },
     [setcurlocation]:(state, curlocation) => {
-      let enableddrawmapflag = state.enableddrawmapflag;
       let driverlocation = L.latLng([curlocation.lat, curlocation.lng]);
-      enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;
-      return { ...state,driverlocation,enableddrawmapflag};
+      return { ...state,driverlocation};
     },
     [carmap_resetmap]:(state,initobj)=> {
         const {driverlocation,mapcenterlocation,isMapInited} = state;
-        let enableddrawmapflag = ISENABLEDDRAW_MARKERDIRVER;
-        return {...initial.carmap,isMapInited,driverlocation,mapcenterlocation,enableddrawmapflag};
+        return {...initial.carmap,isMapInited,driverlocation,mapcenterlocation};
     },
     [serverpush_triprequest]:(state,payload)=> {
         let curmappagerequest = {...payload.triprequest};
-        let enableddrawmapflag = state.enableddrawmapflag;
-        if(curmappagerequest.requeststatus === '行程中'){
-          enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
-        }
-        else{
-          enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
-        }
-        return { ...state,enableddrawmapflag,curmappagerequest };
+        return { ...state,curmappagerequest };
     },
     [serverpush_triporder]:(state,payload)=> {
         let curmappageorder = {...payload.triporder};
@@ -131,25 +99,11 @@ const carmap = createReducer({
     [serverpush_triprequestandorder]:(state,payload)=> {
         let curmappageorder = {...payload.triporder};
         let curmappagerequest = {...payload.triprequest};
-        let enableddrawmapflag = state.enableddrawmapflag;
-        if(curmappagerequest.requeststatus === '行程中'){
-          enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
-        }
-        else{
-          enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
-        }
-        return { ...state,enableddrawmapflag, curmappageorder,curmappagerequest };
+        return { ...state, curmappageorder,curmappagerequest };
     },
     [updaterequeststatus_result]:(state,payload)=> {
         let curmappagerequest = {...payload.triprequest};
-        let enableddrawmapflag = state.enableddrawmapflag;
-        if(curmappagerequest.requeststatus === '行程中'){
-          enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
-        }
-        else{
-          enableddrawmapflag &= ~ISENABLEDDRAW_POPWITHCUR;
-        }
-        return { ...state,enableddrawmapflag,curmappagerequest };
+        return { ...state,curmappagerequest };
     },
     [carmap_setzoomlevel]:(state,zoomlevel)=>{
         return { ...state, zoomlevel };

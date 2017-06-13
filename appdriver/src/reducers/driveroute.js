@@ -15,7 +15,13 @@ const initial = {
 
 const driveroute = createReducer({
     [driveroute_result]:(state,payload)=>{
-      return {...state,...payload};
+      let {drawroute,totaldistancetxt,totaldurationtxt,instruction,latlngs} = state;
+      drawroute = payload.drawroute || drawroute;
+      totaldistancetxt = payload.totaldistancetxt || totaldistancetxt;
+      totaldurationtxt = payload.totaldurationtxt || totaldurationtxt;
+      instruction = payload.instruction || instruction;
+      latlngs = payload.latlngs || latlngs;
+      return {...state,drawroute,totaldistancetxt,totaldurationtxt,instruction,latlngs};
     },
 }, initial.driveroute);
 

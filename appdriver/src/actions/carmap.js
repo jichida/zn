@@ -17,6 +17,7 @@ export const canceltriprequestorder_request = createAction('canceltriprequestord
 export const canceltriprequestorder_result = createAction('canceltriprequestorder_result');
 
 //设置放大级别
+export const carmap_setenableddrawmapflag = createAction('carmap_setenableddrawmapflag');
 export const carmap_setzoomlevel = createAction('carmap_setzoomlevel');
 //重置状态
 export const carmap_resetmap = createAction('carmap_resetmap');

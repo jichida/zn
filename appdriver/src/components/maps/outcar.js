@@ -19,6 +19,7 @@ const {
 import MapGaode from './mapcar.js';
 import _ from 'lodash';
 import {
+  carmap_resetmap,
   selrequest,
   ui_outcarselregistertype,
   ui_outcarexpand,
@@ -32,6 +33,7 @@ class Page extends Component {
   //   super(props);
   // }
   componentWillMount () {
+    this.props.dispatch(carmap_resetmap());
     const {approvalstatus,loginsuccess} = this.props;
     this.props.dispatch(startoperate({approvalstatus,loginsuccess}));
   }

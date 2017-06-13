@@ -91,36 +91,7 @@ export class Page extends React.Component {
             this.onZoomend();
         });
      }
-     }
-
-     const {curlocation,curreqobj} = nextProps;
-     if(!!curreqobj){
-       const {curlocation:prevlocation} = this.props;
-       if((curlocation.lng !== prevlocation.lng || curlocation.lat !== prevlocation.lat)
-       && curreqobj.requeststatus){
-         //当前地址变化
-         let drawroute = false;
-         let startlnglat = curlocation;
-         let endlnglat;
-         if(curreqobj.requeststatus === '已取消'){
-         }
-         else if(curreqobj.requeststatus === '请求中'){
-         }
-         else if(curreqobj.requeststatus === '已接单'){
-           drawroute = true;
-           endlnglat = L.latLng(curreqobj.srcaddress.location.lat, curreqobj.srcaddress.location.lng);
-         }
-         else if(curreqobj.requeststatus === '待上车'){
-         }
-         else if(curreqobj.requeststatus === '行程中'){
-           drawroute = true;
-           endlnglat = L.latLng(curreqobj.dstaddress.location.lat, curreqobj.dstaddress.location.lng);
-         }
-         else if(curreqobj.requeststatus === '行程完成'){
-         }
-         nextProps.dispatch(driveroute_request({drawroute,startlnglat,endlnglat}));
-        }
-     }
+    }
    }
 
    onDragging(){
