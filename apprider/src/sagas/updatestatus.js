@@ -14,6 +14,8 @@ import {
   getprice_request
 } from '../actions';
 
+import { replace } from 'react-router-redux';
+
 import {getcurrentpos,getcurrentpos_sz} from '../util/geo';
 
 const getmapstate = (state) => {
@@ -35,6 +37,10 @@ export function* createupdatestatusflow(){
   });
 
   yield takeEvery(`${carmap_resetmap}`, function*(action) {
+      const {payload} = action;
+      if(!!payload.url){
+        yield put(replace(payload.url));
+      }
       let curlocation = yield call(getcurrentpos);
       yield put(changestartposition({
           location:`${curlocation.lng},${curlocation.lat}`

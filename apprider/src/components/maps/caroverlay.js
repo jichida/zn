@@ -46,8 +46,9 @@ export class Page extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
       //不显示中间页面！
-      const {mapstage,curmappagerequest} = nextProps;
+      const {mapstage,curmappagerequest,curmappageorder,dispatch} = nextProps;
       let needrender = true;
+      let url='/';
       if(mapstage === 'pageinit' || !curmappagerequest){
         needrender = false;
       }
@@ -55,37 +56,41 @@ export class Page extends React.Component {
           if(curmappagerequest.requeststatus === '行程完成' ||
             curmappagerequest.requeststatus === '已取消'){
               needrender = false;
+              url = curmappagerequest.requeststatus === '行程完成' ?`/orderdetail/${curmappageorder._id}`:'/';
             }
+      }
+      if(!needrender){
+        dispatch(carmap_resetmap({url}));
       }
       return needrender;
     }
 
-    componentWillReceiveProps (nextProps) {
-        const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
-        if(mapstage === 'pageinit'|| !curmappagerequest){
-            //重置状态
-            window.setTimeout(()=>{
-              dispatch(carmap_resetmap({}));
-              history.replace(`/`);
-            });
-        }
-        else{
-            if(curmappagerequest.requeststatus === '行程完成'){
-                //重置状态
-                window.setTimeout(()=>{
-                  dispatch(carmap_resetmap({}));
-                  history.replace(`/orderdetail/${curmappageorder._id}`);
-                });
-              }
-            else if(curmappagerequest.requeststatus === '已取消'){
-                //重置状态
-                window.setTimeout(()=>{
-                  dispatch(carmap_resetmap({}));
-                  history.replace(`/`);
-                });
-            }
-        }
-    }
+    // componentWillReceiveProps (nextProps) {
+    //     const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
+    //     if(mapstage === 'pageinit'|| !curmappagerequest){
+    //         //重置状态
+    //         window.setTimeout(()=>{
+    //           dispatch(carmap_resetmap({}));
+    //           history.replace(`/`);
+    //         });
+    //     }
+    //     else{
+    //         if(curmappagerequest.requeststatus === '行程完成'){
+    //             //重置状态
+    //             window.setTimeout(()=>{
+    //               dispatch(carmap_resetmap({}));
+    //               history.replace(`/orderdetail/${curmappageorder._id}`);
+    //             });
+    //           }
+    //         else if(curmappagerequest.requeststatus === '已取消'){
+    //             //重置状态
+    //             window.setTimeout(()=>{
+    //               dispatch(carmap_resetmap({}));
+    //               history.replace(`/`);
+    //             });
+    //         }
+    //     }
+    // }
 
     render() {
         const {mapstage,curmappagerequest} = this.props;
