@@ -32,6 +32,7 @@
     flex-direction: column;
     margin-top: 15px;
     background: #FFF;
+    flex-grow: 1;
 }
 .carpoolPage .listcontent .licontent{
     display: flex;
@@ -73,5 +74,24 @@
     border-radius: 50px;
     height: 30px;
 }
-
+.setDay{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background: #FFF;
+    border-top: 1px solid #EEE;
+    align-items: stretch;
+}
+.setDay span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f6fe8;
+}
+.setDay span:first-child,
+.setDay span:last-child{
+    padding:  0 15px;
+    
+}
 

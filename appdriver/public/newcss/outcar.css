@@ -1,6 +1,38 @@
 .outcarPage{
 
 }
+.outcarPage .weui-loadmore_line .weui-loadmore__tips{
+    background: #EEE;
+}
+
+.outcarPage .falseorder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.outcarPage .falseorder img{
+    width: 100px;
+    border-radius: 100px;
+    margin-bottom: 15px;
+}
+.outcarPage .falseorder .tit{
+    font-size: 16px;
+}
+.outcarPage .falseorder .reson{
+    margin: 0 20px;
+    color: #999;
+    margin-bottom: 20px;
+}
+.outcarPage .falseorder .btn{
+    border: 1px solid #1f6fe8;
+    border-radius: 40px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1f6fe8;
+    min-width: 100px;
+}
 .outcarPage .headNav{
     box-shadow: 1px 1px 5px #CCC;
     background: #FFF;
@@ -177,6 +209,7 @@
     margin-right: 10px;
     flex-shrink: 0;
     align-self: flex-start;
+    max-width: 68px;
 }
 
 .outcarPage .orderinfohead .call{

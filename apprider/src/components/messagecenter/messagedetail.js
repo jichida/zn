@@ -32,7 +32,7 @@ export class Page extends React.Component {
         }
 
         return (
-            <div className="messagePage AppPage">
+            <div className="messagePage AppPage messagedetailPage">
                 <NavBar back={true} title="消息详情" />
                 {notifymessageitem.hasOwnProperty('_id')?
                 (

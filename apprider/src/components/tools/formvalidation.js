@@ -263,7 +263,7 @@ class DatePickerInput extends React.Component{
 						isOpen={this.state.isOpen}
 						onSelect={this.handleSelect}
 						onCancel={this.handleCancel}
-            {...rest}
+            			{...rest}
 						/>
 				</div>
 			</div>

@@ -6,7 +6,11 @@ import '../../../public/newcss/outcar.css';
 import NavBar from '../tools/nav.js';
 
 import {acceptrequest} from '../../actions';
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
 
+const { LoadMore } = WeUI;
 
 class Page extends React.Component {
     // constructor(props) {
@@ -20,6 +24,8 @@ class Page extends React.Component {
           _id:this.props.selrequest._id,
       }));
     }
+
+
     render() {
       let curreqobj = this.props.selrequest;
       let resultpricedetail;
@@ -32,9 +38,17 @@ class Page extends React.Component {
       }
       return (
           <div className="outcarPage AppPage">
+
               <NavBar back={true} title="抢单" />
+              
               {
-                !curreqobj && <div>【该请求已取消或已被其他司机接单了】</div>
+                !curreqobj && <div className="falseorder">
+                  <LoadMore showLine>订单详情</LoadMore>
+                  <img src="newimg/38.png" />
+                  <span className="tit">订单已失效</span>
+                  <span className="reson">原因: 该请求已取消或已被其他司机接单了</span>
+                  <span className="btn" onClick={()=>{this.props.history.goBack()}}>返回</span>
+              </div>
               }
               {
                 !!curreqobj &&
