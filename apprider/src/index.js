@@ -18,6 +18,6 @@ ReactDOM.render(
 
 sagaMiddleware.run(rootSaga);
 
-store.subscribe(handleChange);
+// store.subscribe(handleChange);
 registerandroid();
 postNotifyFromJPush(store.dispatch);

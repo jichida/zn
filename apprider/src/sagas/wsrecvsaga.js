@@ -44,7 +44,6 @@ import {
   md_starttriprequestorder_result,
 } from '../actions';
 import { push,replace } from 'react-router-redux';
-import {getcurrentpos} from '../util/geo';
 
 const waitfnsz = [
   [
@@ -170,9 +169,5 @@ export function* wsrecvsagaflow() {
       let {payload:result} = action;
       yield put(canceltriprequestorder_result(result));
       yield put(triporder_updateone(result.triporder));
-      let curlocation = yield call(getcurrentpos);
-      yield put(changestartposition({
-          location:`${curlocation.lng},${curlocation.lat}`
-      }));//重新发送一次附近请求
   });
 }

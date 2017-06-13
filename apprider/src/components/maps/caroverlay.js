@@ -47,7 +47,11 @@ export class Page extends React.Component {
     componentWillReceiveProps (nextProps) {
         const {mapstage,history,curmappagerequest,curmappageorder,dispatch} = nextProps;
         if(mapstage === 'pageinit'){
-            history.replace('/');
+            //重置状态
+            window.setTimeout(()=>{
+              dispatch(carmap_resetmap({}));
+              history.replace(`/`);
+            });
         }
         else{
             if(curmappagerequest.requeststatus === '行程完成'){

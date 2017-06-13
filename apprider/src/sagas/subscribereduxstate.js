@@ -16,36 +16,36 @@ export function handleChange() {
   let prevmapstate = curmapstate;
   curmapstate = getmapstate(store.getState());
   //一个行程取消或结束后，改变地理位置，重新打车！
-  if (curmapstate.mapstage === 'pageinit' && prevmapstate.mapstage !== 'pageinit'){
-    getcurrentlocationfn((locz)=>{
-       if(locz[0] !== 0 && locz[1] !== 0){
-         console.log(`从mapstage切换到'pageinit'时，触发3（触发多次，取消请求，订单完成时）`);
-         let srclocationstring = locz[0] + ',' + locz[1];
-         store.dispatch(changestartposition({
-                 location:srclocationstring
-        }));
-       }
-     });
-  }
+  // if (curmapstate.mapstage === 'pageinit' && prevmapstate.mapstage !== 'pageinit'){
+  //   getcurrentlocationfn((locz)=>{
+  //      if(locz[0] !== 0 && locz[1] !== 0){
+  //        console.log(`从mapstage切换到'pageinit'时，触发3（触发多次，取消请求，订单完成时）`);
+  //        let srclocationstring = locz[0] + ',' + locz[1];
+  //        store.dispatch(changestartposition({
+  //                location:srclocationstring
+  //       }));
+  //      }
+  //    });
+  // }
 
   //打车选中目的地以后，切换坐车类型，价格动态变化
-  if(curmapstate.mapstage === "pageinit" && !curmapstate.dragging){//待测试
-        let sendgetpricereq = false;
-        if(curmapstate.triptype !== prevmapstate.triptype){
-          if(curmapstate.iswaitingforcallpage && curmapstate.resultpricerequest.totalprice > 0){
-            console.log(`切换坐车类型，价格动态变化`);
-            sendgetpricereq = true;
-          }
-      }
-      if(sendgetpricereq){
-          console.log(`sendgetpricereq:${sendgetpricereq},curmapstate:${curmapstate.triptype},prevmapstate:${prevmapstate.triptype}`)
-          store.dispatch(getprice_request({
-              registertype:curmapstate.triptype,
-              totaldistance:curmapstate.totaldistance,
-              totalduration:curmapstate.totalduration,
-          }));
-      }
-    }
+  // if(curmapstate.mapstage === "pageinit" && !curmapstate.dragging){//待测试
+  //       let sendgetpricereq = false;
+  //       if(curmapstate.triptype !== prevmapstate.triptype){
+  //         if(curmapstate.iswaitingforcallpage && curmapstate.resultpricerequest.totalprice > 0){
+  //           console.log(`切换坐车类型，价格动态变化`);
+  //           sendgetpricereq = true;
+  //         }
+  //     }
+  //     if(sendgetpricereq){
+  //         console.log(`sendgetpricereq:${sendgetpricereq},curmapstate:${curmapstate.triptype},prevmapstate:${prevmapstate.triptype}`)
+  //         store.dispatch(getprice_request({
+  //             registertype:curmapstate.triptype,
+  //             totaldistance:curmapstate.totaldistance,
+  //             totalduration:curmapstate.totalduration,
+  //         }));
+  //     }
+  //   }
 
     //判断是否要显示司机,如果是,则判断司机位置有无变化,如变化则需要动态画线
     if((curmapstate.enableddrawmapflag & ISENABLEDDRAW_MARKERDIRVER) > 0){
