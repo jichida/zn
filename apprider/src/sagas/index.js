@@ -9,9 +9,11 @@ import {getcurcityflow} from './getcurcityflow';
 import {jpushflow} from './jpushflow';
 import {createupdatestatusflow} from './updatestatus';
 import {createnavdrawrouteflow} from './navdrawroute';
+import {creategetaddrflow} from './getaddr';
 
 export default function* rootSaga() {
   yield fork(createnavdrawrouteflow);
+  yield fork(creategetaddrflow);
   yield fork(jpushflow);
   yield fork(getcurcityflow);
   yield fork(payflow);

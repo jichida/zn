@@ -53,3 +53,7 @@ export const canceltriprequestorder_err= createAction('canceltriprequestorder_er
 //重置
 export const carmap_resetmap = createAction('carmap_resetmap');
 export const carmap_setmapinited = createAction('carmap_setmapinited');
+//拖动
+export const carmap_getaddr = createAction('carmap_getaddr');
+export const carmap_dragging  = createAction('carmap_dragging');
+export const carmap_dragend = createAction('carmap_dragend');

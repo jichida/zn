@@ -7,7 +7,11 @@ import {
     carmap_changemarkerstartlatlng,
     carmap_setzoomlevel,
     carmap_setmapcenter,
-    carmap_setmapinited
+    carmap_setmapinited,
+
+    carmap_dragend,
+    carmap_getaddr,
+    carmap_dragging
 } from '../../actions';
 import {changestartposition} from '../../actions';
 import Popinfotrip from './popinfocar';
@@ -102,17 +106,17 @@ class Page extends React.Component {
         window.geocoder = new window.AMap.Geocoder({
           radius: 1000 //范围，默认：500
         });
-
-        window.geocoder.getAddress(center, (status, result)=> {
-            console.log("status:" + status);
-            console.log("result:" + JSON.stringify(result));
-            if (status === 'complete' && result.info === 'OK') {
-               //geocoder_CallBack(result);
-               let addressname = result.regeocode.formattedAddress;
-               let location = mapcenterlocation;
-               this.props.dispatch(carmap_setstartaddress({addressname,location}));
-            }
-       });
+        this.props.dispatch(carmap_getaddr(mapcenterlocation));
+      //   window.geocoder.getAddress(center, (status, result)=> {
+      //       console.log("status:" + status);
+      //       console.log("result:" + JSON.stringify(result));
+      //       if (status === 'complete' && result.info === 'OK') {
+      //          //geocoder_CallBack(result);
+      //          let addressname = result.regeocode.formattedAddress;
+      //          let location = mapcenterlocation;
+      //          this.props.dispatch(carmap_setstartaddress({addressname,location}));
+      //       }
+      //  });
 
       }
       else{
@@ -130,6 +134,7 @@ class Page extends React.Component {
     }
   }
     onDragging(){
+      this.props.dispatch(carmap_dragging());
         // const getleafletpos = (curlocation)=>{
         //    return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
         // };
@@ -145,31 +150,32 @@ class Page extends React.Component {
 
 
     onDragEnd(){
-        const getleafletpos = (curlocation)=>{
-           return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
-        };
-        this.props.dispatch(carmap_setdragging(false));
-        let centerlatlng = getleafletpos(window.amap.getCenter());
-        if(this.props.enabledragging){
-            let markerstartlatlng = centerlatlng;
-            this.props.dispatch(carmap_changemarkerstartlatlng(centerlatlng));
-            let srclocationstring = markerstartlatlng.lng+"," +markerstartlatlng.lat;
-            console.log(`拖动坐车位置时，触发3(界面直接处理)`);
-            this.props.dispatch(changestartposition({
-                location:srclocationstring
-            }));
-            let center = new window.AMap.LngLat(centerlatlng.lng,centerlatlng.lat);
-            window.geocoder.getAddress(center, (status, result)=> {
-                console.log("status:" + status);
-                console.log("result:" + JSON.stringify(result));
-                if (status === 'complete' && result.info === 'OK') {
-                  let addressname = result.regeocode.formattedAddress;
-                  let location = centerlatlng;
-                  this.props.dispatch(carmap_setstartaddress({addressname,location}));
-                }
-           });
-        }
-        this.props.dispatch(carmap_setmapcenter(centerlatlng));
+      this.props.dispatch(carmap_dragend());
+        // const getleafletpos = (curlocation)=>{
+        //    return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
+        // };
+        // this.props.dispatch(carmap_setdragging(false));
+        // let centerlatlng = getleafletpos(window.amap.getCenter());
+        // if(this.props.enabledragging){
+        //     let markerstartlatlng = centerlatlng;
+        //     this.props.dispatch(carmap_changemarkerstartlatlng(centerlatlng));
+        //     let srclocationstring = markerstartlatlng.lng+"," +markerstartlatlng.lat;
+        //     console.log(`拖动坐车位置时，触发3(界面直接处理)`);
+        //     this.props.dispatch(changestartposition({
+        //         location:srclocationstring
+        //     }));
+        //     let center = new window.AMap.LngLat(centerlatlng.lng,centerlatlng.lat);
+        //     window.geocoder.getAddress(center, (status, result)=> {
+        //         console.log("status:" + status);
+        //         console.log("result:" + JSON.stringify(result));
+        //         if (status === 'complete' && result.info === 'OK') {
+        //           let addressname = result.regeocode.formattedAddress;
+        //           let location = centerlatlng;
+        //           this.props.dispatch(carmap_setstartaddress({addressname,location}));
+        //         }
+        //    });
+        // }
+        // this.props.dispatch(carmap_setmapcenter(centerlatlng));
     }
     onZoomend(){
         this.props.dispatch(carmap_setzoomlevel(window.amap.getZoom()));
@@ -185,10 +191,10 @@ class Page extends React.Component {
         driverlocation,driverlist,routeleftpts,routepastpts,enabledragging} = nextprop;
         if(window.amap){
             const isenableddrawmapflag = (flag)=>{
-                if(flag === ISENABLEEDRAW_MARKERSTART && enabledragging){
-                  //地图上移动起始位置时，为提升效率，不显示覆盖物（避免实时计算位置导致性能问题）
-                  return false;//显示div,不显示覆盖物！
-                }
+                // if(flag === ISENABLEEDRAW_MARKERSTART && enabledragging){
+                //   //地图上移动起始位置时，为提升效率，不显示覆盖物（避免实时计算位置导致性能问题）
+                //   return false;//显示div,不显示覆盖物！
+                // }
                 return (enableddrawmapflag & flag)>0;
             }
             const getamppos = (curloc)=>{
