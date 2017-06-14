@@ -52,6 +52,7 @@ export const canceltriprequestorder_result= createAction('canceltriprequestorder
 export const canceltriprequestorder_err= createAction('canceltriprequestorder_err');
 //重置
 export const carmap_resetmap = createAction('carmap_resetmap');
+export const carmap_resetmap_url = createAction('carmap_resetmap_url');
 export const carmap_setmapinited = createAction('carmap_setmapinited');
 //拖动
 export const carmap_getaddr = createAction('carmap_getaddr');

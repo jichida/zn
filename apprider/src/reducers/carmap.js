@@ -108,8 +108,8 @@ const carmap = createReducer({
       //还原起始点，终点
       let driverlocation = L.latLng(curmappageorder.driverlocation[1],
         curmappageorder.driverlocation[0]);
-      let markerstartlatlng = curmappageorder.srcaddress.location;
-      let markerendlatlng = curmappageorder.dstaddress.location;
+      let markerstartlatlng = L.latLng(curmappageorder.srcaddress.location.lat, curmappageorder.srcaddress.location.lng);
+      let markerendlatlng = L.latLng(curmappageorder.dstaddress.location.lat, curmappageorder.dstaddress.location.location.lng);
       return {...state,enabledragging,curmappagerequest,curmappageorder,mapstage,
         driverlocation,markerstartlatlng,markerendlatlng};
     },
@@ -144,7 +144,7 @@ const carmap = createReducer({
                 addressname:data.addressname,
                 location:data.location
             },
-            markerstartlatlng:data.location
+            markerstartlatlng:L.latLng(data.location.lat,data.location.lng)
         };
     },
     [carmap_setendaddress]:(state,data)=>{//改变目的地
@@ -154,7 +154,7 @@ const carmap = createReducer({
                     addressname:data.addressname,
                     location:data.location
                 },
-                markerendlatlng:data.location,
+                markerendlatlng:L.latLng(data.location.lat, data.location.lng),
                 iswaitingforcallpage:true,
                 enabledragging:false,
                 driverlist:[]
@@ -227,6 +227,7 @@ const carmap = createReducer({
     },
     [carmap_setcurlocation]:(state,curlocation)=>{
         //获取到当前位置,显示在地图上
+        curlocation = L.latLng(curlocation.lat, curlocation.lng);
         return {...state,curlocation};
     },
     [carmap_settriptype]:(state,triptype)=>{
