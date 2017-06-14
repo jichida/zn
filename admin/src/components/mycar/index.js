@@ -126,7 +126,7 @@ const MycarEdit = (props) => {
 
 
 const MycarList = (props) => (//
-     <List title="驾驶员车辆信息列表" {...props} >
+     <List title="驾驶员车辆信息列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <ReferenceField label="司机" source="creator" reference="userdriver" >
           <TextField source="username" />
@@ -134,6 +134,7 @@ const MycarList = (props) => (//
         <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty>
           <TextField source="id" />
         </ReferenceField>
+        <DateField label="新建时间" source="created_at"  showTime/>
         <TextField label="审批状态"  source="approvalstatus" />
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
         <EditButton style={{ padding: 0 }} />

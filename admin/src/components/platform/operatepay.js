@@ -53,7 +53,7 @@ const OperatePayShow = (props) => (
            <TextField label="优惠金额" source="BenfjtPrice" />
            <TextField label="预约服务费" source="BookTip" />
            <TextField label="附加费" source="PassengerTip" />
-           <TextField label="PeakUpPrice??" source="PeakUpPrice" />
+           <TextField label="乘坐价格" source="PeakUpPrice" />
            <TextField label="夜间时段里程加价金" source="NightUpPrice" />
            <TextField label="远途加价金额" source="FarUpPrice" />
            <TextField label="其他加价金额" source="OtherUpPrice" />
@@ -66,20 +66,24 @@ const OperatePayShow = (props) => (
 );
 
 const OperatePayList = (props) => (//
-     <List title="经营支付列表" {...props} >
+     <List title="经营支付列表" {...props}  sort={{ field: 'PayTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单号" source="Orderld" />
-        <TextField label="上车位置行政区划编号" source="OnArea" />
         <TextField label="机动车驾驶员姓名" source="DriverName" />
         <TextField label="机动车驾驶证号" source="Licenseld" />
         <TextField label="运价类型编码" source="FareType" />
         <TextField label="车辆号牌" source="VehicleNo" />
-        <DateField label="预计上车时间" source="BookDepTime" />
-        <DateField label="等待时间" source="WaitTime" />
         <TextField label="出发经度" source="DepLongitude" />
         <TextField label="出发纬度" source="DepLatitude" />
         <TextField label="上车地点" source="DepArea" />
         <DateField label="上车时间" source="DepTime" />
+        <TextField label="载客里程" source="DriveMile" />
+        <DateField label="载客时间" source="DriveTime" />
+        <TextField label="空驶里程" source="WaitMile" />
+        <TextField label="实收金额" source="FactPrice" />
+        <TextField label="应收金额" source="Price" />
+        <DateField label="乘客结算时间" source="PayTime" />
+        <DateField label="订单完成时间" source="OrderMatchTime" />
         <ShowButton />
         </Datagrid>
     </List>

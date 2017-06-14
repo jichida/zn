@@ -42,7 +42,7 @@ const TriprequestlistShow = (props) => (
 
 
 const TriprequestlistList = (props) => (//
-     <List title="行程列表" {...props} >
+     <List title="行程列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <ReferenceField label="乘客" source="rideruserid" reference="userrider" addLabel={false}>
              <TextField source="username" />

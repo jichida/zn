@@ -40,7 +40,7 @@ const OperateDepartShow = (props) => (
 
 
 const OperateDepartList = (props) => (//
-     <List title="车辆经营出发列表" {...props} >
+     <List title="车辆经营出发列表" {...props} sort={{ field: 'DepTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单号" source="Orderld" />
         <TextField label="机动车驾驶证号" source="Licenseld" />

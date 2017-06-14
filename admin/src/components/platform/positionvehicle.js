@@ -44,7 +44,7 @@ const PositionVehicleShow = (props) => (
 
 
 const PositionVehicleList = (props) => (//
-     <List title="车辆定位信息列表" {...props} >
+     <List title="车辆定位信息列表" {...props} sort={{ field: 'PositionTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="车辆号牌" source="VehicleNo" />
         <TextField label="行政区划代码"  source="VehicleRegionCode" />

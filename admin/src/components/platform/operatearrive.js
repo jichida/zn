@@ -37,7 +37,7 @@ const OperateArriveShow = (props) => (
 
 
 const OperateArriveList = (props) => (//
-     <List title="车辆经营到达列表" {...props} >
+     <List title="车辆经营到达列表" {...props}  sort={{ field: 'DestTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单号" source="Orderld" />
         <TextField label="车辆到达经度" source="DestLongitude" />

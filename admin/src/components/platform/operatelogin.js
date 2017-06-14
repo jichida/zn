@@ -36,7 +36,7 @@ const OperateLoginShow = (props) => (
 
 
 const OperateLoginList = (props) => (//
-     <List title="车辆经营上线列表" {...props} >
+     <List title="车辆经营上线列表" {...props}  sort={{ field: 'LoginTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="机动车驾驶证号" source="Licenseld" />
         <TextField label="车辆号牌" source="VehicleNo" />

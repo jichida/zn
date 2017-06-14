@@ -71,7 +71,7 @@ const NotifyMessagelistShow = (props) => (
 
 
 const NotifyMessagelistList = (props) => (//
-     <List title="通知消息列表" {...props} >
+     <List title="通知消息列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="消息类型" source="messagetype" />
         <TextField label="消息标题" source="messagetitle" />

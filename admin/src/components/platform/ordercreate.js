@@ -42,7 +42,7 @@ const OrderCreateShow = (props) => (
 
 
 const OrderCreateList = (props) => (//
-     <List title="订单生成列表" {...props} >
+     <List title="订单生成列表" {...props} sort={{ field: 'OrderTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单编号" source="Orderld" />
         <DateField label="预计用车时间"  source="DepartTime" showTime />

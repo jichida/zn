@@ -42,7 +42,7 @@ const PositionDriverShow = (props) => (
 
 
 const PositionDriverList = (props) => (//
-     <List title="驾驶员定位信息列表" {...props} >
+     <List title="驾驶员定位信息列表" {...props} sort={{ field: 'PositionTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="网约车公司标识" source="Licenseld" />
         <TextField label="行政区划代码"  source="RiverRegionCode" />
