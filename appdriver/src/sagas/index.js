@@ -8,8 +8,10 @@ import {jpushflow} from './jpushflow';
 import {createstartoperateloginoutflow} from './startoperateloginout';
 import {createnavdrawrouteflow} from './navdrawroute';
 import {createupdatestatusflow} from './updatestatus';
+import {createloadingflow} from './loading';
 
 export default function* rootSaga() {
+  yield fork(createloadingflow);
   yield fork(jpushflow);
   yield fork(wsrecvsagaflow);
   yield fork(createrestoreorderflow);

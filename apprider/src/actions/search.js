@@ -11,4 +11,3 @@ export const placesearchresult = createAction('placesearchresult');
 //设置常用地址【搜索页】
 export const setoftenuseaddress_request = createAction('setoftenuseaddress_request');
 export const setoftenuseaddress_result = createAction('setoftenuseaddress_result');
-export const setoftenuseaddress_err = createAction('setoftenuseaddress_err');

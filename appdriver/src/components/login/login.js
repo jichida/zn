@@ -116,12 +116,6 @@ export class Page extends Component {
             password:values.password,
         };
 
-        this.props.dispatch(set_weui({
-            loading : {
-                show : true
-            },
-        }));
-
         this.props.dispatch(login_request(payload));
     }
     render(){

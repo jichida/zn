@@ -10,8 +10,10 @@ import {jpushflow} from './jpushflow';
 import {createupdatestatusflow} from './updatestatus';
 import {createnavdrawrouteflow} from './navdrawroute';
 import {creategetaddrflow} from './getaddr';
+import {createloadingflow} from './loading';
 
 export default function* rootSaga() {
+  yield fork(createloadingflow);
   yield fork(createnavdrawrouteflow);
   yield fork(creategetaddrflow);
   yield fork(jpushflow);

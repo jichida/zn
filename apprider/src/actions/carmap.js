@@ -39,7 +39,7 @@ export const driveroute_request = createAction('driveroute_request');
 export const driveroute_result = createAction('driveroute_result');
 //获取价格
 export const getprice_request = createAction('getprice_request');
-export const getprice_result= createAction('getprice_request');
+export const getprice_result= createAction('getprice_result');
 //地图请求表单，点击改变属性
 export const carmap_setcurlocation = createAction('carmap_setcurlocation');
 export const carmap_settriptype = createAction('carmap_settriptype');
@@ -49,7 +49,6 @@ export const starttriprequestorder_result= createAction('starttriprequestorder_r
 //取消请求
 export const canceltriprequestorder_request= createAction('canceltriprequestorder_request');
 export const canceltriprequestorder_result= createAction('canceltriprequestorder_result');
-export const canceltriprequestorder_err= createAction('canceltriprequestorder_err');
 //重置
 export const carmap_resetmap = createAction('carmap_resetmap');
 export const carmap_resetmap_url = createAction('carmap_resetmap_url');
