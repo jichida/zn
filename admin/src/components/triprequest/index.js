@@ -30,9 +30,8 @@ const TriprequestlistShow = (props) => (
                     <TextField source="username" />
                 </ReferenceField>
                <TextField label="行程类型"  source="triptype" />
-               <DateField label="生成时间"  source="created_at" />
+               <DateField label="生成时间"  source="created_at" showTime/>
                <TextField label="状态"  source="requeststatus" />
-               <TextField label="行程开始时间" source="showtimestring" />
                <TextField label="起始地" source="srcaddress.addressname" />
                <TextField label="目的地" source="dstaddress.addressname" />
            </SimpleShowLayout>
@@ -52,7 +51,7 @@ const TriprequestlistList = (props) => (//
         </ReferenceField>
         <TextField label="行程类型"  source="triptype" />
         <TextField label="状态"  source="requeststatus" />
-        <TextField label="行程开始时间" source="showtimestring" />
+        <DateField label="生成时间"  source="created_at" showTime/>
         <TextField label="起始地" source="srcaddress.addressname" />
         <TextField label="目的地" source="dstaddress.addressname" />
         <ShowButton />
