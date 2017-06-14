@@ -131,6 +131,15 @@ export function* createupdatestatusflow(){
 
       let sendnav = (action.type === serverpush_restoreorder.getType())
       || (action.type === setcurlocation.getType());
+
+      if(sendnav){
+        sendnav = false;
+        if(!!curreqobj){
+          if(curreqobj.requeststatus === '行程中' || curreqobj.requeststatus === '已接单'){
+            sendnav = true;
+          }
+        }
+      }
       if(sendnav){//发送导航
         //当前地址变化
         let drawroute = false;

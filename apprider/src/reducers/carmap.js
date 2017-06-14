@@ -106,10 +106,12 @@ const carmap = createReducer({
       let curmappageorder = payload.triporder;
       let mapstage = 'pageorder';
       //还原起始点，终点
-      let driverlocation = L.latLng(curmappageorder.driverlocation[1],
-        curmappageorder.driverlocation[0]);
+      let driverlocation = state.driverlocation;
+      if(curmappageorder.driverlocation.length > 0){//数组
+        driverlocation = L.latLng(curmappageorder.driverlocation[1],curmappageorder.driverlocation[0]);
+      }
       let markerstartlatlng = L.latLng(curmappageorder.srcaddress.location.lat, curmappageorder.srcaddress.location.lng);
-      let markerendlatlng = L.latLng(curmappageorder.dstaddress.location.lat, curmappageorder.dstaddress.location.location.lng);
+      let markerendlatlng = L.latLng(curmappageorder.dstaddress.location.lat, curmappageorder.dstaddress.location.lng);
       return {...state,enabledragging,curmappagerequest,curmappageorder,mapstage,
         driverlocation,markerstartlatlng,markerendlatlng};
     },
