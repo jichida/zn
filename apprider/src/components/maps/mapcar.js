@@ -19,6 +19,7 @@ import Popinfowaiting from './popinfolookingcar';
 
 import "../../../public/newcss/mapcontainer.css";
 
+
 import _ from 'lodash';
 
 const ISENABLEEDRAW_MARKERSTART = 1;
@@ -305,14 +306,23 @@ class Page extends React.Component {
             if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
               let info = [];
               const {totaldistancetxt,totaldurationtxt} = nextprop;
+
+              info.push(`<div className="mapCoverInfo" >`);
+              info.push(`<div className="infoCont">`);
+              info.push(`<div className="info">`);
               info.push(`<p>距离终点<span>${totaldistancetxt}</span></p>`);
               info.push(`<p>预计行驶<span>${totaldurationtxt}</span></p>`);
+              info.push(`</div>`);
+              info.push(`<div className="price">`);
               const {requeststatus} = nextprop.curmappagerequest;
               if(requeststatus === '行程中'){
                 const {realtimepricedetail} = nextprop.curmappageorder;
-                info.push(`<p>费用<span>${realtimepricedetail.price}元</span></p>`);
+                info.push(`<span>${realtimepricedetail.price}元</span>`);
               }
-
+              info.push(`</div>`);
+              info.push(`</div>`);
+              info.push(`<div className="point"></div>`);
+              info.push(`</div>`);
               infoWindow = new window.AMap.InfoWindow({
                   content: info.join("<br>")  //使用默认信息窗体框样式，显示信息内容
               });
