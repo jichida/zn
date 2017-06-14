@@ -133,8 +133,8 @@ class Page extends React.Component {
 
     }
   }
-    onDragging(){
-      this.props.dispatch(carmap_dragging());
+  onDragging(){
+        this.props.dispatch(carmap_dragging({markerstart}));
         // const getleafletpos = (curlocation)=>{
         //    return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
         // };

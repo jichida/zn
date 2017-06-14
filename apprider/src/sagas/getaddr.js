@@ -40,22 +40,14 @@ const async_getaddr =(centerlatlng)=> {
 
 export function* creategetaddrflow(){
   yield takeLatest(`${carmap_dragging}`, function*(action) {
-    let centerlocamp = window.amap.getCenter();
-    let centerlatlng = L.latLng(centerlocamp.lat, centerlocamp.lng);//lat,lng
+    const {payload} = action;
     const {enabledragging} = yield select(getmapstate_fordrag);
     if(enabledragging){
-        yield put(carmap_changemarkerstartlatlng(centerlatlng));
+      const {markerstart} = payload;
+      let centerlocamp = window.amap.getCenter();
+      markerstart.setPosition(centerlocamp);
     }
-    yield put(carmap_setmapcenter(centerlatlng));
-    yield call(delay,300);
-    // const getleafletpos = (curlocation)=>{
-    //    return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
-    // };
-    //  let centerlatlng = getleafletpos(window.amap.getCenter());
-    //  if(this.props.enabledragging){
-    //      this.props.dispatch(carmap_changemarkerstartlatlng(centerlatlng));
-    // }
-    // this.props.dispatch(carmap_setmapcenter(centerlatlng));
+    //yield call(delay,300);
   });
 
   yield takeEvery(`${carmap_getaddr}`, function*(action) {
