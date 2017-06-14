@@ -85,7 +85,7 @@ export const isidcard = value => idCard.verify(value)? undefined : "请输入正
 
 //获取银行卡信息
 export const asyncValidate = value=> BIN.getBankBin(parseInt(value,10)).then(
-	function (data) { 
+	function (data) {
 		//console.log(data);
 	}).catch(
 		error => {
@@ -189,7 +189,7 @@ let WeuiInputValidation = (props) => {
 	                </Label>
 	            </CellHeader>
 	    	):''}
-            
+
             <CellBody>
                 <Input {...input} type={type} placeholder={placeholder}/>
                 <span>{Company}</span>
@@ -319,7 +319,7 @@ let WeuiCheckboxValidation = (props) => {
 	return (
 		<FormCell className={style}>
 			<label className="weui-agree">
-				<input { ...input } class="weui-agree__checkbox" type={type} />
+				<input { ...input } className="weui-agree__checkbox" type={type} />
 				<span className="weui-agree__text">
 					&nbsp;&nbsp;{labelinfo}
 					{!!lnktxt?(<a href={lnkurl}>{lnktxt}</a>):""}
@@ -352,9 +352,9 @@ let InputBankValidation = (props) => {
 
 	const {
 		onError,
-		input, 
-		placeholder, 
-		type, 
+		input,
+		placeholder,
+		type,
 		meta: { asyncValidating, touched, error, warning},
 		Company,
 		InputTit,

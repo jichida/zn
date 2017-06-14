@@ -14,6 +14,5 @@ export const serverpush_restoreorder = createAction('serverpush_restoreorder');/
 export const serverpush_userloginsuccess_notify = createAction('serverpush_userloginsuccess_notify');//服务端登录成功
 export const queryorder = createAction('queryorder');//查询第一个订单状态（防止已经在打车页面断开连接后订单已经过期 恢复）
 
-
 export const getsystemconfig_request =  createAction('getsystemconfig_request');
 export const getsystemconfig_result =  createAction('getsystemconfig_result');

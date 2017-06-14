@@ -1,6 +1,7 @@
 import { put,takeEvery} from 'redux-saga/effects';
 import {
   acceptrequest_result,
+  findpwd_result,
   loginsendauth_result,
   serverpush_triporder,
   triporder_updateone,
@@ -89,6 +90,15 @@ export function* wsrecvsagaflow() {
       yield put(push(`/withdrawauth/${result.newitem._id}`));
   });
 
+  yield takeEvery(`${findpwd_result}`, function*(action) {
+      let toast = {
+          show : true,
+          text : "找回密码成功,请妥善保管好自己的密码",
+          type : "success"
+      }
+      yield put(set_weui({ toast }));
+      yield put(goBack());
+  });
 
   yield takeEvery(`${carcreate_result}`, function*(action) {
       let toast = {

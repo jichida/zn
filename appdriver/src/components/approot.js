@@ -38,6 +38,7 @@ import Approval from './register/approval';
 import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
 //支付界面
+import Findpwd from './login/findpwd';
 
 import {
     Route,Redirect,
@@ -48,7 +49,6 @@ import {requireAuthentication,requireApproval} from './requireauthentication';
 class AppRoot extends React.Component {
   componentWillMount() {
         const script = document.createElement("script");
-
         script.src = "http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving";
         script.async = true;
         window.init = ()=>{
@@ -64,6 +64,7 @@ class AppRoot extends React.Component {
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/findpwd" component={Findpwd}/>
                     <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
                     <Route path='/starttrip' component={Caroverlaystart} />
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>
