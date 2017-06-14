@@ -71,6 +71,7 @@ const getmapstate_fornav_cur2end = (state) => {
 */
 import L from 'leaflet';
 const locz = [0,0];
+const loczero = L.latLng(locz[1], locz[0]);
 const ISENABLEEDRAW_MARKERSTART = 1;
 const ISENABLEDDRAW_MARKEREND = 2;
 const ISENABLEDDRAW_MARKERSELF = 4;
@@ -82,22 +83,23 @@ const ISENABLEDDRAW_POPWITHSTART = 128;
 const ISENABLEDDRAW_POPWITHCUR  = 256;
 
 const getmapstate_formapdraw = (state) => {
-  const {mapstage,curlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
+  let {mapstage,curlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
   let enableddrawmapflag = 0;
+  curlocation = L.latLng(curlocation.lat, curlocation.lng);
   if(!!curlocation){
-    if(curlocation !== L.latLng(locz[1], locz[0])){
+    if(!curlocation.equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKERSELF;
     }
   }
 
   if(!!markerstartlatlng){
-    if(markerstartlatlng !== L.latLng(locz[1], locz[0])){
+    if(!markerstartlatlng.equals(loczero)){
       enableddrawmapflag |= ISENABLEEDRAW_MARKERSTART;
     }
   }
 
   if(!!markerendlatlng){
-    if(markerendlatlng !== L.latLng(locz[1], locz[0])){
+    if(!markerendlatlng.equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKEREND;
     }
   }
@@ -109,7 +111,7 @@ const getmapstate_formapdraw = (state) => {
     }
     //显示在这里上车
     if(!!markerstartlatlng){
-      if(markerstartlatlng !== L.latLng(locz[1], locz[0])){
+      if(!markerstartlatlng.equals(loczero)){
         enableddrawmapflag |= ISENABLEDDRAW_POPWITHSTART;
       }
     }
@@ -120,7 +122,7 @@ const getmapstate_formapdraw = (state) => {
         enableddrawmapflag |= ISENABLEDRAW_NEARBYDRIVERS;
         //显示在这里上车
         if(!!markerstartlatlng){
-          if(markerstartlatlng !== L.latLng(locz[1], locz[0])){
+          if(!markerstartlatlng.equals(loczero)){
             enableddrawmapflag |= ISENABLEDDRAW_POPWITHSTART;
           }
         }
@@ -136,7 +138,7 @@ const getmapstate_formapdraw = (state) => {
         curmappagerequest.requeststatus === '待上车'){
           //显示在这里上车
           if(!!markerstartlatlng){
-            if(markerstartlatlng !== L.latLng(locz[1], locz[0])){
+            if(!markerstartlatlng.equals(loczero)){
               enableddrawmapflag |= ISENABLEDDRAW_POPWITHSTART;
             }
           }

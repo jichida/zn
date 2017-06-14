@@ -44,7 +44,7 @@ import {
   payorderwithcash_result,
 
   md_updaterequeststatus_result,
-  carmap_resetmap
+
 } from '../actions';
 import { push,goBack,go,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -186,17 +186,14 @@ export function* wsrecvsagaflow() {
         yield put(triporder_updateone(triporder));
       }
       yield put(updaterequeststatus_result(result));
-      if(triprequest.requeststatus === '行程完成'){
-        yield put(carmap_resetmap());
-        yield put(replace(`/orderdetail/${result.triporder._id}`));
-      }
+
   });
 
   yield takeEvery(`${md_canceltriprequestorder_result}`, function*(action) {
       let {payload:result} = action;
       yield put(canceltriprequestorder_result(result));
-      yield put(carmap_resetmap());
-      yield put(goBack());
+      yield put(triporder_updateone(result.triporder));
+      yield put(serverpush_triprequestandorder(result));
   });
 
 }

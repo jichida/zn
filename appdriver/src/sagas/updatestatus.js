@@ -19,7 +19,7 @@ import {
   acceptrequest_result,
 } from '../actions';
 
-import { push } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import {getcurrentpos_sz} from './getcurrentpos';
 
 // const getmapstate_fornav_start2end = (state) => {
@@ -40,6 +40,8 @@ import {getcurrentpos_sz} from './getcurrentpos';
 //   };
 // }
 const locz = [0,0];
+const loczero = L.latLng(locz[1], locz[0]);
+
 import L from 'leaflet';
 const ISENABLEEDRAW_MARKERSTART = 1;
 const ISENABLEDDRAW_MARKEREND = 2;
@@ -50,22 +52,23 @@ const ISENABLEDDRAW_ROUTELEFT = 32;
 const ISENABLEDDRAW_POPWITHCUR  = 256;
 
 const getmapstate_formapdraw = (state) => {
-  const {driverlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
+  let {driverlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
   let enableddrawmapflag = 0;
+  driverlocation = L.latLng(driverlocation.lat, driverlocation.lng);
   if(!!driverlocation){
-    if(driverlocation !== L.latLng(locz[1], locz[0])){
+    if(!driverlocation .equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;
     }
   }
 
   if(!!markerstartlatlng){
-    if(markerstartlatlng !== L.latLng(locz[1], locz[0])){
+    if(!markerstartlatlng.equals(loczero)){
       enableddrawmapflag |= ISENABLEEDRAW_MARKERSTART;
     }
   }
 
   if(!!markerendlatlng){
-    if(markerendlatlng !== L.latLng(locz[1], locz[0])){
+    if(!markerendlatlng.equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKEREND;
     }
   }
@@ -84,6 +87,15 @@ const getmapstate_formapdraw = (state) => {
 
 
 export function* createupdatestatusflow(){
+  yield takeEvery(`${carmap_resetmap}`, function*(action) {
+      const {payload} = action;
+      if(!!payload){
+        if(!!payload.url){
+          yield put(replace(payload.url));
+        }
+      }
+  });
+
   yield takeEvery(`${acceptrequest}`, function*(action) {
     const {payload} = action;
     payload.driverlocation = yield call(getcurrentpos_sz);

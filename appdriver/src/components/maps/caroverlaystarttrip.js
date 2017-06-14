@@ -18,22 +18,42 @@ export class Page extends React.Component {
   componentWillMount () {
   }
 
-  componentWillReceiveProps (nextProps) {
-      const {curmappagerequest,curmappageorder,history,dispatch} = nextProps;
-      if(curmappagerequest.requeststatus === "已取消"){
-          //let triporderid = nextProps.curmappageorder._id;
-         window.setTimeout(()=>{
-              history.goBack();//replace(`/orderdetail/${triporderid}`);
-              dispatch(carmap_resetmap());
-          },0);
+  shouldComponentUpdate(nextProps, nextState) {
+    //不显示中间页面！
+    const {mapstage,curmappagerequest,curmappageorder,dispatch} = nextProps;
+    let needrender = true;
+    let url='/outcar';
+
+    if(curmappagerequest.requeststatus === '行程完成' ||
+      curmappagerequest.requeststatus === '已取消'){
+        needrender = false;
+        url = curmappagerequest.requeststatus === '行程完成' ?`/orderdetail/${curmappageorder._id}`:'/outcar';
       }
-      else if(curmappagerequest.requeststatus === '行程完成'){
-        window.setTimeout(()=>{
-            dispatch(carmap_resetmap());
-            history.replace(`/orderdetail/${curmappageorder._id}`);
-         },0);
-      }
+
+    if(!needrender){
+      dispatch(carmap_resetmap({url}));
+    }
+    return needrender;
   }
+
+
+  // componentWillReceiveProps (nextProps) {
+  //
+  //     const {curmappagerequest,curmappageorder,history,dispatch} = nextProps;
+  //     if(curmappagerequest.requeststatus === "已取消"){
+  //         //let triporderid = nextProps.curmappageorder._id;
+  //        window.setTimeout(()=>{
+  //             history.goBack();//replace(`/orderdetail/${triporderid}`);
+  //             dispatch(carmap_resetmap());
+  //         },0);
+  //     }
+  //     else if(curmappagerequest.requeststatus === '行程完成'){
+  //       window.setTimeout(()=>{
+  //           dispatch(carmap_resetmap());
+  //           history.replace(`/orderdetail/${curmappageorder._id}`);
+  //        },0);
+  //     }
+  // }
 
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);
