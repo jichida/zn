@@ -48,7 +48,9 @@ export class PageForm extends Component {
                         component={ InputValidation }
                         validate={[ required ]}
                     />
+
                 </div>
+                <span className="resetpassword" onClick={()=>{this.props.history.push("/findpwd")}}>忘记密码？</span>
 
                 <div className="submitBtn">
                     <span
@@ -59,7 +61,7 @@ export class PageForm extends Component {
                         登录
                     </span>
                     <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
-                    <span className="gotoregister" onClick={()=>{this.props.history.push("/findpwd")}}>找回密码</span>
+                    
                 </div>
             </Form>
         )

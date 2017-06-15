@@ -42,6 +42,7 @@
 	height:50px;
 	margin-bottom: 15px;
 	align-items: center;
+	position: relative;
 }
 .loginPage .formvalidation.form_input input{
 	background: none;
@@ -64,7 +65,7 @@
 	flex-shrink: 0;
 }
 .loginPage .submitBtn{
-	padding-top: 30px;
+	padding-top: 20px;
 }
 .loginPage .gotoregister{
 	color: #FFF;
@@ -74,5 +75,13 @@
 	background: rgba(0,0,0,.5);
 	border-radius: 6px;
 }
-
+.loginPage .resetpassword{
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(255,255,255,.5);
+    align-self: flex-end;
+    flex-grow: 0;
+    padding: 0 15px;
+    border-radius: 8px;
+}
 
