@@ -97,7 +97,11 @@ import {
     payorderwithcash_result,
 
     serverpush_userloginsuccess_notify,
-    queryorder
+    queryorder,
+
+    login_request,
+    findpwd_request,
+    findpwd_result,
 } from '../actions';
 
 
@@ -132,6 +136,7 @@ exports.recvmessagetoresultpair = {
   'serverpush_restoreorder':serverpush_restoreorder,
   'serverpush_driverlocation':serverpush_driverlocation,
   'serverpush_orderprice':serverpush_orderprice,
+  'findpwd_result':findpwd_result,
   'logout_result':logout_result,
   'serverpush_nearbyrequests':serverpush_nearbyrequests,
   'serverpush_nearbyrequests_removeone':serverpush_nearbyrequests_removeone,
@@ -151,6 +156,8 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'findpwd':`${findpwd_request}`,
+  'login':`${login_request}`,
   'getnotifymessageone':`${getnotifymessageone_request}`,
   'getnotifymessage':`${getnotifymessage_request}`,
   'register':`${register_request}`,

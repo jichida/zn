@@ -38,10 +38,8 @@ const initial = {
         enableddrawmapflag:0,//画图标志
         routepastpts:[],
         curmappageorder:{
-
         },
         curmappagerequest:{
-
         }
     },
 };

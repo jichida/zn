@@ -13,6 +13,7 @@ import {
   selrequest,
   setcurlocation,
   carmap_resetmap,
+  carmap_resetmap_url,
   serverpush_triprequest,
   serverpush_triprequestandorder,
   updaterequeststatus_result,
@@ -54,7 +55,6 @@ const ISENABLEDDRAW_POPWITHCUR  = 256;
 const getmapstate_formapdraw = (state) => {
   let {driverlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
   let enableddrawmapflag = 0;
-  driverlocation = L.latLng(driverlocation.lat, driverlocation.lng);
   if(!!driverlocation){
     if(!driverlocation .equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;
@@ -87,13 +87,14 @@ const getmapstate_formapdraw = (state) => {
 
 
 export function* createupdatestatusflow(){
-  yield takeEvery(`${carmap_resetmap}`, function*(action) {
+  yield takeEvery(`${carmap_resetmap_url}`, function*(action) {
       const {payload} = action;
       if(!!payload){
         if(!!payload.url){
           yield put(replace(payload.url));
         }
       }
+      yield put(carmap_resetmap({}));
   });
 
   yield takeEvery(`${acceptrequest}`, function*(action) {
@@ -130,6 +131,15 @@ export function* createupdatestatusflow(){
 
       let sendnav = (action.type === serverpush_restoreorder.getType())
       || (action.type === setcurlocation.getType());
+
+      if(sendnav){
+        sendnav = false;
+        if(!!curreqobj){
+          if(curreqobj.requeststatus === '行程中' || curreqobj.requeststatus === '已接单'){
+            sendnav = true;
+          }
+        }
+      }
       if(sendnav){//发送导航
         //当前地址变化
         let drawroute = false;

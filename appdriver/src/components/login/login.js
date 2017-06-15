@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, Form, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
-import {loginsendauth_request,loginwithauth_request} from '../../actions';
+import {loginsendauth_request,login_request} from '../../actions';
 import NavBar from '../tools/nav.js';
 import '../../../public/newcss/login.css';
 import { withRouter } from 'react-router-dom';
@@ -14,9 +14,6 @@ import {
     } from "../tools/formvalidation"
 
 export class PageForm extends Component {
-    onClickSendAuth =()=>{
-        this.props.dispatch(loginsendauth_request({phonenumber:this.props.phonenumber,reason:'login'}));
-    }
     render(){
         const { handleSubmit,onClickLogin,pristine,submitting } = this.props;
 
@@ -44,14 +41,13 @@ export class PageForm extends Component {
                         <img src="newimg/26.png" alt='' />
                     </span>
                     <Field
-                        name="authcode"
-                        id="authcode"
-                        placeholder="请输入验证码"
+                        name="password"
+                        id="password"
+                        placeholder="请输入密码"
                         type="text"
                         component={ InputValidation }
-                        validate={[ required,length4 ]}
+                        validate={[ required ]}
                     />
-                    <div className="getyanzhen" onClick={this.onClickSendAuth}>获取验证码</div>
                 </div>
 
                 <div className="submitBtn">
@@ -63,6 +59,7 @@ export class PageForm extends Component {
                         登录
                     </span>
                     <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
+                    <span className="gotoregister" onClick={()=>{this.props.history.push("/findpwd")}}>找回密码</span>
                 </div>
             </Form>
         )
@@ -115,17 +112,11 @@ export class Page extends Component {
 
     onClickLogin = (values)=>{
         let payload = {
-            phonenumber:values.phonenumber,
-            authcode:values.authcode,
+            username:values.phonenumber,
+            password:values.password,
         };
 
-        this.props.dispatch(set_weui({
-            loading : {
-                show : true
-            },
-        }));
-
-        this.props.dispatch(loginwithauth_request(payload));
+        this.props.dispatch(login_request(payload));
     }
     render(){
         return (

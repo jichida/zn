@@ -136,14 +136,6 @@ class Page extends React.Component {
   }
   onDragging(){
         this.props.dispatch(carmap_dragging({markerstart}));
-        // const getleafletpos = (curlocation)=>{
-        //    return L.latLng(curlocation.lat, curlocation.lng);//lat,lng
-        // };
-        //  let centerlatlng = getleafletpos(window.amap.getCenter());
-        //  if(this.props.enabledragging){
-        //      this.props.dispatch(carmap_changemarkerstartlatlng(centerlatlng));
-        // }
-        // this.props.dispatch(carmap_setmapcenter(centerlatlng));
     }
     onDragStart(){
         this.props.dispatch(carmap_setdragging(true));
@@ -338,65 +330,7 @@ class Page extends React.Component {
 
 
     render() {
-      console.log('地图---->render---------');
-
-        // const isenableddrawmapflag = (flag)=>{
-        //     //return true;
-        //     return (this.props.enableddrawmapflag & flag)>0;
-        // };
-        // const events = {
-        //     created: (ins) => {
-        //         window.amap = ins;
-        //         console.log("created------->");
-        //         window.geocoder = new new AMap.Geocoder({
-        //           city: "010", //城市，默认：“全国”
-        //           radius: 1000 //范围，默认：500
-        //         });
-        //     },
-        //     dragstart:()=>{this.onDragStart();},
-        //     dragging:()=>{this.onDragging();},
-        //     dragend:()=>{this.onDragEnd();},
-        //     zoomend:()=>{this.onZoomend();}
-        // }
-        //console.log(`画坐标${marks.length},画折线${polylines.length}`);
-        // let pophtmlofstartlatlng = null;
-        // let positiondiv = [0,0];
-        // if(window.amap){
-        //   if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHSTART)){
-        //     let pixel = window.amap.lnglatTocontainer([this.props.markerstartlatlng.lng, this.props.markerstartlatlng.lat]);
-        //     positiondiv = [pixel.getX()-73,pixel.getY()-73];
-        //     //positiondiv = [0,0];
-        //     pophtmlofstartlatlng = <Popinfowaiting positiondiv={positiondiv} />;
-        //   }
-        //   console.log(`起始位置像素坐标${positiondiv[0]},${positiondiv[0]}`);
-        //   if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){//driverlocation
-        //     let pixel = window.amap.lnglatTocontainer([this.props.driverlocation.lng, this.props.driverlocation.lat]);
-        //     positiondiv = [pixel.getX()-100,pixel.getY()-100];
-        //     //positiondiv = [0,0];
-        //     const {totaldistancetxt,totaldurationtxt} = this.props;
-        //     const {requeststatus} = this.props.curmappagerequest;
-        //     if(requeststatus === '行程中'){
-        //       const {realtimepricedetail} = this.props.curmappageorder;
-        //       pophtmlofstartlatlng = <Popinfotrip
-        //         positiondiv={positiondiv}
-        //         totaldistancetxt={totaldistancetxt}
-        //         totaldurationtxt={totaldurationtxt}
-        //         realtimepricedetail={realtimepricedetail}
-        //         triporderid={this.props.curmappageorder._id}
-        //         history={this.props.history}
-        //         />;
-        //     }
-        //     else{
-        //       pophtmlofstartlatlng = <Popinfotrip
-        //         positiondiv={positiondiv}
-        //         totaldistancetxt={totaldistancetxt}
-        //         totaldurationtxt={totaldurationtxt}
-        //         triporderid={this.props.curmappageorder._id}
-        //         history={this.props.history}
-        //         />;
-        //     }
-        //   }
-        // }
+        console.log('地图---->render---------');
         return (
             <div className="mapcontainer">
                 <div id="gaodemap" />

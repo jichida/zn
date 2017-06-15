@@ -51,7 +51,7 @@ const OrderlistEdit = (props) => {
                 <DateField label="生成时间"  source="created_at" showTime />
                 <SelectInput label="订单状态"  source="orderstatus" choices={[
                     { id: '未支付', name: '未支付' },
-                    { id: '已支付定金', name: '已支付定金' },
+                    { id: '待支付', name: '待支付' },
                     { id: '已支付', name: '已支付' },
                     { id: '已取消', name: '已取消' },
                 ]} />
@@ -77,7 +77,7 @@ const OrderFilter = (props) => (
         </ReferenceInput>
         <SelectInput label="订单状态"  source="orderstatus" choices={[
             { id: '未支付', name: '未支付' },
-            { id: '已支付定金', name: '已支付定金' },
+            { id: '待支付', name: '待支付' },
             { id: '已支付', name: '已支付' },
             { id: '已取消', name: '已取消' },
         ]} />
@@ -88,7 +88,7 @@ const OrderFilter = (props) => (
 const OrderlistList = (props) => (//
      <List title="订单列表" {...props} filters={<OrderFilter />} >
         <Datagrid>
-        <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={false} >
+        <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={false} sort={{ field: 'created_at', order: 'DESC' }}>
             <TextField source="username" />
         </ReferenceField>
         <TextField label="订单类型"  source="triptype" />

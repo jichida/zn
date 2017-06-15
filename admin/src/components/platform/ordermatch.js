@@ -36,7 +36,7 @@ const OrderMatchShow = (props) => (
 
 
 const OrderMatchList = (props) => (//
-     <List title="订单成功匹配列表" {...props} >
+     <List title="订单成功匹配列表" {...props} sort={{ field: 'DistributeTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单编号" source="Orderld" />
         <TextField label="车辆经度" source="Longitude" />

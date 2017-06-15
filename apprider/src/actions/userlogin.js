@@ -5,7 +5,6 @@ import { createAction } from 'redux-act';
 //发送验证码/登录相关
 export const loginsendauth_request = createAction('loginsendauth_request');
 export const loginsendauth_result = createAction('loginsendauth_result');
-export const loginsendauth_err= createAction('loginsendauth_err');
 
 export const loginwithauth_request = createAction('loginwithauth_request');
 export const loginwithtoken_request = createAction('loginwithtoken_request');

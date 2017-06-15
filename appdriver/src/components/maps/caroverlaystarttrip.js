@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  carmap_resetmap,
+  carmap_resetmap_url,
   set_weui,
   updaterequeststatus,
   canceltriprequestorder_request
@@ -23,37 +23,22 @@ export class Page extends React.Component {
     const {mapstage,curmappagerequest,curmappageorder,dispatch} = nextProps;
     let needrender = true;
     let url='/outcar';
-
-    if(curmappagerequest.requeststatus === '行程完成' ||
-      curmappagerequest.requeststatus === '已取消'){
-        needrender = false;
-        url = curmappagerequest.requeststatus === '行程完成' ?`/orderdetail/${curmappageorder._id}`:'/outcar';
-      }
+    if(!!curmappagerequest.requeststatus){
+      if(curmappagerequest.requeststatus === '行程完成' ||
+        curmappagerequest.requeststatus === '已取消'){
+          needrender = false;
+          url = curmappagerequest.requeststatus === '行程完成' ?`/orderdetail/${curmappageorder._id}`:'/outcar';
+        }
+    }
+    else{
+      needrender = false;
+    }
 
     if(!needrender){
-      dispatch(carmap_resetmap({url}));
+      dispatch(carmap_resetmap_url({url}));
     }
     return needrender;
   }
-
-
-  // componentWillReceiveProps (nextProps) {
-  //
-  //     const {curmappagerequest,curmappageorder,history,dispatch} = nextProps;
-  //     if(curmappagerequest.requeststatus === "已取消"){
-  //         //let triporderid = nextProps.curmappageorder._id;
-  //        window.setTimeout(()=>{
-  //             history.goBack();//replace(`/orderdetail/${triporderid}`);
-  //             dispatch(carmap_resetmap());
-  //         },0);
-  //     }
-  //     else if(curmappagerequest.requeststatus === '行程完成'){
-  //       window.setTimeout(()=>{
-  //           dispatch(carmap_resetmap());
-  //           history.replace(`/orderdetail/${curmappageorder._id}`);
-  //        },0);
-  //     }
-  // }
 
   onClickNext(btnname){
     console.log(`点击按钮:${btnname}`);

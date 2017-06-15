@@ -9,6 +9,11 @@ export const loginsendauth_result = createAction('loginsendauth_result');
 
 export const loginwithauth_request = createAction('loginwithauth_request');
 export const loginwithtoken_request = createAction('loginwithtoken_request');
+
+export const findpwd_request = createAction('findpwd_request');
+export const findpwd_result = createAction('findpwd_result');
+
+export const login_request = createAction('login_request');
 export const login_result = createAction('login_result');
 
 export const logout_request = createAction('logout_request');

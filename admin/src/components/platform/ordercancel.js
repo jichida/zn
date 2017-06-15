@@ -36,7 +36,7 @@ const OrderCancelShow = (props) => (
 
 
 const OrderCancelList = (props) => (//
-     <List title="订单取消列表" {...props} >
+     <List title="订单取消列表" {...props}  sort={{ field: 'CancelTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单编号" source="Orderld" />
         <DateField label="订单时间" source="OrderTime" showTime/>

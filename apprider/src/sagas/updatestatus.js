@@ -5,8 +5,8 @@ import {
 
   updaterequeststatus,
   updaterequeststatus_request,
-
   carmap_resetmap,
+  carmap_resetmap_url,
   changestartposition,
 
   carmap_setendaddress,
@@ -85,7 +85,6 @@ const ISENABLEDDRAW_POPWITHCUR  = 256;
 const getmapstate_formapdraw = (state) => {
   let {mapstage,curlocation,markerstartlatlng,markerendlatlng,curmappagerequest} = state.carmap;
   let enableddrawmapflag = 0;
-  curlocation = L.latLng(curlocation.lat, curlocation.lng);
   if(!!curlocation){
     if(!curlocation.equals(loczero)){
       enableddrawmapflag |= ISENABLEDDRAW_MARKERSELF;
@@ -170,7 +169,7 @@ export function* createupdatestatusflow(){
     yield put(updaterequeststatus_request(payload));
   });
 
-  yield takeEvery(`${carmap_resetmap}`, function*(action) {
+  yield takeEvery(`${carmap_resetmap_url}`, function*(action) {
       const {payload} = action;
       if(!!payload.url){
         yield put(replace(payload.url));
@@ -179,6 +178,7 @@ export function* createupdatestatusflow(){
       yield put(changestartposition({
           location:`${curlocation.lng},${curlocation.lat}`
       }));//重新发送一次附近请求
+      yield put(carmap_resetmap());
   });
 
   //===========以下两种情况要发送价格请求===========

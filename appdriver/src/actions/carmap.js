@@ -21,6 +21,7 @@ export const carmap_setenableddrawmapflag = createAction('carmap_setenableddrawm
 export const carmap_setzoomlevel = createAction('carmap_setzoomlevel');
 //重置状态
 export const carmap_resetmap = createAction('carmap_resetmap');
+export const carmap_resetmap_url = createAction('carmap_resetmap_url');
 //发起请求
 export const setcurlocation = createAction('setcurlocation');
 export const sendcurlocationtoserver = createAction('sendcurlocationtoserver');

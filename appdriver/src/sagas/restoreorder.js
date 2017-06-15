@@ -1,12 +1,13 @@
-import { select,put,takeEvery } from 'redux-saga/effects';
+import { select,put,takeEvery,race } from 'redux-saga/effects';
 import {
     serverpush_restoreorder,
     triporder_addone,
-
+    set_weui,
     queryorder,
     serverpush_userloginsuccess_notify,
 } from '../actions';
 import { push } from 'react-router-redux';
+import _ from 'lodash';
 
 const getcurmap_triporderid = (state) => {
   let triporderid = state.carmap.curmappageorder._id;
@@ -28,4 +29,7 @@ export function* createrestoreorderflow(){
       yield put(queryorder({triporderid}));
     }
   });
+
+
+
 }

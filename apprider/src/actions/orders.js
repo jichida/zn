@@ -44,5 +44,3 @@ export const orderconfirm_setpinche = createAction('orderconfirm_setpinche');
 export const orderconfirm_setpincheseatnumber = createAction('orderconfirm_setpincheseatnumber');
 export const orderconfirm_setpayway= createAction('orderconfirm_setpayway');
 export const orderconfirm_selpinchestation = createAction('orderconfirm_selpinchestation');
-
-export const getmyorders_request = createAction('getmyorders_request');
