@@ -305,8 +305,18 @@
     padding-left: 40px;
 }
 
+.outcarPage.AppPage .amap-info-content{
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: -14px;
+    position: relative;
+}
 
 
+.outcarPage.AppPage .amap-info-close{
+    display: none;
+}
 
-
-
+.outcarPage.AppPage .amap-info-sharp{
+    top: -31px;
+}

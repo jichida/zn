@@ -205,12 +205,11 @@ export class Page extends React.Component {
            let totaldistancetxt = _.get(nextprop,'driveroute.totaldistancetxt','');
            let totaldurationtxt = _.get(nextprop,'driveroute.totaldurationtxt','');
            let price = _.get(nextprop,'curmappageorder.realtimepricedetail.price',0);
-           info.push(`<p>距离终点<span>${totaldistancetxt}</span></p>`);
-           info.push(`<p>预计行驶<span>${totaldurationtxt}</span></p>`);
-           info.push(`<p>费用<span>${price}元</span></p>`);
+           info.push(`<p>距离<span class='color_warning'>${totaldistancetxt}, ${totaldurationtxt}</span>钟 </p>`);
+           info.push(`<p>费用<span class='color_warning'>${price}元</span></p>`);
 
            infoWindow = new window.AMap.InfoWindow({
-               content: info.join("<br>")  //使用默认信息窗体框样式，显示信息内容
+               content: info.join("")  //使用默认信息窗体框样式，显示信息内容
            });
            infoWindow.open(window.amap, [this.props.driverlocation.lng, this.props.driverlocation.lat]);
          }
