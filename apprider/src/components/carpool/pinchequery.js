@@ -26,6 +26,7 @@ class PincheQuery extends React.Component {
         this.state={
             time: new Date(),
             isOpen: false,
+            prestyle: "pre"
         }
     }
     handleClick = () => {
@@ -41,6 +42,7 @@ class PincheQuery extends React.Component {
         let querydata = this.props.query;
         querydata.startdate = moment(time).format('YYYY-MM-DD');
         this.props.dispatch(getbuscarpool_request(querydata));
+        this.setPrestyle(querydata.startdate);
     }
 
     onClickPage(name,routeobj){
@@ -54,11 +56,16 @@ class PincheQuery extends React.Component {
 
     preDay=()=>{
         //moment().add(7, 'days');
-        let querydata = this.props.query;
-        querydata.startdate = moment(querydata.startdate).add('days',-1).format('YYYY-MM-DD');
-        console.log(querydata.startdate)
-        this.setState({ time : new Date(querydata.startdate)  });
-        this.props.dispatch(getbuscarpool_request(querydata));
+        if(this.state.time===moment((new Date())).format('YYYY-MM-DD')){
+
+        }else{
+            let querydata = this.props.query;
+            querydata.startdate = moment(querydata.startdate).add('days',-1).format('YYYY-MM-DD');
+            //console.log(querydata.startdate)
+            this.setState({ time : new Date(querydata.startdate)  });
+            this.props.dispatch(getbuscarpool_request(querydata));
+            this.setPrestyle(querydata.startdate);
+        }
     }
 
     nextDay=()=>{
@@ -66,9 +73,21 @@ class PincheQuery extends React.Component {
         //"2017-06-27"
         let querydata = this.props.query;
         querydata.startdate = moment(querydata.startdate).add('days',1).format('YYYY-MM-DD');
-        console.log(querydata.startdate);
+        //console.log(querydata.startdate);
         this.setState({ time : new Date(querydata.startdate)  });
         this.props.dispatch(getbuscarpool_request(querydata));
+        // if(querydata.startdate===moment((new Date())).format('YYYY-MM-DD')){//当前是今天
+        //     this.setState({ prestyle: "pre endpre" });
+        // }
+    }
+
+
+    setPrestyle=(d)=>{
+        if(d===moment((new Date())).format('YYYY-MM-DD')){//当前是今天
+            this.setState({ prestyle: "pre endpre" });
+        }else{
+            this.setState({ prestyle: "pre" });
+        }
     }
 
     render() {
@@ -77,7 +96,7 @@ class PincheQuery extends React.Component {
                 <NavBar back={true} title="查询路线" />
                 
                 <div className="setDay">
-                    <span className="pre" onClick={this.preDay}>前一天</span>
+                    <span className={this.state.prestyle} onClick={this.preDay}>前一天</span>
                     <span 
                         className="day"
                         onClick={this.handleClick}>
@@ -87,6 +106,7 @@ class PincheQuery extends React.Component {
                             isOpen={this.state.isOpen}
                             onSelect={this.handleSelect}
                             onCancel={this.handleCancel}
+                            theme="ios"
                             />  
                     </span>
                     <span className="next" onClick={this.nextDay}>后一天</span>
@@ -145,8 +165,6 @@ class PincheQuery extends React.Component {
                         </div>
                     ):(
                         <div>
-                        <br/>
-                        <br/>
                         <LoadMore showLine>暂无数据</LoadMore>
                         </div>
                     )}

@@ -74,7 +74,7 @@ class Page extends Component {
                               pagenumber={30}
                               updateContent={this.updateContent}
                               queryfun={getrechargerecords}
-                              listheight={window.innerHeight-168}
+                              listheight={window.innerHeight-282}
                               query={{}}
                               sort={{created_at: -1}}
                           />

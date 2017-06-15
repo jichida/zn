@@ -277,7 +277,7 @@ class DatePickerInput extends React.Component{
 
 	handleSelect = (time) => {
 		this.setState({ time, isOpen: false });
-    this.props.input.onChange(time);
+    	this.props.input.onChange(time);
 	}
 
 	render() {
@@ -294,7 +294,7 @@ class DatePickerInput extends React.Component{
 						isOpen={this.state.isOpen}
 						onSelect={this.handleSelect}
 						onCancel={this.handleCancel}
-            {...rest}
+            			{...rest}
 						/>
 				</div>
 			</div>

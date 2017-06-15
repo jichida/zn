@@ -264,6 +264,7 @@ class DatePickerInput extends React.Component{
 						onSelect={this.handleSelect}
 						onCancel={this.handleCancel}
             			{...rest}
+            			theme="ios"
 						/>
 				</div>
 			</div>
