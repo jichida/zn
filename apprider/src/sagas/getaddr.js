@@ -77,5 +77,16 @@ export function* creategetaddrflow(){
     yield put(carmap_setmapcenter(centerlatlng));
   });
 
+  // yield takeEvery(`${carmap_setstartaddress}`,function*(action)){
+  //   const {payload} = action;
+  //   let markerstartlatlng = L.latLng(payload.location.lat,payload.location.lng);
+  //   yield put(carmap_changemarkerstartlatlng(centerlatlng));
+  //   let srclocationstring = markerstartlatlng.lng+"," +markerstartlatlng.lat;
+  //   console.log(`拖动坐车位置时，触发3(界面直接处理)${srclocationstring}`);
+  //   yield put(changestartposition({
+  //       location:srclocationstring
+  //   }));
+  //   yield put(carmap_getaddr(centerlatlng));
+  // }
 
 };

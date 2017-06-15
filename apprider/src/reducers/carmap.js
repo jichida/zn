@@ -141,12 +141,15 @@ const carmap = createReducer({
       return {...state,isMapInited}
     },
     [carmap_setstartaddress]:(state,data)=>{//未叫车前改变出发地
+        let markerstartlatlng =  L.latLng(data.location.lat,data.location.lng);
+        let mapcenterlocation = markerstartlatlng;
         return {...state,
             srcaddress:{
                 addressname:data.addressname,
                 location:data.location
             },
-            markerstartlatlng:L.latLng(data.location.lat,data.location.lng)
+            markerstartlatlng,
+            mapcenterlocation
         };
     },
     [carmap_setendaddress]:(state,data)=>{//改变目的地
