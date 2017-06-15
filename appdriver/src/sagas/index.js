@@ -9,8 +9,10 @@ import {createstartoperateloginoutflow} from './startoperateloginout';
 import {createnavdrawrouteflow} from './navdrawroute';
 import {createupdatestatusflow} from './updatestatus';
 import {createloadingflow} from './loading';
+import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
+  yield fork(createmapshowflow);
   yield fork(createloadingflow);
   yield fork(jpushflow);
   yield fork(wsrecvsagaflow);

@@ -199,6 +199,7 @@ class Page extends React.Component {
             //开始位置
             const showmarker =(enableddrawflag,marker,markerloc,image)=>{
                 if (marker) {
+                    marker.hide();
                     marker.setMap(null);
                 }
                 if(isenableddrawmapflag(enableddrawflag)) {//显示
@@ -216,6 +217,7 @@ class Page extends React.Component {
                     else {
                         marker.setPosition(getamppos(markerloc));
                     }
+                    marker.show();
                     marker.setMap(window.amap);
                 }
                 return marker;
