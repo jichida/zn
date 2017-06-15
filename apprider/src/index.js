@@ -11,12 +11,13 @@ import {
   registerandroid
 } from './env/android';
 
+sagaMiddleware.run(rootSaga);
+
 ReactDOM.render(
   <Root />,
   document.getElementById('root')
 );
 
-sagaMiddleware.run(rootSaga);
 
 // store.subscribe(handleChange);
 registerandroid();

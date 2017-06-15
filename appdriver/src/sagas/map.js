@@ -72,7 +72,7 @@ const drawmap = (nextprop)=>{
             if (!!marker) {
                marker.hide();
                marker.setMap(null);
-               marker = null;
+               //marker = null;
             }
             if(isenableddrawmapflag(enableddrawflag)) {//显示
                 if (!marker) {
@@ -147,7 +147,7 @@ const drawmap = (nextprop)=>{
         if(!!infoWindow){
           infoWindow.close();
           infoWindow.setMap(null);
-          infoWindow = null;
+          //infoWindow = null;
         }
         if(isenableddrawmapflag(ISENABLEDDRAW_POPWITHCUR)){
           let info = [];
@@ -204,6 +204,12 @@ export function* createmapshowflow(){
     //销毁地图
     yield takeEvery(`${carmapshow_destorymap}`, function*(action_destorymap) {
       window.amap = null;
+      markerstart=null;
+      markerend=null;
+      markerdriver=null;
+      polylineleft=null;
+      polylinepast=null;
+      infoWindow=null;
     });
 
     yield takeEvery(`${carmap_setenableddrawmapflag}`, function*(action_enableddrawmapflag) {

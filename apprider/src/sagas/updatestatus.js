@@ -27,6 +27,7 @@ import {
   carmap_setcurlocation,
   getcurrentlocationandnearestdrivers_result,
   getnearestdrivers_result,
+  carmap_setstartaddress,
   serverpush_restoreorder
 } from '../actions';
 
@@ -208,6 +209,7 @@ export function* createupdatestatusflow(){
     [
       `${serverpush_driverlocation}`,
       `${nav_drawroute}`,
+      `${carmap_setstartaddress}`,
       `${carmap_setmapinited}`,
       `${carmap_setendaddress}`,
       `${serverpush_triprequestandorder}`,

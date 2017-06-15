@@ -224,7 +224,8 @@ const carmap = createReducer({
         return {...initial.carmap,isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,
             srcaddress,zoomlevel};
     },
-    [carmap_setmapcenter]:(state,mapcenterlocation)=>{
+    [carmap_setmapcenter]:(state,payload)=>{
+      let mapcenterlocation = L.latLng(payload.lat, payload.lng)
       return {...state,mapcenterlocation}
     },
     [carmap_setcurlocation]:(state,curlocation)=>{

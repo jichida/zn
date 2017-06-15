@@ -48,6 +48,9 @@ class AppRoot extends React.Component {
         script.async = true;
         window.init = ()=>{
           window.initamaploaded = true;
+          window.geocoder = new window.AMap.Geocoder({
+            radius: 1000 //范围，默认：500
+          });
           this.props.dispatch(carmap_setmapinited(true));
         }
         document.body.appendChild(script);

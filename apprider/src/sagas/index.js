@@ -11,8 +11,10 @@ import {createupdatestatusflow} from './updatestatus';
 import {createnavdrawrouteflow} from './navdrawroute';
 import {creategetaddrflow} from './getaddr';
 import {createloadingflow} from './loading';
+import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
+  yield fork(createmapshowflow);
   yield fork(createloadingflow);
   yield fork(createnavdrawrouteflow);
   yield fork(creategetaddrflow);
