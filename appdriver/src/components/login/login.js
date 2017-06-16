@@ -44,7 +44,7 @@ export class PageForm extends Component {
                         name="password"
                         id="password"
                         placeholder="请输入密码"
-                        type="text"
+                        type="password"
                         component={ InputValidation }
                         validate={[ required ]}
                     />
@@ -61,7 +61,7 @@ export class PageForm extends Component {
                         登录
                     </span>
                     <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
-                    
+
                 </div>
             </Form>
         )
