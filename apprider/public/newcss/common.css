@@ -303,3 +303,14 @@ input, textarea{
 .searchContent{flex-shrink: 0}
 
 
+
+.AppPage{
+    opacity: 1;
+    animation:pageshow 1s;
+    -webkit-animation:pageshow 1s;
+}
+@keyframes pageshow{
+    from {opacity : .2;}
+    to {opacity : 1;}
+}
+
