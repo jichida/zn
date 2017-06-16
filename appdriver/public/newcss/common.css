@@ -125,12 +125,12 @@ input, textarea{
 .formStyle1 .weui-cell.weui-check__label .weui-check:checked+.weui-icon-checked:before{
     content: '\EA06';
     color: #3479e1;
-    font-size: 23px;    
+    font-size: 23px;
 }
 .formStyle1 .weui-cell.weui-check__label .weui-icon-checked:before{
     content: '\EA01';
     color: #c9c9c9;
-    font-size: 23px;	
+    font-size: 23px;
     display: block;
 }
 .formStyle1 .weui-cell.weui-check__label .weui-cell__bd >div{
@@ -155,7 +155,7 @@ input, textarea{
 }
 
 .contentTitle{
-    
+
 }
 /*footer*/
 .footer{
@@ -256,12 +256,10 @@ input, textarea{
 
 .AppPage{
     opacity: 1;
-    animation:pageshow 1s;
-    -webkit-animation:pageshow 1s;
+    animation:pageshow .4s;
+    -webkit-animation:pageshow .4s;
 }
 @keyframes pageshow{
     from {opacity : .2;}
     to {opacity : 1;}
 }
-
-

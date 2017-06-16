@@ -12,10 +12,10 @@
   @since 2.0
   */
  const xviewPhoneWithAppDataWithCallbackMethodWithType = (data,fun,typeString) => {
-   window.xviewCallBack=function(result){
+   window.xviewCallBack_xphone=function(result){
      fun(result);
    };
-   window.xview.xviewPhoneWithAppDataWithCallbackMethodWithType(JSON.stringify(data),"xviewCallBack",typeString);
+   window.xview.xviewPhoneWithAppDataWithCallbackMethodWithType(JSON.stringify(data),"xviewCallBack_xphone",typeString);
  }
  /**
    * 微信登录
@@ -154,10 +154,10 @@
    @since 2.0
    */
   export const showiPhoneAlertWithAppDataTypeWithCallbackMethod=(dataString,typeString,fun) => {
-    window.xviewCallBack=function(result){
+    window.xviewCallBack_showiphone=function(result){
       fun(result);
     };
-    window.xview.showiPhoneAlertWithAppDataTypeWithCallbackMethod(dataString,typeString,"xviewCallBack");
+    window.xview.showiPhoneAlertWithAppDataTypeWithCallbackMethod(dataString,typeString,"xviewCallBack_showiphone");
   }
 
   /**
@@ -187,10 +187,10 @@
    @since 2.0
    */
   export const sendSmsWithPhoneNumber = (phone,fun) => {
-  	window.xviewCallBack=function(result){
+  	window.xviewCallBack_sendSmsWithPhoneNumber=function(result){
       fun(result);
     };
-  	window.xview.sendSmsWithPhoneNumber(phone,"xviewCallBack");
+  	window.xview.sendSmsWithPhoneNumber(phone,"xviewCallBack_sendSmsWithPhoneNumber");
   }
  /**
    * 获取经纬度
@@ -198,8 +198,25 @@
    @since 2.0
    */
   export const geographyLocationCallbackMethod = (fun) => {
-    window.callBack=function(result){
+    window.callBack_geographyLocation=function(result){
       fun(result);
     };
-    window.xview.geographyLocationCallbackMethod("callBack");
+    window.xview.geographyLocationCallbackMethod("callBack_geographyLocation");
   }
+
+  /**
+    * 设置推送用户名
+    @method jiGuangTuiSong
+    @since 2.0
+    */
+   export const jiGuangTuiSong = (name) => {
+     window.xview.jiGuangTuiSong(name);
+   }
+   /**
+     * 取消单推
+     @method cancelJPushAlisa
+     @since 2.0
+     */
+    export const cancelJPushAlisa = () => {
+      window.xview.cancelJPushAlisa();
+    }

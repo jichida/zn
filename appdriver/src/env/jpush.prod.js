@@ -3,10 +3,11 @@ import {jpushlistenInMessage,jpushpostNotification} from '../actions';
 
 export const cancelJPushAlisa=()=>{
     try{
+        console.log(`注销设置别名`);
         xview.cancelJPushAlisa();
     }
     catch(e){
-
+      window.alert(`注销设置别名(cancelJPushAlisa)${JSON.stringify(e)}`);
     }
 
 }
@@ -18,7 +19,9 @@ export const setJPushAlias = (name)=> {
          xview.jiGuangTuiSong(name);
      }
      catch(e){
-
+       window.alert(`设置别名失败(setJPushAlias)
+       ${JSON.stringify(e)}
+       ${name}`);
      }
 }
 
@@ -33,7 +36,9 @@ export const postNotifyFromJPush = (dispatch)=>{
             dispatch(jpushlistenInMessage(jsonobj));
         }
         catch(e){
-
+          window.alert(`推送消息失败(postNotifyFromJPush)
+          ${jsonstr}
+          ${JSON.stringify(e)}`);
         }
         //window.alert(`listenInMessage==>\n${jsonstr}`);
 
@@ -48,7 +53,9 @@ export const postNotifyFromJPush = (dispatch)=>{
             dispatch(jpushpostNotification(jsonobj));
         }
         catch(e){
-
+          window.alert(`推送消息失败(postNotification)
+          ${jsonstr}
+          ${JSON.stringify(e)}`);
         }
         //window.alert(`postNotification==>\n${jsonstr}`);
 

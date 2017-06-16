@@ -56,7 +56,7 @@ export function* getcurpositionflow(){
       }
     }
     catch(e){
-      alert(`上报地理位置信息错误.${JSON.stringify(e)}`);
+      window.alert(`上报地理位置信息错误.${JSON.stringify(e)}`);
     }
 
   }
