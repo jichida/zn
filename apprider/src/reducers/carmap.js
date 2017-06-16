@@ -241,6 +241,7 @@ const carmap = createReducer({
     },
     [carmap_changemarkerstartlatlng]: (state, markerstartlatlng) => {
         //改变起始地,初始化或拖动后调用
+        markerstartlatlng = L.latLng(markerstartlatlng.lat, markerstartlatlng.lng);
         return { ...state, markerstartlatlng };
     },
     [carmap_setdragging]:(state,dragging)=>{

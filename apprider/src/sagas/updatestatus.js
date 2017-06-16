@@ -8,6 +8,9 @@ import {
   carmap_resetmap,
   carmap_resetmap_url,
   changestartposition,
+  carmap_changemarkerstartlatlng,
+  carmap_getaddr,
+  carmap_setmapcenter,
 
   carmap_setendaddress,
   carmap_settriptype,
@@ -157,6 +160,15 @@ const getmapstate_formapdraw = (state) => {
   };
 };
 
+const map_setcenter =(curlocation)=> {
+  return new Promise(resolve => {
+    if(!!window.amap){
+      let center = [curlocation.lng,curlocation.lat];
+      window.amap.setCenter(center);
+    }
+    resolve();
+  });
+};
 export function* createupdatestatusflow(){
   yield takeEvery(`${acceptrequest}`, function*(action) {
     const {payload} = action;
@@ -176,9 +188,14 @@ export function* createupdatestatusflow(){
         yield put(replace(payload.url));
       }
       let curlocation = yield call(getcurrentpos);
+      yield put(carmap_changemarkerstartlatlng(curlocation));
+      yield put(carmap_setcurlocation(curlocation));
       yield put(changestartposition({
           location:`${curlocation.lng},${curlocation.lat}`
       }));//重新发送一次附近请求
+      yield put(carmap_getaddr(curlocation));
+      yield put(carmap_setmapcenter(curlocation));
+      yield call(map_setcenter,curlocation);
       yield put(carmap_resetmap());
   });
 

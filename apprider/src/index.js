@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './env/root';
 import store,{sagaMiddleware} from './env/store';
 import rootSaga from './sagas';
-import {handleChange} from './sagas/subscribereduxstate';
+// import {handleChange} from './sagas/subscribereduxstate';
 import {
     postNotifyFromJPush
 } from './env/jpush';
