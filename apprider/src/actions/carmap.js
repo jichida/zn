@@ -57,3 +57,6 @@ export const carmap_setmapinited = createAction('carmap_setmapinited');
 export const carmap_getaddr = createAction('carmap_getaddr');
 export const carmap_dragging  = createAction('carmap_dragging');
 export const carmap_dragend = createAction('carmap_dragend');
+
+export const carmapshow_createmap  = createAction('carmapshow_createmap');
+export const carmapshow_destorymap = createAction('carmapshow_destorymap');

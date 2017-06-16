@@ -69,7 +69,8 @@ const carmap = createReducer({
     [carmap_setmapinited]:(state,isMapInited)=>{
       return {...state,isMapInited}
     },
-    [carmap_setmapcenter]:(state,mapcenterlocation)=>{
+    [carmap_setmapcenter]:(state,payload)=>{
+      let mapcenterlocation = L.latLng(payload.lat,payload.lng);//lat,lng
       return {...state,mapcenterlocation}
     },
     [selrequest]:(state, curreqobj) => {

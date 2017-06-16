@@ -34,3 +34,6 @@ export const serverpush_triprequestandorder = createAction('serverpush_tripreque
 
 export const selrequest = createAction('selrequest');
 export const carmap_setmapcenter = createAction('carmap_setmapcenter');
+
+export const carmapshow_createmap= createAction('carmapshow_createmap');
+export const carmapshow_destorymap= createAction('carmapshow_destorymap');

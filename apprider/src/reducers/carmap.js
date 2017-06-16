@@ -141,12 +141,15 @@ const carmap = createReducer({
       return {...state,isMapInited}
     },
     [carmap_setstartaddress]:(state,data)=>{//未叫车前改变出发地
+        let markerstartlatlng =  L.latLng(data.location.lat,data.location.lng);
+        let mapcenterlocation = markerstartlatlng;
         return {...state,
             srcaddress:{
                 addressname:data.addressname,
                 location:data.location
             },
-            markerstartlatlng:L.latLng(data.location.lat,data.location.lng)
+            markerstartlatlng,
+            mapcenterlocation
         };
     },
     [carmap_setendaddress]:(state,data)=>{//改变目的地
@@ -224,7 +227,8 @@ const carmap = createReducer({
         return {...initial.carmap,isMapInited,mapcenterlocation,triptype,curlocation,markerstartlatlng,
             srcaddress,zoomlevel};
     },
-    [carmap_setmapcenter]:(state,mapcenterlocation)=>{
+    [carmap_setmapcenter]:(state,payload)=>{
+      let mapcenterlocation = L.latLng(payload.lat, payload.lng)
       return {...state,mapcenterlocation}
     },
     [carmap_setcurlocation]:(state,curlocation)=>{
@@ -237,6 +241,7 @@ const carmap = createReducer({
     },
     [carmap_changemarkerstartlatlng]: (state, markerstartlatlng) => {
         //改变起始地,初始化或拖动后调用
+        markerstartlatlng = L.latLng(markerstartlatlng.lat, markerstartlatlng.lng);
         return { ...state, markerstartlatlng };
     },
     [carmap_setdragging]:(state,dragging)=>{
