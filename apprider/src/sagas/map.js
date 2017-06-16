@@ -38,9 +38,9 @@ window.initamaploaded = false;
 
 const loczero = L.latLng(0,0);
 
-let createmap =({isMapInited,mapcenterlocation,zoomlevel})=> {
+let createmap =({mapcenterlocation,zoomlevel})=> {
   return new Promise((resolve,reject) => {
-    if(isMapInited && !mapcenterlocation.equals(loczero) && !window.amap ){
+    if(!mapcenterlocation.equals(loczero) && !window.amap ){
       let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);
       window.amap = new window.AMap.Map("gaodemap", {
             center: center,
@@ -213,17 +213,17 @@ export function* createmapshowflow(){
     yield takeEvery(`${carmapshow_createmap}`, function*(action_createmap) {
       try{
         let mapcarprops = yield select(getmapstate_formapcar);
-        let {isMapInited,mapcenterlocation,zoomlevel} = mapcarprops;
-        if(mapcenterlocation.equals(loczero)){//仅在第一次加载页面初始化时进入
-          const centerpos = yield call(getcurrentpos);
-          mapcenterlocation = L.latLng([centerpos.lat, centerpos.lng]);
-        }
-        if(!isMapInited){//仅在第一次加载页面初始化时进入
+        if(!mapcarprops.isMapInited){//仅在第一次加载页面初始化时进入
           //等待地图初始化
           yield take(`${carmap_setmapinited}`);
-          isMapInited = true;
         }
-        yield call(createmap,{isMapInited,mapcenterlocation,zoomlevel});//创建地图
+        let {mapcenterlocation,zoomlevel} = mapcarprops;
+
+        if(mapcenterlocation.equals(loczero)){//仅在第一次加载页面初始化时进入
+          const centerpos = yield call(getcurrentpos);
+          mapcenterlocation = L.latLng(centerpos.lat, centerpos.lng);
+        }
+        yield call(createmap,{mapcenterlocation,zoomlevel});//创建地图
         yield put(carmap_getaddr(mapcenterlocation));
 
         let task_dragging =  yield fork(function*(eventname){
@@ -254,6 +254,7 @@ export function* createmapshowflow(){
       }
       catch(e){
         console.log(`创建地图失败`);
+        alert(`创建地图失败`);
       }
 
     });
