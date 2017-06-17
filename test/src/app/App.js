@@ -43,7 +43,7 @@ class App extends Component {
 
   getLocation2(){
     try{
-      xview.xview_geographyLocationCallbackMethod((data)=>{
+      xview.geographyLocationCallbackMethod((data)=>{
         window.alert(JSON.stringify(data));
       })
     }catch(e){
@@ -53,7 +53,7 @@ class App extends Component {
 
   getLocation3(){
     try{
-      xview.xview_geographyLocationCallbackMethod((data)=>{
+      xview.geographyLocationCallbackMethod((data)=>{
         alert(JSON.stringify(data));
       })
     }catch(e){
