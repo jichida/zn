@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as xview from '../utils/Common.js';
-import {alipayUrl,wxpayUrl,xview_geographyLocationCallbackMethod} from '../utils/Common.js';
+import {alipayUrl,wxpayUrl,geographyLocationCallbackMethod} from '../utils/Common.js';
 
 let sourceData={"title":"夏恒网络XVIEW分享", "descrption":"夏恒网络XVIEW分享。", "picture":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2378550344,2476789148&fm=58", "url":"http://www.xiaheng.net/"};
 
@@ -33,7 +33,7 @@ class App extends Component {
       alert(`geographyLocationCallbackMethod:${!!window.xview.geographyLocationCallbackMethod}`);
 
       window.geographyLocation2=function(result){
-        window.alert(JSON.stringify(data));
+        window.alert(JSON.stringify(result));
       };
       window.xview.geographyLocationCallbackMethod("geographyLocation2");
     }catch(e){
