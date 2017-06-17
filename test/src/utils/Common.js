@@ -197,7 +197,7 @@
    @method getLocation
    @since 2.0
    */
-  export const geographyLocationCallbackMethod = (fun) => {
+  export const xview_geographyLocationCallbackMethod = (fun) => {
     window.callBack_geographyLocation=function(result){
       fun(result);
     };
