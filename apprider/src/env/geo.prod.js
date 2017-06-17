@@ -1,14 +1,14 @@
 /**
  * Created by wangxiaoqing on 2017/3/27.
  */
-import * as xview from './xview/Common';
+import {geographyLocationCallbackMethod} from './xview/Common';
 
 let locationsz =[0,0];
 
 export const getcurrentlocationfn = (fncallback)=> {
     window.setTimeout(()=>{
         try{
-            xview.geographyLocationCallbackMethod((data)=>{
+              geographyLocationCallbackMethod((data)=>{
                 //alert(JSON.stringify(data));
                 if(typeof data=='string'){
                   data=JSON.parse(data);
