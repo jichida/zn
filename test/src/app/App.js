@@ -37,6 +37,25 @@ class App extends Component {
     }
   }
 
+  getLocation2=()=>{
+    try{
+      xview.xview_geographyLocationCallbackMethod((data)=>{
+        window.alert(JSON.stringify(data));
+      })
+    }catch(e){
+      window.alert(e.message);
+    }
+  }
+
+  getLocation3=()=>{
+    try{
+      xview.xview_geographyLocationCallbackMethod((data)=>{
+        alert(JSON.stringify(data));
+      })
+    }catch(e){
+      alert(e.message);
+    }
+  }
 
   loginQQ=()=>{
     xview.loginToTencentQQ((data)=>{
@@ -135,6 +154,8 @@ class App extends Component {
           <button onClick={ this.zfbPay }>支付宝支付</button>
           <button onClick={ this.wxPay }>微信支付</button>
           <button onClick={ this.getLocation }>获取定位</button>
+          <button onClick={ this.getLocation2 }>获取定位2</button>
+          <button onClick={ this.getLocation3 }>获取定位2</button>
 
           <br/>
           <button onClick={ this.loginQQ }>QQ登录</button>
