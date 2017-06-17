@@ -18,6 +18,7 @@
     background: #FFF;
     align-items: center;
     min-height: 80px;
+    padding-right: 15px;
 }
 .selbusformPage .list .col .xzcx_img img{
     border-radius: 60px;

@@ -36,23 +36,37 @@ const orderdetail = createReducer({
     [ui_setselcommenttag]: (state, payload) => {
         const {addflag,comments} = payload;
         let commenttagsel = [...state.commenttagsel];
+
         if(addflag){
-          commenttagsel.push(comments);
+            commenttagsel.push(comments);
         }
         else{
-           _.remove(commenttagsel,(sel)=>{
-            return comments === sel;
-          });
-        }
-        const {commenttags_,maxshowtags} = state;
-        let commenttags_selmaxleft = _.xor(commenttags_,commenttagsel);
-        commenttags_selmaxleft = _.shuffle(commenttags_selmaxleft);
-        let commenttags_selmax = [...commenttagsel,...commenttags_selmaxleft];
-        if(commenttags_selmax.length > maxshowtags){
-          let drops = commenttags_selmax.length - maxshowtags;
-          commenttags_selmax = _.dropRight(commenttags_selmax,drops);
+            _.remove(commenttagsel,(sel)=>{
+                return comments === sel;
+            });
         }
 
+        const {commenttags_,maxshowtags} = state;
+        let commenttags_selmax = [];
+
+        _.map(commenttags_, (tags, index)=>{
+            let o = {name: tags, sel: false};
+            let h = _.indexOf(commenttagsel, tags);
+            if(h!==-1){
+                o.sel = true;
+            }
+            commenttags_selmax.push(o);
+        })
+
+
+        // let commenttags_selmaxleft = _.xor(commenttags_,commenttagsel);
+
+        // commenttags_selmaxleft = _.shuffle(commenttags_selmaxleft);
+        // let commenttags_selmax = [...commenttagsel,...commenttags_selmaxleft];
+        // if(commenttags_selmax.length > maxshowtags){
+        //   let drops = commenttags_selmax.length - maxshowtags;
+        //   commenttags_selmax = _.dropRight(commenttags_selmax,drops);
+        // }
         return {
             ...state,
             commenttags_selmax,

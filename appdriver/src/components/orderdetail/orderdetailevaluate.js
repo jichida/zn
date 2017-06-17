@@ -132,12 +132,16 @@ export class Page extends Component{
                             <div className="hottag">
                                 {
                                   _.map(commenttags_selmax,(tag,index)=>{
-                                    if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
-                                      return (<span key={index} className="sel"
-                                      onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
-                                    }
-                                    return (<span key={index}
-                                    onClick={this.onClickTag.bind(this,true,tag)}>{tag}</span>);
+                                    // if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
+                                    //   return (<span key={index} className="sel"
+                                    //   onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
+                                    // }
+                                    // return (<span key={index}
+                                    // onClick={this.onClickTag.bind(this,true,tag)}>{tag}</span>);
+                                    let classd = tag.sel?"sel":"";
+                                    return (
+                                        <span key={index} onClick={this.onClickTag.bind(this,!tag.sel,tag.name)} className={classd}>{tag.name}</span>
+                                     )
                                   })
                                 }
                             </div>
@@ -145,9 +149,12 @@ export class Page extends Component{
                                 <Form>
                                     <FormCell>
                                         <CellBody>
-                                            <TextArea placeholder="请输入您的评价内容" rows="3" maxlength="200"
-                                            onChange={(e)=>{
-                                             this.onChangeFieldname('comment',e.target.value)
+                                            <TextArea 
+                                              placeholder="请输入您的评价内容"
+                                              rows="3"
+                                              maxlength="200"
+                                              onChange={(e)=>{
+                                              this.onChangeFieldname('comment',e.target.value)
                                            }}
                                            ></TextArea>
                                         </CellBody>
@@ -170,6 +177,9 @@ const data =  ({orderdetail}) =>{
       commenttags_selmax,
       showaddevaluate,
     } = orderdetail;//评分
+
+    //commenttags_selmax
+
     return {
       ratenum,
       commenttagsel,

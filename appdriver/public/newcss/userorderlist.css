@@ -24,6 +24,7 @@
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.status{
 
 }
+
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.i{
     background: #83cb7a;
     border-radius: 0 20px 20px 0;
@@ -32,6 +33,13 @@
     color: #FFF;
     margin-right: 10px;
 }
+.userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.j{
+    background: #fe8802
+}
+
+
+
+
 .userorderlistPage .list .weui-cells .weui-cell .weui-cell__bd >div.li{
     margin-left: 10px;
 }

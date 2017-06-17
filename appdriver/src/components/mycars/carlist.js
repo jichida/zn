@@ -14,7 +14,8 @@ const {
     } = WeUI;
 import {
   cargetall_request,
-  carsetdefault_request
+  carsetdefault_request,
+  set_weui
 } from '../../actions';
 import CarItem from './caritem.js';
 import _ from 'lodash';
@@ -25,14 +26,28 @@ class Page extends Component {
     this.props.dispatch(cargetall_request({}));
   }
 
-  onClickSelCurCar(carinfo){
-    this.props.dispatch(carsetdefault_request({
-      carid:carinfo._id,
-      Platform_baseInfoVehicleId:carinfo.Platform_baseInfoVehicleId,
-      Platform_baseInfoVehicle:carinfo.Platform_baseInfoVehicle
-    }));
-      //this.props.history.push(`/cardetail/${orderinfo._id}`);
+  onClickSelCurCar =(carinfo)=>{
+    let confirm = {
+          show : true,
+          title : "你确定要切换当前车辆吗?",
+          text : "",
+          buttonsCloseText : "取消",
+          buttonsClickText : "确定",
+          buttonsClose : ()=>{console.log('click close');},
+          buttonsClick : ()=>{this.carsetdefault_request_fn(carinfo).bind(this);}
+    };
+    this.props.dispatch(set_weui({confirm}));
+
   }
+
+  carsetdefault_request_fn =(carinfo)=>{
+      this.props.dispatch(carsetdefault_request({
+          carid:carinfo._id,
+          Platform_baseInfoVehicleId:carinfo.Platform_baseInfoVehicleId,
+          Platform_baseInfoVehicle:carinfo.Platform_baseInfoVehicle
+      }));
+  }
+
 
     render() {
         let titleRightNav = [

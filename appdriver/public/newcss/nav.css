@@ -16,6 +16,8 @@
     font-size: 16px;
     position: relative;
     z-index: 1;
+    width: 100%;
+    display: inline-block;
 }
 #newNavHeadContent .leftlnk{
     height: 48px;

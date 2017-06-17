@@ -131,14 +131,19 @@ export class Page extends Component{
                                 />
                             </div>
                             <div className="hottag">
+                                
                                 {
                                   _.map(commenttags_selmax,(tag,index)=>{
-                                    if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
-                                      return (<span key={index} className="sel"
-                                      onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
-                                    }
-                                    return (<span key={index}
-                                    onClick={this.onClickTag.bind(this,true,tag)}>{tag}</span>);
+                                    // if(_.findIndex(commenttagsel,(tagsel)=>{return tagsel===tag}) >= 0){
+                                    //   return (<span key={index} className="sel"
+                                    //   onClick={this.onClickTag.bind(this,false,tag)}>{tag}</span>);
+                                    // }
+                                    // return (<span key={index}
+                                    // onClick={this.onClickTag.bind(this,true,tag)}>{tag}</span>);
+                                    let classd = tag.sel?"sel":"";
+                                    return (
+                                        <span key={index} onClick={this.onClickTag.bind(this,!tag.sel,tag.name)} className={classd}>{tag.name}</span>
+                                     )
                                   })
                                 }
                             </div>

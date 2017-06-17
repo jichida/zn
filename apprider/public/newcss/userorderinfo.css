@@ -171,11 +171,12 @@
     border: 1px solid #CCC;
     color: #999;
     margin-right: 15px;
+    margin-bottom: 10px;
 }
 .userorderinfoPage .hottag span.sel{
     background: #3479e1;
     color: #FFF;
-    border: none;
+    border-color: #3479e1;
 }
 
 .userorderinfoPage .address>div:before{
@@ -186,6 +187,8 @@
     border-radius: 10px;
     margin-right: 10px;
     flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 7px;
 }
 .userorderinfoPage .address>div:first-child:before{
     border: 1px solid #02ae62;
@@ -363,8 +366,11 @@
     background: #EEE;
     border-radius: 6px;
 }
-.addevaluate .wamp .text .weui-cells_form textarea{
+.addevaluate .wamp .text .weui-cells_form .weui-cell__bd >div{
     padding: 10px;
+}
+.addevaluate .wamp .text .weui-cells_form textarea{
+    
     border-radius: 6px;
 }
 .addevaluate .wamp .text .weui-textarea-counter{

@@ -33,13 +33,26 @@ let OrderItem =(props)=> {
 
     }
 
-    let triptypename = orderinfo.isrealtime?'实时':'预约';
+    const getheadtipc = (orderinfo)=>{
+        const { triptype,isrealtime } = orderinfo;
+        if(triptype==="旅游大巴" || triptype==="拼车"){
+            return <span style={{width:"15px",display:"inline-block"}}></span>;
+        }else{
+            if(isrealtime){
+                return (<span className="i j">实时</span>);
+            }else{
+                return (<span className="i">预约</span>);
+            }
+        }
+    }
+
+    //let triptypename = orderinfo.isrealtime?'实时':'预约';
     return (
       <Cell access  onClick={()=>{onClickSelCurOrder(orderinfo);}}>
           <CellBody>
               <div className="tt">
                   <div className="ttinfo">
-                      <span className="i">{triptypename}</span>
+                      {getheadtipc(orderinfo)}
                       <span className="time">{createtimestring}</span>
                       <span className="type">{orderinfo.triptype}</span>
                   </div>

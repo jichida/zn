@@ -65,6 +65,7 @@
 .dstaddressPage .commonBtnContent{
     display: flex;
     background: #FFF;
+    flex-shrink: 0;
     border-top: 1px solid #EEE;
 }
 .dstaddressPage .commonBtnContent>div{
@@ -78,7 +79,7 @@
     border: none;
 }
 .dstaddressPage .commonBtnContent>div img{
-    width: 38px;
+    width: 32px;
     margin-right: 10px;
 }
 .dstaddressPage .commonBtnContent>div >div{
@@ -86,7 +87,11 @@
     flex-direction: column;
 }
 .dstaddressPage .commonBtnContent>div >div .address{
-    color: #888
+    color: #888;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
 

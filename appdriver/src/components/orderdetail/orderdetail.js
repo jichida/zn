@@ -29,8 +29,10 @@ class Page extends Component {
                 <NavBar back={true} title="订单详情" />
                 <div className="pageContent">
                     <Orderdetailhead orderinfo={orderinfo} />
-                    <Orderdetailpaycontent orderinfo={orderinfo}
-                      history={this.props.history}/>
+                    <Orderdetailpaycontent 
+                        orderinfo={orderinfo}
+                        history={this.props.history}
+                        />
                     {hascommented && <Orderdetailevaluate orderinfo={orderinfo} />}
                 </div>
             </div>

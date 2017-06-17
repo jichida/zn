@@ -48,7 +48,7 @@ export class Page extends React.Component {
                     )
                 }
                 {
-                    nav.text===''?'':(<span style={{padding: "0 15px"}}>{nav.text}</span>)
+                    (nav.text===''||!nav.text)?'':(<span style={{padding: "0 15px"}}>{nav.text}</span>)
                 }
                 {
                     nav.hasOwnProperty('number')?this.showRedNumber(nav.number):""
