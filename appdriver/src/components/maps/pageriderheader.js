@@ -16,19 +16,20 @@ let PageRiderHead =(props)=>{
 
   return (
     <div className="orderinfohead">
-        <div className="userinfo"><img src={avatarURL} className="avatar" alt=""/>
-        <span>{RiderName}</span>
+        <div className="userinfo">
+            <img src={avatarURL} className="avatar" alt=""/>
+            <span>{RiderName}</span>
+            { !!RiderPhone &&
+              <a href={`tel:${RiderPhone}`} className="call">
+                  联系TA
+              </a>
+            }
         </div>
         <div className="address">
             <div className="startaddress">{srcaddress.addressname}</div>
             <div className="endaddress">{dstaddress.addressname}</div>
         </div>
-        <a
-            href={`tel:${RiderPhone}`}
-            className="call">
-            <img src="newimg/p20.png"  alt=""/>
-            联系TA
-        </a>
+        
     </div>
   );
 };

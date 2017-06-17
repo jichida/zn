@@ -62,3 +62,22 @@
 .caroverlayPage .dv-star-rating.dv-star-rating-non-editable{
     width: 82px;
 }
+
+
+
+
+.caroverlayPage.AppPage .amap-info-content{
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 0;
+    position: relative;
+}
+
+
+.caroverlayPage.AppPage .amap-info-close{
+    display: none;
+}
+
+.caroverlayPage.AppPage .amap-info-sharp{
+    top: -31px;
+}

@@ -48,15 +48,12 @@ class renderDateField extends React.Component{
                     </Label>
                 </CellHeader>
                 <CellFooter>
-                    <Input
-                        {...input}
-                        onClick={handleClick1}
-                        style={{textAlign:"right"}}
-                        />
+                    <input type="hidden" {...input} />
+                    <span style={{color:"#333"}} onClick={handleClick1}>{input.value}</span>
                 </CellFooter>
                 <DatePicker
                     value={new Date(input.value)}
-                    isOpen={this.state.isdateopen}
+                    isOpen={this.state.isdateopen} 
                     onSelect={handleSelect1}
                     onCancel={handleCancel1}
                     dateFormat={['YYYY', 'MM', 'DD']}

@@ -33,20 +33,22 @@ export class Page extends React.Component {
         if(nav.type==='push'){
             action = this.pagePush.bind(nav.url);
         }
+        console.log(nav.icon==='');
+        console.log(nav.icon);
         return (
             <span
                 onClick={action}
                 className="nli"
                 key={index}>
                 {
-                    nav.icon===''?'':(
+                    (nav.icon===''||!nav.icon)?'':(
                         <span className="iconBtn">
                             <img src={nav.icon} style={{width:nav.width,height:nav.height}} alt=""/>
                         </span>
                     )
                 }
                 {
-                    nav.text===''?'':(<span>{nav.text}</span>)
+                    nav.text===''?'':(<span style={{padding: "0 15px"}}>{nav.text}</span>)
                 }
                 {
                     nav.hasOwnProperty('number')?this.showRedNumber(nav.number):""
