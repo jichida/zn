@@ -158,6 +158,7 @@
     border: 1px solid #CCC;
     color: #999;
     margin-right: 15px;
+    margin-bottom: 10px;
 }
 .userorderinfoPage .hottag span.sel{
     background: #3479e1;
@@ -351,8 +352,12 @@
     border-radius: 6px;
 }
 .addevaluate .wamp .text .weui-cells_form textarea{
-    padding: 10px;
+
     border-radius: 6px;
+}
+.addevaluate .wamp .text .weui-cells_form .weui-cell__bd div{
+    padding:10px;
+    padding-bottom: 5px;
 }
 .addevaluate .wamp .text .weui-textarea-counter{
     padding-right: 10px;

@@ -114,7 +114,7 @@ export class Page extends Component{
                             <div className="tit">
                                 <span>评价乘客</span>
                                 <img
-                                    src="newimg/12.png"
+                                    src="newimg/22.png"
                                     onClick={()=>{this.addevaluatebox(false)}}
                                     className="close"
                                     alt=""/>
