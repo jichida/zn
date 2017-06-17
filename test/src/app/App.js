@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as xview from '../utils/Common';
-import {alipayUrl,wxpayUrl,xview_geographyLocationCallbackMethod} from '../utils/Common';
+import * as xview from '../utils/Common.js';
+import {alipayUrl,wxpayUrl,xview_geographyLocationCallbackMethod} from '../utils/Common.js';
 
 let sourceData={"title":"夏恒网络XVIEW分享", "descrption":"夏恒网络XVIEW分享。", "picture":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2378550344,2476789148&fm=58", "url":"http://www.xiaheng.net/"};
 
@@ -27,7 +27,7 @@ class App extends Component {
       alert(JSON.stringify(data));
     });
   }
-  getLocation=()=>{
+  getLocation(){
     try{
       xview_geographyLocationCallbackMethod((data)=>{
         window.alert(JSON.stringify(data));
@@ -37,7 +37,7 @@ class App extends Component {
     }
   }
 
-  getLocation2=()=>{
+  getLocation2(){
     try{
       xview.xview_geographyLocationCallbackMethod((data)=>{
         window.alert(JSON.stringify(data));
@@ -47,7 +47,7 @@ class App extends Component {
     }
   }
 
-  getLocation3=()=>{
+  getLocation3(){
     try{
       xview.xview_geographyLocationCallbackMethod((data)=>{
         alert(JSON.stringify(data));
@@ -153,9 +153,9 @@ class App extends Component {
           <br/>
           <button onClick={ this.zfbPay }>支付宝支付</button>
           <button onClick={ this.wxPay }>微信支付</button>
-          <button onClick={ this.getLocation }>获取定位</button>
-          <button onClick={ this.getLocation2 }>获取定位2</button>
-          <button onClick={ this.getLocation3 }>获取定位2</button>
+          <button onClick={ this.getLocation.bind(this) }>获取定位</button>
+          <button onClick={ this.getLocation2.bind(this) }>获取定位2</button>
+          <button onClick={ this.getLocation3.bind(this) }>获取定位2</button>
 
           <br/>
           <button onClick={ this.loginQQ }>QQ登录</button>
