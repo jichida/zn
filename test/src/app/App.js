@@ -48,13 +48,14 @@ class App extends Component {
   }
 
   getLocation3(){
-    try{
-      xview.geographyLocationCallbackMethod((data)=>{
-        alert(JSON.stringify(data));
-      })
-    }catch(e){
-      alert(e.message);
-    }
+    window.location.href = 'http://www.ibltz.weixingang.com';
+    // try{
+    //   xview.geographyLocationCallbackMethod((data)=>{
+    //     alert(JSON.stringify(data));
+    //   })
+    // }catch(e){
+    //   alert(e.message);
+    // }
   }
 
   loginQQ=()=>{
