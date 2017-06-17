@@ -42,13 +42,9 @@ class App extends Component {
   }
 
   getLocation2(){
-    try{
-      xview.geographyLocationCallbackMethod((data)=>{
-        window.alert(JSON.stringify(data));
-      })
-    }catch(e){
-      window.alert(e.message);
-    }
+    alert(`??window.xview:${!!window.xview}`);
+    alert(`??geographyLocationCallbackMethod:${!!window.xview.geographyLocationCallbackMethod}`);
+
   }
 
   getLocation3(){
