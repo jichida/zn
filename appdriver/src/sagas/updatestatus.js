@@ -18,6 +18,9 @@ import {
   serverpush_triprequestandorder,
   updaterequeststatus_result,
   acceptrequest_result,
+  updateorder_comment_result,
+  triporder_updateone,
+  ui_setorderdetail
 } from '../actions';
 
 import { replace } from 'react-router-redux';
@@ -87,6 +90,13 @@ const getmapstate_formapdraw = (state) => {
 
 
 export function* createupdatestatusflow(){
+  yield takeEvery(`${updateorder_comment_result}`, function*(action) {
+      let {payload:result} = action;
+      //返回一个订单object
+      yield put(triporder_updateone(result));
+      yield put(ui_setorderdetail({showaddevaluate:false}));
+  });
+
   yield takeEvery(`${carmap_resetmap_url}`, function*(action) {
       const {payload} = action;
       if(!!payload){

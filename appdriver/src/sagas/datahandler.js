@@ -102,11 +102,13 @@ import {
     login_request,
     findpwd_request,
     findpwd_result,
+    
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'updateorder_comment_result':updateorder_comment_result,
   'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'payorderwithcash_result':payorderwithcash_result,
   'queryuserbalance_result':queryuserbalance_result,

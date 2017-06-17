@@ -43,7 +43,7 @@ export class Page extends Component{
     }
     onClickCarComment(){
       const {ratenum,commenttagsel,comment,orderinfo} = this.props;
-      let commentflag = orderinfo.commentflag | 1;
+      let commentflag = orderinfo.commentflag | 2;
       let commentinfo = {
         rateriderinfo:{
           ratenum,
