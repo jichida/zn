@@ -12,7 +12,7 @@ export const exitAndroidApp=()=>{
       xview.exitApp();
     }
     catch(e){
-      window.alert(`退出app失败
+      alert(`退出app失败
         ${JSON.stringify(e)}`);
     }
   },0);
@@ -39,7 +39,7 @@ export const registerandroid=()=>{
       }
     }
     catch(e){
-      window.alert(`点击返回键失败
+      alert(`点击返回键失败
         ${JSON.stringify(e)}`);
     }
 

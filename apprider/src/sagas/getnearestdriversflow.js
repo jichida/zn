@@ -20,24 +20,33 @@ const getstate_app = (state)=>{
 //获取地理位置坐标，初始化地图
 //如果和服务端连接，要获取地理位置名字
 export function* createinitflow(){//仅执行一次
-   const curlocation = yield call(getcurrentpos);//第一次执行,应保证有值
-   yield put(carmap_setcurlocation(curlocation));//设置当前位置
+  let errorreson = '';
+  try{
+    const curlocation = yield call(getcurrentpos);//第一次执行,应保证有值
+    errorreson = curlocation.lng + ',' + curlocation.lat;
+    yield put(carmap_setcurlocation(curlocation));//设置当前位置
 
-   let srclocationstring = curlocation.lng + ',' + curlocation.lat;
-   let markerstartlatlng = L.latLng(curlocation.lat, curlocation.lng);//lat,lng
-   yield put(carmap_setmapcenter(markerstartlatlng));//地图中心点
-   yield put(carmap_changemarkerstartlatlng(markerstartlatlng));//起始点
+    let srclocationstring = curlocation.lng + ',' + curlocation.lat;
+    let markerstartlatlng = L.latLng(curlocation.lat, curlocation.lng);//lat,lng
+    yield put(carmap_setmapcenter(markerstartlatlng));//地图中心点
+    yield put(carmap_changemarkerstartlatlng(markerstartlatlng));//起始点
 
-   let app = yield select(getstate_app);
-   if(!app.socketconnected){
-       console.log(`等待连接。。。`);
-       yield take(`${notify_socket_connected}`);
-       yield call(delay, 2*1000);//延时2秒
-   }
-   console.log(`地理位置从0->有值，需要初始化地图（触发一次，同时触发3）`);
-   yield put(changestartposition({
-        location:srclocationstring
-   }));
+    let app = yield select(getstate_app);
+    if(!app.socketconnected){
+        console.log(`等待连接。。。`);
+        yield take(`${notify_socket_connected}`);
+        yield call(delay, 2*1000);//延时2秒
+    }
+    console.log(`地理位置从0->有值，需要初始化地图（触发一次，同时触发3）`);
+    yield put(changestartposition({
+         location:srclocationstring
+    }));
+  }
+  catch(e){
+    alert(`初始化失败${JSON.stringify(e)}
+    errorreson:${errorreson}`);
+  }
+
 }
 
 //想打车时,附近的车辆需要定时刷新

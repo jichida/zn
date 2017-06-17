@@ -21,6 +21,7 @@ import {
   Filter,
   SelectInput,
   ImageField,
+  ReferenceInput,
   ReferenceField
  } from 'admin-on-rest/lib/mui';
 
@@ -142,11 +143,11 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="紧急情况联系人通信地址" source="Platform_baseInfoDriver.EmergencyContactAddress" />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.vehicle">
-              <TextInputEx  label="车辆号牌" source="Platform_baseInfoVehicle.VehicleNo" />
-              <TextInputEx  label="车牌颜色" source="Platform_baseInfoVehicle.PlateColor" />
+              <TextInputEx  label="车辆号牌【审核必填】" source="Platform_baseInfoVehicle.VehicleNo" />
+              <TextInputEx  label="车辆颜色【审核必填】" source="Platform_baseInfoVehicle.PlateColor" />
               <NumberInputEx  label="核定载客位" source="Platform_baseInfoVehicle.Seats" />
-              <TextInputEx  label="车辆厂牌" source="Platform_baseInfoVehicle.Brand" />
-              <TextInputEx  label="车辆型号" source="Platform_baseInfoVehicle.Model" />
+              <TextInputEx  label="车辆厂牌【审核必填】" source="Platform_baseInfoVehicle.Brand" />
+              <TextInputEx  label="车辆型号【审核必填】" source="Platform_baseInfoVehicle.Model" />
               <TextInputEx  label="车辆类型" source="Platform_baseInfoVehicle.VehicleType" />
               <TextInputEx  label="车辆所有人(应与《机动车登记证书》所注明的车辆所有人一致)" source="Platform_baseInfoVehicle.OwnerName" />
               <TextInputEx  label="车身颜色" source="Platform_baseInfoVehicle.VehicleColor" />
@@ -175,7 +176,9 @@ const UserdriverlistEdit = (props) => {
               <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" />
               <DateInput  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate" />
               <DateInput  label="报备日期" source="Platform_baseInfoVehicle.RegisterDate" />
-              <TextInputEx  label="FareType?" source="Platform_baseInfoVehicle.FareType" />
+              <ReferenceInput source="FareType" reference="Platform_baseInfoVehicle.FareType" allowEmpty>
+                    <SelectInput optionText="registertype" />
+              </ReferenceInput>
               </FormTab>
         </TabbedForm>
       </Edit>);

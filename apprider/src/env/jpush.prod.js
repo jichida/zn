@@ -7,7 +7,7 @@ export const cancelJPushAlisa=()=>{
         xview.cancelJPushAlisa();
     }
     catch(e){
-      window.alert(`注销设置别名(cancelJPushAlisa)${JSON.stringify(e)}`);
+      alert(`注销设置别名(cancelJPushAlisa)${JSON.stringify(e)}`);
     }
 
 }
@@ -19,7 +19,7 @@ export const setJPushAlias = (name)=> {
          xview.jiGuangTuiSong(name);
      }
      catch(e){
-       window.alert(`设置别名失败(setJPushAlias)
+       alert(`设置别名失败(setJPushAlias)
        ${JSON.stringify(e)}
        ${name}`);
      }
@@ -36,11 +36,11 @@ export const postNotifyFromJPush = (dispatch)=>{
             dispatch(jpushlistenInMessage(jsonobj));
         }
         catch(e){
-          window.alert(`推送消息失败(postNotifyFromJPush)
+          alert(`推送消息失败(postNotifyFromJPush)
           ${jsonstr}
           ${JSON.stringify(e)}`);
         }
-        //window.alert(`listenInMessage==>\n${jsonstr}`);
+        //alert(`listenInMessage==>\n${jsonstr}`);
 
     }
     //点击了推送消息
@@ -53,11 +53,11 @@ export const postNotifyFromJPush = (dispatch)=>{
             dispatch(jpushpostNotification(jsonobj));
         }
         catch(e){
-          window.alert(`推送消息失败(postNotification)
+          alert(`推送消息失败(postNotification)
           ${jsonstr}
           ${JSON.stringify(e)}`);
         }
-        //window.alert(`postNotification==>\n${jsonstr}`);
+        //alert(`postNotification==>\n${jsonstr}`);
 
     }
 }

@@ -37,7 +37,7 @@ let markerstart,markerend,markerself,markerdriver,polylineleft,polylinepast,info
 window.initamaploaded = false;
 
 const loczero = L.latLng(0,0);
-
+window.amap = null;
 let createmap =({mapcenterlocation,zoomlevel})=> {
   return new Promise((resolve,reject) => {
     if(!mapcenterlocation.equals(loczero) && !window.amap ){
@@ -254,7 +254,7 @@ export function* createmapshowflow(){
       }
       catch(e){
         console.log(`创建地图失败`);
-        alert(`创建地图失败`);
+        alert(`创建地图失败${JSON.stringify(e)}`);
       }
 
     });
