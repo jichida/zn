@@ -29,9 +29,13 @@ class App extends Component {
   }
   getLocation(){
     try{
-      xview_geographyLocationCallbackMethod((data)=>{
+      alert(`window.xview:${!!window.xview}`);
+      alert(`geographyLocationCallbackMethod:${!!window.xview.geographyLocationCallbackMethod}`);
+
+      window.geographyLocation2=function(result){
         window.alert(JSON.stringify(data));
-      })
+      };
+      window.xview.geographyLocationCallbackMethod("geographyLocation2");
     }catch(e){
       window.alert(e.message);
     }
