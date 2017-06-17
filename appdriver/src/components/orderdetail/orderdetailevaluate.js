@@ -67,7 +67,7 @@ export class Page extends Component{
     }
 
     render(){
-        const {
+        let {
             orderinfo,
             commenttags_selmax,
             commenttagsel,
@@ -77,10 +77,11 @@ export class Page extends Component{
             } = this.props;
 
         let iscommented = false;
-        const {commentflag} = orderinfo;
+        const {commentflag,rateriderinfo} = orderinfo;
         if(!!commentflag){
           if((commentflag & 2) > 0 ){
             iscommented = true;
+            ratenum = rateriderinfo.ratenum || 5;
           }
         }
 

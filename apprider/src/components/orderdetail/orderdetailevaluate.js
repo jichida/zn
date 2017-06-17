@@ -67,7 +67,7 @@ export class Page extends Component{
     }
 
     render(){
-        const {
+        let {
             orderinfo,
             commenttags_selmax,
             commenttagsel,
@@ -76,10 +76,11 @@ export class Page extends Component{
             } = this.props;
 
         let iscommented = false;
-        const {commentflag} = orderinfo;
+        const {commentflag,ratedriverinfo} = orderinfo;
         if(!!commentflag){
           if((commentflag & 1) > 0 ){
             iscommented = true;
+            ratenum = ratedriverinfo.ratenum || 5;
           }
         }
 
@@ -102,7 +103,7 @@ export class Page extends Component{
                               name="star"
                               editing={false}
                               starCount={5}
-                              value={4}
+                              value={ratenum}
                               emptyStarColor="#EEEEEE"
 
                           />
