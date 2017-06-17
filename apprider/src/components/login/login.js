@@ -49,7 +49,7 @@ export class PageForm extends Component {
                         name="authcode"
                         id="authcode"
                         placeholder="请输入验证码"
-                        type="text"
+                        type="password"
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
