@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as xview from '../utils/Common';
-import {alipayUrl,wxpayUrl,xview_geographyLocationCallbackMethod} from './util/Common';
+import {alipayUrl,wxpayUrl,xview_geographyLocationCallbackMethod} from '../util/Common';
 
 let sourceData={"title":"夏恒网络XVIEW分享", "descrption":"夏恒网络XVIEW分享。", "picture":"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2378550344,2476789148&fm=58", "url":"http://www.xiaheng.net/"};
 
