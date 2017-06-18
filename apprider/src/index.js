@@ -12,7 +12,6 @@ import {
 } from './env/android';
 
 sagaMiddleware.run(rootSaga);
-
 ReactDOM.render(
   <Root />,
   document.getElementById('root')

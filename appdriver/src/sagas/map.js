@@ -22,6 +22,7 @@ let markerstart,markerend,markerdriver,polylineleft,polylinepast,infoWindow;
 const loczero = L.latLng(0,0);
 
 let createmap =({isMapInited,mapcenterlocation,zoomlevel})=> {
+  console.log(`开始创建地图啦。。。。${mapcenterlocation.lng},amap:${!!window.amap}`);
   return new Promise(resolve => {
     if(isMapInited && !mapcenterlocation.equals(loczero) && !window.amap ){
       let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);
