@@ -24,7 +24,7 @@ class PincheQuery extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            time: new Date(),
+            time:new Date(),
             isOpen: false,
             prestyle: "pre"
         }
@@ -50,7 +50,13 @@ class PincheQuery extends React.Component {
         this.props.history.push(name);
     }
     componentWillMount () {
+
         let querydata = this.props.query;
+        this.setState({
+            time:new Date(querydata.startdate),
+            isOpen: false,
+            prestyle: "pre"
+        });
         this.props.dispatch(getbuscarpool_request(querydata));
     }
 
@@ -94,10 +100,10 @@ class PincheQuery extends React.Component {
         return (
             <div className="carpoolPage AppPage">
                 <NavBar back={true} title="查询路线" />
-                
+
                 <div className="setDay">
                     <span className={this.state.prestyle} onClick={this.preDay}>前一天</span>
-                    <span 
+                    <span
                         className="day"
                         onClick={this.handleClick}>
                         {moment(this.state.time).format("YYYY-MM-DD")}
@@ -107,7 +113,7 @@ class PincheQuery extends React.Component {
                             onSelect={this.handleSelect}
                             onCancel={this.handleCancel}
                             theme="ios"
-                            />  
+                            />
                     </span>
                     <span className="next" onClick={this.nextDay}>后一天</span>
                 </div>
@@ -168,7 +174,7 @@ class PincheQuery extends React.Component {
                         <LoadMore showLine>暂无数据</LoadMore>
                         </div>
                     )}
-                    
+
                 </div>
             </div>
         );
