@@ -8,6 +8,7 @@ import {
   getstringoftime,
   getstringofdistance
 } from '../util/geo.js';
+import _ from 'lodash';
 
 let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
   console.log('获取一个实时导航:' + drawroute);
@@ -21,24 +22,24 @@ let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
        new window.AMap.LngLat(endlnglat.lng, endlnglat.lat),
       (status,result)=>{
             if(status === 'complete'){
-              for(let route of result.routes){
+              _.map(result.routes,(route)=>{
                 let totaldistance = route.distance;
                 let totalduration = route.time;
                 let totaldistancetxt = getstringofdistance(route.distance);
                 let totaldurationtxt = getstringoftime(route.time);
                 let latlngs = [];
                 let instruction = '';
-                for(let drivestep of route.steps){
+                _.map(route.steps,(drivestep)=>{
                   if(instruction.length === 0){
                     instruction = drivestep.instruction;
                   }
-                  for(let pt of drivestep.path){
+                  _.map(drivestep.path,(pt)=>{
                       latlngs.push({
                         lat:pt.lat,
                         lng:pt.lng
                       });
-                  }
-                }
+                  });
+                });
                 resolve({
                     drawroute,
                     totaldistance,
@@ -49,7 +50,7 @@ let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
                     instruction
                   });
                 return;
-              }//for(let route of result.routes){
+              });//for(let route of result.routes){
             }//if(status === 'complete'){
           resolve({drawroute:false});
       });//driving.search
@@ -76,7 +77,9 @@ export function* createnavdrawrouteflow(){
       yield put(driveroute_result(result));
     }
     else{
-      yield put(driveroute_result({drawroute:false}));
+      yield put(driveroute_result({
+        drawroute:false
+        }));
     }
   });
 }

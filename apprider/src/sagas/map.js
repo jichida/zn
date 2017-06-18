@@ -39,6 +39,7 @@ window.initamaploaded = false;
 const loczero = L.latLng(0,0);
 window.amap = null;
 let createmap =({mapcenterlocation,zoomlevel})=> {
+  console.log(`开始创建地图啦。。。。${mapcenterlocation.lng},amap:${!!window.amap}`);
   return new Promise((resolve,reject) => {
     if(!mapcenterlocation.equals(loczero) && !window.amap ){
       let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);

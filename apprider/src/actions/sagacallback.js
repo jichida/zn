@@ -63,7 +63,8 @@ export function* createsagacallbackflow(){
   waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);
   waitfnsz.push([`${wait_mycoupongetall_request}`,`${wait_mycoupongetall_result}`]);
 
-  for(let fnsz of waitfnsz){
+  for(let i=0;i <waitfnsz.length; i++){
+     let fnsz = waitfnsz[i];
      yield takeLatest(fnsz[0],createflowsz, fnsz[1]);
   }
 

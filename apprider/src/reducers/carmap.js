@@ -172,9 +172,9 @@ const carmap = createReducer({
         if(rest.drawroute){
             routeleftpts = [];
           //if(state.iswaitingforcallpage){//在叫车页面,画导航线
-              for(let curloc of latlngs){
+              _.map(latlngs,(curloc)=>{
                   routeleftpts.push(L.latLng(curloc.lat, curloc.lng));
-              }
+              });
           //}
         }
         return { ...state,...rest,routeleftpts};

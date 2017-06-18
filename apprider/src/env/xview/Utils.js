@@ -1,4 +1,5 @@
 import {config} from './Config';
+import _ from 'lodash';
 const model="run"; //test测试模式   run运行
 /**
  * 判断内核
@@ -40,7 +41,8 @@ export const JudgmentNullOrEmpty = (str) => {
 export const CreateScript = (src,param,callback) => {
 	let script,dom = document.getElementsByTagName("script");
 	for(let i = 0;i < dom.length;i++){
-		for(let attr in dom[i].attributes){
+		for(let j=0;i<dom[i].attributes.length;j++){
+			let attr=dom[i].attributes[j];
 			if(attr.value==src){
 				script=dom[i];
 				break;
