@@ -95,7 +95,7 @@ export class Page extends React.Component {
                     rightnav={rightnav}
                     />
                 <div className="list">
-                    <MapGaode ref='mapgaode' height={window.innerHeight-114} />
+                    <MapGaode ref='mapgaode' height={window.innerHeight-68} />
                     {mapstage === 'pageinit' && <CarOverlayInit />}
                     {mapstage === 'pageorder' && <CarOverlayOrder />}
                 </div>

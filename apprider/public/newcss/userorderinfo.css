@@ -119,10 +119,20 @@
     padding-left: 5px;
     margin-right: -15px;
     padding-right: 10px;
+    height: 22px;
+    padding-top:4px;
+    padding-bottom: 4px;
+    overflow: hidden;
 }
 .userorderinfoPage .orderinfohead .driver .call img{
     width: 20px;
+    margin: 0;
     margin-right: 5px;
+    height: 20px;
+    vertical-align: middle;
+}
+.userorderinfoPage .orderinfohead .driver .call span{
+    line-height: 22px;
 }
 .userorderinfoPage .pageContent{
     flex-grow: 1;
@@ -313,14 +323,22 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    margin-bottom: -200px;
+    margin-bottom: -300px;
     display: none;
+    opacity: 0;
+
+
 }
 .addevaluate.show{
     display: flex;
-    margin-bottom: 0;
-    animation:showaddevaluate .6s;
-    -webkit-animation:showaddevaluate .6s;
+    z-index: 10000;
+    opacity: 1;
+    transform: translate3d(0px, -300px, 0px); 
+    -moz-transform: translate3d(0px, -300px, 0px); 
+    -webkit-transform: translate3d(0px, -300px, 0px); 
+    transition-duration: 1000ms;
+    -moz-transition-duration: 1000ms; /* Firefox 4 */
+    -webkit-transition-duration: 1000ms; /* Safari 和 Chrome */
 }
 @keyframes showaddevaluate{
     from {margin-bottom:-200px}
@@ -370,7 +388,8 @@
     padding: 10px;
 }
 .addevaluate .wamp .text .weui-cells_form textarea{
-    
+    height: 75px;
+    overflow: hidden;
     border-radius: 6px;
 }
 .addevaluate .wamp .text .weui-textarea-counter{

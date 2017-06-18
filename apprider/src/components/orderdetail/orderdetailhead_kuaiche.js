@@ -49,7 +49,7 @@ export default class Page extends Component{
                         href={`tel:${driverinfo.phone}`}
                         className="call">
                         <img src="newimg/20.png" alt="" />
-                        联系TA
+                        <span>联系TA</span>
                     </a>
                 </div>
                 <div className="address">
