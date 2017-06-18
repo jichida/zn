@@ -14,18 +14,23 @@ import {createloadingflow} from './loading';
 import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
-  yield fork(createmapshowflow);
-  yield fork(createloadingflow);
-  yield fork(createnavdrawrouteflow);
-  yield fork(creategetaddrflow);
-  yield fork(jpushflow);
-  yield fork(getcurcityflow);
-  yield fork(payflow);
-  yield fork(wsrecvsagaflow);
-  yield fork(createrestoreorderflow);//监视恢复订单
-  yield fork(flowmain);
-  yield fork(createsagacallbackflow);
-  yield fork(getnearestdriversflow);
-  yield fork(createinitflow);
-  yield fork(createupdatestatusflow);
+  try{
+    yield fork(createmapshowflow);
+    yield fork(createloadingflow);
+    yield fork(createnavdrawrouteflow);
+    yield fork(creategetaddrflow);
+    yield fork(jpushflow);
+    yield fork(getcurcityflow);
+    yield fork(payflow);
+    yield fork(wsrecvsagaflow);
+    yield fork(createrestoreorderflow);//监视恢复订单
+    yield fork(flowmain);
+    yield fork(createsagacallbackflow);
+    yield fork(getnearestdriversflow);
+    yield fork(createinitflow);
+    yield fork(createupdatestatusflow);
+  }
+  catch(e){
+    alert(`执行逻辑错误:${JSON.stringify(e)}`);
+  }
 }
