@@ -82,6 +82,7 @@
     background: #FFF;
 }
 .outcarPage .mapcontent .outcarControl .bbtn span{
+    display: block;
     width: 50%;
     text-align: center;
     line-height: 48px;
@@ -303,8 +304,9 @@
 
 }
 .startTrip .address .a img{
-    width: 30px;
+    width: 22px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 .startTrip .address .b{
     padding-left: 40px;

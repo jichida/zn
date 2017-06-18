@@ -168,7 +168,7 @@
 
 .userorderinfoPage .address>div:before{
     content: "";
-    display: inline-block;
+    display: block;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -218,10 +218,18 @@
 .userorderinfoPage .pricelist .list p{
     margin-bottom: 0;
     display: flex;
-    width: 100%;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-flex-justify-content: space-between;
     margin-bottom: 5px;
+    border-bottom: 1px solid #EEE
+
 }
+.userorderinfoPage .pricelist .list p span{
+    display: block;
+}
+
+
 .userorderinfoPage .tt{
     text-align: center;
     line-height: 50px;
@@ -255,6 +263,7 @@
     border-radius: 100px;
     display: inline-block;
     margin-bottom: 10px;
+    display: block;
 }
 
 
@@ -300,15 +309,22 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    margin-bottom: -200px;
+    margin-bottom: -300px;
     display: none;
+    opacity: 0;
 }
 .addevaluate.show{
     display: flex;
-    margin-bottom: 0;
-    animation:showaddevaluate .6s;
-    -webkit-animation:showaddevaluate .6s;
+    z-index: 10000;
+    opacity: 1;
+    transform: translate3d(0px, -300px, 0px); 
+    -moz-transform: translate3d(0px, -300px, 0px); 
+    -webkit-transform: translate3d(0px, -300px, 0px); 
+    transition-duration: 1000ms;
+    -moz-transition-duration: 1000ms; /* Firefox 4 */
+    -webkit-transition-duration: 1000ms; /* Safari 和 Chrome */
 }
+
 @keyframes showaddevaluate{
     from {margin-bottom:-200px}
     to {margin-bottom: 0}
@@ -341,6 +357,8 @@
     font-size: 30px;
     align-self: center;
     height: 48px;
+    width: 152px;
+    margin: auto;
 }
 .addevaluate .wamp .text .weui-cells{
     margin-top: 0;

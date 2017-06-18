@@ -40,8 +40,8 @@
     color: #999
 }
 .indexPage .indexHead .weui-cell_access .weui-cell__ft:after{
-    height: 16px;
-    width: 16px;
+    height: 8px;
+    width: 8px;
 }
 .indexPage .list .weui-cell__hd {
     display: flex;

@@ -20,7 +20,7 @@ export default class Page extends React.Component {
                 <div className="orderinfohead">
                     <div className="address">
                         <div className="a"><img src="newimg/37.png" alt=""/>行程开始，祝您一路好心情</div>
-                        <div className="b color_warning">全程大约{resultpricedetail.totalkm}公里 耗时{resultpricedetail.totalduringminute}分钟</div>
+                        <div className="color_warning">全程大约{resultpricedetail.totalkm}公里 耗时{resultpricedetail.totalduringminute}分钟</div>
                     </div>
                 </div>
                 <div className="mapcontent list">

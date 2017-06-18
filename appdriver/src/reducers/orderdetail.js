@@ -25,14 +25,20 @@ const initial = {
 };
 
 const orderdetail = createReducer({
+
+
+
     [getsystemconfig_result]:(state,payload)=>{
-      const {commenttagsforrider:commenttags_,maxshowtags} = payload;
-      console.log(commenttags_);
-      return {...state,commenttags_,maxshowtags};
+      const {commenttagsfordriver:commenttags_,maxshowtags} = payload;
+      let commenttags_selmax = [];
+      _.map(commenttags_, (tags, index)=>{
+            let o = {name: tags, sel: false};
+            commenttags_selmax.push(o);
+        })
+      console.log(commenttags_selmax);
+      return {...state,commenttags_,maxshowtags,commenttags_selmax};
     },
     [ui_setselcommenttag]: (state, payload) => {
-
-
         const {addflag,comments} = payload;
         let commenttagsel = [...state.commenttagsel];
 
@@ -72,24 +78,26 @@ const orderdetail = createReducer({
             commenttagsel
         };
     },
+
+    
     [ui_setorderdetail_reset]:(state, payload) => {
       let commenttags_selmax = [];
       let commenttagsel = [];//clear
       let ratenum = 0;
       let comment = '';
         //初始化
-       commenttags_selmax = [...state.commenttags_];
-       commenttags_selmax = _.shuffle(commenttags_selmax);
-       if(commenttags_selmax.length > state.maxshowtags){
-         let drops = commenttags_selmax.length - state.maxshowtags;
-         commenttags_selmax = _.dropRight(commenttags_selmax,drops);
-       }
+       // commenttags_selmax = [...state.commenttags_];
+       // commenttags_selmax = _.shuffle(commenttags_selmax);
+       // if(commenttags_selmax.length > state.maxshowtags){
+       //   let drops = commenttags_selmax.length - state.maxshowtags;
+       //   commenttags_selmax = _.dropRight(commenttags_selmax,drops);
+       // }
        commenttagsel = [];
        ratenum = 0;
        return {
            ...state,
            ratenum,
-           commenttags_selmax,
+           //commenttags_selmax,
            commenttagsel,
            comment
        };

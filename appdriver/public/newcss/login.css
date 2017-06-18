@@ -51,6 +51,7 @@
 .loginPage .loginForm .li .icon{
 	width: 32px;
 	height: 32px;
+	display: block;
 }
 .loginPage .loginForm .li .icon img{
 	width: 32px;
@@ -83,5 +84,7 @@
     flex-grow: 0;
     padding: 0 15px;
     border-radius: 8px;
+    width: 80px;
+
 }
 

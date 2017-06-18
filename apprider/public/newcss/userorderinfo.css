@@ -372,6 +372,9 @@
     font-size: 30px;
     align-self: center;
     height: 48px;
+    width: 152px;
+    margin: auto;
+
 }
 .addevaluate .wamp .text .weui-cells{
     margin-top: 0;
