@@ -278,8 +278,8 @@
     border-radius: 100px;
     display: inline-block;
     margin-bottom: 10px;
+    display: block;
 }
-
 
 .userorderinfoPage .cancelorder{
     display: flex;
@@ -333,9 +333,9 @@
     display: flex;
     z-index: 10000;
     opacity: 1;
-    transform: translate3d(0px, -300px, 0px); 
-    -moz-transform: translate3d(0px, -300px, 0px); 
-    -webkit-transform: translate3d(0px, -300px, 0px); 
+    transform: translate3d(0px, -300px, 0px);
+    -moz-transform: translate3d(0px, -300px, 0px);
+    -webkit-transform: translate3d(0px, -300px, 0px);
     transition-duration: 1000ms;
     -moz-transition-duration: 1000ms; /* Firefox 4 */
     -webkit-transition-duration: 1000ms; /* Safari 和 Chrome */
