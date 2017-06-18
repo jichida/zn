@@ -6,12 +6,18 @@ import * as xview from './xview/Common';
 let locationsz =[0,0];
 
 export const getcurrentlocationfn = (fncallback)=> {
-    window.setTimeout(()=>{
+
         try{
             xview.geographyLocationCallbackMethod((data)=>{
                 //alert(JSON.stringify(data));
                 if(typeof data=='string'){
                   data=JSON.parse(data);
+                }
+                if(!!data.longitude){
+                  data.longitude = parseFloat(data.longitude);
+                }
+                if(!!data.latitude){
+                  data.latitude = parseFloat(data.latitude);
                 }
                 locationsz = [data.longitude,data.latitude];
                 fncallback(locationsz);
@@ -21,5 +27,5 @@ export const getcurrentlocationfn = (fncallback)=> {
           ${JSON.stringify(e)}`);
             fncallback(locationsz);
         }
-    },0);
+
 }

@@ -12,10 +12,11 @@
   @since 2.0
   */
  const xviewPhoneWithAppDataWithCallbackMethodWithType = (data,fun,typeString) => {
-   window.xviewCallBack_xphone=function(result){
+   window.xviewCallBack=function(result){
+     result=eval("("+result+")");
      fun(result);
    };
-   window.xview.xviewPhoneWithAppDataWithCallbackMethodWithType(JSON.stringify(data),"xviewCallBack_xphone",typeString);
+   window.xview.xviewPhoneWithAppDataWithCallbackMethodWithType(JSON.stringify(data),"xviewCallBack",typeString);
  }
  /**
    * 微信登录
@@ -154,10 +155,11 @@
    @since 2.0
    */
   export const showiPhoneAlertWithAppDataTypeWithCallbackMethod=(dataString,typeString,fun) => {
-    window.xviewCallBack_showiphone=function(result){
+    window.xviewCallBack=function(result){
+      result=eval("("+result+")");
       fun(result);
     };
-    window.xview.showiPhoneAlertWithAppDataTypeWithCallbackMethod(dataString,typeString,"xviewCallBack_showiphone");
+    window.xview.showiPhoneAlertWithAppDataTypeWithCallbackMethod(dataString,typeString,"xviewCallBack");
   }
 
   /**
@@ -175,7 +177,7 @@
    @since 2.0
    */
   export const openiPhoneApp = (url) => {
-  	if(url.indexOf("http://"!=0)){
+  	if(url.indexOf("http://")!=0){
   		url="http://"+url;
   	}
     window.xview.openiPhoneApp(url);
@@ -187,10 +189,11 @@
    @since 2.0
    */
   export const sendSmsWithPhoneNumber = (phone,fun) => {
-  	window.xviewCallBack_sendSmsWithPhoneNumber=function(result){
+  	window.xviewCallBack=function(result){
+      result=eval("("+result+")");
       fun(result);
     };
-  	window.xview.sendSmsWithPhoneNumber(phone,"xviewCallBack_sendSmsWithPhoneNumber");
+  	window.xview.sendSmsWithPhoneNumber(phone,"xviewCallBack");
   }
  /**
    * 获取经纬度
@@ -198,25 +201,77 @@
    @since 2.0
    */
   export const geographyLocationCallbackMethod = (fun) => {
-    window.callBack_geographyLocation=function(result){
+    window.callBack=function(result){
+      result=eval("("+result+")");
       fun(result);
     };
-    window.xview.geographyLocationCallbackMethod("callBack_geographyLocation");
+    window.xview.geographyLocationCallbackMethod("callBack");
   }
 
+
   /**
-    * 设置推送用户名
-    @method jiGuangTuiSong
+    * WiFi名
+    @method currentLinkWifi
     @since 2.0
     */
-   export const jiGuangTuiSong = (name) => {
-     window.xview.jiGuangTuiSong(name);
+   export const currentLinkWifi = (fun) => {
+     window.currentLinkWifiCallBack=function(result){
+       result=eval("("+result+")");
+       fun(result);
+     };
+     window.xview.currentLinkWifi({callback:"currentLinkWifiCallBack"});
    }
    /**
-     * 取消单推
-     @method cancelJPushAlisa
+     * 连接mico
+     @method prepareEasyLink
      @since 2.0
      */
-    export const cancelJPushAlisa = () => {
-      window.xview.cancelJPushAlisa();
+    export const prepareEasyLink = (json,fun) => {
+      window.prepareEasyLinkCallBack=function(result){
+        result=eval("("+result+")");
+        fun(result);
+      };
+      json['callback']="prepareEasyLinkCallBack";
+      window.xview.prepareEasyLink(json);
     }
+    /**
+      * 搜索mico
+      @method searchForModules
+      @since 2.0
+      */
+     export const searchForModules = (fun) => {
+       window.searchForModulesCallBack=function(result){
+         result=eval("("+result+")");
+         fun(result);
+       };
+       window.xview.searchForModules({callback:"searchForModulesCallBack"});
+     }
+
+     /**
+       * 获取通讯录
+       @method getPhoneBook
+       @since 2.0
+       */
+      export const getPhoneBook = (fun) => {
+        window.getPhoneBookCallback=function(result){
+          result=eval("("+result+")");
+          fun(result);
+        };
+        window.xview.getPhoneBook("getPhoneBookCallback");
+      }
+      /**
+        * 设置推送用户名
+        @method jiGuangTuiSong
+        @since 2.0
+        */
+       export const jiGuangTuiSong = (name) => {
+         window.xview.jiGuangTuiSong(name);
+       }
+       /**
+         * 取消单推
+         @method cancelJPushAlisa
+         @since 2.0
+         */
+        export const cancelJPushAlisa = () => {
+          window.xview.cancelJPushAlisa();
+        }
