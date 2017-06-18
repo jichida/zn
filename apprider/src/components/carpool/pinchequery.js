@@ -137,33 +137,29 @@ class PincheQuery extends React.Component {
                                             className="li"
                                             key={index}
                                             >
-                                            {
-                                                  pinchetype==="专线"?(
-                                                    <div className="licontent">
-                                                        <div className="time">{starttime}</div>
-                                                        <div className="city">
-                                                            {startcity}——{endcity}
-                                                            <p
-                                                                className="text-warning margin-top-0"
-                                                                >
-                                                                <span>{groupnumber}成团</span>
-                                                                <span>载客{seatnumber}</span>
-                                                                <span>{seatnumbertotal}人已参与</span>
-                                                            </p>
-                                                        </div>
-                                                        <div className="bbtn">
-                                                        {seatnumber > seatnumbertotal?
-                                                            <span
-                                                                onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
-                                                                className="btn Primary">
-                                                                参团
-                                                            </span>:
-                                                            <span> 已满 </span>
-                                                          }
-                                                        </div>
+                                                <div className="licontent">
+                                                    <div className="time">{starttime}</div>
+                                                    <div className="city">
+                                                        {startcity}——{endcity}
+                                                        <p
+                                                            className="text-warning margin-top-0"
+                                                            >
+                                                            <span>{groupnumber}成团</span>
+                                                            <span>载客{seatnumber}</span>
+                                                            <span>{seatnumbertotal}人已参与</span>
+                                                        </p>
                                                     </div>
-                                                ):""
-                                            }
+                                                    <div className="bbtn">
+                                                    {seatnumber > seatnumbertotal?
+                                                        <span
+                                                            onClick={this.onClickPage.bind(this,'/orderconfirm/pinche',routeobj)}
+                                                            className="btn Primary">
+                                                            参团
+                                                        </span>:
+                                                        <span> 已满 </span>
+                                                      }
+                                                    </div>
+                                                </div>
                                         </div>
                                     )
                                 })

@@ -88,11 +88,12 @@ class Pinche extends React.Component {
         this.props.dispatch(ui_clickpinchetypebtn(newvalue));
     }
     formSubmit =(value)=>{
+        const {  pinchetypetabbtn } = this.props;
         let tabtitle = ['专线','人气团拼'];
         let querydata = {
             startcity:value.startcity,
             endcity:value.endcity,
-            pinchetype:tabtitle[value.pinchetype],
+            pinchetype:tabtitle[pinchetypetabbtn],
             startdate:value.starttime
         };
         this.props.dispatch(setpinchequery(querydata));
