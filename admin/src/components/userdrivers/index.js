@@ -89,8 +89,8 @@ const UserdriverlistEdit = (props) => {
               <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.platformdriverinfo">
-              <TextInput label="姓名" source="Platform_baseInfoDriver.DriverName" />
-              <TextInput label="手机号" source="Platform_baseInfoDriver.DriverPhone" />
+              <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" />
+              <TextInput label="手机号【审核必填】" source="Platform_baseInfoDriver.DriverPhone" />
               <TextInput label="性别" source="Platform_baseInfoDriver.DriverGender" />
               <DateInput label="生日" source="Platform_baseInfoDriver.DriverBirthday" />
               <TextInput label="国籍" source="Platform_baseInfoDriver.DriverNationality" />
@@ -169,7 +169,7 @@ const UserdriverlistEdit = (props) => {
                   { id: 2, name: '未知' },
               ]} />
               <DateInput  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
-              <TextInputEx  label="车辆年度审验状态?" source="Platform_baseInfoVehicle.CheckState" />
+              <TextInputEx  label="车辆年度审验状态" source="Platform_baseInfoVehicle.CheckState" />
               <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintld" />
               <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand" />
               <TextInputEx  label="卫星定位装置型号" source="Platform_baseInfoVehicle.GPSModel" />
