@@ -19,6 +19,7 @@
     color: #0080ff;
     height: 36px;
     line-height: 36px;
+    display: block;
 }
 .carpoolPage .pageNav span.sel{
      color: #FFF;

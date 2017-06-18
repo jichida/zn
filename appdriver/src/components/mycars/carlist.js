@@ -27,14 +27,15 @@ class Page extends Component {
   }
 
   onClickSelCurCar =(carinfo)=>{
+    const carnom = carinfo.Platform_baseInfoVehicle.VehicleNo.replace(/(^\s+)|(\s+$)/g,"");
     let confirm = {
           show : true,
-          title : "你确定要切换当前车辆吗?",
-          text : "",
+          title : "切换当前车辆",
+          text : `将${carnom}设为当前车辆`,
           buttonsCloseText : "取消",
           buttonsClickText : "确定",
           buttonsClose : ()=>{console.log('click close');},
-          buttonsClick : ()=>{this.carsetdefault_request_fn(carinfo).bind(this);}
+          buttonsClick : ()=>{this.carsetdefault_request_fn(carinfo);}
     };
     this.props.dispatch(set_weui({confirm}));
 

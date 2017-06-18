@@ -8,7 +8,8 @@ import {fileupload} from '../../util/fileupload.js';
 import NavBar from '../tools/nav.js';
 import {
   fillprofile_request,
-  ui_editprofilesetbirthdayshow
+  ui_editprofilesetbirthdayshow,
+  set_weui
 } from '../../actions';
 import '../../../public/newcss/userprofile.css';
 
@@ -71,6 +72,7 @@ let renderEditprofile = (props)=>{
        <input type="text" icon="person" className="field"
        onChange={(e)=>{onChangeFieldname('nickname',e);}}
        value={props.nickname.input.value}
+       style={{fontSize:"14px"}}
        /></label></div>
        </li>
 
@@ -95,6 +97,7 @@ let renderEditprofile = (props)=>{
          onSelect={handleSelect}
          onCancel={handleCancel}
          dateFormat={['YYYY年', 'MM月', 'DD日']}
+         theme="ios"
          /></span>
           </label>
 
@@ -130,9 +133,18 @@ export class Page extends React.Component {
   }
 
    onClickOK =(values)=>{
-    console.log("ok:" + JSON.stringify(values));
-    this.props.dispatch(fillprofile_request(values));
-    this.props.history.goBack();
+    //console.log("ok:" + JSON.stringify(values));
+    if(!!values.nickname){
+      this.props.dispatch(fillprofile_request(values));
+      this.props.history.goBack();
+    }else{
+      let toast = {
+          show : true,
+          text : "用户昵称不能为空",
+          type : "warning"
+      }
+      this.props.dispatch(set_weui({ toast }));
+    }
   }
 
    render() {

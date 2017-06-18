@@ -214,8 +214,8 @@ export class AppIndex extends React.Component {
                             }
                             {currentkeyname==="daijia"?(
                                 <div className="daijiayueTip color_warning">
-                                    呼叫代驾，账户余额必须满{daijialeastbalance}元
-                                    <span onClick={()=>{this.onClickPagePush("/mywallet")}}>查看余额</span>
+                                    <span>呼叫代驾，账户余额必须满{daijialeastbalance}元</span>
+                                    <span className="btnn" onClick={()=>{this.onClickPagePush("/mywallet")}}>查看余额</span>
                                 </div>
                             ):""}
                         </div>

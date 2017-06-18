@@ -146,10 +146,10 @@ class Page extends React.Component {
                       //这里是注释
                       !ispagenow&&!isgetaddress?(
                           <div className="setordertime">
-                              <span>
+                              <div>
                                   <img src="newimg/33.png"  alt=""/>
-                                  预约时间:
-                              </span>
+                                  <span>预约时间:</span>
+                              </div>
                               <Callcardateinput
                                   value={moment(ridedatesel)}
                                   onChange={handleSelect}
@@ -162,7 +162,7 @@ class Page extends React.Component {
                       //这里是注释
                       !isgetaddress?(
                           <div className="addresslist">
-                              <li onClick={onClickSelSrcAddress} className="cfd_icon">{srcname}</li>
+                              <li onClick={onClickSelSrcAddress} className="cfd_icon"><span>{srcname}</span></li>
                               <li onClick={onClickSelDstAddress} className="color_warning"><span>{dstname}</span></li>
                           </div>
                       ):""

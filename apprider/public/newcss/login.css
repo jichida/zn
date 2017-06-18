@@ -11,6 +11,7 @@
 .loginPage #newNavHeadContent .title{
 	color: #FFF;
 	font-size: 20px;
+	
 }
 .loginPage .content{
 	display: flex;
@@ -46,10 +47,12 @@
 .loginPage .formvalidation.form_input input{
 	background: none;
 	font-size: 16px;
+	display: block;
 }
 .loginPage .loginForm .li .icon{
 	width: 32px;
 	height: 32px;
+	display: block;
 }
 .loginPage .loginForm .li .icon img{
 	width: 32px;

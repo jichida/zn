@@ -113,6 +113,7 @@ input, textarea{
 .formStyle1 {
     background: #FFF;
     flex-shrink: 0;
+    overflow: hidden;
 }
 .formStyle1 .weui-label img{
     width: 24px;
@@ -147,6 +148,9 @@ input, textarea{
 }
 .formStyle1 .weui-cell .weui-cell__bd .weui-select{
     direction: rtl;
+    position: relative;
+    width: 100%;
+    display: block;
 }
 .formStyle1 .weui-cell.weui-check__label .weui-check:checked+.weui-icon-checked:before{
     content: '\EA06';
@@ -313,3 +317,32 @@ input, textarea{
     from {opacity : .2;}
     to {opacity : 1;}
 }
+
+
+.weui-loadmore_line{
+    padding-top: 30px;
+    padding-bottom: 18px;
+    border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+}
+.weui-loadmore_line:after{
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 0;
+    background: #EEE;
+    height: 1px;
+    width: 100%;
+    z-index: 1;
+}
+.weui-loadmore_line span{
+    background: #FFF;
+    display: inline-block;
+    position: relative;
+    z-index: 2
+}
+
+
+

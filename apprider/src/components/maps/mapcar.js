@@ -25,10 +25,11 @@ class Page extends React.Component {
    }
 
     render() {
-        console.log('地图---->render---------');
+        const height = this.props.height;
+        console.log('地图---->render---------height:'+height);
         return (
             <div className="mapcontainer">
-                <div id="gaodemap" />
+                <div id="gaodemap" style={{height:`${height}px`}}/>
             </div>
         );
     }

@@ -39,21 +39,33 @@
     border-bottom: 1px solid #EEE;
     padding-bottom: 10px;
 }
-.caroverlayinitPage  .listcontent .setordertime span:first-child{
+.caroverlayinitPage  .listcontent .setordertime div{
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    height: 18px;
+    padding: 3px 0;
+    overflow: hidden;
 }
-.caroverlayinitPage  .listcontent .setordertime span:first-child img{
+.caroverlayinitPage  .listcontent .setordertime div span{
+    display: block;
+    line-height: 18px;
+}
+
+.caroverlayinitPage  .listcontent .setordertime div img{
     width: 16px;
     height: 16px;
+    
+    margin: 0;
     margin-right: 5px;
 }
-.caroverlayinitPage  .listcontent .setordertime span:last-child {
+.caroverlayinitPage  .listcontent .setordertime >span{
     display: flex;
     flex-shrink: 0;
-    align-items: center
+    align-items: center;
+    
 } 
-.caroverlayinitPage  .listcontent .setordertime span:last-child:after{
+.caroverlayinitPage  .listcontent .setordertime >span:after{
     content: "";
     border-top: 1px solid #CCC;
     border-right: 1px solid #CCC;
@@ -72,6 +84,7 @@
 }
 .caroverlayinitPage .addresslist li:first-child{
     padding-bottom: 10px;
+    overflow:hidden;
 }
 .caroverlayinitPage .addresslist li:first-child:before{
     content: "";
@@ -81,7 +94,15 @@
     border: 1px solid #02b164;
     border-radius: 8px;
     margin-right: 6px;
+    flex-shrink: 0;
 }
+.caroverlayinitPage .addresslist li span{
+    display: block;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
 
 .caroverlayinitPage .addresslist li:last-child:before{
     content: "";
@@ -92,6 +113,7 @@
     border-radius: 8px;
     margin-right: 6px;
     flex-grow: 0;
+    flex-shrink: 0;
 }
 .caroverlayinitPage .addresslist li:last-child:after{
     content: "";
@@ -108,6 +130,9 @@
 }
 .caroverlayinitPage .addresslist li:last-child span{
     flex-grow: 1;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
 } 
 .caroverlayinitPage .isGetaddress .showprice h2{
     font-size: 16px;

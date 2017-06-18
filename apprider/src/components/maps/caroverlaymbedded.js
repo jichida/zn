@@ -10,7 +10,7 @@ export class Page extends React.Component {
     render() {
         return (
             <div className="mapgaodePage">
-                <MapGaode ref='mapgaode'/>
+                <MapGaode ref='mapgaode' height={window.innerHeight-114}/>
                 {this.props.mapstage === 'pageinit'?(
                     <CarOverlayInit />
                 ):""}

@@ -34,7 +34,7 @@ class Page extends Component {
       if(loginsuccess){
         phonenumbertext = nickname;
       }
-
+      console.log("this.props.app.servicephonenumber::::"+this.props.app.servicephonenumber);
       return (
             <div className="usercenterPage AppPage">
                 {loginsuccess &&
@@ -87,6 +87,7 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
+                        { !!this.props.app.servicephonenumber && 
                         <Cell access>
                             <CellHeader>
                                 <img src="newimg/30.png" alt=""/>
@@ -99,6 +100,7 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
+                        }
                         <Cell access onClick={this.onClickItem.bind(this,'/systemsetting')}>
                             <CellHeader>
                                 <img src="newimg/31.png" alt=""/>
