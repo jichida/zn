@@ -58,9 +58,9 @@ export function* jpushflow(){//仅执行一次
               if(msgobj.subtype==='msg'){
                 yield put(push(`/mymessagedetail/${msgobj._id}`));
               }
-              else{
-                yield put(push(`${msgobj.messagecontent}`));
-              }
+              // else{
+              //   yield put(push(`${msgobj.messagecontent}`));
+              // }
             }
             else{
               alert(`err->jpushlistenInMessage ===>${JSON.stringify(msgobj)}`);
@@ -84,9 +84,9 @@ export function* jpushflow(){//仅执行一次
               if(msgobj.subtype==='msg'){
                 yield put(push(`/mymessagedetail/${msgobj._id}`));
               }
-              else{
-                yield put(push(`${msgobj.messagecontent}`));
-              }
+              // else{
+              //   yield put(push(`${msgobj.messagecontent}`));
+              // }
             }
             else{
               alert(`err->jpushlistenInMessage ===>${JSON.stringify(msgobj)}`);
