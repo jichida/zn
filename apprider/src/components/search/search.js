@@ -128,6 +128,7 @@ export class Search extends React.Component {
                 </div>
                 <div className="searchContent">
                     <SearchBar
+                        onSubmit={()=>{}}
                         onChange={this.handleChangeSearchTxt.bind(this)}
                         placeholder="请输入地址关键字"
                         lang={{
