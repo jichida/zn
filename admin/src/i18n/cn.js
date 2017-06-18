@@ -255,6 +255,11 @@ export default {
     },
     userdriver: {
         name: '司机 |||| 司机',
+        fields:{
+          Platform_baseInfoVehicle:{
+            FareType:'运价类型'
+          }
+        },
         tabs:{
           basicinfo:'基本信息',
           platformdriverinfo:'平台驾驶员信息',
