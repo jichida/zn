@@ -13,9 +13,23 @@ import {
 import {
     canceltriprequestorder_request
     } from '../../actions';
+import {setbackhandler,removebackhandler} from '../../env/android';
 
 export class Page extends React.Component {
-
+    componentWillMount () {
+      let that = this;
+      setbackhandler(()=>{
+        let toast = {
+            show : true,
+            text : "打车过程中不能按返回键",
+            type : "warning"
+        }
+        that.props.dispatch(set_weui({toast}));
+      });
+    }
+    componentWillUnmount() {
+      removebackhandler();
+    }
     //取消叫车
     cancelcar =()=>{
         let canceltext = "您确定要取消叫车吗?";

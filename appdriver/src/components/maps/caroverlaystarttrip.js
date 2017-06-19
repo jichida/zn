@@ -12,10 +12,23 @@ import '../../../public/newcss/outcar.css';
 import CaroverlayQjck from './embmapstep2qjck';
 import CaroverlayJdck from './embmapstep3jdck';
 import CaroverlayKsxc from './embmapstep4ksxc';
+import {setbackhandler,removebackhandler} from '../../env/android';
 
 export class Page extends React.Component {
 
   componentWillMount () {
+    let that = this;
+    setbackhandler(()=>{
+      let toast = {
+          show : true,
+          text : "打车过程中不能按返回键",
+          type : "warning"
+      }
+      that.props.dispatch(set_weui({toast}));
+    });
+  }
+  componentWillUnmount() {
+    removebackhandler();
   }
 
   shouldComponentUpdate(nextProps, nextState) {

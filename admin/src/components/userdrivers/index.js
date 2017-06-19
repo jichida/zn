@@ -88,6 +88,12 @@ const UserdriverlistEdit = (props) => {
               ]} />
               <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
               </FormTab>
+              <FormTab label="resources.userdriver.tabs.picurls">
+              <ImageInputUpload  label="人车合影【审核必填】" source="PhotoandCarmanURL" />
+              <ImageInputUpload  label="监督卡照片" source="PhotoJiandukaURL" />
+              <ImageInputUpload  label="服务资格证" source="PhotoServiceicenseURL" />
+              <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoldURL" />
+              </FormTab>
               <FormTab label="resources.userdriver.tabs.platformdriverinfo">
               <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" />
               <TextInput label="手机号【审核必填】" source="Platform_baseInfoDriver.DriverPhone" />
@@ -108,7 +114,7 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="户口住址或长住地址" source="Platform_baseInfoDriver.DriverAddress" />
               <TextInput label="驾驶员通信地址" source="Platform_baseInfoDriver.ContactAddress" />
               <ImageField  label="驾驶员照片"  source="Platform_baseInfoDriver.PhotoldURL" addLabel={true}/>
-              <TextInput label="机动车驾驶证号" source="Platform_baseInfoDriver.Licenseld" />
+              <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.Licenseld" />
               <ImageField  label="机动车驾驶证扫描件" source="Platform_baseInfoDriver.LicensePhotoldURL" addLabel={true}/>
               <TextInput label="准驾车型" source="Platform_baseInfoDriver.DriverType" />
               <DateInput label="初次领取驾驶证日期" source="Platform_baseInfoDriver.GetDriverLicenseDate" />

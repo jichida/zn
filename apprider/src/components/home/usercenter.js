@@ -15,7 +15,7 @@ const {
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import '../../../public/newcss/usercenter.css';
-
+import {jsCallPhone} from '../../env/callphone.js';
 class Page extends Component {
 
     onClickItem(name,e){
@@ -87,14 +87,14 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        { !!this.props.app.servicephonenumber && 
+                        { !!this.props.app.servicephonenumber &&
                         <Cell access>
                             <CellHeader>
                                 <img src="newimg/30.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 <a
-                                    href={`tel:${this.props.app.servicephonenumber}`}
+                                    onClick={(e)=>{jsCallPhone(`${this.props.app.servicephonenumber}`);}}
                                     style={{display:"block",color:"#333"}}
                                 >联系客服</a>
                             </CellBody>

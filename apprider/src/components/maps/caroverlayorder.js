@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import "../../../public/newcss/caroverlay.css";
 import StarRatingComponent from 'react-star-rating-component';
 
+import {jsCallPhone} from '../../env/callphone.js';
+
 let PageDriverHead =(props)=>{
   const {
     topicinfo,
@@ -39,7 +41,7 @@ let PageDriverHead =(props)=>{
                     </div>
                 </div>
                 <a
-                    href={`tel:${DriverPhone}`}
+                    onClick={(e)=>{jsCallPhone(`${DriverPhone}`);}}
                     className="call">
                     <img src="newimg/20.png"  alt=""/>
                     联系TA

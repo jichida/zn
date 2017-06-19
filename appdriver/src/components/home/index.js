@@ -14,6 +14,7 @@ const {
     } = WeUI;
 import {setbackhandler,removebackhandler,exitAndroidApp} from '../../env/android';
 import {set_weui} from '../../actions';
+import {jsCallPhone} from '../../env/callphone.js';
 
 class Page extends Component {
   componentWillMount() {
@@ -126,7 +127,7 @@ class Page extends Component {
 			                </CellHeader>
 			                <CellBody>
 			                   	<a
-			                   		href={`tel:${this.props.app.servicephonenumber}`}
+                           onClick={(e)=>{jsCallPhone(`${this.props.app.servicephonenumber}`);}}
 			                   		style={{display:"block",color:"#333"}}
 			                   	>联系客服</a>
 			                </CellBody>

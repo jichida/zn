@@ -262,6 +262,7 @@ export default {
         },
         tabs:{
           basicinfo:'基本信息',
+          picurls:'照片',
           platformdriverinfo:'平台驾驶员信息',
           platformhukou:'平台户口信息',
           platformtaxi:'平台出租车信息',
