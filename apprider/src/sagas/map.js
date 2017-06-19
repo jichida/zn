@@ -54,6 +54,10 @@ let createmap =({mapcenterlocation,zoomlevel})=> {
         resolve(window.amap);
       }
       else{
+        if(!!window.amap){
+          resolve(window.amap);
+          return;
+        }
         reject(`地图参数${mapcenterlocation.lng},${mapcenterlocation.lat},amap:${!!window.amap}`);
       }
   });
