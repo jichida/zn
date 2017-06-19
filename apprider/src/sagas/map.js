@@ -41,7 +41,7 @@ window.amap = null;
 let createmap =({mapcenterlocation,zoomlevel})=> {
   console.log(`开始创建地图啦。。。。${mapcenterlocation.lng},amap:${!!window.amap}`);
   return new Promise((resolve,reject) => {
-    if(!mapcenterlocation.equals(loczero) && !window.amap ){
+    if(!mapcenterlocation.equals(loczero) && !window.amap){
       let center = new window.AMap.LngLat(mapcenterlocation.lng,mapcenterlocation.lat);
       window.amap = new window.AMap.Map("gaodemap", {
             center: center,
@@ -54,7 +54,7 @@ let createmap =({mapcenterlocation,zoomlevel})=> {
         resolve(window.amap);
       }
       else{
-        reject();
+        reject(`地图参数${mapcenterlocation.lng},${mapcenterlocation.lat},amap:${!!window.amap}`);
       }
   });
 }
