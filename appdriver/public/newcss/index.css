@@ -46,6 +46,10 @@
 .indexPage .list .weui-cell__hd {
     display: flex;
     align-items: center;
+    height: 30px;
+    overflow: hidden;
+    width: 30px;
+    margin-right: 10px;
 }
 .indexPage .list .weui-cell__hd img{
     width: 30px;
@@ -56,11 +60,23 @@
     height: 10px;
 }
 .indexPage .pointLnk{
+    
     position: absolute;
-    bottom: 30px;
-    width: 100%;
+    width: 70px;
+    height: 70px;
     display: flex;
     justify-content: center;
+    z-index: 10000;
+    bottom: 0;
+    pointer-events: none;
+    left: 50%;
+    margin-left: -35px;
+    bottom: 20px;
+    border-radius: 70px;
+}
+.indexPage .pointLnk span{
+    display: block;
+    line-height: 20px;
 }
 .indexPage .pointLnk a{
     display: flex;
@@ -80,4 +96,15 @@
 .indexPage .pointLnk a img{
     width: 30px;
     height: 30px;
+    margin:0;
 }
+.indexPage {
+    display: flex;
+    flex-direction: column;
+}
+.indexPage .list{
+    overflow: scroll;
+    flex-grow: 1;
+}
+
+

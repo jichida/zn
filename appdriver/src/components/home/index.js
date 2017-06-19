@@ -133,13 +133,14 @@ class Page extends Component {
 			                <CellFooter />
 			            </Cell>
 			        </Cells>
+			        <div className="pointLnk">
+						<a onClick={()=>{this.onClickItem('/outcar')}}>
+							<img src="newimg/10.png"  alt=""/>
+							<span>出车</span>
+						</a>
+					</div>
 				</div>
-				<div className="pointLnk" onClick={()=>{this.onClickItem('/outcar')}}>
-					<a>
-						<img src="newimg/10.png"  alt=""/>
-						<span>出车</span>
-					</a>
-				</div>
+				
     		</div>
     	)
     }
