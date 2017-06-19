@@ -18,56 +18,62 @@ export function* createloadingflow(){
     if(actionstring === 'loginwithtoken'){
       actionstring = 'login';
     }
-    let action_result = (action)=>{
-      let actiontype = action.type;
-      let isresult = _.endsWith(actiontype,`${actionstring}_result`);
-      if(isresult){
-        return true;
-      }
-      return false;
-    }
 
-    let action_commonerr = (action)=>{
-      let actiontype = action.type;
-      let iscommon_err = _.endsWith(actiontype,'common_err');
-      if(iscommon_err){
-        const {payload} = action;
-        if(!!payload){
-          return payload.type === actionstring;
+    if(actionstring !== 'login' && actionstring !== 'logout'){
+      let action_result = (action)=>{
+        let actiontype = action.type;
+        let isresult = _.endsWith(actiontype,`${actionstring}_result`);
+        if(isresult){
+          return true;
         }
+        return false;
       }
-      return false;
-    }
 
-    const { result,err, timeout } = yield race({
-        result: take(action_result),
-        err: take(action_commonerr),
-        timeout: call(delay, 500)
-    });
-
-    if(!!timeout){
-      //超过500毫秒才弹
-      yield put(set_weui({
-          loading : {
-              show : true
-          },
-      }));
+      let action_commonerr = (action)=>{
+        let actiontype = action.type;
+        let iscommon_err = _.endsWith(actiontype,'common_err');
+        if(iscommon_err){
+          const {payload} = action;
+          if(!!payload){
+            return payload.type === actionstring;
+          }
+        }
+        return false;
+      }
 
       const { result,err, timeout } = yield race({
           result: take(action_result),
           err: take(action_commonerr),
-          timeout: call(delay, 5000)
+          timeout: call(delay, 500)
       });
 
       if(!!timeout){
-        console.log(`这是什么请求，要等那么多时间===>${actionstring}`);
-      }
+        //超过500毫秒才弹
+        yield put(set_weui({
+            loading : {
+                show : true
+            },
+        }));
 
-      yield put(set_weui({
-          loading : {
-              show : false
-          },
-      }));
+        const { result,err, timeout } = yield race({
+            result: take(action_result),
+            err: take(action_commonerr),
+            timeout: call(delay, 2000)
+        });
+
+        if(!!timeout){
+          console.log(`这是什么请求，要等那么多时间===>${actionstring}`);
+        }
+
+        yield put(set_weui({
+            loading : {
+                show : false
+            },
+        }));
+      }
+    }
+    else{
+      console.log(`这个请求就不要loading了===>${actionstring}`);
     }
 
   });

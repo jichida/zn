@@ -2,7 +2,6 @@ import { select,put,takeEvery,race } from 'redux-saga/effects';
 import {
     serverpush_restoreorder,
     triporder_addone,
-    set_weui,
     queryorder,
     serverpush_userloginsuccess_notify,
 } from '../actions';

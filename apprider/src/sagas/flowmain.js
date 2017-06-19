@@ -74,7 +74,7 @@ function* write(socket,fun,cmd) {
           socket.emit('apprider',{cmd:cmd,data:payload});
         }
         else{
-          yield put(common_err({type:cmd,errmsg:`服务器连接断开!无法发送命令${cmd}`}))
+          //yield put(common_err({type:cmd,errmsg:`服务器连接断开!无法发送命令${cmd}`}))
         }
     }
 }
