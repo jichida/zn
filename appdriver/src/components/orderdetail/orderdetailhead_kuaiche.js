@@ -3,6 +3,7 @@
 */
 import React, { Component } from 'react';
 import '../../../public/newcss/userorderinfo.css';
+import {jsCallPhone} from '../../env/callphone.js';
 
 export default class Page extends Component{
     render(){
@@ -16,7 +17,7 @@ export default class Page extends Component{
                         <div className="endaddress">{orderinfo.dstaddress.addressname}</div>
                     </div>
                     <a
-                        href={`tel:${orderinfo.riderinfo.RiderPhone}`}
+                        onClick={(e)=>{jsCallPhone(`${orderinfo.riderinfo.RiderPhone}`);}}
                         className="call">
                         <img src="newimg/19.png"  alt=""/>
                     </a>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {jsCallPhone} from '../../env/callphone.js';
 
 let PageRiderHead =(props)=>{
   const {
@@ -20,7 +20,9 @@ let PageRiderHead =(props)=>{
             <img src={avatarURL} className="avatar" alt=""/>
             <span>{RiderName}</span>
             { !!RiderPhone &&
-              <a href={`tel:${RiderPhone}`} className="call">
+              <a
+              onClick={(e)=>{jsCallPhone(`${RiderPhone}`);}}
+               className="call">
                   联系TA
               </a>
             }
@@ -29,7 +31,7 @@ let PageRiderHead =(props)=>{
             <div className="startaddress">{srcaddress.addressname}</div>
             <div className="endaddress">{dstaddress.addressname}</div>
         </div>
-        
+
     </div>
   );
 };

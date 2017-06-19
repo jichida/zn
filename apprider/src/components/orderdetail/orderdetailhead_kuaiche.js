@@ -3,7 +3,7 @@
 */
 import React, { Component } from 'react';
 import '../../../public/newcss/userorderinfo.css';
-
+import {jsCallPhone} from '../../env/callphone.js';
 export default class Page extends Component{
     render(){
           const {orderinfo} = this.props;
@@ -46,7 +46,7 @@ export default class Page extends Component{
                         </div>
                     </div>
                     <a
-                        href={`tel:${driverinfo.phone}`}
+                        onClick={(e)=>{jsCallPhone(`${driverinfo.phone}`);}}
                         className="call">
                         <img src="newimg/20.png" alt="" />
                         <span>联系TA</span>

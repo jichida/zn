@@ -220,3 +220,12 @@
     export const cancelJPushAlisa = () => {
       window.xview.cancelJPushAlisa();
     }
+    /**
+     *  拨打手机号码
+     @method jsCallPhone
+     @param phone {string} 手机号码
+     @since 2.0
+     */
+     export const jsCallPhone = (phone) => {
+       window.xview.jsCallPhone(phone);
+     }

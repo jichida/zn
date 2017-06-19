@@ -58,6 +58,10 @@ class AppRoot extends React.Component {
         }
         document.body.appendChild(script);
     }
+    componentWillUnmount() {
+      this.props.dispatch(carmap_setmapinited(false));
+      window.initamaploaded = false;
+    }
     render() {
         return (
             <div className="AppContainer">
