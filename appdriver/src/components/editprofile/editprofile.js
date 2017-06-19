@@ -68,7 +68,7 @@ class Page extends Component {
                     <div className="submitBtn" style={{padding:"20px"}}>
                         <span
                             className="btn Primary"
-                            onClick={()=>{this.props.dispatch(logout_request())}}
+                            onClick={()=>{this.props.dispatch(logout_request({}))}}
                             >
                             退出
                         </span>

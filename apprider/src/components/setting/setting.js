@@ -24,7 +24,7 @@ class Page extends Component {
       this.props.history.goBack();
     }
     onClickLogout(){
-        this.props.dispatch(logout_request());
+        this.props.dispatch(logout_request({}));
     }
     onClickPage(name){
       this.props.history.push(name);

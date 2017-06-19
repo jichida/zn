@@ -15,7 +15,7 @@ export function* createloadingflow(){
   yield takeEvery(action_request, function*(actionreq) {
     let actionstringsz = _.split(actionreq.type,/[ _]/);
     let actionstring = actionstringsz[actionstringsz.length - 2];//肯定大于1，因为已经判断有_了
-    if(actionstring === 'loginwithtoken'){
+    if(actionstring === 'loginwithtoken' || actionstring==='loginwithauth'){
       actionstring = 'login';
     }
 

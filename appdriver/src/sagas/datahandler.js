@@ -11,7 +11,7 @@ import {
     loginsendauth_request,
     loginwithauth_request,
     loginwithtoken_request,
-
+    logout_request,
     getoftenuseaddress_request,
     setoftenuseaddress_request,
     searchtext_request,
@@ -102,7 +102,7 @@ import {
     login_request,
     findpwd_request,
     findpwd_result,
-    
+
 } from '../actions';
 
 
@@ -158,6 +158,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'logout':`${logout_request}`,
   'findpwd':`${findpwd_request}`,
   'login':`${login_request}`,
   'getnotifymessageone':`${getnotifymessageone_request}`,
