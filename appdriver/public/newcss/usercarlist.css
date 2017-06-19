@@ -19,6 +19,9 @@
     flex-direction: column;
     align-items: flex-start;
 }
+.usercarlistPage .weui-media-box__desc span{
+    display: block;
+}
 .usercarlistPage .weui-media-box__desc .tag{
     margin-bottom: 10px;
 }
