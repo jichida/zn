@@ -4,10 +4,11 @@
 import React, { Component } from 'react';
 import '../../../public/newcss/userorderinfo.css';
 import moment from 'moment';
+import {jsCallPhone} from '../../env/callphone.js';
 
 export default class Page extends Component{
     render(){
-        const {orderinfo} = this.props;
+        const {orderinfo,servicephonenumber} = this.props;
         const {
           triptype,
           rentusername,
@@ -29,7 +30,8 @@ export default class Page extends Component{
                             <span>{triptype}</span>
                         </div>
                     </div>
-                    <div className="call">
+                    <div className="call"
+                    onClick={(e)=>{jsCallPhone(`${servicephonenumber}`);}}>
                         <img src="newimg/20.png"  alt=""/>
                     </div>
                 </div>
