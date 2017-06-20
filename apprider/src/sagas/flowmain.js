@@ -93,8 +93,8 @@ function* handleIOWithAuth(socket) {
         }
        yield take(`${logout_result}`);
 
-        for (let task of tasksz) {
-            yield cancel(task);
+        for (let i=0;i< tasksz.length; i++) {
+            yield cancel(tasksz[i]);
         }
     }
 }

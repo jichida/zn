@@ -13,13 +13,12 @@ export const serverpush_triprequestandorder = createAction('serverpush_tripreque
 
 //获取地址信息和附近司机列表
 export const changestartposition = createAction('changestartposition');
-export const getcurrentlocationandnearestdrivers_request = createAction('getcurrentlocationandnearestdrivers_request');
-export const getcurrentlocationandnearestdrivers_result = createAction('getcurrentlocationandnearestdrivers_result');
+
 export const getnearestdrivers_request = createAction('getnearestdrivers_request');
 export const getnearestdrivers_result = createAction('getnearestdrivers_result');
 //推送给附近所有司机该订单
 export const pushrequesttodrivers_request = createAction('pushrequesttodrivers_request');
-
+export const pushrequesttodrivers_result  = createAction('pushrequesttodrivers_result');
 //==============地图相关==============
 export const carmap_setenableddrawmapflag= createAction('carmap_setenableddrawmapflag');
 //设置起始位置&坐标【搜索页】
