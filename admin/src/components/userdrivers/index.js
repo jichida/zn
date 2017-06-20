@@ -89,7 +89,8 @@ const UserdriverlistEdit = (props) => {
               <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.picurls">
-              <ImageInputUpload  label="人车合影【审核必填】" source="PhotoandCarmanURL" />
+              <ImageInputUpload  label="司机头像【审核必填】" source="avatarURL" />
+              <ImageInputUpload  label="人车合影" source="PhotoandCarmanURL" />
               <ImageInputUpload  label="监督卡照片" source="PhotoJiandukaURL" />
               <ImageInputUpload  label="服务资格证" source="PhotoServiceicenseURL" />
               <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoldURL" />

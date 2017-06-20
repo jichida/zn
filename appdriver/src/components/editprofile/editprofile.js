@@ -25,7 +25,7 @@ class Page extends Component {
     // }
 
     render() {
-        const {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber} = this.props;
+        const {avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber} = this.props;
         return (
             <div className="baseinfoPage AppPage">
                 <NavBar back={true} title="查看个人资料" />
@@ -36,7 +36,7 @@ class Page extends Component {
                                 头像
                             </CellBody>
                             <CellFooter>
-                                <img src={PhotoandCarmanURL||"newimg/17.png"} alt=""/>
+                                <img src={avatarURL||"newimg/17.png"} alt=""/>
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -82,7 +82,7 @@ class Page extends Component {
 const mapStateToProps =  ({
     app:{servicephonenumber},
     userlogin:{
-        PhotoandCarmanURL,
+        avatarURL,
         Platform_baseInfoDriver:{
             DriverName,
             DriverPhone
@@ -93,7 +93,7 @@ const mapStateToProps =  ({
         loginsuccess
     }
 }) =>{
-    return {PhotoandCarmanURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,loginsuccess};
+    return {avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,loginsuccess};
 };
 
 export default connect(
