@@ -102,17 +102,7 @@ function* handleIOWithAuth(socket) {
         }
 
         //注销比较特殊
-        let actionlogoutrequest = yield take(`${logout_request}`);
-        console.log("捕获到登出消息,开始获取地址");
-        let curlocation = yield call(getcurrentpos);
-        let operateLogoutdoc = {
-          driverlocation :[curlocation.lng,curlocation.lat]
-        };
-        console.log("登出APP发送当前位置(注销)：" + JSON.stringify(operateLogoutdoc));
-        socket.emit('appdriver',{cmd:'operatelogout',data:operateLogoutdoc});
-        socket.emit('appdriver',{cmd:'logout',data:actionlogoutrequest.payload});
-
-
+        console.log("登出APP发送当前位置(注销)");
         yield take(`${logout_result}`);
         for (var task of tasksz) {
             yield cancel(task);
