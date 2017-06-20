@@ -1,7 +1,7 @@
 import React from 'react';
-import {Upload} from 'antd/lib/upload';
-import {Icon} from 'antd/lib/icon';
-import {message} from 'antd/lib/message';
+import Upload from 'antd/lib/upload';
+import Icon from 'antd/lib/icon';
+import message from 'antd/lib/message';
 import { connect } from 'react-redux';
 //import 'antd/dist/antd.css';
 import './imageupload.css';

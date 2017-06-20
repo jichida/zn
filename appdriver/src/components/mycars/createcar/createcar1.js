@@ -99,5 +99,8 @@ export default reduxForm({
     form: 'createcarwizard',                 // <------ same form name
     destroyOnUnmount: false,        // <------ preserve form data
     forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+    initialValues:{
+      CheckState: "未审核",
+    },
     validate
 })(Page)
