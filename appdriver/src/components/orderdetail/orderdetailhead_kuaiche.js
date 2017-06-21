@@ -8,10 +8,13 @@ import {jsCallPhone} from '../../env/callphone.js';
 export default class Page extends Component{
     render(){
         const {orderinfo} = this.props;
+        const {
+          avatarURL
+        } = orderinfo.riderinfo;
         return (
             <div className="kuaicheinfo">
                 <div className="driver">
-                    <img src="newimg/4.png" className="avatar" alt=""/>
+                    <img src={avatarURL} className="avatar" alt=""/>
                     <div className="address">
                         <div className="startaddress">{orderinfo.srcaddress.addressname}</div>
                         <div className="endaddress">{orderinfo.dstaddress.addressname}</div>

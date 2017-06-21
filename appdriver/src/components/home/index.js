@@ -44,7 +44,7 @@ class Page extends Component {
     this.props.history.push(name);
   }
 	render() {
-    const {loginsuccess,registertype,PhotoandCarmanURL,Platform_baseInfoDriver,Platform_baseInfoVehicle} = this.props;
+    const {loginsuccess,registertype,avatarURL,Platform_baseInfoDriver,Platform_baseInfoVehicle} = this.props;
     let phonenumbertext = loginsuccess?Platform_baseInfoDriver.DriverName:'未登录';
     let linkeditprofile = loginsuccess?'/editprofile':'/login';
 
@@ -56,7 +56,7 @@ class Page extends Component {
 					<Cells>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src={PhotoandCarmanURL||"newimg/17.png"} alt=""/>
+			                    <img src={avatarURL||"newimg/17.png"} alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                    <div className="tit">
@@ -134,7 +134,7 @@ class Page extends Component {
 			                <CellFooter />
 			            </Cell>
 			        </Cells>
-			        
+
 				</div>
 				<div className="pointLnk">
 					<a onClick={()=>{this.onClickItem('/outcar')}}>

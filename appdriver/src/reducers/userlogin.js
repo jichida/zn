@@ -18,7 +18,7 @@ const initial = {
     registertype:'快车',
     approvalstatus:'',
     profile:{},
-    PhotoandCarmanURL:'',
+    avatarURL:'',
     Platform_baseInfoDriver:
     {
       DriverName:'',

@@ -29,7 +29,7 @@ let FindpwdForm = (props)=> {
     let {handleSubmit,onClickFindpwd,username} = props;
     let onClickAuth = (e)=> {
         // const name = fields.username.input.value;
-            props.dispatch(loginsendauth_request({phonenumber:username,reason:'register'}));
+            props.dispatch(loginsendauth_request({phonenumber:username,reason:'findpwd'}));
             console.log("发送验证码:" + username);
     }
     let handleLogin =()=>{

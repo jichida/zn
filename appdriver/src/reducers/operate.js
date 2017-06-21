@@ -8,6 +8,7 @@ import {
     carmap_resetmap
 } from '../actions';
 import {normalizr_requestlist} from './normalizr';
+import _ from 'lodash';
 
 const locz = [0,0];
 const initial = {
@@ -72,11 +73,11 @@ const operate = createReducer({
   },
   [serverpush_nearbyrequests_removeone]:(state, payload) => {
     let nearbyrequestslist = [];
-    for (let request of state.nearbyrequests.list){
-      if(request._id !== payload._id){
-        nearbyrequestslist.push(request);
+    _.map(state.nearbyrequests.list,(requestid)=>{
+      if(requestid !== payload._id){
+        nearbyrequestslist.push(requestid);
       }
-    }
+    });
     let requestsentities = state.nearbyrequests.requests;
     delete requestsentities[payload._id];
     return { ...state,nearbyrequests:{

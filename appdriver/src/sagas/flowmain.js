@@ -104,8 +104,8 @@ function* handleIOWithAuth(socket) {
         //注销比较特殊
         console.log("登出APP发送当前位置(注销)");
         yield take(`${logout_result}`);
-        for (var task of tasksz) {
-            yield cancel(task);
+        for (let i=0;i<tasksz.length;i++) {
+            yield cancel(tasksz[i]);
         }
     }
 }

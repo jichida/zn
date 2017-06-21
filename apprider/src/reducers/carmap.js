@@ -10,7 +10,6 @@ import {
     carmap_resetmap,
     carmap_setcurlocation,
     carmap_settriptype,
-    getcurrentlocationandnearestdrivers_result,
     getnearestdrivers_result,
     getprice_result,
     driveroute_result,
@@ -52,6 +51,7 @@ const initial = {
         lastsend_navtime:new Date(),
         mapcenterlocation:L.latLng(locz[1], locz[0]),//地图中心位置
         driverlist:[],//所有司机位置
+        driveruserlist:[],//所有司机位置
         routeleftpts:[],//剩余路线
         routepastpts:[],//已经走过的路线
         enableddrawmapflag:0,//画图标志
@@ -253,28 +253,19 @@ const carmap = createReducer({
         let autozoomenabled = false;
         return { ...state, zoomlevel,autozoomenabled };
     },
-    [getcurrentlocationandnearestdrivers_result]:(state,result)=>{
-        //获取起始地址并且返回附近司机列表
-        let driverlist = [];
-        // for(let cardriver of result.neardrivers){
-        //     let carlatlng = L.latLng([cardriver.driverlocation[1], cardriver.driverlocation[0]]);
-        //     driverlist.push(carlatlng);
-        // };
-        //把附近司机显示在地图上
-          return { ...state,
-            driverlist:[...driverlist]
-         };
-    },
     [getnearestdrivers_result]:(state,result)=>{
         //获取起始地址并且返回附近司机列表
         let driverlist = [];
+        let driveruserlist = [];
         _.map(result.neardrivers,(cardriver)=>{
             let carlatlng = L.latLng([cardriver.driverlocation[1], cardriver.driverlocation[0]]);
             driverlist.push(carlatlng);
+            driveruserlist.push(cardriver.driverid);
         });
         //把附近司机显示在地图上
       return { ...state,
-            driverlist:[...driverlist]
+            driverlist:[...driverlist],
+            driveruserlist:[...driveruserlist]
          };
     },
 

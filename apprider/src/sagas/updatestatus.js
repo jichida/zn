@@ -28,7 +28,6 @@ import {
   starttriprequestorder_result,
   canceltriprequestorder_result,
   carmap_setcurlocation,
-  getcurrentlocationandnearestdrivers_result,
   getnearestdrivers_result,
   carmap_setstartaddress,
   serverpush_restoreorder
@@ -235,7 +234,6 @@ export function* createupdatestatusflow(){
       `${canceltriprequestorder_result}`,
       `${carmap_resetmap}`,
       `${carmap_setcurlocation}`,
-      `${getcurrentlocationandnearestdrivers_result}`,
       `${getnearestdrivers_result}`,
       `${serverpush_restoreorder}`
     ]

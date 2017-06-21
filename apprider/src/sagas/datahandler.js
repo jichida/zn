@@ -17,7 +17,6 @@ import {
 
     logout_request,
     logout_result,
-    getcurrentlocationandnearestdrivers_request,
     getnearestdrivers_request,
     starttriprequestorder_request,
     canceltriprequestorder_request,
@@ -48,7 +47,6 @@ import {
     getoftenuseaddress_result,
     setoftenuseaddress_result,
     searchtext_result,
-    getcurrentlocationandnearestdrivers_result,
     getnearestdrivers_result,
     serverpush_triprequest,
 
@@ -96,12 +94,15 @@ import {
     getorderdetail_result,
 
     serverpush_userloginsuccess_notify,
-    queryorder
+    queryorder,
+
+    pushrequesttodrivers_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'pushrequesttodrivers_result':pushrequesttodrivers_result,
   'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'getorderdetail_result':getorderdetail_result,
   'getnotifymessageone_result':getnotifymessageone_result,
@@ -135,7 +136,6 @@ exports.recvmessagetoresultpair = {
   'getoftenuseaddress_result':getoftenuseaddress_result,
   'setoftenuseaddress_result':setoftenuseaddress_result,
   'searchtext_result':searchtext_result,
-  'getcurrentlocationandnearestdrivers_result':getcurrentlocationandnearestdrivers_result,
   'getnearestdrivers_result':getnearestdrivers_result,
   'serverpush_triprequest':serverpush_triprequest,
   'serverpush_triporder':md_serverpush_triporder,
@@ -158,7 +158,6 @@ exports.sendmessagefnsz = {
   'loginwithtoken':`${loginwithtoken_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
 
-  'getcurrentlocationandnearestdrivers':`${getcurrentlocationandnearestdrivers_request}`,
   'getnearestdrivers':`${getnearestdrivers_request}`,
   'gettourbus':`${gettourbus_request}`,
   'getprice':`${getprice_request}`,

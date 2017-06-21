@@ -92,27 +92,3 @@ export function* getnearestdriversflow(){
         }
   }
 }
-
-//业务需求：
-// 叫车前发送自己的位置，获取附近的车（如果位置发送变化，则立马发送；否则定时发送）
-// 叫车后停止发送
-// const getmapstage = (state) => state.carmap.mapstage;
-//
-//
-// export function* createstartpositionflow(){
-//   while (true) {
-//     //获取state
-//     const { response, timeout } = yield race({
-//        response: take(changestartposition),
-//        timeout: call(delay, config.requesttimeout)
-//     });
-//     if(timeout){
-//     }
-//     else{
-//       const mapstage = yield select(getmapstage);
-//       if(mapstage === 'pageinit'){
-//         yield put(getcurrentlocationandnearestdrivers_request(response.payload));
-//       }
-//     }
-//   }
-// }

@@ -1,4 +1,4 @@
-import { put,takeEvery,call } from 'redux-saga/effects';
+import { put,takeEvery,call,select } from 'redux-saga/effects';
 import {
   loginsendauth_result,
 
@@ -42,8 +42,10 @@ import {
 
   getorderdetail_result,
   md_starttriprequestorder_result,
+  pushrequesttodrivers_request
 } from '../actions';
 import { push,replace } from 'react-router-redux';
+import _ from 'lodash';
 
 const waitfnsz = [
   [
@@ -67,6 +69,12 @@ const waitfnsz = [
     `${md_getmytriporders}`,
   ],
 ];
+
+const getnearbydrivers = (state)=>{
+  let driverlist = state.carmap.driveruserlist;
+  let driverids = [...driverlist];
+  return driverids;
+}
 
 export function* wsrecvsagaflow() {
   for(let i = 0; i < waitfnsz.length; i ++){
@@ -146,15 +154,14 @@ export function* wsrecvsagaflow() {
       yield put(triporder_addone(result.triporder));
 
       //推送给所有司机该订单
-      // let driveridlist =[];
-      // driverlist.forEach((driver)=>{
-      //     driveridlist.push(driver.driverid);
-      // });
-      // dispatch(pushrequesttodrivers_request({
-      //     orderid:result.triporder._id,
-      //     requestid:result.triprequest._id,
-      //     driveridlist:driveridlist
-      // }));
+      let driveridlist = yield select(getnearbydrivers);
+      if(driveridlist.length > 0){
+        yield put(pushrequesttodrivers_request({
+            orderid:result.triporder._id,
+            requestid:result.triprequest._id,
+            driveridlist:driveridlist
+        }));
+      }
       yield put(push('/requestorderstarting'));
   });
 
