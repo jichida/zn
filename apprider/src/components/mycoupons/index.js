@@ -24,10 +24,10 @@ import getmycoupons from '../../selectors/selcoupons';
 // used_at:Date,
 const MycouponItem = (props) => {
   const {mycoupon,onClickItem} = props;
-  const {name,pricediscountpercent,pricediscountmax,expdate,enabled,triptype} = mycoupon;
+  const {name,pricediscountpercent,pricediscountmax,expdate,enabled,triptype,showenabled} = mycoupon;
   const expdatestring = moment(expdate).format("YYYY-MM-DD");
   return (
-    <div className={enabled?"li":"li enabled"} onClick={onClickItem}>
+    <div className={showenabled?"li":"li enabled"} onClick={onClickItem}>
         <div className="w">
             <div className="a"></div>
             <div className="b">

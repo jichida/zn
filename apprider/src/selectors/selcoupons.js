@@ -23,12 +23,17 @@ const getmycoupons = createSelector(
         _.map(couponlist,(coupon)=>{
             if(orderinfo._id !== 'nosel'){
                 coupon.enabled = (coupon.triptype === orderinfo.triptype);
+                coupon.showenabled = coupon.enabled;
                 if(!coupon.enabled){
                   coupon.uselessreason = `当前是${orderinfo.triptype}订单,仅限${coupon.triptype}使用`;
                 }
                 else{
                   //已过期，已使用就不要判断了，不要发给客户端
                 }
+            }
+            else{
+              coupon.enabled = false;
+              coupon.showenabled = true;
             }
             mycoupons.push(coupon);
         });
