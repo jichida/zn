@@ -65,6 +65,11 @@
 	font-size: 16px;
 	line-height: 30px;
 	flex-shrink: 0;
+	position: absolute;
+    right: 20px;
+    background: #FFF;
+    z-index: 1000
+
 }
 .loginPage .submitBtn{
 	padding-top: 30px;
