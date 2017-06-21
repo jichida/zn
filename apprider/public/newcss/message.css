@@ -34,7 +34,14 @@
     text-align: center;
     font-size: 12px;
     color: #999;
+    margin-bottom: 15px;
 }
 .messagePage.AppPage.messagedetailPage .cont{
     padding: 0 20px 15px 20px;
+}
+.messagePage.AppPage.messagedetailPage .cont .tit{
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 18px;
 }
