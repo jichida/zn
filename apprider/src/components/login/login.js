@@ -41,7 +41,7 @@ export class PageForm extends Component {
                         validate={[ required, phone ]}
                     />
                 </div>
-                <div className="li">
+                <div className="li getyanzhenli">
                     <span className="icon">
                         <img src="newimg/p26.png"  alt=''/>
                     </span>

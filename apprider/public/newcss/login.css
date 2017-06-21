@@ -43,6 +43,7 @@
 	height:50px;
 	margin-bottom: 15px;
 	align-items: center;
+	position: relative;
 }
 .loginPage .formvalidation.form_input input{
 	background: none;
@@ -53,6 +54,7 @@
 	width: 32px;
 	height: 32px;
 	display: block;
+	flex-shrink: 0;
 }
 .loginPage .loginForm .li .icon img{
 	width: 32px;
@@ -66,11 +68,16 @@
 	line-height: 30px;
 	flex-shrink: 0;
 	position: absolute;
-    right: 20px;
+    right: 10px;
     background: #FFF;
-    z-index: 1000
+    z-index: 1000;
+    top:10px;
 
 }
+.loginPage .loginForm .getyanzhenli .formvalidation.form_input{
+	margin-right: 115px;
+}
+
 .loginPage .submitBtn{
 	padding-top: 30px;
 	flex-direction: column;
