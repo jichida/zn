@@ -47,6 +47,7 @@ import RoutePriceShow from './routepriceshow.js';
 import RouteTime from './routetime.js';
 import RouteTimeShow from './routetimeshow.js';
 import MyCopyButton from './mycopybutton.js';
+import RefundButton from './refundbtntoorder.js';
 
 const BuscarpoolcreateTitle = translate(({ record, translate })  => {
    return <span>新建 拼车路线</span>;
@@ -99,9 +100,29 @@ const BuscarpoolEdit = (props) => {
                 <TimePickerInput label="出发时间" source="starttime" />
                 <TextInput label="座位数" source="seatnumber" />
                 <NumberInput label="成团数"  source="groupnumber" />
-                <TextField label="状态" source="status" />
+                <SelectInput  label="状态"  source="status" choices={[
+                  { id: '未成团', name: '未成团' },
+                  { id: '已成团', name: '已成团' },
+                  { id: '已取消', name: '已取消(设置为未启用)' },
+                ]} />
                 <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
               </FormTab>
+              <FormTab label="resources.buscarpool.tabs.passenager">
+                <ReferenceManyField reference="order" target="buscarpoolid" label="resources.buscarpool.fields.passenager" perPage={5} addLabel={false}>
+                  <Datagrid>
+                       <ReferenceField label="乘客信息" source="rideruserid" reference="userrider" addLabel={false} allowEmpty>
+                           <TextField source="username" />
+                       </ReferenceField>
+                       <TextField label="开始站点" source="startstation" />
+                       <TextField label="目的站点" source="endstation" />
+                       <TextField label="订单状态" source="orderstatus" />
+                       <TextField label="预定座位数" source="seatnumber" />
+                       <DateField label="下单时间" source="created_at" showTime/>
+                       <RefundButton />
+                       <EditButton />
+                   </Datagrid>
+                 </ReferenceManyField>
+                </FormTab>
 
               </TabbedForm>
       </Edit>);
@@ -141,6 +162,7 @@ const BuscarpoolShow = (props) => {
                     <TextField label="订单状态" source="orderstatus" />
                     <TextField label="预定座位数" source="seatnumber" />
                     <DateField label="下单时间" source="created_at" showTime/>
+                    <RefundButton />
                     <EditButton />
                 </Datagrid>
             </ReferenceManyField>

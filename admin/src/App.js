@@ -24,7 +24,7 @@ import {SystemconfigList,SystemconfigShow,SystemconfigEdit,SystemconfigCreate} f
 import {MycouponlistList,MycouponlistCreate,MycouponlistEdit,MycouponlistShow} from './components/mycoupons/index.js';
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
 import {TriprequestlistList,TriprequestlistShow} from './components/triprequest/index.js';
-import {UserriderlistList,UserriderlistShow} from './components/userriders/index.js';
+import {UserriderlistList,UserriderlistEdit} from './components/userriders/index.js';
 import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/index.js';
 
 //import fakeRestServer from './restServer';
@@ -137,7 +137,7 @@ class App extends Component {
             <Resource name="order" list={OrderlistList} edit={OrderlistEdit} />
             <Resource name="triprequest" list={TriprequestlistList} show={TriprequestlistShow} />
             <Resource name="userdriver" list={UserdriverlistList} edit={UserdriverlistEdit} />
-            <Resource name="userrider" list={UserriderlistList} show={UserriderlistShow} />
+            <Resource name="userrider" list={UserriderlistList} edit={UserriderlistEdit} />
 
             <Resource name="withdrawcash" list={WithdrawcashlistList} edit={WithdrawcashlistEdit}/>
             </Admin>

@@ -21,18 +21,34 @@ const UserriderlistTitle = ({ record }) => {
 const UserriderlistShow = (props) => (
        <Show title={<UserriderlistTitle />} {...props}>
            <SimpleShowLayout>
-               <TextField source="id" />
-               <TextField label="手机号" source="username" />
-               <DateField label="注册时间" source="created_at"  showTime/>
-               <DateField label="上次登录时间" source="updated_at"  showTime/>
-               <TextField label="昵称" source="profile.nickname" />
-               <DateField label="生日" source="profile.birthday" />
-               <TextField label="性别" source="profile.sex" />
+
+                 <TextField source="id" />
+                 <TextField label="手机号" source="username" />
+                 <DateField label="注册时间" source="created_at"  showTime/>
+                 <DateField label="上次登录时间" source="updated_at"  showTime/>
+                 <TextField label="昵称" source="profile.nickname" />
+                 <DateField label="生日" source="profile.birthday" />
+                 <TextField label="性别" source="profile.sex" />
+
            </SimpleShowLayout>
        </Show>
 );
 
 
+const UserriderlistEdit = (props) => {
+      return (<Edit title={<UserriderlistTitle />} {...props}>
+              <SimpleForm>
+                  <TextField source="id" />
+                  <TextField label="手机号" source="username" />
+                  <DateField label="注册时间" source="created_at"  showTime/>
+                  <DateField label="上次登录时间" source="updated_at"  showTime/>
+                  <TextField label="昵称" source="profile.nickname" />
+                  <DateField label="生日" source="profile.birthday" />
+                  <TextField label="性别" source="profile.sex" />
+                  <TextField label="用户余额" source="balance" />
+               </SimpleForm>
+              </Edit>);
+}
 
 const UserriderlistList = (props) => (//
      <List title="乘客列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
@@ -43,10 +59,10 @@ const UserriderlistList = (props) => (//
         <TextField label="昵称" source="profile.nickname" />
         <DateField label="生日" source="profile.birthday" />
         <TextField label="性别" source="profile.sex" />
-        <ShowButton />
+        <EditButton />
         </Datagrid>
     </List>
 );
 
 
-export  {UserriderlistList,UserriderlistShow};
+export  {UserriderlistList,UserriderlistEdit,};
