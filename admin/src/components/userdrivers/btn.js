@@ -25,27 +25,22 @@ class ApproveButton extends Component {
 
     render() {
         const { record } = this.props;
-        let co;
-
-        if(record.approvalstatus === '待审核'){
-            co = (<span>
-              <FlatButton label="开始审核" primary={true}  onClick={this.handleStartApprove} />
-            </span>);
+        let co = (<span></span>);
+        if(!!record){
+          if(record.approvalstatus === '待审核'){
+              co = (<span>
+                <FlatButton label="开始审核" primary={true}  onClick={this.handleStartApprove} />
+              </span>);
+          }
+          else if(record.approvalstatus !== '未递交'){
+            co = (
+                <span>
+                    <FlatButton label="通过" primary={true} onClick={this.handleApprove} disabled={record.approvalstatus === '已审核'}/>
+                    <FlatButton label="拒绝" secondary={true}  onClick={this.handleReject} disabled={record.approvalstatus === '已拒绝'}  />
+                </span>
+            );
+          }
         }
-        else if(record.approvalstatus !== '未递交'){
-          co = (
-              <span>
-                  <FlatButton label="通过" primary={true} onClick={this.handleApprove} disabled={record.approvalstatus === '已审核'}/>
-                  <FlatButton label="拒绝" secondary={true}  onClick={this.handleReject} disabled={record.approvalstatus === '已拒绝'}  />
-              </span>
-          );
-        }
-        else{
-          co = (<span>
-          未递交
-          </span>);
-        }
-
         return co;
     }
 }
