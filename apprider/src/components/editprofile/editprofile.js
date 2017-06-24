@@ -32,7 +32,11 @@ let renderEditprofile = (props)=>{
 
 
    let fileChange=(event)=>{
-     fileupload(event,localStorage.getItem('zhongnan_rider_token'),(issuc,result)=>{
+     fileupload(event,{
+       usertoken:localStorage.getItem('zhongnan_rider_token'),
+       width:100,
+       height:100
+     },(issuc,result)=>{
        if(issuc){
          props.avatar.input.onChange(config.serverurl + result.url);
        }

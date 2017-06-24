@@ -12,6 +12,7 @@
     "leaflet": "^1.0.3",
     "moment": "^2.18.1",
     "normalizr": "^3.2.3",
+    "pica": "^3.0.4",
     "rc-swipeout": "^1.3.6",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

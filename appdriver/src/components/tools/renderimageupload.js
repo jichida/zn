@@ -1,36 +1,32 @@
 import React from 'react';
+//import { Field } from 'redux-form';
+import { Field } from 'redux-form/lib/Field';
 import Upload from 'antd/lib/upload';
 import Icon from 'antd/lib/icon';
 import message from 'antd/lib/message';
-import { connect } from 'react-redux';
 //import 'antd/dist/antd.css';
 import './imageupload.css';
 import config from '../../env/config.js';
-import {
-    set_weui
-} from '../../actions';
+import PicaDisposePhoto from '../../util/pica_dispose_photo';
 
-let renderImageupload= (props) => {
+const renderImageupload= (props) => {
 
-    let {input,loading, meta: { touched, error}} = props;
-    let usertype = localStorage.getItem("usertype");
-    let usertoken = localStorage.getItem(`${usertype}_user_token`);
-    // let getBase64 = (img, callback)=> {
-    //     const reader = new FileReader();
-    //     reader.addEventListener('load', () => callback(reader.result));
-    //     reader.readAsDataURL(img);
-    // }
-
-    let beforeUpload =(file)=> {
-        //const isImage = file.type === 'image/jpeg';
-        // if (!isJPG) {
-        //   message.error('You can only upload JPG file!');
-        // }
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        if (!isLt2M) {
-            message.error('Image must smaller than 2MB!');
-        }
-        return isLt2M;
+    let {input,loading,width,height,maxWidthOrHeight} = props;
+    let usertoken = localStorage.getItem("zhongnan_rider_token");
+    let beforeUpload =(v)=> {
+      let imgInfo = {};
+      let restconfig = {
+        width:width || -1,
+        height:height || -1,
+        maxWidthOrHeight:maxWidthOrHeight||800
+      };
+      return new Promise((resolve) => {
+        const picaphoto = new PicaDisposePhoto(restconfig);
+        picaphoto.disposePhotoWithFile(v,imgInfo).then((file)=>{
+          file.uid = v.uid;
+          resolve(file);
+        });
+      });
     }
 
     let handleChange = (info) => {
@@ -51,24 +47,13 @@ let renderImageupload= (props) => {
 
     }
   let imageUrl = input.value;
-
-  if(touched && error){
-      window.setTimeout(()=>{
-        let toast = {
-            show : true,
-            text : error,
-            type : "warning"
-        }
-        props.dispatch(set_weui({ toast }));
-      },10)
-  }
-
+  const {label} = props;
   return (
     <Upload
        className="avatar-uploader"
        name="file"
        showUploadList={false}
-       action={config.serverurl + "/uploadavatar"}
+       action= {config.serverurl + "/uploadavatar"}
        headers={{
           'Authorization':'Bearer '+usertoken
        }}
@@ -85,5 +70,5 @@ let renderImageupload= (props) => {
 
 }
 
-renderImageupload = connect()(renderImageupload);
+
 export  {renderImageupload};
