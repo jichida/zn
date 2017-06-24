@@ -62,7 +62,6 @@ class Page extends Component {
                           InputTit="年度审核状态"
                           component={WeuiSelectValidation}
                           Option={[{label:"已审",value:"已审"},{label:"未审",value:"未审"}]}
-                          validate={[ required ]}
                           />
                         <Field
                             name="Certificate"
