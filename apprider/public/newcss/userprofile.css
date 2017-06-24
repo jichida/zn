@@ -55,7 +55,8 @@
 	flex-grow: 1;
 	border: none;
 	align-self: stretch;
-	text-align: right
+	text-align: right;
+	display:block;
 }
 .userprofilePage .selectinput .field-container{
 	position: relative
@@ -68,6 +69,7 @@
 	right:-15px;
 	bottom: 0;
 	width: 100%;
+	display:block;
 }
 .userprofilePage  .field-label{
 	flex-shrink: 0;

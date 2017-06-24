@@ -81,7 +81,7 @@ let renderEditprofile = (props)=>{
        </li>
 
        <li className="item item-input selectinput"><div className="item-main"><label className="field-container">
-       <span className="field-label">性别</span>
+       <span className="field-label" style={{display:"block"}}>性别</span>
 
        <select className="borderless padding-left-0 margin-0"
        value={props.sex.input.value}
@@ -94,7 +94,7 @@ let renderEditprofile = (props)=>{
        </label></div></li>
        <li className="item item-input"  onClick={handleClick}><div className="item-main">
        <label className="field-container"><span className="field-label">生日</span>
-         <span >{moment(props.birthday.input.value).format("YYYY-MM-DD")}
+         <span style={{display:"block"}}>{moment(props.birthday.input.value).format("YYYY-MM-DD")}
        <DatePicker
          value={props.birthday.input.value}
          isOpen={props.birthdaydateopen}
