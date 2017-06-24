@@ -85,4 +85,7 @@ export default reduxForm({
     form: 'registerfillwizard',                 // <------ same form name
     destroyOnUnmount: false,        // <------ preserve form data
     forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+    initialValues:{
+      CheckState: "已审"
+    }
 })(Page)
