@@ -15,6 +15,12 @@ export default {
         creator:'所属乘客',
       }
     },
+    mycouponsbatch:{
+      name:'批量优惠券 |||| 批量优惠券',
+      fields:{
+        creators:'所属用户',
+      }
+    },
     withdrawcash:{
       name: '提现管理 |||| 提现管理',
     },
