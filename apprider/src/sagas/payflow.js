@@ -6,7 +6,7 @@ import {delay} from 'redux-saga';
 import {
   payorder
 } from '../env/pay.js';
-
+import Decimal from 'decimal.js';
 import {
   payorder_result,
   getpaysign_request,
@@ -26,6 +26,18 @@ function takepay(paysign,orderinfo) {
     });
 }
 
+function accMul(arg1,arg2)
+{
+var m=0,s1=arg1.toString(),s2=arg2.toString();
+try{m+=s1.split(".")[1].length}catch(e){}
+try{m+=s2.split(".")[1].length}catch(e){}
+return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)
+}
+//给Number类型增加一个mul方法，调用起来更加方便。
+Number.prototype.mul = function (arg){
+return accMul(arg, this);
+}
+
 export function* payflow() {
     console.log(`payflow======>`);
 
@@ -40,7 +52,8 @@ export function* payflow() {
              total_fee: orderinfo.realprice
            };
            if(orderinfo.paytype === 'weixin'){
-             orderdoc.total_fee = orderinfo.realprice*100;
+             let totalfee = new Decimal(orderinfo.realprice);
+             orderdoc.total_fee = totalfee.times(100).toNumber();
            }
           yield put(getpaysign_request({
               paytype:orderinfo.paytype,

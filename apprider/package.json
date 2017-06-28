@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "bankcardinfo": "^2.0.3",
+    "decimal.js": "^7.2.3",
     "geolib": "^2.0.22",
     "idcard": "^3.2.4",
     "iosselect": "0.0.5",
