@@ -60,9 +60,18 @@ export class Page extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
       //不显示中间页面！
-      const {mapstage,curmappagerequest,curmappageorder,dispatch} = nextProps;
+      const {triptype,mapstage,curmappagerequest,curmappageorder,dispatch} = nextProps;
       let needrender = true;
       let url='/';
+      if(triptype === '出租车'){
+        url='/index/chuzuche';
+      }
+      else if(triptype === '快车'){
+        url='/index/kuaiche';
+      }
+      else if(triptype === '代驾'){
+        url='/index/daijia';
+      }
       if(mapstage === 'pageinit' || !curmappagerequest){
         needrender = false;
       }
@@ -151,6 +160,7 @@ export class Page extends React.Component {
 const mapStateToProps = ({
     carmap:
     {
+      triptype,
       mapstage,
       curmappagerequest,
       curmappageorder,
@@ -160,7 +170,7 @@ const mapStateToProps = ({
       daijiacancelprice
     }
   }) => {
-    return {mapstage,curmappagerequest,curmappageorder,curlocation,daijiacancelprice};
+    return {triptype,mapstage,curmappagerequest,curmappageorder,curlocation,daijiacancelprice};
 }
 
 

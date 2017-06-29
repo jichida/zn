@@ -133,18 +133,19 @@ const getmapstate_formapdraw = (state) => {
         enableddrawmapflag |= ISENABLEDDRAW_MARKERDIRVER;//显示司机
         if(curmappagerequest.requeststatus === '行程中'){
           //显示路线&价格
+          enableddrawmapflag &= ~ISENABLEDDRAW_MARKERSELF;//行程中不显示自己位置了
           enableddrawmapflag |= ISENABLEDDRAW_POPWITHCUR;
-          enableddrawmapflag |= ISENABLEDDRAW_ROUTELEFT;
+          //enableddrawmapflag |= ISENABLEDDRAW_ROUTELEFT;
         }
-        else if(curmappagerequest.requeststatus === '已接单' ||
-        curmappagerequest.requeststatus === '待上车'){
-          //显示在这里上车
-          if(!!markerstartlatlng){
-            if(!markerstartlatlng.equals(loczero)){
-              enableddrawmapflag |= ISENABLEDDRAW_POPWITHSTART;
-            }
-          }
-        }
+        // else if(curmappagerequest.requeststatus === '已接单' ||
+        // curmappagerequest.requeststatus === '待上车'){
+        //   //显示在这里上车
+        //   if(!!markerstartlatlng){
+        //     if(!markerstartlatlng.equals(loczero)){
+        //       enableddrawmapflag |= ISENABLEDDRAW_POPWITHSTART;
+        //     }
+        //   }
+        // }
       }
     }
 
@@ -248,20 +249,20 @@ export function* createupdatestatusflow(){
       } = yield select(getmapstate_formapdraw);
       yield put(carmap_setenableddrawmapflag(enableddrawmapflag));
 
-      if(mapstage === 'pageorder' && !!curmappagerequest.requeststatus){
-        if(curmappagerequest.requeststatus === '行程中'){
-          //driverlocation
-          let sendnav = (action.type === serverpush_restoreorder.getType())
-          || (action.type === serverpush_driverlocation.getType());
-          if(sendnav){//发送导航
-            let {lastsend_navtime,...navpayload} = yield select(getmapstate_fornav_cur2end);
-            let nowtime = new Date();
-            if(nowtime.getTime() - lastsend_navtime.getTime() > 1000*5){
-              yield put(driveroute_request(navpayload));//发送导航改变位置
-            }
-          }
-        }
-      }
+      // if(mapstage === 'pageorder' && !!curmappagerequest.requeststatus){
+      //   if(curmappagerequest.requeststatus === '行程中'){
+      //     //driverlocation
+      //     let sendnav = (action.type === serverpush_restoreorder.getType())
+      //     || (action.type === serverpush_driverlocation.getType());
+      //     if(sendnav){//发送导航
+      //       let {lastsend_navtime,...navpayload} = yield select(getmapstate_fornav_cur2end);
+      //       let nowtime = new Date();
+      //       if(nowtime.getTime() - lastsend_navtime.getTime() > 1000*5){
+      //         yield put(driveroute_request(navpayload));//发送导航改变位置
+      //       }
+      //     }
+      //   }
+      // }
 
   });
 

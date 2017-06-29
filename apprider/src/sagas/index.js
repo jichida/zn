@@ -15,6 +15,7 @@ import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
   try{
+    yield fork(createinitflow);
     yield fork(createmapshowflow);
     yield fork(createloadingflow);
     yield fork(createnavdrawrouteflow);
@@ -27,7 +28,7 @@ export default function* rootSaga() {
     yield fork(flowmain);
     yield fork(createsagacallbackflow);
     yield fork(getnearestdriversflow);
-    yield fork(createinitflow);
+
     yield fork(createupdatestatusflow);
   }
   catch(e){

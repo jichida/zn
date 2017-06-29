@@ -200,7 +200,7 @@ const drawmap = (nextprop)=>{
             let totaldistancetxt = _.get(nextprop,'totaldistancetxt','');
             let totaldurationtxt = _.get(nextprop,'totaldurationtxt','');
             let price = _.get(nextprop,'curmappageorder.realtimepricedetail.price',0);
-            info.push(`<p>距离<span class='color_warning'>${totaldistancetxt}, ${totaldurationtxt}</span>钟 </p>`);
+            info.push(`<p>距离<span class='color_warning'>${totaldistancetxt}</span>,用时:<span class='color_warning'>${totaldurationtxt}</span> </p>`);
             info.push(`<p>费用<span class='color_warning'>${price}元</span></p>`);
 
             infoWindow = new window.AMap.InfoWindow({
