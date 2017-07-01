@@ -174,7 +174,7 @@ class Page extends React.Component {
                               <span className="showprice">
                                 总路程{resultpricerequest.totalkm}公里,
                                 预计{resultpricerequest.totalduringminute}分钟,
-                                {triptype==='出租车'?'预估费用计价器为准':`预估费用${resultpricerequest.totalprice}元`}
+                                {`预估费用${resultpricerequest.totalprice}元`}
                               </span>
                               <div className="btnlist">
                                 <a className="btn Primary" onClick={onOK}>叫车</a>
