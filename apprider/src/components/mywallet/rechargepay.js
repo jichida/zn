@@ -18,7 +18,7 @@ import {
 const {
     Form:FormUI,
     } = WeUI;
-import {payorder_request} from '../../actions';
+import {payorder_request,set_weui} from '../../actions';
 
 class PageForm extends Component{
     render(){
@@ -61,14 +61,27 @@ class Page extends Component {
 
     //支付订单
     pagesubmit=(values)=>{
+        if(values.realprice > 0){
+          let realprice = parseFloat(values.realprice);
+          values.realprice = parseFloat(realprice.toFixed(2));
+          values.ordertitle = '充值';
+          values.orderdetail = `充值${values.realprice}元`;
+          values.orderprice = values.realprice;
+          this.props.dispatch(payorder_request({
+            query:{_id:this.props.triporderid},
+            data:values
+          }));
+        }
+        else{
+          let toast = {
+              show : true,
+              text : "充值金额必须大于0",
+              type : "warning"
+          }
+          this.props.dispatch(set_weui({ toast }));
+        }
         console.log(values);
-        values.ordertitle = '充值';
-        values.orderdetail = `充值${values.realprice}元`;
-        values.orderprice = values.realprice;
-        this.props.dispatch(payorder_request({
-          query:{_id:this.props.triporderid},
-          data:values
-        }));
+
     }
 
     render() {
