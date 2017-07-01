@@ -22,6 +22,11 @@ export class Search extends React.Component {
     componentWillMount () {
         this.props.dispatch(getcurcity({}));
     }
+    componentWillUnmount () {
+        this.props.dispatch(setsearchtxt(''));
+    }
+
+
     handleChangeSearchTxt(text){
         let searchtxt = text;
         console.log("text:" + text);

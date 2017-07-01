@@ -25,6 +25,9 @@ const search = createReducer({
       return {...state,placesearchresult};
     },
     [setsearchtxt]: (state, searchtxt) => {
+        if(searchtxt === ''){
+          return {...state,...initial.search};
+        }
         return { ...state,searchtxt:searchtxt};
     },
     [searchtext_result]: (state,payload) => {
