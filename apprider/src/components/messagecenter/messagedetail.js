@@ -38,12 +38,10 @@ export class Page extends React.Component {
                 {notifymessageitem.hasOwnProperty('_id')?
                 (
                     <div className="list">
-                          <div className="time">{moment(notifymessageitem.created_at).format("MM月DD日 HH时mm分")}</div>
                           <div className="cont">
                               <div className="tit">{notifymessageitem.messagetitle}</div>
                               <div className="time">{moment(notifymessageitem.created_at).format("MM月DD日 HH时mm分")}</div>
                               <div className="text">{renderHTML(notifymessageitem.messagecontent)}</div>
-
                           </div>
                       </div>
               ):(<div className="loading">加载中，请稍后</div>)}

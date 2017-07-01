@@ -57,6 +57,9 @@ export const Orderinfo = (props) => {
             </FormTab>
         );
     }
+    else{
+      comret = (<div></div>);
+    }
 
     return comret;
 };

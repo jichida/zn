@@ -92,6 +92,7 @@ const OrderlistList = (props) => (//
             <TextField source="username" />
         </ReferenceField>
         <TextField label="订单类型"  source="triptype" />
+        <TextField label="支付订单号"  source="out_trade_no" />
         <DateField label="生成时间"  source="created_at" showTime />
         <TextField label="订单状态"  source="orderstatus" />
         <TextField label="金额" source="orderprice" />
