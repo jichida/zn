@@ -40,14 +40,15 @@ export function* createloadingflow(){
         }
         return false;
       }
-
+      let delaytime = actionstring === 'driveroute'?1000:500;
       const { result,err, timeout } = yield race({
           result: take(action_result),
           err: take(action_commonerr),
-          timeout: call(delay, 500)
+          timeout: call(delay, delaytime)
       });
 
       if(!!timeout){
+        console.log(`显示loading...这是什么请求，要等那么多时间===>${actionstring}`);
         //超过500毫秒才弹
         yield put(set_weui({
             loading : {
