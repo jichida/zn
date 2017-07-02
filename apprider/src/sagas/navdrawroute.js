@@ -65,7 +65,7 @@ let getnavdrawroute =({drawroute,startlnglat,endlnglat})=> {
 
 export function* createnavdrawrouteflow(){
   yield takeLatest(`${driveroute_request}`, function*(action) {
-    yield call(delay, 50);
+    yield call(delay, 500);
     let {payload} = action;
     console.log("createnavdrawrouteflow===>" + JSON.stringify(payload));
 

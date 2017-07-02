@@ -1,4 +1,5 @@
-import { select,put,takeEvery,call,take } from 'redux-saga/effects';
+import { select,put,takeEvery,call,take,takeLatest } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import {
   acceptrequest,
   acceptrequest_request,
@@ -222,7 +223,7 @@ export function* createupdatestatusflow(){
       }
   });
   //===========******以下改变地图状态******===========
-  yield takeEvery(
+  yield takeLatest(
     [
       `${serverpush_driverlocation}`,
       `${nav_drawroute}`,
@@ -239,6 +240,7 @@ export function* createupdatestatusflow(){
       `${serverpush_restoreorder}`
     ]
     , function*(action) {
+      yield call(delay,200);
       //目的地地址选中后
       let {
         enableddrawmapflag,
@@ -249,20 +251,20 @@ export function* createupdatestatusflow(){
       } = yield select(getmapstate_formapdraw);
       yield put(carmap_setenableddrawmapflag(enableddrawmapflag));
 
-      // if(mapstage === 'pageorder' && !!curmappagerequest.requeststatus){
-      //   if(curmappagerequest.requeststatus === '行程中'){
-      //     //driverlocation
-      //     let sendnav = (action.type === serverpush_restoreorder.getType())
-      //     || (action.type === serverpush_driverlocation.getType());
-      //     if(sendnav){//发送导航
-      //       let {lastsend_navtime,...navpayload} = yield select(getmapstate_fornav_cur2end);
-      //       let nowtime = new Date();
-      //       if(nowtime.getTime() - lastsend_navtime.getTime() > 1000*5){
-      //         yield put(driveroute_request(navpayload));//发送导航改变位置
-      //       }
-      //     }
-      //   }
-      // }
+      if(mapstage === 'pageorder' && !!curmappagerequest.requeststatus){
+        if(curmappagerequest.requeststatus === '行程中'){
+          //driverlocation
+          let sendnav = (action.type === serverpush_restoreorder.getType())
+          || (action.type === serverpush_driverlocation.getType());
+          if(sendnav){//发送导航
+            let {lastsend_navtime,...navpayload} = yield select(getmapstate_fornav_cur2end);
+            // let nowtime = new Date();
+            // if(nowtime.getTime() - lastsend_navtime.getTime() > 1000*5){
+              yield put(driveroute_request(navpayload));//发送导航改变位置
+            // }
+          }
+        }
+      }
 
   });
 
