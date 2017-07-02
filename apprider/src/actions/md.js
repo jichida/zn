@@ -12,3 +12,6 @@ export const md_getrechargerecords= createAction('md_getrechargerecords');
 export const md_getnotifymessage= createAction('md_getnotifymessage');
 export const md_getmytriporders= createAction('md_getmytriporders');
 export const md_mycoupongetall= createAction('md_mycoupongetall');
+
+export const md_map_dragging = createAction('md_map_dragging');
+export const md_map_dragend = createAction('md_map_dragend');

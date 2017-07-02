@@ -5,6 +5,7 @@ import { createAction } from 'redux-act';
 
 export const nav_drawroute = createAction('nav_drawroute');
 
+
 export const serverpush_driverlocation = createAction('serverpush_driverlocation');
 export const serverpush_orderprice = createAction('serverpush_orderprice');
 export const serverpush_triprequest = createAction('serverpush_triprequest');

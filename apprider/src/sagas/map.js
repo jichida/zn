@@ -1,4 +1,5 @@
-import { select,put,call,take,takeEvery,cancel,fork } from 'redux-saga/effects';
+import { select,put,call,take,takeEvery,takeLatest,throttle,cancel,fork } from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   changestartposition,
   carmap_setstartaddress,
@@ -14,7 +15,10 @@ import {
   carmap_setmapinited,
   carmapshow_createmap,
   carmapshow_destorymap,
-  carmap_setenableddrawmapflag
+  carmap_setenableddrawmapflag,
+
+  md_map_dragging,
+  md_map_dragend
 } from '../actions';
 import {getcurrentpos} from '../util/geo.js';
 
@@ -234,14 +238,15 @@ export function* createmapshowflow(){
         let task_dragging =  yield fork(function*(eventname){
           while(true){
             yield call(listenmapevent,eventname);
-            yield put(carmap_dragging({markerstart}));
+            yield put(md_map_dragging());
           }
         },'dragging');
 
         let task_dragend =  yield fork(function*(eventname){
           while(true){
             yield call(listenmapevent,eventname);
-            yield put(carmap_dragend());
+            yield put(md_map_dragend());
+
           }
         },'dragend');
 
@@ -280,4 +285,17 @@ export function* createmapshowflow(){
       let mapcarprops = yield select(getmapstate_formapcar);
       yield call(drawmap,mapcarprops);
     });
+
+    //防抖动设计（throttle为指定时间内只触发一次（第一次），takeLatest为以最后一次为准）
+    yield throttle(10,`${md_map_dragging}`, function*(){
+      //yield call(delay, 50);
+      yield put(carmap_dragging({markerstart}));
+    });
+
+    yield takeLatest(`${md_map_dragend}`, function*(){
+      yield call(delay, 50);
+      yield put(carmap_dragging({markerstart}));
+      yield put(carmap_dragend());
+    });
+
 }
