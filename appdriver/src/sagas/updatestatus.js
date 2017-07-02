@@ -1,4 +1,5 @@
-import { select,put,takeEvery,call } from 'redux-saga/effects';
+import { select,put,takeEvery,takeLatest,call } from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   carmap_setenableddrawmapflag,
   driveroute_request,
@@ -119,7 +120,7 @@ export function* createupdatestatusflow(){
     yield put(updaterequeststatus_request(payload));
   });
   //===========******以下改变地图状态******===========
-  yield takeEvery(
+  yield takeLatest(
     [
       `${serverpush_restoreorder}`,
       `${selrequest}`,
@@ -131,6 +132,7 @@ export function* createupdatestatusflow(){
       `${acceptrequest_result}`,
     ]
     , function*(action) {
+      yield call(delay,200);
       //目的地地址选中后
       let {
         enableddrawmapflag,

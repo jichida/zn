@@ -293,7 +293,7 @@ export function* createmapshowflow(){
     });
 
     yield takeLatest(`${md_map_dragend}`, function*(){
-      yield call(delay, 50);
+      yield call(delay, 500);
       yield put(carmap_dragging({markerstart}));
       yield put(carmap_dragend());
     });

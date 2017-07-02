@@ -1,4 +1,5 @@
-import { select,put,call,take,takeEvery,cancel,fork } from 'redux-saga/effects';
+import { select,put,call,take,takeEvery,takeLatest,cancel,fork } from 'redux-saga/effects';
+import {delay} from 'redux-saga';
 import {
   carmap_setzoomlevel,
   carmap_setmapcenter,
@@ -237,7 +238,7 @@ export function* createmapshowflow(){
       infoWindow=null;
     });
 
-    yield takeEvery(`${carmap_setenableddrawmapflag}`, function*(action_enableddrawmapflag) {
+    yield takeLatest(`${carmap_setenableddrawmapflag}`, function*(action_enableddrawmapflag) {
       let mapcarprops = yield select(getmapstate_formapcar);
       yield call(drawmap,mapcarprops);
     });
