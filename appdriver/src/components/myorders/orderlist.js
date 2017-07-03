@@ -16,10 +16,11 @@ const {
 } = WeUI;
 import {getmytriporders} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
-
+let usecacheorder = false;
 class Page extends Component {
 
    onClickOrderDetail(orderinfo){
+       usecacheorder = true;
        this.props.history.push(`/orderdetail/${orderinfo._id}`);
    }
 
@@ -32,7 +33,9 @@ class Page extends Component {
              />
        );
    }
-
+   componentDidMount(){
+     usecacheorder = false;
+   }
    render() {
        return (
            <div className="userorderlistPage AppPage">
@@ -40,6 +43,8 @@ class Page extends Component {
                <div className="list">
                    <Cells>
                        <InfinitePage
+                           usecache={usecacheorder}
+                           listtypeid='order'
                            pagenumber={30}
                            updateContent={this.updateContent}
                            queryfun={getmytriporders}

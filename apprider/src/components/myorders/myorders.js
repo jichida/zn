@@ -23,6 +23,7 @@ import {
   getmytriporders,
 } from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
+let usecacheorder = false;
 //快车信息
 class Kuaiche extends Component{
     render(){
@@ -115,6 +116,9 @@ const OrderItem = (props) => {
 }
 
 class Page extends Component {
+    componentDidMount(){
+      usecacheorder = false;
+    }
     onClickOrderDetail(orderinfo){
         // this.props.dispatch(getorderdetail_request({
         //     query:{
@@ -122,6 +126,7 @@ class Page extends Component {
         //       triptype:orderinfo.triptype
         //     }
         //   }));
+        usecacheorder = true;
         this.props.history.push(`/orderdetail/${orderinfo._id}`);
         //return ;
     }
@@ -142,6 +147,8 @@ class Page extends Component {
                 <div className="list">
                     <Cells>
                         <InfinitePage
+                            usecache={usecacheorder}
+                            listtypeid='order'
                             pagenumber={30}
                             updateContent={this.updateContent}
                             queryfun={getmytriporders}

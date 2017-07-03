@@ -71,6 +71,8 @@ class Page extends Component {
                     <div className="l2">
                         <Cells>
                           <InfinitePage
+                              usecache={false}
+                              listtypeid='wallet'
                               pagenumber={30}
                               updateContent={this.updateContent}
                               queryfun={getrechargerecords}

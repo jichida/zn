@@ -8,7 +8,7 @@ import _ from 'lodash';
 import {getnotifymessageone_result} from '../../actions';
 import {getnotifymessage} from '../../actions/sagacallback';
 import InfinitePage from '../controls/listview';
-
+let usecachemsg = false;
 const NotifymessageItem = (props) => {
     const {notifymessage,onClickMsgDetail} = props;
     const createdatestring = moment(notifymessage.created_at).format("YYYY-MM-DD");
@@ -35,7 +35,13 @@ export class Page extends React.Component {
         );
     }
 
+    componentDidMount(){
+      usecachemsg = false;
+    }
+
+
     onClickMsgDetail(item){
+        usecachemsg = true;
         this.props.dispatch( getnotifymessageone_result(item) );
         this.props.history.push(`/mymessagedetail/${item._id}`);
     }
@@ -46,6 +52,8 @@ export class Page extends React.Component {
                <NavBar back={true} title="消息" />
                <div className="list">
                     <InfinitePage
+                        usecache={usecachemsg}
+                        listtypeid='msg'
                         pagenumber={30}
                         updateContent={this.updateContent}
                         queryfun={getnotifymessage}
