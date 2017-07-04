@@ -15,6 +15,9 @@ import {
 } from 'react-router-dom';
 import '../newcss/common.css';
 import {requireAuthentication} from './requireauthentication';
+import MessageCenter from './messagecenter/messagecenter.js';
+import MessageDetail from './messagecenter/messagedetail.js';
+
 class AppRoot extends React.Component {
   componentWillMount() {
         const script = document.createElement("script");
@@ -39,6 +42,8 @@ class AppRoot extends React.Component {
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/index" component={Test}/>
+                    <Route path="/messagecenter" component={MessageCenter}/>
+                    <Route path="/mymessagedetail/:msgid" component={MessageDetail} />
                 </Switch>
             </div>
         );

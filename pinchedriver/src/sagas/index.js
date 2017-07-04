@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
 import {flowmain} from './flowmain';
-import {createsagacallbackflow} from '../actions/sagacallback';
+import {createsagacallbackflow} from './sagacallback';
 import {getcurpositionflow} from './senddriverposition';
 import {wsrecvsagaflow} from './wsrecvsaga';
 import {jpushflow} from './jpushflow';
@@ -17,7 +17,7 @@ export default function* rootSaga() {
     yield fork(createnavdrawrouteflow);
     yield fork(flowmain);
     yield fork(getcurpositionflow);
-    //yield fork(createsagacallbackflow);
+    yield fork(createsagacallbackflow);
   }
   catch(e){
     console.log(e);

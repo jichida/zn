@@ -13,12 +13,21 @@ import {
     getonepincheroutepassengers_request,
     getonepincheroutepassengers_result,
 
-    getsystemconfig_result
+    getsystemconfig_result,
+
+    getnotifymessage_request,
+    getnotifymessage_result,
+
+    getnotifymessageone_request,
+    getnotifymessageone_result,
   } from '../actions';
 
 
 //接收的对应关系
 let recvmessagetoresultpair = {
+  'getnotifymessage_result':getnotifymessage_result,
+  'getnotifymessageone_result':getnotifymessageone_result,
+
   'getsystemconfig_result':getsystemconfig_result,
 
   'common_err':common_err,
@@ -34,6 +43,8 @@ let recvmessagetoresultpair = {
 let sendmessagefnsz = {
   'logout':`${logout_request}`,
   'login':`${login_request}`,
+  'getnotifymessage':`${getnotifymessage_request}`,
+  'getnotifymessageone':`${getnotifymessageone_request}`,
 };
 
 //验证发送接口

@@ -5,3 +5,4 @@ export * from './pincheroute';
 export * from './app';
 export * from './userlogin';
 export * from './md';
+export * from './notifymessage';
