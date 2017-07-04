@@ -233,6 +233,7 @@ export default {
     buscarpool: {
         name: '拼车 |||| 拼车',
         fields:{
+          pinchedriveruserid:'拼车司机',
           startstation:'出发站点',
           endstation:'目的站点',
           price:'价格',

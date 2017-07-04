@@ -31,7 +31,8 @@ import {
   ChipField,
   BooleanInput,
   BooleanField,
-  ReferenceField
+  ReferenceField,
+  ReferenceInput
 } from 'admin-on-rest/lib/mui';
 
 import {TabbedForm,FormTab} from 'admin-on-rest/lib/mui';
@@ -61,6 +62,9 @@ const BuscarpoolCreate = (props) => (
            ]} />
            <TextInput label="开始城市" source="startcity" />
            <TextInput label="目的城市" source="endcity" />
+           <ReferenceInput source="pinchedriveruserid" reference="userdriverpinche" allowEmpty>
+              <SelectInput optionText="username" />
+           </ReferenceInput>
            <DateInput label="出发日期" source="startdate" />
            <TimePickerInput label="出发时间" source="starttime" />
            <NumberInput label="座位数"  source="seatnumber" />
@@ -105,6 +109,9 @@ const BuscarpoolEdit = (props) => {
                   { id: '已成团', name: '已成团' },
                   { id: '已取消', name: '已取消(设置为未启用)' },
                 ]} />
+                <ReferenceInput source="pinchedriveruserid" reference="userdriverpinche" allowEmpty>
+                   <SelectInput optionText="username" />
+                </ReferenceInput>
                 <BooleanInput label="是否启用" source="isenabled" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.buscarpool.tabs.passenager">
@@ -191,6 +198,9 @@ const BuscarpoolList = (props) => (//
         <Datagrid>
         <TextField label="拼车类型" source="pinchetype" />
         <TextField label="开始城市" source="startcity" />
+        <ReferenceField label="所属司机" source="pinchedriveruserid" reference="userdriverpinche" allowEmpty>
+          <TextField source="username" />
+        </ReferenceField>
         <DateField label="出发日期" source="startdate" type="date" />
         <TextField label="出发时间" source="starttime" />
         <TextField label="目的城市" source="endcity" />
