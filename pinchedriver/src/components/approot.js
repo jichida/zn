@@ -7,7 +7,7 @@ import {carmap_setmapinited} from '../actions';
 
 import WeuiTool from './tools/weuitool';
 import Login from './login/login.js';
-
+import Test from './test';
 
 import {
     Route,Redirect,
@@ -38,7 +38,7 @@ class AppRoot extends React.Component {
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
-                    <Route path="/index" component={Login}/>
+                    <Route path="/index" component={Test}/>
                 </Switch>
             </div>
         );

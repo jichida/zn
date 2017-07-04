@@ -47,16 +47,12 @@ export function* getcurpositionflow(){
           //如果连接并且已经登录,发送给服务端
           yield put(sendcurlocationtoserver({//RiverRegionCode/bizstatus/
             driverlocation:[curposition.lng,curposition.lat],
-            // driverstatus:operate.driverstatus,//未接单／已接单
-            // bizstatusstring:operate.bizstatusstring,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
-            // bizstatus:operate.bizstatus,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
-            // triporderid:operate.triporderid
           }));//发送给server
         }
       }
     }
     catch(e){
-      window.alert(`上报地理位置信息错误.${JSON.stringify(e)}`);
+      //window.alert(`上报地理位置信息错误.${JSON.stringify(e)}`);
     }
 
   }

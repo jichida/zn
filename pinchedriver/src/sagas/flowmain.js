@@ -21,7 +21,7 @@ import {
 
 let issocketconnected = false;
 let sendmsgwhenreconnect =(socket)=>{
-    let token = localStorage.getItem('zhongnan_driver_token');
+    let token = localStorage.getItem('zhongnan_driverpinche_token');
     if (token !== null) {
         //take token to login...
         socket.emit('appdriverpinche',{cmd:'loginwithtoken',data:{token:token}});
