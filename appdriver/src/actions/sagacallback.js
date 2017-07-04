@@ -8,21 +8,13 @@ import {
 import { take, call,race,takeLatest } from 'redux-saga/effects';
 import {delay} from 'redux-saga';
 import config from '../config.js';
-import {getcurrentlocationfn} from '../env/geo.js';
+
 //注：获取地理位置放这里，可以达到实时效果，放视图中并不实时！
 let synccall=(payload,waitfn,fn)=>{
   return (dispatch) => {
     return new Promise((resolve, reject) => {
-      getcurrentlocationfn((locz)=>{
-         if(locz[0] !== 0 && locz[1] !== 0){
-           let result = payload;
-           result.driverlocation = locz;
-           console.log("synccall------>" + JSON.stringify(result));
-           dispatch(waitfn({resolve,reject,result}));
-           dispatch(fn({...result}));
-         }
-       });
-
+      dispatch(waitfn({resolve,reject,payload}));
+      dispatch(fn({...payload}));
     });
   }
 }
