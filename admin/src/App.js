@@ -70,6 +70,9 @@ import {CarmodellistList,CarmodellistEdit,CarmodellistCreate} from './components
 import {MycarList,MycarEdit} from './components/mycar';
 import {WithdrawcashlistList,WithdrawcashlistEdit} from './components/withdrawcashapply/index.js';
 
+import {UserdriverpincheCreate,UserdriverpincheEdit,UserdriverpincheList} from './components/userdriverpinche/index.js';
+import {UserriderloginlogList,UserdriverpincheloginlogList,UserdriverloginlogList} from './components/loginlog/index.js';
+
 class App extends Component {
 
     render() {
@@ -140,6 +143,12 @@ class App extends Component {
             <Resource name="userrider" list={UserriderlistList} edit={UserriderlistEdit} />
 
             <Resource name="withdrawcash" list={WithdrawcashlistList} edit={WithdrawcashlistEdit}/>
+
+            <Resource name="userdriverpinche" list={UserdriverpincheList}  edit={UserdriverpincheEdit} create={UserdriverpincheCreate} remove={Delete} />
+
+            <Resource name="userriderloginlog" list={UserriderloginlogList}  />
+            <Resource name="userdriverloginlog" list={UserdriverloginlogList}  />
+            <Resource name="userdriverpincheloginlog" list={UserdriverpincheloginlogList}  />
             </Admin>
         );
     }

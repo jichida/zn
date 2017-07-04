@@ -4,7 +4,8 @@ import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
+   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
+ Filter } from 'admin-on-rest/lib/mui';
 
 
 import { Field,FieldArray } from 'redux-form';
@@ -50,8 +51,13 @@ const UserriderlistEdit = (props) => {
               </Edit>);
 }
 
+export const UserriderFilter = props => (
+    <Filter {...props}>
+         <TextInput label="搜索用户" source="username_q" />
+    </Filter>
+);
 const UserriderlistList = (props) => (//
-     <List title="乘客列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="乘客列表" filters={<UserriderFilter />} {...props} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>

@@ -59,64 +59,32 @@ import UserriderIcon from 'material-ui/svg-icons/action/account-circle';//乘客
 import UserIcon from 'material-ui/svg-icons/action/account-circle';//用户提现
 
 export default [
-   {
-        'name':'notifymessage',
-        'icon': <NotifymessageIcon />,
-      },
-      {
-        'name':'buscarpool',
-        'icon': <BuscarpoolIcon />,
-      },
-      {
-        'name':'order',
-        'icon': <OrderIcon />,
-      },
-      {
-        'name':'triprequest',
-        'icon': <TriprequestIcon />,
-      }
-   ,
-   {
-     'name':'userdriver',
-     'icon': <UserdriverIcon />,
-   },
-   {
-       'name':'mycar',
-       'icon': <UserriderIcon />,
-   },
+   {name:'notifymessage',icon: <NotifymessageIcon />},
+   {name:'buscarpool',icon: <BuscarpoolIcon />,},
+   {name:'order',icon: <OrderIcon />,},
+   {name:'triprequest',icon: <TriprequestIcon />,},
+   {name:'userdriver',icon: <UserdriverIcon />,},
+   {name:'mycar',icon: <UserriderIcon />,},
+
   {
-    'name':'usermgr',
-    'icon': <UsermgrIcon />,
-    'children': [
-      {
-        'name':'userrider',
-        'icon': <UserriderIcon />,
-      },
+    name:'usermgr',icon: <UsermgrIcon />,
+    children: [
+      { name:'userrider', icon: <UserriderIcon />,},
       { name: 'mycoupon', icon: <UserIcon /> },
       { name: 'withdrawcash', icon: <UserIcon /> },
+      { name: 'userriderloginlog', icon: <UserIcon /> },
+      { name: 'userdriverloginlog', icon: <UserIcon /> },
+      { name: 'userdriverpincheloginlog', icon: <UserIcon /> },
+      { name: 'userdriverpinche', icon: <UserIcon /> },
     ]
   },
   {
-     'name':'settingbaseinfo',
-    'icon': <PlatformbaseinfoIcon />,
-    'children': [
-      {
-        'name':'tourbusinfo',
-        'icon': <TourbusinfoIcon />,
-      },
-      {
-        'name':'systemconfig',
-        'icon': <SystemconfigIcon />,
-      },
-      {
-        'name':'faretype',
-        'icon': <FaretypeIcon />,
-      },
-      {
-        'name':'about',
-        'icon': <AboutIcon />,
-      },
-
+    name:'settingbaseinfo',icon: <PlatformbaseinfoIcon />,
+    children: [
+        { name:'tourbusinfo', icon: <TourbusinfoIcon />,},
+        { name: 'systemconfig', icon: <SystemconfigIcon /> },
+        { name: 'faretype', icon: <FaretypeIcon /> },
+        { name: 'about', icon: <AboutIcon /> },
       ]
   },
   {

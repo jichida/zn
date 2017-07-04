@@ -9,6 +9,18 @@ export default {
     },
   },
   resources: {
+    userriderloginlog:{
+      name: '乘客登录日志 |||| 乘客登录日志',
+    },
+    userdriverloginlog:{
+      name: '小车司机登录日志 |||| 小车司机登录日志',
+    },
+    userdriverpincheloginlog:{
+      name: '拼车司机登录日志 |||| 拼车司机登录日志',
+    },
+    userdriverpinche:{
+      name: '拼车司机管理 |||| 拼车司机管理',
+    },
     mycoupon:{
       name: '乘客优惠券 |||| 乘客优惠券',
       fields:{

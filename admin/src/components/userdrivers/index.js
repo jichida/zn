@@ -193,10 +193,8 @@ const UserdriverlistEdit = (props) => {
 };
 
 
-
-
 const UserdriverlistList = (props) => (//
-     <List title="司机列表" {...props} Filter={UserdriverFilter} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="司机列表" {...props} filters={<UserdriverFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>
