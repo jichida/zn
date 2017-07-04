@@ -5,7 +5,11 @@ import NavBar from '../tools/nav.js';
 import moment from 'moment';
 import _ from 'lodash';
 
-import {getnotifymessage_request,getnotifymessageone_result} from '../../actions';
+import {
+  getnotifymessage_request,
+  getnotifymessage_result,
+  getnotifymessageone_result
+} from '../../actions';
 
 import {callthen} from '../../sagas/sagacallback';
 
@@ -59,7 +63,7 @@ export class Page extends React.Component {
                         pagenumber={30}
                         updateContent={this.updateContent}
                         queryfun={(payload)=>{
-                          return callthen(getnotifymessage_request,payload);
+                          return callthen(getnotifymessage_request,getnotifymessage_result,payload);
                         }}
                         listheight={window.innerHeight-68}
                         query={{}}
