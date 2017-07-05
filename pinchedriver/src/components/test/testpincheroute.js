@@ -12,7 +12,7 @@ let test_getmypincheroute_request=(dispatch)=>{
 
 let test_getonepincheroutepassengers_request=(dispatch)=>{
   dispatch(getonepincheroutepassengers_request({
-    query:{_id:'xxxx'}
+    _id:'595b333b67599d0ef46b2929'
   }));
 }
 
