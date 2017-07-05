@@ -2,6 +2,7 @@ import { createReducer } from 'redux-act';
 import {
     getemerygencycontact_result,
     getphoneconcatlist,
+    logout_result
 } from '../actions';
 
 const initial = {
@@ -12,6 +13,9 @@ const initial = {
 };
 
 const emerygencycontact = createReducer({
+    [logout_result]: (state, payload) => {
+      return { ...initial.emerygencycontact};
+    },
     [getphoneconcatlist]:(state,payload)=>{
       let phoneconcatlist = [...payload];
       return {...state,phoneconcatlist};

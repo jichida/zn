@@ -3,7 +3,7 @@
  */
 import { createReducer } from 'redux-act';
 import {
-    ui_setmyorderstabheader,
+    logout_result,
     getmytriporders_result,
     triporder_addone,
     triporder_updateone,
@@ -13,18 +13,15 @@ import {normalizr_triporderslist} from './normalizr';
 
 const initial = {
     myorders: {
-        tabheader:'all',
-        inited:true,
         remoteRowCount:0,
-        mytriporderlist:[],
         triporders:{
         }
     },
 };
 
 const myorders = createReducer({
-    [ui_setmyorderstabheader]:(state, tabheader) => {
-      return  {...state,tabheader,inited:true};
+    [logout_result]: (state, payload) => {
+      return { ...initial.myorders};
     },
     [getmytriporders_result]:(state, {result}) => {
         // docs {Array} - Array of documents
@@ -36,32 +33,18 @@ const myorders = createReducer({
         let list = result.docs;
         let remoteRowCount = result.total;
         let mytriporders = normalizr_triporderslist({list});
-
-        if(state.inited){
-            //替换
-            return {
-              ...state,
-              mytriporderlist:mytriporders.result.list,
-              triporders:{...mytriporders.entities.triporders},
-              inited:true,
-              remoteRowCount
-            };
-        }
         //追加记录
         return {
             ...state,
-            mytriporderlist:[...state.mytriporderlist,...mytriporders.result.list],
             triporders:{...state.triporders,...mytriporders.entities.triporders}
         };
 
     },
     [triporder_addone]:(state, payload) => {
-        let orderlist = [payload._id,...state.mytriporderlist];
         let orderentities = state.triporders;
         orderentities[payload._id] = payload;
         return {
           ...state,
-          mytriporderlist:[...orderlist],
           triporders:{...orderentities}
         };
     },
