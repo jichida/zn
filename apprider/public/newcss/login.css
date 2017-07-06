@@ -72,7 +72,8 @@
     background: #FFF;
     z-index: 1000;
     top:10px;
-
+	width: 82px;
+	text-align: center;
 }
 .loginPage .loginForm .getyanzhenli .formvalidation.form_input{
 	margin-right: 115px;

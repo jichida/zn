@@ -3,6 +3,7 @@ import { Field, reduxForm, Form, formValueSelector  } from 'redux-form';
 import { connect } from 'react-redux';
 import {loginsendauth_request,loginwithauth_request} from '../../actions';
 import NavBar from '../tools/nav.js';
+import Sendauth from '../tools/sendauth.js';
 import '../../../public/newcss/login.css';
 import { withRouter } from 'react-router-dom';
 import {
@@ -13,12 +14,19 @@ import {
     } from "../tools/formvalidation"
 
 export class PageForm extends Component {
-    onClickSendAuth =()=>{
-        this.props.dispatch(loginsendauth_request({
-          phonenumber:this.props.phonenumber,
-          reason:'login'
-        }));
+
+    onClickAuth = (callback)=> {
+        const phonenumber = this.props.phonenumber;
+        const phone =  !!phonenumber && !(phonenumber.match(/\D/g)||phonenumber.length !== 11||!phonenumber.match(/^1/));
+        if(phone){
+            this.props.dispatch(loginsendauth_request({
+                phonenumber:this.props.phonenumber,
+                reason:'login'
+            }));
+        }
+        callback(phone);
     }
+
     render(){
         const { handleSubmit,onClickLogin,pristine,submitting } = this.props;
 
@@ -53,7 +61,9 @@ export class PageForm extends Component {
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
-                    <div className="getyanzhen" onClick={this.onClickSendAuth}>获取验证码</div>
+                    
+
+                    <Sendauth primary action={this.onClickAuth} className="getyanzhen" />
                 </div>
 
                 <div className="submitBtn">

@@ -11,6 +11,7 @@ import {
     register_request,
   } from '../../actions/index.js';
 import NavBar from '../tools/nav.js';
+import Sendauth from '../tools/sendauth.js';
 import {
     required,
     phone,
@@ -27,11 +28,17 @@ const {
 let RegisterForm = (props)=> {
     console.log(`RegisterForm===>${JSON.stringify(props)}`);
     let {handleSubmit,onClickRegister,username} = props;
-    let onClickAuth = (e)=> {
-        // const name = fields.username.input.value;
-            props.dispatch(loginsendauth_request({phonenumber:username,reason:'register'}));
-            console.log("发送验证码:" + username);
+    
+    //发送
+    let onClickAuth = (callback)=> {
+        const name = username;
+        const phone =  !!name && !(name.match(/\D/g)||name.length !== 11||!name.match(/^1/));
+        if(phone){
+            props.dispatch(loginsendauth_request({phonenumber: name,reason:'register'}));
+        }
+        callback(phone);
     }
+
     let handleLogin =()=>{
         props.history.replace("/login");
     }
@@ -62,7 +69,9 @@ let RegisterForm = (props)=> {
                         validate={[ required,length4 ]}
                         InputTit="验证码"
                     />
-                    <div className="getyanzhen" onClick={onClickAuth}>获取验证码</div>
+
+                    <Sendauth primary action={onClickAuth} className="getyanzhen" />
+
                 </div>
                 <div className="li">
                     <Field

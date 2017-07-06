@@ -40,4 +40,9 @@
 	font-size: 14px;
 	padding: 0 15px;
 	height: 36px;
+	width: 82px;
+}
+
+.withdrawalsPage .messageCodeContent .getcode.unlabel{
+	background: #EEE;
 }
