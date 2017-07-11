@@ -1,7 +1,27 @@
 import geolib from 'geolib';
 import {getcurrentlocationfn} from '../env/geo';
 
-export const getcurrentpos =()=> {
+
+function retry(fn, times, delay) {
+    return new Promise(function(resolve, reject) {
+        var error;
+        var attempt = function() {
+
+            if (times == 0) {
+                reject(error);
+            } else {
+                fn().then(resolve)
+                    .catch(function(e){
+                        times--;
+                        error = e;
+                        setTimeout(function(){attempt()}, delay);
+                    });
+            }
+        };
+        attempt();
+    });
+}
+let getcurrentpos_in =()=> {
   return new Promise(resolve => {
      getcurrentlocationfn((locz)=>{
         if(locz[0] !== 0 && locz[1] !== 0){
@@ -9,6 +29,10 @@ export const getcurrentpos =()=> {
         }
       });
   });
+}
+
+export const getcurrentpos = ()=>{
+  return retry(getcurrentpos_in,15,5000);
 }
 
 let getstringofdistance2 = (leftdistance)=>{
