@@ -62,7 +62,7 @@ class Page extends Component {
                             editing={false}
                             starCount={5}
                             value={4.5}
-                            emptyStarColor="#EEEEEE"
+                            emptyStarColor="#CCCCCC"
                         />
                         <span className="text">默认好评</span>
                     </div>
@@ -81,7 +81,7 @@ class Page extends Component {
                                     editing={true}
                                     starCount={5}
                                     value={1}
-                                    emptyStarColor="#EEEEEE"
+                                    emptyStarColor="#CCCCCC"
                                 />
                             </div>
                             <div className="text">

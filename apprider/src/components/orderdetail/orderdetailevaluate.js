@@ -104,7 +104,7 @@ export class Page extends Component{
                               editing={false}
                               starCount={5}
                               value={ratenum}
-                              emptyStarColor="#EEEEEE"
+                              emptyStarColor="#CCCCCC"
 
                           />
                       </div>
@@ -126,7 +126,7 @@ export class Page extends Component{
                                     editing={true}
                                     starCount={5}
                                     value={ratenum}
-                                    emptyStarColor="#EEEEEE"
+                                    emptyStarColor="#CCCCCC"
                                     onStarClick={this.onStarClick.bind(this)}
                                 />
                             </div>

@@ -33,7 +33,7 @@ let PageDriverHead =(props)=>{
                             editing={false}
                             starCount={5}
                             value={starnum}
-                            emptyStarColor="#EEEEEE"
+                            emptyStarColor="#CCCCCC"
                         />
                     </div>
                     <div>
