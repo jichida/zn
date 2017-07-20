@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
-import {carmap_setmapinited} from '../actions';
+import {carmap_setmapinited,getcurcity} from '../actions';
 
 import WeuiTool from './tools/weuitool';
 
@@ -52,6 +52,7 @@ class AppRoot extends React.Component {
             radius: 1000 //范围，默认：500
           });
           this.props.dispatch(carmap_setmapinited(true));
+          this.props.dispatch(getcurcity({}));
         }
         document.body.appendChild(script);
     }
