@@ -109,6 +109,7 @@ export class Page extends Component{
                           />
                       </div>
                     }
+                   
 
                     <div className={showaddevaluate?"addevaluate show":"addevaluate"}>
                         <div className="wamp">
@@ -130,6 +131,8 @@ export class Page extends Component{
                                     onStarClick={this.onStarClick.bind(this)}
                                 />
                             </div>
+                            <div style={{textAlign:'center',color:'#999'}}>请点亮星星</div>
+                            {commenttags_selmax.length>0 && 
                             <div className="hottag">
                                 
                                 {
@@ -147,6 +150,7 @@ export class Page extends Component{
                                   })
                                 }
                             </div>
+                            }
                             <div className="text">
                                 <Form>
                                     <FormCell>

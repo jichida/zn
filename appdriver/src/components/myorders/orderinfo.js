@@ -84,6 +84,7 @@ class Page extends Component {
                                     emptyStarColor="#CCCCCC"
                                 />
                             </div>
+                            <div style={{textAlign:'center'}}>请点亮星星</div>
                             <div className="text">
                                 <Form>
                                     <FormCell>
