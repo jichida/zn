@@ -5,9 +5,9 @@ import {
 } from '../actions';
 
 let defaultcurselcity = {
-  "cityname": "南京",
-  "zipcode": "025",
-  "pinyin": "Nanjing"
+    "cityname": "天长",
+    "zipcode": "0550",
+    "pinyin": "Tianchang"
 };
 
 let dcscl = localStorage.getItem('defaultcurselcity');
@@ -23,11 +23,7 @@ if(!!dcscl){
 
 const initial = {
   city: {
-    curcity: {
-      "cityname": "南京",
-      "zipcode": "025",
-      "pinyin": "Nanjing"
-    },
+    curcity: defaultcurselcity,
     curselcity:defaultcurselcity,
   },
 };
