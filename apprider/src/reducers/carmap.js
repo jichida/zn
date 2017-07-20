@@ -25,6 +25,7 @@ import {
     serverpush_driverlocation,
     serverpush_orderprice,
     serverpush_restoreorder,
+    serverpush_restoreorder_effect,
     driveroute_request
 } from '../actions';
 import _ from 'lodash';
@@ -100,6 +101,22 @@ const carmap = createReducer({
       return {...state,enableddrawmapflag};
     },
     [serverpush_restoreorder]:(state,payload)=>{
+      //恢复一个订单
+      let enabledragging = false;//不允许拖动
+      let curmappagerequest = payload.triprequest;
+      let curmappageorder = payload.triporder;
+      let mapstage = 'pageorder';
+      //还原起始点，终点
+      let driverlocation = state.driverlocation;
+      if(curmappageorder.driverlocation.length > 0){//数组
+        driverlocation = L.latLng(curmappageorder.driverlocation[1],curmappageorder.driverlocation[0]);
+      }
+      let markerstartlatlng = L.latLng(curmappageorder.srcaddress.location.lat, curmappageorder.srcaddress.location.lng);
+      let markerendlatlng = L.latLng(curmappageorder.dstaddress.location.lat, curmappageorder.dstaddress.location.lng);
+      return {...state,enabledragging,curmappagerequest,curmappageorder,mapstage,
+        driverlocation,markerstartlatlng,markerendlatlng};
+    },
+    [serverpush_restoreorder_effect]:(state,payload)=>{
       //恢复一个订单
       let enabledragging = false;//不允许拖动
       let curmappagerequest = payload.triprequest;
