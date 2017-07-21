@@ -8,6 +8,7 @@ import {carmap_setmapinited} from '../actions';
 import WeuiTool from './tools/weuitool';
 import Login from './login/login.js';
 import Test from './test';
+// import Test from './test';
 
 import {
     Route,Redirect,

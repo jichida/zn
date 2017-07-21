@@ -1,5 +1,5 @@
 .loginPage{
-	background: url(../newimg/23.png) no-repeat center;
+	background: url(../img/1.jpg) no-repeat center;
 	background-size: 100% 100%;
 }
 .loginPage #newNavHeadContent.newNavHeadContent{
@@ -18,10 +18,22 @@
 }
 .loginPage .content .logo{
 	text-align: center;
-	padding: 40px 0 30px 0;
+	padding: 60px 0 30px 0;
 }
-.loginPage .content .logo img{
-	width: 42%;
+.loginPage .content .logo span{
+	display: block;
+	text-align: center;
+	color: #026277
+}
+.loginPage .content .logo span.tit{
+	font-size: 32px;
+	font-weight: bold;
+}
+.loginPage .content .logo span.tips{
+	border:1px solid #026277;
+	width: 70px;
+	border-radius: 6px;
+	margin: auto;
 }
 .loginPage #newNavHeadContent .back:active{
 	background: none;
@@ -39,14 +51,21 @@
 	display: flex;
 	background: #FFF;
 	border-radius: 8px;
-	height:50px;
-	margin-bottom: 15px;
+	height:44px;
+	margin-bottom: 10px;
 	align-items: center;
 	position: relative;
+}
+.loginPage .formvalidation.form_input {
+	margin: 0 10%;
+	border-radius: 6px;
+	border: 1px solid #026277;
 }
 .loginPage .formvalidation.form_input input{
 	background: none;
 	font-size: 16px;
+	border-radius: 6px;
+	text-indent: 15px;
 }
 .loginPage .loginForm .li .icon{
 	width: 32px;
@@ -66,7 +85,7 @@
 	flex-shrink: 0;
 }
 .loginPage .submitBtn{
-	padding-top: 20px;
+	padding-top: 10px;
 }
 .loginPage .gotoregister{
 	color: #FFF;
@@ -86,4 +105,15 @@
     border-radius: 8px;
     width: 80px;
 
+}
+.loginPage .btn.Primary{
+	background-color: #026277;
+	margin: 0 10%;
+	height: 44px;
+	line-height: 44px;
+	margin-bottom: 5px;
+}
+.loginPage .serverslnk{
+	text-align: center;
+	color: #026277;
 }

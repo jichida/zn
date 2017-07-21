@@ -24,9 +24,6 @@ export class PageForm extends Component {
                 >
 
                 <div className="li" >
-                    <span className="icon">
-                        <img src="newimg/25.png" alt='' />
-                    </span>
                     <Field
                         name="phonenumber"
                         id="phonenumber"
@@ -37,9 +34,6 @@ export class PageForm extends Component {
                     />
                 </div>
                 <div className="li">
-                    <span className="icon">
-                        <img src="newimg/26.png" alt='' />
-                    </span>
                     <Field
                         name="password"
                         id="password"
@@ -50,8 +44,6 @@ export class PageForm extends Component {
                     />
 
                 </div>
-                <span className="resetpassword" onClick={()=>{this.props.history.push("/findpwd")}}>忘记密码？</span>
-
                 <div className="submitBtn">
                     <span
                         className="btn Primary"
@@ -60,7 +52,7 @@ export class PageForm extends Component {
                         >
                         登录
                     </span>
-                    <span className="gotoregister" onClick={()=>{this.props.history.push("/register")}}>还没有账号？去注册</span>
+                    <a className="serverslnk" href="tel:88888888">遇到问题？联系客服 ></a>
 
                 </div>
             </Form>
@@ -126,7 +118,8 @@ export class Page extends Component {
                 <NavBar back={true} title="快速登录" />
                 <div className="content">
                     <div className="logo">
-                        <img src="newimg/24.png" alt=''/>
+                        <span className="tit">中南拼车</span>
+                        <span className="tips">司机端</span>
                     </div>
                     <PageForm onClickLogin={this.onClickLogin}/>
                 </div>
