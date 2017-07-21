@@ -5,11 +5,14 @@ import {
     loginsendauth_result,
     logout_result,
     fillrealnameprofile_result,
-    queryuserbalance_result
+    queryuserbalance_result,
+    startoperate,
+    stopoperate,
 } from '../actions';
 
 const initial = {
   userlogin:{
+    isstartoperate:false,
     loginsuccess:false,
     commenttagsforrider:[],
     username:'',
@@ -32,6 +35,12 @@ const initial = {
 };
 
 const userlogin = createReducer({
+  [startoperate]:(state,payload)=>{
+    return { ...state,isstartoperate:true};
+  },
+  [stopoperate]:(state,payload)=>{
+    return { ...state,isstartoperate:false};
+  },
   [queryuserbalance_result]: (state, payload) => {
     return { ...state,...payload};
   },
