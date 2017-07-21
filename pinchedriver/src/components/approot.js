@@ -24,9 +24,9 @@ class AppRoot extends React.Component {
         script.src = "http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving";
         script.async = true;
         window.init = ()=>{
-          console.log(`地图下载成功啦！`);
-          window.initamaploaded = true;
-          this.props.dispatch(carmap_setmapinited(true));
+            console.log(`地图下载成功啦！`);
+            window.initamaploaded = true;
+            this.props.dispatch(carmap_setmapinited(true));
         }
         document.body.appendChild(script);
     }
