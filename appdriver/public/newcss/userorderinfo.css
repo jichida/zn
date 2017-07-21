@@ -234,6 +234,18 @@
     text-align: center;
     line-height: 50px;
     color: #999;
+    color: #007fff;
+    border: 1px solid #007fff;
+    width: 70%;
+    text-align: center;
+    background: #FFF;
+    line-height: 30px;
+    background: #FFF;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 10px;
+    display: block;
+    margin: auto;
 }
 .userorderinfoPage .evaluate{
     background: #FFF;
