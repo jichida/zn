@@ -109,7 +109,6 @@ export class Page extends Component {
             username:values.phonenumber,
             password:values.password,
         };
-
         this.props.dispatch(login_request(payload));
     }
     render(){

@@ -9,6 +9,7 @@ import WeuiTool from './tools/weuitool';
 import Login from './login/login.js';
 import Test from './test';
 import Index from './index';
+import Routermap from './routermap';
 
 import {
     Route,Redirect,
@@ -44,6 +45,7 @@ class AppRoot extends React.Component {
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/index" component={Index}/>
+                    <Route path="/routermap" component={Routermap}/>
                     <Route path="/routerdetail/:id" component={Routerdetail}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/mymessagedetail/:msgid" component={MessageDetail} />

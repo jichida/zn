@@ -29,7 +29,12 @@ export class Page extends Component {
     render() {
         return (
             <div className="pinchePage AppPage">
-                <NavBar back={true} title="路线详情" />
+                <NavBar back={true} title="路线详情" rightnav={[
+                    {icon : '../img/map.png',
+                    text : '路线地图',
+                    type : 'push',
+                    url : '/routermap'}
+                ]}/>
                 <div className="pinche">
                     <div className="time">2017-09-09 12:30</div>
                     <div className="city">

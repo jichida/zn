@@ -80,7 +80,7 @@
 }
  .pinche .line{
     height: 4px;
-    background: #0180ff;
+    background: #026277;
     flex-grow: 1;
     position: relative;
     margin: 0 20px;
@@ -89,7 +89,7 @@
     content: "";
     width: 0;
     height: 0;
-    border-bottom: 10px solid #0180ff;
+    border-bottom: 10px solid #026277;
     border-right: 10px solid transparent;
     position: absolute;
     right: -5px;
@@ -108,4 +108,11 @@
     color: #999;
     margin-right: 8px;
     font-size: 14px;
+}
+.pinchePage .nli span{
+    color: #026277;
+    font-size: 14px;
+}
+.pinchePage .iconBtn{
+    margin-right: -5px;
 }
