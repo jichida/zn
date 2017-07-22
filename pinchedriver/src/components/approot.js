@@ -8,7 +8,7 @@ import {carmap_setmapinited} from '../actions';
 import WeuiTool from './tools/weuitool';
 import Login from './login/login.js';
 import Test from './test';
-// import Test from './test';
+import Index from './index';
 
 import {
     Route,Redirect,
@@ -18,6 +18,7 @@ import '../newcss/common.css';
 import {requireAuthentication} from './requireauthentication';
 import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
+import Routerdetail from "./routerdetail";
 
 class AppRoot extends React.Component {
   componentWillMount() {
@@ -42,7 +43,8 @@ class AppRoot extends React.Component {
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
-                    <Route path="/index" component={Test}/>
+                    <Route path="/index" component={Index}/>
+                    <Route path="/routerdetail/:id" component={Routerdetail}/>
                     <Route path="/messagecenter" component={MessageCenter}/>
                     <Route path="/mymessagedetail/:msgid" component={MessageDetail} />
                 </Switch>

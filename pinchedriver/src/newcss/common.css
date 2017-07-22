@@ -47,11 +47,11 @@ input, textarea{
     border-radius: 6px;
 }
 .btn.Primary{
-    background: #3479e1;
+    background: #026277;
     color: #FFF;
 }
 .btn.Primary:active{
-    background: #2a6bce;
+    background: #064e5e;
 }
 .btn.Warning{
     background: #fe8802;

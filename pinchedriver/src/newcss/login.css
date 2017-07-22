@@ -52,12 +52,13 @@
 	background: #FFF;
 	border-radius: 8px;
 	height:44px;
-	margin-bottom: 10px;
 	align-items: center;
 	position: relative;
+	margin: 0 10%;
+	margin-bottom: 10px;
 }
 .loginPage .formvalidation.form_input {
-	margin: 0 10%;
+	
 	border-radius: 6px;
 	border: 1px solid #026277;
 }
@@ -107,7 +108,6 @@
 
 }
 .loginPage .btn.Primary{
-	background-color: #026277;
 	margin: 0 10%;
 	height: 44px;
 	line-height: 44px;
