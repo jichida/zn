@@ -44,11 +44,11 @@ class AppRoot extends React.Component {
                 <Switch>
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
-                    <Route path="/index" component={Index}/>
-                    <Route path="/routermap" component={Routermap}/>
-                    <Route path="/routerdetail/:id" component={Routerdetail}/>
-                    <Route path="/messagecenter" component={MessageCenter}/>
-                    <Route path="/mymessagedetail/:msgid" component={MessageDetail} />
+                    <Route path="/index" component={requireAuthentication(Index)}/>
+                    <Route path="/routermap" component={requireAuthentication(Routermap)}/>
+                    <Route path="/routerdetail/:id" component={requireAuthentication(Routerdetail)}/>
+                    <Route path="/messagecenter" component={requireAuthentication(MessageCenter)}/>
+                    <Route path="/mymessagedetail/:msgid" component={requireAuthentication(MessageDetail)} />
                 </Switch>
             </div>
         );
