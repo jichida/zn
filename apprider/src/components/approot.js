@@ -41,7 +41,7 @@ import {requireAuthentication} from './requireauthentication';
 import PincheQuery from './carpool/pinchequery.js';
 
 class AppRoot extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
         const script = document.createElement("script");
         script.src = "http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving";
         script.async = true;
@@ -52,6 +52,7 @@ class AppRoot extends React.Component {
             radius: 1000 //范围，默认：500
           });
           this.props.dispatch(carmap_setmapinited(true));
+          this.props.dispatch(getcurcity({}));
         }
         document.body.appendChild(script);
     }
