@@ -19,11 +19,11 @@ export const getcurrentlocationfn = (fncallback)=> {
               data.latitude = parseFloat(data.latitude);
             }
             locationsz = [data.longitude,data.latitude];
-            alert(`获取地理位置为:${JSON.stringify(locationsz)}`);
+            // alert(`获取地理位置为:${JSON.stringify(locationsz)}`);
             fncallback(locationsz);
         });
     }catch(e){
-      alert(`获取地理位置失败(getcurrentlocationfn)
+      alert(`0801获取地理位置失败-->(getcurrentlocationfn)
       ${JSON.stringify(e)}`);
         fncallback(locationsz);
     }

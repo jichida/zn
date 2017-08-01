@@ -32,7 +32,7 @@ let getcurrentpos_in=()=>{
 }
 
 export const getcurrentpos =()=> {
-  return retry(getcurrentpos_in,15,5000);
+  return retry(getcurrentpos_in,1500,5000);
 }
 
 let getcurrentpos_sz_in =()=> {
@@ -46,7 +46,7 @@ let getcurrentpos_sz_in =()=> {
 }
 
 export const getcurrentpos_sz =()=> {
-  return retry(getcurrentpos_sz_in,15,5000);
+  return retry(getcurrentpos_sz_in,1500,5000);
 }
 
 let getstringofdistance2 = (leftdistance)=>{
