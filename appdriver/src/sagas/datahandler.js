@@ -7,6 +7,7 @@ import {
 
 
     getabouthtml_request,
+    getabouthtml_result,
 
     loginsendauth_request,
     loginwithauth_request,
@@ -153,7 +154,8 @@ exports.recvmessagetoresultpair = {
   'serverpush_triporder':md_serverpush_triporder,
   'serverpush_triprequestandorder':md_serverpush_triprequestandorder,
   'updaterequeststatus_result':md_updaterequeststatus_result,
-  'canceltriprequestorder_result':md_canceltriprequestorder_result
+  'canceltriprequestorder_result':md_canceltriprequestorder_result,
+  'getabouthtml_result':getabouthtml_result,
 };
 
 //非验证发送接口

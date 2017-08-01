@@ -93,7 +93,7 @@ let RegisterForm = (props)=> {
                         type="checkbox"
                         labelinfo="我已经阅读并同意"
                         validate={[ ischecked ]}
-                        lnkurl="/"
+                        lnkurl={()=>{props.history.push("/about/driverservicerule")}}
                         lnktxt="中南出行协议"
                         />
                 </div>

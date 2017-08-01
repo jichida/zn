@@ -23,6 +23,7 @@ import Register from './register/index.js';
 import Register1 from './register/registerfillwizard';
 //首页
 import Index from './home/index';
+import About from './home/about';
 //出车
 import Outcar from './maps/outcar';
 //抢单
@@ -70,6 +71,7 @@ class AppRoot extends React.Component {
                     <Route exact path="/" component={()=>(<Redirect to="/index"/>)}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/findpwd" component={Findpwd}/>
+                    <Route path="/about/:keyname" component={About}/>
                     <Route path="/selrequest/:requestid" component={Caroverlayqd}/>
                     <Route path='/starttrip' component={Caroverlaystart} />
                     <Route path="/orderdetail/:triporderid" component={requireAuthentication(Orderdetail)}/>

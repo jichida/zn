@@ -15,10 +15,12 @@ import createcarwizard from './createcarwizard';
 import withdraw from './withdraw';
 import weui from './weui';
 import notifymessage from './messagecenter';
+import about from './about';
 
 import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
+        about,
         app,
         appui,
         car,

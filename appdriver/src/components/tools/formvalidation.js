@@ -325,7 +325,7 @@ let WeuiCheckboxValidation = (props) => {
 					
 				</span>
 			</label>
-			{!!lnktxt?(<a href={lnkurl} style={{fontSize:"14px",marginLeft:"-10px"}}>{lnktxt}</a>):""}
+			{!!lnktxt?(<a onClick={lnkurl} style={{fontSize:"13px",marginLeft:"-10px", display:"inline-block",cursor: "pointer"}}>{lnktxt}</a>):""}
 			{	touched &&
 		    	((error &&
 		    		<span
