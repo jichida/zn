@@ -322,9 +322,10 @@ let WeuiCheckboxValidation = (props) => {
 				<input { ...input } className="weui-agree__checkbox" type={type} />
 				<span className="weui-agree__text">
 					&nbsp;&nbsp;{labelinfo}
-					{!!lnktxt?(<a href={lnkurl}>{lnktxt}</a>):""}
+					
 				</span>
 			</label>
+			{!!lnktxt?(<a href={lnkurl} style={{fontSize:"14px",marginLeft:"-10px"}}>{lnktxt}</a>):""}
 			{	touched &&
 		    	((error &&
 		    		<span
