@@ -19,7 +19,7 @@ export const getcurrentlocationfn = (fncallback)=> {
               data.latitude = parseFloat(data.latitude);
             }
             locationsz = [data.longitude,data.latitude];
-            // alert(`获取地理位置为:${JSON.stringify(locationsz)}`);
+            alert(`获取地理位置为:${JSON.stringify(locationsz)}`);
             fncallback(locationsz);
         });
     }catch(e){
