@@ -52,7 +52,6 @@ class AppRoot extends React.Component {
             radius: 1000 //范围，默认：500
           });
           this.props.dispatch(carmap_setmapinited(true));
-          this.props.dispatch(getcurcity({}));
         }
         document.body.appendChild(script);
     }
