@@ -56,5 +56,6 @@ export const getcurrentlocationfn = (fncallback)=> {
     window.setTimeout(()=>{
         locationsz = getRandomLocation(32.0429300000,118.7780400000,300);
         fncallback(locationsz);
+        console.log(`0801获取地理位置`);
     },0);
 }

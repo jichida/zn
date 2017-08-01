@@ -32,6 +32,9 @@ let getcurcityfn =(loc)=> {
 export function* getcurcityflow(){//仅执行一次
   yield takeEvery(`${getcurcity}`, function*(action) {
     try{
+      while(!window.AMap){
+        call(delay, 500)
+      }
       const { curlocation, timeout } = yield race({
          curlocation: call(getcurrentpos),
          timeout: call(delay, 5000)

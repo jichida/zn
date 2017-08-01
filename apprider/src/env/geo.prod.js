@@ -22,7 +22,7 @@ export const getcurrentlocationfn = (fncallback)=> {
             fncallback(locationsz);
         });
     }catch(e){
-      alert(`获取地理位置失败(getcurrentlocationfn)
+      alert(`0801获取地理位置失败-->(getcurrentlocationfn)
       ${JSON.stringify(e)}`);
         fncallback(locationsz);
     }
