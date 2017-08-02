@@ -113,7 +113,7 @@ const UserdriverlistEdit = (props) => {
               <FormTab label="resources.userdriver.tabs.platformhukou">
               <TextInput label="户口登记机关名称" source="Platform_baseInfoDriver.DriverCensus" />
               <TextInput label="户口住址或长住地址" source="Platform_baseInfoDriver.DriverAddress" />
-              <TextInput label="驾驶员通信地址" source="Platform_baseInfoDriver.ContactAddress" />
+              <TextInput label="驾驶员通信地址" source="Platform_baseInfoDriver.DriverContactAddress" />
               <ImageField  label="驾驶员照片"  source="Platform_baseInfoDriver.PhotoldURL" addLabel={true}/>
               <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.Licenseld" />
               <ImageField  label="机动车驾驶证扫描件" source="Platform_baseInfoDriver.LicensePhotoldURL" addLabel={true}/>
@@ -124,8 +124,8 @@ const UserdriverlistEdit = (props) => {
               </FormTab>
               <FormTab label="resources.userdriver.tabs.platformtaxi">
               <BooleanInput label="是否出租汽车驾驶员" source="Platform_baseInfoDriver.TaxiDriver" defaultValue={false} />
-              <TextInput label="网络预约出租汽车驾驶员资格证号" source="Platform_baseInfoDriver.CertificateN0" />
-              <TextInput label="网络预约出租汽车驾驶员证发证机构" source="Platform_baseInfoDriver.NetworkCarIssueOrgamzatlOn" />
+              <TextInput label="网络预约出租汽车驾驶员资格证号" source="Platform_baseInfoDriver.CertificateNo" />
+              <TextInput label="网络预约出租汽车驾驶员证发证机构" source="Platform_baseInfoDriver.NetworkCarIssueOrganization" />
               <DateInput label="资格证发证日期" source="Platform_baseInfoDriver.NetworkCarIssueDate" />
               <DateInput label="初次领取资格证日期" source="Platform_baseInfoDriver.GetNetworkCarProofDate" />
               <DateInput label="资格证有效起始日期" source="Platform_baseInfoDriver.NetworkCarProofOn" />

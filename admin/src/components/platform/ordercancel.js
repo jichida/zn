@@ -27,7 +27,7 @@ const OrderCancelShow = (props) => (
            <DateField label="订单时间" source="OrderTime" showTime/>
            <DateField label="订单撤销时间" source="CancelTime" showTime/>
            <TextField label="撤销发起方	1.乘客.2.驾驶员3.平台公司" source="Operator" />
-           <TextField label="撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销" source="CancelTypecode" />
+           <TextField label="撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销" source="CancelTypeCode" />
            <TextField label="撤销或违约原因" source="CancelReason" />
            </SimpleShowLayout>
        </Show>
@@ -42,7 +42,7 @@ const OrderCancelList = (props) => (//
         <DateField label="订单时间" source="OrderTime" showTime/>
         <DateField label="订单撤销时间" source="CancelTime" showTime/>
         <TextField label="撤销发起方" source="Operator" />
-        <TextField label="撤销类型代码" source="CancelTypecode" />
+        <TextField label="撤销类型代码" source="CancelTypeCode" />
         <TextField label="撤销或违约原因" source="CancelReason" />
         <ShowButton />
         </Datagrid>

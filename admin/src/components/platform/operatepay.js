@@ -50,7 +50,7 @@ const OperatePayShow = (props) => (
            <TextField label="电子支付金额" source="LinePrice" />
            <TextField label="POS机支付机构" source="PosName" />
            <TextField label="POS机支付金额" source="PosPrice" />
-           <TextField label="优惠金额" source="BenfjtPrice" />
+           <TextField label="优惠金额" source="BenfitPrice" />
            <TextField label="预约服务费" source="BookTip" />
            <TextField label="附加费" source="PassengerTip" />
            <TextField label="乘坐价格" source="PeakUpPrice" />

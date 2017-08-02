@@ -38,7 +38,7 @@ const BaseInfoCompanyServiceShow = (props) => (
            <TextField label="服务机构名称"  source="ServiceName" />
            <TextField label="服务机构代码"  source="ServiceNo" />
            <TextField label="服务机构地址"  source="DetailAddress" />
-           <TextField label="服务机构负责人姓名"  source="ReponsibleName" />
+           <TextField label="服务机构负责人姓名"  source="ResponsibleName" />
            <TextField label="负责人联系电话"  source="ResponsiblePhone" />
            <TextField label="服务机构管理人姓名"  source="ManagerName" />
            <TextField label="管理人联系电话"  source="ManagerPhone" />
@@ -66,7 +66,7 @@ export const BaseInfoCompanyServiceEdit = (props) => (
             <TextInputEx label="服务机构名称"  source="ServiceName" />
             <TextInputEx label="服务机构代码"  source="ServiceNo" />
             <TextInputEx label="服务机构地址"  source="DetailAddress" />
-            <TextInputEx label="服务机构负责人姓名"  source="ReponsibleName" />
+            <TextInputEx label="服务机构负责人姓名"  source="ResponsibleName" />
             <TextInputEx label="负责人联系电话"  source="ResponsiblePhone" />
             <TextInputEx label="服务机构管理人姓名"  source="ManagerName" />
             <TextInputEx label="管理人联系电话"  source="ManagerPhone" />
