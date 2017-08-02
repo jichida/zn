@@ -54,7 +54,7 @@ const BaseInfoDriverCreate = (props) => (
            <FormTab label="resources.baseinfodriver.tabs.tab1">
            <TextInputEx  label="户口登记机关名称" source="DriverCensus" />
            <TextInputEx  label="户口住址或长住地址" source="DriverAddress" />
-           <TextInputEx  label="驾驶员通信地址" source="ContactAddress" />
+           <TextInputEx  label="驾驶员通信地址" source="DriverContactAddress" />
            <ImageInputUpload  label="驾驶员照片文件" source="PhotoldURL" />
            <TextInputEx  label="机动车驾驶证号" source="Licenseld" />
            <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoldURL" />
@@ -65,8 +65,8 @@ const BaseInfoDriverCreate = (props) => (
 
            <FormTab label="resources.baseinfodriver.tabs.tab2">
            <BooleanInput  label="是否出租汽车驾驶员" source="TaxiDriver" />
-           <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateN0" />
-           <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrgamzatlOn" />
+           <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateNo" />
+           <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrganization" />
            <DateInput  label="资格证发证日期" source="NetworkCarIssueDate" />
            <DateInput  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
            <DateInput  label="资格证有效起始日期" source="NetworkCarProofOn" />
@@ -129,7 +129,7 @@ const BaseInfoDriverEdit = (props) => {
             <FormTab label="resources.baseinfodriver.tabs.tab1">
             <TextInputEx  label="户口登记机关名称" source="DriverCensus" />
             <TextInputEx  label="户口住址或长住地址" source="DriverAddress" />
-            <TextInputEx  label="驾驶员通信地址" source="ContactAddress" />
+            <TextInputEx  label="驾驶员通信地址" source="DriverContactAddress" />
             <ImageInputUpload  label="驾驶员照片文件" source="PhotoldURL" />
             <TextInputEx  label="机动车驾驶证号" source="Licenseld" />
             <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoldURL" />
@@ -140,8 +140,8 @@ const BaseInfoDriverEdit = (props) => {
 
             <FormTab label="resources.baseinfodriver.tabs.tab2">
             <BooleanInput  label="是否出租汽车驾驶员" source="TaxiDriver" />
-            <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateN0" />
-            <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrgamzatlOn" />
+            <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateNo" />
+            <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrganization" />
             <DateInput  label="资格证发证日期" source="NetworkCarIssueDate" />
             <DateInput  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
             <DateInput  label="资格证有效起始日期" source="NetworkCarProofOn" />
