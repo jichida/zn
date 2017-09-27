@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { getmypincheroute_request, getmypincheroute_result, ui_showleftmenu } from '../actions';
+import { getmypincheroute_request, getmypincheroute_result, ui_showleftmenu,logout_result } from '../actions';
 import _ from "lodash";
 import NavBar from './tools/nav.js';
 import DatePicker from 'react-mobile-datepicker';
@@ -38,6 +38,9 @@ class Leftmenu extends React.Component {
                 <div className="menulist">
                     <div onClick={this.pagePush.bind(this, "/about/ridergroup")}>集团通讯录</div>
                     <div onClick={this.pagePush.bind(this, "/about/aboutus")}>关于我们</div>
+                    <br/>
+                    <div onClick={()=>{this.props.dispatch(logout_result());this.pagePush.bind(this, "/login")}} style={{borderTop: "1px solid #EEE"}}>退出登录</div>
+
                 </div>
                 </div>
                 <i onClick={()=>{this.props.dispatch(ui_showleftmenu(false));}}/>
