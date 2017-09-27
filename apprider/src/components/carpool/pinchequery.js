@@ -178,6 +178,7 @@ class PincheQuery extends React.Component {
 }
 
 const mapStateToProps = ({pinche}) => {
+    console.log(pinche);
     return {...pinche};
 }
 export default connect(
