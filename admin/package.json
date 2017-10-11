@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "admin-on-rest": "^1.1.0",
+    "admin-on-rest": "1.1.0",
     "antd": "^2.10.2",
     "aor-color-input": "^1.1.0",
     "aor-language-chinese": "^1.0.3",
@@ -15,7 +15,7 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-tagsinput": "^3.16.1",
-    "react-tap-event-plugin": "^2.0.1",
+    "react-tap-event-plugin": "2.0.1",
     "redux-form-schema": "0.0.3"
   },
   "devDependencies": {
