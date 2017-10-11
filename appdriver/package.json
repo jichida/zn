@@ -39,7 +39,7 @@
     "redux-devtools-log-monitor": "^1.2.0"
   },
   "scripts": {
-    "buildcp": "react-scripts build && cp -r build/. ../../backend/dist/appdriver && rm -R build",
+    "buildcp": "react-scripts build && cp -r build/. ../deploy/dist/appdriver && rm -R build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
