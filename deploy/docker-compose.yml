@@ -8,7 +8,7 @@ services:
       - ./srv:/app
       - ./dist:/dist
     environment:
-      - MONGO_URL=mongodb://192.168.0.1:27018/zhongnandb
+      - MONGO_URL=mongodb://172.17.0.1:27018/zhongnandb
       - listenport=3005
     links:
       - mongodb

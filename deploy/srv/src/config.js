@@ -2,7 +2,7 @@
 let config =  {
   secretkey:'zongnanchuxingkey',
   listenport:process.env.listenport||3004,
-  rooturl:process.env.rooturl || 'http://zn.com28.cn:3004',
+  rooturl:process.env.rooturl || 'http://zn.tczncx.com',
   issmsdebug:process.env.issmsdebug || false,
   publishdirtest:'../../../dist/test',
   publishdirrider:'../../../dist/apprider',
