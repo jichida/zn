@@ -32,6 +32,7 @@ class PicaDisposePhoto {
       width: newConfig.width,
       height: newConfig.height,
     }
+    console.log(`PicaDisposePhoto-->${JSON.stringify(newConfig.picaConfig)}`);
     this.Pica = require('pica/dist/pica')(newConfig.picaConfig)
   }
 
@@ -54,6 +55,7 @@ class PicaDisposePhoto {
   }
 
   disposePhotoWithFile(file, imgInfo = {}) {
+    console.log(`disposePhotoWithFile-->start`);
     return this.getImage(window.URL.createObjectURL(file))
       .then((img) => {
         window.URL.revokeObjectURL(img.src)
@@ -89,17 +91,19 @@ class PicaDisposePhoto {
         //返回图片信息
         imgInfo.width = canvas.width
         imgInfo.height = canvas.height
-
+        console.log(`start Pica resize-->start`);
         return this.Pica.resize(img, canvas, this.picaOptions)
       })
       .then(result => {
+        console.log(`start Pica toBlob-->start`);
         return this.Pica.toBlob(result, file.type, this.picaQuality)
       })
       // .then(blob => {
       //   return new File([ blob ], file.name, { type: file.type, lastModified: Date.now() })
       // })
       .catch(err => {
-        if (err) {
+        console.log(`catche Pica err-->start:${JSON.stringify(err.toString())}`);
+        if (!!err) {
           alert(err.toString())
         }
         throw "系统错误，可能原因：1.文件过大，系统内存太低 2.系统版本过低，不支持图片压缩"
