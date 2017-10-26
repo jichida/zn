@@ -15,7 +15,12 @@ class PicaDisposePhoto {
       width: -1,
       height: -1,
       picaQuality: 90,
-      picaConfig: { features: [ 'js', 'wasm', 'ww', 'cib' ] },
+      picaConfig: {
+        tile:1024,
+        idle:2000,
+        concurrency:1,
+        features: [  'js', 'wasm', 'ww'  ]
+      },
       picaOptions: {
         quality: 3,
         unsharpAmount: 80,
@@ -91,11 +96,11 @@ class PicaDisposePhoto {
         //返回图片信息
         imgInfo.width = canvas.width
         imgInfo.height = canvas.height
-        console.log(`start Pica resize-->start`);
+        console.log(`start Pica resize-->start:${JSON.stringify(this.picaOptions)}`);
         return this.Pica.resize(img, canvas, this.picaOptions)
       })
       .then(result => {
-        console.log(`start Pica toBlob-->start`);
+        console.log(`start Pica toBlob-->start${JSON.stringify(this.picaQuality)}`);
         return this.Pica.toBlob(result, file.type, this.picaQuality)
       })
       // .then(blob => {
