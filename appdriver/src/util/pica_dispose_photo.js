@@ -19,7 +19,7 @@ class PicaDisposePhoto {
         tile:1024,
         idle:2000,
         concurrency:1,
-        features: [  'js', 'wasm', 'ww'  ]
+        features: [  'js' ]
       },
       picaOptions: {
         quality: 3,
