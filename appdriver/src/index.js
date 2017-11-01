@@ -9,12 +9,12 @@ import {
 import {
   registerandroid
 } from './env/android';
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Root />,
     document.getElementById('root')
 );
 
-sagaMiddleware.run(rootSaga);
 registerandroid();
 postNotifyFromJPush(store.dispatch);
