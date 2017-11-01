@@ -27,7 +27,7 @@ export class Page extends React.Component {
     return (
       <div style={{
         width: '100%',
-        height: (window.innerHeight-92)+"px",
+        height: `${this.props.height}px`,
         display:'flex',
         justifyContent: 'center',
         alignItems: 'center',

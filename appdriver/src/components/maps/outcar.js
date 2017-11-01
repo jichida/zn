@@ -88,7 +88,7 @@ class Page extends Component {
                     {titleco}
                 </div>
                 <div className="mapcontent">
-                    <MapGaode ref='mapgaode' />
+                    <MapGaode ref='mapgaode' height={window.innerHeight-116} />
                     <div className="outcarControl">
                         <div
                           className={outcarexpand?"list show":"list"}
