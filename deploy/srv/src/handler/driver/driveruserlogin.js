@@ -100,12 +100,12 @@ let getdatafromuser =(user)=>{
     username: user.username,
     userid:user._id,
     approvalstatus:user.approvalstatus,
+    approvalrejectseason:user.approvalrejectseason,
     registertype:user.registertype,
     idcard:user.idcard,//身份证号<---
     bankname:user.bankname,//银行名字<---
     bankaccount:user.bankaccount,//银行账号<---
     huji:user.huji,//户籍
-    avatarURL:user.avatarURL,//司机头像
     PhotoandCarmanURL:user.PhotoandCarmanURL,//人车合影
     PhotoJiandukaURL:user.PhotoJiandukaURL,//监督卡照片
     PhotoServiceicenseURL:user.PhotoServiceicenseURL,//服务资格证
@@ -116,7 +116,7 @@ let getdatafromuser =(user)=>{
     defaultmycar:user.defaultmycar,
     Platform_baseInfoVehicleId:user.Platform_baseInfoVehicleId,
     Platform_baseInfoVehicle:user.Platform_baseInfoVehicle,
-    avatarURL:user.avatarURL|| config.defaultprofileimage,
+    avatarURL:user.avatarURL|| config.defaultprofileimage,//司机头像
   };
 }
 
@@ -211,7 +211,17 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
 
 }
 
-
+exports.getrealnameprofile = (socket,actiondata,ctx)=>{
+  let userModel = DBModels.UserDriverModel;
+  userModel.findOne({_id:ctx.userid},(err,user)=>{
+    if(!err && !!user){
+      socket.emit('getrealnameprofile_result',getdatafromuser(user));
+    }
+    else{
+      socket.emit('common_err',{err:'找不到该用户',type:'getrealnameprofile'});
+    }
+  });
+};
 
 exports.fillrealnameprofile = (socket,actiondata,ctx)=>{
   const saveDriverCar = require('./driverandcar.js');

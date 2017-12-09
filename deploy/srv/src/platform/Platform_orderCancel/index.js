@@ -9,7 +9,7 @@
  订单信息（阶段N)，程序获取
  */
 // let Platform_orderCancelSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//	是	数字型	F6	上车地点行政区划代码	见 GBjT 2260
 //     Orderld:String,	//	是	字符型	V64	订单编号
 //     OrderTime:Date,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
@@ -51,7 +51,7 @@ const reasonflag = [
 ];
 exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
     let orderCancelDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
         Orderld:triporder._id,
         OrderTime:util.gettimeformat(triporder.created_at),

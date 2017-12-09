@@ -25,6 +25,8 @@ const actiondatahandler = {
   'loginsendauth':userlogin.loginsendauth,
   'loginwithauth':userlogin.loginwithauth,
   'loginwithtoken':rideruserlogin.loginwithtoken,
+  'loginwithoauth':rideruserlogin.loginwithoauth,
+  'oauthbinduser':rideruserlogin.oauthbinduser,
 
   'logout':rideruserlogin.logout,
 

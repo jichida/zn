@@ -7,7 +7,7 @@
  程序获取，订单信息
  */
 // let Platform_operatePaySchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	网约车公司标识
+//     CompanyId:String,		//	是	字符型	V32	网约车公司标识
 //     Orderld:String,		//	是	字符型	V64	订单编号
 //     OnArea:Number,	//	是	数字型	F6	上车位置行政区划编号	见 GB/T 2260
 //     DriverName:String,		//	否	字符型	V64	机动车驾驶员姓名
@@ -63,7 +63,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOperatePay  = ({triporder})=> {
     //let WaitTime = triporder.getindate_at.
     let OperatePayDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Orderld:triporder._id,		//	是	字符型	V64	订单编号
         //OnArea:Number,	//	是	数字型	F6	上车位置行政区划编号	见 GB/T 2260
         DriverName:triporder.driverinfo.DriverName|| '',		//	否	字符型	V64	机动车驾驶员姓名

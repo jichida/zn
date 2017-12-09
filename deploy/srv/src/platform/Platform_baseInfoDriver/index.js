@@ -2,7 +2,7 @@
  * Created by wangxiaoqing on 2017/3/22.
  */
 // let Platform_baseInfoDriverAppSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//		是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， 见 GB/T 2260
 //     Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
 //     DriverPhone:String,	//	是	字符型	V32	驾驶员手机号

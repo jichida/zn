@@ -8,7 +8,7 @@
  程序获取，乘客评价信息;乘客-》评价
  */
 // let Platform_ratedPassengerSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Orderld:String,	//	是	字符型	V64	订单号
 //     EvaluateTime:Date,		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
 //     ServiceScore:Number,		//	是	数字型	VI 0	服务满意度	五分制
@@ -31,7 +31,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertRatedPassenger  = (actiondata)=> {
     let ratedPassengerDoc = {
-        Companyld:config.Companyld,	//	是	字符型	V32	公司标识
+        CompanyId:config.CompanyId,	//	是	字符型	V32	公司标识
         Orderld:actiondata.triporderid,	//	是	字符型	V64	订单号
         EvaluateTime:util.gettimeformat(new Date()),		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
         ServiceScore:actiondata.scoreservice,		//	是	数字型	VI 0	服务满意度	五分制

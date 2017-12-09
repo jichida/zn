@@ -7,7 +7,7 @@
  注册时候填
  */
 // let Platform_baseInfoPassengerSchema= new Schema({
-//     Companyld:String,	//		是	字符型V32	公司标识
+//     CompanyId:String,	//		是	字符型V32	公司标识
 //     RegisterDate:Date,//	  否	数字型	F8	注册日期	乘客在平台的注册日期YYYYMMDD
 //     PassengerPhone:String,	//	是	字符型	V32	乘客手机号
 //     PassengerName:String,	//	否	字符型	V64	乘客称谓
@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertBaseInfoPassenger  = (actiondata)=> {
     let baseInfoPassengerDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         RegisterDate:util.gettimeformat(actiondata.registerdate),
         PassengerPhone:actiondata.passgngerphone,
         PassengerName:actiondata.passengername,
@@ -49,7 +49,7 @@ exports.insertBaseInfoPassenger  = (actiondata)=> {
 
 exports.updateBaseInfoPassenger  = (actiondata)=> {
     let baseInfoPassengerDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         RegisterDate:util.gettimeformat(actiondata.registerdate),
         PassengerPhone:actiondata.passgngerphone,
         PassengerName:actiondata.passengername,

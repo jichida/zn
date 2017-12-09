@@ -221,3 +221,83 @@ exports.fillprofile = (socket,actiondata,ctx)=>{
     }
   });
 };
+
+
+
+exports.oauthbinduser = (socket,actiondata,ctx)=>{
+  let newUser = {};
+  if(actiondata.bindtype === 'qq'){
+    newUser.openidqq = actiondata.openid;
+  }
+  else if(actiondata.bindtype === 'weixin'){
+    newUser.openidweixin = actiondata.openid;
+  }
+  else{
+    socket.emit('common_err',{errmsg:'不支持该类型绑定',type:'oauthbinduser'});
+    return;
+  }
+  //以下逻辑待实现
+  // tryregisteruser(socket,actiondata,ctx,newUser,'oauthbinduser_err',(isok,user)=>{
+  //     if(isok){
+  //         setloginsuccess(socket,ctx,user);
+  //         socket.emit('oauthbinduser_result',{});
+  //      }
+  //     else{
+  //         hashPassword(actiondata.password, user.passwordsalt, (err, passwordHash)=> {
+  //         //验证才能通过！
+  //         if (passwordHash == user.passwordhash) {
+  //             let  updateduserobj = {};
+  //             if(actiondata.bindtype === 'qq'){
+  //               updateduserobj.openidqq = actiondata.openid;
+  //             }
+  //             else if(actiondata.bindtype === 'weixin'){
+  //               updateduserobj.openidweixin = actiondata.openid;
+  //             }
+  //             let userModel = DBModels.UserModel;
+  //             userModel.findOneAndUpdate({_id:user._id}, {$set:updateduserobj},{new: true},(err,result)=>{
+  //               if(!err && result){
+  //                   setloginsuccess(socket,ctx,result);
+  //                   socket.emit('oauthbinduser_result',{});
+  //               }
+  //             });
+  //         }
+  //         else{
+  //           socket.emit('common_err',{errmsg:'密码不对',type:'oauthbinduser'});
+  //         }
+  //       });
+  //      }
+  // });
+}
+
+exports.loginwithoauth = (socket,actiondata,ctx)=>{
+  //actiondata:bindtype:'qq,weixin',openid:'xxx'
+    let  queryuserobj = {};
+    if(actiondata.bindtype === 'qq'){
+      queryuserobj.openidqq = actiondata.openid;
+      if(!queryuserobj.openidqq){
+        socket.emit('common_err',{errmsg:'QQopenid不能为空',type:'login'});
+        return;
+      }
+    }
+    else if(actiondata.bindtype === 'weixin'){
+      queryuserobj.openidweixin = actiondata.openid;
+      if(!queryuserobj.openidweixin){
+        socket.emit('common_err',{errmsg:'微信openid不能为空',type:'login'});
+        return;
+      }
+    }
+    else{
+      socket.emit('common_err',{errmsg:'不支持该类型登录',type:'login'});
+      return;
+    }
+    let userModel = DBModels.UserRiderModel;
+    userModel.findOneAndUpdate(queryuserobj,
+      {updated_at:new Date()},{new: true},(err,result)=>{
+      if(!err && !!result){
+        setloginsuccess(socket,ctx,result);
+      }
+      else{
+        socket.emit('loginwithoauth_result',actiondata);
+      }
+    });
+};

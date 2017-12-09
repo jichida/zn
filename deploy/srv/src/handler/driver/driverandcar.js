@@ -10,7 +10,7 @@ let get_fnsavebaseinfodriver = (retdoc)=>{
   //以Platform_baseInfoDriver为主体，插入到Platform_baseInfoDriverModel,返回Platform_baseInfoDriverModel
   return (fncallback)=>{
       let baseInfoDriver = retdoc.Platform_baseInfoDriver || {};
-      baseInfoDriver.CompanyId = config.Companyld;
+      baseInfoDriver.CompanyId = config.CompanyId;
       baseInfoDriver.Address = config.Address;
       let dbplatformmodel = DBPlatformModels.Platform_baseInfoDriverModel;
       let baseInfoDriverid = retdoc.Platform_baseInfoDriverId;
@@ -50,7 +50,7 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
 
       let baseInfovehicle = retdoc.Platform_baseInfoVehicle || {};
       baseInfovehicle._id = baseinfovehicleid;
-      baseInfovehicle.CompanyId = config.Companyld;
+      baseInfovehicle.CompanyId = config.CompanyId;
       baseInfovehicle.Address = config.Address;
 
       console.log(`fnsavebaseinfovehicle:baseinfovehicleid:${baseinfovehicleid},mycarid:${mycarid}`);
@@ -82,7 +82,6 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
             _id:mycarid,
             creator:driveruserid,
             created_at:new Date(),
-            PhotoandCarmanURL:retdoc.PhotoandCarmanURL,//人车合影
             LicensePhotoldURL:retdoc.LicensePhotoldURL,//机动车驾驶证
             CarrunPhotoldURL:retdoc.CarrunPhotoldURL,//机动车行驶证
             Platform_baseInfoVehicleId:result._id,
@@ -92,6 +91,9 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
           dbcarmodel.findOneAndUpdate({_id:mycarid},{$set:cardata},{upsert:true,new:true},(err,result)=>{
             fncallback(err,result);
           });
+        }
+        else{
+          fncallback(err,null);
         }
     });
   }

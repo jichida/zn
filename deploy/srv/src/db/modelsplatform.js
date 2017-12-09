@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 admin设置
 */
 let Platform_baseInfoCompanySchema = new Schema({
-  Companyld:String,// Companyld	是	字符型 公司标
+  CompanyId:String,// CompanyId	是	字符型 公司标
   CompanyName:String,// CompanyName	是	字符型 公司名称
   Identifier:String,// Identifier	是	字符型  字符型V32 统一社会信用代码
   Address:Number,// Address	是	数字型注册地行政区划代码见GB/T 2260
@@ -35,8 +35,8 @@ Platform_baseInfoCompanySchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyStatSchema = new Schema({
-  Companyld:String,// Companyld	是	字符型	V32	公司标识	部统一分配
-  VehicleNum:Number,// Companyld	是	字符型	V32	公司标识	部统一分配
+  CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
+  VehicleNum:Number,// CompanyId	是	字符型	V32	公司标识	部统一分配
   DriverNum:Number,// DriverNum	是	数字型	V64	平台注册驾驶员数
   Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
   UpdateTime:Date,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
@@ -48,7 +48,7 @@ Platform_baseInfoCompanyStatSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyPaySchema = new Schema({
-  Companyld:String,// Companyld	是	字符型	V32	公司标识	部统一分配
+  CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
   PayName:String,// PayName	是	字符型	V256	银行或者非银行支付机构名称全称
   Payld:String,// Payld	是	字符型	V32	非银行支付机构支付业务许可证编号
   PayType:String,// PayType	是	字符型	V64	支付业务类型
@@ -66,7 +66,7 @@ Platform_baseInfoCompanyPaySchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyServiceSchema = new Schema({
-  Companyld:String,// Companyld	是	字符型	V32	公司标识
+  CompanyId:String,// CompanyId	是	字符型	V32	公司标识
   Address:Number,// Address	是	数字型	F6	行政区划代码	服务机构所在地的行政区 划，见 GB/T 2260
   ServiceName:String,// ServiceName	是	字符型	V128	服务机构名称
   ServiceNo:String,// ServiceNo	是	字符型	V64	服务机构代码
@@ -89,7 +89,7 @@ Platform_baseInfoCompanyServiceSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyPermitSchema = new Schema({
-  Companyld:String,// Companyld	是	字符型	V32	公司标识
+  CompanyId:String,// CompanyId	是	字符型	V32	公司标识
   Address:Number,// Address	是	数字型	F6	许可地行政区划代码	见 GB/T 2260
   Certificate:String,// Certificate	是	字符型	V64	网络预约出租汽车经营许可证号
   OperationArea:String,// OperationArea	是	字符型	V128	经营区域
@@ -109,7 +109,7 @@ Platform_baseInfoCompanyPermitSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyFareSchema = new Schema({
-  Companyld:String,
+  CompanyId:String,
   Address:Number,
   FareType:String,//	是	字符型	V16	运价类型编码	由网约车平台公司统一 编码，应确保唯一性
   FareTypeNote:String,//	否	字符型	V128	运价类型说明
@@ -145,7 +145,7 @@ Platform_baseInfoCompanyFareSchema.plugin(mongoosePaginate);
 admin设置（有可能app填）
 */
 let Platform_baseInfoVehicleSchema = new Schema({
-  Companyld:String,
+  CompanyId:String,
   Address:Number,
   VehicleNo:String,//	是	字符型	V32	车辆号牌
   PlateColor:String,//	是	字符型	V32	车牌颜色	见 J T/T 697. 7-2014 中5.6
@@ -195,7 +195,7 @@ Platform_baseInfoVehicleSchema.plugin(mongoosePaginate);
  admin设置
 */
 let Platform_baseInfoVehiclelnsuranceSchema = new Schema({
-  Companyld:String,// 公司标识一 37 一元素名称	必选	类型	长度	字段名称	描	述
+  CompanyId:String,// 公司标识一 37 一元素名称	必选	类型	长度	字段名称	描	述
   VehicleNo:String,//	是	字符型	V32	车辆号牌
   InsurCom:String,//	是	字符型	V64	保险公司名称
   InsurNum:String,//	是	字符型	V64	保险号
@@ -283,7 +283,7 @@ Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoDriverEducateSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//	是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， I见 GB/T 2260
   Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
   CourseName:String,	//	是	字符型	V64	驾驶员培训课程名称
@@ -301,7 +301,7 @@ app上报
 程序获取
 */
 let Platform_baseInfoDriverAppSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//		是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， 见 GB/T 2260
   Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
   DriverPhone:String,	//	是	字符型	V32	驾驶员手机号
@@ -319,7 +319,7 @@ Platform_baseInfoDriverAppSchema.plugin(mongoosePaginate);
 后台程序自动计算
 */
 let Platform_baseInfoDriverStatSchema= new Schema({
-  Companyld:String,	//		是	字符型V32	公司标识
+  CompanyId:String,	//		是	字符型V32	公司标识
   Address:Number,//	是数字型F6注册地行政区划代码车辆在平台的注册地， 见 GB/T2260
   Licenseld:String,	//		是	字符型V32	机动车驾驶证编号
   Cycle:Number,//	 是 数字型 F6统计周期统计周期按月 ，内容填 写统计月份 ，数据格式 YYYYMM
@@ -336,7 +336,7 @@ Platform_baseInfoDriverStatSchema.plugin(mongoosePaginate);
 注册时候填
 */
 let Platform_baseInfoPassengerSchema= new Schema({
-  Companyld:String,	//		是	字符型V32	公司标识
+  CompanyId:String,	//		是	字符型V32	公司标识
   RegisterDate:Date,//	  否	数字型	F8	注册日期	乘客在平台的注册日期YYYYMMDD
   PassengerPhone:String,	//	是	字符型	V32	乘客手机号
   PassengerName:String,	//	否	字符型	V64	乘客称谓
@@ -353,7 +353,7 @@ Platform_baseInfoPassengerSchema.plugin(mongoosePaginate);
 订单信息（阶段N)，程序获取
 */
 let Platform_orderCreateSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
   Orderld:String,	//	是	字符型	V64	订单编号
   DepartTime:Date,//	是	数字型	F14	预计用车时间	YYYYMMDDhhmmss
@@ -376,7 +376,7 @@ Platform_orderCreateSchema.plugin(mongoosePaginate);
 订单信息（阶段N)，程序获取
 */
 let Platform_orderMatchSchema= new Schema({
-  Companyld:String,	//	是	字符型	  V32	公司标识
+  CompanyId:String,	//	是	字符型	  V32	公司标识
   Address:Number,//	是	数字型	  F6	发起地行政区划代码	见 GB/T 2260
   Orderld:String,	//	是	字符型	  V64	订单编号
   Longitude:Number,//	否	数字型	VI0	车辆经度	单位 :1赞 10-6 度
@@ -396,7 +396,7 @@ Platform_orderMatchSchema.plugin(mongoosePaginate);
 订单信息（阶段N)，程序获取
 */
 let Platform_orderCancelSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//	是	数字型	F6	上车地点行政区划代码	见 GBjT 2260
   Orderld:String,	//	是	字符型	V64	订单编号
   OrderTime:Date,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
@@ -413,7 +413,7 @@ Platform_orderCancelSchema.plugin(mongoosePaginate);
 程序获取
 */
 let Platform_operateLoginSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
   VehicleNo:String,	//	是	字符型	V32	车辆号牌
   LoginTime:Date,//	是	数字型	F14	车辆经营上线时间	YYYYMMDDhhmmss
@@ -428,7 +428,7 @@ Platform_operateLoginSchema.plugin(mongoosePaginate);
 程序获取
 */
 let Platform_operateLogoutSchema= new Schema({
-  Companyld:String,		//是	字符型	V32	公司标识
+  CompanyId:String,		//是	字符型	V32	公司标识
   Licenseld:String,		//是	字符型	V32	机动车驾驶证 号
   VehicleNo:String,		//是	字符型 V32	车辆号牌
   LogoutTime:Number,	//是	数字型 F14	车辆经营下线时间 YYYYMMDDhhmm ss
@@ -442,7 +442,7 @@ Platform_operateLogoutSchema.plugin(mongoosePaginate);
 程序获取
 */
 let Platform_operateDepartSchema= new Schema({
-  Companyld:String,		//	是	字符型	V32	公司标识
+  CompanyId:String,		//	是	字符型	V32	公司标识
   Orderld:String,		//	是	字符型	V64	订单号
   Licenseld:String,		//	是	字符型	V32	机动车驾驶证号
   FareType:String,		//	是	字符型	V16	运价类型编码
@@ -460,7 +460,7 @@ Platform_operateDepartSchema.plugin(mongoosePaginate);
 程序获取
 */
 let Platform_operateArriveSchema= new Schema({
-  Companyld:String,		//	是	字符型	V32	公司标识
+  CompanyId:String,		//	是	字符型	V32	公司标识
   Orderld:String,		//	是	字符型	V64	订单号
   DestLongitude:Number,	//	是	数字型	V10	车辆到达经度	单位 :1祷 10-6 度
   DestLatitude:Number,	//	是	数字型	V10	车辆到达纬度	单位 :1铃 10-6 度
@@ -476,7 +476,7 @@ Platform_operateArriveSchema.plugin(mongoosePaginate);
 程序获取，订单信息
 */
 let Platform_operatePaySchema= new Schema({
-  Companyld:String,		//	是	字符型	V32	网约车公司标识
+  CompanyId:String,		//	是	字符型	V32	网约车公司标识
   Orderld:String,		//	是	字符型	V64	订单编号
   OnArea:Number,	//	是	数字型	F6	上车位置行政区划编号	见 GB/T 2260
   DriverName:String,		//	否	字符型	V64	机动车驾驶员姓名
@@ -524,7 +524,7 @@ Platform_operatePaySchema.plugin(mongoosePaginate);
 程序获取，司机定位信息，定时获取
 */
 let Platform_positionDriverSchema= new Schema({
-  Companyld:String,		//	是	字符型	V32	网约车公司标识
+  CompanyId:String,		//	是	字符型	V32	网约车公司标识
   Licenseld:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
   DriverRegionCode:Number,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
   VehicleNo:String,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
@@ -545,7 +545,7 @@ Platform_positionDriverSchema.plugin(mongoosePaginate);
 程序获取，车辆定位信息，定时获取
 */
 let Platform_positionVehicleSchema= new Schema({
-  Companyld:String,	//是	字符型	V32	公司标识
+  CompanyId:String,	//是	字符型	V32	公司标识
   VehicleNo:String,	//是	字符型	V32	车辆号牌
   VehicleRegionCode:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
   PositionTime:Date,		//是	数字型	 V14	定位时间	Unlxtlme
@@ -569,7 +569,7 @@ Platform_positionVehicleSchema.plugin(mongoosePaginate);
 程序获取，乘客评价信息;乘客-》评价
 */
 let Platform_ratedPassengerSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Orderld:String,	//	是	字符型	V64	订单号
   EvaluateTime:Date,		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
   ServiceScore:Number,		//	是	数字型	VI 0	服务满意度	五分制
@@ -585,7 +585,7 @@ Platform_ratedPassengerSchema.plugin(mongoosePaginate);
 程序获取，乘客投诉信息;乘客-》投诉
 */
 let Platform_ratedPassengerComplaintSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Orderld:String,	//	是	字符型	V64	订单号
   ComplaintTime:Date,		//	是	数字型	F14	投诉时间	YYYYMMDDhhmmss
   Detail:String,	//	是	字符型	V256	技诉内容
@@ -599,7 +599,7 @@ Platform_ratedPassengerComplaintSchema.plugin(mongoosePaginate);
 程序获取，驾驶员处罚信息接口
 */
 let Platform_ratedDriverPunishSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
   PunishTime:Date,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
   PunishReason:String,	//	否	字符型	V128	处罚原因
@@ -613,7 +613,7 @@ Platform_ratedDriverPunishSchema.plugin(mongoosePaginate);
 程序获取，驾驶员信誉信息
 */
 let Platform_ratedDriverSchema= new Schema({
-  Companyld:String,	//	是	字符型	V32	公司标识
+  CompanyId:String,	//	是	字符型	V32	公司标识
   Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
   Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制
   TestDate:Date,	//	是	数字型	  F8	服务质量信誉考核日 期	YYYYMMDD

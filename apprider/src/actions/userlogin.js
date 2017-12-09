@@ -20,3 +20,6 @@ export const logout_result = createAction('logout_result');
 export const serverpush_userbalance = createAction('serverpush_userbalance');
 export const queryuserbalance_request = createAction('queryuserbalance_request');
 export const queryuserbalance_result = createAction('queryuserbalance_result');
+
+export const loginwithoauth_request = createAction('loginwithoauth_request');
+export const loginwithoauth_result = createAction('loginwithoauth_result');

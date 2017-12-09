@@ -8,7 +8,7 @@
  程序获取，驾驶员处罚信息接口
  */
 // let Platform_ratedDriverPunishSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
 //     PunishTime:Date,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
 //     PunishReason:String,	//	否	字符型	V128	处罚原因
@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
     let ratedDriverPunishDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Licenseld:'',// 数据库中读取
         PunishTime:util.gettimeformat(triporder.updated_at),
         PunishReason:'',

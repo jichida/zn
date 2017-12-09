@@ -8,7 +8,7 @@
  程序获取，乘客投诉信息;乘客-》投诉
  */
 // let Platform_ratedPassengerComplaintSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Orderld:String,	//	是	字符型	V64	订单号
 //     ComplaintTime:Date,		//	是	数字型	F14	投诉时间	YYYYMMDDhhmmss
 //     Detail:String,	//	是	字符型	V256	技诉内容
@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertRatedPassengerComplaint  = (actiondata)=> {
     let ratedPassengerComplaintDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Orderld:actiondata.triporderid,// 数据库中读取
         ComplaintTime:util.gettimeformat(new Date()),
         Detail:actiondata.detail,

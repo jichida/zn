@@ -75,7 +75,7 @@ let getBaseInfoCompanyFareList = (param= {
  *
  * */
 // let Platform_baseInfoCompanyFareSchema = new Schema({
-//   Companyld:String,
+//   CompanyId:String,
 //   Address:Number,
 //   FareType:String,//	是	字符型	V16	运价类型编码	由网约车平台公司统一 编码，应确保唯一性
 //   FareTypeNote:String,//	否	字符型	V128	运价类型说明

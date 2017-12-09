@@ -5,9 +5,13 @@ import React, { Component } from 'react';
 import '../../../public/newcss/examine.css';
 import NavBar from '../tools/nav.js';
 import { connect } from 'react-redux';
-
+import {getrealnameprofile_request} from '../../actions';
 class Page extends Component {
     //未递交/待审核/审核中/已审核/已拒绝
+    componentWillMount () {
+      this.props.dispatch(getrealnameprofile_request({}));
+    }
+
     render() {
         const {approvalstatus,approvalrejectseason,history} = this.props;
         return (

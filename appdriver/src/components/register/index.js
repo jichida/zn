@@ -94,13 +94,13 @@ let RegisterForm = (props)=> {
                         labelinfo="我已经阅读并同意"
                         validate={[ ischecked ]}
                         lnkurl={()=>{props.history.push("/about/driverservicerule")}}
-                        lnktxt="中南出行协议"
+                        lnktxt="网约车协议"
                         />
                 </div>
             </FormUI>
             <div className="submitBtn">
                 <button className="btn Primary" onClick={handleSubmit}><span>下一步</span></button>
-                <a className="blue" onClick={handleLogin}>已有账号，去登录</a>
+                <a onClick={handleLogin}>已有账号，去登录</a>
             </div>
         </Form>
     );

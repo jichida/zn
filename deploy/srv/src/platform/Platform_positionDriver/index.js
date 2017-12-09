@@ -7,7 +7,7 @@
  程序获取，司机定位信息，定时获取
  */
 // let Platform_positionDriverSchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	网约车公司标识
+//     CompanyId:String,		//	是	字符型	V32	网约车公司标识
 //     Licenseld:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
 //     DriverRegionCode:Number,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
 //     VehicleNo:String,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
@@ -36,7 +36,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertPositionDriver  = (actiondata)=> {
     let positionDriverDoc = {
-        Companyld:config.Companyld,		//	是	字符型	V32	网约车公司标识
+        CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
         Licenseld:actiondata.licenseld,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
         DriverRegionCode:actiondata.riverregioncode,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
         VehicleNo:actiondata.vehicleno,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌

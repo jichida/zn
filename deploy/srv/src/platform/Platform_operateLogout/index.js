@@ -7,7 +7,7 @@
  程序获取
  */
 // let Platform_operateLogoutSchema= new Schema({
-//     Companyld:String,		//是	字符型	V32	公司标识
+//     CompanyId:String,		//是	字符型	V32	公司标识
 //     Licenseld:String,		//是	字符型	V32	机动车驾驶证 号
 //     VehicleNo:String,		//是	字符型 V32	车辆号牌
 //     LogoutTime:Number,	//是	数字型 F14	车辆经营下线时间 YYYYMMDDhhmm ss
@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOperateLogout  = (actiondata)=> {
     let operateLogoutDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Licenseld:actiondata.licenseld,
         VehicleNo:actiondata.vehicleno,
         LogoutTime:util.gettimeformat(new Date()),

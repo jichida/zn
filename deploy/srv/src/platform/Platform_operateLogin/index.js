@@ -8,7 +8,7 @@
  程序获取
  */
 // let Platform_operateLoginSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
 //     VehicleNo:String,	//	是	字符型	V32	车辆号牌
 //     LoginTime:Date,//	是	数字型	F14	车辆经营上线时间	YYYYMMDDhhmmss
@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOperateLogin  = (actiondata)=> {
     let operateLoginDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Licenseld:actiondata.licenseld,
         VehicleNo:actiondata.vehicleno,
         LoginTime:util.gettimeformat(new Date()),

@@ -5,7 +5,7 @@
  * Created by wangxiaoqing on 2017/3/21.
  */
 // let Platform_orderMatchSchema= new Schema({
-//     Companyld:String,	//	是	字符型	  V32	公司标识
+//     CompanyId:String,	//	是	字符型	  V32	公司标识
 //     Address:Number,//	是	数字型	  F6	发起地行政区划代码	见 GB/T 2260
 //     Orderld:String,	//	是	字符型	  V64	订单编号
 //     Longitude:Number,//	否	数字型	VI0	车辆经度	单位 :1赞 10-6 度
@@ -40,7 +40,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOrderMatch  = ({triprequest,triporder})=> {
     let orderMatchDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
         Orderld:triporder._id,
         Longitude:triprequest.driverlocation[0],

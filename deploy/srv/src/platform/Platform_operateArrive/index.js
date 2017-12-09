@@ -6,7 +6,7 @@
  程序获取
  */
 // let Platform_operateArriveSchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	公司标识
+//     CompanyId:String,		//	是	字符型	V32	公司标识
 //     Orderld:String,		//	是	字符型	V64	订单号
 //     DestLongitude:Number,	//	是	数字型	V10	车辆到达经度	单位 :1祷 10-6 度
 //     DestLatitude:Number,	//	是	数字型	V10	车辆到达纬度	单位 :1铃 10-6 度
@@ -31,7 +31,7 @@ exports.insertOperateArrive  = ({triprequest,triporder})=> {
     let DriveTime = (dateend - datestart)/1000;
 
     let operateArriveDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Orderld:triporder._id,
         Longitude:triporder.getofflocation[0],
         Latitude:triporder.getofflocation[1],

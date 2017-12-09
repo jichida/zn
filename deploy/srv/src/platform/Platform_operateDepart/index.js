@@ -6,7 +6,7 @@
  程序获取
  */
 // let Platform_operateDepartSchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	公司标识
+//     CompanyId:String,		//	是	字符型	V32	公司标识
 //     Orderld:String,		//	是	字符型	V64	订单号
 //     Licenseld:String,		//	是	字符型	V32	机动车驾驶证号
 //     FareType:String,		//	是	字符型	V16	运价类型编码
@@ -35,7 +35,7 @@ exports.insertOperateDepart  = ({triprequest,triporder})=> {
     // let DriveTime = (dateend - datestart)/1000;
 
     let operateDepartDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Orderld:triporder._id,
         Licenseld:'',//
         FareType:'',//

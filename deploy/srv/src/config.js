@@ -11,7 +11,7 @@ let config =  {
   uploaddir:'../../dist/uploader',
   uploadurl:'/uploader',
 
-  Companyld:'58a30c05061d53264c182029',
+  CompanyId:'58a30c05061d53264c182029',
   Address:213000,
 
   expRequestMinutes:200,//2分钟之内
@@ -38,10 +38,10 @@ config.setfaretypemap =  (faretypemap)=>{
   console.log(`setfaretypemap:${JSON.stringify(config.faretypemap )}`);
 };
 
-config.setcompanyandaddress =  (Companyld,Address)=>{
-  config.Companyld = Companyld;
+config.setcompanyandaddress =  (CompanyId,Address)=>{
+  config.CompanyId = CompanyId;
   config.Address = Address;
-  console.log(`setcompanyandaddress:${Companyld},===>${Address}`);
+  console.log(`setcompanyandaddress:${CompanyId},===>${Address}`);
 };
 
 

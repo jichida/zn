@@ -8,7 +8,7 @@
  程序获取，驾驶员信誉信息
  */
 // let Platform_ratedDriverSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
 //     Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制
 //     TestDate:Date,	//	是	数字型	  F8	服务质量信誉考核日 期	YYYYMMDD
@@ -30,7 +30,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertRatedDriver  = (actiondata)=> {
     let ratedDriverDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Licenseld:'',
         Level:0,
         TestDate:util.gettimeformat(triporder.updated_at),

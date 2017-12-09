@@ -83,7 +83,7 @@ let setconfigfile = ()=>{
     let dbModelCompany = DBPlatformModels.Platform_baseInfoCompanyModel;
     dbModelCompany.findOne({},(err,result)=>{
         if(!err && result){
-          config.setcompanyandaddress(result.Companyld,result.Address);
+          config.setcompanyandaddress(result.CompanyId,result.Address);
         }
     });
     //设置平台公司信息
@@ -106,7 +106,7 @@ let initplatform =()=>{
   //   dbModel.findOne({}, (err, entityempty)=> {
   //     if(!err && !entityempty) {
   //         entityempty = {
-  //           Companyld:config.Companyld
+  //           CompanyId:config.CompanyId
   //         };
   //         let entity = new dbModel(entityempty);
   //         entity.save((err)=> {
