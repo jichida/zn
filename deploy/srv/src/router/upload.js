@@ -1,5 +1,4 @@
 let DBModels = require('../db/models.js');
-let mongoose     = require('mongoose');
 let path = require('path');
 var fs = require('fs');
 const config = require('../config.js');

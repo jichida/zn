@@ -7,6 +7,7 @@ let PubSub = require('pubsub-js');
 const _ = require('lodash');
 const city = require('./util/city.js');
 let DBPlatformModels = require('./db/modelsplatform.js');
+let pwd = require('./util/pwd.js');
 
 let setRequestExpired = ()=>{
   let TripRequestModel = DBModels.TripRequestModel;
@@ -43,17 +44,24 @@ let setRequestExpired = ()=>{
 
 };
 
+
 let createadmin = ()=>{
-  let userModel = DBModels.UserAdminModel;
+  let userModel = mongoose.model('UserAdmin', DBModels.UserAdminSchema);
   userModel.findOne({username: 'admin'}, (err, adminuser)=> {
     if(!err && !adminuser) {
+        let passwordsalt = pwd.getsalt();
+        pwd.hashPassword('admin',passwordsalt,(err,passwordhash)=>{
+          if(!err){
         adminuser = {
           username:'admin',
-          password: 'admin'
+              passwordsalt,
+              passwordhash
         };
         let entity = new userModel(adminuser);
         entity.save((err)=> {
         });
+    }
+  });
     }
   });
 };

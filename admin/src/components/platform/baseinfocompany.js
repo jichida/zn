@@ -24,45 +24,19 @@ import {
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 
-import ShowPageOne from '../controls/singlelistpage.js';
+import ShowPageOne from '../singledocumentpage/index.js';
+
 // import ShowPage from '../controls/ShowPage.js';
 // import EditPage from '../controls/EditPage.js';
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
 
-const BaseInfoCompanyShow = (props) => (
-       <ShowPage title='resources.baseinfocompany.showpagename' {...props}>
-           <SimpleShowLayout>
-           <TextField label="公司标识"  source="Companyld" />
-           <TextField label="公司名称"  source="CompanyName" />
-           <TextField label="统一社会信用代码"  source="Identifier" />
-           <TextField label="数字型注册地行政区划代码"  source="Address" />
-           <TextField label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope" />
-           <TextField label="通信地址全称"  source="ContactAddress" />
-           <TextField label="经营业户经济类型"  source="EconomicType" />
-           <TextField label="注册资本（按照营业执照内容填写）"  source="RegCapital" />
-           <TextField label="法人代表姓名（按照营业执照内容填写）"  source="LegalName" />
-           <TextField label="法人代表身份证号"  source="LegalID" />
-           <TextField label="法人代表电话"  source="LegalPhone" />
-           <Titlewithimage label="法人代表" icon="LegalPhotoURL" name="LegalName" addLabel={true}/>
-           <TextField label="状态"  source="State" />
-           <DateField label="数据更新时间" source="UpdateTime" showTime />
-           </SimpleShowLayout>
-       </ShowPage>
-);
 
-export {BaseInfoCompanyShow};
-export const BaseInfoCompanyList = props => (
-    <ShowPageOne resource={props.resource} location={props.location}
-    ShowPage={BaseInfoCompanyShow}  hasEdit={true}/>
-);
-
-
-export const BaseInfoCompanyCreate = (props) => (
+ const BaseInfoCompanyCreate = (props) => (
        <Create {...props} title='resources.baseinfocompany.editpagename' >
        <SimpleForm>
-           <TextInputEx  label="公司标识" source="Companyld" />
+           <TextInputEx  label="公司标识" source="CompanyId" />
            <TextInputEx  label="公司名称" source="CompanyName" />
            <TextInputEx  label="统一社会信用代码" source="Identifier" />
            <SelectInput elStyle={{width:'100%'}} label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
@@ -112,10 +86,10 @@ export const BaseInfoCompanyCreate = (props) => (
        </Create>
 );
 
-export const BaseInfoCompanyEdit = (props) => (
+ const BaseInfoCompanyEdit = (props) => (
     <EditPage {...props} title='resources.baseinfocompany.editpagename'>
         <SimpleForm>
-            <TextInputEx  label="公司标识" source="Companyld" />
+            <TextInputEx  label="公司标识" source="CompanyId" />
             <TextInputEx  label="公司名称" source="CompanyName" />
             <TextInputEx  label="统一社会信用代码" source="Identifier" />
             <SelectInput elStyle={{width:'100%'}} label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
@@ -163,4 +137,9 @@ export const BaseInfoCompanyEdit = (props) => (
             <DateField label="数据更新时间" source="UpdateTime" showTime />
         </SimpleForm>
     </EditPage>
+);
+
+export const BaseInfoCompanyList = props => (
+    <ShowPageOne Edit={BaseInfoCompanyEdit} Create={BaseInfoCompanyCreate}
+    {...props}/>
 );

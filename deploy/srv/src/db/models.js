@@ -230,7 +230,8 @@ TripRequestSchema.plugin(mongoosePaginate);
 //拼车城市站点设置
 UserAdminSchema = new Schema({
   username:String,
-  password:String,
+  passwordhash: String,
+  passwordsalt: String,
   created_at: { type: Date, default:new Date()},
   updated_at: Date,
 });

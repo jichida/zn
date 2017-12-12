@@ -9,6 +9,7 @@ let middlewareauth = require('./middlewareauth.js');
 const platformaction = require('./action.js');
 const preaction = platformaction.preaction;
 const postaction = platformaction.postaction;
+const pwd = require('../util/pwd.js');
 
 let startmodule = (app)=>{
 
@@ -23,47 +24,49 @@ const DELETE = 'DELETE';
 // let defaultmiddlewareauth = (req,res,next)=>{
 //   next();
 // };
-app.post('/adminapi/adminauth',(req,res)=>{
-  let actiondata =   req.body;
+app.post('/adminauth',(req,res)=>{
+  const actiondata =   req.body;
   console.log("actiondata=>" + JSON.stringify(actiondata));
-  let userModel = mongoose.model('UserAdmin', DBModels.UserAdminSchema);
-  let passwordhashed = actiondata.password;
-  userModel.findOneAndUpdate({username:actiondata.username,password:passwordhashed},{updated_at:new Date()},
-  {new: true},(err,userEntity)=>{
-    console.log("userEntity err:" + JSON.stringify(err));
-    console.log("userEntity:" + JSON.stringify(userEntity));
-    if(!err && userEntity){
-      //logined
-      let token = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) +config.loginuserexptime,
-            _id:userEntity._id,
-            usertype:'admin',
-          },config.secretkey, {});
-      res.status(200).json({
-        loginsuccess:true,
-        token:token
-      });
-      // socket.emit('action', {type:'loginpage_setobj', data:{
-      //     submitting:false,
-      //     loginsuccess:true,
-      //     token:token
-      // }});
-      // socket.emit('action', {type:'apppage_setobj', data:{
-      //     showpop:true,
-      //     popmessage:'登录成功'
-      // }});
-    }
-    else{
+
+
+  const userModel = DBModels.UserAdminModel;
+  userModel.findOne({ username: actiondata.username }, (err, user)=> {
+    if (!!err) {
       res.status(200).json({
         loginsuccess:false,
+        err:'服务器内部错误'
       });
-      // socket.emit('action',{type:'loginpage_submitting',data:false});
-      // socket.emit('action', {type:'apppage_setobj', data:{
-      //   showpop:true,
-      //   popmessage:'登录失败'
-      // }});
+      return;
     }
-  });//end userModel.findOneAndUpdate
+    if (!user) {
+      res.status(200).json({
+        loginsuccess:false,
+        err:'用户找不到'
+      });
+      return;
+    }
+    pwd.checkPassword(user.passwordhash,user.passwordsalt,actiondata.password,(err,isloginsuccess)=>{
+      if(!err && isloginsuccess){
+        let token = jwt.sign({
+              exp: Math.floor(Date.now() / 1000) +config.loginuserexptime,
+              _id:user._id,
+              usertype:'adminuser',
+            },config.secretkey, {});
+        res.status(200).json({
+          loginsuccess:true,
+          token:token
+        });
+      }
+      else{
+        res.status(200).json({
+          loginsuccess:false,
+          err:'用户密码错误'
+        });
+      }
+    });
+  });
+
+
 });
 
 for(let keyname in dbs){
@@ -170,11 +173,17 @@ for(let keyname in dbs){
         else if(queryparam.type === GET_ONE){
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
           dbModel.findById(preupdateddata.query._id,(err,result)=>{
-            result = result.toJSON();
-            postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                console.log("GET_ONE result=>" + JSON.stringify(result));
-                res.status(200).json(result);
-            });
+            if(!err && !!result){
+              result = result.toJSON();
+              postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
+                  console.log("GET_ONE result=>" + JSON.stringify(result));
+                  res.status(200).json(result);
+              });
+            }
+            else{
+              console.log(`GET_ONE cannt find ${preupdateddata.query._id}`);
+            }
+
           });
         }
         else if(queryparam.type === GET_MANY){
