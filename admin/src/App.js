@@ -14,12 +14,14 @@ import Menu from './Menu';
 import CustomRoutes from './routes';
 import translations from './i18n';
 import restClient from './restClient';
+import singledocumentpage from './components/singledocumentpage/reducer';
+
 
 import {PricelistList,PricelistCreate,PricelistEdit,PricelistShow} from './components/carprices/index.js';
 import {AboutlistList,AboutlistEdit,AboutlistCreate} from './components/abouts/index.js';
 import {BuscarpoolList,BuscarpoolCreate,BuscarpoolEdit,BuscarpoolShow} from './components/pinche/index';
 import {TourbusinfolistList,TourbusinfolistCreate,TourbusinfolistEdit,TourbusinfolistShow} from './components/tourbusinfos/index.js';
-import {SystemconfigList,SystemconfigShow,SystemconfigEdit,SystemconfigCreate} from './components/systemconfig/index.js';
+import {SystemconfigList} from './components/systemconfig/index.js';
 
 import {MycouponlistList,MycouponlistCreate,MycouponlistEdit,MycouponlistShow} from './components/mycoupons/index.js';
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
@@ -28,10 +30,10 @@ import {UserriderlistList,UserriderlistEdit} from './components/userriders/index
 import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/index.js';
 
 //import fakeRestServer from './restServer';
-import {BaseInfoCompanyList,BaseInfoCompanyShow,BaseInfoCompanyEdit,BaseInfoCompanyCreate} from './components/platform/baseinfocompany.js';
-import {BaseInfoCompanyStatList,BaseInfoCompanyStatShow,BaseInfoCompanyStatCreate,BaseInfoCompanyStatEdit} from './components/platform/baseinfocompanystat.js';
-import {BaseInfoCompanyServiceList,BaseInfoCompanyServiceShow,BaseInfoCompanyServiceEdit} from './components/platform/baseinfocompanyservice.js';
-import {BaseInfoCompanyPermitList,BaseInfoCompanyPermitShow,BaseInfoCompanyPermitCreate,BaseInfoCompanyPermitEdit} from './components/platform/baseinfocompanypermit.js';
+import {BaseInfoCompanyList} from './components/platform/baseinfocompany.js';
+import {BaseInfoCompanyStatList} from './components/platform/baseinfocompanystat.js';
+import {BaseInfoCompanyServiceList} from './components/platform/baseinfocompanyservice.js';
+import {BaseInfoCompanyPermitList} from './components/platform/baseinfocompanypermit.js';
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow}  from './components/platform/baseinfocompanypay.js';
 import {BaseInfoCompanyFareList,BaseInfoCompanyFareCreate,BaseInfoCompanyFareEdit}  from './components/platform/baseinfocompanyfare.js';
 import {BaseInfoVehicleList,BaseInfoVehicleCreate,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
@@ -40,7 +42,7 @@ import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './compo
 import {BaseInfoDriverList,BaseInfoDriverCreate,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit,BaseInfoDriverEducateShow} from './components/platform/baseinfodrivereducate.js';
 import {BaseInfoDriverAppList,BaseInfoDriverAppShow} from './components/platform/baseinfodriverapp.js';
-import {BaseInfoDriverStatList,BaseInfoDriverStatShow} from './components/platform/baseinfodriverstat.js';
+import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
 import {BaseInfoPassengerList,BaseInfoPassengerShow} from './components/platform/baseinfopassenger.js';
 
 import {OrderCreateList,OrderCreateShow}  from './components/platform/ordercreate.js';
@@ -73,6 +75,7 @@ import {WithdrawcashlistList,WithdrawcashlistEdit} from './components/withdrawca
 import {UserdriverpincheCreate,UserdriverpincheEdit,UserdriverpincheList} from './components/userdriverpinche/index.js';
 import {UserriderloginlogList,UserdriverpincheloginlogList,UserdriverloginlogList} from './components/loginlog/index.js';
 
+
 class App extends Component {
 
     render() {
@@ -80,7 +83,7 @@ class App extends Component {
             <Admin
                 title="中南出行管理后台"
                 restClient={restClient}
-                customReducers={{ theme: themeReducer }}
+                customReducers={{ theme: themeReducer,singledocumentpage }}
                 customSagas={sagas}
                 customRoutes={CustomRoutes}
                 authClient={authClient}
@@ -90,26 +93,26 @@ class App extends Component {
                 locale="cn"
                 messages={translations}
             >
-            <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit} create={SystemconfigCreate} />
+            <Resource name="systemconfig" list={SystemconfigList} />
 
             <Resource name="carbrand" list={CarbrandlistList}  edit={CarbrandlistEdit} create={CarbrandlistCreate} remove={Delete} />
             <Resource name="carcolor" list={CarcolorlistList}  edit={CarcolorlistEdit} create={CarcolorlistCreate} remove={Delete} />
             <Resource name="carmodel" list={CarmodellistList}  edit={CarmodellistEdit} create={CarmodellistCreate} remove={Delete} />
             <Resource name="mycar" list={MycarList}  edit={MycarEdit} />
 
-            <Resource name="baseinfocompany" list={BaseInfoCompanyList} show={BaseInfoCompanyShow} edit={BaseInfoCompanyEdit} create={BaseInfoCompanyCreate}/>
-            <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList} show={BaseInfoCompanyServiceShow} edit={BaseInfoCompanyServiceEdit} />
-            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} show={BaseInfoCompanyStatShow} create={BaseInfoCompanyStatCreate} edit={BaseInfoCompanyStatEdit} />
-            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList} show={BaseInfoCompanyPermitShow} create={BaseInfoCompanyPermitCreate} edit={BaseInfoCompanyPermitEdit} />
+            <Resource name="baseinfocompany" list={BaseInfoCompanyList} />
+            <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}/>
+            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  />
+            <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
             <Resource name="baseinfovehicle" list={BaseInfoVehicleList} create={BaseInfoVehicleCreate}  edit={BaseInfoVehicleEdit}/>
             <Resource name="baseinfovehiclelnsurance" list={BaseInfoVehiclelnsuranceList} create={BaseInfoVehiclelnsuranceCreate}  edit={BaseInfoVehiclelnsuranceEdit}  show={BaseInfoVehiclelnsuranceShow} />
-            <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList}  show={BaseInfoVehicleTotalMileShow} />
+            <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList} create={BaseInfoDriverCreate}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  show={BaseInfoDriverEducateShow}  edit={BaseInfoDriverEducateEdit} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
-            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  show={BaseInfoDriverStatShow} />
+            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} show={BaseInfoPassengerShow} />
             <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
             <Resource name="ordermatch" list={OrderMatchList} show={OrderMatchShow} />
