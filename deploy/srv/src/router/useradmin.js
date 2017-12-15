@@ -127,7 +127,7 @@ for(let keyname in dbs){
           return item === 'undefined';
         });
         preupdateddata = {query:{ _id: { "$in" : ids} }};
-        actionname = 'paginate';
+        actionname = 'find';
       }
       else if(queryparam.type === GET_MANY_REFERENCE){
             query = {};
@@ -190,13 +190,13 @@ for(let keyname in dbs){
           //"params":{"ids":["58e71be6ef4e8d02eca6e0e8","58eaecea130f4809a747d2f8"]}}
           //{ data: {Record[]} }//remove 'undefined'
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
-          dbModel.paginate(preupdateddata.query, preupdateddata.options,(err,result)=>{
-
+          dbModel.find(preupdateddata.query,(err,result)=>{
             postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                console.log("GET_MANY result=>" + JSON.stringify(result));
-                res.status(200).json(result);
+              res.status(200)
+                  .json(result);
             });
           });
+
         }
         else if(queryparam.type === GET_MANY_REFERENCE){
           console.log("GET_MANY_REFERENCE 查询条件=>" + JSON.stringify(query));
