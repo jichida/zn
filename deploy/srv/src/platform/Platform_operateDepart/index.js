@@ -7,8 +7,8 @@
  */
 // let Platform_operateDepartSchema= new Schema({
 //     CompanyId:String,		//	是	字符型	V32	公司标识
-//     Orderld:String,		//	是	字符型	V64	订单号
-//     Licenseld:String,		//	是	字符型	V32	机动车驾驶证号
+//     OrderId:String,		//	是	字符型	V64	订单号
+//     LicenseId:String,		//	是	字符型	V32	机动车驾驶证号
 //     FareType:String,		//	是	字符型	V16	运价类型编码
 //     VehicleNo:String,		//	是	字符型	V32	车辆号牌
 //     DepLongitude:Number,	//	是	数字型	V10	车辆出发经度	单位 :1祷 10-6 度
@@ -36,8 +36,8 @@ exports.insertOperateDepart  = ({triprequest,triporder})=> {
 
     let operateDepartDoc = {
         CompanyId:config.CompanyId,
-        Orderld:triporder._id,
-        Licenseld:'',//
+        OrderId:triporder._id,
+        LicenseId:'',//
         FareType:'',//
         VehicleNo:'',//
         DepLongitude:triporder.getinlocation[0],

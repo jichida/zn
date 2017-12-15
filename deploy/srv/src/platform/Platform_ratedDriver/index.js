@@ -9,7 +9,7 @@
  */
 // let Platform_ratedDriverSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
 //     Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制
 //     TestDate:Date,	//	是	数字型	  F8	服务质量信誉考核日 期	YYYYMMDD
 //     TestDepartment:String,	//	是	字符型	V128 服务质量信誉考核机构
@@ -31,7 +31,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertRatedDriver  = (actiondata)=> {
     let ratedDriverDoc = {
         CompanyId:config.CompanyId,
-        Licenseld:'',
+        LicenseId:'',
         Level:0,
         TestDate:util.gettimeformat(triporder.updated_at),
         TestDepartment:'',

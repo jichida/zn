@@ -52,9 +52,9 @@ const MycarEdit = (props) => {
               </ReferenceField>
               <TextInputEx  label="车辆名字" source="name" />
               <ImageField  label="人车合影" source="PhotoandCarmanURL" addLabel={true}/>
-              <ImageField  label="机动车驾驶证" source="LicensePhotoldURL" addLabel={true}/>
+              <ImageField  label="机动车驾驶证" source="LicensePhotoIdURL" addLabel={true}/>
               <ImageField  label="城市" source="City" addLabel={true}/>
-              <ImageField  label="机动车行驶证" source="CarrunPhotoldURL" addLabel={true}/>
+              <ImageField  label="机动车行驶证" source="CarrunPhotoIdURL" addLabel={true}/>
               <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" addLabel={true} allowEmpty>
                 <TextField source="id" />
               </ReferenceField>
@@ -80,7 +80,7 @@ const MycarEdit = (props) => {
           </FormTab>
 
           <FormTab label="resources.baseinfovehicle.tabs.tab1">
-          <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.Engineld" />
+          <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.EngineId" />
           <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN" />
           <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" />
           <TextInputEx  label="牢辆燃料类型" source="Platform_baseInfoVehicle.FuelType" />
@@ -88,7 +88,7 @@ const MycarEdit = (props) => {
           </FormTab>
 
           <FormTab label="resources.baseinfovehicle.tabs.tab2">
-          <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoldURL" />
+          <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoIdURL" />
           <TextInputEx  label="运输证字号" source="Platform_baseInfoVehicle.Certificate" />
           <TextInputEx  label="车辆运输证发证机构" source="Platform_baseInfoVehicle.TransAgency" />
           <TextInputEx  label="车辆经营区域" source="Platform_baseInfoVehicle.TransArea" />
@@ -102,7 +102,7 @@ const MycarEdit = (props) => {
           ]} />
           <DateInput  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
           <TextInputEx  label="车辆年度审验状态?" source="Platform_baseInfoVehicle.CheckState" />
-          <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintld" />
+          <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintId" />
         </FormTab>
 
 

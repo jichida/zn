@@ -16,7 +16,7 @@ exports.operatelogin = (socket,actiondata,ctx)=>{
 
         let postdata = {
             vehicleno:ctx.driverinfo.VehicleNo,
-            licenseld:ctx.driverinfo.Licenseld,
+            licenseld:ctx.driverinfo.LicenseId,
             driverlocation:actiondata.driverlocation
         };
         //通知平台插入
@@ -34,7 +34,7 @@ exports.operatelogout = (socket,actiondata,ctx)=>{
     if(ctx.hasOwnProperty('licenseld')){
         let postdata = {
             vehicleno:ctx.driverinfo.VehicleNo,
-            licenseld:ctx.driverinfo.Licenseld,
+            licenseld:ctx.driverinfo.LicenseId,
             driverlocation:actiondata.driverlocation
         };
         //通知平台插入

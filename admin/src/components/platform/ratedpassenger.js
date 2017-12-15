@@ -23,7 +23,7 @@ const RatedPassengerTitle = ({ record }) => {
 const RatedPassengerShow = (props) => (
        <Show title={<RatedPassengerTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="订单号" source="Orderld" />
+           <TextField label="订单号" source="OrderId" />
            <DateField label="评价时间"  source="EvaluateTime" />
            <TextField label="服务满意度"  source="ServiceScore" />
            <TextField label="驾驶员满意度"  source="DriverScore" />
@@ -38,7 +38,7 @@ const RatedPassengerShow = (props) => (
 const RatedPassengerList = (props) => (//
      <List title="乘客评价信息列表" {...props} >
         <Datagrid>
-        <TextField label="订单号" source="Orderld" />
+        <TextField label="订单号" source="OrderId" />
         <DateField label="评价时间"  source="EvaluateTime" />
         <TextField label="服务满意度"  source="ServiceScore" />
         <TextField label="驾驶员满意度"  source="DriverScore" />

@@ -9,7 +9,7 @@
  */
 // let Platform_ratedPassengerSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
-//     Orderld:String,	//	是	字符型	V64	订单号
+//     OrderId:String,	//	是	字符型	V64	订单号
 //     EvaluateTime:Date,		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
 //     ServiceScore:Number,		//	是	数字型	VI 0	服务满意度	五分制
 //     DriverScore:Number,		//	否	数字型	VI0	驾驶员满意度	五分制
@@ -32,7 +32,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertRatedPassenger  = (actiondata)=> {
     let ratedPassengerDoc = {
         CompanyId:config.CompanyId,	//	是	字符型	V32	公司标识
-        Orderld:actiondata.triporderid,	//	是	字符型	V64	订单号
+        OrderId:actiondata.triporderid,	//	是	字符型	V64	订单号
         EvaluateTime:util.gettimeformat(new Date()),		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
         ServiceScore:actiondata.scoreservice,		//	是	数字型	VI 0	服务满意度	五分制
         DriverScore:0,		//	否	数字型	VI0	驾驶员满意度	五分制

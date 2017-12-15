@@ -9,7 +9,7 @@
  */
 // let Platform_operateLoginSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
 //     VehicleNo:String,	//	是	字符型	V32	车辆号牌
 //     LoginTime:Date,//	是	数字型	F14	车辆经营上线时间	YYYYMMDDhhmmss
 //     Longitude:Number,	//否	数字型	V10	上线经度	单位 :1 铃 10-6度
@@ -30,7 +30,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOperateLogin  = (actiondata)=> {
     let operateLoginDoc = {
         CompanyId:config.CompanyId,
-        Licenseld:actiondata.licenseld,
+        LicenseId:actiondata.licenseld,
         VehicleNo:actiondata.vehicleno,
         LoginTime:util.gettimeformat(new Date()),
         Longitude:actiondata.driverlocation[0],

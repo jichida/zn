@@ -4,7 +4,7 @@
 // let Platform_baseInfoDriverAppSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//		是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， 见 GB/T 2260
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
 //     DriverPhone:String,	//	是	字符型	V32	驾驶员手机号
 //     NetType:Number,//	 是	数字型	F1	手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
 //     AppVersion:String,	//	是	字符型	V32	使用APP版本号
@@ -43,7 +43,7 @@ exports.updateBaseInfoDriver  = (actiondata)=> {
 
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
-    eModel.findOneAndUpdate({Licenseld:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
+    eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
         if (!err && result) {
             platformaction.postaction('findOneAndUpdate','baseinfodriver',result);
         }

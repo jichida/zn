@@ -23,7 +23,7 @@ const RatedDriverTitle = ({ record }) => {
 const RatedDriverShow = (props) => (
        <Show title={<RatedDriverTitle />} {...props}>
            <SimpleShowLayout>
-               <TextField label="机动车驾驶证编号" source="Licenseld" />
+               <TextField label="机动车驾驶证编号" source="LicenseId" />
                <TextField label="服务质量信誉等级"  source="Level" />
                <TextField label="服务质量信誉考核日"  source="TestDate" />
                <TextField label="服务质量信誉考核机构"  source="TestDepartment" />
@@ -36,7 +36,7 @@ const RatedDriverShow = (props) => (
 const RatedDriverList = (props) => (//
      <List title="驾驶员信誉信息列表" {...props} >
         <Datagrid>
-        <TextField label="机动车驾驶证编号" source="Licenseld" />
+        <TextField label="机动车驾驶证编号" source="LicenseId" />
         <TextField label="服务质量信誉等级"  source="Level" />
         <TextField label="服务质量信誉考核日"  source="TestDate" />
         <TextField label="服务质量信誉考核机构"  source="TestDepartment" />

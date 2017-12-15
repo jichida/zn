@@ -37,7 +37,7 @@ const BaseInfoVehicleCreate = (props) => (
            </FormTab>
 
            <FormTab label="resources.baseinfovehicle.tabs.tab1">
-           <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Engineld" />
+           <TextInputEx  label="发动机号(以机动车行驶证为准)" source="EngineId" />
            <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="VIN" />
            <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="CertifyDateA" />
            <TextInputEx  label="牢辆燃料类型" source="FuelType" />
@@ -45,7 +45,7 @@ const BaseInfoVehicleCreate = (props) => (
            </FormTab>
 
            <FormTab label="resources.baseinfovehicle.tabs.tab2">
-           <ImageInputUpload  label="车辆照片" source="PhotoldURL" />
+           <ImageInputUpload  label="车辆照片" source="PhotoIdURL" />
            <TextInputEx  label="运输证字号" source="Certificate" />
            <TextInputEx  label="车辆运输证发证机构" source="TransAgency" />
            <TextInputEx  label="车辆经营区域" source="TransArea" />
@@ -59,7 +59,7 @@ const BaseInfoVehicleCreate = (props) => (
            ]} />
            <DateInput  label="车辆下次年检时间" source="NextFixDate" />
            <TextInputEx  label="车辆年度审验状态?" source="CheckState" />
-           <TextInputEx  label="发票打印设备序列号" source="FeePrintld" />
+           <TextInputEx  label="发票打印设备序列号" source="FeePrintId" />
          </FormTab>
 
 
@@ -98,7 +98,7 @@ const BaseInfoVehicleEdit = (props) => {
             </FormTab>
 
             <FormTab label="resources.baseinfovehicle.tabs.tab1">
-            <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Engineld" />
+            <TextInputEx  label="发动机号(以机动车行驶证为准)" source="EngineId" />
             <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="VIN" />
             <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="CertifyDateA" />
             <TextInputEx  label="牢辆燃料类型" source="FuelType" />
@@ -106,7 +106,7 @@ const BaseInfoVehicleEdit = (props) => {
             </FormTab>
 
             <FormTab label="resources.baseinfovehicle.tabs.tab2">
-            <ImageInputUpload  label="车辆照片" source="PhotoldURL" />
+            <ImageInputUpload  label="车辆照片" source="PhotoIdURL" />
             <TextInputEx  label="运输证字号" source="Certificate" />
             <TextInputEx  label="车辆运输证发证机构" source="TransAgency" />
             <TextInputEx  label="车辆经营区域" source="TransArea" />
@@ -120,7 +120,7 @@ const BaseInfoVehicleEdit = (props) => {
             ]} />
             <DateInput  label="车辆下次年检时间" source="NextFixDate" />
             <TextInputEx  label="车辆年度审验状态?" source="CheckState" />
-            <TextInputEx  label="发票打印设备序列号" source="FeePrintld" />
+            <TextInputEx  label="发票打印设备序列号" source="FeePrintId" />
           </FormTab>
 
 

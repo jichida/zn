@@ -48,7 +48,7 @@ class Page extends Component {
                         <div className="tit">驾驶证</div>
                         <FormUI>
                           <Field
-                            name="Licenseld"
+                            name="LicenseId"
                             InputTit="驾驶证号"
                             placeholder="请输入驾驶证号"
                             type="text"

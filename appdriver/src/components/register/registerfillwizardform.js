@@ -35,7 +35,7 @@ const getRegisterFillWizardForm = (Page)=>{
               CheckState:_.get(userlogin,'Platform_baseInfoVehicle.CheckState','已审'),
               Certificate:_.get(userlogin,'Platform_baseInfoVehicle.Certificate',''),
 
-              Licenseld:_.get(userlogin,'Platform_baseInfoDriver.Licenseld',''),
+              LicenseId:_.get(userlogin,'Platform_baseInfoDriver.LicenseId',''),
               LicensePhotoldURL:_.get(userlogin,'Platform_baseInfoDriver.LicensePhotoldURL',''),
               CarrunPhotoldURL:_.get(userlogin,'CarrunPhotoldURL',''),
               PhotoandCarmanURL:_.get(userlogin,'PhotoandCarmanURL',''),

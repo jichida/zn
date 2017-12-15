@@ -7,7 +7,7 @@
  */
 // let Platform_operateArriveSchema= new Schema({
 //     CompanyId:String,		//	是	字符型	V32	公司标识
-//     Orderld:String,		//	是	字符型	V64	订单号
+//     OrderId:String,		//	是	字符型	V64	订单号
 //     DestLongitude:Number,	//	是	数字型	V10	车辆到达经度	单位 :1祷 10-6 度
 //     DestLatitude:Number,	//	是	数字型	V10	车辆到达纬度	单位 :1铃 10-6 度
 //     Encrypt:Number,	//	是	数字型	F1	坐标加密标识	l:GCJ 一 02 测绘局标准2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准O.其他
@@ -32,7 +32,7 @@ exports.insertOperateArrive  = ({triprequest,triporder})=> {
 
     let operateArriveDoc = {
         CompanyId:config.CompanyId,
-        Orderld:triporder._id,
+        OrderId:triporder._id,
         Longitude:triporder.getofflocation[0],
         Latitude:triporder.getofflocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准

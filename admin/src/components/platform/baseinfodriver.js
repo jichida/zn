@@ -55,9 +55,9 @@ const BaseInfoDriverCreate = (props) => (
            <TextInputEx  label="户口登记机关名称" source="DriverCensus" />
            <TextInputEx  label="户口住址或长住地址" source="DriverAddress" />
            <TextInputEx  label="驾驶员通信地址" source="DriverContactAddress" />
-           <ImageInputUpload  label="驾驶员照片文件" source="PhotoldURL" />
-           <TextInputEx  label="机动车驾驶证号" source="Licenseld" />
-           <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoldURL" />
+           <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
+           <TextInputEx  label="机动车驾驶证号" source="LicenseId" />
+           <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
            <DateInput label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
            <DateInput label="驾驶证有效期限起" source="DriverLicenseOn" />
            <DateInput label="驾驶证有效期限止" source="DriverLicenseOff" />
@@ -130,9 +130,9 @@ const BaseInfoDriverEdit = (props) => {
             <TextInputEx  label="户口登记机关名称" source="DriverCensus" />
             <TextInputEx  label="户口住址或长住地址" source="DriverAddress" />
             <TextInputEx  label="驾驶员通信地址" source="DriverContactAddress" />
-            <ImageInputUpload  label="驾驶员照片文件" source="PhotoldURL" />
-            <TextInputEx  label="机动车驾驶证号" source="Licenseld" />
-            <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoldURL" />
+            <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
+            <TextInputEx  label="机动车驾驶证号" source="LicenseId" />
+            <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
             <DateInput label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
             <DateInput label="驾驶证有效期限起" source="DriverLicenseOn" />
             <DateInput label="驾驶证有效期限止" source="DriverLicenseOff" />
@@ -178,7 +178,7 @@ const BaseInfoDriverList = (props) => (//
         <TextField label="性别"  source="DriverGender" />
         <DateField label="出生日期"  source="DriverBirthday" />
         <TextField label="婚姻状况" source="DriverMaritalStatus" />
-        <TextField label="机动车驾驶证号" source="Licenseld" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="准驾车型" source="DriverType" />
         <EditButton />
         </Datagrid>

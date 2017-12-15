@@ -109,7 +109,7 @@ let getdatafromuser =(user)=>{
     PhotoandCarmanURL:user.PhotoandCarmanURL,//人车合影
     PhotoJiandukaURL:user.PhotoJiandukaURL,//监督卡照片
     PhotoServiceicenseURL:user.PhotoServiceicenseURL,//服务资格证
-    CarrunPhotoldURL:user.CarrunPhotoldURL,//机动车行驶证
+    CarrunPhotoIdURL:user.CarrunPhotoIdURL,//机动车行驶证
     Platform_baseInfoDriverId:user.Platform_baseInfoDriverId,
     Platform_baseInfoDriver:user.Platform_baseInfoDriver,
     balance:user.balance,
@@ -135,7 +135,7 @@ let setloginsuccess = (socket,ctx,user)=>{
       ctx.driverinfo = {
           avatarURL:user.avatarURL|| config.defaultprofileimage,
           //平台可能用到
-          Licenseld:user.Platform_baseInfoDriver.Licenseld,
+          LicenseId:user.Platform_baseInfoDriver.LicenseId,
           VehicleRegionCode:user.Platform_baseInfoVehicle.VehicleRegionCode,//车辆注册地
           //请求时用到
           PhotoandCarmanURL:user.PhotoandCarmanURL,//人车合影

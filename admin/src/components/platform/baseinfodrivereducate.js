@@ -20,7 +20,7 @@ const BaseInfoDriverEducatecreateTitle = ({ record }) => {
 const BaseInfoDriverEducateCreate = (props) => (
        <Create {...props} title={<BaseInfoDriverEducatecreateTitle />} >
            <SimpleForm>
-               <TextInputEx label="机动车驾驶证号" source="Licenseld" />
+               <TextInputEx label="机动车驾驶证号" source="LicenseId" />
                <TextInputEx label="驾驶员培训课程名称"  source="CourseName" />
                <DateInput label="培训课程日期"  source="CourseDate" />
                <TimePickerInput label="培训开始时间" source="StartTime" />
@@ -38,7 +38,7 @@ const BaseInfoDriverEducateTitle = ({ record }) => {
 const BaseInfoDriverEducateEdit = (props) => {
       return (<Edit title={<BaseInfoDriverEducateTitle />} {...props}>
           <SimpleForm>
-          <TextInputEx label="机动车驾驶证号" source="Licenseld" />
+          <TextInputEx label="机动车驾驶证号" source="LicenseId" />
           <TextInputEx label="驾驶员培训课程名称"  source="CourseName" />
           <DateInput label="培训课程日期"  source="CourseDate" />
           <TimePickerInput label="培训开始时间" source="StartTime" />
@@ -54,7 +54,7 @@ const BaseInfoDriverEducateShow = (props) => (
        <Show title={<BaseInfoDriverEducateTitle />} {...props}>
            <SimpleShowLayout>
                <TextField source="id" />
-               <TextField label="机动车驾驶证号" source="Licenseld" />
+               <TextField label="机动车驾驶证号" source="LicenseId" />
                <TextField label="驾驶员培训课程名称"  source="CourseName" />
                <DateField label="培训课程日期"  source="CourseDate" />
                <DateField label="培训开始时间" source="StartTime" showTime/>
@@ -69,7 +69,7 @@ const BaseInfoDriverEducateShow = (props) => (
 const BaseInfoDriverEducateList = (props) => (//
      <List title="驾驶员培训信息列表" {...props} >
         <Datagrid>
-        <TextField label="机动车驾驶证号" source="Licenseld" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="驾驶员培训课程名称"  source="CourseName" />
         <TextField label="培训课程日期"  source="CourseDate" />
         <DateField label="培训开始时间" source="StartTime" />

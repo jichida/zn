@@ -93,7 +93,7 @@ const UserdriverlistEdit = (props) => {
               <ImageInputUpload  label="人车合影" source="PhotoandCarmanURL" />
               <ImageInputUpload  label="监督卡照片" source="PhotoJiandukaURL" />
               <ImageInputUpload  label="服务资格证" source="PhotoServiceicenseURL" />
-              <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoldURL" />
+              <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoIdURL" />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.platformdriverinfo">
               <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" />
@@ -114,9 +114,9 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="户口登记机关名称" source="Platform_baseInfoDriver.DriverCensus" />
               <TextInput label="户口住址或长住地址" source="Platform_baseInfoDriver.DriverAddress" />
               <TextInput label="驾驶员通信地址" source="Platform_baseInfoDriver.DriverContactAddress" />
-              <ImageField  label="驾驶员照片"  source="Platform_baseInfoDriver.PhotoldURL" addLabel={true}/>
-              <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.Licenseld" />
-              <ImageField  label="机动车驾驶证扫描件" source="Platform_baseInfoDriver.LicensePhotoldURL" addLabel={true}/>
+              <ImageField  label="驾驶员照片"  source="Platform_baseInfoDriver.PhotoIdURL" addLabel={true}/>
+              <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.LicenseId" />
+              <ImageField  label="机动车驾驶证扫描件" source="Platform_baseInfoDriver.LicensePhotoIdURL" addLabel={true}/>
               <TextInput label="准驾车型" source="Platform_baseInfoDriver.DriverType" />
               <DateInput label="初次领取驾驶证日期" source="Platform_baseInfoDriver.GetDriverLicenseDate" />
               <DateInput label="驾驶证有效期限起" source="Platform_baseInfoDriver.DriverLicenseOn" />
@@ -158,12 +158,12 @@ const UserdriverlistEdit = (props) => {
               <TextInputEx  label="车辆类型" source="Platform_baseInfoVehicle.VehicleType" />
               <TextInputEx  label="车辆所有人(应与《机动车登记证书》所注明的车辆所有人一致)" source="Platform_baseInfoVehicle.OwnerName" />
               <TextInputEx  label="车身颜色" source="Platform_baseInfoVehicle.VehicleColor" />
-              <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.Engineld" />
+              <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.EngineId" />
               <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN" />
               <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" />
               <TextInputEx  label="牢辆燃料类型" source="Platform_baseInfoVehicle.FuelType" />
               <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace" />
-              <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoldURL" />
+              <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoIdURL" />
               <TextInputEx  label="运输证字号" source="Platform_baseInfoVehicle.Certificate" />
               <TextInputEx  label="车辆运输证发证机构" source="Platform_baseInfoVehicle.TransAgency" />
               <TextInputEx  label="车辆经营区域" source="Platform_baseInfoVehicle.TransArea" />
@@ -177,7 +177,7 @@ const UserdriverlistEdit = (props) => {
               ]} />
               <DateInput  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
               <TextInputEx  label="车辆年度审验状态" source="Platform_baseInfoVehicle.CheckState" />
-              <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintld" />
+              <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintId" />
               <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand" />
               <TextInputEx  label="卫星定位装置型号" source="Platform_baseInfoVehicle.GPSModel" />
               <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" />

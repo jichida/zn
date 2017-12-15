@@ -9,7 +9,7 @@
  */
 // let Platform_ratedDriverPunishSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
 //     PunishTime:Date,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
 //     PunishReason:String,	//	否	字符型	V128	处罚原因
 //     PunishResult:String,	//	是	字符型	V128	处罚结果
@@ -30,7 +30,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
     let ratedDriverPunishDoc = {
         CompanyId:config.CompanyId,
-        Licenseld:'',// 数据库中读取
+        LicenseId:'',// 数据库中读取
         PunishTime:util.gettimeformat(triporder.updated_at),
         PunishReason:'',
         PunishResult:'',

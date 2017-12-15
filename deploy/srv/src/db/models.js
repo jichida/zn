@@ -83,7 +83,7 @@ let UserDriverSchema = new Schema({
     PhotoandCarmanURL:String,//人车合影
     PhotoJiandukaURL:String,//监督卡照片
     PhotoServiceicenseURL:String,//服务资格证
-    CarrunPhotoldURL:String,//机动车行驶证
+    CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
     Platform_baseInfoDriver:{
         CompanyId:String,	//是	字符型	V32	公司标识
@@ -102,10 +102,10 @@ let UserDriverSchema = new Schema({
         DriverCensus:String,	//	否	字符型	V256	户口登记机关名称
         DriverAddress:String,	//	否	字符型	V256	户口住址或长住地址 阶iv町
         DriverContactAddress:String,	//<---	是	字符型	V256	驾驶员通信地址
-        Photold:String,	//	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
-        PhotoldURL:String,	//<---	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
-        Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
-        LicensePhotoldURL:String,	//<---	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
+        PhotoId:String,	//	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
+        PhotoIdURL:String,	//<---	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
+        LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
+        LicensePhotoIdURL:String,	//<---	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
         DriverType:String,	//<---	否	字符型	V16	准驾车型见 JT/T 697. 7-2014中 5. 16
         GetDriverLicenseDate:Date,//<---	是 数字型 F8 初次领取驾驶证日期 YYYYMMDD
         DriverLicenseOn:Date,//	 是 数字型  F8  驾驶证有效期限起  YYYYMMDD
@@ -147,14 +147,14 @@ let UserDriverSchema = new Schema({
       OwnerName:String,//	是	字符型	V64	车辆所有人	应与《机动车登记证书》所注明的车辆所有人一致
       VehicleColor:String,//	是	字符型	V32	车身颜色
 
-      Engineld:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
+      EngineId:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
       VIN:String,//	是	字符型	F17	车辆VIN码	以机动车行驶证为准
       CertifyDateA:Date,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
       FuelType:String,//	是	字符型	V32	牢辆燃料类型	见 JT/T697. 7-2014  中4. 1.4. 15
       EngineDisplace:String,//	是	字符型	V32	发动机排量	单位 :毫升
 
-      Photold:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
-      PhotoldURL:String,//<---	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoId:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoIdURL:String,//<---	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
       Certificate:String,//<---	否	字符型	V64	运输证字号	见 JT/T  415-2006  中5. 4.1，地市字别可包含三个汉字
       TransAgency:String,//	是	字符型	V256	车辆运输证发证机构	全称
       TransArea:String,//	是	字符型	V256	车辆经营区域
@@ -164,7 +164,7 @@ let UserDriverSchema = new Schema({
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
       NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<---	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
-      FeePrintld:String,//	是	字符型	V32	发票打印设备序列号
+      FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号
@@ -302,7 +302,7 @@ let TripOrderSchema = new Schema({
       RiderName:String,//乘客姓别
     },
     driverinfo:{
-      Licenseld:String,	//驾驶证号
+      LicenseId:String,	//驾驶证号
       avatarURL:{ type: String, default: config.defaultprofileimage },
       DriverName:String,//司机名
       DriverPhone:String,//司机电话
@@ -498,9 +498,9 @@ let MycarSchema = new Schema({
     approvalstatus:{type:String,default:'待审核'},//未递交/待审核/审核中/已审核/已拒绝
 
     PhotoandCarmanURL:String,//人车合影
-  	LicensePhotoldURL:String,//机动车驾驶证
+  	LicensePhotoIdURL:String,//机动车驾驶证
   	City:String,//<----
-  	CarrunPhotoldURL:String,//机动车行驶证
+  	CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
     Platform_baseInfoVehicle:{
       VehicleNo:String,//<----	是	字符型	V32	车辆号牌
@@ -512,14 +512,14 @@ let MycarSchema = new Schema({
       OwnerName:String,//<----	是	字符型	V64	车辆所有人	应与《机动车登记证书》所注明的车辆所有人一致
       VehicleColor:String,//	是	字符型	V32	车身颜色
 
-      Engineld:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
+      EngineId:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
       VIN:String,//	是	字符型	F17	车辆VIN码	以机动车行驶证为准
       CertifyDateA:Date,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
       FuelType:String,//	是	字符型	V32	牢辆燃料类型	见 JT/T697. 7-2014  中4. 1.4. 15
       EngineDisplace:String,//	是	字符型	V32	发动机排量	单位 :毫升
 
-      Photold:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
-      PhotoldURL:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoId:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoIdURL:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
       Certificate:String,//<----	否	字符型	V64	运输证字号	见 JT/T  415-2006  中5. 4.1，地市字别可包含三个汉字
       TransAgency:String,//	是	字符型	V256	车辆运输证发证机构	全称
       TransArea:String,//	是	字符型	V256	车辆经营区域
@@ -529,7 +529,7 @@ let MycarSchema = new Schema({
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
       NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<----	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
-      FeePrintld:String,//	是	字符型	V32	发票打印设备序列号
+      FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号

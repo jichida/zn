@@ -11,7 +11,7 @@
 // let Platform_orderCancelSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//	是	数字型	F6	上车地点行政区划代码	见 GBjT 2260
-//     Orderld:String,	//	是	字符型	V64	订单编号
+//     OrderId:String,	//	是	字符型	V64	订单编号
 //     OrderTime:Date,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
 //     CancelTime:Date,//	是	数字型	F14	订单撤销时间	YYYYMMDDhhmmss
 //     Operator:Number,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
@@ -53,7 +53,7 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
-        Orderld:triporder._id,
+        OrderId:triporder._id,
         OrderTime:util.gettimeformat(triporder.created_at),
         CancelTime:util.gettimeformat(triporder.updated_at),
         Operator:1,//撤销发起方	1.乘客2:驾驶员3 .平台公司

@@ -7,7 +7,7 @@
 // let Platform_orderCreateSchema= new Schema({
 //     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
-//     Orderld:String,	//	是	字符型	V64	订单编号
+//     OrderId:String,	//	是	字符型	V64	订单编号
 //     DepartTime:Date,//	是	数字型	F14	预计用车时间	YYYYMMDDhhmmss
 //     OrderTime:Date,//	是	数字型F14	订单发起时间 YYYYMMDDhhmmss
 //     PassengerNote:String,	//	否	字符型V128	乘客备注
@@ -48,7 +48,7 @@ exports.insertOrderCreate  = ({triprequest,triporder})=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
-        Orderld:triporder._id,
+        OrderId:triporder._id,
         DepartTime:triprequest.isrealtime?util.gettimeformat(triprequest.created_at):util.gettimeformat(triprequest.dated_at),
         OrderTime:util.gettimeformat(triporder.created_at),
         PassengerNote:'',

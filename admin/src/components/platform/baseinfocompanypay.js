@@ -21,7 +21,7 @@ const BaseInfoCompanyPayCreate = (props) => (
        <Create {...props} title={<BaseInfoCompanyPaycreateTitle />} >
            <SimpleForm>
                <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" />
-               <TextInputEx label="非银行支付机构支付业务许可证编号"  source="Payld" />
+               <TextInputEx label="非银行支付机构支付业务许可证编号"  source="PayId" />
                <TextInputEx label="支付业务类型"  source="PayType" />
                <TextInputEx label="业务覆盖范围"  source="PayScope" />
                <TextInputEx label="备付金存管银行全称" source="PrepareBank" />
@@ -39,7 +39,7 @@ const BaseInfoCompanyPayEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyPayeditTitle />} {...props}>
           <SimpleForm>
             <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" />
-            <TextInputEx label="非银行支付机构支付业务许可证编号"  source="Payld" />
+            <TextInputEx label="非银行支付机构支付业务许可证编号"  source="PayId" />
             <TextInputEx label="支付业务类型"  source="PayType" />
             <TextInputEx label="业务覆盖范围"  source="PayScope" />
             <TextInputEx label="备付金存管银行全称" source="PrepareBank" />
@@ -58,7 +58,7 @@ const BaseInfoCompanyPayShow = (props) => (
        <Show title={<BaseInfoCompanyPayshowTitle />} {...props}>
            <SimpleShowLayout>
              <TextField label="支付机构名称全称" source="PayName" />
-             <TextField label="许可证编号"  source="Payld" />
+             <TextField label="许可证编号"  source="PayId" />
              <TextField label="支付业务类型"  source="PayType" />
              <TextField label="范围"  source="PayScope" />
              <TextField label="备付金存管银行全称" source="PrepareBank" />
@@ -73,7 +73,7 @@ const BaseInfoCompanyPayList = (props) => (//
      <List title="支付信息列表" {...props} >
         <Datagrid>
         <TextField label="支付机构名称全称" source="PayName" />
-        <TextField label="许可证编号"  source="Payld" />
+        <TextField label="许可证编号"  source="PayId" />
         <TextField label="支付业务类型"  source="PayType" />
         <TextField label="范围"  source="PayScope" />
         <TextField label="备付金存管银行全称" source="PrepareBank" />

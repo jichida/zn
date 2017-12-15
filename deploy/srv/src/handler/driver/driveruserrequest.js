@@ -127,7 +127,7 @@ exports.sendcurlocationtoserver = (socket,actiondata,ctx)=>{
     //===========插入平台的处理===========
         let postdata = {
               vehicleno: ctx.driverinfo.VehicleNo,
-              licenseld: ctx.driverinfo.Licenseld,
+              licenseld: ctx.driverinfo.LicenseId,
               vehicleregioncode:ctx.driverinfo.VehicleRegionCode,
               riverregioncode:actiondata.DriverRegionCode,//注:DriverRegionCode由参数发送过来<--------------------------------
               driverlocation: actiondata.driverlocation,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶

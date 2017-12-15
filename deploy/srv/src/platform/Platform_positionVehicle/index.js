@@ -21,7 +21,7 @@
 //     WarnStatus:Number,		//	否	数字型	V10	预警状态	参考 JT/T808
 //     VehStatus:Number,		//	否	数字型	V10	车辆状态	参考 JT/T808
 //     BizStatus:Number,		//	否	数字型	V10	营运状态	1.载客2 :接单3 :空驶  4 .停运
-//     Orderld:String,	//是	字符型	V64	订单编号	非营运状态下填 "0"
+//     OrderId:String,	//是	字符型	V64	订单编号	非营运状态下填 "0"
 // });
 // Platform_positionVehicleSchema.plugin(mongoosePaginate);
 
@@ -53,7 +53,7 @@ exports.insertPositionVehicle  = (actiondata)=> {
         WarnStatus:0,		//	否	数字型	V10	预警状态	参考 JT/T808
         VehStatus:0,		//	否	数字型	V10	车辆状态	参考 JT/T808
         BizStatus:0,		//	否	数字型	V10	营运状态	1.载客2 :接单3 :空驶  4 .停运
-        Orderld:actiondata.triporderid,			//	是	字符型	V64		订单编号
+        OrderId:actiondata.triporderid,			//	是	字符型	V64		订单编号
     };
     let eModel = dbplatform.Platform_positionVehicleModel;
     let entity = new eModel(positionVehicleDoc);
