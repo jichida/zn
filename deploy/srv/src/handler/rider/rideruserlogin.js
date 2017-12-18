@@ -260,8 +260,8 @@ exports.oauthbinduser = (socket,actiondata,ctx)=>{
  else if(actiondata.bindtype === 'weixin'){
    updateduserobj.openidweixin = actiondata.openid;
  }
- let queryuserobj = {username:actiondata.phonenumber};
-
+ let queryuserobj = {username:actiondata.username};
+ console.log(`queryuserobj==>${JSON.stringify(queryuserobj)},updateduserobj==>${JSON.stringify(updateduserobj)}`)
  let userModel = DBModels.UserRiderModel;
  userModel.findOneAndUpdate(queryuserobj,
    updateduserobj,{upsert:true,new: true,},(err,result)=>{

@@ -155,7 +155,7 @@ let insertorder_command = (socket,actiondata,ctx,commandstring)=>{
   let order = {};
   if(actiondata.triptype === '拼车'){
     order = actiondata;
-    actiondata.startdate = new Date(Date.parse(actiondata.startdate));
+    actiondata.startdate = moment(actiondata.startdate).format('YYYY-MM-DD');
     order.rideruserid = ctx.userid;
   }
   else if(actiondata.triptype === '旅游大巴'){

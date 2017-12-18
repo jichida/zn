@@ -112,8 +112,16 @@ class RegisterFillWizardForm extends Component {
 
   renderpage0 =()=> {
         return (
-    		<div className="registerPage register1Page  AppPage">
-          <NavBar back={true} title="开始成为司机" />
+    		<div className="registerPage approvalPage register1Page  AppPage">
+          <NavBar back={false} title="开始成为司机"  leftnav={[
+              {
+                type:"action",
+                action : ()=>{
+                  this.props.history.replace('/');
+                },
+                text:"首页"
+              }
+            ]}/>
 				      <Cells>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>

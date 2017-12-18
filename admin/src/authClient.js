@@ -4,9 +4,12 @@ import decodeJwt from 'jwt-decode';
 import config from './env/config.js';
 export default (type, params) => {
     if (type === AUTH_LOGIN) {
-        return apipost(config.adminauthserverurl,params).then(response => {
+      const checkauth = ()=>{
+        return new Promise((resolve,reject)=>{
+           apipost(config.adminauthserverurl,params).then(response => {
                 if (response.status < 200 || response.status >= 300) {
-                    throw new Error(response.statusText);
+                      // throw new Error(response.statusText);
+                      reject('网络未连接');
                 }
                 return response.data;
             })
@@ -20,8 +23,15 @@ export default (type, params) => {
                 else{
                     localStorage.removeItem('admintoken');
                     localStorage.removeItem('usertype');
+                      reject('用户名或密码错误');
+                      return;
                 }
+                  resolve();
             });
+        });
+      };
+
+      return checkauth();
     }
     if (type === AUTH_ERROR) {
          return Promise.resolve();

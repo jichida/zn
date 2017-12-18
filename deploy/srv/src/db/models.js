@@ -41,6 +41,8 @@ UserDriverPincheLoginLogSchema.plugin(mongoosePaginate);
 //乘客表//常用地址管理
 let UserRiderSchema = new Schema({
     username:String,
+    openidqq: String,
+    openidweixin: String,
     created_at:{ type: Date, default:new Date()},
     updated_at:Date,
     truename:String,
@@ -243,7 +245,7 @@ BuscarpoolSchema = new Schema({
     endcity:String,//结束城市
     starttime:String,//出发时间
     created_at:{ type: Date, default:new Date()},
-    startdate:Date,//出发日期
+    startdate:String,//出发日期 'YYYY-MM-DD'
     seatnumber:Number,//座位
     groupnumber:Number,//成团人数
     startstations:[],//出发点站台{name/address/desc/location}
@@ -342,7 +344,7 @@ let TripOrderSchema = new Schema({
     rentusername:String,//租车人姓名
     rentuserphone:String,
     buslistsel:Schema.Types.Mixed, //旅游大巴订阅详情
-    startdate:Date,//开始用车时间
+    startdate:String,//开始用车时间 YYYY-MM-DD
     enddate:Date,//还车时间
 
 });

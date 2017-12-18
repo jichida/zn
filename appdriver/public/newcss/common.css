@@ -258,6 +258,20 @@ input, textarea{
     from {opacity : .2;}
     to {opacity : 1;}
 }
+
+.approvalPage #newNavHeadContent .nli:before{
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-left:2px solid #666;
+    border-bottom:2px solid #666;
+    -moz-transform:rotate(45deg);    /* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+}
+.approvalPage #newNavHeadContent .nli span{
+    font-size: 0;
+}
 .renderDateField .weui-cell__ft{
     flex-grow:1;
     align-self: stretch;

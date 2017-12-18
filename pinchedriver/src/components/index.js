@@ -141,4 +141,3 @@ class PincheQuery extends React.Component {
 }
 
 export default connect()(PincheQuery);
-

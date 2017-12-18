@@ -389,7 +389,7 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
 
   //司机审核通过／拒绝要发送短信通知
   if(actionname === 'findByIdAndUpdate' && collectionname==='userdriver'){
-    if(retdoc.issynctoplatform){
+    // if(retdoc.issynctoplatform){
       if(retdoc.approvalstatus === '已审核' || retdoc.approvalstatus === '已拒绝' ){
         //将Platform_baseInfoVehicle和Platform_baseInfoDriver存入到数据库
         const sms = require('../smspush/sms.js');
@@ -400,7 +400,7 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
         fncallback(null,retdoc);
         return;
       }
-    }
+    // }
   }
   if(collectionname === 'buscarpool'){
       if(actionname === 'findById'){
