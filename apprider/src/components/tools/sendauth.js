@@ -27,6 +27,7 @@ export class Page extends Component {
                 //background: "#999999"
             }
         };
+        this.timeinterval = null;
     } 
 
     sendClick=()=>{
@@ -40,9 +41,9 @@ export class Page extends Component {
     }
 
     startTime=()=>{
-        timeinterval = window.setInterval(()=>{
+        this.timeinterval = window.setInterval(()=>{
             if(this.state.time===0){
-                window.clearInterval(timeinterval);
+                window.clearInterval(this.timeinterval);
                 this.setState({
                     style : "sendauthbtn "+this.props.className,
                     time : this.props.time || 30,
@@ -63,6 +64,11 @@ export class Page extends Component {
             }
         },1000);
     }
+    componentWillUnmount() {
+      if(!!this.timeinterval){
+        window.clearInterval(this.timeinterval);
+      }
+    }
 
     render(){
         const renderstyle = !!this.state.style?{}:this.state.domstyle;
@@ -79,5 +85,3 @@ export class Page extends Component {
 };
 
 export default Page;
-
-

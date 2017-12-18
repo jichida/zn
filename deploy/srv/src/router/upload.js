@@ -14,8 +14,8 @@ let startuploader = (app)=>{
     // data.userid = req.userid;
     // let userModel = mongoose.model('UserRider', DBModels.UserRiderSchema);
 
-     var form = new formidable.IncomingForm();
-     form.uploadDir = path.join(__dirname,config.uploaddir);
+     const form = new formidable.IncomingForm();
+     form.uploadDir = path.join(__dirname,'../',config.uploaddir);
      //form.keepExtensions = true;
 
      form.parse(req, (err, fields, files)=> {

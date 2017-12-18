@@ -157,7 +157,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required,validatebank ]}
+                          validate={[ required ]}
                           />
                         <Field
                           name="DriverType"

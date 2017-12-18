@@ -144,7 +144,13 @@ exports.getnearbyrequests = (param,callback)=>{
         newqueryobj['$and'].push(queryobj);
         queryobj = newqueryobj;
       }
-
+      else if(param.registertype === '网约车'){
+        let newqueryobj = {
+          $and:[{$or: [{triptype:'网约车'}, {triptype:'代驾'}]}]
+        };
+        newqueryobj['$and'].push(queryobj);
+        queryobj = newqueryobj;
+      }
       console.log(`getnearbyrequests=========${JSON.stringify(queryobj)}`);
       TripRequestModel.find(queryobj,(err,list)=>{
           console.log("err:" + JSON.stringify(err));

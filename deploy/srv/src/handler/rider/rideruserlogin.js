@@ -11,6 +11,7 @@ const uuid = require('node-uuid');
 const coupon = require('./mycoupon.js');
 const oftenuseaddress = require('./oftenuseaddress.js');
 const rate = require('../common/rate.js');
+const loginauth = require('../common/loginauth.js');
 
 exports.queryuserbalance = (socket,actiondata,ctx)=>{
   let userModel = DBModels.UserRiderModel;
@@ -223,7 +224,6 @@ exports.fillprofile = (socket,actiondata,ctx)=>{
 };
 
 
-
 exports.oauthbinduser = (socket,actiondata,ctx)=>{
   let newUser = {};
   if(actiondata.bindtype === 'qq'){
@@ -236,6 +236,40 @@ exports.oauthbinduser = (socket,actiondata,ctx)=>{
     socket.emit('common_err',{errmsg:'不支持该类型绑定',type:'oauthbinduser'});
     return;
   }
+
+  let globalUserauth = loginauth.globalUserauth;
+  if(!globalUserauth.hasOwnProperty(actiondata.username)){
+   socket.emit('common_err',{errmsg:'请先发送验证码',type:'oauthbinduser'});
+   return;
+ }
+ if(globalUserauth[actiondata.username].authcode != actiondata.authcode){
+   socket.emit('common_err',{errmsg:'验证码不对',type:'oauthbinduser'});
+   return;
+ }
+ let nowDate = new Date();
+ let min2Ago = new Date(nowDate.getTime() - 1000 * config.authexptime);
+ if(min2Ago > globalUserauth[actiondata.username].updated_at){
+   socket.emit('common_err',{errmsg:'验证码已过期',type:'oauthbinduser'});
+   return;
+ }
+
+ let  updateduserobj = {updated_at:new Date()};
+ if(actiondata.bindtype === 'qq'){
+   updateduserobj.openidqq = actiondata.openid;
+ }
+ else if(actiondata.bindtype === 'weixin'){
+   updateduserobj.openidweixin = actiondata.openid;
+ }
+ let queryuserobj = {username:actiondata.phonenumber};
+
+ let userModel = DBModels.UserRiderModel;
+ userModel.findOneAndUpdate(queryuserobj,
+   updateduserobj,{upsert:true,new: true,},(err,result)=>{
+   if(!err && !!result){
+     setloginsuccess(socket,ctx,result);
+   }
+   socket.emit('oauthbinduser_result',{});
+ });
   //以下逻辑待实现
   // tryregisteruser(socket,actiondata,ctx,newUser,'oauthbinduser_err',(isok,user)=>{
   //     if(isok){

@@ -47,6 +47,7 @@ let getBaseInfoCompanyFareList = (param= {
     curtimeformatted = new Date(Date.parse(curtimeformatted));
   }
   let faretype = config.faretypemap[param.triptype];
+  console.log(`faretype:${faretype}`)
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   const query = {
     $and: [
@@ -117,7 +118,7 @@ let getBaseInfoCompanyFare = (param={
   }
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   fareModel.findOne({_id:param.fareid},(err,baseInfoCompanyFare)=>{
-    if(!err && baseInfoCompanyFare){
+    if(!err && !!baseInfoCompanyFare){
       let price = 0 ;
       let pricestringdebug = '';
       let pricestringdetail = '';
@@ -244,6 +245,9 @@ let getprice= (param,callback)=>{
         curtime:curtime,
         fareid
       },(err,result)=>{
+
+        winston.getlog().info(`注意！getprice找不到运价${fareid},curtime:${curtime}`);
+
         callback(err,result);
       });
     }

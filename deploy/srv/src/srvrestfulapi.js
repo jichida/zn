@@ -19,6 +19,11 @@ let startsrv = ()=>{
   console.log("static driver:" + driverdir);
   app.use('/driver', express.static(driverdir));
 
+  let driverdirpinche = path.join(__dirname,config.publishdirriderpinche);
+  console.log("static driverdirpinche:" + driverdirpinche);
+  app.use('/driverpinche', express.static(driverdirpinche));
+
+
   let testdir = path.join(__dirname,config.publishdirtest);
   console.log("static test:" + testdir);
   app.use('/test', express.static(testdir));

@@ -30,6 +30,8 @@ exports.userloginsuccess = userloginsuccess;
 let getdatafromuser =(user)=>{
   return {
     username: user.username,
+    nickname:user.nickname,
+    truename:user.truename,
     userid:user._id,
   };
 }

@@ -7,9 +7,11 @@ let config =  {
   publishdirtest:'../../dist/test',
   publishdirrider:'../../dist/apprider',
   publishdirdriver:'../../dist/appdriver',
+  publishdirriderpinche:'../../dist/pinchedriver',
   publishdiradmin:'../../dist/admin',
   uploaddir:'../../dist/uploader',
   uploadurl:'/uploader',
+  logdir:'../../dist/log',
 
   CompanyId:'58a30c05061d53264c182029',
   Address:213000,

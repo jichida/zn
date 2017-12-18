@@ -79,7 +79,7 @@ let setconfigfile = ()=>{
     //设置运价信息
     let dbModel = DBModels.FareTypeModel;
     dbModel.find({},(err,list)=>{
-      if(!err && list){
+      if(!err && !!list){
         let faretypemap = {};
         _.map(list,(record)=>{
           faretypemap[record.registertype] = record._id;
@@ -90,7 +90,8 @@ let setconfigfile = ()=>{
 
     let dbModelCompany = DBPlatformModels.Platform_baseInfoCompanyModel;
     dbModelCompany.findOne({},(err,result)=>{
-        if(!err && result){
+        if(!err && !!result){
+          console.log(`dbModelCompany===>${JSON.stringify(result)}`)
           config.setcompanyandaddress(result.CompanyId,result.Address);
         }
     });

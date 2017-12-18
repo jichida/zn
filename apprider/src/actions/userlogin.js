@@ -23,3 +23,8 @@ export const queryuserbalance_result = createAction('queryuserbalance_result');
 
 export const loginwithoauth_request = createAction('loginwithoauth_request');
 export const loginwithoauth_result = createAction('loginwithoauth_result');
+
+export const wait_oauthbinduser_request = createAction('wait_oauthbinduser_request');
+export const wait_oauthbinduser_result = createAction('wait_oauthbinduser_result');
+export const oauthbinduser_request = createAction('userlogin.oauthbinduser_request');
+export const oauthbinduser_result = createAction('userlogin.oauthbinduser_result');
