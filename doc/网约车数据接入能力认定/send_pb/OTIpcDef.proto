@@ -1,0 +1,1831 @@
+package OTIpcDef;
+
+// 版本号 V1.0.4
+// 修改说明
+// V1.0.1
+// 7.1 添加车牌号码和车牌颜色字段
+
+// V1.0.2
+// 4.8 添加网约车车辆保险信息接口
+// 4.11 添加网约车驾驶员培训信息接口
+// 4.12 添加网约车驾驶员移动终端信息接口
+// 8.2 添加乘客投诉信息接口
+// 8.3 添加驾驶员处罚信息接口
+
+// V1.0.3
+// 所有业务增加保留字段
+// 4.11 培训开始时间和培训结束时间两个字段
+//      依据文档修改为字符型
+
+// V1.0.4
+// 4.1 删除紧急联系电话、营业执照副本扫描件文件编号
+// 4.4 修改服务机构紧急联系电话变更为optional
+// 4.6 修改其他运营高峰时间起、其他运营高峰时间止、低速计时加价（按分钟）、
+//     夜间费（按公里）、夜间费（按分钟）其它加价金额为optional
+//	   修改高峰时间单程加价单价、起步价、起步里程为required
+//	   添加运价类型说明
+//	   删除远途费（按公里）、远途费起算公里、单价
+// 4.7 删除发动机功率、车辆轴距、车辆年度审验日期
+//	   修改卫星定位装置IMEI号为optional
+// 4.8 删除车牌颜色
+//     修改保险金额为float
+// 4.9 删除车牌颜色
+// 4.10 删除驾驶员身份证号、巡游出租汽车驾驶员资格证号
+//      修改网络预约出租汽车驾驶员资格证号为CertificateNo、
+//      户口住址或长住地址为DriverAddress、准驾车型为DriverType
+// 4.13 删除交通事故次数、接单违约次数
+// 4.15 删除网约车乘客状态名单接口
+// 5.1 删除乘客手机号
+//	   修改乘客备注为optional
+// 5.2 删除车牌颜色
+//     修改派单成功时间为required
+// 5.3 修改撤销发起方、撤销类型代码为required
+// 6.1 删除车牌颜色
+// 6.2 删除车牌颜色
+// 6.3 删除乘客手机号、车牌颜色
+// 6.5 删除车牌颜色
+//     修改上车地点、下车地点、预定车型、 实际使用车型为optional
+// 7.1 删除当前位置行政区划代码、车牌颜色
+//     修改订单编号为required
+// 7.2 删除当前位置行政区划代码、车牌颜色
+//     修改订单编号为required
+// 8.3 修改处罚原因为optional
+// 8.4 删除注册地行政区划代码、完成订单次数、处罚次数、乘客投诉次数
+// 9.1 变更为私人小客车合乘信息服务平台基本信息接口
+// 9.2 变更为私人小客车合乘驾驶员行程发布接口
+// 9.3 变更为私人小客车合乘乘客订单接口
+// 9.4 新增私人小客车合乘订单支付接口
+
+// 4.1 网约车平台公司基本信息接口
+message BaseInfoCompany
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 公司名称
+	required string CompanyName     = 2;
+
+	// 统一社会信用代码
+	required string Identifier      = 3;
+
+	// 注册地行政区划代码
+	required uint32 Address         = 4;
+
+	// 经营范围
+	required string BusinessScope   = 5;
+
+	// 通讯地址
+	required string ContactAddress  = 6;
+
+	// 经营业户经济类型
+	required string EconomicType    = 7;
+
+	// 注册资本
+	required string RegCapital      = 8;
+
+	// 法人代表姓名
+	required string LegalName       = 9;
+
+	// 法人代表身份证号
+	required string LegalID         = 10;
+
+	// 法人代表电话
+	required string LegalPhone      = 11;
+
+	// 法人代表身份证扫描件文件编号
+	optional string LegalPhoto      = 12;
+
+	// 状态
+	required uint32 State           = 13;
+
+	// 操作标识
+	required uint32 Flag            = 14;
+
+	// 更新时间
+	required uint64 UpdateTime      = 15;
+
+	// 保留字段
+	optional string Reserved        = 16;
+}
+
+// 4.2 网约车平台公司营运规模信息信息接口
+message BaseInfoCompanyStat
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 平台注册网约车辆数
+	required uint32 VehicleNum      = 2;
+	
+	// 平台注册驾驶员数
+	required uint32 DriverNum       = 3;
+	
+	// 操作标识
+	required uint32 Flag            = 4;
+
+	// 更新时间
+	required uint64 UpdateTime      = 5;
+
+	// 保留字段
+	optional string Reserved        = 6;
+}
+
+// 4.3 网约车平台公司支付信息接口
+message BaseInfoCompanyPay
+{
+	// 公司标识
+	required string CompanyId      		= 1;
+
+	// 银行或者非银行支付机构名称
+	required string PayName        		= 2;
+
+	// 非银行支付机构支付业务许可证编号
+	required string PayId          		= 3;
+
+	// 支付业务类型
+	required string PayType        		= 4;
+
+	// 业务覆盖范围
+	required string PayScope       		= 5;
+
+	// 备付金存管银行
+	required string PrepareBank    		= 6;
+
+	// 结算周期
+	required uint32 CountDate      		= 7;
+
+	// 状态
+	required uint32 State          		= 8;
+	
+	// 操作标识
+	required uint32 Flag           		= 9;
+
+	// 更新时间
+	required uint64 UpdateTime     		= 10;
+
+	// 保留字段
+	optional string Reserved            = 11;
+}
+
+// 4.4 网约车平台公司服务机构接口
+message BaseInfoCompanyService
+{
+	// 公司标识
+	required string CompanyId      		= 1;
+
+	// 行政区划代码
+	required uint32 Address        		= 2;
+
+	// 服务机构名称
+	required string ServiceName    		= 3;
+
+	// 服务机构代码
+	required string ServiceNo      		= 4;
+
+	// 服务机构地址
+	required string DetailAddress  		= 5;
+
+	// 服务机构负责人姓名
+	required string ResponsibleName    	= 6;
+
+	// 负责人联系电话
+	required string ResponsiblePhone   	= 7;
+
+	// 服务机构管理人姓名
+	required string ManagerName    		= 8;
+
+	// 管理人联系电话
+	required string ManagerPhone   		= 9;
+
+	// 服务机构紧急联系电话
+	optional string ContactPhone   		= 10;
+
+	// 行政文书送达邮寄地址
+	required string MailAddress    		= 11;
+
+	// 服务机构设立日期
+	required uint64 CreateDate     		= 12;
+
+	// 状态
+	required uint32 State          		= 13;
+	
+	// 操作标识
+	required uint32 Flag           		= 14;
+
+	// 更新时间
+	required uint64 UpdateTime     		= 15;
+
+	// 保留字段
+	optional string Reserved            = 16;
+}
+
+// 4.5 网约车平台公司经营许可接口
+message BaseInfoCompanyPermit
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 许可地行政区划代码
+	required uint32 Address          = 2;
+
+	// 网络预约出租汽车经营许可证号
+	required string Certificate      = 3;
+
+	// 经营区域
+	required string OperationArea    = 4;
+
+	// 公司名称
+	required string OwnerName        = 5;
+
+	// 发证机构名称
+	required string Organization     = 6;
+
+	// 有效期起
+	required uint64 StartDate        = 7;
+
+	// 有效期止
+	required uint64 StopDate         = 8;
+
+	// 初次发证日期
+	required uint64 CertifyDate      = 9;
+
+	// 证照状态
+	required string State            = 10;
+	
+	// 操作标识
+	required uint32 Flag             = 11;
+
+	// 更新时间
+	required uint64 UpdateTime     	 = 12;
+
+	// 保留字段
+	optional string Reserved         = 13;
+}
+
+// 4.6 网约车平台公司运价信息接口
+message BaseInfoCompanyFare
+{
+	// 公司标识
+	required string CompanyId                = 1;
+
+	// 行政区划代码
+	required uint32 Address                  = 2;
+
+	// 运价类型编码
+	required string FareType                 = 3;
+
+	// 运价类型说明
+	optional string FareTypeNote             = 4;
+
+	// 运价有效期起
+	required uint64 FareValidOn              = 5;
+
+	// 运价有效期止
+	optional uint64 FareValidOff             = 6;
+
+	// 起步价
+	required float StartFare                 = 7;
+
+	// 起步里程
+	required float StartMile                 = 8;
+
+	// 计程单价（按公里）
+	required float UnitPricePerMile          = 9;
+
+	// 计时单价（按分钟）
+	required float UnitPricePerMinute        = 10;
+
+	// 单程加价单价
+	optional float UpPrice                   = 11;
+
+	// 单程加价公里
+	optional float UpPriceStartMile          = 12;
+
+	// 运营早高峰时间起
+	required string MorningPeakTimeOn        = 13;
+
+	// 运营早高峰时间止
+	required string MorningPeakTimeOff       = 14;
+
+	// 运营晚高峰时间起
+	required string EveningPeakTimeOn        = 15;
+
+	// 运营晚高峰时间止
+	required string EveningPeakTimeOff       = 16;
+
+	// 其他运营高峰时间起
+	optional string OtherPeakTimeOn          = 17;
+
+	// 其他运营高峰时间止
+	optional string OtherPeakTimeOff         = 18;
+
+	// 高峰时间单程加价单价
+	required float PeakUnitPrice             = 19;
+
+	// 高峰时间单程加价公里
+	required float PeakPriceStartMile        = 20;
+
+	// 低速计时加价（按分钟）
+	optional float LowSpeedPricePerMinute    = 21;
+
+	// 夜间费（按公里）
+	optional float NightPricePerMile         = 22;
+
+	// 夜间费（按分钟）
+	optional float NightPricePerMinute       = 23;
+
+	// 其它加价金额
+	optional float OtherPrice                = 24;
+
+	// 状态
+	required uint32 State                    = 25;
+
+	// 更新时间
+	required uint64 UpdateTime               = 26;
+
+	// 操作标识
+	required uint32 Flag                     = 27;
+
+	// 保留字段
+	optional string Reserved        		 = 28;
+}
+
+// 4.7 车辆基本信息接口
+message BaseInfoVehicle
+{
+	// 公司标识
+	required string CompanyId          = 1;
+
+	// 车辆所在城市（注册地行政区划代码）
+	required uint32 Address            = 2;
+
+	// 车辆号牌
+	required string VehicleNo          = 3;
+ 
+	// 车牌颜色
+	required string PlateColor         = 4;
+
+	// 核定载客位
+	required uint32 Seats              = 5;
+
+	// 车辆厂牌
+	required string Brand              = 6;
+
+	// 车辆型号
+	required string Model              = 7;
+
+	// 车辆类型 
+	required string VehicleType        = 8;
+
+	// 车辆所有人
+	required string OwnerName          = 9;
+
+	// 车身颜色
+	required string VehicleColor       = 10;
+
+	// 发动机号
+	required string EngineId           = 11;
+
+	// 车辆VIN码
+	required string VIN                = 12;
+	
+	// 车辆注册日期
+	required uint64 CertifyDateA       = 13;
+
+	// 车辆燃料类型
+	required string FuelType           = 14;
+
+	// 发动机排量
+	required string EngineDisplace     = 15;
+
+	// 车辆照片文件编号
+	optional string PhotoId            = 16;	
+
+	// 运输证字号
+	optional string Certificate        = 17;	
+
+	// 车辆运输证发证机构
+	required string TransAgency        = 18;
+
+	// 车辆经营区域
+	required string TransArea          = 19;
+
+	// 车辆运输证有效期起
+	required uint64 TransDateStart     = 20;
+
+	// 车辆运输证有效期止
+	required uint64 TransDateStop      = 21;
+
+	// 车辆初次登记日期
+	required uint64 CertifyDateB       = 22;
+
+	// 车辆检修状态
+	required string FixState  		   = 23;
+
+	// 车辆下次年检时间
+	optional uint64 NextFixDate  	   = 24;
+
+	// 车辆年度审验状态
+	required string CheckState         = 25;
+
+	// 发票打印设备序列号
+	required string FeePrintId         = 26;
+
+	// 卫星定位装置品牌
+	required string GPSBrand           = 27;
+
+	// 卫星定位装置型号
+	required string GPSModel           = 28;
+
+	// 卫星定位装置IMEI号
+	optional string GPSIMEI            = 29;
+
+	// 卫星定位设备安装日期
+	required uint64 GPSInstallDate     = 30;
+
+	// 报备日期
+	required uint64 RegisterDate       = 31;
+
+	// 服务类型
+	required uint32 CommercialType     = 32;
+
+	// 运价类型编码
+	required string FareType           = 33;
+
+	// 状态
+	required uint32 State              = 34;
+	
+	// 操作标识
+	required uint32 Flag               = 35;
+
+	// 更新时间
+	required uint64 UpdateTime         = 36;
+
+	// 保留字段
+	optional string Reserved       	   = 37;
+}
+
+// 4.8 车辆保险信息接口
+message BaseInfoVehicleInsurance
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 车辆号牌
+	required string VehicleNo       = 2;
+
+	// 保险公司名称
+	required string InsurCom       	= 3;
+
+	// 保险号
+	required string InsurNum      	= 4;
+
+	// 保险类型
+	required string InsurType       = 5;
+
+	// 保险金额
+	required float InsurCount       = 6;
+
+	// 保险生效时间
+	required uint64 InsurEff       	= 7;
+
+	// 保险到期时间
+	required uint64 InsurExp       	= 8;
+
+	// 操作标识
+	required uint32 Flag            = 9;
+
+	// 更新时间
+	required uint64 UpdateTime      = 10;
+
+	// 保留字段
+	optional string Reserved        = 11;
+}
+
+// 4.9 网约车车辆里程信息接口
+message BaseInfoVehicleTotalMile
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 注册地行政区划代码
+	required uint32 Address         = 2;
+
+	// 车辆号牌
+	required string VehicleNo       = 3;
+
+	// 行驶总里程
+	required float TotalMile        = 4;
+
+	// 操作标识
+	required uint32 Flag            = 5;
+
+	// 更新时间
+	required uint64 UpdateTime      = 6;
+
+	// 保留字段
+	optional string Reserved        = 7;
+}
+
+// 4.10 驾驶员基本信息接口
+message BaseInfoDriver
+{
+	// 公司标识
+	required string CompanyId            		= 1;
+
+	// 注册地行政区划代码
+	required uint32 Address              		= 2;
+
+	// 机动车驾驶员姓名
+	optional string DriverName           		= 3;
+
+	// 驾驶员手机号
+	required string DriverPhone         		= 4;
+
+	// 驾驶员性别
+	required string DriverGender         		= 5;
+
+	// 出生日期
+	required uint64 DriverBirthday       		= 6;
+
+	// 国籍
+	optional string DriverNationality 			= 7;
+
+	// 驾驶员民族
+	required string DriverNation 				= 8;
+
+	// 驾驶员婚姻状况
+	optional string DriverMaritalStatus 		= 9;
+
+	// 驾驶员外语能力
+	optional string DriverLanguageLevel 		= 10;
+
+	// 驾驶员学历
+	optional string DriverEducation 			= 11;
+
+	// 户口登记机关名称
+	optional string DriverCensus 				= 12;
+
+	// 户口住址或长住住址
+	optional string DriverAddress 				= 13;
+
+	// 驾驶员通信地址
+	required string DriverContactAddress 		= 14;
+
+	// 驾驶员照片文件编号
+	optional string PhotoId              		= 15; 
+
+	// 机动车驾驶证号
+	required string LicenseId            		= 16;
+
+	// 机动车驾驶证扫描件文件编号
+	optional string LicensePhotoId 				= 17;
+
+	// 准驾车型
+	optional string DriverType           		= 18;
+
+	// 初次领取驾驶证日期
+	required uint64 GetDriverLicenseDate 		= 19;
+
+	// 驾驶证有效期限起
+	required uint64 DriverLicenseOn      		= 20;
+
+	// 驾驶证有效期限止
+	required uint64 DriverLicenseOff  			= 21;
+
+	// 是否巡游出租汽车驾驶员
+	required uint32 TaxiDriver 					= 22;
+
+	// 网络预约出租汽车驾驶员资格证号   
+	required string CertificateNo         		= 23;
+
+	// 网约预约出租汽车驾驶员证发证机构
+	required string NetworkCarIssueOrganization = 24;
+
+	// 资格证发证日期
+	required uint64 NetworkCarIssueDate 		= 25;
+
+	// 初次领取资格证日期
+	required uint64 GetNetworkCarProofDate 		= 26;
+
+	// 资格证有效起始日期
+	required uint64 NetworkCarProofOn 			= 27;
+
+	// 资格证有效截止日期
+	required uint64 NetworkCarProofOff 			= 28;
+
+	// 报备日期
+	required uint64 RegisterDate 				= 29;
+
+	// 是否专职驾驶员
+	optional uint32 FullTimeDriver 				= 30;
+
+	// 是否在驾驶员黑名单内
+	optional uint32 InDriverBlacklist 			= 31;
+
+	// 服务类型
+	required uint32 CommercialType 				= 32;
+
+	// 驾驶员合同（或协议）签署公司
+	required string ContractCompany 			= 33;
+
+	// 合同（或协议）开始时间
+	required uint64 ContractOn 					= 34;
+
+	// 合同（或协议）到期时间
+	required uint64 ContractOff 				= 35;
+
+	// 紧急情况联系人
+	optional string EmergencyContact 			= 36;
+
+	// 紧急情况联系人电话
+	optional string EmergencyContactPhone 		= 37;
+
+	// 紧急情况联系人通信地址
+	optional string EmergencyContactAddress 	= 38;
+
+	// 状态
+	required uint32 State         				= 39;
+	
+	// 操作标识
+	required uint32 Flag           				= 40;
+
+	// 更新时间
+	required uint64 UpdateTime     				= 41;
+
+	// 保留字段
+	optional string Reserved        			= 42;
+}
+
+// 4.11 网约车驾驶员培训信息接口
+message BaseInfoDriverEducate
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 注册地行政区划代码
+	required uint32 Address         = 2;
+
+	// 机动车驾驶证号
+	required string LicenseId       = 3;
+
+	// 驾驶员培训课程名称
+	required string CourseName 		= 4;
+
+	// 培训课程日期
+	required uint64 CourseDate 		= 5;
+
+	// 培训开始时间
+	required string StartTime 		= 6;
+
+	// 培训结束时间
+	required string StopTime 		= 7;
+
+	// 培训时长
+	required uint32 Duration 		= 8;
+	
+	// 操作标识
+	required uint32 Flag            = 9;
+
+	// 更新时间
+	required uint64 UpdateTime      = 10;
+
+	// 保留字段
+	optional string Reserved        = 11;
+}
+
+// 4.12 驾驶员移动终端信息接口
+message BaseInfoDriverApp
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 注册地行政区划代码
+	required uint32 Address         = 2;
+
+	// 机动车驾驶证号
+	required string LicenseId       = 3;
+
+	// 驾驶员手机号
+	required string DriverPhone 	= 4;
+
+	// 手机运营商
+	required uint32 NetType 		= 5;
+
+	// 使用APP版本号
+	required string AppVersion 		= 6;
+
+	// 使用地图类型
+	required uint32 MapType 		= 7;
+
+	// 状态
+	required uint32 State 			= 8;
+	
+	// 操作标识
+	required uint32 Flag            = 9;
+
+	// 更新时间
+	required uint64 UpdateTime      = 10;
+
+	// 保留字段
+	optional string Reserved        = 11;
+}
+
+// 4.13 驾驶员统计信息接口
+message BaseInfoDriverStat
+{
+	// 公司标识
+	required string CompanyId       		= 1;
+
+	// 注册地行政区划代码
+	required uint32 Address         		= 2;
+
+	// 机动车驾驶证编号
+	required string LicenseId       		= 3;
+
+	// 统计周期
+	required uint64 Cycle 					= 4;
+
+	// 完成订单次数
+	required uint32 OrderCount 				= 5;
+
+	// 交通违章次数
+	required uint32 TrafficViolationCount 	= 6;
+
+	// 被投诉次数
+	required uint32 ComplainedCount 		= 7;
+	
+	// 操作标识
+	required uint32 Flag           			= 8;
+
+	// 更新时间
+	required uint64 UpdateTime     		    = 9;
+
+	// 保留字段
+	optional string Reserved        		= 10;
+}
+
+// 4.14 乘客基本信息接口
+message BaseInfoPassenger
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 注册日期
+	optional uint64 RegisterDate     = 2;
+
+	// 乘客手机号
+	required string PassengerPhone   = 3;
+
+	// 乘客称谓
+	optional string PassengerName    = 4;
+
+	// 乘客性别
+	optional string PassengerGender  = 5;
+
+	// 状态
+	required uint32 State            = 6;
+
+	// 操作标识
+	required uint32 Flag           	 = 7;
+
+	// 更新时间
+	required uint64 UpdateTime       = 8;
+
+	// 保留字段
+	optional string Reserved         = 9;
+}
+
+// 5.1 订单发起接口
+message OrderCreate
+{
+	// 公司标识
+	required string CompanyId	      = 1;
+
+	// 发起地行政区划代码
+	required uint32 Address		  	  = 2;
+
+	// 订单编号
+	required string OrderId		  	  = 3;
+
+	// 预计用车时间
+	required uint64 DepartTime 	  	  = 4;
+
+	// 订单发起时间
+	required uint64 OrderTime         = 5;
+
+	// 乘客备注
+	optional string PassengerNote	  = 6;
+
+	// 预计出发地点详细地址
+	required string Departure		  = 7;
+
+	// 预计出发地点经度
+	required uint64 DepLongitude      = 8;
+
+	// 预计出发地点纬度
+	required uint64 DepLatitude	  	  = 9;
+
+	// 预计目的地
+	required string Destination	  	  = 10;
+
+	// 预计目的地经度
+	required uint64 DestLongitude	  = 11;
+
+	// 预计目的地纬度
+	required uint64 DestLatitude	  = 12;
+
+	// 坐标加密标识
+	required uint32 Encrypt           = 13;
+
+	// 运价类型编码
+	required string FareType		  = 14;
+
+	// 保留字段
+	optional string Reserved          = 15;
+}
+
+// 5.2 订单成功接口
+message OrderMatch
+{
+	// 公司标识
+	required string CompanyId	    = 1;
+
+	// 发起地行政区划代码
+	required uint32 Address         = 2;
+
+	// 订单编号
+	required string OrderId         = 3;
+
+	// 车辆经度
+	optional uint64 Longitude	    = 4;
+
+	// 车辆纬度
+	optional uint64 Latitude	    = 5;
+
+	// 坐标加密标识
+	required uint32 Encrypt         = 6;
+
+	// 机动车驾驶证编号
+	required string LicenseId       = 7;
+
+	// 驾驶员手机号
+	required string DriverPhone     = 8;
+
+	// 车辆号牌
+	required string VehicleNo	    = 9;
+
+	// 派单成功时间
+	required uint64 DistributeTime  = 10;
+
+	// 保留字段
+	optional string Reserved        = 11;
+}
+
+// 5.3 订单撤销接口
+message OrderCancel
+{
+	// 公司标识
+	required string CompanyId	    = 1;
+
+	// 上车地点行政区划代码
+	required uint32 Address	    	= 2;
+
+	// 订单编号
+	required string OrderId	    	= 3;
+
+	// 订单时间
+	optional uint64 OrderTime	    = 4;
+
+	// 订单撤销时间
+	required uint64 CancelTime	    = 5;
+
+	// 撤销发起方
+	required string Operator 	    = 6;
+
+	// 撤销类型代码
+	required string CancelTypeCode  = 7;
+
+	// 撤销或违约原因
+	optional string CancelReason    = 8;
+
+	// 保留字段
+	optional string Reserved        = 9;
+}
+
+// 6.1 车辆经营上线接口
+message OperateLogin
+{
+	// 公司标识
+	required string CompanyId      = 1;
+
+	// 机动车驾驶证号
+	required string LicenseId      = 2;
+
+	// 车辆号牌
+	required string VehicleNo      = 3;
+
+	// 车辆经营上线时间
+	required uint64 LoginTime      = 4;
+
+	// 上线经度
+	optional uint64 Longitude      = 5;
+
+	// 上线纬度
+	optional uint64 Latitude       = 6;
+
+	// 坐标加密标识
+	required uint32 Encrypt        = 7;
+
+	// 保留字段
+	optional string Reserved       = 8;
+}
+
+// 6.2 车辆经营下线接口
+message OperateLogout
+{
+	// 公司标识
+	required string CompanyId      = 1;
+
+	// 机动车驾驶证号
+	required string LicenseId      = 2;
+
+	// 车辆号牌
+	required string VehicleNo      = 3;
+
+	// 车辆经营下线时间
+	required uint64 LogoutTime     = 4;
+
+	// 下线经度
+	optional uint64 Longitude      = 5;
+
+	// 下线纬度
+	optional uint64 Latitude       = 6;
+
+	// 坐标加密标识
+	required uint32 Encrypt        = 7;
+
+	// 保留字段
+	optional string Reserved       = 8;
+}
+
+// 6.3 经营出发接口
+message OperateDepart
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 订单号
+	required string OrderId          = 2;
+
+	// 机动车驾驶证号
+	required string LicenseId        = 3;
+
+	// 运价类型编码
+	required string FareType         = 4;
+
+	// 车辆号牌
+	required string VehicleNo        = 5;
+
+	// 车辆出发经度
+	required uint64 DepLongitude     = 6;
+
+	// 车辆出发纬度
+	required uint64 DepLatitude      = 7;
+
+	// 坐标加密标识
+	required uint32 Encrypt          = 8;
+
+	// 上车时间 
+	required uint64 DepTime          = 9;
+
+	// 空驶里程
+	optional float WaitMile          = 10;
+
+	// 等待时间
+	optional uint32 WaitTime         = 11;
+
+	// 保留字段
+	optional string Reserved         = 12;
+}
+
+// 6.4 经营到达接口
+message OperateArrive
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 订单号
+	required string OrderId          = 2;
+
+	// 车辆到达经度
+	required uint64 DestLongitude    = 3;
+
+	// 车辆到达纬度
+	required uint64 DestLatitude     = 4;
+
+	// 坐标加密标识
+	required uint32 Encrypt          = 5;
+
+	// 下车时间
+	required uint64 DestTime         = 6;
+
+	// 载客里程
+	required float DriveMile         = 7;
+
+	// 载客时间
+	required uint32 DriveTime        = 8;
+
+	// 保留字段
+	optional string Reserved         = 9;
+}
+
+// 6.5 经营支付接口
+message OperatePay
+{
+	// 网约车公司标识
+	required string CompanyId        = 1;
+
+	// 订单编号
+	required string OrderId          = 2;
+
+	// 上车位置行政区划编号
+	required uint32 OnArea	    	 = 3;
+	
+	// 机动车驾驶员姓名
+	optional string DriverName       = 4;
+	
+	// 机动车驾驶证号
+	required string LicenseId     	 = 5;
+	
+	// 运价类型编码
+	required string FareType     	 = 6;
+	
+	// 车辆号牌
+	required string VehicleNo     	 = 7;
+	
+	// 预计上车时间
+	required uint64 BookDepTime      = 9;
+	
+	// 等待时间
+	optional uint32 WaitTime    	 = 10;
+	
+	// 车辆出发经度
+	required uint64 DepLongitude     = 11;
+	
+	// 车辆出发纬度
+	required uint64 DepLatitude      = 12;
+	
+	// 上车地点
+	optional string DepArea    		 = 13;
+	
+	// 上车时间
+	required uint64 DepTime    		 = 14;
+	
+	// 车辆到达经度
+	required uint64 DestLongitude    = 15;
+	
+	// 车辆到达纬度
+	required uint64 DestLatitude     = 16;
+	
+	// 下车地点
+	optional string DestArea    	 = 17;
+	
+	// 下车时间
+	required uint64 DestTime    	 = 18;
+	
+	// 预定车型
+	optional string BookModel    	 = 19;
+	
+	// 实际使用车型
+	optional string Model    		 = 20;
+	
+	// 载客里程
+	required float DriveMile    	 = 21;
+	
+	// 载客时间
+	required uint32 DriveTime     	 = 22;
+	
+	// 空驶里程
+	optional float WaitMile          = 23;
+	
+	// 实收金额
+	required float FactPrice         = 24;
+
+	// 应收金额
+	optional float Price             = 25;
+
+	// 现金支付金额
+	optional float CashPrice         = 26;
+
+	// 电子支付机构
+	optional string LineName         = 27;
+
+	// 电子支付金额
+	optional float LinePrice         = 28;
+
+	// POS机支付机构
+	optional string PosName          = 29;
+
+	// POS机支付金额
+	optional float PosPrice          = 30;
+
+	// 优惠金额
+	optional float BenfitPrice       = 31;
+
+	// 预约服务费
+	optional float BookTip    		 = 32;
+
+	// 附加费
+	optional float PassengerTip      = 33;
+
+	// 高峰时段时间加价金额
+	optional float PeakUpPrice       = 34;
+
+	// 夜间时段里程加价金额
+	optional float NightUpPrice    	 = 35;
+
+	// 远途加价金额
+	required float FarUpPrice     	 = 36;
+
+	// 其他加价金额
+	required float OtherUpPrice   	 = 37;
+
+	// 结算状态
+	required string PayState  	     = 38;
+
+	// 乘客结算时间
+	optional uint64 PayTime          = 39;
+
+	// 订单完成时间
+	optional uint64 OrderMatchTime   = 40;
+
+	// 发票状态
+	required string InvoiceStatus    = 41;
+
+	// 保留字段
+	optional string Reserved         = 42;
+}
+
+// 7.1 驾驶员定位信息接口
+message PositionDriver
+{
+	// 公司标识
+	required string CompanyId	          	 = 1;
+
+	// 机动车驾驶证号
+	required string LicenseId 	          	 = 2;
+
+	// 行政区划代码
+	required uint32 DriverRegionCode      	 = 3;
+	
+	// 车辆号牌
+	required string VehicleNo	         	 = 4;
+
+	// 定位时间
+	required uint64 PositionTime         	 = 5;
+
+	// 经度
+	required uint64 Longitude	          	 = 6;
+
+	// 纬度
+	required uint64 Latitude	           	 = 7;
+		 
+	// 坐标加密标识
+	optional uint32 Encrypt	          		 = 8;
+
+	// 方位角
+	optional uint32 Direction		       	 = 9;
+
+	// 海拔高度
+	optional int32 Elevation		      	 = 10;
+
+	// 瞬时速度
+	optional uint32 Speed		         	 = 11;
+
+	// 营运状态
+	optional uint32 BizStatus	           	 = 12;
+
+	// 订单编号 
+	required string OrderId	          		 = 13;
+
+	// 保留字段
+	optional string Reserved        		 = 14;
+}
+
+// 7.2 车辆定位信息接口
+message PositionVehicle
+{
+	// 公司标识
+	required string CompanyId	         = 1;
+
+	// 车辆号牌
+	required string VehicleNo	         = 2;
+
+	// 行政区划代码
+	required uint32 VehicleRegionCode    = 3;
+
+	// 定位时间
+	required uint64 PositionTime         = 4;
+
+	// 经度
+	required uint64 Longitude            = 5;
+
+	// 纬度
+	required uint64 Latitude	         = 6;
+
+	// 瞬时速度
+	optional uint32 Speed                = 7;
+
+	// 方向角
+	optional uint32 Direction            = 8;
+
+	// 海拔高度
+	optional int32 Elevation             = 9;
+
+	// 行驶里程
+	optional float Mileage               = 10;
+
+	// 坐标加密标识
+	optional uint32 Encrypt	         	 = 11;
+
+	// 预警状态
+	optional uint32 WarnStatus           = 12;
+
+	// 车辆状态
+	optional uint32 VehStatus            = 13;
+
+	// 营运状态
+	optional uint32 BizStatus            = 14;
+		 
+	// 订单编号
+	required string OrderId              = 15;
+
+	// 保留字段
+	optional string Reserved        	 = 16;
+}
+
+// 8.1 乘客评价信息接口
+message RatedPassenger
+{
+	// 公司标识
+	required string CompanyId      = 1;
+
+	// 订单号
+	required string OrderId        = 2;
+
+	// 评价时间
+	required uint64 EvaluateTime   = 3;
+		 
+	// 服务满意度
+	required uint32 ServiceScore   = 4;
+
+	// 驾驶员满意度
+	optional uint32 DriverScore    = 5;
+
+	// 车辆满意度
+	optional uint32 VehicleScore   = 6;
+
+	// 评价内容
+	optional string Detail         = 7;
+
+	// 保留字段
+	optional string Reserved       = 8;
+}
+
+// 8.2 乘客投诉信息接口
+message RatedPassengerComplaint
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 订单号
+	required string OrderId	         = 2;
+
+	// 投诉时间
+	required uint64 ComplaintTime    = 3;
+		 
+	// 投诉内容
+	required string Detail		  	 = 4;
+
+	// 处理结果
+	optional string Result   		 = 5;
+
+	// 保留字段
+	optional string Reserved         = 6;
+}
+
+// 8.3 驾驶员处罚信息接口
+message RatedDriverPunish
+{
+	// 公司标识
+	required string CompanyId        = 1;
+
+	// 机动车驾驶证编号
+	required string LicenseId        = 2;
+
+	// 处罚时间
+	required uint64 PunishTime   	 = 3;
+		 
+	// 处罚原因
+	optional string PunishReason  	 = 4;
+
+	// 处罚结果
+	required string PunishResult   	 = 5;
+
+	// 保留字段
+	optional string Reserved         = 6;
+}
+
+// 8.4 驾驶员信誉信息接口
+message RatedDriver
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 机动车驾驶证编号
+	required string LicenseId       = 2;
+
+	// 服务质量信誉等级
+	required uint32 Level           = 3;
+
+	// 服务质量信誉考核日期
+	required uint64 TestDate        = 4;
+
+	// 服务质量信誉考核机构
+	required string TestDepartment  = 5;
+
+	// 保留字段
+	optional string Reserved        = 6;
+}
+
+// 9.1 私人小客车合乘信息服务平台基本信息接口
+message ShareCompany
+{
+	// 公司标识
+	required string CompanyId       = 1;
+
+	// 公司名称
+	required string CompanyName     = 2;
+
+	// 统一社会信用代码
+	required string Identifier      = 3;
+
+	// 注册地行政区划代码
+	required uint32 Address         = 4;
+
+	// 通信地址
+	required string ContactAddress  = 5;
+
+	// 经营业户经济类型
+	required string EconomicType    = 6;
+
+	// 法人代表姓名
+	required string LegalName       = 7;
+
+	// 法人代表电话
+	required string LegalPhone      = 8;
+
+	// 状态
+	required uint32 State           = 9;
+
+	// 操作标识
+	required uint32 Flag            = 10;
+
+	// 更新时间
+	required uint64 UpdateTime      = 11;
+
+	// 保留字段
+	optional string Reserved        = 12;
+}
+
+// 9.2 私人小客车合乘驾驶员行程发布接口 
+message ShareRoute
+{
+	// 公司标识
+	required string CompanyId                = 1;
+	
+	// 行政区划代码
+	optional uint32 Address					 = 2;
+
+	// 驾驶员发起行程编号
+	required string RouteId	             	 = 3;
+	
+	// 驾驶员姓名
+	required string DriverName	             = 4;
+
+	// 驾驶员手机号
+	required string DriverPhone	         	 = 5;
+
+	// 机动车驾驶证号
+	required string LicenseId                = 6;
+
+	// 车辆号牌
+	required string VehicleNo                = 7;
+	
+	// 行程出发地点
+	required string Departure				 = 8;
+
+	// 车辆出发经度
+	required uint64 DepLongitude             = 9;
+
+	// 车辆出发纬度
+	required uint64 DepLatitude              = 10;
+	
+	// 行程达到地点
+	required string Destination				 = 11;
+	
+	// 到达地经度
+	required uint64 DestLongitude    		 = 12;
+
+	// 到达地纬度
+	required uint64 DestLatitude     		 = 13;
+		
+	// 坐标加密标识
+	required uint32 Encrypt	             	 = 14;
+	  
+	// 行程发布时间
+	required uint64 RouteCreateTime          = 15;
+
+	// 行程预计里程
+	optional float RouteMile                 = 16;
+
+	// 行程备注
+	optional string RouteNote                = 17;
+
+	// 保留字段
+	optional string Reserved        	     = 18;
+}
+
+// 9.3 私人小客车合乘订单接口
+message ShareOrder
+{
+	// 公司标识
+	required string CompanyId                = 1;
+	
+	// 行政区划代码
+	optional uint32 Address					 = 2;
+
+	// 驾驶员发起行程编号
+	required string RouteId	             	 = 3;
+	
+	// 乘客合乘订单号
+	required string OrderId					 = 4;
+	
+	// 预计上车时间
+	required uint64 BookDepartTime			 = 5;
+	
+	// 预计上车地点
+	required string Departure 				 = 6;
+	
+	// 预计上车地点经度
+	required uint64 DepLongitude			 = 7;
+	
+	// 预计上车地点纬度
+	required uint64 DepLatitude				 = 8;
+	
+	// 预计下车地点
+	required string Destination				 = 9;
+	
+	// 预计下车地点经度
+	required uint64 DestLongitude			 = 10;
+	
+	// 预计下车地点纬度
+	required uint64 DestLatitude			 = 11;
+	
+	// 坐标加密标识
+	required uint32 Encrypt	     	 		 = 12;
+	
+	// 订单确认时间
+	required uint64 OrderEnsureTime			 = 13;
+	
+	// 乘客人数
+	required uint32 PassengerNum			 = 14;
+	
+	// 乘客备注
+	optional string PassengerNote		     = 15;
+
+	// 保留字段
+	optional string Reserved        		 = 16;
+}
+
+// 9.4 私人小客车合乘订单支付接口
+message SharePay
+{
+	// 公司标识
+	required string CompanyId                = 1;
+	
+	// 行政区划代码
+	optional uint32 Address					 = 2;
+
+	// 驾驶员发起行程编号
+	required string RouteId	             	 = 3;
+	
+	// 乘客合乘订单号
+	required string OrderId					 = 4;
+	
+	// 驾驶员手机号
+	required string DriverPhone	         	 = 5;
+
+	// 机动车驾驶证号
+	required string LicenseId                = 6;
+
+	// 车辆号牌
+	required string VehicleNo                = 7;
+	
+	// 运价类型编码
+	required string FareType     	 		 = 8;
+	
+	// 预计上车时间
+	required uint64 BookDepartTime      	 = 9;
+	
+	// 实际上车时间
+	required uint64 DepartTime				 = 10;
+	
+	// 上车地点
+	required string Departure    		 	 = 11;
+	
+	//  上车地点经度
+	required uint64 DepLongitude     		 = 12;
+	
+	// 上车地点纬度
+	required uint64 DepLatitude      		 = 13;
+	
+	// 下车时间
+	required uint64 DestTime    	 		 = 14;
+	
+	// 下车地点
+	required string Destination    	 		 = 15;
+	
+	// 下车地点经度
+	required uint64 DestLongitude    		 = 16;
+	
+	// 下车地点纬度
+	required uint64 DestLatitude     		 = 17;
+	
+	// 坐标加密标识
+	required uint32 Encrypt	     	 		 = 18;
+	
+	// 载客里程
+	required float DriveMile    	 		 = 19;
+	
+	// 载客时间
+	required uint32 DriveTime     			 = 20;
+	
+	// 实收金额
+	required float FactPrice        		 = 21;
+
+	// 应收金额
+	required float Price            		 = 22;
+
+	// 现金支付金额
+	required float CashPrice        		 = 23;
+
+	// 电子支付机构
+	optional string LineName        	 	 = 24;
+
+	// 电子支付金额
+	required float LinePrice        		 = 25;
+
+	// 优惠金额
+	optional float BenfitPrice      		 = 26;
+
+	// 燃料成本分摊金额
+	optional float ShareFuelFee    			 = 27;
+	
+	// 路桥通行分摊金额
+	optional float ShareHighwayToll			 = 28;
+
+	// 附加费
+	optional float PassengerTip     		 = 29;
+
+	// 其他费用分摊金额
+	optional float ShareOther  				 = 30;
+
+	// 结算状态
+	required string PayState  	    		 = 31;
+
+	// 乘客人数
+	required uint32 PassengerNum         	 = 32;
+	
+	// 乘客结算时间
+	optional uint64 PayTime					 = 33;
+	
+	// 订单完成时间
+	optional uint64 OrderMatchTime			 = 34;
+
+	// 保留字段
+	optional string Reserved        		 = 35;
+}
+
+enum IpcType
+{ 
+	// 4.1 网约车平台公司基本信息接口
+	baseInfoCompany 							= 0x1001;
+
+	// 4.2 网约车平台公司营运规模信息信息接口
+	baseInfoCompanyStat 						= 0x1002;
+
+	// 4.3 网约车平台公司支付信息接口
+	baseInfoCompanyPay 							= 0x1003;
+
+	// 4.4 网约车平台公司服务机构接口
+	baseInfoCompanyService						= 0x1004;
+
+	// 4.5 网约车平台公司经营许可接口
+	baseInfoCompanyPermit 						= 0x1005;
+
+	// 4.6 网约车平台公司运价信息接口
+	baseInfoCompanyFare 						= 0x1006;
+	
+	// 4.7 车辆基本信息接口
+	baseInfoVehicle 							= 0x1007;
+	
+	// 4.8 车辆保险信息接口
+	baseInfoVehicleInsurance 					= 0x1008;
+	
+	// 4.9 网约车车辆里程信息接口
+	baseInfoVehicleTotalMile 					= 0x1009;
+	
+	// 4.10 驾驶员基本信息接口
+	baseInfoDriver								= 0x1010;
+
+	// 4.11 网约车驾驶员培训信息接口
+	baseInfoDriverEducate						= 0x1011;
+
+	// 4.12 驾驶员移动终端信息接口
+	baseInfoDriverApp							= 0x1012;
+
+	// 4.13 驾驶员统计信息接口
+	baseInfoDriverStat		 					= 0x1013;
+
+	// 4.14 乘客基本信息接口
+	baseInfoPassenger							= 0x1014;
+	
+	// 5.1 订单发起接口
+	orderCreate 								= 0x2001;
+
+	// 5.2 订单成功接口
+	orderMatch 									= 0x2002;
+	
+	// 5.3 订单撤销接口
+	orderCancel 								= 0x2003;
+
+	// 6.1 车辆运营上线接口
+	operateLogin 								= 0x3001;
+
+	// 6.2 车辆运营下线接口
+	operateLogout 								= 0x3002;
+	
+	// 6.3 经营出发接口
+	operateDepart 								= 0x3003;
+
+	// 6.4 经营到达接口
+	operateArrive 								= 0x3004;
+
+	// 6.5 经营支付接口
+	operatePay 									= 0x3005;
+
+	// 7.1 驾驶员定位信息接口
+	positionDriver 								= 0x4001;
+
+	// 7.2 车辆定位信息接口
+	positionVehicle 							= 0x4002;
+
+	// 8.1 乘客评价信息接口
+	ratedPassenger 								= 0x5001;
+
+	// 8.2 乘客投诉信息接口
+	ratedPassengerComplaint						= 0x5002;
+
+	// 8.3 驾驶员处罚信息接口 				
+	ratedDriverPunish							= 0x5003;
+
+	// 8.4 驾驶员信誉信息接口
+	ratedDriver 								= 0x5004;
+
+	// 9.1 私人小客车合乘信息服务平台基本信息接口
+	shareCompany 								= 0x6001;
+	
+	// 9.2 私人小客车合乘驾驶员行程发布接口 
+	shareRoute 									= 0x6002;
+	
+	// 9.3 私人小客车合乘订单接口
+	shareOrder									= 0x6003;
+	
+	// 9.4 私人小客车合乘订单支付接口
+	sharePay									= 0x6004;
+}
+
+message OTIpc
+{
+	 // 公司标识
+	 required string CompanyId                       			= 1;
+
+	 // 消息来源标识
+	 required string Source	                        			= 2;
+
+	 // 业务接口代码
+     required IpcType IPCType                           		= 3;
+
+	// 4.1 网约车平台公司基本信息接口
+	repeated BaseInfoCompany baseInfoCompany 					= 0x1001;
+
+	// 4.2 网约车平台公司营运规模信息信息接口
+	repeated BaseInfoCompanyStat baseInfoCompanyStat 			= 0x1002;
+
+	// 4.3 网约车平台公司支付信息接口
+	repeated BaseInfoCompanyPay baseInfoCompanyPay 				= 0x1003;
+
+	// 4.4 网约车平台公司服务机构接口
+	repeated BaseInfoCompanyService baseInfoCompanyService 		= 0x1004;
+
+	// 4.5 网约车平台公司经营许可接口
+	repeated BaseInfoCompanyPermit baseInfoCompanyPermit 		= 0x1005;
+
+	// 4.6 网约车平台公司运价信息接口
+	repeated BaseInfoCompanyFare baseInfoCompanyFare 			= 0x1006;
+	
+	// 4.7 车辆基本信息接口
+	repeated BaseInfoVehicle baseInfoVehicle 					= 0x1007;
+	
+	// 4.8 车辆保险信息接口
+	repeated BaseInfoVehicleInsurance baseInfoVehicleInsurance 	= 0x1008;
+	
+	// 4.9 网约车车辆里程信息接口
+	repeated BaseInfoVehicleTotalMile baseInfoVehicleTotalMile  = 0x1009;
+	
+	// 4.10 驾驶员基本信息接口
+	repeated BaseInfoDriver baseInfoDriver 						= 0x1010;
+
+	// 4.11 网约车驾驶员培训信息接口
+	repeated BaseInfoDriverEducate baseInfoDriverEducate 		= 0x1011;
+
+	// 4.12 驾驶员移动终端信息接口
+	repeated BaseInfoDriverApp baseInfoDriverApp 				= 0x1012;
+
+	// 4.13 驾驶员统计信息接口
+	repeated BaseInfoDriverStat baseInfoDriverStat				= 0x1013;
+
+	// 4.14 乘客基本信息接口
+	repeated BaseInfoPassenger baseInfoPassenger 				= 0x1014;
+	
+	// 5.1 订单发起接口
+	repeated OrderCreate orderCreate 							= 0x2001;
+
+	// 5.2 订单成功接口
+	repeated OrderMatch orderMatch 								= 0x2002;
+	
+	// 5.3 订单撤销接口
+	repeated OrderCancel orderCancel 							= 0x2003;
+
+	// 6.1 车辆运营上线接口
+	repeated OperateLogin operateLogin 							= 0x3001;
+
+	// 6.2 车辆运营下线接口
+	repeated OperateLogout operateLogout 						= 0x3002;
+	
+	// 6.3 经营出发接口
+	repeated OperateDepart operateDepart 						= 0x3003;
+
+	// 6.4 经营到达接口
+	repeated OperateArrive operateArrive 						= 0x3004;
+
+	// 6.5 经营支付接口
+	repeated OperatePay operatePay 								= 0x3005;
+
+	// 7.1 驾驶员定位信息接口
+	repeated PositionDriver positionDriver 						= 0x4001;
+
+	// 7.2 车辆定位信息接口
+	repeated PositionVehicle positionVehicle 					= 0x4002;
+
+	// 8.1 乘客评价信息接口
+	repeated RatedPassenger ratedPassenger 						= 0x5001;
+
+	// 8.2 乘客投诉信息接口
+	repeated RatedPassengerComplaint ratedPassengerComplaint	= 0x5002;
+
+	// 8.3 驾驶员处罚信息接口
+	repeated RatedDriverPunish ratedDriverPunish				= 0x5003;
+
+	// 8.4 驾驶员信誉信息接口
+	repeated RatedDriver ratedDriver 							= 0x5004;
+
+	// 9.1 私人小客车合乘信息服务平台基本信息接口
+	repeated ShareCompany shareCompany 							= 0x6001;
+	
+	// 9.2 私人小客车合乘驾驶员行程发布接口 
+	repeated ShareRoute shareRoute 								= 0x6002;
+	
+	// 9.3 私人小客车合乘订单接口
+	repeated ShareOrder shareOrder								= 0x6003;
+	
+	// 9.4 私人小客车合乘订单支付接口
+	repeated SharePay sharePay									= 0x6004;
+}
+
+message OTIpcList
+{
+     repeated OTIpc otpic                     = 1;
+}
