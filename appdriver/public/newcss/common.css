@@ -258,3 +258,23 @@ input, textarea{
     from {opacity : .2;}
     to {opacity : 1;}
 }
+.renderDateField .weui-cell__ft{
+    flex-grow:1;
+    align-self: stretch;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    height: 30px;
+
+}
+.renderDateField .weui-cell__ft>div{
+    
+    width: 100%;
+    align-self: stretch;
+    height: 30px;
+}
+.renderDateField .weui-cell__ft>div>input{
+    height: 30px;
+    font-size: 16px;
+}
