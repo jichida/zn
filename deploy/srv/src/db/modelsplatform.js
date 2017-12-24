@@ -194,7 +194,7 @@ Platform_baseInfoVehicleSchema.plugin(mongoosePaginate);
 后台输入
  admin设置
 */
-let Platform_baseInfoVehiclelnsuranceSchema = new Schema({
+let Platform_baseInfoVehicleInsuranceSchema = new Schema({
   CompanyId:String,// 公司标识一 37 一元素名称	必选	类型	长度	字段名称	描	述
   VehicleNo:String,//	是	字符型	V32	车辆号牌
   InsurCom:String,//	是	字符型	V64	保险公司名称
@@ -206,7 +206,7 @@ let Platform_baseInfoVehiclelnsuranceSchema = new Schema({
   Flag:Number,//	是	数字型	Fl	操作标识	1:新增2 :更新3 .删除
   UpdateTime:Date,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
-Platform_baseInfoVehiclelnsuranceSchema.plugin(mongoosePaginate);
+Platform_baseInfoVehicleInsuranceSchema.plugin(mongoosePaginate);
 // A. 4. 9.	网约车 车辆里程信息接 口
 /*
 程序计算累计
@@ -630,7 +630,7 @@ exports.Platform_baseInfoCompanyServiceSchema= Platform_baseInfoCompanyServiceSc
 exports.Platform_baseInfoCompanyPermitSchema= Platform_baseInfoCompanyPermitSchema;
 exports.Platform_baseInfoCompanyFareSchema= Platform_baseInfoCompanyFareSchema;
 exports.Platform_baseInfoVehicleSchema= Platform_baseInfoVehicleSchema;
-exports.Platform_baseInfoVehiclelnsuranceSchema= Platform_baseInfoVehiclelnsuranceSchema;
+exports.Platform_baseInfoVehicleInsuranceSchema= Platform_baseInfoVehicleInsuranceSchema;
 exports.Platform_baseInfoVehicleTotalMileSchema= Platform_baseInfoVehicleTotalMileSchema;
 exports.Platform_baseInfoDriverSchema= Platform_baseInfoDriverSchema;
 exports.Platform_baseInfoDriverEducateSchema= Platform_baseInfoDriverEducateSchema;
@@ -663,7 +663,7 @@ let Platform_baseInfoCompanyServiceModel= mongoose.model('baseinfocompanyservice
 let Platform_baseInfoCompanyPermitModel= mongoose.model('baseinfocompanypermit',  Platform_baseInfoCompanyPermitSchema);
 let Platform_baseInfoCompanyFareModel= mongoose.model('baseinfocompanyfare',  Platform_baseInfoCompanyFareSchema);
 let Platform_baseInfoVehicleModel= mongoose.model('baseinfovehicle',  Platform_baseInfoVehicleSchema);
-let Platform_baseInfoVehiclelnsuranceModel= mongoose.model('baseinfovehiclelnsurance',  Platform_baseInfoVehiclelnsuranceSchema);
+let Platform_baseInfoVehicleInsuranceModel= mongoose.model('baseinfoVehicleInsurance',  Platform_baseInfoVehicleInsuranceSchema);
 let Platform_baseInfoVehicleTotalMileModel= mongoose.model('baseinfovehicletotalmile',  Platform_baseInfoVehicleTotalMileSchema);
 let Platform_baseInfoDriverModel= mongoose.model('baseinfodriver',  Platform_baseInfoDriverSchema);
 let Platform_baseInfoDriverEducateModel= mongoose.model('baseinfodrivereducate',  Platform_baseInfoDriverEducateSchema);
@@ -696,7 +696,7 @@ exports.Platform_baseInfoCompanyServiceModel= Platform_baseInfoCompanyServiceMod
 exports.Platform_baseInfoCompanyPermitModel= Platform_baseInfoCompanyPermitModel;
 exports.Platform_baseInfoCompanyFareModel= Platform_baseInfoCompanyFareModel;
 exports.Platform_baseInfoVehicleModel= Platform_baseInfoVehicleModel;
-exports.Platform_baseInfoVehiclelnsuranceModel= Platform_baseInfoVehiclelnsuranceModel;
+exports.Platform_baseInfoVehicleInsuranceModel= Platform_baseInfoVehicleInsuranceModel;
 exports.Platform_baseInfoVehicleTotalMileModel= Platform_baseInfoVehicleTotalMileModel;
 exports.Platform_baseInfoDriverModel= Platform_baseInfoDriverModel;
 exports.Platform_baseInfoDriverEducateModel= Platform_baseInfoDriverEducateModel;

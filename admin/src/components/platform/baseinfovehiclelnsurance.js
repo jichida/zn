@@ -14,11 +14,11 @@ import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
 
-const BaseInfoVehiclelnsurancecreateTitle = ({ record }) => {
+const BaseInfoVehicleInsurancecreateTitle = ({ record }) => {
    return <span>新建 车辆保险</span>;
 };
-const BaseInfoVehiclelnsuranceCreate = (props) => (
-       <Create {...props} title={<BaseInfoVehiclelnsurancecreateTitle />} >
+const BaseInfoVehicleInsuranceCreate = (props) => (
+       <Create {...props} title={<BaseInfoVehicleInsurancecreateTitle />} >
            <SimpleForm>
                <TextInputEx label="车辆号牌" source="VehicleNo" />
                <TextInputEx label="保险公司名称"  source="InsurCom" />
@@ -31,13 +31,13 @@ const BaseInfoVehiclelnsuranceCreate = (props) => (
        </Create>
 );
 
-const BaseInfoVehiclelnsuranceTitle = ({ record }) => {
+const BaseInfoVehicleInsuranceTitle = ({ record }) => {
     console.log("record=>" + JSON.stringify(record));
    return <span>编辑 车辆保险</span>;
 };
 
-const BaseInfoVehiclelnsuranceEdit = (props) => {
-      return (<Edit title={<BaseInfoVehiclelnsuranceTitle />} {...props}>
+const BaseInfoVehicleInsuranceEdit = (props) => {
+      return (<Edit title={<BaseInfoVehicleInsuranceTitle />} {...props}>
           <SimpleForm>
             <TextInputEx label="车辆号牌" source="VehicleNo" />
             <TextInputEx label="保险公司名称"  source="InsurCom" />
@@ -52,8 +52,8 @@ const BaseInfoVehiclelnsuranceEdit = (props) => {
 };
 
 
-const BaseInfoVehiclelnsuranceShow = (props) => (
-       <Show title={<BaseInfoVehiclelnsuranceTitle />} {...props}>
+const BaseInfoVehicleInsuranceShow = (props) => (
+       <Show title={<BaseInfoVehicleInsuranceTitle />} {...props}>
            <SimpleShowLayout>
              <TextField label="车辆号牌" source="VehicleNo" />
              <TextField label="保险公司名称"  source="InsurCom" />
@@ -68,7 +68,7 @@ const BaseInfoVehiclelnsuranceShow = (props) => (
 
 
 
-const BaseInfoVehiclelnsuranceList = (props) => (//
+const BaseInfoVehicleInsuranceList = (props) => (//
      <List title="车辆保险列表" {...props} >
         <Datagrid>
         <TextField label="车辆号牌" source="VehicleNo" />
@@ -85,4 +85,4 @@ const BaseInfoVehiclelnsuranceList = (props) => (//
 );
 
 
-export  {BaseInfoVehiclelnsuranceList,BaseInfoVehiclelnsuranceCreate,BaseInfoVehiclelnsuranceEdit,BaseInfoVehiclelnsuranceShow};
+export  {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow};

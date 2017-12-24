@@ -1,5 +1,6 @@
 
 let config =  {
+  platformserverurl:'',
   secretkey:'zongnanchuxingkey',
   listenport:process.env.listenport||3005,
   rooturl:process.env.rooturl || 'http://api.tczncx.com',

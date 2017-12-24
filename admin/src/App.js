@@ -37,7 +37,7 @@ import {BaseInfoCompanyPermitList} from './components/platform/baseinfocompanype
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow}  from './components/platform/baseinfocompanypay.js';
 import {BaseInfoCompanyFareList,BaseInfoCompanyFareCreate,BaseInfoCompanyFareEdit}  from './components/platform/baseinfocompanyfare.js';
 import {BaseInfoVehicleList,BaseInfoVehicleCreate,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
-import {BaseInfoVehiclelnsuranceList,BaseInfoVehiclelnsuranceCreate,BaseInfoVehiclelnsuranceEdit,BaseInfoVehiclelnsuranceShow} from './components/platform/baseinfovehiclelnsurance.js';
+import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow} from './components/platform/baseinfovehicleinsurance.js';
 import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './components/platform/baseinfovehicletotalmile.js';
 import {BaseInfoDriverList,BaseInfoDriverCreate,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit,BaseInfoDriverEducateShow} from './components/platform/baseinfodrivereducate.js';
@@ -107,7 +107,7 @@ class App extends Component {
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
             <Resource name="baseinfovehicle" list={BaseInfoVehicleList} create={BaseInfoVehicleCreate}  edit={BaseInfoVehicleEdit}/>
-            <Resource name="baseinfovehiclelnsurance" list={BaseInfoVehiclelnsuranceList} create={BaseInfoVehiclelnsuranceCreate}  edit={BaseInfoVehiclelnsuranceEdit}  show={BaseInfoVehiclelnsuranceShow} />
+            <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit}  show={BaseInfoVehicleInsuranceShow} />
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList} create={BaseInfoDriverCreate}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  show={BaseInfoDriverEducateShow}  edit={BaseInfoDriverEducateEdit} />

@@ -61,7 +61,7 @@ let preaction =(actionname,collectionname,doc)=>{
       retdoc['Commercial-Type'] = 1;
       retdoc.UpdateTime =  new Date();
     }
-    else if(collectionname === 'baseinfovehiclelnsurance'){
+    else if(collectionname === 'baseinfoVehicleInsurance'){
       if (typeof retdoc.InsurEff === 'string') {
         retdoc.InsurEff = new Date(Date.parse(retdoc.InsurEff));
       }
