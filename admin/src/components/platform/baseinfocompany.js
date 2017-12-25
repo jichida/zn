@@ -31,14 +31,14 @@ import ShowPageOne from '../singledocumentpage/index.js';
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+const required = value => value ? undefined : '必需';
 
-
- const BaseInfoCompanyCreate = (props) => (
+const BaseInfoCompanyCreate = (props) => (
        <Create {...props} title='resources.baseinfocompany.editpagename' >
        <SimpleForm>
-           <TextInputEx  label="公司标识" source="CompanyId" />
-           <TextInputEx  label="公司名称" source="CompanyName" />
-           <TextInputEx  label="统一社会信用代码" source="Identifier" />
+           <TextInputEx  label="公司标识" source="CompanyId" validate={[required]}/>
+           <TextInputEx  label="公司名称" source="CompanyName"  validate={[required]}/>
+           <TextInputEx  label="统一社会信用代码" source="Identifier"  validate={[required]}/>
            <SelectInput elStyle={{width:'100%'}} label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
              { id:110000, name: '北京市' },
              { id:120000, name: '天津市' },
@@ -72,16 +72,16 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
              { id:640000, name: '宁夏回族自治区' },
              { id:650000, name: '新疆维吾尔自治区' },
            ]} />
-           <TextInputEx label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope"/>
-           <TextInputEx label="通信地址全称"  source="ContactAddress" />
-           <TextInputEx label="经营业户经济类型"  source="EconomicType" />
-           <TextInputEx label="注册资本（按照营业执照内容填写）"  source="RegCapital" />
-           <TextInputEx label="法人代表姓名（按照营业执照内容填写）"  source="LegalName" />
-           <TextInputEx label="法人代表身份证号"  source="LegalID" />
-           <TextInputEx label="法人代表电话"  source="LegalPhone" />
+           <TextInputEx label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope" validate={[required]}/>
+           <TextInputEx label="通信地址全称"  source="ContactAddress"  validate={[required]}/>
+           <TextInputEx label="经营业户经济类型"  source="EconomicType"  validate={[required]}/>
+           <TextInputEx label="注册资本（按照营业执照内容填写）"  source="RegCapital"  validate={[required]}/>
+           <TextInputEx label="法人代表姓名（按照营业执照内容填写）"  source="LegalName"  validate={[required]}/>
+           <TextInputEx label="法人代表身份证号"  source="LegalID"  validate={[required]}/>
+           <TextInputEx label="法人代表电话"  source="LegalPhone"  validate={[required]}/>
            <ImageInputUpload label="法人代表电话法人代表身份证扫描号"  source="LegalPhotoURL" />
-           <DisabledInputEx label="状态"  source="State" />
-           <DateField label="数据更新时间" source="UpdateTime" showTime />
+           <DisabledInputEx label="状态"  source="State"  validate={[required]}/>
+           <DateField label="数据更新时间" source="UpdateTime" showTime  validate={[required]}/>
        </SimpleForm>
        </Create>
 );
@@ -89,9 +89,9 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
  const BaseInfoCompanyEdit = (props) => (
     <EditPage {...props} title='resources.baseinfocompany.editpagename'>
         <SimpleForm>
-            <TextInputEx  label="公司标识" source="CompanyId" />
-            <TextInputEx  label="公司名称" source="CompanyName" />
-            <TextInputEx  label="统一社会信用代码" source="Identifier" />
+            <TextInputEx  label="公司标识" source="CompanyId" validate={[required]}/>
+            <TextInputEx  label="公司名称" source="CompanyName" validate={[required]}/>
+            <TextInputEx  label="统一社会信用代码" source="Identifier" validate={[required]}/>
             <SelectInput elStyle={{width:'100%'}} label="数字型注册地行政区划代码(仅选择,程序会自动匹配)"  source="Address" choices={[
               { id:110000, name: '北京市' },
               { id:120000, name: '天津市' },
@@ -124,17 +124,17 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
               { id:630000, name: '青海省' },
               { id:640000, name: '宁夏回族自治区' },
               { id:650000, name: '新疆维吾尔自治区' },
-            ]} />
-            <TextInputEx label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope"/>
-            <TextInputEx label="通信地址全称"  source="ContactAddress" />
-            <TextInputEx label="经营业户经济类型"  source="EconomicType" />
-            <TextInputEx label="注册资本（按照营业执照内容填写）"  source="RegCapital" />
-            <TextInputEx label="法人代表姓名（按照营业执照内容填写）"  source="LegalName" />
-            <TextInputEx label="法人代表身份证号"  source="LegalID" />
-            <TextInputEx label="法人代表电话"  source="LegalPhone" />
+            ]} validate={[required]}/>
+            <TextInputEx label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope" validate={[required]}/>
+            <TextInputEx label="通信地址全称"  source="ContactAddress" validate={[required]}/>
+            <TextInputEx label="经营业户经济类型"  source="EconomicType" validate={[required]}/>
+            <TextInputEx label="注册资本（按照营业执照内容填写）"  source="RegCapital" validate={[required]}/>
+            <TextInputEx label="法人代表姓名（按照营业执照内容填写）"  source="LegalName" validate={[required]}/>
+            <TextInputEx label="法人代表身份证号"  source="LegalID" validate={[required]}/>
+            <TextInputEx label="法人代表电话"  source="LegalPhone" validate={[required]}/>
             <ImageInputUpload label="法人代表电话法人代表身份证扫描号"  source="LegalPhotoURL" />
-            <DisabledInputEx label="状态"  source="State" />
-            <DateField label="数据更新时间" source="UpdateTime" showTime />
+            <DisabledInputEx label="状态"  source="State" validate={[required]}/>
+            <DateField label="数据更新时间" source="UpdateTime" showTime validate={[required]}/>
         </SimpleForm>
     </EditPage>
 );

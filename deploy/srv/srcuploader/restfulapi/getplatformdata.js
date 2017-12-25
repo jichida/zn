@@ -8,7 +8,7 @@ const gettimefromstring = (timestring)=>{
 
 const getplatformdata = (actionname,collectionname,doc)=>{
   let retdoc = doc;
-  retdoc = _.omit(retdoc,'_id');
+  retdoc = _.omit(retdoc,['_id','__v']);
   console.log(`retdoc==>${JSON.stringify(retdoc)}`);
   console.log(`actionname==>${actionname}`);
   console.log(`collectionname==>${collectionname}`);
