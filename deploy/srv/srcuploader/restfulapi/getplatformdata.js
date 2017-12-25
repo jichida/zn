@@ -6,6 +6,10 @@ const gettimefromstring = (timestring)=>{
   let curtime = moment(timestring).format('YYYYMMDDHHmmss');
   return parseInt(curtime);
 }
+const getdatefromstring = (timestring)=>{
+  let curtime = moment(timestring).format('YYYYMMDD');
+  return parseInt(curtime);
+}
 
 const getplatformdata = (actionname,collectionname,doc)=>{
   let retdoc = doc;
@@ -15,110 +19,112 @@ const getplatformdata = (actionname,collectionname,doc)=>{
   console.log(`collectionname==>${collectionname}`);
 
   if(actionname === 'save' || actionname === 'findByIdAndUpdate'){
-    if(collectionname === 'baseinfocompany'){
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      console.log(`retdoc==>${retdoc.UpdateTime}`);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
-    }
-    else if(collectionname === 'baseinfocompanystat'){
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.CompanyId = config.CompanyId;
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
-    }
-    else if(collectionname === 'baseinfocompanypay'){
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    }
-    else if(collectionname === 'baseinfocompanyservice'){
+    retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    retdoc.CompanyId = config.CompanyId;
+    retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+
+    //
+    // if(collectionname === 'baseinfocompany'){
+    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    //   console.log(`retdoc==>${retdoc.UpdateTime}`);
+    //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+    // }
+    // else if(collectionname === 'baseinfocompanystat'){
+    // }
+    // else if(collectionname === 'baseinfocompanypay'){
+    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    // }
+    if(collectionname === 'baseinfocompanyservice'){
       if (typeof retdoc.CreateDate === 'string') {
-        retdoc.CreateDate = gettimefromstring(retdoc.CreateDate);
+        retdoc.CreateDate = getdatefromstring(retdoc.CreateDate);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfocompanypermit'){
       if (typeof retdoc.StartDate === 'string') {
-        retdoc.StartDate = gettimefromstring(retdoc.StartDate);
+        retdoc.StartDate = getdatefromstring(retdoc.StartDate);
       }
       if (typeof this.StopDate === 'string') {
-        retdoc.StopDate = gettimefromstring(retdoc.StopDate);
+        retdoc.StopDate = getdatefromstring(retdoc.StopDate);
       }
       if (typeof this.CertifyDate === 'string') {
-        retdoc.CertifyDate = gettimefromstring(retdoc.CertifyDate);
+        retdoc.CertifyDate = getdatefromstring(retdoc.CertifyDate);
       }
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfocompanyfare'){
       if (typeof retdoc.FareValidOn === 'string') {
-        retdoc.FareValidOn = gettimefromstring(retdoc.FareValidOn);
+        retdoc.FareValidOn = getdatefromstring(retdoc.FareValidOn);
       }
       if (typeof retdoc.FareValidOff === 'string') {
-        retdoc.FareValidOff = gettimefromstring(retdoc.FareValidOff);
+        retdoc.FareValidOff = getdatefromstring(retdoc.FareValidOff);
       }
       // retdoc.FareValidOn = util.gettimeformat(retdoc.FareValidOn);
       // retdoc.FareValidOff = util.gettimeformat(retdoc.FareValidOff);
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfovehicle'){
       if (typeof retdoc.CertifyDateA === 'string') {
-        retdoc.CertifyDateA =  gettimefromstring(retdoc.CertifyDateA);
+        retdoc.CertifyDateA =  getdatefromstring(retdoc.CertifyDateA);
       }
       if (typeof retdoc.TransDateStart === 'string') {
-        retdoc.TransDateStart = gettimefromstring(retdoc.TransDateStart);
+        retdoc.TransDateStart = getdatefromstring(retdoc.TransDateStart);
       }
       if (typeof retdoc.TransDateStop === 'string') {
-        retdoc.TransDateStop =  gettimefromstring(retdoc.TransDateStop);
+        retdoc.TransDateStop =  getdatefromstring(retdoc.TransDateStop);
       }
       if (typeof retdoc.CertifyDateB === 'string') {
-        retdoc.CertifyDateB = new Date(Date.parse(retdoc.CertifyDateB));
+        retdoc.CertifyDateB =  getdatefromstring(retdoc.CertifyDateB);
       }
       if (typeof retdoc.GPSlnstallDate === 'string') {
-        retdoc.GPSlnstallDate = new Date(Date.parse(retdoc.GPSlnstallDate));
+        retdoc.GPSlnstallDate =  getdatefromstring(retdoc.GPSlnstallDate);
       }
       retdoc['Commercial-Type'] = 1;
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfoVehicleInsurance'){
       if (typeof retdoc.InsurEff === 'string') {
-        retdoc.InsurEff = gettimefromstring(retdoc.InsurEff);
+        retdoc.InsurEff = getdatefromstring(retdoc.InsurEff);
       }
       if (typeof this.InsurExp === 'string') {
-        retdoc.InsurExp = gettimefromstring(retdoc.InsurExp);
+        retdoc.InsurExp = getdatefromstring(retdoc.InsurExp);
       }
-      retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     }
-    else if(collectionname === 'baseinfovehicletotalmile'){
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    }
+    // else if(collectionname === 'baseinfovehicletotalmile'){
+    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    // }
     else if(collectionname === 'baseinfodriver'){
       //注意：不能用=>，否则出错，不知道原因
         if (typeof retdoc.DriverBirthday === 'string') {
-          retdoc.DriverBirthday = gettimefromstring(retdoc.DriverBirthday);
+          retdoc.DriverBirthday = getdatefromstring(retdoc.DriverBirthday);
         }
         if (typeof retdoc.GetDriverLicenseDate === 'string') {
-          retdoc.GetDriverLicenseDate = gettimefromstring(retdoc.GetDriverLicenseDate);
+          retdoc.GetDriverLicenseDate = getdatefromstring(retdoc.GetDriverLicenseDate);
         }
         if (typeof retdoc.DriverLicenseOn === 'string') {
-          retdoc.DriverLicenseOn = gettimefromstring(retdoc.DriverLicenseOn);
+          retdoc.DriverLicenseOn = getdatefromstring(retdoc.DriverLicenseOn);
         }
         if (typeof retdoc.DriverLicenseOff === 'string') {
-          retdoc.DriverLicenseOff = gettimefromstring(retdoc.DriverLicenseOff);
+          retdoc.DriverLicenseOff = getdatefromstring(retdoc.DriverLicenseOff);
         }
         if(!retdoc.hasOwnProperty('TaxiDriver')){
           retdoc.TaxiDriver = false;
         }
         if (typeof retdoc.NetworkCarIssueDate === 'string') {
-          retdoc.NetworkCarIssueDate = gettimefromstring(retdoc.NetworkCarIssueDate);
+          retdoc.NetworkCarIssueDate = getdatefromstring(retdoc.NetworkCarIssueDate);
         }
         if (typeof retdoc.GetNetworkCarProofDate === 'string') {
-          retdoc.GetNetworkCarProofDate = gettimefromstring(retdoc.GetNetworkCarProofDate);
+          retdoc.GetNetworkCarProofDate = getdatefromstring(retdoc.GetNetworkCarProofDate);
         }
         if (typeof retdoc.NetworkCarProofOn === 'string') {
-          retdoc.NetworkCarProofOn = gettimefromstring(retdoc.NetworkCarProofOn);
+          retdoc.NetworkCarProofOn = getdatefromstring(retdoc.NetworkCarProofOn);
         }
         if (typeof retdoc.NetworkCarProofOff === 'string') {
-          retdoc.NetworkCarProofOff = gettimefromstring(retdoc.NetworkCarProofOff);
+          retdoc.NetworkCarProofOff = getdatefromstring(retdoc.NetworkCarProofOff);
         }
         if (typeof retdoc.RegisterDate === 'string') {
-          retdoc.RegisterDate = gettimefromstring(retdoc.RegisterDate);
+          retdoc.RegisterDate = getdatefromstring(retdoc.RegisterDate);
         }
         if(!retdoc.hasOwnProperty('FullTimeDriver')){
           retdoc.FullTimeDriver = false;
@@ -127,39 +133,39 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc.InDriverBlacklist = false;
         }
         if (typeof retdoc.ContractOn === 'string') {
-          retdoc.ContractOn = gettimefromstring(retdoc.ContractOn);
+          retdoc.ContractOn = getdatefromstring(retdoc.ContractOn);
         }
         if (typeof retdoc.ContractOff === 'string') {
-          retdoc.ContractOff = gettimefromstring(retdoc.ContractOff);
+          retdoc.ContractOff = getdatefromstring(retdoc.ContractOff);
         }
         retdoc.CommercialType = 1;//1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
-        retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+        // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       }
     else if(collectionname === 'baseinfodrivereducate'){
       if (typeof retdoc.CourseDate === 'string') {
-        retdoc.CourseDate = gettimefromstring(retdoc.CourseDate);
+        retdoc.CourseDate = getdatefromstring(retdoc.CourseDate);
       }
-      retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfodriverapp'){
       retdoc.MapType =  2;
-      retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     }
-    else if(collectionname === 'baseinfodriverstat'){
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    }
+    // else if(collectionname === 'baseinfodriverstat'){
+    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    // }
     else if(collectionname === 'baseinfopassenger'){
       if (typeof retdoc.RegisterDate === 'string') {
-        retdoc.RegisterDate = gettimefromstring(retdoc.UpdateTime);
+        retdoc.RegisterDate = getdatefromstring(retdoc.UpdateTime);
       }
-      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'ordercreate'){
       if (typeof retdoc.DepartTime === 'string') {
-        retdoc.DepartTime = gettimefromstring(retdoc.DepartTime);
+        retdoc.DepartTime = getdatefromstring(retdoc.DepartTime);
       }
       if (typeof retdoc.OrderTime === 'string') {
-        retdoc.OrderTime = gettimefromstring(retdoc.OrderTime);
+        retdoc.OrderTime = getdatefromstring(retdoc.OrderTime);
       }
       retdoc.Encrypt =  2;
     }

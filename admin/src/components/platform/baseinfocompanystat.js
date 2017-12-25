@@ -30,10 +30,9 @@ const BaseInfoCompanyStatTitle = ({ record }) => <span>营运规模信息</span>
 export const BaseInfoCompanyStatList = (props) => (//
      <List title="营运规模信息" {...props} >
         <Datagrid>
-        <TextField label="公司标识"  source="CompanyId" />
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />
         <TextField label="平台注册驾驶员数"  source="DriverNum" />
-        <DateField label="数据更新时间" source="UpdateTime" showTime />
+        <TextField label="数据更新时间" source="UpdateTime" showTime />
         </Datagrid>
     </List>
 );

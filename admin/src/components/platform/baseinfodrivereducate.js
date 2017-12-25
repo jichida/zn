@@ -13,6 +13,7 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const BaseInfoDriverEducatecreateTitle = ({ record }) => {
    return <span>新建 驾驶员培训信息</span>;
@@ -22,7 +23,7 @@ const BaseInfoDriverEducateCreate = (props) => (
            <SimpleForm>
                <TextInputEx label="机动车驾驶证号" source="LicenseId" />
                <TextInputEx label="驾驶员培训课程名称"  source="CourseName" />
-               <DateInput label="培训课程日期"  source="CourseDate" />
+               <DateInputString label="培训课程日期"  source="CourseDate" />
                <TimePickerInput label="培训开始时间" source="StartTime" />
                <TimePickerInput label="培训结束时间" source="StopTime" />
                <NumberInputEx label="培训时长" source="Duration" />
@@ -40,7 +41,7 @@ const BaseInfoDriverEducateEdit = (props) => {
           <SimpleForm>
           <TextInputEx label="机动车驾驶证号" source="LicenseId" />
           <TextInputEx label="驾驶员培训课程名称"  source="CourseName" />
-          <DateInput label="培训课程日期"  source="CourseDate" />
+          <DateInputString label="培训课程日期"  source="CourseDate" />
           <TimePickerInput label="培训开始时间" source="StartTime" />
           <TimePickerInput label="培训结束时间" source="StopTime" />
           <NumberInputEx label="培训时长" source="Duration" />

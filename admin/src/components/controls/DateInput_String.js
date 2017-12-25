@@ -12,9 +12,11 @@ const renderDatePicker= (props) => {
 
 
   let value = new Date();
-
   if(!!input.value){
     value = moment(input.value).toDate();
+  }
+  else{
+    input.onChange(moment().format("YYYY-MM-DD"));
   }
   return (<DatePicker floatingLabelText={label} floatingLabelFixed={true}
   value={value} onChange={onChange} okLabel='确定' cancelLabel='取消'/>);

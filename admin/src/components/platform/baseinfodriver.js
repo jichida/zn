@@ -18,6 +18,7 @@ import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const BaseInfoDrivercreateTitle = ({ record }) => {
    return <span>新建 驾驶员信息</span>;
@@ -32,7 +33,7 @@ const BaseInfoDriverCreate = (props) => (
                { id: '男', name: '男' },
                { id: '女', name: '女' },
            ]} />
-           <DateInput label="出生日期" source="DriverBirthday" />
+           <DateInputString label="出生日期" source="DriverBirthday" />
            <TextInputEx  label="国籍" source="DriverNationality" />
            <SelectInput  label="驾驶员婚姻状况"  source="DriverMaritalStatus" choices={[
                { id: '未婚', name: '未婚' },
@@ -58,28 +59,28 @@ const BaseInfoDriverCreate = (props) => (
            <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
            <TextInputEx  label="机动车驾驶证号" source="LicenseId" />
            <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
-           <DateInput label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
-           <DateInput label="驾驶证有效期限起" source="DriverLicenseOn" />
-           <DateInput label="驾驶证有效期限止" source="DriverLicenseOff" />
+           <DateInputString label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
+           <DateInputString label="驾驶证有效期限起" source="DriverLicenseOn" />
+           <DateInputString label="驾驶证有效期限止" source="DriverLicenseOff" />
            </FormTab>
 
            <FormTab label="resources.baseinfodriver.tabs.tab2">
            <BooleanInput  label="是否出租汽车驾驶员" source="TaxiDriver" />
            <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateNo" />
            <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrganization" />
-           <DateInput  label="资格证发证日期" source="NetworkCarIssueDate" />
-           <DateInput  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
-           <DateInput  label="资格证有效起始日期" source="NetworkCarProofOn" />
-           <DateInput  label="资格证有效截止日期" source="NetworkCarProofOff" />
-           <DateInput  label="报备日期" source="RegisterDate" />
+           <DateInputString  label="资格证发证日期" source="NetworkCarIssueDate" />
+           <DateInputString  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
+           <DateInputString  label="资格证有效起始日期" source="NetworkCarProofOn" />
+           <DateInputString  label="资格证有效截止日期" source="NetworkCarProofOff" />
+           <DateInputString  label="报备日期" source="RegisterDate" />
            </FormTab>
 
            <FormTab label="resources.baseinfodriver.tabs.tab3">
            <BooleanInput  label="是否专职驾驶员" source="FullTimeDriver" />
            <BooleanInput  label="是否在驾驶员黑名单内" source="InDriverBlacklist" />
            <TextInputEx  label="驾驶员合同〈或协议〉签署公司全称" source="ContractCompany" />
-           <DateInput  label="合同〈或协议〉有效期起" source="ContractOn" />
-           <DateInput  label="合同〈或协议〉有效期止" source="ContractOff" />
+           <DateInputString  label="合同〈或协议〉有效期起" source="ContractOn" />
+           <DateInputString  label="合同〈或协议〉有效期止" source="ContractOff" />
            </FormTab>
 
            <FormTab label="resources.baseinfodriver.tabs.tab4">
@@ -107,7 +108,7 @@ const BaseInfoDriverEdit = (props) => {
                 { id: '男', name: '男' },
                 { id: '女', name: '女' },
             ]} />
-            <DateInput label="出生日期" source="DriverBirthday" />
+            <DateInputString label="出生日期" source="DriverBirthday" />
             <TextInputEx  label="国籍" source="DriverNationality" />
             <SelectInput  label="驾驶员婚姻状况"  source="DriverMaritalStatus" choices={[
                 { id: '未婚', name: '未婚' },
@@ -133,28 +134,28 @@ const BaseInfoDriverEdit = (props) => {
             <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
             <TextInputEx  label="机动车驾驶证号" source="LicenseId" />
             <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
-            <DateInput label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
-            <DateInput label="驾驶证有效期限起" source="DriverLicenseOn" />
-            <DateInput label="驾驶证有效期限止" source="DriverLicenseOff" />
+            <DateInputString label="初次领取驾驶证日期" source="GetDriverLicenseDate" />
+            <DateInputString label="驾驶证有效期限起" source="DriverLicenseOn" />
+            <DateInputString label="驾驶证有效期限止" source="DriverLicenseOff" />
             </FormTab>
 
             <FormTab label="resources.baseinfodriver.tabs.tab2">
             <BooleanInput  label="是否出租汽车驾驶员" source="TaxiDriver" />
             <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateNo" />
             <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrganization" />
-            <DateInput  label="资格证发证日期" source="NetworkCarIssueDate" />
-            <DateInput  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
-            <DateInput  label="资格证有效起始日期" source="NetworkCarProofOn" />
-            <DateInput  label="资格证有效截止日期" source="NetworkCarProofOff" />
-            <DateInput  label="报备日期" source="RegisterDate" />
+            <DateInputString  label="资格证发证日期" source="NetworkCarIssueDate" />
+            <DateInputString  label="初次领取资格证日期" source="GetNetworkCarProofDate" />
+            <DateInputString  label="资格证有效起始日期" source="NetworkCarProofOn" />
+            <DateInputString  label="资格证有效截止日期" source="NetworkCarProofOff" />
+            <DateInputString  label="报备日期" source="RegisterDate" />
             </FormTab>
 
             <FormTab label="resources.baseinfodriver.tabs.tab3">
             <BooleanInput  label="是否专职驾驶员" source="FullTimeDriver" />
             <BooleanInput  label="是否在驾驶员黑名单内" source="InDriverBlacklist" />
             <TextInputEx  label="驾驶员合同〈或协议〉签署公司全称" source="ContractCompany" />
-            <DateInput  label="合同〈或协议〉有效期起" source="ContractOn" />
-            <DateInput  label="合同〈或协议〉有效期止" source="ContractOff" />
+            <DateInputString  label="合同〈或协议〉有效期起" source="ContractOn" />
+            <DateInputString  label="合同〈或协议〉有效期止" source="ContractOff" />
             </FormTab>
 
             <FormTab label="resources.baseinfodriver.tabs.tab4">

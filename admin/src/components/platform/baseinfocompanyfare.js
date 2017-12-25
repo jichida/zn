@@ -14,6 +14,7 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const BaseInfoCompanyFarecreateTitle = ({ record }) => {
    return <span>新建 运价</span>;
@@ -28,8 +29,8 @@ const BaseInfoCompanyFareCreate = (props) => (
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-           <DateInput label="运价有效期起" source="FareValidOn" />
-           <DateInput label="运价有效期止" source="FareValidOff" />
+           <DateInputString label="运价有效期起" source="FareValidOn" />
+           <DateInputString label="运价有效期止" source="FareValidOff" />
            <NumberInputEx  label="起步价(单位:元)" source="StartFare" />
            <NumberInputEx  label="起步里程(单位:km)" source="StartMile" />
            <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" />
@@ -68,8 +69,8 @@ const BaseInfoCompanyFareEdit = (props) => {
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
             <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-            <DateInput label="运价有效期起" source="FareValidOn" />
-            <DateInput label="运价有效期止" source="FareValidOff" />
+            <DateInputString label="运价有效期起" source="FareValidOn" />
+            <DateInputString label="运价有效期止" source="FareValidOff" />
             <NumberInputEx  label="起步价(单位:元)" source="StartFare" />
             <NumberInputEx  label="起步里程(单位:km)" source="StartMile" />
             <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" />
@@ -103,8 +104,8 @@ const BaseInfoCompanyFareList = (props) => (//
         <ReferenceField source="FareType" reference="faretype" allowEmpty>
             <TextField source="registertype" />
         </ReferenceField>
-        <DateField label="有效期起" source="FareValidOn" />
-        <DateField label="有效期止" source="FareValidOff" />
+        <TextField label="有效期起" source="FareValidOn" />
+        <TextField label="有效期止" source="FareValidOff" />
         <TextField  label="起步价" source="StartFare" />
         <TextField  label="起步里程" source="StartMile" />
         <TextField  label="按公里单价" source="UnitPricePerMile" />

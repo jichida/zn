@@ -213,11 +213,15 @@ for(let keyname in dbs){
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
           let entity = new dbModel(preupdateddata.data);
           entity.save((err,result)=>{
-
-            postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                console.log("CREATE result=>" + JSON.stringify(result));
-                res.status(200).json(result);
-            });
+            if(!err && !!result){
+              postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
+                  console.log("CREATE result=>" + JSON.stringify(result));
+                  res.status(200).json(result);
+              });
+            }
+            else{
+              console.log(err);
+            }
           });
         }
         else if(queryparam.type === UPDATE){

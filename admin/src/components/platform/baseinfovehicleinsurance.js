@@ -13,6 +13,7 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const BaseInfoVehicleInsurancecreateTitle = ({ record }) => {
    return <span>新建 车辆保险</span>;
@@ -25,8 +26,8 @@ const BaseInfoVehicleInsuranceCreate = (props) => (
                <TextInputEx label="保险号"  source="InsurNum" />
                <TextInputEx label="保险类型"  source="InsurType" />
                <TextInputEx label="保险金额" source="InsurCount" />
-               <DateInput label="保险生效时间" source="InsurEff" />
-               <DateInput label="保险到期时间" source="InsurExp" />
+               <DateInputString label="保险生效时间" source="InsurEff" />
+               <DateInputString label="保险到期时间" source="InsurExp" />
            </SimpleForm>
        </Create>
 );
@@ -44,8 +45,8 @@ const BaseInfoVehicleInsuranceEdit = (props) => {
             <TextInputEx label="保险号"  source="InsurNum" />
             <TextInputEx label="保险类型"  source="InsurType" />
             <TextInputEx label="保险金额" source="InsurCount" />
-            <DateInput label="保险生效时间" source="InsurEff" />
-            <DateInput label="保险到期时间" source="InsurExp" />
+            <DateInputString label="保险生效时间" source="InsurEff" />
+            <DateInputString label="保险到期时间" source="InsurExp" />
           </SimpleForm>
       </Edit>);
 
