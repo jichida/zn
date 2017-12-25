@@ -34,12 +34,12 @@ import {BaseInfoCompanyList} from './components/platform/baseinfocompany.js';
 import {BaseInfoCompanyStatList} from './components/platform/baseinfocompanystat.js';
 import {BaseInfoCompanyServiceList} from './components/platform/baseinfocompanyservice.js';
 import {BaseInfoCompanyPermitList} from './components/platform/baseinfocompanypermit.js';
-import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow}  from './components/platform/baseinfocompanypay.js';
+import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit}  from './components/platform/baseinfocompanypay.js';
 import {BaseInfoCompanyFareList,BaseInfoCompanyFareCreate,BaseInfoCompanyFareEdit}  from './components/platform/baseinfocompanyfare.js';
-import {BaseInfoVehicleList,BaseInfoVehicleCreate,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
+import {BaseInfoVehicleList,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
 import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow} from './components/platform/baseinfovehicleinsurance.js';
 import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './components/platform/baseinfovehicletotalmile.js';
-import {BaseInfoDriverList,BaseInfoDriverCreate,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
+import {BaseInfoDriverList,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
 import {BaseInfoDriverAppList,BaseInfoDriverAppShow} from './components/platform/baseinfodriverapp.js';
 import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
@@ -104,12 +104,12 @@ class App extends Component {
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}/>
             <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  />
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
-            <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate}  show={BaseInfoCompanyPayShow}  edit={BaseInfoCompanyPayEdit} />
+            <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
-            <Resource name="baseinfovehicle" list={BaseInfoVehicleList} create={BaseInfoVehicleCreate}  edit={BaseInfoVehicleEdit}/>
+            <Resource name="baseinfovehicle" list={BaseInfoVehicleList}  edit={BaseInfoVehicleEdit}/>
             <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit}  show={BaseInfoVehicleInsuranceShow} />
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
-            <Resource name="baseinfodriver" list={BaseInfoDriverList} create={BaseInfoDriverCreate}  edit={BaseInfoDriverEdit}  />
+            <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />

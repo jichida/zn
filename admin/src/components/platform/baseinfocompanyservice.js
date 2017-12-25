@@ -67,6 +67,7 @@ const BaseInfoCompanyServiceCreate = (props) => (
             <TextInputEx label="服务机构紧急联系电话"  source="ContactPhone" />
             <TextInputEx label="行政文书送达邮寄地址"  source="MailAddress" validate={[required]}/>
             <DateInputString label="服务机构设立日期"  source="CreateDate" validate={[required]}/>
+            <TextField label="数据更新时间" source="UpdateTime"  />
         </SimpleForm>
     </EditPage>
 );

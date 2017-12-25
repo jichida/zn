@@ -78,6 +78,7 @@ const BaseInfoCompanyFareEdit = (props) => {
             <NumberInputEx  label="计时单价〈按分钟〉(单位:元)" source="UnitPricePerMinute" validate={[required]} />
             <NumberInputEx  label="单程加价单价(单位:元)" source="UpPrice" />
             <NumberInputEx  label="单程加价公里(单位:km)" source="UpPriceStartMile" />
+            <TextField label="数据更新时间" source="UpdateTime"  />
             </FormTab>
             <FormTab label="resources.baseinfocompanyfare.tabs.tab1">
             <TimePickerInput label="营运早高峰时间起" source="MorningPeakTimeOn"  validate={[required]}/>
@@ -113,6 +114,7 @@ const BaseInfoCompanyFareList = (props) => (//
         <TextField  label="按分钟单价" source="UnitPricePerMinute" />
         <TextField  label="加价单价" source="UpPrice" />
         <TextField  label="加价公里" source="UpPriceStartMile" />
+        <TextField label="数据更新时间" source="UpdateTime"  />
         <EditButton />
         </Datagrid>
     </List>

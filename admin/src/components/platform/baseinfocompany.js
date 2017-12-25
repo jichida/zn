@@ -132,7 +132,7 @@ const BaseInfoCompanyCreate = (props) => (
             <TextInputEx label="法人代表电话"  source="LegalPhone" validate={[required]}/>
             <ImageInputUpload label="法人代表电话法人代表身份证扫描号"  source="LegalPhotoURL" />
             <DisabledInputEx label="状态"  source="State" validate={[required]}/>
-            <TextField label="数据更新时间" source="UpdateTime" showTime validate={[required]}/>
+            <TextField label="数据更新时间" source="UpdateTime" />
         </SimpleForm>
     </EditPage>
 );

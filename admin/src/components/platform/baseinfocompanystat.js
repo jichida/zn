@@ -32,7 +32,7 @@ export const BaseInfoCompanyStatList = (props) => (//
         <Datagrid>
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />
         <TextField label="平台注册驾驶员数"  source="DriverNum" />
-        <TextField label="数据更新时间" source="UpdateTime" showTime />
+        <TextField label="数据更新时间" source="UpdateTime" />
         </Datagrid>
     </List>
 );
