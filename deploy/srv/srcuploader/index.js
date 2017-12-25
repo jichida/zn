@@ -15,7 +15,8 @@ process.on('message', (msgobj)=> {
   let data = msgobj.data;
   const mapfn = map_platformfn[data.collectionname];
   if(!!mapfn){
-    let uploaddata = getplatformdata(data.actionname,data.collectionname,data.doc);
+    console.log(`getdata ==>${JSON.stringify(data)}`);
+    let uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
     uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata);
   }
   else{

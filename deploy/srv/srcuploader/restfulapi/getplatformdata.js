@@ -1,14 +1,23 @@
 const moment = require('moment');
+const _ = require('lodash');
+
 const gettimefromstring = (timestring)=>{
   let curtime = moment(timestring).format('YYYYMMDDHHmmss');
-  return parseint(curtime);
+  return parseInt(curtime);
 }
 
 const getplatformdata = (actionname,collectionname,doc)=>{
   let retdoc = doc;
+  retdoc = _.omit(retdoc,'_id');
+  console.log(`retdoc==>${JSON.stringify(retdoc)}`);
+  console.log(`actionname==>${actionname}`);
+  console.log(`collectionname==>${collectionname}`);
+
   if(actionname === 'save' || actionname === 'findByIdAndUpdate'){
     if(collectionname === 'baseinfocompany'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      console.log(`retdoc==>${retdoc.UpdateTime}`);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     else if(collectionname === 'baseinfocompanystat'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
