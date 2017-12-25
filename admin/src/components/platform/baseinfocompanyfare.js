@@ -15,6 +15,7 @@ import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
 import {DateInputString} from '../controls/DateInput_String.js';
+import {required} from 'admin-on-rest';
 
 const BaseInfoCompanyFarecreateTitle = ({ record }) => {
    return <span>新建 运价</span>;
@@ -29,24 +30,24 @@ const BaseInfoCompanyFareCreate = (props) => (
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-           <DateInputString label="运价有效期起" source="FareValidOn" />
+           <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]}/>
            <DateInputString label="运价有效期止" source="FareValidOff" />
-           <NumberInputEx  label="起步价(单位:元)" source="StartFare" />
-           <NumberInputEx  label="起步里程(单位:km)" source="StartMile" />
-           <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" />
-           <NumberInputEx  label="计时单价〈按分钟〉(单位:元)" source="UnitPricePerMinute" />
+           <NumberInputEx  label="起步价(单位:元)" source="StartFare"  validate={[required]}/>
+           <NumberInputEx  label="起步里程(单位:km)" source="StartMile"  validate={[required]}/>
+           <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile"  validate={[required]}/>
+           <NumberInputEx  label="计时单价〈按分钟〉(单位:元)" source="UnitPricePerMinute"  validate={[required]}/>
            <NumberInputEx  label="单程加价单价(单位:元)" source="UpPrice" />
            <NumberInputEx  label="单程加价公里(单位:km)" source="UpPriceStartMile" />
            </FormTab>
            <FormTab label="resources.baseinfocompanyfare.tabs.tab1">
-           <TimePickerInput label="营运早高峰时间起" source="MorningPeakTimeOn" />
-           <TimePickerInput label="营运早高峰时间止" source="MorningPeakTimeOff" />
-           <TimePickerInput label="营运晚高峰时间起" source="EveningPeakTimeOn" />
-           <TimePickerInput label="营运晚高峰时间止" source="EveningPeakTimeOff" />
+           <TimePickerInput label="营运早高峰时间起" source="MorningPeakTimeOn"  validate={[required]}/>
+           <TimePickerInput label="营运早高峰时间止" source="MorningPeakTimeOff"  validate={[required]}/>
+           <TimePickerInput label="营运晚高峰时间起" source="EveningPeakTimeOn"  validate={[required]}/>
+           <TimePickerInput label="营运晚高峰时间止" source="EveningPeakTimeOff"  validate={[required]}/>
            <TimePickerInput label="其他营运高峰时间起" source="OtherPeakTimeOn" />
            <TimePickerInput label="其他营运高峰时间止" source="OtherPeakTimeOff" />
-           <NumberInputEx  label="高峰时间单程加价单价" source="PeakUnitPrice" />
-           <NumberInputEx  label="高峰时间单程加价公里" source="PeakPriceStartMile" />
+           <NumberInputEx  label="高峰时间单程加价单价" source="PeakUnitPrice"  validate={[required]}/>
+           <NumberInputEx  label="高峰时间单程加价公里" source="PeakPriceStartMile"  validate={[required]}/>
            <NumberInputEx  label="低速计时加价〈按分钟〉(单位:元)" source="LowSpeedPricePerMinute" />
            <NumberInputEx  label="夜间费〈按公里〉(单位:元)" source="NightPricePerMile" />
            <NumberInputEx  label="夜间费〈按分钟〉(单位:元)" source="NightPricePerMinute" />
@@ -69,24 +70,24 @@ const BaseInfoCompanyFareEdit = (props) => {
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
             <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-            <DateInputString label="运价有效期起" source="FareValidOn" />
+            <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]}/>
             <DateInputString label="运价有效期止" source="FareValidOff" />
-            <NumberInputEx  label="起步价(单位:元)" source="StartFare" />
-            <NumberInputEx  label="起步里程(单位:km)" source="StartMile" />
-            <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" />
-            <NumberInputEx  label="计时单价〈按分钟〉(单位:元)" source="UnitPricePerMinute" />
+            <NumberInputEx  label="起步价(单位:元)" source="StartFare"  validate={[required]}/>
+            <NumberInputEx  label="起步里程(单位:km)" source="StartMile"  validate={[required]}/>
+            <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" validate={[required]} />
+            <NumberInputEx  label="计时单价〈按分钟〉(单位:元)" source="UnitPricePerMinute" validate={[required]} />
             <NumberInputEx  label="单程加价单价(单位:元)" source="UpPrice" />
             <NumberInputEx  label="单程加价公里(单位:km)" source="UpPriceStartMile" />
             </FormTab>
             <FormTab label="resources.baseinfocompanyfare.tabs.tab1">
-            <TimePickerInput label="营运早高峰时间起" source="MorningPeakTimeOn" />
-            <TimePickerInput label="营运早高峰时间止" source="MorningPeakTimeOff" />
-            <TimePickerInput label="营运晚高峰时间起" source="EveningPeakTimeOn" />
-            <TimePickerInput label="营运晚高峰时间止" source="EveningPeakTimeOff" />
+            <TimePickerInput label="营运早高峰时间起" source="MorningPeakTimeOn"  validate={[required]}/>
+            <TimePickerInput label="营运早高峰时间止" source="MorningPeakTimeOff"  validate={[required]}/>
+            <TimePickerInput label="营运晚高峰时间起" source="EveningPeakTimeOn"  validate={[required]}/>
+            <TimePickerInput label="营运晚高峰时间止" source="EveningPeakTimeOff" validate={[required]} />
             <TimePickerInput label="其他营运高峰时间起" source="OtherPeakTimeOn" />
             <TimePickerInput label="其他营运高峰时间止" source="OtherPeakTimeOff" />
-            <NumberInputEx  label="高峰时间单程加价单价" source="PeakUnitPrice" />
-            <NumberInputEx  label="高峰时间单程加价公里" source="PeakPriceStartMile" />
+            <NumberInputEx  label="高峰时间单程加价单价" source="PeakUnitPrice"  validate={[required]}/>
+            <NumberInputEx  label="高峰时间单程加价公里" source="PeakPriceStartMile"  validate={[required]}/>
             <NumberInputEx  label="低速计时加价〈按分钟〉(单位:元)" source="LowSpeedPricePerMinute" />
             <NumberInputEx  label="夜间费〈按公里〉(单位:元)" source="NightPricePerMile" />
             <NumberInputEx  label="夜间费〈按分钟〉(单位:元)" source="NightPricePerMinute" />

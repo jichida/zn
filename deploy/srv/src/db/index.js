@@ -174,10 +174,10 @@ let dbs ={
     collectionname:'baseinfovehicle',
     isplatform:true,
   },
-  'baseinfoVehicleInsurance':{
-    urlname:'/baseinfoVehicleInsurance',
+  'baseinfovehicleinsurance':{
+    urlname:'/baseinfovehicleinsurance',
     schema:dbplatform.Platform_baseInfoVehicleInsuranceSchema,
-    collectionname:'baseinfoVehicleInsurance',
+    collectionname:'baseinfovehicleinsurance',
     isplatform:true,
   },
   'baseinfovehicletotalmile':{

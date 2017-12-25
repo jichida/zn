@@ -29,7 +29,7 @@ const BaseInfoVehicleTotalMileTitle = ({ record }) => <span>车辆里程信息</
 
 
 export const BaseInfoVehicleTotalMileList = (props) => (//
-     <List title="营运规模信息" {...props} >
+     <List title="车辆里程信息" {...props} >
         <Datagrid>
         <TextField label="车辆号牌"  source="VehicleNo" />
         <TextField label="行驶总里程"  source="TotalMile" />

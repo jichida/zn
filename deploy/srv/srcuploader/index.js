@@ -22,7 +22,7 @@ process.on('message', (msgobj)=> {
     }
   }
   else{
-    console.log(`找不到${data.collectionname}`);
+    console.log(`找不到===>${data.collectionname}`);
   }
 
   // data:{

@@ -40,7 +40,7 @@ import {BaseInfoVehicleList,BaseInfoVehicleCreate,BaseInfoVehicleEdit} from './c
 import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow} from './components/platform/baseinfovehicleinsurance.js';
 import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './components/platform/baseinfovehicletotalmile.js';
 import {BaseInfoDriverList,BaseInfoDriverCreate,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
-import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit,BaseInfoDriverEducateShow} from './components/platform/baseinfodrivereducate.js';
+import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
 import {BaseInfoDriverAppList,BaseInfoDriverAppShow} from './components/platform/baseinfodriverapp.js';
 import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
 import {BaseInfoPassengerList,BaseInfoPassengerShow} from './components/platform/baseinfopassenger.js';
@@ -110,7 +110,7 @@ class App extends Component {
             <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit}  show={BaseInfoVehicleInsuranceShow} />
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList} create={BaseInfoDriverCreate}  edit={BaseInfoDriverEdit}  />
-            <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  show={BaseInfoDriverEducateShow}  edit={BaseInfoDriverEducateEdit} />
+            <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} show={BaseInfoPassengerShow} />

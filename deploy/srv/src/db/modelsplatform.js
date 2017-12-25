@@ -273,7 +273,7 @@ let Platform_baseInfoDriverSchema= new Schema({
   EmergencyContactAddress:String,	//否字符型V256  紧急情况联系人通信地址
 
   State:Number,//	是数字型Fl状态	O .有效1:失效
-  Flag:Number,//	  是数字型F1  操作标识	1.新增2 .更新3 :删除
+  // Flag:Number,//	  是数字型F1  操作标识	1.新增2 .更新3 :删除
   UpdateTime:String,//	  是数字型F14更新时间网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
@@ -283,7 +283,7 @@ Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoDriverEducateSchema= new Schema({
-  CompanyId:String,	//	是	字符型	V32	公司标识
+  // CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//	是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， I见 GB/T 2260
   LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
   CourseName:String,	//	是	字符型	V64	驾驶员培训课程名称
@@ -291,7 +291,7 @@ let Platform_baseInfoDriverEducateSchema= new Schema({
   StartTime:String,	//	是	字符型 V8	培训开始时间
   StopTime:String,	//	是	字符型	V8	培训结束时间
   Duration:Number,//	是	数字型	VIO	培训时长
-  Flag:Number,//	是	数字Fl操作标识	1.新增2:更新3 :删除
+  // Flag:Number,//	是	数字Fl操作标识	1.新增2:更新3 :删除
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverEducateSchema.plugin(mongoosePaginate);
@@ -663,7 +663,7 @@ let Platform_baseInfoCompanyServiceModel= mongoose.model('baseinfocompanyservice
 let Platform_baseInfoCompanyPermitModel= mongoose.model('baseinfocompanypermit',  Platform_baseInfoCompanyPermitSchema);
 let Platform_baseInfoCompanyFareModel= mongoose.model('baseinfocompanyfare',  Platform_baseInfoCompanyFareSchema);
 let Platform_baseInfoVehicleModel= mongoose.model('baseinfovehicle',  Platform_baseInfoVehicleSchema);
-let Platform_baseInfoVehicleInsuranceModel= mongoose.model('baseinfoVehicleInsurance',  Platform_baseInfoVehicleInsuranceSchema);
+let Platform_baseInfoVehicleInsuranceModel= mongoose.model('baseinfovehicleinsurance',  Platform_baseInfoVehicleInsuranceSchema);
 let Platform_baseInfoVehicleTotalMileModel= mongoose.model('baseinfovehicletotalmile',  Platform_baseInfoVehicleTotalMileSchema);
 let Platform_baseInfoDriverModel= mongoose.model('baseinfodriver',  Platform_baseInfoDriverSchema);
 let Platform_baseInfoDriverEducateModel= mongoose.model('baseinfodrivereducate',  Platform_baseInfoDriverEducateSchema);

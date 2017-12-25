@@ -82,7 +82,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       retdoc['Commercial-Type'] = 1;
       // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
-    else if(collectionname === 'baseinfoVehicleInsurance'){
+    else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
         retdoc.InsurEff = getdatefromstring(retdoc.InsurEff);
       }
