@@ -3,6 +3,7 @@
 // https://github.com/jyu213/ssh2-sftp-client
 const Client = require('ssh2-sftp-client');
 const sftp = new Client();
+const config = require('../config.js');
 
 const sftptosrv = (localdir,localfilename,callback)=>{
   sftp.connect({

@@ -1,5 +1,6 @@
 const moment = require('moment');
 const _ = require('lodash');
+const config = require('../config.js');
 
 const gettimefromstring = (timestring)=>{
   let curtime = moment(timestring).format('YYYYMMDDHHmmss');
@@ -21,6 +22,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     }
     else if(collectionname === 'baseinfocompanystat'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.CompanyId = config.CompanyId;
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     else if(collectionname === 'baseinfocompanypay'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -251,8 +254,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.TestDate = gettimefromstring(retdoc.TestDate);
       }
     }
+    return retdoc;
   }
-  return retdoc;
+
 }
 
 module.exports = getplatformdata;

@@ -4,6 +4,7 @@
 let winston = require('../log/log.js');
 let PubSub = require('pubsub-js');
 const config = require('../config.js');
+const interval = require('./interval.js');
 
 const Platform_baseInfoDriverApp= require('./Platform_baseInfoDriverApp/index');
 const Platform_baseInfoPassenger= require('./Platform_baseInfoPassenger/index');
@@ -76,6 +77,7 @@ const platformhandlers = {
     },
 };
 
+
 let startplatformmonitor = ()=>{
     PubSub.subscribe('Platformmsgs',  ( msg, data )=> {
         // winston.getlog().info('(平台相关）订阅消息:' + msg);
@@ -89,6 +91,8 @@ let startplatformmonitor = ()=>{
         }
         // winston.getlog().info('(平台相关）未找到处理函数:' + data);
     });
+
+    interval.interval_baseInfoCompanyStat();
 }
 
 exports.startplatformmonitor  = startplatformmonitor;

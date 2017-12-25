@@ -17,7 +17,9 @@ process.on('message', (msgobj)=> {
   if(!!mapfn){
     console.log(`getdata ==>${JSON.stringify(data)}`);
     let uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
-    uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata);
+    if(!!uploaddata){
+      uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata);
+    }
   }
   else{
     console.log(`找不到${data.collectionname}`);

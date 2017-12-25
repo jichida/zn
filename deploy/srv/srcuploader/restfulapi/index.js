@@ -1,7 +1,7 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-const config = require('../../src/config.js');
+const config = require('../config.js');
 // const map = require('lodash.map');
 const fetchurl =`${config.platformserverurl}`;
 

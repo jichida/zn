@@ -35,11 +35,11 @@ Platform_baseInfoCompanySchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoCompanyStatSchema = new Schema({
-  CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
-  VehicleNum:Number,// CompanyId	是	字符型	V32	公司标识	部统一分配
+  // CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
+  VehicleNum:Number,// VehicleNum
   DriverNum:Number,// DriverNum	是	数字型	V64	平台注册驾驶员数
-  Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
-  UpdateTime:Date,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
+  // Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
+  UpdateTime:String,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyStatSchema.plugin(mongoosePaginate);
 // A. 4. 3.	网约车平台公司支付信息接口

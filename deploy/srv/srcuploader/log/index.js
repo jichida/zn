@@ -1,7 +1,7 @@
 const winston = require('winston');
 const moment = require('moment');
 const path = require('path');
-const config = require('../../src/config.js');
+const config = require('../config.js');
 const logger;
 exports.initLog =  ()=>{
   var filename = "znplatformuploader_"+moment().format('YYYY-MM-DD-HHmmss');
