@@ -1,6 +1,7 @@
 
 let config =  {
-  platformserverurl:'',
+  platformserverurl:'http://127.0.0.1:8080',
+  
   secretkey:'zongnanchuxingkey',
   listenport:process.env.listenport||3005,
   rooturl:process.env.rooturl || 'http://api.tczncx.com',

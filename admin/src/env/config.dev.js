@@ -1,5 +1,5 @@
-let islocalhost = false;
-let serverurl = islocalhost?'http://localhost:3004':'http://zn.com28.cn:3004';
+let islocalhost = true;
+let serverurl = islocalhost?'http://localhost:3005':'http://api.tczncx.com';
 export default {
     restserverurl:`${serverurl}/adminapi`,
     adminauthserverurl:`${serverurl}/adminauth`,

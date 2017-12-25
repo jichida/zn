@@ -10,7 +10,7 @@ const startmodule = (app)=>{
     app.post(v.uri,(req,res)=>{
       console.log(`get IPCType==>${v.IPCType}`);
       const actiondata = req.body;
-      console.log(`get body==>\n${actiondata}`);
+      console.log(`get body==>\n${JSON.stringify(actiondata)}`);
     });
   });
 

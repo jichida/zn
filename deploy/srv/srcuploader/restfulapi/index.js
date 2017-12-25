@@ -1,5 +1,8 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 const config = require('../../src/config.js');
-import map from 'lodash.map';
+// const map = require('lodash.map');
 const fetchurl =`${config.platformserverurl}`;
 
 
@@ -17,7 +20,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       CompanyId:'',
       IPCType,
     };
-    postdata[name] = data;
+    postdata[IPCType] = data;
 
     return fetch(`${fetchurl}${uri}`, {
       method  : 'POST',
@@ -30,6 +33,8 @@ const uploadtoplatform = (IPCType,uri,data)=>{
     .then(statusHelper)
     .then(response => response.json());
 }
+
+module.exports = uploadtoplatform;
 //
 // const restfulapi = {
 //   baseInfoCompany (userData) {
@@ -153,5 +158,3 @@ const uploadtoplatform = (IPCType,uri,data)=>{
 //     .then(response => response.json());
 //   },
 // };
-
-module.exports = map_platformfn;

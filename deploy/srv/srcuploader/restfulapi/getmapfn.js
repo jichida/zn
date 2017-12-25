@@ -1,5 +1,5 @@
 const map_platformfn = {
-  'baseInfoCompany':{
+  'baseinfocompany':{
     'IPCType':'baseInfoCompany',
     'uri':'/baseinfo/company'
   },
