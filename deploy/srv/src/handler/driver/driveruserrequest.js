@@ -32,14 +32,14 @@ let getdistance =(fromlocation,tolocation)=>{
 let calcpriceanddistance = (ctx,curlocation,forceupdate=false)=>{
     let ctxrealtimeprice = ctx.realtimeprice;
     let distance = getdistance(ctxrealtimeprice.lastlocation,curlocation);
-    let datenow = new Date();
-    let difftime = (datenow.getTime() - ctxrealtimeprice.lastlocationtime.getTime())/1000;
+    let datenow = moment();//(dateend.unix() - datestart.unix())/1000;
+    let difftime = (datenow.unix() - moment(ctxrealtimeprice.lastlocationtime).unix())/1000;
     if(distance > 50 || difftime > 10 || forceupdate){
         //50米或10秒保存一次
         ctxrealtimeprice.totaldistance += distance;
         ctxrealtimeprice.totalduring += difftime;
 
-        ctxrealtimeprice.lastlocationtime = datenow;
+        ctxrealtimeprice.lastlocationtime = moment().format('YYYY-MM-DD HH:mm:ss');
         ctxrealtimeprice.lastlocation = curlocation;
 
         price.getBaseInfoCompanyFare({
@@ -235,7 +235,7 @@ exports.acceptrequest = (socket,actiondata,ctx)=>{
 exports.updaterequeststatus = (socket,actiondata,ctx)=>{
   let param = actiondata;
   let TripRequestModel = DBModels.TripRequestModel;
-  let datenow = new Date();
+  let datenow = moment().format('YYYY-MM-DD HH:mm:ss');
   let updatedorder = {
       updated_at:datenow,
       driverlocation:actiondata.driverlocation
@@ -246,18 +246,18 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
   };
   if(actiondata.requeststatus === "行程中") {
       ctx.bizstatus = 1;//1:载客
-      updatedrequest.getindate_at = moment(datenow).format('YYYY-MM-DD HH:mm:ss');//上车时间
+      updatedrequest.getindate_at = datenow;//上车时间
       updatedrequest.getinlocation = actiondata.driverlocation;//上车位置
       updatedorder.orderstatus = '待支付';//该状态不能被取消
-      updatedorder.getindate_at = moment(datenow).format('YYYY-MM-DD HH:mm:ss');//上车时间
+      updatedorder.getindate_at = datenow;//上车时间
       updatedorder.getinlocation = actiondata.driverlocation;//上车位置
       ctx.realtimeprice = {
           fareid:ctx.fareid,
           totaldistance:0,
           totalduring:0,
           totalprice:0,
-          starttime:datenow,
-          lastlocationtime:datenow,
+          starttime: datenow,
+          lastlocationtime: datenow,
           lastlocation:actiondata.driverlocation,
       };
       calcpriceanddistance(ctx,actiondata.driverlocation,true);
@@ -266,7 +266,7 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
       ctx.bizstatus = 3;//3 :空驶
       updatedrequest.getoffdate_at = datenow;//下车时间
       updatedrequest.getofflocation = actiondata.driverlocation;//下车位置
-      updatedorder.getoffdate_at = datenow;//上车时间
+      updatedorder.getoffdate_at =  datenow;//上车时间
       updatedorder.getofflocation = actiondata.driverlocation;//下车位置
       //<------动态计算价格，然后设置ctx.realtimeprice为空
       //注意：仍需监听支付消息!!!!!<--user..

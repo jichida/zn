@@ -27,6 +27,7 @@ const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
+const moment = require('moment');
 //到达出发地
 exports.insertOperateDepart  = ({triprequest,triporder})=> {
     // let datestart = triprequest.getindate_at.getTime();
