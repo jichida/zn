@@ -2,15 +2,21 @@ const express = require('express');
 const _ = require('lodash');
 const bodyParser = require("body-parser");
 const map_platformfn = require('./src/getmapfn');
-
+let winston = require('./src/log/log.js');
 let app = express();
+
+winston.initLog();
 
 const startmodule = (app)=>{
   _.map(map_platformfn,(v,k)=>{
     app.post(v.uri,(req,res)=>{
       console.log(`get IPCType==>${v.IPCType}`);
       const actiondata = req.body;
-      console.log(`get body==>\n${JSON.stringify(actiondata)}`);
+      winston.getlog().info(actiondata);
+      // winston.getlog().error(`类型==>${v.IPCType},
+      //   路径:${v.uri}
+      //   ${JSON.stringify(actiondata)}`);
+      // console.log(`get body==>\n${JSON.stringify(actiondata)}`);
     });
   });
 

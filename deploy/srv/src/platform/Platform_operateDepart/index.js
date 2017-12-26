@@ -42,7 +42,7 @@ exports.insertOperateDepart  = ({triprequest,triporder})=> {
         DepLongitude:triporder.getinlocation[0],
         DepLatitude:triporder.getinlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
-        DepTime:triporder.getindate_at,
+        DepTime:moment(triporder.getindate_at).format('YYYY-MM-DD HH:mm:ss'),
         WaitMile:0,
         WaitTime:0
     };

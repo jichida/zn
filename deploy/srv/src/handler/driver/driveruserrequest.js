@@ -246,10 +246,10 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
   };
   if(actiondata.requeststatus === "行程中") {
       ctx.bizstatus = 1;//1:载客
-      updatedrequest.getindate_at = datenow;//上车时间
+      updatedrequest.getindate_at = moment(datenow).format('YYYY-MM-DD HH:mm:ss');//上车时间
       updatedrequest.getinlocation = actiondata.driverlocation;//上车位置
       updatedorder.orderstatus = '待支付';//该状态不能被取消
-      updatedorder.getindate_at = datenow;//上车时间
+      updatedorder.getindate_at = moment(datenow).format('YYYY-MM-DD HH:mm:ss');//上车时间
       updatedorder.getinlocation = actiondata.driverlocation;//上车位置
       ctx.realtimeprice = {
           fareid:ctx.fareid,
