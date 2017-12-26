@@ -21,7 +21,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');
 let dbplatform = require('../../db/modelsplatform.js');
 // "srcaddress" : {
 //     "location" : {
@@ -47,7 +47,7 @@ exports.insertOrderMatch  = ({triprequest,triporder})=> {
         Latitude:triprequest.driverlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
         LicenseId:'',//<-----机动车驾驶证编号
-        DistributeTime:util.gettimeformat(triporder.updated_at),
+        DistributeTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
     };
     let eModel = dbplatform.Platform_orderMatchModel;
     let entity = new eModel(orderMatchDoc);

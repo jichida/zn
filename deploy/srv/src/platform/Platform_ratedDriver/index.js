@@ -24,7 +24,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
@@ -33,7 +33,7 @@ exports.insertRatedDriver  = (actiondata)=> {
         CompanyId:config.CompanyId,
         LicenseId:'',
         Level:0,
-        TestDate:util.gettimeformat(triporder.updated_at),
+        TestDate:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         TestDepartment:'',
     };
     let eModel = dbplatform.Platform_insertRatedDriverModel;

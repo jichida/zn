@@ -27,7 +27,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');
 let dbplatform = require('../../db/modelsplatform.js');
 // "srcaddress" : {
 //     "location" : {
@@ -49,8 +49,8 @@ exports.insertOrderCreate  = ({triprequest,triporder})=> {
         CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
         OrderId:triporder._id,
-        DepartTime:triprequest.isrealtime?util.gettimeformat(triprequest.created_at):util.gettimeformat(triprequest.dated_at),
-        OrderTime:util.gettimeformat(triporder.created_at),
+        DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD'):moment(triprequest.dated_at).format('YYYY-MM-DD'),
+        OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         PassengerNote:'',
         Departure:triporder.srcaddress.addressname,
         DepLongitude:triporder.srcaddress.location.lat,

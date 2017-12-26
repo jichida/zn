@@ -25,7 +25,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
@@ -33,7 +33,7 @@ exports.insertRatedPassenger  = (actiondata)=> {
     let ratedPassengerDoc = {
         CompanyId:config.CompanyId,	//	是	字符型	V32	公司标识
         OrderId:actiondata.triporderid,	//	是	字符型	V64	订单号
-        EvaluateTime:util.gettimeformat(new Date()),		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
+        EvaluateTime:moment().format('YYYY-MM-DD HH:mm:ss'),		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
         ServiceScore:actiondata.scoreservice,		//	是	数字型	VI 0	服务满意度	五分制
         DriverScore:0,		//	否	数字型	VI0	驾驶员满意度	五分制
         VehicleScore:0,		//	否	数字型	VI0	车辆满意度	五分制

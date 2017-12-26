@@ -26,7 +26,6 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 //到达出发地
 exports.insertOperateDepart  = ({triprequest,triporder})=> {

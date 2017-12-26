@@ -22,13 +22,13 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
+const moment = require('moment');
 //到达目的地
 exports.insertOperateArrive  = ({triprequest,triporder})=> {
-    let datestart = triporder.getindate_at.getTime();
-    let dateend = triporder.getoffdate_at.getTime();
-    let DriveTime = (dateend - datestart)/1000;
+    let datestart = moment(triporder.getindate_at);
+    let dateend = moment(triporder.getoffdate_at);
+    let DriveTime = (dateend.unix() - datestart.unix())/1000; //单位是秒
 
     let operateArriveDoc = {
         CompanyId:config.CompanyId,

@@ -23,7 +23,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
@@ -31,7 +31,7 @@ exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
     let ratedDriverPunishDoc = {
         CompanyId:config.CompanyId,
         LicenseId:'',// 数据库中读取
-        PunishTime:util.gettimeformat(triporder.updated_at),
+        PunishTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         PunishReason:'',
         PunishResult:'',
     };

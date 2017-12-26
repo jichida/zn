@@ -32,9 +32,9 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const util = require('../util');//
 let dbplatform = require('../../db/modelsplatform.js');
-
+const moment = require('moment');
 
 exports.insertPositionVehicle  = (actiondata)=> {
     let positionVehicleDoc = {
@@ -42,7 +42,7 @@ exports.insertPositionVehicle  = (actiondata)=> {
         VehicleNo:actiondata.licenseld,			//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
         VehicleRegionCode:actiondata.riverregioncode,		//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
         VehicleNo:actiondata.vehicleno,	//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
-        PositionTime:util.gettimeformat(new Date()),//	是	数字型	V14		定位时间	umxtlme
+        PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],	//	是	数字型	V10		经度	单位 :1祷 10-6 度
         Latitude:actiondata.driverlocation[1],	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
         Encrypt:1,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他

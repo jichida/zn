@@ -22,12 +22,11 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertBaseInfoDriver  = (actiondata)=> {
     let baseInfoDriverDoc = {
-      
+
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
     let entity = new eModel(baseInfoDriverDoc);

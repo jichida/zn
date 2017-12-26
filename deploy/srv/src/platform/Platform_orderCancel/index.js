@@ -25,7 +25,6 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 // "srcaddress" : {
 //     "location" : {
@@ -54,8 +53,8 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
         CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
         OrderId:triporder._id,
-        OrderTime:util.gettimeformat(triporder.created_at),
-        CancelTime:util.gettimeformat(triporder.updated_at),
+        OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         Operator:1,//撤销发起方	1.乘客2:驾驶员3 .平台公司
         CancelTypeCode:canceltypecode,//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销 5 .驾驶员违约撤销
         CancelReason:reasonflag[canceltypecode],

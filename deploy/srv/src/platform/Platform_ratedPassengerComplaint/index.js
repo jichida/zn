@@ -23,7 +23,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
@@ -31,7 +31,7 @@ exports.insertRatedPassengerComplaint  = (actiondata)=> {
     let ratedPassengerComplaintDoc = {
         CompanyId:config.CompanyId,
         OrderId:actiondata.triporderid,// 数据库中读取
-        ComplaintTime:util.gettimeformat(new Date()),
+        ComplaintTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Detail:actiondata.detail,
         Result:'',
     };

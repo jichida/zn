@@ -24,13 +24,13 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
+const moment  = require('moment');
 
 exports.insertBaseInfoPassenger  = (actiondata)=> {
     let baseInfoPassengerDoc = {
         CompanyId:config.CompanyId,
-        RegisterDate:util.gettimeformat(actiondata.registerdate),
+        RegisterDate:moment(actiondata.registerdate).format('YYYY-MM-DD'),
         PassengerPhone:actiondata.passgngerphone,
         PassengerName:actiondata.passengername,
         PassengerGender:actiondata.passengergender,//	否	字符型	V2	乘客性别
@@ -50,7 +50,7 @@ exports.insertBaseInfoPassenger  = (actiondata)=> {
 exports.updateBaseInfoPassenger  = (actiondata)=> {
     let baseInfoPassengerDoc = {
         CompanyId:config.CompanyId,
-        RegisterDate:util.gettimeformat(actiondata.registerdate),
+        RegisterDate:moment(actiondata.registerdate).format('YYYY-MM-DD'),
         PassengerPhone:actiondata.passgngerphone,
         PassengerName:actiondata.passengername,
         PassengerGender:actiondata.passengergender,//	否	字符型	V2	乘客性别
