@@ -275,7 +275,7 @@ export default getRegisterFillWizardForm(Page);
 // "Platform_baseInfoDriver" : {
 //     "Address" : 213000,
 //     "CompanyId" : "58a30c05061d53264c182029",
-//     "LicensePhotoldURL" : "http://ynyj.com28.cn/uploader/6465ccf2-b850-4fd0-a931-f3a99791d0ba.jpeg",
+//     "LicensePhotoIdURL" : "http://ynyj.com28.cn/uploader/6465ccf2-b850-4fd0-a931-f3a99791d0ba.jpeg",
 //     "LicenseId" : "123",
 //     "EmergencyContactAddress" : "是啊",
 //     "EmergencyContactPhone" : "15961125167",

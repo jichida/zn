@@ -61,7 +61,7 @@ class RegisterFillWizardForm extends Component {
     // PhotoandCarmanURL:String,//人车合影
     // PhotoJiandukaURL:String,//监督卡照片
     // PhotoServiceicenseURL:String,//服务资格证
-    // CarrunPhotoldURL:String,//机动车行驶证
+    // CarrunPhotoIdURL:String,//机动车行驶证
     const { registertype } = this.props;
     const {
       avatarURL,
@@ -72,7 +72,7 @@ class RegisterFillWizardForm extends Component {
       PhotoandCarmanURL,
       PhotoJiandukaURL,
       PhotoServiceicenseURL,
-      CarrunPhotoldURL,
+      CarrunPhotoIdURL,
 
       OwnerName,
 
@@ -93,7 +93,7 @@ class RegisterFillWizardForm extends Component {
       PhotoandCarmanURL,
       PhotoJiandukaURL,
       PhotoServiceicenseURL,
-      CarrunPhotoldURL,
+      CarrunPhotoIdURL,
       Platform_baseInfoDriver,
       Platform_baseInfoVehicle:{
         OwnerName,

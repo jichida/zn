@@ -36,8 +36,8 @@ const getRegisterFillWizardForm = (Page)=>{
               Certificate:_.get(userlogin,'Platform_baseInfoVehicle.Certificate',''),
 
               LicenseId:_.get(userlogin,'Platform_baseInfoDriver.LicenseId',''),
-              LicensePhotoldURL:_.get(userlogin,'Platform_baseInfoDriver.LicensePhotoldURL',''),
-              CarrunPhotoldURL:_.get(userlogin,'CarrunPhotoldURL',''),
+              LicensePhotoIdURL:_.get(userlogin,'Platform_baseInfoDriver.LicensePhotoIdURL',''),
+              CarrunPhotoIdURL:_.get(userlogin,'CarrunPhotoIdURL',''),
               PhotoandCarmanURL:_.get(userlogin,'PhotoandCarmanURL',''),
 
               PhotoJiandukaURL:_.get(userlogin,'PhotoJiandukaURL',''),

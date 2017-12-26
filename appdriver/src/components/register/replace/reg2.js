@@ -58,7 +58,7 @@ class Page extends Component {
                         </FormUI>
                         <div className="desc">有效期内，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL"
+                            <Field name="LicensePhotoIdURL"
                               component={renderImageupload}
                               loading={this.showLoading.bind(this)}
                               validate={[ requiredImg ]}
