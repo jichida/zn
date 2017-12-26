@@ -99,7 +99,6 @@ const UserdriverlistEdit = (props) => {
                   { id: '已审核', name: '已审核' },
                   { id: '已拒绝', name: '拒绝(填写拒绝理由)' },
               ]} />
-              <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.picurls">
               <ImageInputUpload  label="司机头像【审核必填】" source="avatarURL" />
@@ -172,7 +171,11 @@ const UserdriverlistEdit = (props) => {
               <TextInputEx  label="车辆类型" source="Platform_baseInfoVehicle.VehicleType"  validate={[required]}/>
               <TextInputEx  label="车辆所有人(应与《机动车登记证书》所注明的车辆所有人一致)" source="Platform_baseInfoVehicle.OwnerName"  validate={[required]}/>
               <TextInputEx  label="车身颜色" source="Platform_baseInfoVehicle.VehicleColor"  validate={[required]}/>
-
+              <SelectInput  label="服务类型"  source="Platform_baseInfoVehicle.CommercialType" choices={[
+                  { id: 1, name: '网络预约出租汽车' },
+                  { id: 2, name: '巡游出租汽车' },
+                  { id: 3, name: '私人小客车合乘' },
+              ]} validate={[required]}/>
               <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.EngineId"  validate={[required]}/>
               <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN"  validate={[required]}/>
               <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA"  validate={[required]}/>

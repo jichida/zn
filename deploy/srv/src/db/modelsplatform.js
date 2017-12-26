@@ -181,7 +181,7 @@ let Platform_baseInfoVehicleSchema = new Schema({
   GPSlnstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
   RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
-  'Commercial-Type':Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
+  'CommercialType':Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
   FareType:String,//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
 
   State:Number,//	是	数字型	F1	状态	0:有效1.失效元素名称	必选	类型	长度	字段名称	描	述

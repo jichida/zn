@@ -22,8 +22,7 @@ let get_fnsavebaseinfodriver = (retdoc)=>{
 
       baseInfoDriver._id = baseInfoDriverid;
       dbplatformmodel.findOneAndUpdate({_id:baseInfoDriverid},{$set:baseInfoDriver},{upsert:true,new:true},(err,result)=>{
-        console.log(`get_fnsavebaseinfodriver err==>${JSON.stringify(err)}`);
-        console.log(`get_fnsavebaseinfodriver result==>${JSON.stringify(result)}`);
+        console.log(`[保存到Platform_baseInfoDriverModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
         fncallback(err,result);
       });
   };
@@ -58,12 +57,10 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
       baseInfovehicle.CompanyId = config.CompanyId;
       baseInfovehicle.Address = config.Address;
 
-      console.log(`fnsavebaseinfovehicle:baseinfovehicleid:${baseinfovehicleid},mycarid:${mycarid}`);
 
       let dbplatformmodel = DBPlatformModels.Platform_baseInfoVehicleModel;
       dbplatformmodel.findOneAndUpdate({_id:baseinfovehicleid},{$set:baseInfovehicle},{upsert:true,new:true},(err,result)=>{
-        console.log(`get_fnsavebaseinfovehicle err==>${JSON.stringify(err)}`);
-        console.log(`get_fnsavebaseinfovehicle result==>${JSON.stringify(result)}`);
+        console.log(`[保存到Platform_baseInfoVehicleModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
         fncallback(err,result);
       });
   };
@@ -79,8 +76,7 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
   return (fncallback)=>{
     let fnsavebaseinfovehicle = get_fnsavebaseinfovehicle(retdoc);
     fnsavebaseinfovehicle((err,result)=>{
-      console.log(`get_fnsavemycar err==>${JSON.stringify(err)}`);
-      console.log(`get_fnsavemycar result==>${JSON.stringify(result)}`);
+
       if(!err){
           let dbcarmodel = DBModels.MycarModel;
           let cardata = {
@@ -127,13 +123,15 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
               GPSlnstallDate:result.GPSlnstallDate,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
               RegisterDate:result.RegisterDate,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
-              'Commercial-Type':result['Commercial-Type'],//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
+              CommercialType:result.CommercialType,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
               FareType:result.FareType,//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
             }
 
           };
 
+          console.log(`开始--->\nmycarid:${mycarid},数据:${JSON.stringify(cardata)}\n`);
           dbcarmodel.findOneAndUpdate({_id:mycarid},{$set:cardata},{upsert:true,new:true},(err,result)=>{
+            console.log(`[保存到MycarModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
             console.log(err);
             fncallback(err,result);
           });
@@ -150,9 +148,7 @@ let presave_driver =(retdoc,driveruserid,fnresult)=>{
   let fnsavemycar = get_fnsavemycar(retdoc,driveruserid);
   let asyncfnsz = [fnsavebaseinfodriver,fnsavemycar];
   async.parallel(asyncfnsz,(err,result)=>{
-    console.log(`async.parallel ==>:${JSON.stringify(result)}`);
     if(!err){
-      console.log(`async.parallel ==>:${ result[0]._id}${ result[1]._id}`);
       retdoc.Platform_baseInfoDriverId = result[0]._id;
       retdoc.defaultmycar = result[1]._id;
     }

@@ -66,7 +66,6 @@ const MycarEdit = (props) => {
                   { id: '已审核', name: '已审核' },
                   { id: '已拒绝', name: '拒绝(填写拒绝理由)' },
               ]} />
-              <BooleanInput label="是否同步到平台" source="issynctoplatform" defaultValue={true} />
           </FormTab>
           <FormTab label="resources.baseinfovehicle.tabs.tab0">
           <TextInputEx  label="车辆号牌" source="Platform_baseInfoVehicle.VehicleNo" />

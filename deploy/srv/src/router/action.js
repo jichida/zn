@@ -39,7 +39,7 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
   if(actionname === 'save' || actionname === 'findByIdAndUpdate'){
     retdoc.UpdateTime =  moment().format('YYYY-MM-DD HH:mm:ss');
     if(collectionname === 'baseinfovehicle'){
-      retdoc['Commercial-Type'] = 1;
+      retdoc['CommercialType'] = 1;
     }
     else if(collectionname === 'baseinfodriver'){
       //注意：不能用=>，否则出错，不知道原因
@@ -81,9 +81,9 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
   }
 
   if(actionname === 'findByIdAndUpdate' && collectionname==='userdriver'){
-    let retdoc = doc.data;
-    if(retdoc.issynctoplatform && retdoc.approvalstatus === '已审核'){
-      //将Platform_baseInfoVehicle和Platform_baseInfoDriver存入到数据库
+      let retdoc = doc.data;
+      // if(retdoc.approvalstatus === '已审核'){
+        //将Platform_baseInfoVehicle和Platform_baseInfoDriver存入到数据库
       const saveDriverCar = require('../handler/driver/driverandcar.js');
       let creatorid = retdoc.id;
       if(typeof creatorid === 'string'){
@@ -93,21 +93,21 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
         fnresult(null,doc);
       });
       return;
-    }
+      // }
   }
 
    console.log(`actionname:${actionname},collectionname:${collectionname}`);
    if(actionname === 'findByIdAndUpdate' && collectionname==='mycar'){
      let retdoc = doc.data;
      console.log(`issynctoplatform:${retdoc.issynctoplatform},retdoc.approvalstatus:${retdoc.approvalstatus}`);
-     if(retdoc.issynctoplatform && retdoc.approvalstatus === '已审核'){
-       const saveDriverCar = require('../handler/driver/driverandcar.js');
-       let fnsavebaseinfovehicle = saveDriverCar.get_fnsavebaseinfovehicle(retdoc);
-       fnsavebaseinfovehicle((err,result)=>{
-         fnresult(null,result);
-       });
-       return;
-     }
+    //  if(retdoc.issynctoplatform && retdoc.approvalstatus === '已审核'){
+     const saveDriverCar = require('../handler/driver/driverandcar.js');
+     let fnsavebaseinfovehicle = saveDriverCar.get_fnsavebaseinfovehicle(retdoc);
+     fnsavebaseinfovehicle((err,result)=>{
+       fnresult(null,result);
+     });
+     return;
+    //  }
    }
 
    fnresult(null,doc);

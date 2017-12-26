@@ -76,7 +76,7 @@ import {required} from 'admin-on-rest';
 //
 //          <FormTab label="resources.baseinfovehicle.tabs.tab4">
 //          <DateInputString  label="报备日期" source="RegisterDate" validate={[required]}/>
-//          <NumberInputEx  label="服务类型" source="Commercial-Type" />
+//          <NumberInputEx  label="服务类型" source="CommercialType" />
 //          <TextInputEx  label="FareType?" source="FareType" />
 //          </FormTab>
 //        </TabbedForm>
@@ -138,7 +138,11 @@ const BaseInfoVehicleEdit = (props) => {
 
           <FormTab label="resources.baseinfovehicle.tabs.tab4">
           <DateInputString  label="报备日期" source="RegisterDate" validate={[required]}/>
-          <NumberInputEx  label="服务类型" source="Commercial-Type" />
+          <SelectInput  label="服务类型"  source="CommercialType" choices={[
+              { id: 1, name: '网络预约出租汽车' },
+              { id: 2, name: '巡游出租汽车' },
+              { id: 3, name: '私人小客车合乘' },
+          ]} validate={[required]}/>
           <ReferenceInput reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty>
                 <SelectInput optionText="registertype" />
           </ReferenceInput>
