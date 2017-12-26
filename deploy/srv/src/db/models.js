@@ -14,6 +14,8 @@ let SystemConfigSchema = new Schema({
     pinchecitylist:[],//拼车城市列表
     hotcity:[],
     servicephonenumber:String,//客服电话
+    downloadurl_android:String,//android下载地址
+    downloadurl_ios:String,//ios下载地址
     daijialeastbalance:{ type: Number, default: 50 },
     daijiacancelprice:{ type: Number, default: 10 },
 
