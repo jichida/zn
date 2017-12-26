@@ -7,7 +7,6 @@ let winston = require('../../log/log.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const Chance = require('chance');
 const chance = new Chance();
-const uuid = require('node-uuid');
 const coupon = require('./mycoupon.js');
 const oftenuseaddress = require('./oftenuseaddress.js');
 const rate = require('../common/rate.js');

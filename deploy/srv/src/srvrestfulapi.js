@@ -7,7 +7,7 @@ let bodyParser = require("body-parser");
 const config = require('./config');
 const routerindex = require("./router/index.js");
 const upload = require('jquery-file-upload-middleware');
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 const _  = require('lodash');
 
 let startsrv = ()=>{

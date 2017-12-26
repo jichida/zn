@@ -7,7 +7,6 @@ let winston = require('../../log/log.js');
 const loginauth = require('../common/loginauth.js');
 const Chance = require('chance');
 const chance = new Chance();
-const uuid = require('node-uuid');
 const moment = require('moment');
 
 
