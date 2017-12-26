@@ -3,7 +3,6 @@ let mongoose     = require('mongoose');
 let path = require('path');
 var fs = require('fs');
 const config = require('../config.js');
-const moment  = require('moment');
 let middlewareauth = require('./middlewareauth.js');
 const pinche = require('../handler/common/pinche.js');
 const _ = require('lodash');

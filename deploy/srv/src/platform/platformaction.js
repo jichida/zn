@@ -1,6 +1,5 @@
 let PubSub = require('pubsub-js');
 let util = require('./util');
-const moment = require('moment');
 
 let postaction = (actionname,collectionname,doc)=>{
   let retdoc = doc;

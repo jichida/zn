@@ -2,7 +2,6 @@ let DBModels = require('../db/models.js');
 let path = require('path');
 var fs = require('fs');
 const config = require('../config.js');
-const moment  = require('moment');
 let middlewareauth = require('./middlewareauth.js');
 let formidable = require('formidable');
 let util = require('util');

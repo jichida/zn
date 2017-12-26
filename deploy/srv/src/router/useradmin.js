@@ -3,7 +3,6 @@ let mongoose     = require('mongoose');
 const config = require('../config.js');
 const _  = require('lodash');
 const jwt = require('jsonwebtoken');
-const moment  = require('moment');
 let dbs = require('../db/index.js');
 let middlewareauth = require('./middlewareauth.js');
 const platformaction = require('./action.js');

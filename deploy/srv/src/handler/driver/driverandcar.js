@@ -5,7 +5,7 @@ let PubSub = require('pubsub-js');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const async = require('async');
-const moment = require('moment');
+
 
 let get_fnsavebaseinfodriver = (retdoc)=>{
   //以Platform_baseInfoDriver为主体，插入到Platform_baseInfoDriverModel,返回Platform_baseInfoDriverModel
