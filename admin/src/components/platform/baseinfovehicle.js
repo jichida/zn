@@ -6,7 +6,8 @@ import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
    TabbedForm,
-  FormTab,
+  FormTab,  ReferenceInput,
+    ReferenceField,
   SelectInput } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
@@ -86,7 +87,6 @@ const BaseInfoVehicleTitle = ({ record }) => {
     console.log("record=>" + JSON.stringify(record));
    return <span>编辑 车辆</span>;
 };
-
 const BaseInfoVehicleEdit = (props) => {
       return (<Edit title={<BaseInfoVehicleTitle />} {...props}>
         <TabbedForm>
@@ -124,7 +124,7 @@ const BaseInfoVehicleEdit = (props) => {
                 { id: 2, name: '未知' },
             ]} validate={[required]}/>
             <DateInputString  label="车辆下次年检时间" source="NextFixDate" />
-            <TextInputEx  label="车辆年度审验状态?" source="CheckState" validate={[required]}/>
+            <TextInputEx  label="车辆年度审验状态" source="CheckState" validate={[required]}/>
             <TextInputEx  label="发票打印设备序列号" source="FeePrintId" validate={[required]}/>
           </FormTab>
 
@@ -139,7 +139,9 @@ const BaseInfoVehicleEdit = (props) => {
           <FormTab label="resources.baseinfovehicle.tabs.tab4">
           <DateInputString  label="报备日期" source="RegisterDate" validate={[required]}/>
           <NumberInputEx  label="服务类型" source="Commercial-Type" />
-          <TextInputEx  label="FareType?" source="FareType" />
+          <ReferenceInput reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty>
+                <SelectInput optionText="registertype" />
+          </ReferenceInput>
           </FormTab>
         </TabbedForm>
         </Edit>);

@@ -132,7 +132,6 @@ const BaseInfoDriverEdit = (props) => {
                 { id: '博士', name: '博士' },
             ]} />
             </FormTab>
-
             <FormTab label="resources.baseinfodriver.tabs.tab1">
             <TextInputEx  label="户口登记机关名称" source="DriverCensus" />
             <TextInputEx  label="户口住址或长住地址" source="DriverAddress" />
@@ -140,6 +139,7 @@ const BaseInfoDriverEdit = (props) => {
             <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
             <TextInputEx  label="机动车驾驶证号" source="LicenseId" validate={[required]}/>
             <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
+            <TextInput label="准驾车型" source="DriverType" />
             <DateInputString label="初次领取驾驶证日期" source="GetDriverLicenseDate" validate={[required]}/>
             <DateInputString label="驾驶证有效期限起" source="DriverLicenseOn" validate={[required]}/>
             <DateInputString label="驾驶证有效期限止" source="DriverLicenseOff" validate={[required]}/>
@@ -149,7 +149,6 @@ const BaseInfoDriverEdit = (props) => {
             <BooleanInput  label="是否出租汽车驾驶员" source="TaxiDriver" validate={[required]}/>
             <TextInputEx  label="网络预约出租汽车驾驶员资格证号" source="CertificateNo" validate={[required]}/>
             <TextInputEx  label="网络预约出租汽车驾驶员证发证机构" source="NetworkCarIssueOrganization" validate={[required]}/>
-            <DateInputString  label="资格证发证日期" source="NetworkCarIssueDate" validate={[required]}/>
             <DateInputString  label="初次领取资格证日期" source="GetNetworkCarProofDate" validate={[required]}/>
             <DateInputString  label="资格证有效起始日期" source="NetworkCarProofOn" validate={[required]}/>
             <DateInputString  label="资格证有效截止日期" source="NetworkCarProofOff" validate={[required]}/>
@@ -159,7 +158,11 @@ const BaseInfoDriverEdit = (props) => {
             <FormTab label="resources.baseinfodriver.tabs.tab3">
             <BooleanInput  label="是否专职驾驶员" source="FullTimeDriver" />
             <BooleanInput  label="是否在驾驶员黑名单内" source="InDriverBlacklist" />
-            <NumberInputEx  label="服务类型" source="CommercialType" validate={[required]}/>
+            <SelectInput  label="服务类型"  source="CommercialType" choices={[
+                { id: 1, name: '网络预约出租汽车' },
+                { id: 2, name: '巡游出租汽车' },
+                { id: 3, name: '私人小客车合乘' },
+            ]} validate={[required]}/>
             <TextInputEx  label="驾驶员合同〈或协议〉签署公司全称" source="ContractCompany" validate={[required]}/>
             <DateInputString  label="合同〈或协议〉有效期起" source="ContractOn" validate={[required]}/>
             <DateInputString  label="合同〈或协议〉有效期止" source="ContractOff" validate={[required]}/>
