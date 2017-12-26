@@ -36,7 +36,7 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
  const BaseInfoCompanyPermitCreate = (props) => (
     <Create {...props} title={<BaseInfoCompanyPermitTitle />}>
         <SimpleForm>
-            <TextInputEx label="行政区划代码"  source="Address" validate={[required]}/>
+            <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
             <TextInputEx label="网络预约出租汽车经营许可证号"  source="Certificate" validate={[required]}/>
             <TextInputEx label="经营区域"  source="OperationArea" validate={[required]}/>
             <TextInputEx label="公司名称"  source="OwnerName" validate={[required]}/>
@@ -52,7 +52,7 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
  const BaseInfoCompanyPermitEdit = (props) => (
     <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
         <SimpleForm>
-            <TextInputEx label="行政区划代码"  source="Address" validate={[required]}/>
+            <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
             <TextInputEx label="网络预约出租汽车经营许可证号"  source="Certificate" validate={[required]}/>
             <TextInputEx label="经营区域"  source="OperationArea" validate={[required]}/>
             <TextInputEx label="公司名称"  source="OwnerName" validate={[required]}/>

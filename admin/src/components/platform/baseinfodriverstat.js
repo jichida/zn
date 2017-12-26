@@ -27,7 +27,7 @@ import RichTextEditorInput from '../controls/richtoolbar.js';
 const BaseInfoDriverStatTitle = ({ record }) => <span>驾驶员统计信息</span>;
 
 export const BaseInfoDriverStatList = (props) => (//
-     <List title="运价列表" {...props} >
+     <List title="驾驶员统计信息" {...props} >
         <Datagrid>
         <TextField label="公司标识"  source="CompanyId" />
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />

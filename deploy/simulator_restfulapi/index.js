@@ -13,6 +13,10 @@ const startmodule = (app)=>{
       console.log(`get IPCType==>${v.IPCType}`);
       const actiondata = req.body;
       winston.getlog().info(actiondata);
+      res.status(200)
+          .json({
+            result:'OK',
+          });
       // winston.getlog().error(`类型==>${v.IPCType},
       //   路径:${v.uri}
       //   ${JSON.stringify(actiondata)}`);
