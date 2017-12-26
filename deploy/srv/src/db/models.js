@@ -138,8 +138,7 @@ let UserDriverSchema = new Schema({
     defaultmycar:{ type: Schema.Types.ObjectId, ref: 'mycar' },
     Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
     Platform_baseInfoVehicle:{
-    	City:String,//<---所在城市
-      VehicleRegionCode:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
+      Address:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
 
       VehicleNo:String,//<---	是	字符型	V32	车辆号牌
       PlateColor:String,//	是	字符型	V32	车牌颜色	见 J T/T 697. 7-2014 中5.6
@@ -502,7 +501,7 @@ let MycarSchema = new Schema({
 
     PhotoandCarmanURL:String,//人车合影
   	LicensePhotoIdURL:String,//机动车驾驶证
-  	City:String,//<----
+
   	CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
     Platform_baseInfoVehicle:{
