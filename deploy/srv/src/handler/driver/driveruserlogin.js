@@ -9,6 +9,7 @@ const Chance = require('chance');
 const chance = new Chance();
 const uuid = require('node-uuid');
 const rate = require('../common/rate.js');
+const moment = require('moment');
 
 exports.queryuserbalance = (socket,actiondata,ctx)=>{
   let userModel = DBModels.UserDriverModel;
@@ -275,8 +276,8 @@ let doregisteruser = (socket,newUser,ctx,socketerrstring,callbackuserexits)=>{
     loginauth.hashPassword(newUser.password,salt,(err,hashedpassword)=>{
       newUser.passwordhash = hashedpassword;
       newUser.passwordsalt = salt;
-      newUser.created_at = new Date();
-      newUser.updated_at = new Date();
+      newUser.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
+      newUser.updated_at = moment().format('YYYY-MM-DD HH:mm:ss');
       newUser.profile = {
         nickname:`司机${chance.string({length: 4,pool: '0123456789'})}`,
         avatar:config.defaultprofileimage
@@ -355,7 +356,7 @@ exports.findpwd = (socket,actiondata,ctx)=>{
     loginauth.hashPassword(newUser.password,salt,(err,hashedpassword)=>{
       newUser.passwordhash = hashedpassword;
       newUser.passwordsalt = salt;
-      newUser.updated_at = new Date();
+      newUser.updated_at = moment().format('YYYY-MM-DD HH:mm:ss');
       dbModel.findOneAndUpdate({_id:user._id},{$set:newUser},{new:true},(err,result)=>{
         if(!err && !!result){
           socket.emit('findpwd_result',{});

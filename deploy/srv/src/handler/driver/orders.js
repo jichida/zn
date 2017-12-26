@@ -4,6 +4,7 @@ let mongoose  = require('mongoose');
 let PubSub = require('pubsub-js');
 const winston = require('../../log/log.js');
 const notifymessage_all = require('../common/notifymessage.js');
+const moment = require('moment');
 
 let getorderdetail_command =(socket,actiondata,ctx,commandstring)=>{
   let isvaild = false;
@@ -58,7 +59,7 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
       paytype: "cash",
       orderstatus : '已支付',
       paystatus: '已支付',
-      pay_at:new Date(),
+      pay_at:moment().format('YYYY-MM-DD HH:mm:ss'),
   };
   //payload.realprice = payload.realprice;
   if(typeof actiondata.query._id === 'string'){
@@ -182,7 +183,7 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
   }
   else if(ctx.usertype === 'driver'){
     if(!actiondata.data.rateriderinfo.hasOwnProperty('created_at')){
-      actiondata.data.rateriderinfo.created_at = new Date();
+      actiondata.data.rateriderinfo.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
     }
   }
   let orderModel = DBModels.TripOrderModel;
@@ -202,7 +203,7 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
         driverid:orderEntity.driveruserid,
         riderid:orderEntity.rideruserid,
         orderid:orderEntity._id,
-        created_at:new Date()
+        created_at:moment().format('YYYY-MM-DD HH:mm:ss')
       };
       if(ctx.usertype === 'rider'){//通知司机已评论
         rateobj.targetid = orderEntity.driveruserid;

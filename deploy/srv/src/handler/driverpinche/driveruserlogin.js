@@ -8,6 +8,7 @@ const loginauth = require('../common/loginauth.js');
 const Chance = require('chance');
 const chance = new Chance();
 const uuid = require('node-uuid');
+const moment = require('moment');
 
 
 exports.logout = (socket,actiondata,ctx)=>{
@@ -70,7 +71,7 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
       console.log("decode user===>" + JSON.stringify(decodeduser));
       let userid = decodeduser._id;
       let userModel = DBModels.UserDriverPincheModel;
-      userModel.findByIdAndUpdate(userid,{updated_at:new Date()},{new: true},(err,result)=>{
+      userModel.findByIdAndUpdate(userid,{updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,result)=>{
         if(!err && !!result){
           setloginsuccess(socket,ctx,result);
         }

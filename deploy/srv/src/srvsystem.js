@@ -8,12 +8,13 @@ const _ = require('lodash');
 const city = require('./util/city.js');
 let DBPlatformModels = require('./db/modelsplatform.js');
 let pwd = require('./util/pwd.js');
+const moment = require('moment');
 
 let setRequestExpired = ()=>{
   let TripRequestModel = DBModels.TripRequestModel;
   let nowDate = new Date();
   let min2Ago = new Date(nowDate.getTime() - 1000 * 60 * config.expRequestMinutes);
-
+  min2Ago = moment(min2Ago).format('YYYY-MM-DD HH:mm:ss');
   TripRequestModel.find({
       'created_at': { // 18 minutes ago (from now)
           $lte: min2Ago

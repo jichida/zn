@@ -38,13 +38,13 @@ const getstringoftime=(leftduring)=>{
  fareid:'58da12b971983947079ae4f8'
 * */
 let getBaseInfoCompanyFareList = (param= {
-  curtime:new Date(),
+  curtime: moment().format('YYYY-MM-DD HH:mm:ss'),
   triptype:'快车',
 },callback)=>{
-  let curtime = param.curtime || new Date();
+  let curtime = param.curtime || moment().format('YYYY-MM-DD HH:mm:ss');
   let curtimeformatted = curtime;
   if (typeof curtimeformatted === 'string') {
-    curtimeformatted = new Date(Date.parse(curtimeformatted));
+    curtimeformatted = moment(curtimeformatted).format('YYYY-MM-DD HH:mm:ss')
   }
   let faretype = config.faretypemap[param.triptype];
   console.log(`faretype:${faretype}`)
@@ -108,13 +108,13 @@ let getBaseInfoCompanyFareList = (param= {
 let getBaseInfoCompanyFare = (param={
   distance:0,
   during:0,
-  curtime:new Date(),
+  curtime: moment().format('YYYY-MM-DD HH:mm:ss'),
   fareid:'58da12b971983947079ae4f8'
 },callback)=>{
-  let curtime = param.curtime || new Date();
+  let curtime = param.curtime ||  moment().format('YYYY-MM-DD HH:mm:ss');
   let curtimeformatted = curtime;
   if (typeof curtimeformatted === 'string') {
-    curtimeformatted = new Date(Date.parse(curtimeformatted));
+    curtimeformatted =  moment(curtimeformatted).format('YYYY-MM-DD HH:mm:ss')
   }
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   fareModel.findOne({_id:param.fareid},(err,baseInfoCompanyFare)=>{
@@ -235,7 +235,7 @@ exports.getBaseInfoCompanyFare = getBaseInfoCompanyFare;
     *
     * */
 let getprice= (param,callback)=>{
-  let curtime = new Date();
+  let curtime = moment().format('YYYY-MM-DD HH:mm:ss');
   getBaseInfoCompanyFareList({triptype:param.registertype,curtime},(err,result)=>{
     if(!err && result.length > 0){
       let fareid = result[0]._id;

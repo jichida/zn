@@ -160,8 +160,8 @@ let insertorder_command = (socket,actiondata,ctx,commandstring)=>{
   }
   else if(actiondata.triptype === '旅游大巴'){
     order = actiondata;
-    actiondata.startdate = new Date(Date.parse(actiondata.startdate));
-    actiondata.enddate = new Date(Date.parse(actiondata.enddate));
+    actiondata.startdate = moment(actiondata.startdate).format('YYYY-MM-DD');
+    actiondata.enddate = moment(actiondata.enddate).format('YYYY-MM-DD');
     order.rideruserid = ctx.userid;
   }
   else if(actiondata.triptype === '充值'){
@@ -169,8 +169,8 @@ let insertorder_command = (socket,actiondata,ctx,commandstring)=>{
     order.rideruserid = ctx.userid;
   }
 
-  order.updated_at = new Date();
-  order.created_at = new Date();
+  order.updated_at = moment().format('YYYY-MM-DD');
+  order.created_at = moment().format('YYYY-MM-DD');
   order.paystatus = '未支付';
   //仅快车，出租车，代驾 有效
 
@@ -290,12 +290,12 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
   // ratedriverinfo:Schema.Types.Mixed,//对司机评价,评级、评价时间、评论
   if(ctx.usertype === 'rider'){
       if(!actiondata.data.ratedriverinfo.hasOwnProperty('created_at')){
-        actiondata.data.ratedriverinfo.created_at = new Date();
+        actiondata.data.ratedriverinfo.created_at = moment().format('YYYY-MM-DD');
       }
   }
   else if(ctx.usertype === 'driver'){
     if(!actiondata.data.rateriderinfo.hasOwnProperty('created_at')){
-      actiondata.data.rateriderinfo.created_at = new Date();
+      actiondata.data.rateriderinfo.created_at = moment().format('YYYY-MM-DD');
     }
     socket.emit('common_err',{errmsg:`仅乘客端有效`,type:'updateorder'});
     return;
@@ -317,7 +317,7 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
         driverid:orderEntity.driveruserid,
         riderid:orderEntity.rideruserid,
         orderid:orderEntity._id,
-        created_at:new Date()
+        created_at:moment().format('YYYY-MM-DD HH:mm:ss')
       };
       if(ctx.usertype === 'rider'){//通知司机已评论
         rateobj.targetid = orderEntity.driveruserid;

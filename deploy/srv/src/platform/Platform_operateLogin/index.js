@@ -16,6 +16,7 @@
 //     Latitude:Number,//	否	数字型	V10	上线纬度	单位 :1 铃 10-6度
 //     Encrypt:Number,	 // 是	数字型	F1	坐标加密标识	l:GCJ 一02 测绘局标准2:WGS84 GPS 标准 3:BD一09 百度标准4 :CGCS2000 北斗标准0 :其他
 // });
+const moment = require('moment');
 
 let DBModels = require('../../db/models.js');
 let mongoose = require('mongoose');
@@ -32,7 +33,7 @@ exports.insertOperateLogin  = (actiondata)=> {
         CompanyId:config.CompanyId,
         LicenseId:actiondata.licenseld,
         VehicleNo:actiondata.vehicleno,
-        LoginTime:util.gettimeformat(new Date()),
+        LoginTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
@@ -45,4 +46,3 @@ exports.insertOperateLogin  = (actiondata)=> {
         }
     });
 }
-

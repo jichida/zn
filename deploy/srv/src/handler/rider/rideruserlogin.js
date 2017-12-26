@@ -12,6 +12,7 @@ const coupon = require('./mycoupon.js');
 const oftenuseaddress = require('./oftenuseaddress.js');
 const rate = require('../common/rate.js');
 const loginauth = require('../common/loginauth.js');
+const moment = require('moment');
 
 exports.queryuserbalance = (socket,actiondata,ctx)=>{
   let userModel = DBModels.UserRiderModel;
@@ -182,7 +183,7 @@ exports.logout = (socket,actiondata,ctx)=>{
 
 exports.fillprofile = (socket,actiondata,ctx)=>{
   if (typeof actiondata.birthday === 'string') {
-    actiondata.birthday = new Date(Date.parse(actiondata.birthday));
+    actiondata.birthday = moment(actiondata.birthday).format('YYYY-MM-DD');
   }
 
   let userModel = DBModels.UserRiderModel;

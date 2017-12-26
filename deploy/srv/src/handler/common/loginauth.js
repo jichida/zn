@@ -105,7 +105,7 @@ exports.loginwithauth = (socket,actiondata,ctx)=>{
         return;
     }
 
-    userModel.findOneAndUpdate({username:actiondata.phonenumber},{updated_at:new Date()},{new: true},(err,userEntity)=> {
+    userModel.findOneAndUpdate({username:actiondata.phonenumber},{updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,userEntity)=> {
         if (!err && userEntity) {
             // ctx.userid = userEntity._id.toString();
             // let token = jwt.sign({
@@ -130,8 +130,8 @@ exports.loginwithauth = (socket,actiondata,ctx)=>{
             if (!err) {
                 let datauser = {
                     username: actiondata.phonenumber,
-                    created_at: new Date(),
-                    updated_at: new Date()
+                    created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
                 }
                 let userEntity = new userModel(datauser);
                 userEntity.save((err, result)=> {

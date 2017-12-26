@@ -14,6 +14,7 @@
 //     UpdateTime:Date,//		是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 // });
 // Platform_baseInfoDriverAppSchema.plugin(mongoosePaginate);
+const moment = require('moment');
 
 let DBModels = require('../../db/models.js');
 let mongoose = require('mongoose');
@@ -36,7 +37,7 @@ exports.insertBaseInfoDriverApp  = (actiondata)=> {
         MapType:2,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
         State:0,
         Flag:1,//		是	数字型	F1	操作标识	1.新增2.更新3 :删除
-        UpdateTime:util.gettimeformat(new Date()),
+        UpdateTime:moment().format('YYYY-MM-DD HH:mm:ss'),
     };
     let eModel = dbplatform.Platform_baseInfoDriverAppModel;
     let entity = new eModel(baseInfoDriverAppDoc);
@@ -58,7 +59,7 @@ exports.updateBaseInfoDriverApp  = (actiondata)=> {
         MapType:2,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
         State:0,
         Flag:2,//		是	数字型	F1	操作标识	1.新增2.更新3 :删除
-        UpdateTime:util.gettimeformat(new Date()),
+        UpdateTime:moment().format('YYYY-MM-DD HH:mm:ss'),
     };
     let eModel = dbplatform.Platform_baseInfoDriverAppModel;
     eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverAppDoc},{new:true},(err,result)=> {
