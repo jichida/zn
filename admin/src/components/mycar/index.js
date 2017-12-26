@@ -31,7 +31,7 @@ import {
   ReferenceField,
   FormTab
 } from 'admin-on-rest/lib/mui';
-
+import {DateInputString} from '../controls/DateInput_String.js';
 import RichTextInput from '../controls/richtoolbar.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
 import {ImageInputUpload} from '../controls/imageupload.js';
@@ -82,7 +82,7 @@ const MycarEdit = (props) => {
           <FormTab label="resources.baseinfovehicle.tabs.tab1">
           <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.EngineId" />
           <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN" />
-          <DateInput  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" />
+          <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" />
           <TextInputEx  label="牢辆燃料类型" source="Platform_baseInfoVehicle.FuelType" />
           <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace" />
           </FormTab>
@@ -92,15 +92,15 @@ const MycarEdit = (props) => {
           <TextInputEx  label="运输证字号" source="Platform_baseInfoVehicle.Certificate" />
           <TextInputEx  label="车辆运输证发证机构" source="Platform_baseInfoVehicle.TransAgency" />
           <TextInputEx  label="车辆经营区域" source="Platform_baseInfoVehicle.TransArea" />
-          <DateInput  label="车辆运输证有效期起" source="Platform_baseInfoVehicle.TransDateStart" />
-          <DateInput  label="车辆运输证有效期止" source="Platform_baseInfoVehicle.TransDateStop" />
-          <DateInput  label="车辆初次登记日期" source="Platform_baseInfoVehicle.CertifyDateB" />
+          <DateInputString  label="车辆运输证有效期起" source="Platform_baseInfoVehicle.TransDateStart" />
+          <DateInputString  label="车辆运输证有效期止" source="Platform_baseInfoVehicle.TransDateStop" />
+          <DateInputString  label="车辆初次登记日期" source="Platform_baseInfoVehicle.CertifyDateB" />
           <SelectInput  label="车辆检修状态"  source="Platform_baseInfoVehicle.FixState" choices={[
               { id: 0, name: '未检修' },
               { id: 1, name: '已检修' },
               { id: 2, name: '未知' },
           ]} />
-          <DateInput  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
+          <DateInputString  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
           <TextInputEx  label="车辆年度审验状态?" source="Platform_baseInfoVehicle.CheckState" />
           <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintId" />
         </FormTab>
@@ -110,11 +110,11 @@ const MycarEdit = (props) => {
         <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand" />
         <TextInputEx  label="卫星定位装置型号" source="Platform_baseInfoVehicle.GPSModel" />
         <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" />
-        <DateInput  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate" />
+        <DateInputString  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate" />
         </FormTab>
 
         <FormTab label="resources.baseinfovehicle.tabs.tab4">
-        <DateInput  label="报备日期" source="Platform_baseInfoVehicle.RegisterDate" />
+        <DateInputString  label="报备日期" source="Platform_baseInfoVehicle.RegisterDate" />
         <ReferenceInput source="Platform_baseInfoVehicle.FareType" reference="faretype" allowEmpty>
            <SelectInput optionText="registertype" />
         </ReferenceInput>

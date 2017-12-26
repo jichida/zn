@@ -186,7 +186,7 @@ const BuscarpoolFilter = (props) => (
             { id: '专线', name: '专线' },
             { id: '人气团拼', name: '人气团拼' },
         ]} />
-        <DateInput label="出发日期" source="startdate" />
+        <DateInputString label="出发日期" source="startdate" />
     </Filter>
 );
 
