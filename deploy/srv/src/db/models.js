@@ -165,7 +165,7 @@ let UserDriverSchema = new Schema({
       TransDateStop:String,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
       CertifyDateB:String,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
-      NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
+      NextFixDate:String,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<---	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
       FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 
@@ -530,7 +530,7 @@ let MycarSchema = new Schema({
       TransDateStop:String,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
       CertifyDateB:String,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
-      NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
+      NextFixDate:String,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<----	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
       FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 

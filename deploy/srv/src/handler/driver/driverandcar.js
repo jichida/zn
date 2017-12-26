@@ -34,9 +34,12 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
   //以Platform_baseInfoVehicle为主体，插入／更新到MycarModel,返回MycarModel
   return (fncallback)=>{
       let baseinfovehicleid = retdoc.Platform_baseInfoVehicleId;
-      if(typeof baseinfovehicleid === 'string'){
-        baseinfovehicleid =  mongoose.Types.ObjectId(baseinfovehicleid);
+      if(!!baseinfovehicleid){
+        if(typeof baseinfovehicleid === 'string'){
+          baseinfovehicleid =  mongoose.Types.ObjectId(baseinfovehicleid);
+        }
       }
+
       baseinfovehicleid = baseinfovehicleid || new mongoose.mongo.ObjectID();
 
       if(typeof driveruserid === 'string'){
@@ -44,9 +47,12 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
       }
 
       let mycarid = retdoc.defaultmycar;
-      if(typeof mycarid === 'string'){
-        mycarid =  mongoose.Types.ObjectId(mycarid);
+      if(!!mycarid){
+        if(typeof mycarid === 'string'){
+          mycarid =  mongoose.Types.ObjectId(mycarid);
+        }
       }
+
       mycarid = mycarid || new mongoose.mongo.ObjectID();
 
       let baseInfovehicle = retdoc.Platform_baseInfoVehicle || {};
