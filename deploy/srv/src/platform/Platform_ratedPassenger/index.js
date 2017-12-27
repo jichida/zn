@@ -32,12 +32,12 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertRatedPassenger  = (actiondata)=> {
     let ratedPassengerDoc = {
         CompanyId:config.CompanyId,	//	是	字符型	V32	公司标识
-        OrderId:actiondata.triporderid,	//	是	字符型	V64	订单号
-        EvaluateTime:moment().format('YYYY-MM-DD HH:mm:ss'),		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
-        ServiceScore:actiondata.scoreservice,		//	是	数字型	VI 0	服务满意度	五分制
-        DriverScore:0,		//	否	数字型	VI0	驾驶员满意度	五分制
-        VehicleScore:0,		//	否	数字型	VI0	车辆满意度	五分制
-        Detail:actiondata.detail,	//	否	字符型	V128	评价内容
+        OrderId:actiondata.OrderId,	//	是	字符型	V64	订单号
+        EvaluateTime:actiondata.EvaluateTime,		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
+        ServiceScore:actiondata.ServiceScore,			//	是	数字型	VI 0	服务满意度	五分制
+        DriverScore:actiondata.DriverScore,		//	否	数字型	VI0	驾驶员满意度	五分制
+        VehicleScore:actiondata.VehicleScore,			//	否	数字型	VI0	车辆满意度	五分制
+        Detail:actiondata.Detail,	//	否	字符型	V128	评价内容
     };
     let eModel = dbplatform.Platform_ratedPassengerModel;
     let entity = new eModel(ratedPassengerDoc);

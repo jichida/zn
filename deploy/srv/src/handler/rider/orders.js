@@ -352,6 +352,18 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
           //================通知平台====================
           if(ctx.usertype === 'rider'){//乘客-》司机评论
             //功能缺失！
+                PubSub.publish('Platformmsgs', {
+                  action:'Insert',
+                  type:'Platform_ratedPassenger',
+                  payload:{
+                    OrderId:triporder._id,	//	是	字符型	V64	订单号
+                    EvaluateTime:rateobj.created_at,		//	是	数字型	F14	评价时间	YYYYMMDDhhmmss
+                    ServiceScore:triporder.ratedriverinfo.ratenum,	//	是	数字型	VI 0	服务满意度	五分制
+                    DriverScore:triporder.ratedriverinfo.ratenum,		//	否	数字型	VI0	驾驶员满意度	五分制
+                    VehicleScore:triporder.ratedriverinfo.ratenum,	//	否	数字型	VI0	车辆满意度	五分制
+                    Detail:triporder.ratedriverinfo.comment,	//	否	字符型	V128	评价内容
+                  }
+              });
             //   PubSub.publish('Platformmsgs', {
             //     action:'Insert',
             //     type:'Platform_ratedDriver',
@@ -362,17 +374,17 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
             //     }
             // });
           }
-          else if(ctx.usertype === 'driver'){//司机=》乘客评论
-              PubSub.publish('Platformmsgs', {
-                action:'Update',
-                type:'Platform_ratedPassenger',
-                payload:{
-                  triporderid:triporder._id,
-                  scoreservice:triporder.rateriderinfo.ratenum,
-                  detail:triporder.rateriderinfo.comment
-                }
-            });
-          }
+          // else if(ctx.usertype === 'driver'){//司机=》乘客评论
+          //     PubSub.publish('Platformmsgs', {
+          //       action:'Update',
+          //       type:'Platform_ratedPassenger',
+          //       payload:{
+          //         triporderid:triporder._id,
+          //         scoreservice:triporder.rateriderinfo.ratenum,
+          //         detail:triporder.rateriderinfo.comment
+          //       }
+          //   });
+          // }
 
         }
       });

@@ -86,17 +86,6 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
             messagecontent:`/orderdetail/${triporder._id}`,
             subtype:'order'
           });
-
-          //功能缺失！
-          //   PubSub.publish('Platformmsgs', {
-          //     action:'Insert',
-          //     type:'Platform_ratedDriver',
-          //     payload:{
-          //       triporderid:triporder._id,
-          //       scoreservice:triporder.ratedriverinfo.ratenum,
-          //       detail:triporder.ratedriverinfo.comment
-          //     }
-          // });
         }
         else{
           socket.emit('common_err',{errmsg:`找不到相应的订单:${JSON.stringify(actiondata)}`,title:'支付',type:'payorderwithcash'});
@@ -249,15 +238,16 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
             // });
           }
           else if(ctx.usertype === 'driver'){//司机=》乘客评论
-              PubSub.publish('Platformmsgs', {
-                action:'Update',
-                type:'Platform_ratedPassenger',
-                payload:{
-                  triporderid:triporder._id,
-                  scoreservice:triporder.rateriderinfo.ratenum,
-                  detail:triporder.rateriderinfo.comment
-                }
-            });
+            //  注意:功能缺失！司机对乘客的评价不用接口
+            //   PubSub.publish('Platformmsgs', {
+            //     action:'Insert',
+            //     type:'Platform_ratedPassenger',
+            //     payload:{
+            //       triporderid:triporder._id,
+            //       scoreservice:triporder.rateriderinfo.ratenum,
+            //       detail:triporder.rateriderinfo.comment
+            //     }
+            // });
           }
 
         }

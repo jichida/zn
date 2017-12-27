@@ -70,7 +70,7 @@ const platformhandlers = {
         'Insert':Platform_ratedDriverPunish.insertRatedDriverPunish
     },
     'Platform_ratedPassenger':{
-        'Insert':Platform_ratedPassenger.insertRatedPassenger
+        'Insert':Platform_ratedPassenger.insertRatedPassenger,
     },
     'Platform_ratedPassengerComplaint':{
         'Insert':Platform_ratedPassengerComplaint.insertRatedPassengerComplaint

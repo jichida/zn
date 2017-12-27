@@ -36,7 +36,7 @@ exports.insertRatedDriver  = (actiondata)=> {
         TestDate:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         TestDepartment:'',
     };
-    let eModel = dbplatform.Platform_insertRatedDriverModel;
+    let eModel = dbplatform.Platform_ratedDriverModel;
     let entity = new eModel(ratedDriverDoc);
     entity.save((err,result)=> {
         if (!err && result) {
