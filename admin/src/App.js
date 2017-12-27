@@ -61,7 +61,7 @@ import  {PositionDriverList,PositionDriverShow} from './components/platform/posi
 import  {RatedDriverList,RatedDriverCreate,RatedDriverEdit} from './components/platform/rateddriver.js';
 import  {RatedDriverPunishList,RatedDriverPunishCreate,RatedDriverPunishEdit} from './components/platform/rateddriverpunish.js';
 import  {RatedPassengerList,RatedPassengerShow} from './components/platform/ratedpassenger.js';
-import  {RatedPassengerComplaintList,RatedPassengerComplaintShow} from './components/platform/ratedpassengercomplaint.js';
+import  {RatedPassengerComplaintList,RatedPassengerComplaintCreate,RatedPassengerComplaintEdit} from './components/platform/ratedpassengercomplaint.js';
 import  {FaretypelistList,FaretypelistCreate,FaretypelistEdit,FaretypelistShow} from './components/faretype/index.js';
 
 import {NotifyMessagelistList,NotifyMessagelistCreate,NotifyMessagelistEdit,NotifyMessagelistShow} from './components/notifymessage/index.js';
@@ -130,8 +130,8 @@ class App extends Component {
             <Resource name="ratedpassenger" list={RatedPassengerList} show={RatedPassengerShow} />
             <Resource name="rateddriver" list={RatedDriverList} create={RatedDriverCreate}  edit={RatedDriverEdit}  />
             <Resource name="rateddriverpunish" list={RatedDriverPunishList} create={RatedDriverPunishCreate}  edit={RatedDriverPunishEdit} />
-            <Resource name="ratedpassengercomplaint" list={RatedPassengerComplaintList} show={RatedPassengerComplaintShow} />
-
+            <Resource name="ratedpassengercomplaint" list={RatedPassengerComplaintList} create={RatedPassengerComplaintCreate}  edit={RatedPassengerComplaintEdit} />
+            
             <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} />
             <Resource name="notifymessage" list={NotifyMessagelistList} create={NotifyMessagelistCreate} edit={NotifyMessagelistEdit} show={NotifyMessagelistShow} remove={Delete} />
 
