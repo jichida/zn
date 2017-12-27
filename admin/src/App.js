@@ -58,7 +58,7 @@ import  {OperatePayList,OperatePayShow} from './components/platform/operatepay.j
 import  {PositionVehicleList,PositionVehicleShow} from './components/platform/positionvehicle.js';
 import  {PositionDriverList,PositionDriverShow} from './components/platform/positiondriver.js';
 
-import  {RatedDriverList,RatedDriverShow} from './components/platform/rateddriver.js';
+import  {RatedDriverList,RatedDriverCreate,RatedDriverEdit} from './components/platform/rateddriver.js';
 import  {RatedDriverPunishList,RatedDriverPunishShow} from './components/platform/rateddriverpunish.js';
 import  {RatedPassengerList,RatedPassengerShow} from './components/platform/ratedpassenger.js';
 import  {RatedPassengerComplaintList,RatedPassengerComplaintShow} from './components/platform/ratedpassengercomplaint.js';
@@ -127,9 +127,10 @@ class App extends Component {
             <Resource name="positionvehicle" list={PositionVehicleList} show={PositionVehicleShow} />
             <Resource name="positiondriver" list={PositionDriverList} show={PositionDriverShow} />
 
-            <Resource name="rateddriver" list={RatedDriverList} show={RatedDriverShow} />
-            <Resource name="rateddriverpunish" list={RatedDriverPunishList} show={RatedDriverPunishShow} />
             <Resource name="ratedpassenger" list={RatedPassengerList} show={RatedPassengerShow} />
+
+            <Resource name="rateddriver" list={RatedDriverList} create={RatedDriverCreate}  edit={RatedDriverEdit}  />
+            <Resource name="rateddriverpunish" list={RatedDriverPunishList} show={RatedDriverPunishShow} />
             <Resource name="ratedpassengercomplaint" list={RatedPassengerComplaintList} show={RatedPassengerComplaintShow} />
 
             <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} />
