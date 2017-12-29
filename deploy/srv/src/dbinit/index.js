@@ -60,10 +60,6 @@ const setconfigfile = ()=>{
 
     const dbModelCompany = DBPlatformModels.Platform_baseInfoCompanyModel;
     dbModelCompany.findOneAndUpdate({},{$set:{CompanyId:config.CompanyId}},(err,result)=>{
-        if(!err && !!result){
-          console.log(`dbModelCompany===>${JSON.stringify(result)}`)
-          config.setcompanyandaddress(result.CompanyId,result.Address);
-        }
     });
     //设置平台公司信息
     //setcompanyandaddress

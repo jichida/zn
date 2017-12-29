@@ -17,7 +17,7 @@ const statusHelper = (response)=> {
 const uploadtoplatform = (IPCType,uri,data)=>{
     let postdata = {
       Source:'0',
-      CompanyId:'',
+      CompanyId:config.CompanyId,
       IPCType,
     };
     postdata[IPCType] = data;
