@@ -5,10 +5,11 @@ let DBModels = require('./db/models.js');
 var schedule = require('node-schedule');
 let PubSub = require('pubsub-js');
 const _ = require('lodash');
-const city = require('./util/city.js');
+
 let DBPlatformModels = require('./db/modelsplatform.js');
 let pwd = require('./util/pwd.js');
 const moment = require('moment');
+const dbinit = require('./dbinit');
 
 let setRequestExpired = ()=>{
   let TripRequestModel = DBModels.TripRequestModel;
@@ -46,59 +47,6 @@ let setRequestExpired = ()=>{
 };
 
 
-let createadmin = ()=>{
-  let userModel = mongoose.model('UserAdmin', DBModels.UserAdminSchema);
-  userModel.findOne({username: 'admin'}, (err, adminuser)=> {
-        if(!err && !adminuser) {
-            let passwordsalt = pwd.getsalt();
-            pwd.hashPassword('admin',passwordsalt,(err,passwordhash)=>{
-              if(!err){
-            adminuser = {
-              username:'admin',
-                  passwordsalt,
-                  passwordhash
-            };
-            let entity = new userModel(adminuser);
-            entity.save((err)=> {
-            });
-        }
-      });
-    }
-  });
-};
-
-// let getsystemconfig =()=>{
-//   let systemconfigModel = mongoose.model('SystemConfig', DBModels.SystemConfigSchema);
-//   systemconfigModel.findOne({}, (err, sysconfig)=> {
-//     if(!err && sysconfig) {
-//       setfaretypemap
-//     }
-//   });
-// }
-
-let setconfigfile = ()=>{
-    //设置运价信息
-    let dbModel = DBModels.FareTypeModel;
-    dbModel.find({},(err,list)=>{
-      if(!err && !!list){
-        let faretypemap = {};
-        _.map(list,(record)=>{
-          faretypemap[record.registertype] = record._id;
-        });
-        config.setfaretypemap(faretypemap);
-      }
-    });
-
-    let dbModelCompany = DBPlatformModels.Platform_baseInfoCompanyModel;
-    dbModelCompany.findOne({},(err,result)=>{
-        if(!err && !!result){
-          console.log(`dbModelCompany===>${JSON.stringify(result)}`)
-          config.setcompanyandaddress(result.CompanyId,result.Address);
-        }
-    });
-    //设置平台公司信息
-    //setcompanyandaddress
-};
 let dbs = require('./db/index.js');
 let platform = require('./platform/index');
 let initplatform =()=>{
@@ -185,7 +133,7 @@ let initplatform =()=>{
 // }
 
 let setmycouponsexpired = ()=>{
-  let nowDate = new Date();
+  let nowDate = moment().format('YYYY-MM-DD HH:mm:ss');
   let myCouponModel = DBModels.MyCouponModel;
   myCouponModel.update({
       'expdate': { // 小于今天
@@ -198,14 +146,11 @@ let setmycouponsexpired = ()=>{
 };
 
 let job=()=>{
-  //test();
-  city.initcitymap();
   //建立索引
   DBModels.TripRequestSchema.index({ srclocation: '2dsphere' });
 
-  setconfigfile();
-  //判断admin是否有数据...
-  createadmin();
+  dbinit();
+
 
   initplatform();
   //自动备份等
