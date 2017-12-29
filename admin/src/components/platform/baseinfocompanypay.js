@@ -45,6 +45,8 @@ const BaseInfoCompanyPayEdit = (props) => {
             <TextInputEx label="业务覆盖范围"  source="PayScope" validate={[required]}/>
             <TextInputEx label="备付金存管银行全称" source="PrepareBank" validate={[required]}/>
             <NumberInputEx label="结算周期(单位:天)" source="CountDate" validate={[required]}/>
+            <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
+            <TextField label="操作标识" source="Flag"  />
             <TextField label="数据更新时间" source="UpdateTime"  />
           </SimpleForm>
       </Edit>);

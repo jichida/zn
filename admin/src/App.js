@@ -31,7 +31,7 @@ import {UserdriverlistList,UserdriverlistEdit} from './components/userdrivers/in
 
 //import fakeRestServer from './restServer';
 import {BaseInfoCompanyList} from './components/platform/baseinfocompany.js';
-import {BaseInfoCompanyStatList} from './components/platform/baseinfocompanystat.js';
+import {BaseInfoCompanyStatList,BaseInfoCompanyStatEdit} from './components/platform/baseinfocompanystat.js';
 import {BaseInfoCompanyServiceList} from './components/platform/baseinfocompanyservice.js';
 import {BaseInfoCompanyPermitList} from './components/platform/baseinfocompanypermit.js';
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit}  from './components/platform/baseinfocompanypay.js';
@@ -102,7 +102,7 @@ class App extends Component {
 
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} />
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}/>
-            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  />
+            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  edit={BaseInfoCompanyStatEdit}/>
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} remove={Delete} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} remove={Delete} />

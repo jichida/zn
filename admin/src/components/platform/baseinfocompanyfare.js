@@ -26,9 +26,10 @@ const BaseInfoCompanyFareCreate = (props) => (
        <Create {...props} title={<BaseInfoCompanyFarecreateTitle />} >
        <TabbedForm>
            <FormTab label="resources.baseinfocompanyfare.tabs.tab0">
-          <ReferenceInput source="FareType" reference="faretype" allowEmpty>
+           <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
+           <ReferenceInput source="FareType" reference="faretype" allowEmpty>
                   <SelectInput optionText="registertype" />
-            </ReferenceInput>
+           </ReferenceInput>
            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
            <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]}/>
            <DateInputString label="运价有效期止" source="FareValidOff" />
@@ -66,6 +67,7 @@ const BaseInfoCompanyFareEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyFareTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.baseinfocompanyfare.tabs.tab0">
+            <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
             <ReferenceInput source="FareType" reference="faretype" allowEmpty>
                   <SelectInput optionText="registertype" />
             </ReferenceInput>

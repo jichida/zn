@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    BooleanInput,
     Datagrid,
     DateField,
     DateInput,
@@ -44,7 +45,6 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
             <DateInputString label="有效期止" source="StopDate" validate={[required]} />
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
-            <DisabledInputEx label="状态"  source="State" validate={[required]}/>
         </SimpleForm>
     </Create>
 );
@@ -60,7 +60,8 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
             <DateInputString label="有效期止" source="StopDate" validate={[required]}/>
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
-            <DisabledInputEx label="状态"  source="State" validate={[required]}/>
+            <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
+            <TextField label="操作标识" source="Flag"  />
             <TextField label="数据更新时间" source="UpdateTime"  />
         </SimpleForm>
     </EditPage>
