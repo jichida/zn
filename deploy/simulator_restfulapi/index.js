@@ -52,4 +52,7 @@ const startsrv = ()=>{
 };
 
 startsrv();
-app.listen(process.env.listenport||8080);
+
+const listenport = parseInt(process.env.listenport) || 8080;
+console.log(`port-->${listenport}`)
+app.listen(listenport);

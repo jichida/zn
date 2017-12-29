@@ -1,6 +1,6 @@
 
 let config =  {
-  platformserverurl:process.env.platformserverurl||'http://172.17.0.1:8090',//'http://127.0.0.1:8080',
+  platformserverurl:process.env.platformserverurl||'http://127.0.0.1:8080',//'http://127.0.0.1:8080',
 
   secretkey:'zongnanchuxingkey',
   listenport:process.env.listenport||3005,

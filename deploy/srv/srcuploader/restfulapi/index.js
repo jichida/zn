@@ -3,8 +3,10 @@ require('isomorphic-fetch');
 
 const config = require('../config.js');
 // const map = require('lodash.map');
+
 const fetchurl =`${config.platformserverurl}`;
 
+console.log(`url-->${fetchurl}`);
 
 const statusHelper = (response)=> {
   if (response.status >= 200 && response.status < 300) {
@@ -21,7 +23,8 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       IPCType,
     };
     postdata[IPCType] = data;
-
+    console.log(`postdata-->${JSON.stringify(postdata)}`);
+    
     return fetch(`${fetchurl}${uri}`, {
       method  : 'POST',
       headers : {

@@ -4,7 +4,7 @@ services:
       image: nginx
       restart: always
       ports:
-          - "80:8080"
+          - "80:8090"
       volumes:
           - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
           - ./dist:/usr/share/nginx/html
@@ -19,11 +19,11 @@ services:
       - ./simulator_restfulapi:/simulatorsrv
       - ./dist/log:/dist/log
     environment:
-      - listenport=8090
+      - listenport=8080
     ports:
-       - "8090:8090"
+       - "8080:8080"
     expose:
-       - "8090"
+       - "8080"
   znserver:
     image: node:6.11.2
     restart: always
@@ -34,7 +34,7 @@ services:
       - ./dist/log:/dist/log
     environment:
       - MONGO_URL=mongodb://172.17.0.1:27018/zhongnandb
-      - platformserverurl=http://172.17.0.1:8090
+      - platformserverurl=http://172.17.0.1:8080
       - listenport=3005
     links:
       - mongodb
