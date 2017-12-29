@@ -52,4 +52,4 @@ const startsrv = ()=>{
 };
 
 startsrv();
-app.listen(8080);
+app.listen(process.env.listenport||8080);

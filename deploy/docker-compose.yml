@@ -18,11 +18,11 @@ services:
     volumes:
       - ./simulator_restfulapi:/simulatorsrv
     environment:
-      - listenport=8080
+      - listenport=8090
     ports:
-       - "8080:8080"
+       - "8090:8090"
     expose:
-       - "8080"
+       - "8090"
   znserver:
     image: node:6.11.2
     restart: always
