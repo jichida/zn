@@ -54,20 +54,6 @@ const BaseInfoVehicleInsuranceEdit = (props) => {
 };
 
 
-const BaseInfoVehicleInsuranceShow = (props) => (
-       <Show title={<BaseInfoVehicleInsuranceTitle />} {...props}>
-           <SimpleShowLayout>
-             <TextField label="车辆号牌" source="VehicleNo" />
-             <TextField label="保险公司名称"  source="InsurCom" />
-             <TextField label="保险号"  source="InsurNum" />
-             <TextField label="保险类型"  source="InsurType" />
-             <TextField label="保险金额" source="InsurCount" />
-             <TextField label="保险生效时间" source="InsurEff" />
-             <TextField label="保险到期时间" source="InsurExp" />
-           </SimpleShowLayout>
-       </Show>
-);
-
 
 
 const BaseInfoVehicleInsuranceList = (props) => (//
@@ -81,10 +67,9 @@ const BaseInfoVehicleInsuranceList = (props) => (//
         <TextField label="保险生效时间" source="InsurEff" />
         <TextField label="保险到期时间" source="InsurExp" />
         <EditButton />
-        <ShowButton />
         </Datagrid>
     </List>
 );
 
 
-export  {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow};
+export  {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit};

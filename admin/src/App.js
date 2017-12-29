@@ -37,7 +37,7 @@ import {BaseInfoCompanyPermitList} from './components/platform/baseinfocompanype
 import {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit}  from './components/platform/baseinfocompanypay.js';
 import {BaseInfoCompanyFareList,BaseInfoCompanyFareCreate,BaseInfoCompanyFareEdit}  from './components/platform/baseinfocompanyfare.js';
 import {BaseInfoVehicleList,BaseInfoVehicleEdit} from './components/platform/baseinfovehicle.js';
-import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit,BaseInfoVehicleInsuranceShow} from './components/platform/baseinfovehicleinsurance.js';
+import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehicleInsuranceEdit} from './components/platform/baseinfovehicleinsurance.js';
 import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './components/platform/baseinfovehicletotalmile.js';
 import {BaseInfoDriverList,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
@@ -104,13 +104,13 @@ class App extends Component {
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}/>
             <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  />
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
-            <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} />
-            <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} />
+            <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} remove={Delete} />
+            <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} remove={Delete} />
             <Resource name="baseinfovehicle" list={BaseInfoVehicleList}  edit={BaseInfoVehicleEdit}/>
-            <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit}  show={BaseInfoVehicleInsuranceShow} />
+            <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit} remove={Delete}  />
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}  />
-            <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} />
+            <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} remove={Delete} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} show={BaseInfoPassengerShow} />
@@ -131,7 +131,7 @@ class App extends Component {
             <Resource name="rateddriver" list={RatedDriverList} create={RatedDriverCreate}  edit={RatedDriverEdit}  />
             <Resource name="rateddriverpunish" list={RatedDriverPunishList} create={RatedDriverPunishCreate}  edit={RatedDriverPunishEdit} />
             <Resource name="ratedpassengercomplaint" list={RatedPassengerComplaintList} create={RatedPassengerComplaintCreate}  edit={RatedPassengerComplaintEdit} />
-            
+
             <Resource name="faretype" list={FaretypelistList} create={FaretypelistCreate} edit={FaretypelistEdit} show={FaretypelistShow} />
             <Resource name="notifymessage" list={NotifyMessagelistList} create={NotifyMessagelistCreate} edit={NotifyMessagelistEdit} show={NotifyMessagelistShow} remove={Delete} />
 
