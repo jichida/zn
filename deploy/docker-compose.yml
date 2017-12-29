@@ -17,6 +17,7 @@ services:
     working_dir: /simulatorsrv
     volumes:
       - ./simulator_restfulapi:/simulatorsrv
+      - ./dist:/dist
     environment:
       - listenport=8090
     ports:
@@ -30,6 +31,7 @@ services:
     working_dir: /app
     volumes:
       - ./srv:/app
+      - ./dist:/dist
     environment:
       - MONGO_URL=mongodb://172.17.0.1:27018/zhongnandb
       - listenport=3005
