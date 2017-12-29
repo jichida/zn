@@ -43,7 +43,7 @@ import {BaseInfoDriverList,BaseInfoDriverEdit}  from './components/platform/base
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
 import {BaseInfoDriverAppList,BaseInfoDriverAppShow} from './components/platform/baseinfodriverapp.js';
 import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
-import {BaseInfoPassengerList,BaseInfoPassengerShow} from './components/platform/baseinfopassenger.js';
+import {BaseInfoPassengerList,BaseInfoPassengerEdit} from './components/platform/baseinfopassenger.js';
 
 import {OrderCreateList,OrderCreateShow}  from './components/platform/ordercreate.js';
 import {OrderMatchList,OrderMatchShow}  from './components/platform/ordermatch.js';
@@ -113,7 +113,7 @@ class App extends Component {
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} remove={Delete} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
-            <Resource name="baseinfopassenger" list={BaseInfoPassengerList} show={BaseInfoPassengerShow} />
+            <Resource name="baseinfopassenger" list={BaseInfoPassengerList} edit={BaseInfoPassengerEdit} />
             <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
             <Resource name="ordermatch" list={OrderMatchList} show={OrderMatchShow} />
             <Resource name="ordercancel" list={OrderCancelList} show={OrderCancelShow} />
