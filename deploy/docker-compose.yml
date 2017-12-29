@@ -34,6 +34,7 @@ services:
       - ./dist:/dist
     environment:
       - MONGO_URL=mongodb://172.17.0.1:27018/zhongnandb
+      - platformserverurl=http://172.17.0.1:8090
       - listenport=3005
     links:
       - mongodb
