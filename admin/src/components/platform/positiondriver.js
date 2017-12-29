@@ -23,7 +23,7 @@ const PositionDriverTitle = ({ record }) => {
 const PositionDriverShow = (props) => (
        <Show title={<PositionDriverTitle />} {...props}>
            <SimpleShowLayout>
-               <TextField label="网约车公司标识" source="LicenseId" />
+               <TextField label="机动车驾驶证号" source="LicenseId" />
                <TextField label="行政区划代码"  source="DriverRegionCode" />
                <TextField label="网约车公司标识"  source="VehicleNo" />
                <DateField label="定位时间"  source="PositionTime" showTime/>
@@ -44,7 +44,7 @@ const PositionDriverShow = (props) => (
 const PositionDriverList = (props) => (//
      <List title="驾驶员定位信息列表" {...props} sort={{ field: 'PositionTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="网约车公司标识" source="LicenseId" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="行政区划代码"  source="DriverRegionCode" />
         <TextField label="网约车公司标识"  source="VehicleNo" />
         <DateField label="定位时间"  source="PositionTime" showTime/>

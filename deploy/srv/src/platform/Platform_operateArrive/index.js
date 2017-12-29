@@ -31,10 +31,10 @@ exports.insertOperateArrive  = ({triprequest,triporder})=> {
     let DriveTime = (dateend.unix() - datestart.unix())/1000; //单位是秒
 
     let operateArriveDoc = {
-        CompanyId:config.CompanyId,
+        // CompanyId:config.CompanyId,
         OrderId:triporder._id,
-        Longitude:triporder.getofflocation[0],
-        Latitude:triporder.getofflocation[1],
+        DestLongitude:triporder.getofflocation[0],
+        DestLatitude:triporder.getofflocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
         DestTime:triprequest.getoffdate_at,
         DriveMile:0,

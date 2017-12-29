@@ -29,7 +29,6 @@ const BaseInfoDriverStatTitle = ({ record }) => <span>驾驶员统计信息</spa
 export const BaseInfoDriverStatList = (props) => (//
      <List title="驾驶员统计信息" {...props} >
         <Datagrid>
-        <TextField label="公司标识"  source="CompanyId" />
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />
         <TextField label="平台注册驾驶员数"  source="DriverNum" />
         <DateField label="数据更新时间" source="UpdateTime" showTime />
