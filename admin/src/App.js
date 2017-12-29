@@ -41,7 +41,7 @@ import {BaseInfoVehicleInsuranceList,BaseInfoVehicleInsuranceCreate,BaseInfoVehi
 import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './components/platform/baseinfovehicletotalmile.js';
 import {BaseInfoDriverList,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
-import {BaseInfoDriverAppList,BaseInfoDriverAppShow} from './components/platform/baseinfodriverapp.js';
+import {BaseInfoDriverAppList,BaseInfoDriverAppEdit} from './components/platform/baseinfodriverapp.js';
 import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
 import {BaseInfoPassengerList,BaseInfoPassengerEdit} from './components/platform/baseinfopassenger.js';
 
@@ -111,7 +111,7 @@ class App extends Component {
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
             <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} remove={Delete} />
-            <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} show={BaseInfoDriverAppShow} />
+            <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} edit={BaseInfoDriverAppEdit} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} edit={BaseInfoPassengerEdit} />
             <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
