@@ -4,7 +4,7 @@
 let winston = require('../log/log.js');
 let PubSub = require('pubsub-js');
 const config = require('../config.js');
-const interval = require('./interval.js');
+const interval = require('./interval');
 
 const Platform_baseInfoDriverApp= require('./Platform_baseInfoDriverApp/index');
 const Platform_baseInfoPassenger= require('./Platform_baseInfoPassenger/index');
@@ -93,6 +93,8 @@ let startplatformmonitor = ()=>{
     });
 
     interval.interval_baseInfoCompanyStat();
+
+    interval.interval_baseInfoVehicleTotalMile();
 }
 
 exports.startplatformmonitor  = startplatformmonitor;

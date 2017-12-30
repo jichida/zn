@@ -253,7 +253,7 @@ exports.oauthbinduser = (socket,actiondata,ctx)=>{
    return;
  }
 
- let  updateduserobj = {updated_at:new Date()};
+ let  updateduserobj = {updated_at:moment().format('YYYY-MM-DD HH:mm:ss')};
  if(actiondata.bindtype === 'qq'){
    updateduserobj.openidqq = actiondata.openid;
  }
