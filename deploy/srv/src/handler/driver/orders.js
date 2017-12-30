@@ -5,6 +5,7 @@ let PubSub = require('pubsub-js');
 const winston = require('../../log/log.js');
 const notifymessage_all = require('../common/notifymessage.js');
 const moment = require('moment');
+const platformpay = require('../../platform/platformpay');
 
 let getorderdetail_command =(socket,actiondata,ctx,commandstring)=>{
   let isvaild = false;
@@ -86,6 +87,8 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
             messagecontent:`/orderdetail/${triporder._id}`,
             subtype:'order'
           });
+
+          platformpay.notifyplatform_orderpaied(triporder);
         }
         else{
           socket.emit('common_err',{errmsg:`找不到相应的订单:${JSON.stringify(actiondata)}`,title:'支付',type:'payorderwithcash'});

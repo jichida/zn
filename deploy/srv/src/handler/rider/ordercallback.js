@@ -5,6 +5,7 @@ const async = require('async');
 let PubSub = require('pubsub-js');
 const notifymessage_all = require('../common/notifymessage.js');
 const moment = require('moment');
+const platformpay = require('../../platform/platformpay');
 
 let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
   //获取order所在的用户,往userfrom加一条充值记录
@@ -139,6 +140,9 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
                           messagecontent:`/mywallet`,
                           subtype:'order'
                         });
+
+                        //<---插入平台
+                        platformpay.notifyplatform_orderpaied(order);
                     });
                 }
                 else{
