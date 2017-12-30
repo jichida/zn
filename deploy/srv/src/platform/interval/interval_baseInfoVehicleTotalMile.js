@@ -137,6 +137,13 @@ const interval_baseInfoVehicleTotalMile = ()=>{
               console.log(`fn_getvehicle_positions===>${calcmile}`);
               interval_setvehicle(vehicleno,calcmile,(result)=>{
                 console.log(`interval_setvehicle===>${JSON.stringify(result)}`);
+                if(!!result){
+                  PubSub.publish('platformmessage_upload',{
+                    action:'findByIdAndUpdate',//'findByIdAndUpdate',
+                    collectionname:'baseinfovehicletotalmile',//'baseinfocompany',
+                    doc:result
+                  });
+                }
               });
             });
           })
