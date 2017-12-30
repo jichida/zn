@@ -24,6 +24,7 @@ const RatedPassengerComplaintCreate = (props) => (
        <Create {...props} title={<RatedPassengerComplaintcreateTitle />} >
            <SimpleForm>
              <TextInputEx label="订单号" source="OrderId"   validate={[required]}/>
+             <TextInputEx label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
              <DateInputString label="投诉时间"  source="ComplaintTime"   validate={[required]}/>
              <TextInputEx label="技诉内容"  source="Detail"   validate={[required]}/>
              <TextInputEx label="处理结果"  source="Result"  validate={[required]} />
@@ -40,6 +41,7 @@ const RatedPassengerComplaintEdit = (props) => {
       return (<Edit title={<RatedPassengerComplainteditTitle />} {...props}>
           <SimpleForm>
             <TextInputEx label="订单号" source="OrderId"   validate={[required]}/>
+            <TextInputEx label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
             <DateInputString label="投诉时间"  source="ComplaintTime"   validate={[required]}/>
             <TextInputEx label="技诉内容"  source="Detail"   validate={[required]}/>
             <TextInputEx label="处理结果"  source="Result"  validate={[required]} />

@@ -95,6 +95,8 @@ let startplatformmonitor = ()=>{
     interval.interval_baseInfoCompanyStat();
 
     interval.interval_baseInfoVehicleTotalMile();
+
+    interval.interval_baseInfoDriverStat();
 }
 
 exports.startplatformmonitor  = startplatformmonitor;
