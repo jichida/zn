@@ -26,6 +26,7 @@ const BaseInfoCompanyPayCreate = (props) => (
                <TextInputEx label="支付业务类型"  source="PayType" validate={[required]}/>
                <TextInputEx label="业务覆盖范围"  source="PayScope" validate={[required]}/>
                <TextInputEx label="备付金存管银行全称" source="PrepareBank" validate={[required]}/>
+               <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
                <NumberInputEx label="结算周期(单位:天)" source="CountDate" validate={[required]}/>
            </SimpleForm>
        </Create>

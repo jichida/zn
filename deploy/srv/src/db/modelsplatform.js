@@ -1,7 +1,8 @@
-let mongoose     = require('mongoose');
-let Schema       = mongoose.Schema;
-let mongoosePaginate = require('mongoose-paginate');
-let PubSub = require('pubsub-js');
+const mongoose     = require('mongoose');
+const Schema       = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate');
+const PubSub = require('pubsub-js');
+const moment = require('moment');
 mongoose.Promise = global.Promise;
 // A. 4. 1.网约车平台公司基本信息接口
 //baselnfoCompany
@@ -22,8 +23,8 @@ let Platform_baseInfoCompanySchema = new Schema({
   LegalID:String,// LegalID	是	字符型法人代表身份证号
   LegalPhone:String,// LegalPhone	是	字符型 法人代表电话
   LegalPhoto:String,// LegalPhoto	否	字符型法人代表电话法人代表身份证扫描号，扫描件文件通过6. 1件文件编
-  State:Number,// State	是	数字型 状态
-  Flag:Number,// Flag	是	数字型 操作标
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型
 
   LegalPhotoURL:String,
@@ -38,7 +39,7 @@ let Platform_baseInfoCompanyStatSchema = new Schema({
   // CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
   VehicleNum:Number,// VehicleNum
   DriverNum:Number,// DriverNum	是	数字型	V64	平台注册驾驶员数
-  Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyStatSchema.plugin(mongoosePaginate);
@@ -55,8 +56,8 @@ let Platform_baseInfoCompanyPaySchema = new Schema({
   PayScope:String,// PayScope 是	字符型	V64	业务覆盖范围
   PrepareBank:String,// PrepareBank	是	字符型	V256	备付金存管银行全称
   CountDate:Number,// CountDate	是	数字型	VI O	结算周期	单位:天
-  State:Number,// State	是	数字型	Fl	状态	0 :有效1:失效
-  Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2 :更新3 :删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime 二	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyPaySchema.plugin(mongoosePaginate);
@@ -78,8 +79,8 @@ let Platform_baseInfoCompanyServiceSchema = new Schema({
   ContactPhone:String,// ContactPhone	否	字符型	V32	服务机构紧急联系电话	元素名称	必选	类型	长度	字段名称	描	述
   MailAddress:String,// MailAddress	是	字符型	V128	行政文书送达邮寄地址
   CreateDate:String,// CreateDate	是	数字型	F8	服务机构设立日期	YYYYMMDD
-  State:Number,// State	是	数字型	Fl	状态	0:有效1:失效
-  Flag:Number,// Flag	是	数字型	Fl	操作标识	1:新增2 :更新3 :删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyServiceSchema.plugin(mongoosePaginate);
@@ -98,8 +99,8 @@ let Platform_baseInfoCompanyPermitSchema = new Schema({
   StartDate:String,// StartDate	是	数字型	F8	有效期起	YYYYMMDD
   StopDate:String,// StopDate	是	数字型	F8	有效期止	YYYYMMDD
   CertifyDate:String,// CertifyDate	是	数字型	F8	初次发证日期	YYYYMMDD
-  State:String,// State	是	字符型	V8	证照状态	见 JT/T 415-2006 中5. 5. 2
-  Flag:Number,// Flag	是	数字型	F1	操作标识	1:新增2 .更新3 :删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间	网约车平台完成数据更新 l
 });
 Platform_baseInfoCompanyPermitSchema.plugin(mongoosePaginate);
@@ -134,9 +135,9 @@ let Platform_baseInfoCompanyFareSchema = new Schema({
   NightPricePerMile:Number,//	否	数字型	VIO	夜间费〈按公里)	单位:元
   NightPricePerMinute:Number,//	否	数字型	V10	夜间费〈按分钟)	单位:元
   OtherPrice:Number,//	否	数字型	V10	其它加价金额	单位:元
-  State:Number,//	是	数字型	F1	状态	0 :有效1.失效
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
-  Flag:Number,// 是	数字型	F1	操作标识	1.新增2 :更新3.删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
 });
 Platform_baseInfoCompanyFareSchema.plugin(mongoosePaginate);
 // A. 4. 7.  车辆基本信息接口
@@ -184,8 +185,8 @@ let Platform_baseInfoVehicleSchema = new Schema({
   CommercialType:Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
   FareType:String,//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
 
-  State:Number,//	是	数字型	F1	状态	0:有效1.失效元素名称	必选	类型	长度	字段名称	描	述
-  Flag:Number,//	是	数字型	Fl	操作标识	1:新增2:更新3:删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoVehicleSchema.plugin(mongoosePaginate);
@@ -203,7 +204,7 @@ let Platform_baseInfoVehicleInsuranceSchema = new Schema({
   InsurCount:Number,//	是	数字型	VIO	保险金额	单位:元
   InsurEff:String,//	是	数字型	F8	保险生效时间	YYYYMMDD
   InsurExp:String,//	是	数字型	F8	保险到期时间	YYYYMMDD
-  Flag:Number,//	是	数字型	Fl	操作标识	1:新增2 :更新3 .删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoVehicleInsuranceSchema.plugin(mongoosePaginate);
@@ -217,7 +218,7 @@ let Platform_baseInfoVehicleTotalMileSchema = new Schema({
   Address:Number,//	是	数字型	F6	注册地行政区划代码	车辆在平台的注册地，见GB/T2260
   VehicleNo:String,	//是	字符型	V32	车辆号牌
   TotalMile:Number,//	是	数字型	V64	行驶总里程	单位 :km
-  Flag:Number,//	是	数字型	Fl	操作标识	1:新增2.更新3:删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14 更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmm ss
 });
 Platform_baseInfoVehicleTotalMileSchema.plugin(mongoosePaginate);
@@ -272,8 +273,8 @@ let Platform_baseInfoDriverSchema= new Schema({
   EmergencyContactPhone:String,	//否字符型V32 紧急情况联系人电话手机号
   EmergencyContactAddress:String,	//否字符型V256  紧急情况联系人通信地址
 
-  State:Number,//	是数字型Fl状态	O .有效1:失效
-  Flag:Number,//	  是数字型F1  操作标识	1.新增2 .更新3 :删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	  是数字型F14更新时间网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
@@ -291,7 +292,7 @@ let Platform_baseInfoDriverEducateSchema= new Schema({
   StartTime:String,	//	是	字符型 V8	培训开始时间
   StopTime:String,	//	是	字符型	V8	培训结束时间
   Duration:Number,//	是	数字型	VIO	培训时长
-  Flag:Number,//	是	数字Fl操作标识	1.新增2:更新3 :删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverEducateSchema.plugin(mongoosePaginate);
@@ -308,8 +309,8 @@ let Platform_baseInfoDriverAppSchema= new Schema({
   NetType:Number,//	 是	数字型	F1	手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
   AppVersion:String,	//	是	字符型	V32	使用APP版本号
   MapType:Number,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
-  State:Number,//		是	数字型	F1	状态	0 :有效1:失效
-  Flag:Number,//		是	数字型	F1	操作标识	1.新增2.更新3 :删除
+  State:{ type: Number, default: 0 },// State	是	数字型 状态
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//		是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverAppSchema.plugin(mongoosePaginate);
@@ -326,7 +327,7 @@ let Platform_baseInfoDriverStatSchema= new Schema({
   OrderCount:Number,//		是	数字型 VIO	完成订单次数
   TafficViolationCount:Number,//		是	数字型V32	交通违章次数
   ComplainedCount:Number,//		是	数字型V32	被投诉次数
-  Flag:Number,//	 是 数字型 Fl操作标识1:新增2 :更新3 :删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是数字型F14更新时间网约车平台完成数据更 新的时间YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverStatSchema.plugin(mongoosePaginate);
@@ -342,7 +343,7 @@ let Platform_baseInfoPassengerSchema= new Schema({
   PassengerName:String,	//	否	字符型	V64	乘客称谓
   PassengerGender:String,	//	否	字符型	V2	乘客性别
   State:Number,//	是	数字型	F1	状态	0:有效1.失效
-  Flag:Number,//	是	数字型	F1	操作标识	1:新增2 :更新3:删除
+  Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更 新的时间 YYYYMMDDh hmmss
 });
 Platform_baseInfoPassengerSchema.plugin(mongoosePaginate);

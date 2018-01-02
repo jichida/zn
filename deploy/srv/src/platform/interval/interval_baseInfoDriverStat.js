@@ -149,6 +149,7 @@ const interval_baseInfoDriverStat = ()=>{
           else{
             tmp.ComplainedCount = v;
           }
+          tmp.TafficViolationCount = 0;
 
           resultobj[k] = tmp;
         });

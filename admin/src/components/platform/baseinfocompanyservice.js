@@ -48,6 +48,7 @@ const BaseInfoCompanyServiceCreate = (props) => (
             <TextInputEx label="管理人联系电话"  source="ManagerPhone" validate={[required]}/>
             <TextInputEx label="服务机构紧急联系电话"  source="ContactPhone" />
             <TextInputEx label="行政文书送达邮寄地址"  source="MailAddress" validate={[required]}/>
+            <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
             <DateInputString label="服务机构设立日期"  source="CreateDate" validate={[required]}/>
         </SimpleForm>
     </Create>
