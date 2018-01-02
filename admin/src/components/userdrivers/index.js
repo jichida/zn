@@ -203,7 +203,7 @@ const UserdriverlistEdit = (props) => {
               <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" />
               <DateInputString  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate"  validate={[required]}/>
               <DateInputString  label="报备日期" source="Platform_baseInfoVehicle.RegisterDate"  validate={[required]}/>
-              <ReferenceInput reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty>
+              <ReferenceInput label="运价" reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty>
                     <SelectInput optionText="registertype" />
               </ReferenceInput>
               </FormTab>

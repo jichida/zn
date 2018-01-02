@@ -143,7 +143,7 @@ const BaseInfoVehicleEdit = (props) => {
               { id: 2, name: '巡游出租汽车' },
               { id: 3, name: '私人小客车合乘' },
           ]} validate={[required]}/>
-          <ReferenceInput reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty>
+          <ReferenceInput  label="运价" reference="faretype" source="Platform_baseInfoVehicle.FareType" allowEmpty >
                 <SelectInput optionText="registertype" />
           </ReferenceInput>
           </FormTab>
