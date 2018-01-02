@@ -38,7 +38,7 @@ let Platform_baseInfoCompanyStatSchema = new Schema({
   // CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
   VehicleNum:Number,// VehicleNum
   DriverNum:Number,// DriverNum	是	数字型	V64	平台注册驾驶员数
-  // Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
+  Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyStatSchema.plugin(mongoosePaginate);
@@ -56,7 +56,7 @@ let Platform_baseInfoCompanyPaySchema = new Schema({
   PrepareBank:String,// PrepareBank	是	字符型	V256	备付金存管银行全称
   CountDate:Number,// CountDate	是	数字型	VI O	结算周期	单位:天
   State:Number,// State	是	数字型	Fl	状态	0 :有效1:失效
-  // Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2 :更新3 :删除
+  Flag:Number,// Flag	是	数字型 Fl	操作标识	1:新增2 :更新3 :删除
   UpdateTime:String,// UpdateTime 二	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyPaySchema.plugin(mongoosePaginate);
@@ -79,7 +79,7 @@ let Platform_baseInfoCompanyServiceSchema = new Schema({
   MailAddress:String,// MailAddress	是	字符型	V128	行政文书送达邮寄地址
   CreateDate:String,// CreateDate	是	数字型	F8	服务机构设立日期	YYYYMMDD
   State:Number,// State	是	数字型	Fl	状态	0:有效1:失效
-  // Flag:Number,// Flag	是	数字型	Fl	操作标识	1:新增2 :更新3 :删除
+  Flag:Number,// Flag	是	数字型	Fl	操作标识	1:新增2 :更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoCompanyServiceSchema.plugin(mongoosePaginate);
@@ -99,7 +99,7 @@ let Platform_baseInfoCompanyPermitSchema = new Schema({
   StopDate:String,// StopDate	是	数字型	F8	有效期止	YYYYMMDD
   CertifyDate:String,// CertifyDate	是	数字型	F8	初次发证日期	YYYYMMDD
   State:String,// State	是	字符型	V8	证照状态	见 JT/T 415-2006 中5. 5. 2
-  // Flag:Number,// Flag	是	数字型	F1	操作标识	1:新增2 .更新3 :删除
+  Flag:Number,// Flag	是	数字型	F1	操作标识	1:新增2 .更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间	网约车平台完成数据更新 l
 });
 Platform_baseInfoCompanyPermitSchema.plugin(mongoosePaginate);
@@ -163,7 +163,7 @@ let Platform_baseInfoVehicleSchema = new Schema({
   EngineDisplace:String,//	是	字符型	V32	发动机排量	单位 :毫升
 
   PhotoId:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
-  PhotoIdURL:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+  PhotoIdURL:String,//	<---URL
   Certificate:String,//	否	字符型	V64	运输证字号	见 JT/T  415-2006  中5. 4.1，地市字别可包含三个汉字
   TransAgency:String,//	是	字符型	V256	车辆运输证发证机构	全称
   TransArea:String,//	是	字符型	V256	车辆经营区域
@@ -246,7 +246,7 @@ let Platform_baseInfoDriverSchema= new Schema({
   PhotoIdURL:String,	//	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
   LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
   LicensePhotoId:String,	//	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
-  LicensePhotoIdURL:String,	//	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
+  LicensePhotoIdURL:String,	//<---
   DriverType:String,	//	否	字符型	V16	准驾车型见 JT/T 697. 7-2014中 5. 16
   GetDriverLicenseDate:String,//	是 数字型 F8 初次领取驾驶证日期 YYYYMMDD
   DriverLicenseOn:String,//	 是 数字型  F8  驾驶证有效期限起  YYYYMMDD
@@ -273,7 +273,7 @@ let Platform_baseInfoDriverSchema= new Schema({
   EmergencyContactAddress:String,	//否字符型V256  紧急情况联系人通信地址
 
   State:Number,//	是数字型Fl状态	O .有效1:失效
-  // Flag:Number,//	  是数字型F1  操作标识	1.新增2 .更新3 :删除
+  Flag:Number,//	  是数字型F1  操作标识	1.新增2 .更新3 :删除
   UpdateTime:String,//	  是数字型F14更新时间网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
@@ -291,7 +291,7 @@ let Platform_baseInfoDriverEducateSchema= new Schema({
   StartTime:String,	//	是	字符型 V8	培训开始时间
   StopTime:String,	//	是	字符型	V8	培训结束时间
   Duration:Number,//	是	数字型	VIO	培训时长
-  // Flag:Number,//	是	数字Fl操作标识	1.新增2:更新3 :删除
+  Flag:Number,//	是	数字Fl操作标识	1.新增2:更新3 :删除
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 });
 Platform_baseInfoDriverEducateSchema.plugin(mongoosePaginate);
