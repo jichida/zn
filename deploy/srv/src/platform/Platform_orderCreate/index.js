@@ -47,7 +47,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOrderCreate  = ({triprequest,triporder})=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
-        Address:config.Address,// 数据库中读取
+
         OrderId:triporder._id,
         DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD'):moment(triprequest.dated_at).format('YYYY-MM-DD'),
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),

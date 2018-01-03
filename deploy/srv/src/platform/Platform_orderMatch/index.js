@@ -41,7 +41,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOrderMatch  = ({triprequest,triporder})=> {
     let orderMatchDoc = {
         CompanyId:config.CompanyId,
-        Address:config.Address,// 数据库中读取
+
         OrderId:triporder._id,
         Longitude:triprequest.driverlocation[0],
         Latitude:triprequest.driverlocation[1],

@@ -52,7 +52,7 @@ const reasonflag = [
 exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
-        Address:config.Address,// 数据库中读取
+
         OrderId:triporder._id,
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),

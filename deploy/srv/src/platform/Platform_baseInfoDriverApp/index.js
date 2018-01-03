@@ -28,11 +28,11 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertBaseInfoDriverApp  = (actiondata)=> {
     let baseInfoDriverAppDoc = {
         CompanyId:config.CompanyId,
-        Address:actiondata.address,
-        LicenseId:actiondata.licenseld,
-        DriverPhone:actiondata.phonenumber,
-        NetType:actiondata.nettype,//手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
-        AppVersion:actiondata.appversion,
+        Address:actiondata.Address,
+        LicenseId:actiondata.LicenseId,
+        DriverPhone:actiondata.DriverPhone,
+        NetType:actiondata.NetType,//手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
+        AppVersion:actiondata.AppVersion,
         MapType:2,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
         State:0,
         Flag:1,//		是	数字型	F1	操作标识	1.新增2.更新3 :删除
@@ -50,11 +50,11 @@ exports.insertBaseInfoDriverApp  = (actiondata)=> {
 exports.updateBaseInfoDriverApp  = (actiondata)=> {
     let baseInfoDriverAppDoc = {
         CompanyId:config.CompanyId,
-        Address:actiondata.address,
-        LicenseId:actiondata.licenseld,
-        DriverPhone:actiondata.phonenumber,
-        NetType:actiondata.nettype,//手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
-        AppVersion:actiondata.appversion,
+        Address:actiondata.Address,
+        LicenseId:actiondata.LicenseId,
+        DriverPhone:actiondata.DriverPhone,
+        NetType:actiondata.NetType,//手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
+        AppVersion:actiondata.AppVersion,
         MapType:2,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
         State:0,
         Flag:2,//		是	数字型	F1	操作标识	1.新增2.更新3 :删除
