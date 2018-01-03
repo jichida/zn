@@ -36,9 +36,9 @@ const moment = require('moment');
 exports.insertPositionDriver  = (actiondata)=> {
     let positionDriverDoc = {
         CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
-        LicenseId:actiondata.licenseld,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
-        DriverRegionCode:actiondata.riverregioncode,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
-        VehicleNo:actiondata.vehicleno,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
+        LicenseId:actiondata.LicenseId,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
+        DriverRegionCode:actiondata.DriverRegionCode,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
+        VehicleNo:actiondata.VehicleNo,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
         PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),	//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],

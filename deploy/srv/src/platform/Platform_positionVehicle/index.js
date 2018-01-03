@@ -39,9 +39,9 @@ const moment = require('moment');
 exports.insertPositionVehicle  = (actiondata)=> {
     let positionVehicleDoc = {
         CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
-        VehicleNo:actiondata.licenseld,			//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
-        VehicleRegionCode:actiondata.riverregioncode,		//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
-        VehicleNo:actiondata.vehicleno,	//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
+        VehicleNo:actiondata.VehicleNo,			//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
+        VehicleRegionCode:actiondata.VehicleRegionCode,		//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
+  
         PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],	//	是	数字型	V10		经度	单位 :1祷 10-6 度
         Latitude:actiondata.driverlocation[1],	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
