@@ -5,7 +5,7 @@ const DBPlatformModels = require('../db/modelsplatform.js');
 const DBModels = require('../db/models.js');
 const city = require('../util/city.js');
 const config = require('../config');
-
+const pwd = require('../util/pwd.js');
 
 const createadmin = ()=>{
   const userModel = mongoose.model('UserAdmin', DBModels.UserAdminSchema);

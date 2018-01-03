@@ -30,9 +30,9 @@ const actiondatahandler = {
 
   'getabouthtml':about.getabouthtml,
 
-  'cargetallbrands':car.cargetallbrands,
-  'cargetallmodelfrombrandid':car.cargetallmodelfrombrandid,
-  'cargetallcolors':car.cargetallcolors,
+  // 'cargetallbrands':car.cargetallbrands,
+  // 'cargetallmodelfrombrandid':car.cargetallmodelfrombrandid,
+  // 'cargetallcolors':car.cargetallcolors,
   'getnotifymessageone':notifymessage.getnotifymessageone,
   'getnotifymessage':notifymessage.getnotifymessage,
   'getsystemconfig':appcommon.getsystemconfig,

@@ -137,16 +137,19 @@ let setloginsuccess = (socket,ctx,user)=>{
       ctx.driverinfo = {
           avatarURL:user.avatarURL|| config.defaultprofileimage,
           //平台可能用到
-          LicenseId:user.Platform_baseInfoDriver.LicenseId,
-          VehicleRegionCode:user.Platform_baseInfoVehicle.VehicleRegionCode,//车辆注册地
           //请求时用到
           PhotoandCarmanURL:user.PhotoandCarmanURL,//人车合影
+          LicenseId:user.Platform_baseInfoDriver.LicenseId,
 
-          starnum:ctx.starnum,//星级
+          DriverRegionCode:user.Platform_baseInfoDriver.Address,
+
           DriverName:user.Platform_baseInfoDriver.DriverName,//司机名
           DriverPhone:user.Platform_baseInfoDriver.DriverPhone,//司机电话
           DriverGender:user.Platform_baseInfoDriver.DriverGender || '男',//司机姓别
 
+          starnum:ctx.starnum,//星级
+
+          VehicleRegionCode:user.Platform_baseInfoVehicle.Address,//车辆注册地
           PlateColor:user.Platform_baseInfoVehicle.PlateColor,//车辆颜色
           Seats:user.Platform_baseInfoVehicle.Seats || 0,//核定载客位
           VehicleNo:user.Platform_baseInfoVehicle.VehicleNo,//车牌号

@@ -5,6 +5,7 @@ let mongoose  = require('mongoose');
 const winston = require('../../log/log.js');
 const userlogin = require('./driveruserlogin.js');
 const moment = require('moment');
+const _ = require('lodash');
 
 let carsetdefault = (socket,actiondata,ctx)=>{
   let carid = actiondata.carid;
@@ -16,6 +17,16 @@ let carsetdefault = (socket,actiondata,ctx)=>{
   let userModel  = DBModels.UserDriverModel;
   userModel.findOneAndUpdate({_id:ctx.userid},{$set:{defaultmycar:carid,Platform_baseInfoVehicleId,Platform_baseInfoVehicle}},{new:true},(err,user)=>{
       if(!err && !!user){
+          //Set ctx
+          ctx.driverinfo = _.merge(ctx.driverinfo,{
+            VehicleRegionCode:user.Platform_baseInfoVehicle.Address,//车辆注册地
+            PlateColor:user.Platform_baseInfoVehicle.PlateColor,//车辆颜色
+            Seats:user.Platform_baseInfoVehicle.Seats || 0,//核定载客位
+            VehicleNo:user.Platform_baseInfoVehicle.VehicleNo,//车牌号
+            Brand:user.Platform_baseInfoVehicle.Brand,//车辆厂牌
+            Model:user.Platform_baseInfoVehicle.Model,//车辆型号
+          });
+          console.log(ctx.driverinfo);
           socket.emit('serverpush_userinfo',userlogin.getdatafromuser(user));
       }
   });

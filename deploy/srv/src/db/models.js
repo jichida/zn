@@ -91,7 +91,7 @@ let UserDriverSchema = new Schema({
     CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
     Platform_baseInfoDriver:{
-        CompanyId:String,	//是	字符型	V32	公司标识
+        // CompanyId:String,	//是	字符型	V32	？
         Address:Number,//	是	数字型	F6	注册地行政区划代码	车辆在平台的注册地，见GB/T2260
 
         DriverName:String,	// <---否字符型V64 机动车驾驶员姓名

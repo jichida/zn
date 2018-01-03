@@ -37,8 +37,8 @@ admin设置
 */
 let Platform_baseInfoCompanyStatSchema = new Schema({
   // CompanyId:String,// CompanyId	是	字符型	V32	公司标识	部统一分配
-  VehicleNum:Number,// VehicleNum
-  DriverNum:Number,// DriverNum	是	数字型	V64	平台注册驾驶员数
+  VehicleNum:{ type: Number, default: 0 },// VehicleNum
+  DriverNum:{ type: Number, default: 0 },// DriverNum	是	数字型	V64	平台注册驾驶员数
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
 });
@@ -308,7 +308,7 @@ let Platform_baseInfoDriverAppSchema= new Schema({
   DriverPhone:String,	//	是	字符型	V32	驾驶员手机号
   NetType:Number,//	 是	数字型	F1	手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
   AppVersion:String,	//	是	字符型	V32	使用APP版本号
-  MapType:Number,//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
+  MapType:{ type: Number, default: 2 },//	 是	数字型	F1	使用地图类型	1:百度地图2 :高德地图3.其他
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//		是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
@@ -324,9 +324,9 @@ let Platform_baseInfoDriverStatSchema= new Schema({
   Address:Number,//	是数字型F6注册地行政区划代码车辆在平台的注册地， 见 GB/T2260
   LicenseId:String,	//		是	字符型V32	机动车驾驶证编号
   Cycle:Number,//	 是 数字型 F6统计周期统计周期按月 ，内容填 写统计月份 ，数据格式 YYYYMM
-  OrderCount:Number,//		是	数字型 VIO	完成订单次数
-  TafficViolationCount:Number,//		是	数字型V32	交通违章次数
-  ComplainedCount:Number,//		是	数字型V32	被投诉次数
+  OrderCount:{ type: Number, default: 0 },//		是	数字型 VIO	完成订单次数
+  TafficViolationCount:{ type: Number, default: 0 },//		是	数字型V32	交通违章次数
+  ComplainedCount:{ type: Number, default: 0 },//		是	数字型V32	被投诉次数
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是数字型F14更新时间网约车平台完成数据更 新的时间YYYYMMDDhhmmss
 });
@@ -342,7 +342,7 @@ let Platform_baseInfoPassengerSchema= new Schema({
   PassengerPhone:String,	//	是	字符型	V32	乘客手机号
   PassengerName:String,	//	否	字符型	V64	乘客称谓
   PassengerGender:String,	//	否	字符型	V2	乘客性别
-  State:Number,//	是	数字型	F1	状态	0:有效1.失效
+  State:{ type: Number, default: 0 },//	是	数字型	F1	状态	0:有效1.失效
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更 新的时间 YYYYMMDDh hmmss
 });
