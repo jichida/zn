@@ -31,7 +31,7 @@ const BaseInfoCompanyFareCreate = (props) => (
                   <SelectInput optionText="registertype" />
            </ReferenceInput>
            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-           <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]}/>
+           <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]} defaultValue={moment().format('YYYY-MM-DD')}/>
            <DateInputString label="运价有效期止" source="FareValidOff" />
            <NumberInputEx  label="起步价(单位:元)" source="StartFare"  validate={[required]}/>
            <NumberInputEx  label="起步里程(单位:km)" source="StartMile"  validate={[required]}/>
@@ -72,7 +72,7 @@ const BaseInfoCompanyFareEdit = (props) => {
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
             <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
-            <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]}/>
+            <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]} defaultValue={moment().format('YYYY-MM-DD')}/>
             <DateInputString label="运价有效期止" source="FareValidOff" />
             <NumberInputEx  label="起步价(单位:元)" source="StartFare"  validate={[required]}/>
             <NumberInputEx  label="起步里程(单位:km)" source="StartMile"  validate={[required]}/>

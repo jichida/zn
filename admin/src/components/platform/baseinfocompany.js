@@ -37,7 +37,7 @@ const required = value => value ? undefined : '必需';
 const BaseInfoCompanyCreate = (props) => (
        <Create {...props} title='resources.baseinfocompany.editpagename' >
        <SimpleForm>
-           <TextInputEx  label="公司标识" source="CompanyId" validate={[required]}/>
+           <DisabledInput  label="公司标识" source="CompanyId" defaultValue="zncx"/>
            <TextInputEx  label="公司名称" source="CompanyName"  validate={[required]}/>
            <TextInputEx  label="统一社会信用代码" source="Identifier"  validate={[required]}/>
            <NumberInputEx  label="数字型注册地行政区划代码" source="Address"  validate={[required]}/>
@@ -57,7 +57,7 @@ const BaseInfoCompanyCreate = (props) => (
  const BaseInfoCompanyEdit = (props) => (
     <EditPage {...props} title='resources.baseinfocompany.editpagename'>
         <SimpleForm>
-            <TextInputEx  label="公司标识" source="CompanyId" validate={[required]}/>
+            <DisabledInput  label="公司标识" source="CompanyId" defaultValue="zncx"/>
             <TextInputEx  label="公司名称" source="CompanyName" validate={[required]}/>
             <TextInputEx  label="统一社会信用代码" source="Identifier" validate={[required]}/>
             <NumberInputEx  label="数字型注册地行政区划代码" source="Address"  validate={[required]}/>
