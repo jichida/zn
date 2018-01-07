@@ -10,10 +10,11 @@ import {createnavdrawrouteflow} from './navdrawroute';
 import {createupdatestatusflow} from './updatestatus';
 import {createloadingflow} from './loading';
 import {createmapshowflow} from './map';
+import {createnearbyrequestsflow} from './nearbyrequests';
 
 export default function* rootSaga() {
   yield fork(createmapshowflow);
-  // yield fork(createloadingflow);
+  yield fork(createnearbyrequestsflow);
   yield fork(jpushflow);
   yield fork(wsrecvsagaflow);
   yield fork(createrestoreorderflow);

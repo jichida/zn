@@ -16,6 +16,6 @@ export const operatelogout  = createAction('operatelogout');
 export const serverpush_nearbyrequests = createAction('serverpush_nearbyrequests');
 export const serverpush_nearbyrequests_addone = createAction('serverpush_nearbyrequests_addone');
 export const serverpush_nearbyrequests_removeone = createAction('serverpush_nearbyrequests_removeone');
-
+export const set_nearbyrequestsresult =  createAction('set_nearbyrequestsresult');
 //
 export const setbizstatus = createAction('setbizstatus');

@@ -2,9 +2,7 @@ import { createReducer } from 'redux-act';
 import {
     setbizstatus,
     setcurlocation,
-    serverpush_nearbyrequests,
-    serverpush_nearbyrequests_removeone,
-    serverpush_nearbyrequests_addone,
+    set_nearbyrequestsresult,
     carmap_resetmap
 } from '../actions';
 import {normalizr_requestlist} from './normalizr';
@@ -49,46 +47,10 @@ const operate = createReducer({
     let curlocation = payload;
     return { ...state,curlocation};
   },
-  [serverpush_nearbyrequests]:(state, payload) => {
-    console.log('serverpush_nearbyrequests...');
-    const {list} = payload;
-    let nearbyrequestsresult = normalizr_requestlist({list});
-    let nearbyrequests = {
-      list:nearbyrequestsresult.result.list||[],
-      requests:nearbyrequestsresult.entities.requests||{}
-    };
+  [set_nearbyrequestsresult]:(state, payload) => {
+    const nearbyrequests = {...payload};
     return { ...state,nearbyrequests};
   },
-  [serverpush_nearbyrequests_addone]:(state, payload) => {
-    let nearbyrequestslist = [payload._id,...state.nearbyrequests.list];
-    let requestsentities = state.nearbyrequests.requests;
-    requestsentities[payload._id] = payload;
-    return { ...state,nearbyrequests:{
-        list:[...nearbyrequestslist],
-        requests:{
-          ...requestsentities
-        }
-    }
-    };
-  },
-  [serverpush_nearbyrequests_removeone]:(state, payload) => {
-    let nearbyrequestslist = [];
-    _.map(state.nearbyrequests.list,(requestid)=>{
-      if(requestid !== payload._id){
-        nearbyrequestslist.push(requestid);
-      }
-    });
-    let requestsentities = state.nearbyrequests.requests;
-    delete requestsentities[payload._id];
-    return { ...state,nearbyrequests:{
-          list:[...nearbyrequestslist],
-          requests:{
-              ...requestsentities
-          }
-      }
-    };
-  },
-
 }, initial.operate);
 
 export default operate;

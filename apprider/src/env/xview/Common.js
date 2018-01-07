@@ -25,6 +25,7 @@
   */
   export const loginToWeixin = (fun) => {
     var data={"xview":"WeChat Login","wxappid":config.wxappid,"wxappsecret":config.wxappsecret};
+    // alert(`loginToWeixin输入参数==>${JSON.stringify(data)}`);
     xviewPhoneWithAppDataWithCallbackMethodWithType(data,fun,"1");
   }
   /**
@@ -229,6 +230,22 @@
       fun(result);
     };
   	window.xview.sendSmsWithPhoneNumber(phone,"xviewCallBack_sendSmsWithPhoneNumber");
+  }
+
+  export const haveWechatApp=(fun)=>{
+    window.haveWechatAppcallBack=function(result){
+      if(typeof result === 'string'){
+          result = JSON.parse(result);
+      }
+      fun(result);
+    };
+    if(!!window.xview && !!window.xview.haveWechatApp){
+      let jsonstring = JSON.stringify({callback:"haveWechatAppcallBack"});
+      window.xview.haveWechatApp(jsonstring);
+    }
+    else{
+      fun({code: '0',message:'找不到该函数'});
+    }
   }
  /**
    * 获取经纬度
