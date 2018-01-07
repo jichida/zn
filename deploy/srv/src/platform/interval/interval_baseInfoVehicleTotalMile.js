@@ -101,27 +101,35 @@ const fn_getvehicle_positions = (UpdateTimeString,vehicleno,callbackfn)=>{
 
 // 6、将定位数据累加，更新到目标表
 const interval_setvehicle = (vehicleno,calcmile,callbackfn)=>{
-  const dbModel = dbplatform.Platform_baseInfoVehicleTotalMileModel;
-  dbModel.findOneAndUpdate({VehicleNo:vehicleno},
-    {
-      $set:{
-        VehicleNo:vehicleno,
-        UpdateTime:moment().format('YYYY-MM-DD HH:mm:ss'),
-      },
-      $inc:{TotalMile:calcmile}
-    },{
-      new:true,
-      upsert:true
-    },
-    (err,result)=>{
-    if(!err && !!result){
-      callbackfn(result);
-    }
-    else{
-      console.log(err);
-      callbackfn(null);
-    }
-  });
+
+  const dbVehicleModel = dbplatform.Platform_baseInfoVehicleModel;
+  const queryexec = dbVehicleModel.findOne({VehicleNo:vehicleno}).select({Address:1});
+  queryexec.exec((err,vechicleinfo)=>{
+    if(!err && !!vechicleinfo){
+        const dbModel = dbplatform.Platform_baseInfoVehicleTotalMileModel;
+        dbModel.findOneAndUpdate({VehicleNo:vehicleno},
+          {
+            $set:{
+              VehicleNo:vehicleno,
+              UpdateTime:moment().format('YYYY-MM-DD HH:mm:ss'),
+              Address : vechicleinfo.Address
+            },
+            $inc:{TotalMile:calcmile}
+          },{
+            new:true,
+            upsert:true
+          },
+          (err,result)=>{
+          if(!err && !!result){
+            callbackfn(result);
+          }
+          else{
+            console.log(err);
+            callbackfn(null);
+          }
+        });
+      }
+    });
 }
 
 const interval_baseInfoVehicleTotalMile = ()=>{
