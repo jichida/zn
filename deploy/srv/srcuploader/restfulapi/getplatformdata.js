@@ -19,26 +19,25 @@ const getplatformdata = (actionname,collectionname,doc)=>{
   console.log(`collectionname==>${collectionname}`);
 
   if(actionname === 'save' || actionname === 'findByIdAndUpdate'){
-    retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     retdoc.CompanyId = config.CompanyId;
-    retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
-
-    //
-    // if(collectionname === 'baseinfocompany'){
-    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    //   console.log(`retdoc==>${retdoc.UpdateTime}`);
-    //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
-    // }
-    // else if(collectionname === 'baseinfocompanystat'){
-    // }
-    // else if(collectionname === 'baseinfocompanypay'){
-    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    // }
+    if(collectionname === 'baseinfocompany'){
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+    }
+    else if(collectionname === 'baseinfocompanystat'){
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+    }
+    else if(collectionname === 'baseinfocompanypay'){
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+    }
     if(collectionname === 'baseinfocompanyservice'){
       if (typeof retdoc.CreateDate === 'string') {
         retdoc.CreateDate = getdatefromstring(retdoc.CreateDate);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     else if(collectionname === 'baseinfocompanypermit'){
       if (typeof retdoc.StartDate === 'string') {
@@ -50,7 +49,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof this.CertifyDate === 'string') {
         retdoc.CertifyDate = getdatefromstring(retdoc.CertifyDate);
       }
-      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     else if(collectionname === 'baseinfocompanyfare'){
       if (typeof retdoc.FareValidOn === 'string') {
@@ -59,11 +59,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.FareValidOff === 'string') {
         retdoc.FareValidOff = getdatefromstring(retdoc.FareValidOff);
       }
-      // retdoc.FareValidOn = util.gettimeformat(retdoc.FareValidOn);
-      // retdoc.FareValidOff = util.gettimeformat(retdoc.FareValidOff);
-      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
-    else if(collectionname === 'baseinfovehicle'){
+    else if(collectionname === 'baseinfovehicle'){//待检查
       if (typeof retdoc.CertifyDateA === 'string') {
         retdoc.CertifyDateA =  getdatefromstring(retdoc.CertifyDateA);
       }
@@ -80,7 +79,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.GPSlnstallDate =  getdatefromstring(retdoc.GPSlnstallDate);
       }
       retdoc['Commercial-Type'] = 1;
-      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
@@ -89,7 +89,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof this.InsurExp === 'string') {
         retdoc.InsurExp = getdatefromstring(retdoc.InsurExp);
       }
-      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
     // else if(collectionname === 'baseinfovehicletotalmile'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -257,7 +258,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     }
     else if(collectionname === 'rateddriver'){
       if (typeof retdoc.TestDate === 'string') {
-        retdoc.TestDate = gettimefromstring(retdoc.TestDate);
+        retdoc.TestDate = getdatefromstring(retdoc.TestDate);
       }
     }
     return retdoc;
