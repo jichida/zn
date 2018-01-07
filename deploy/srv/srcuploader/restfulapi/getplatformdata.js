@@ -43,10 +43,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.StartDate === 'string') {
         retdoc.StartDate = getdatefromstring(retdoc.StartDate);
       }
-      if (typeof this.StopDate === 'string') {
+      if (typeof retdoc.StopDate === 'string') {
         retdoc.StopDate = getdatefromstring(retdoc.StopDate);
       }
-      if (typeof this.CertifyDate === 'string') {
+      if (typeof retdoc.CertifyDate === 'string') {
         retdoc.CertifyDate = getdatefromstring(retdoc.CertifyDate);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -86,7 +86,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.InsurEff === 'string') {
         retdoc.InsurEff = getdatefromstring(retdoc.InsurEff);
       }
-      if (typeof this.InsurExp === 'string') {
+      if (typeof retdoc.InsurExp === 'string') {
         retdoc.InsurExp = getdatefromstring(retdoc.InsurExp);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -218,7 +218,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.DestTime === 'string') {
         retdoc.DestTime = gettimefromstring(retdoc.DestTime);
       }
-      if (typeof this.PayTime === 'string') {
+      if (typeof retdoc.PayTime === 'string') {
         retdoc.PayTime = gettimefromstring(retdoc.PayTime);
       }
       if (typeof retdoc.OrderMatchTime === 'string') {
