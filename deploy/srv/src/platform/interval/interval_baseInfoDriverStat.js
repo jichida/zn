@@ -78,21 +78,28 @@ const fn_getComplainedCount = (monthtimestring,callbackfn)=>{
 }
 
 const fn_setbaseInfoDriverStat = (updateddata,callbackfn)=>{
-  const dbModel = dbplatform.Platform_baseInfoDriverStatModel;
-  dbModel.findOneAndUpdate({LicenseId:updateddata.LicenseId},
-    {
-      $set:updateddata
-    },{
-      new:true,
-      upsert:true
-    },
-    (err,result)=>{
-    if(!err && !!result){
-      callbackfn(result);
-    }
-    else{
-      console.log(err);
-      callbackfn(null);
+  const dbDriverModel = dbplatform.Platform_baseInfoDriverModel;
+  const queryexec = dbDriverModel.findOne({LicenseId:updateddata.LicenseId}).select({Address:1});
+  queryexec.exec((err,driverinfo)=>{
+    if(!err && !!driverinfo){
+      updateddata.Address = driverinfo.Address;
+      const dbModel = dbplatform.Platform_baseInfoDriverStatModel;
+      dbModel.findOneAndUpdate({LicenseId:updateddata.LicenseId},
+        {
+          $set:updateddata
+        },{
+          new:true,
+          upsert:true
+        },
+        (err,result)=>{
+        if(!err && !!result){
+          callbackfn(result);
+        }
+        else{
+          console.log(err);
+          callbackfn(null);
+        }
+      });
     }
   });
 };
@@ -109,7 +116,7 @@ const interval_baseInfoDriverStat = ()=>{
   //   Flag:Number,//	 是 数字型 Fl操作标识1:新增2 :更新3 :删除
   //   UpdateTime:String,//	是数字型F14更新时间网约车平台完成数据更 新的时间YYYYMMDDhhmmss
   // });
-  const curmoment = moment();
+  const curmoment = moment();//缺少Address ==moment('2017-12-01 00:00:00');//moment();//缺少Address
   const monthtime = curmoment.format('YYYY-MM-01 00:00:00');
   const fn1 = (callbackfn)=>{
     fn_getOrderCount(monthtime,(result)=>{
