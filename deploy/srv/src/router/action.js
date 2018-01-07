@@ -92,6 +92,24 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
       saveDriverCar.presave_driver(retdoc,creatorid,(err,result)=>{
         fnresult(null,doc);
       });
+
+      //司机审核通过／拒绝要发送短信通知
+
+      if(retdoc.approvalstatus === '已审核' || retdoc.approvalstatus === '已拒绝' ){
+        //将Platform_baseInfoVehicle和Platform_baseInfoDriver存入到数据库
+        const dbPrevUserDriverModel = DBModels.UserDriverModel;
+        dbPrevUserDriverModel.findOne({_id:retdoc.id},(err,userEntity)=>{
+          if(!err && !!userEntity){
+            if(userEntity.approvalstatus !== retdoc.approvalstatus){
+              const sms = require('../smspush/sms.js');
+              sms.sendsmstouser(retdoc.username,retdoc.approvalstatus === '已审核'?
+              'driver_isapprovaledtrue':'driver_isapprovaledfalse','',(err,result)=>{
+                console.log(`发送短信通知:${JSON.stringify(result)}`);
+              });
+            }
+          }
+        });    
+      }
       return;
       // }
   }
@@ -193,21 +211,7 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
       }
   }
 
-  //司机审核通过／拒绝要发送短信通知
-  if(actionname === 'findByIdAndUpdate' && collectionname==='userdriver'){
-    // if(retdoc.issynctoplatform){
-      if(retdoc.approvalstatus === '已审核' || retdoc.approvalstatus === '已拒绝' ){
-        //将Platform_baseInfoVehicle和Platform_baseInfoDriver存入到数据库
-        const sms = require('../smspush/sms.js');
-        sms.sendsmstouser(retdoc.username,retdoc.approvalstatus === '已审核'?
-        'driver_isapprovaledtrue':'driver_isapprovaledfalse','',(err,result)=>{
-          console.log(`发送短信通知:${JSON.stringify(result)}`);
-        });
-        fncallback(null,retdoc);
-        return;
-      }
-    // }
-  }
+
   if(collectionname === 'buscarpool'){
       if(actionname === 'findById'){
         gettakenseatfromorder(retdoc,fncallback);
