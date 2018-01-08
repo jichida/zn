@@ -118,7 +118,7 @@ let getdatafromuser =(user)=>{
     defaultmycar:user.defaultmycar,
     Platform_baseInfoVehicleId:user.Platform_baseInfoVehicleId,
     Platform_baseInfoVehicle:user.Platform_baseInfoVehicle,
-    avatarURL:user.avatarURL|| config.defaultprofileimage,//司机头像
+    avatarURL:user.avatarURL//司机头像
   };
 }
 
@@ -135,7 +135,7 @@ let setloginsuccess = (socket,ctx,user)=>{
    if(user.approvalstatus === '已审核'){
 
       ctx.driverinfo = {
-          avatarURL:user.avatarURL|| config.defaultprofileimage,
+          avatarURL:user.avatarURL,
           //平台可能用到
           //请求时用到
           PhotoandCarmanURL:user.PhotoandCarmanURL,//人车合影
@@ -165,7 +165,6 @@ let setloginsuccess = (socket,ctx,user)=>{
 
     let profile = {
       nickname:`司机${chance.string({length: 4,pool: '0123456789'})}`,
-      avatar:config.defaultprofileimage
     };
     if(user.profile){
       profile = user.profile;
@@ -394,7 +393,6 @@ let doregisteruser = (socket,newUser,ctx,socketerrstring,callbackuserexits)=>{
       newUser.updated_at = moment().format('YYYY-MM-DD HH:mm:ss');
       newUser.profile = {
         nickname:`司机${chance.string({length: 4,pool: '0123456789'})}`,
-        avatar:config.defaultprofileimage
       };
 
       let entity = new DBModels.UserDriverModel(newUser);

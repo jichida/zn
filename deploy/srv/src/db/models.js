@@ -302,13 +302,13 @@ let TripOrderSchema = new Schema({
         index: '2dsphere'
     },
     riderinfo:{
-      avatarURL:{ type: String, default: config.defaultprofileimage },
+      avatarURL:String,
       RiderPhone:String,//乘客电话
       RiderName:String,//乘客姓别
     },
     driverinfo:{
       LicenseId:String,	//驾驶证号
-      avatarURL:{ type: String, default: config.defaultprofileimage },
+      avatarURL:String,
       DriverName:String,//司机名
       DriverPhone:String,//司机电话
       DriverGender:String,//司机姓别
