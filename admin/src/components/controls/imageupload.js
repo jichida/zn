@@ -64,9 +64,9 @@ const renderImageupload= (props) => {
      >
        {
          imageUrl ?
-           <img src={imageUrl} alt="" className="avatar" /> :
-           <Icon type="plus" className="avatar-uploader-trigger" />
+           <img src={imageUrl} alt="" className="avatar"/> :null       
        }
+       <Icon type="plus" className="avatar-uploader-trigger" />
      </Upload>
    );
 
