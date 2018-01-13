@@ -51,23 +51,26 @@ const renderImageupload= (props) => {
   let imageUrl = input.value;
   const {label} = props;
   return (
-    <Upload
-       className="avatar-uploader"
-       name="file"
-       showUploadList={false}
-       action= {config.serverurl + "/uploadavatar"}
-       headers={{
-          'Authorization':'Bearer '+usertoken
-       }}
-       beforeUpload={beforeUpload}
-       onChange={handleChange}
-     >
-       {
+    <div>
+      {
          imageUrl ?
            <img src={imageUrl} alt="" className="avatar"/> :null       
        }
-       <Icon type="plus" className="avatar-uploader-trigger" />
-     </Upload>
+      <Upload
+         className="avatar-uploader"
+         name="file"
+         showUploadList={false}
+         action= {config.serverurl + "/uploadavatar"}
+         headers={{
+            'Authorization':'Bearer '+usertoken
+         }}
+         beforeUpload={beforeUpload}
+         onChange={handleChange}
+       >
+         
+         <Icon type="plus" className="avatar-uploader-trigger" />
+       </Upload>
+     </div>
    );
 
 }
