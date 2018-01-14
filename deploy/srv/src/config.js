@@ -26,6 +26,7 @@ let config =  {
   // 'mongodb://'+process.env.MONGO_PORT_27017_TCP_ADDR+':'+process.env.MONGO_PORT_27017_TCP_PORT+'/blog', function(err, db) {
     // ...
   mongodburl:process.env.MONGO_URL || `mongodb://localhost/zhongnandb`,
+  defaultprofileimage:'newimg/17.png',
   faretypemap:{
        '快车':'590c8e423beda6051b5afa26',
        '出租车':'590c8e4d3beda6051b5afa27',

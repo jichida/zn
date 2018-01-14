@@ -97,6 +97,7 @@ let setloginsuccess = (socket,ctx,user)=>{
    ctx.userid = user._id;//for test only
    let profile = {
      nickname:`乘客${chance.string({length: 4,pool: '0123456789'})}`,
+     avatar:config.defaultprofileimage
    };
    if(user.profile){
      profile = user.profile;

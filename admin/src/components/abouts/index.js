@@ -89,7 +89,6 @@ const AboutlistList = (props) => (//
         <Datagrid>
         <TextField label="类型" source="keyname" />
         <TextField label="标题" source="title" />
-        <RichTextField label="详细信息"  source="desc" stripTags={false} />
         <EditButton />
         </Datagrid>
     </List>
