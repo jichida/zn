@@ -9,7 +9,7 @@ var logger;
 exports.initLog =  ()=>{
   var filename = 'simulatorsrv';//"simulatorsrv_"+moment().format('YYYY-MM-DD-HHmmss');
 
-  var logfile = `${config.logdir}/${filename}.txt`;
+  var logfile = `${config.logdir}/${filename}.html`;
   var logpath = path.resolve(__dirname,'../', logfile);
   console.log(`logpath==>${logpath}`);
 
