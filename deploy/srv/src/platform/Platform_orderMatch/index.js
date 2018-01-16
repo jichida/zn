@@ -14,15 +14,16 @@
 //     LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号 DriverPhone	是	字符型	V32	驾驶员手机号 VehicleNo	是	字符型	V32	车辆号牌
 //     DistributeTime:Date,//	是	数字型	F14	派单成功时间	YYYYMMDDhhmmss
 // });
-let DBModels = require('../../db/models.js');
-let mongoose = require('mongoose');
-let PubSub = require('pubsub-js');
+const DBModels = require('../../db/models.js');
+const mongoose = require('mongoose');
+const PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
-let winston = require('../../log/log.js');
+const winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
 const moment = require('moment');
-let dbplatform = require('../../db/modelsplatform.js');
+const dbplatform = require('../../db/modelsplatform.js');
+const utilarea = require('../../util/getarea');
 // "srcaddress" : {
 //     "location" : {
 //         "lng" : 118.728138148353,
@@ -38,22 +39,26 @@ let dbplatform = require('../../db/modelsplatform.js');
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
 
-exports.insertOrderMatch  = ({triprequest,triporder})=> {
+exports.insertOrderMatch  = ({triprequest,triporder,LicenseId})=> {
     let orderMatchDoc = {
         CompanyId:config.CompanyId,
-
         OrderId:triporder._id,
         Longitude:triprequest.driverlocation[0],
         Latitude:triprequest.driverlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
-        LicenseId:'',//<-----机动车驾驶证编号
+        LicenseId:LicenseId,//<-----机动车驾驶证编号
         DistributeTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
     };
-    let eModel = dbplatform.Platform_orderMatchModel;
-    let entity = new eModel(orderMatchDoc);
-    entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','ordermatch',result);
-        }
+    utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
+      if(!!address){
+        orderMatchDoc.Address = address.adcode;
+        const eModel = dbplatform.Platform_orderMatchModel;
+        const entity = new eModel(orderMatchDoc);
+        entity.save((err,result)=> {
+            if (!err && result) {
+                platformaction.postaction('save','ordermatch',result);
+            }
+        });
+      }
     });
 }

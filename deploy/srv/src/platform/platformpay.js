@@ -1,40 +1,9 @@
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
+
 const mongoose = require('mongoose');
 const dbplatform = require('../db/modelsplatform.js');
 const PubSub = require('pubsub-js');
 const _ = require('lodash');
-const key = 'dadfa0897bd9c8cff9cffdf330974b55';
-//http://restapi.amap.com/v3/geocode/geo?parameters
-const getarea = ({deplatlng,destlatlng},callbackfn)=>{
-  const url = `http://restapi.amap.com/v3/geocode/regeo?key=${key}&location=${deplatlng.lng},${deplatlng.lat}|${destlatlng.lng},${destlatlng.lat}&batch=true`;
-  // console.log(`url==>${url}`);
-  // "key=" + key + "&location=" + location[0] + "," + location[1] +
-  // "&poitype=商务住宅&radius=0&extensions=base&batch=false&roadlevel=0";
-  return fetch(url).then((res)=>{
-    return res.json();
-  }).then((json)=> {
-    // console.log(json);
-    const regeocodes = json.regeocodes;
-    if(regeocodes.length === 2){
-      let OnArea = _.get(regeocodes[0],'addressComponent.adcode',0);
-      let DestArea = _.get(regeocodes[1],'addressComponent.adcode',0);
-      if(typeof OnArea === 'string'){
-        OnArea = parseInt(OnArea);
-      }
-      if(typeof DestArea === 'string'){
-        DestArea = parseInt(DestArea);
-      }
-      callbackfn({OnArea,DestArea});
-    }
-    else{
-      callbackfn();
-    }
-  }).catch((e)=>{
-    console.log(e);
-    callbackfn();
-  });
-}
+const utilarea = require('../util/getarea');
 // getarea({
 //   deplatlng:{
 //     lat:32.04,
@@ -171,7 +140,7 @@ const notifyplatform_orderpaied = (order)=>{
     OrderMatchTime:_.get(order,'finished_at',''),
     InvoiceStatus:2,
   };
-  getarea({
+  utilarea.getareasz({
     deplatlng:{
       lat:order.getinlocation[1],
       lng:order.getinlocation[0],

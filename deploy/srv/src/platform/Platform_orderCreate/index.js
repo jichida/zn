@@ -29,6 +29,7 @@ let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
 const moment = require('moment');
 let dbplatform = require('../../db/modelsplatform.js');
+const utilarea = require('../../util/getarea');
 // "srcaddress" : {
 //     "location" : {
 //         "lng" : 118.728138148353,
@@ -47,7 +48,6 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOrderCreate  = ({triprequest,triporder})=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
-
         OrderId:triporder._id,
         DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD'):moment(triprequest.dated_at).format('YYYY-MM-DD'),
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
@@ -61,11 +61,18 @@ exports.insertOrderCreate  = ({triprequest,triporder})=> {
         Encrypt:1,//1:GCJ-02 测绘局标准
         FareType:''//运价编码（缺失）
     };
-    let eModel = dbplatform.Platform_orderCreateModel;
-    let entity = new eModel(orderCreateDoc);
-    entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','ordercreate',result);
-        }
-    });
+
+    utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
+      if(!!address){
+        orderCreateDoc.Address = address.adcode;
+        const eModel = dbplatform.Platform_orderCreateModel;
+        const entity = new eModel(orderCreateDoc);
+        entity.save((err,result)=> {
+            if (!err && result) {
+                platformaction.postaction('save','ordercreate',result);
+            }
+        });
+      }
+    })
+
 }
