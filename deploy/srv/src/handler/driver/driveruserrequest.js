@@ -308,14 +308,21 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
                         });
                       }
                       //通知平台插入
+                      let payload = {
+                          triprequest: triprequest,
+                          triporder: triporder
+                      };
                       let platformtype = triprequest.requeststatus === "行程中"?'Platform_operateDepart':'Platform_operateArrive';
+
+                      if(platformtype === 'Platform_operateDepart'){
+                        payload.LicenseId =  ctx.driverinfo.LicenseId;
+                        payload.VehicleNo = ctx.driverinfo.VehicleNo;
+                        payload.FareType = triprequest.resultpricedetail.fareid;
+                      }
                       PubSub.publish('Platformmsgs', {
                           action: 'Insert',
                           type: platformtype,
-                          payload: {
-                              triprequest: triprequest,
-                              triporder: triporder
-                          }
+                          payload: payload
                       });
                   }
                   else {

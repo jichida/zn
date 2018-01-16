@@ -29,7 +29,7 @@ const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 //到达出发地
-exports.insertOperateDepart  = ({triprequest,triporder})=> {
+exports.insertOperateDepart  = ({triprequest,triporder,LicenseId,FareType,VehicleNo})=> {
     // let datestart = triprequest.getindate_at.getTime();
     // let dateend = triprequest.getoffdate_at.getTime();
     // let DriveTime = (dateend - datestart)/1000;
@@ -37,9 +37,9 @@ exports.insertOperateDepart  = ({triprequest,triporder})=> {
     let operateDepartDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
-        LicenseId:'',//
-        FareType:'',//
-        VehicleNo:'',//
+        LicenseId:LicenseId,//
+        FareType:FareType,//
+        VehicleNo:VehicleNo,//
         DepLongitude:triporder.getinlocation[0],
         DepLatitude:triporder.getinlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
