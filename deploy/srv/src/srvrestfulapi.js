@@ -36,6 +36,10 @@ let startsrv = ()=>{
   console.log("static upload:" + uploaddir);
   app.use(config.uploadurl, express.static(uploaddir));
 
+  let logdir = path.join(__dirname,config.logdir);
+  console.log("static upload:" + logdir);
+  app.use('/log', express.static(logdir));
+
 
   console.log('uploadurl:' + config.uploadurl);
   console.log('uploaddir:' + uploaddir);
