@@ -150,7 +150,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     }
     else if(collectionname === 'baseinfodriverapp'){
       retdoc.MapType =  2;
-      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     // else if(collectionname === 'baseinfodriverstat'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);

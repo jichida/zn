@@ -1,5 +1,6 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+const _ = require('lodash');
 
 const key = 'dadfa0897bd9c8cff9cffdf330974b55';
 //http://restapi.amap.com/v3/geocode/geo?parameters
@@ -45,7 +46,8 @@ const getarea = ({latlng},callbackfn)=>{
     // console.log(json);
     const regeocode = json.regeocode;
     if(!!regeocode){
-      const adcode = _.get(regeocode,'addressComponent.adcode',0);
+      let adcode = _.get(regeocode,'addressComponent.adcode',0);
+      adcode = parseInt(adcode);
       callbackfn({adcode});
     }
     else{
@@ -56,6 +58,15 @@ const getarea = ({latlng},callbackfn)=>{
     callbackfn();
   });
 }
+
+// getarea({
+//       latlng:{
+//             "lng" : 118.729411,
+//             "lat" : 32.008663
+//         }
+//       },(address)=>{
+//   console.log(address);
+// });
 
 exports.getareasz = getareasz;
 exports.getarea = getarea;

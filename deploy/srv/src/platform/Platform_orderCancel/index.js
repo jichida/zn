@@ -27,6 +27,7 @@ let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
+const utilarea = require('../../util/getarea');
 // "srcaddress" : {
 //     "location" : {
 //         "lng" : 118.728138148353,
@@ -52,7 +53,6 @@ const reasonflag = [
 exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
-
         OrderId:triporder._id,
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
@@ -60,11 +60,16 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
         CancelTypeCode:canceltypecode,//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销 5 .驾驶员违约撤销
         CancelReason:reasonflag[canceltypecode],
     };
+    utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
+      if(!!address){
+        orderCancelDoc.Address = address.adcode;
     let eModel = dbplatform.Platform_orderCancelModel;
     let entity = new eModel(orderCancelDoc);
     entity.save((err,result)=> {
         if (!err && result) {
             platformaction.postaction('save','ordercancel',result);
         }
+    });
+}
     });
 }
