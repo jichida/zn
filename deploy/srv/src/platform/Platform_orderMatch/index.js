@@ -39,7 +39,7 @@ const utilarea = require('../../util/getarea');
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
 
-exports.insertOrderMatch  = ({triprequest,triporder,LicenseId})=> {
+exports.insertOrderMatch  = ({triprequest,triporder,LicenseId,DriverPhone,VehicleNo })=> {
     let orderMatchDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
@@ -47,6 +47,8 @@ exports.insertOrderMatch  = ({triprequest,triporder,LicenseId})=> {
         Latitude:triprequest.driverlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准
         LicenseId:LicenseId,//<-----机动车驾驶证编号
+        DriverPhone:DriverPhone,
+        VehicleNo:VehicleNo,
         DistributeTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
     };
     utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{

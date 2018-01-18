@@ -68,5 +68,19 @@ const getarea = ({latlng},callbackfn)=>{
 //   console.log(address);
 // });
 
+// getareasz({
+//   deplatlng:{
+//         "lng" : 118.729411,
+//         "lat" : 32.008663
+//     },
+//     destlatlng:{
+//           "lng" : 118.729411,
+//           "lat" : 32.008663
+//       },
+//
+//       },(address)=>{
+//   console.log(address);
+// });
+
 exports.getareasz = getareasz;
 exports.getarea = getarea;

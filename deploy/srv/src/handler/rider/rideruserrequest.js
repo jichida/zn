@@ -6,6 +6,7 @@ let DBModels = require('../../db/models.js');
 const async = require('async');
 const rr = require('./recharge.js');
 const userlogin = require('./rideruserlogin');
+const _ = require('lodash');
 
 const notifymessage_all = require('../common/notifymessage.js');
 
@@ -67,7 +68,8 @@ let starttriprequestorder = (socket,actiondata,ctx)=>{
             type:'Platform_orderCreate',
             payload:{
               triprequest:triprequest,
-              triporder:triporder
+              triporder:triporder,
+              FareType:_.get(dataorder,'resultpricedetail.fareid','')
             }
           });
         }

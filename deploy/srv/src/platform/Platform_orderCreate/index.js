@@ -45,7 +45,7 @@ const utilarea = require('../../util/getarea');
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
 
-exports.insertOrderCreate  = ({triprequest,triporder})=> {
+exports.insertOrderCreate  = ({triprequest,triporder,FareType})=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
@@ -59,7 +59,7 @@ exports.insertOrderCreate  = ({triprequest,triporder})=> {
         DestLongitude:triporder.dstaddress.location.lat,
         DestLatitude:triporder.dstaddress.location.lng,
         Encrypt:1,//1:GCJ-02 测绘局标准
-        FareType:''//运价编码（缺失）
+        FareType:FareType//运价编码（缺失）
     };
 
     utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{

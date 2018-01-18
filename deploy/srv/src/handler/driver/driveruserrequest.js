@@ -218,6 +218,8 @@ exports.acceptrequest = (socket,actiondata,ctx)=>{
               triprequest:triprequest,
               triporder:triporder,
               LicenseId:ctx.driverinfo.LicenseId,
+              DriverPhone:ctx.driverinfo.DriverPhone,
+              VehicleNo:ctx.driverinfo.VehicleNo,
             }
           });
         }

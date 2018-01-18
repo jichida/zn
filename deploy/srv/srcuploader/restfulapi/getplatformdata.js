@@ -92,9 +92,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
     }
-    // else if(collectionname === 'baseinfovehicletotalmile'){
-    //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-    // }
+    else if(collectionname === 'baseinfovehicletotalmile'){
+       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+    }
     else if(collectionname === 'baseinfodriver'){
       //注意：不能用=>，否则出错，不知道原因
         if (typeof retdoc.DriverBirthday === 'string') {

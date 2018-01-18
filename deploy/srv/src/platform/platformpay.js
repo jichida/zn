@@ -118,8 +118,8 @@ const notifyplatform_orderpaied = (order)=>{
   let updateddata = {
     BookModel:_.get(order,'driverinfo.Model',''),
     LicenseId:_.get(order,'driverinfo.LicenseId',''),
-    DriverName:_.get(order,'driverinfo.avatarURL',''),
-    VehicleNo:_.get(order,'driver.VehicleNo',''),
+    DriverName:_.get(order,'driverinfo.DriverName',''),
+    VehicleNo:_.get(order,'driverinfo.VehicleNo',''),
     OrderId:_.get(order,'_id',''),
     FareType:_.get(order,'ctxrealtimeprice.fareid',''),
     BookDepTime:_.get(order,'dated_at',order.created_at),
@@ -137,7 +137,7 @@ const notifyplatform_orderpaied = (order)=>{
     OtherUpPrice:0,
     PayState:1,
     PayTime:_.get(order,'pay_at',''),
-    OrderMatchTime:_.get(order,'finished_at',''),
+    OrderMatchTime:_.get(order,'updated_at',''),
     InvoiceStatus:2,
   };
   utilarea.getareasz({
