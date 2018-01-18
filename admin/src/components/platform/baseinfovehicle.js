@@ -44,7 +44,7 @@ import {required} from 'admin-on-rest';
 //            <TextInputEx  label="发动机号(以机动车行驶证为准)" source="EngineId" validate={[required]}/>
 //            <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="VIN" validate={[required]}/>
 //            <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="CertifyDateA" validate={[required]}/>
-//            <TextInputEx  label="牢辆燃料类型" source="FuelType" validate={[required]}/>
+//            <TextInputEx  label="车辆燃料类型" source="FuelType" validate={[required]}/>
 //            <TextInputEx  label="发动机排量" source="EngineDisplace" validate={[required]}/>
 //            </FormTab>
 //
@@ -106,7 +106,7 @@ const BaseInfoVehicleEdit = (props) => {
             <TextInputEx  label="发动机号(以机动车行驶证为准)" source="EngineId" validate={[required]}/>
             <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="VIN" validate={[required]}/>
             <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="CertifyDateA" validate={[required]}/>
-            <TextInputEx  label="牢辆燃料类型" source="FuelType" validate={[required]}/>
+            <TextInputEx  label="车辆燃料类型" source="FuelType" validate={[required]}/>
             <TextInputEx  label="发动机排量" source="EngineDisplace" validate={[required]}/>
             </FormTab>
 
