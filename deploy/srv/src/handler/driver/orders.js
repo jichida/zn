@@ -67,8 +67,8 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
     actiondata.query._id = mongoose.Types.ObjectId(actiondata.query._id);
   }
   actiondata.query.driveruserid = ctx.userid;
-  console.log(`查询条件:${JSON.stringify(actiondata.query)}`);
-  console.log(`更新:${JSON.stringify(payload)}`);
+  //console.log(`查询条件:${JSON.stringify(actiondata.query)}`);
+  //console.log(`更新:${JSON.stringify(payload)}`);
   orderModel.findOneAndUpdate(actiondata.query,{$set:payload},{new: true},(err,triporder)=>{
       if(!err){
         if(!!triporder){

@@ -17,7 +17,7 @@ let globalUserauth = {};
 let sendauthcode = (socket,actiondata,ctx)=>{
     let nowDate = new Date();
     let userAuth = actiondata;
-    console.log(`loginsendauth=>${JSON.stringify(globalUserauth)}`);
+    //console.log(`loginsendauth=>${JSON.stringify(globalUserauth)}`);
     if(!!globalUserauth[userAuth.phonenumber]){
         let minAgo = new Date(nowDate.getTime() - 1000 * 30);
         if(minAgo < globalUserauth[userAuth.phonenumber].updated_at){
@@ -49,7 +49,7 @@ let sendauthcode = (socket,actiondata,ctx)=>{
                 socket.emit('common_err',{type:'loginsendauth',errmsg:'发送验证码失败'});
             }
       });
-      // console.log(`sendmessage:${message},type_reason:${ctx.usertype}_${userAuth.reason}`);
+      // //console.log(`sendmessage:${message},type_reason:${ctx.usertype}_${userAuth.reason}`);
 };
 
 
@@ -176,7 +176,7 @@ let hashPassword = function (password, salt, callback) {
     // We use pbkdf2 to hash and iterate 10k times by default
     const iterations = 10000;
     const keyLen = 64; // 64 bit.
-    console.log("password is :" + password);
+    //console.log("password is :" + password);
    // password = new Buffer(password, 'binary');
     crypto.pbkdf2(password, salt, iterations, keyLen,'sha1', (err,result)=>{
       if(!err && !!result){

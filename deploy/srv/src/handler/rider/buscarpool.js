@@ -31,7 +31,7 @@ exports.getbuscarpool = (socket,actiondata,ctx)=>{
           item = item.toJSON();
           list[index] = item;
           adminaction.gettakenseatfromorder(item,(err,result)=>{
-            console.log(`gettakenseatfromorder,result===>${JSON.stringify(result)}`);
+            //console.log(`gettakenseatfromorder,result===>${JSON.stringify(result)}`);
             fncallback(err,result);
           });
         }

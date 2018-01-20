@@ -83,31 +83,31 @@ describe('测试价格', () => {
   describe('测试快车价格', () => {
     it('测试快车3km价格', (done) => {
       price.getprice({registertype:'kuaiche',totaldistance:3000},(price)=>{
-        console.log('快车3km价格为:' + price);
+        //console.log('快车3km价格为:' + price);
         done();
       });
     });
     it('测试快车5km价格', (done) => {
       price.getprice({registertype:'kuaiche',totaldistance:5000},(price)=>{
-        console.log('快车5km价格为:' + price);
+        //console.log('快车5km价格为:' + price);
         done();
       });
     });
     it('测试快车10km价格', (done) => {
       price.getprice({registertype:'kuaiche',totaldistance:10000},(price)=>{
-        console.log('快车10km价格为:' + price);
+        //console.log('快车10km价格为:' + price);
         done();
       });
     });
     it('测试快车100km价格', (done) => {
       price.getprice({registertype:'kuaiche',totaldistance:100000},(price)=>{
-        console.log('快车100km价格为:' + price);
+        //console.log('快车100km价格为:' + price);
         done();
       });
     });
     it('测试快车xxx价格', (done) => {
       price.getprice({registertype:'kuaiche',totaldistance:29188},(price)=>{
-        console.log('快车29188价格为:' + price);
+        //console.log('快车29188价格为:' + price);
         done();
       });
     });
@@ -116,25 +116,25 @@ describe('测试价格', () => {
     describe('测试代驾价格', () => {
       it('测试代驾3km价格', (done) => {
         price.getprice({registertype:'daijia',totaldistance:3000},(price)=>{
-          console.log('快车3km价格为:' + price);
+          //console.log('快车3km价格为:' + price);
           done();
         });
       });
       it('测试代驾5km价格', (done) => {
         price.getprice({registertype:'daijia',totaldistance:5000},(price)=>{
-          console.log('代驾5km价格为:' + price);
+          //console.log('代驾5km价格为:' + price);
           done();
         });
       });
       it('测试代驾10km价格', (done) => {
         price.getprice({registertype:'daijia',totaldistance:10000},(price)=>{
-          console.log('代驾10km价格为:' + price);
+          //console.log('代驾10km价格为:' + price);
           done();
         });
       });
       it('测试代驾100km价格', (done) => {
         price.getprice({registertype:'daijia',totaldistance:100000},(price)=>{
-          console.log('代驾100km价格为:' + price);
+          //console.log('代驾100km价格为:' + price);
           done();
         });
       });

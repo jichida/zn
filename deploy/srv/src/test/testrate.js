@@ -7,11 +7,11 @@ mongoose.connect(config.mongodburl);
 
 
 rate.getrateuser('593b7c8e91227b0350c295af',(r)=>{
-  console.log(`乘客评分为:${r}`);
+  //console.log(`乘客评分为:${r}`);
 });//rider
 
 rate.getrateuser('5930c023bccf1014be4f19d3',(r)=>{
-  console.log(`司机评分为:${r}`);
+  //console.log(`司机评分为:${r}`);
 });//rider
 // let AboutSchema = new Schema({
 //   keyname:String,

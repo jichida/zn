@@ -34,7 +34,7 @@ let getorderdetail_command =(socket,actiondata,ctx,commandstring)=>{
           triporder = triporder.toJSON();
           const adminaction = require('../../router/action');
           adminaction.gettakenseatfromorder(triporder.buscarpoolid,(err,result)=>{
-            console.log(`result:${JSON.stringify(result)}`);
+            //console.log(`result:${JSON.stringify(result)}`);
             socket.emit(`${commandstring}_result`,{triporder});
           });
       }
@@ -95,8 +95,8 @@ exports.payorder = (socket,actiondata,ctx)=>{
     actiondata.query._id = mongoose.Types.ObjectId(actiondata.query._id);
   }
   actiondata.query.rideruserid = ctx.userid;
-  console.log(`查询条件:${JSON.stringify(actiondata.query)}`);
-  console.log(`更新:${JSON.stringify(payload)}`);
+  //console.log(`查询条件:${JSON.stringify(actiondata.query)}`);
+  //console.log(`更新:${JSON.stringify(payload)}`);
   orderModel.findOneAndUpdate(actiondata.query,{$set:payload},{new: true},(err,orderinfo)=>{
       if(!err){
         if(!!orderinfo){

@@ -27,13 +27,13 @@ let sendallmsg = (notifymessage,fncallback)=>{
     .send( (err, res)=> {
       if (!!err) {
         if (err instanceof JPush.APIConnectionError) {
-          console.log(err.message)
+          //console.log(err.message)
         } else if (err instanceof JPush.APIRequestError) {
-          console.log(err.message)
+          //console.log(err.message)
         }
       } else {
-        console.log('【司机端全部】Sendno: ' + res.sendno)
-        console.log('【司机端全部】Msg_id: ' + res.msg_id)
+        //console.log('【司机端全部】Sendno: ' + res.sendno)
+        //console.log('【司机端全部】Msg_id: ' + res.msg_id)
       }
       fncallback(err,res);
     });
@@ -42,7 +42,7 @@ let sendallmsg = (notifymessage,fncallback)=>{
 
 //useralias 用逗号分隔
 let sendusermsg = (notifymessage,fncallback)=>{
-  console.log(`sendusermsg==>${JSON.stringify(notifymessage)}`);
+  //console.log(`sendusermsg==>${JSON.stringify(notifymessage)}`);
   let msgpayload = {
     _id:notifymessage._id,
     subtype:notifymessage.subtype,
@@ -60,23 +60,23 @@ let sendusermsg = (notifymessage,fncallback)=>{
     .send((err, res)=> {
       if (err) {
         if (err instanceof JPush.APIConnectionError) {
-          console.log(err.message)
+          //console.log(err.message)
           // Response Timeout means your request to the server may have already received,
           // please check whether or not to push
-          console.log(err.isResponseTimeout)
+          //console.log(err.isResponseTimeout)
         } else if (err instanceof JPush.APIRequestError) {
-          console.log(err.message)
+          //console.log(err.message)
         }
       } else {
-        console.log('【司机端用户】Sendno: ' + res.sendno)
-        console.log('【司机端用户】Msg_id: ' + res.msg_id)
+        //console.log('【司机端用户】Sendno: ' + res.sendno)
+        //console.log('【司机端用户】Msg_id: ' + res.msg_id)
       }
       fncallback(err,res);
     })
 }
 
 let sendnotifymessage =  (notifymessage,fn)=>{
-    console.log(`司机端推送=======>${JSON.stringify(notifymessage)}`);
+    //console.log(`司机端推送=======>${JSON.stringify(notifymessage)}`);
     notifymessage.touserid = notifymessage.driveruserid;
     if(!!notifymessage.touserid){
         if(typeof notifymessage.touserid !== 'string'){
@@ -98,5 +98,5 @@ exports.sendnotifymessage = sendnotifymessage;
 //   messagetitle:'您的请求已被司机接单，请您在路边等候!',
 //   messagecontent:'您的请求已被司机接单，请您在路边等候!'
 // },(err,result)=>{
-//     console.log(`------------>` + JSON.stringify(result));
+//     //console.log(`------------>` + JSON.stringify(result));
 // });

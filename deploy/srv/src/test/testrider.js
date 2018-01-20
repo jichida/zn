@@ -20,7 +20,7 @@ describe('测试乘客端', () => {
           .end((err, res)=> {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
-            console.log('result:' + JSON.stringify(res.body));
+            //console.log('result:' + JSON.stringify(res.body));
             if(res.body.result === 'OK'){
                 authtoken = res.body.data.authtoken;
             }
@@ -42,7 +42,7 @@ describe('测试乘客端', () => {
           .end((err, res)=> {
             expect(err).to.be.null;
             expect(res).to.have.status(200);
-            console.log('result:' + JSON.stringify(res.body));
+            //console.log('result:' + JSON.stringify(res.body));
             if(res.body.result === 'OK'){
                 token = res.body.data.token;
             }

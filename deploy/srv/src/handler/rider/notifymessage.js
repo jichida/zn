@@ -60,7 +60,7 @@ exports.getnotifymessage = (socket,actiondata,ctx)=>{
   }
 
   notifyMessageModel.paginate(query,actiondata.options,(err,list)=>{
-    console.log(`err:${JSON.stringify(err)},list:${JSON.stringify(list)}}`)
+    //console.log(`err:${JSON.stringify(err)},list:${JSON.stringify(list)}}`)
     if(!err){
       socket.emit('getnotifymessage_result',{result:list});
     }

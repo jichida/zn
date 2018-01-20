@@ -121,7 +121,7 @@ describe('测试拼车路线', () => {
   buscarpooldata.forEach((obj)=>{
     let entity = new buscarpoolModel(obj);
     entity.save((err,result)=>{
-      console.log('save --->' + JSON.stringify(result));
+      //console.log('save --->' + JSON.stringify(result));
     });
   });
 });

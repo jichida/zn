@@ -29,7 +29,7 @@ let starttriprequestorder = (socket,actiondata,ctx)=>{
   datatriprequest.srclocation = [datatriprequest.srcaddress.location.lng,datatriprequest.srcaddress.location.lat];
   datatriprequest.dstlocation = [datatriprequest.dstaddress.location.lng,datatriprequest.dstaddress.location.lat];
   datatriprequest.requeststatus = '请求中';//请求中
-  console.log("starttriprequest data:" + JSON.stringify(datatriprequest));
+  //console.log("starttriprequest data:" + JSON.stringify(datatriprequest));
   let TripRequestModel = DBModels.TripRequestModel;
   let entitytriprequest = new TripRequestModel(datatriprequest);
   entitytriprequest.save((err,triprequest)=>{
@@ -296,7 +296,7 @@ exports.canceltriprequestorder_request =(socket,actiondata,ctx)=>{
 //     param.userid = ctx.userid;
 //   }
 //   triprequest.getnearestdrivers(param,(issuc,result)=>{
-//       console.log("getnearestdrivers=>" + JSON.stringify(result));
+//       //console.log("getnearestdrivers=>" + JSON.stringify(result));
 //       if(issuc){
 //         socket.emit('action', {type:'mappagerequest_nearestdrivers', data:result});
 //       }

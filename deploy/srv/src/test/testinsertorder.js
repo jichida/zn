@@ -77,10 +77,10 @@ let order = questobj;
 order.updated_at = new Date();
 order.created_at = new Date();
 let entity = new orderModel(order);
-console.log("insertorder=>" + JSON.stringify(order));
+//console.log("insertorder=>" + JSON.stringify(order));
 entity.save((err,result)=>{
-  console.log("insertorder err=>" + JSON.stringify(err));
-  console.log("insertorder result=>" + JSON.stringify(result));
+  //console.log("insertorder err=>" + JSON.stringify(err));
+  //console.log("insertorder result=>" + JSON.stringify(result));
   done();
   });
 });

@@ -17,7 +17,7 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
       else if(paytype == 'weixin'){
         payobj = globalpayparam.weixin;
       }
-      console.log("payobj:" + JSON.stringify(payobj));
+      //console.log("payobj:" + JSON.stringify(payobj));
       if(paytype == 'alipay'){
         var strcontent = "partner=\"";
         strcontent+= payobj.partner;//"2088021265636683";
@@ -42,12 +42,12 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
         strcontent+="\"&it_b_pay=\"";
         strcontent+=payobj.it_b_pay;//"30m";
         strcontent+="\"";
-        console.log("strcontent:"+strcontent);
+        //console.log("strcontent:"+strcontent);
         let sign = alipaysigner.getAlipayPaySign(strcontent);
         const retdata = strcontent +
             '&sign_type="RSA"' +
             '&sign="' + sign + '"';
-        console.log(retdata);
+        //console.log(retdata);
         resultcallback(null,retdata);
       }
       else if(paytype == 'weixin'){
@@ -74,15 +74,15 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
         //     nonce_str:'ibuaiVcKdpRxkhJA'
         //   };
         //   var params = obj2param(jsonobj,"normal");
-        //   console.log("jsontoparams:" + params);
-        //   console.log(`stringA="appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_id=10000100&nonce_str=ibuaiVcKdpRxkhJA"`);
+        //   //console.log("jsontoparams:" + params);
+        //   //console.log(`stringA="appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_id=10000100&nonce_str=ibuaiVcKdpRxkhJA"`);
         //   var stringSignTemp = params + '&key=192006250b4c09247ec02edce69f6a2d';//+globalpayparam.keystring;
-        //   console.log("stringSignTemp:" + stringSignTemp);
+        //   //console.log("stringSignTemp:" + stringSignTemp);
         //   jsonobj.sign = CryptoJS.MD5(stringSignTemp).toString().toUpperCase();
         //   var builder = new xml2js.Builder({rootName:'xml'});
         //   var xml = builder.buildObject(jsonobj);
-        //   console.log("xml:--->\n" + xml );
-        //   console.log(`期望:<xml>
+        //   //console.log("xml:--->\n" + xml );
+        //   //console.log(`期望:<xml>
         //       <appid>wxd930ea5d5a258f4f</appid>
         //       <mch_id>10000100</mch_id>
         //       <device_info>1000<device_info>
@@ -111,12 +111,12 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
           }).sort().map((key)=>{
           return key + '=' + param[key];
          }).join("&") + "&key=" + payobj.keystring;
-        console.log("stringSignTemp:" + stringSignTemp);
+        //console.log("stringSignTemp:" + stringSignTemp);
 
         jsonobj.sign = CryptoJS.MD5(stringSignTemp).toString().toUpperCase();
         var builder = new xml2js.Builder({rootName:'xml'});
         var xml = builder.buildObject(jsonobj);
-        console.log("xml:--->\n" + xml );
+        //console.log("xml:--->\n" + xml );
         var baseUrl = payobj.unifiedorderurl;//'https://api.mch.weixin.qq.com/pay/unifiedorder';
 
 
@@ -125,12 +125,12 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
           body : xml,
           headers: {'Content-Type': 'text/xml'}
         },(error, response, body)=> {
-            console.log("error:" + JSON.stringify(error));
-            console.log("body:" + body);
-            console.log("response:" + JSON.stringify(response));
+            //console.log("error:" + JSON.stringify(error));
+            //console.log("body:" + body);
+            //console.log("response:" + JSON.stringify(response));
             if(!error && body.length > 0){
               xml2js.parseString(body,(err,obj)=>{
-                console.log("obj:" + JSON.stringify(obj));
+                //console.log("obj:" + JSON.stringify(obj));
                 if(obj.xml.return_code == 'SUCCESS' ){
                   if(obj.xml.result_code == 'SUCCESS' ){
                     // {
@@ -160,7 +160,7 @@ let getpayresultstring = (paytype,orderDoc,resultcallback)=>{
                           return key + '=' + param[key];
                         }).join("&") + "&key=" + payobj.keystring;
                       resultjson.sign = CryptoJS.MD5(stringSignTemp).toString().toUpperCase();
-                      console.log("resultjson:" + JSON.stringify(resultjson));
+                      //console.log("resultjson:" + JSON.stringify(resultjson));
                       resultcallback(null,resultjson);
                       //return resultjson;
                   }

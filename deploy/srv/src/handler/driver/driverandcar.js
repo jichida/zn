@@ -22,7 +22,7 @@ let get_fnsavebaseinfodriver = (retdoc)=>{
 
       baseInfoDriver._id = baseInfoDriverid;
       dbplatformmodel.findOneAndUpdate({_id:baseInfoDriverid},{$set:baseInfoDriver},{upsert:true,new:true},(err,result)=>{
-        console.log(`[保存到Platform_baseInfoDriverModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
+        //console.log(`[保存到Platform_baseInfoDriverModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
         fncallback(err,result);
       });
   };
@@ -60,7 +60,7 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
 
       let dbplatformmodel = DBPlatformModels.Platform_baseInfoVehicleModel;
       dbplatformmodel.findOneAndUpdate({_id:baseinfovehicleid},{$set:baseInfovehicle},{upsert:true,new:true},(err,result)=>{
-        console.log(`[保存到Platform_baseInfoVehicleModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
+        //console.log(`[保存到Platform_baseInfoVehicleModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
         fncallback(err,result);
       });
   };
@@ -129,10 +129,10 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
 
           };
 
-          console.log(`开始--->\nmycarid:${mycarid},数据:${JSON.stringify(cardata)}\n`);
+          //console.log(`开始--->\nmycarid:${mycarid},数据:${JSON.stringify(cardata)}\n`);
           dbcarmodel.findOneAndUpdate({_id:mycarid},{$set:cardata},{upsert:true,new:true},(err,result)=>{
-            console.log(`[保存到MycarModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
-            console.log(err);
+            //console.log(`[保存到MycarModel]传入参数:${JSON.stringify(retdoc)}\n结果:${JSON.stringify(result)}\n\n`);
+            //console.log(err);
             fncallback(err,result);
           });
         }

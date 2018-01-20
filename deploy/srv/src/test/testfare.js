@@ -20,7 +20,7 @@ describe('价格信息', () => {
         };
         price.getBaseInfoCompanyFare(input,(err,result)=>{
             if(!err){
-                console.log('测试结果：'+JSON.stringify(result));
+                //console.log('测试结果：'+JSON.stringify(result));
             }
             done();
         });

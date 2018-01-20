@@ -18,7 +18,7 @@ let postaction = (actionname,collectionname,doc)=>{
           if(collectionname === 'baseinfodrivereducate'){
             newdoc.Address = driver.Address;
           }
-          console.log(newdoc);
+          //console.log(newdoc);
           PubSub.publish('platformmessage_upload',{
             action:actionname,//'findByIdAndUpdate',
             collectionname:collectionname,//'baseinfocompany',

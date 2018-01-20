@@ -8,7 +8,7 @@ exports.pushrequesttodrivers = (socket,actiondata,ctx)=>{
     TripRequestModel.findOne({_id:actiondata.requestid,requeststatus:'请求中'},
       (err,triprequest)=>{
         if(!err && !!triprequest){
-          console.log(`推送给所有司机:${JSON.stringify(actiondata.driveridlist)}`);
+          //console.log(`推送给所有司机:${JSON.stringify(actiondata.driveridlist)}`);
           _.map(actiondata.driveridlist,(driverid)=>{
             let eventobj = {
               cmd:'serverpush_nearbyrequests_addone',

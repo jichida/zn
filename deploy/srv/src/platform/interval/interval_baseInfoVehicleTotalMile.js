@@ -44,7 +44,7 @@ const fn_getalldrivereidfrompositionvehicle = (UpdateTimeString,callbackfn)=>{
        (err, list)=> {
          let vehicleno_list = [];
          if(!err && !!list){
-           console.log(`result list===>${JSON.stringify(list)}`)
+           //console.log(`result list===>${JSON.stringify(list)}`)
            //DO WITH vehicleno_list
            _.map(list,(v)=>{
              if(v._id !== ''){
@@ -80,7 +80,7 @@ const fn_getvehicle_positions = (UpdateTimeString,vehicleno,callbackfn)=>{
     };
   }
   const fields = 'Latitude Longitude';
-  console.log(`query==>${JSON.stringify(query)}`);
+  //console.log(`query==>${JSON.stringify(query)}`);
   dbModel.find(query,fields,{sort:{PositionTime:1}},(err,list)=>{
     let calc = 0;
     if(!err && !!list){
@@ -124,7 +124,7 @@ const interval_setvehicle = (vehicleno,calcmile,callbackfn)=>{
             callbackfn(result);
           }
           else{
-            console.log(err);
+            //console.log(err);
             callbackfn(null);
           }
         });
@@ -133,18 +133,18 @@ const interval_setvehicle = (vehicleno,calcmile,callbackfn)=>{
 }
 
 const interval_baseInfoVehicleTotalMile = ()=>{
-  console.log(`interval_baseInfoVehicleTotalMile===>`);
+  //console.log(`interval_baseInfoVehicleTotalMile===>`);
   fn_getearliestupdatetime((UpdateTimeString)=>{
-    console.log(`fn_getearliestupdatetime===>${UpdateTimeString}`);
+    //console.log(`fn_getearliestupdatetime===>${UpdateTimeString}`);
     fn_getalldrivereidfrompositionvehicle(UpdateTimeString,(vehicleno_list)=>{
-        console.log(`fn_getalldrivereidfrompositionvehicle===>${JSON.stringify(vehicleno_list)}`);
+        //console.log(`fn_getalldrivereidfrompositionvehicle===>${JSON.stringify(vehicleno_list)}`);
         _.map(vehicleno_list,(vehicleno)=>{
           fn_getvehicle_updatetime(vehicleno,(UpdateTimeString)=>{
-            console.log(`fn_getvehicle_updatetime===>${JSON.stringify(UpdateTimeString)}`);
+            //console.log(`fn_getvehicle_updatetime===>${JSON.stringify(UpdateTimeString)}`);
             fn_getvehicle_positions(UpdateTimeString,vehicleno,(calcmile)=>{
-              console.log(`fn_getvehicle_positions===>${calcmile}`);
+              //console.log(`fn_getvehicle_positions===>${calcmile}`);
               interval_setvehicle(vehicleno,calcmile,(result)=>{
-                console.log(`interval_setvehicle===>${JSON.stringify(result)}`);
+                //console.log(`interval_setvehicle===>${JSON.stringify(result)}`);
                 if(!!result){
                   PubSub.publish('platformmessage_upload',{
                     action:'findByIdAndUpdate',//'findByIdAndUpdate',

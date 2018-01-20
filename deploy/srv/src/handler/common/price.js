@@ -47,7 +47,7 @@ let getBaseInfoCompanyFareList = (param= {
     curtimeformatted = moment(curtimeformatted).format('YYYY-MM-DD HH:mm:ss')
   }
   let faretype = config.faretypemap[param.triptype];
-  console.log(`faretype:${faretype}`)
+  //console.log(`faretype:${faretype}`)
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   const query = {
     $and: [
@@ -269,7 +269,7 @@ exports.getpricestring = (param,callback)=>{
     //       //
     //       // in will also return true if key gets found somewhere in the prototype chain, whereas Object.hasOwnProperty (like the name already tells us), will only return true if key is available on that object directly (its "owns" the property).
     //     if('pricestring' in result){ //注意：对象的对象不能用hasOwnProperty,会返回false
-    //       console.log("result.pricestring2==>" + JSON.stringify(result.pricestring));
+    //       //console.log("result.pricestring2==>" + JSON.stringify(result.pricestring));
     //       if(result.pricestring.hasOwnProperty(param.registertype)){
     //         tmpl = result.pricestring[param.registertype];
     //       }
@@ -300,7 +300,7 @@ exports.getpricestring = (param,callback)=>{
       //   totaldistancestring:totaldistancestring,
       //   totaldurationstring:totaldurationstring
       // });
-      // console.log("getpricestring===>" + JSON.stringify({
+      // //console.log("getpricestring===>" + JSON.stringify({
       //   resulthtmlstring:resulthtmlstring,
       //   totalprice:totalprice,
       // }));

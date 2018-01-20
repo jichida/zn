@@ -55,8 +55,8 @@ exports.getnearestdrivers = (param,callback)=>{
   let coords = param.location;
   let maxDistance = config.maxDistance;
   let UserDriverRealtimeLocation = mongoose.model('UserDriverRealtimeLocation', DBModels.UserDriverRealtimeLocationSchema);
-  console.log("getnearestdrivers coords===>" + JSON.stringify(coords));
-  console.log("getnearestdrivers registertype===>" + JSON.stringify(param.registertype));
+  //console.log("getnearestdrivers coords===>" + JSON.stringify(coords));
+  //console.log("getnearestdrivers registertype===>" + JSON.stringify(param.registertype));
 
   UserDriverRealtimeLocation.find({
          driverlocation:
@@ -88,7 +88,7 @@ exports.getnearbyrequests = (param,callback)=>{
   //param:location,位置信息
   //distance:x(单位km)
   //{$or: [{messagetype:'rider'}, {messagetype:'all'}]},
-  console.log("param.userid:" + param.userid);
+  //console.log("param.userid:" + param.userid);
   if(param.hasOwnProperty("userid")){
     if(param.userid != ''){
       let driverlocationobj = {
@@ -97,12 +97,12 @@ exports.getnearbyrequests = (param,callback)=>{
         driverlocation:param.driverlocation,
         registertype:param.registertype
       };
-      console.log("getnearbyrequests driverlocationobj:" + JSON.stringify(driverlocationobj));
+      //console.log("getnearbyrequests driverlocationobj:" + JSON.stringify(driverlocationobj));
 
       let UserDriverRealtimeLocationModel = DBModels.UserDriverRealtimeLocationModel;
       UserDriverRealtimeLocationModel.update({driverid:param.userid},driverlocationobj,{upsert: true}, (err,result)=>{
-        console.log("getnearbyrequests update err:" + JSON.stringify(err));
-        console.log("getnearbyrequests update result:" + JSON.stringify(result));
+        //console.log("getnearbyrequests update err:" + JSON.stringify(err));
+        //console.log("getnearbyrequests update result:" + JSON.stringify(result));
       });
     }
 
@@ -151,10 +151,10 @@ exports.getnearbyrequests = (param,callback)=>{
         newqueryobj['$and'].push(queryobj);
         queryobj = newqueryobj;
       }
-      console.log(`getnearbyrequests=========${JSON.stringify(queryobj)}`);
+      //console.log(`getnearbyrequests=========${JSON.stringify(queryobj)}`);
       TripRequestModel.find(queryobj,(err,list)=>{
-          console.log("err:" + JSON.stringify(err));
-          console.log("list:" + JSON.stringify(list));
+          //console.log("err:" + JSON.stringify(err));
+          //console.log("list:" + JSON.stringify(list));
           if(err){
             callback(false,err);
           }

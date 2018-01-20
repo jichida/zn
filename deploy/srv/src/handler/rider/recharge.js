@@ -13,7 +13,7 @@ exports.getrechargerecords = (socket,payloadata,ctx)=>{
         path:'fromorder', select:'triptype', model: 'triporder'
       },
     ];
-    console.log(`getrechargerecords===>${JSON.stringify(payloadata)}`);
+    //console.log(`getrechargerecords===>${JSON.stringify(payloadata)}`);
 
     rechargerecordModel.paginate(payloadata.query,payloadata.options,(err,list)=>{
       if(!err){
@@ -45,13 +45,13 @@ exports.paywithleftbalance_daijiacancel = (ctx,order,systemconfig,user,callbackf
                       srctype:'paywithleftbalance',
                       created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                   });
-   console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
+   //console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
    entityuser1.save((err,rechargerecord1)=>{
       if(!err && !!rechargerecord1){
-          console.log(`使用余额支付,创建充值记录:${JSON.stringify(rechargerecord1)}`);
+          //console.log(`使用余额支付,创建充值记录:${JSON.stringify(rechargerecord1)}`);
           userModel.findOneAndUpdate({_id:user._id},{$set:{balance:feenew}},{new:true},(err,ctxuser)=>{
               //更新用户余额《----》
-              console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
+              //console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
               winston.getlog().warn(`更新用户${ctxuser._id}余额`);
 
               //更新订单为已支付
@@ -102,7 +102,7 @@ exports.paywithleftbalance_daijiacancel = (ctx,order,systemconfig,user,callbackf
       }
       else if(err){
           callbackfn(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
-          console.log(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
+          //console.log(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
       }
    });
 }
@@ -126,13 +126,13 @@ exports.paywithleftbalance = (ctx,order,user,callbackfn)=>{
                         srctype:'paywithleftbalance',
                         created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                     });
-     console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
+     //console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
      entityuser1.save((err,rechargerecord1)=>{
         if(!err && !!rechargerecord1){
-            console.log(`使用余额支付,创建充值记录:${JSON.stringify(rechargerecord1)}`);
+            //console.log(`使用余额支付,创建充值记录:${JSON.stringify(rechargerecord1)}`);
             userModel.findOneAndUpdate({_id:user._id},{$set:{balance:feenew}},{new:true},(err,ctxuser)=>{
                 //更新用户余额《----》
-                console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
+                //console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
                 winston.getlog().warn(`更新用户${ctxuser._id}余额`);
 
                 //更新订单为已支付
@@ -184,7 +184,7 @@ exports.paywithleftbalance = (ctx,order,user,callbackfn)=>{
             });
         }
         else if(!!err){
-            console.log(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
+            //console.log(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
             callbackfn(`使用余额支付,创建充值记录:${JSON.stringify(err)}`);
         }
      });

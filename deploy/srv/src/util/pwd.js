@@ -8,7 +8,7 @@ let hashPassword =  (password, salt, callback)=> {
     // We use pbkdf2 to hash and iterate 10k times by default
     const iterations = 10000;
     const keyLen = 64; // 64 bit.
-    console.log("password is :" + password);
+    //console.log("password is :" + password);
    // password = new Buffer(password, 'binary');
     crypto.pbkdf2(password, salt, iterations, keyLen,'sha1', (err,result)=>{
       if(!err && result){
@@ -25,9 +25,9 @@ let getsalt = ()=>{
 }
 
 let checkPassword = (password,passwordsalt,checkedpassword,callback)=>{
-  console.log(`checkPassword:${checkedpassword},passwordsalt:${passwordsalt}`);
+  //console.log(`checkPassword:${checkedpassword},passwordsalt:${passwordsalt}`);
   hashPassword(checkedpassword, passwordsalt, (err, passwordHash)=> {
-    console.log(`passwordHash:${passwordHash},password:${password}`);
+    //console.log(`passwordHash:${passwordHash},password:${password}`);
     if (passwordHash == password) {
       callback(null,true);
     }

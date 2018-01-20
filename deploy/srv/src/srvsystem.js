@@ -83,7 +83,7 @@ let initplatform =()=>{
 //     retdoc.seatnumberpaid = 0;
 //     retdoc.seatnumbernotpaid = 0;
 //     obj = retdoc;
-//     console.log(`retdoc:${JSON.stringify(retdoc)}`);
+//     //console.log(`retdoc:${JSON.stringify(retdoc)}`);
 //     callfn(null,retdoc);
 //   }
 //
@@ -119,15 +119,15 @@ let initplatform =()=>{
 //   dbModel.paginate({},{},(err,result)=>{
 //     //result = result.toJSON(); //turns it into JSON YAY!
 //     actionfun(result,(err,resultnew)=>{
-//       console.log(`========>result:${JSON.stringify(result)}`);
-//       console.log(`========>result:${JSON.stringify(resultnew)}`);
+//       //console.log(`========>result:${JSON.stringify(result)}`);
+//       //console.log(`========>result:${JSON.stringify(resultnew)}`);
 //     });
 //   });
 //   // dbModel.findById('59085ee59455981a987b1058',(err,result)=>{
 //   //   result = result.toJSON(); //turns it into JSON YAY!
 //   //   actionfun(result,(err,resultnew)=>{
-//   //     console.log(`========>result:${JSON.stringify(result)}`);
-//   //     console.log(`========>result:${JSON.stringify(resultnew)}`);
+//   //     //console.log(`========>result:${JSON.stringify(result)}`);
+//   //     //console.log(`========>result:${JSON.stringify(resultnew)}`);
 //   //   });
 //   // });
 // }
@@ -156,7 +156,7 @@ let job=()=>{
   //自动备份等
   //定时处理请求为无效
   var j = schedule.scheduleJob('*/1 * * * *', ()=>{
-    //console.log('每隔一分钟执行这里!');
+    ////console.log('每隔一分钟执行这里!');
     setRequestExpired();
   });
 

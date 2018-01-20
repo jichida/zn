@@ -49,7 +49,7 @@ describe('测试旅游大巴', () => {
   tourbusinfolistdata.forEach((obj)=>{
     let entity = new tourbusinfoModel(obj);
     entity.save((err,result)=>{
-      console.log('save --->' + JSON.stringify(result));
+      //console.log('save --->' + JSON.stringify(result));
     });
   });
 });

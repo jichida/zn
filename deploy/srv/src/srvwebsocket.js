@@ -25,7 +25,7 @@ let startwebsocketsrv = (http)=>{
   let io = require('socket.io')(http);
 
   io.on('connection', (socket)=>{
-    console.log('a user connected');
+    //console.log('a user connected');
 
     let ctx = {};//for each connection
     socketsubfn.usersubfn(socket,ctx);
@@ -39,7 +39,7 @@ let startwebsocketsrv = (http)=>{
         ctx.curorder={};
         ctx.currequest={};
       }
-      console.log('get message:' + JSON.stringify(payload));
+      //console.log('get message:' + JSON.stringify(payload));
       winston.getlog().info('ctx:', JSON.stringify(ctx));
       handlerideruser(socket,payload,ctx);
     });
@@ -72,7 +72,7 @@ let startwebsocketsrv = (http)=>{
 
 
     socket.on('error',(err)=>{
-      console.log("socket err:" + JSON.stringify(err));
+      //console.log("socket err:" + JSON.stringify(err));
       socket.disconnect(true);
       PubSub.unsubscribe( ctx.userReqSubscriber );
       PubSub.unsubscribe( ctx.userUserSubscriber );
@@ -80,7 +80,7 @@ let startwebsocketsrv = (http)=>{
     });
 
     socket.on('disconnect', ()=> {
-      console.log("socket disconnect!");
+      //console.log("socket disconnect!");
       PubSub.unsubscribe( ctx.userReqSubscriber );
       PubSub.unsubscribe( ctx.userUserSubscriber );
 

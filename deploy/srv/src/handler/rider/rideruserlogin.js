@@ -20,7 +20,7 @@ exports.queryuserbalance = (socket,actiondata,ctx)=>{
       socket.emit('queryuserbalance_result', {balance:userEntity.balance});
     }
     else{
-      console.log(`${JSON.stringify(err)},${JSON.stringify(userEntity)},id:${ctx.userid}`);
+      //console.log(`${JSON.stringify(err)},${JSON.stringify(userEntity)},id:${ctx.userid}`);
       socket.emit('common_err',{errmsg:'找不到该用户',type:'queryuserbalance'});
     }
   });
@@ -30,7 +30,7 @@ let userloginsuccess =(socket,ctx)=>{
   socket.emit('serverpush_userloginsuccess_notify', {servertime:new Date()});
 //乘客端订单恢复逻辑（待定）
 //找到最后一个订单信息
-    console.log("乘客用户登录成功=======》" + ctx.userid);
+    //console.log("乘客用户登录成功=======》" + ctx.userid);
     let TripOrderModel = DBModels.TripOrderModel;
     let queryobj = {
       rideruserid:ctx.userid,
@@ -58,7 +58,7 @@ let userloginsuccess =(socket,ctx)=>{
           PubSub.subscribe(`request.${triprequest._id}`, ctx.userReqSubscriber);
 
           triporder.triprequest = triprequest._id;
-          console.log("恢复一个订单=======》" + JSON.stringify({triprequest,triporder}));
+          //console.log("恢复一个订单=======》" + JSON.stringify({triprequest,triporder}));
           socket.emit('serverpush_restoreorder', {triprequest,triporder});
         }
       }
@@ -147,9 +147,9 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
       let userModel = DBModels.UserRiderModel;
       userModel.findByIdAndUpdate(userid,
         {updated_at:new Date()},{new: true},(err,result)=>{
-        console.log("userid:" + userid);
-        console.log("err:" + JSON.stringify(err));
-        console.log("result:" + JSON.stringify(result));
+        //console.log("userid:" + userid);
+        //console.log("err:" + JSON.stringify(err));
+        //console.log("result:" + JSON.stringify(result));
         if(!err && !!result){
           setloginsuccess(socket,ctx,result);
         }
@@ -161,8 +161,8 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
 
       //PubSub.publish(userid, {msg:'allriders',data:'bbbb',topic:'name'});
   } catch (e) {
-      console.log("invalied token===>" + JSON.stringify(actiondata.token));
-      console.log("invalied token===>" + JSON.stringify(e));
+      //console.log("invalied token===>" + JSON.stringify(actiondata.token));
+      //console.log("invalied token===>" + JSON.stringify(e));
       socket.emit('common_err',{errmsg:e.message,type:'login'});
   }
 }
@@ -261,7 +261,7 @@ exports.oauthbinduser = (socket,actiondata,ctx)=>{
    updateduserobj.openidweixin = actiondata.openid;
  }
  let queryuserobj = {username:actiondata.username};
- console.log(`queryuserobj==>${JSON.stringify(queryuserobj)},updateduserobj==>${JSON.stringify(updateduserobj)}`)
+ //console.log(`queryuserobj==>${JSON.stringify(queryuserobj)},updateduserobj==>${JSON.stringify(updateduserobj)}`)
  let userModel = DBModels.UserRiderModel;
  userModel.findOneAndUpdate(queryuserobj,
    updateduserobj,{upsert:true,new: true,},(err,result)=>{

@@ -42,7 +42,7 @@ exports.getonepincheroutepassengers = (socket,actiondata,ctx)=>{
        {$project: {username:"$fromuserobj.username",userid:"$fromuserobj._id",seatnumbertotal:true,}}
        ],
        (err, list)=> {
-        console.log(`getonepincheroutepassengers===========>${JSON.stringify(list)}`);
+        //console.log(`getonepincheroutepassengers===========>${JSON.stringify(list)}`);
          if(!err){
            socket.emit('getonepincheroutepassengers_result',{result:list});
          }

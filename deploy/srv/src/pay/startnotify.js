@@ -54,7 +54,7 @@ const alipaysigner = require('./alipay_signer.js');
 
 let setorderpaid = (out_trade_no)=>{
   let dbModel = DBModels.TripOrderModel;
-  console.log(`alipaytest====>${out_trade_no}`);
+  //console.log(`alipaytest====>${out_trade_no}`);
   dbModel.findOne({out_trade_no: out_trade_no},(err,orderinfo)=>{
       if(!err && !!orderinfo){
           let orderid = orderinfo._id;
@@ -72,7 +72,7 @@ let setorderpaid = (out_trade_no)=>{
             },{$set:updatedpaydata}, {new: true}, (err, updateditem)=> {
               if(!err && !!updateditem){
                 setordersuccessandnotify(updateditem,(eventobj)=>{
-                  console.log(`eventobj========>${JSON.stringify(eventobj)}`);
+                  //console.log(`eventobj========>${JSON.stringify(eventobj)}`);
                   PubSub.publish(`user.rider.${updateditem.rideruserid}`,eventobj);
                 });
                 //PubSub.publish(`order.${updateditem.creator}`,updateditem);
@@ -178,7 +178,7 @@ let startmodule = (app)=>{
 //====================================================================
   app.post('/pay/alipay',notifypay.notify_alipay((msg, req, res, next)=>{
      winston.getlog().warn(`这里处理！接收到支付宝回调:${JSON.stringify(msg)}`);
-     console.log(`==>${JSON.stringify(msg)}`);
+     //console.log(`==>${JSON.stringify(msg)}`);
      if(msg.trade_status === 'TRADE_SUCCESS'){
        let payobj = globalpayparam.alipay;
        if(msg.seller_id !== payobj.partner || msg.seller_email !== payobj.seller_id){
@@ -189,7 +189,7 @@ let startmodule = (app)=>{
        }
 
        {
-         console.log(`==>原始数据<===`);
+         //console.log(`==>原始数据<===`);
          var keys = Object.keys(msg).sort();
          var prestr = [];
          keys.forEach(function (e) {
@@ -197,11 +197,11 @@ let startmodule = (app)=>{
          });
          prestr = prestr.join('&');
          winston.getlog().warn(`==>原始数据<===:${prestr}`);
-         console.log(`==>${prestr}`);
+         //console.log(`==>${prestr}`);
        }
 
        const result = alipaysigner.verifyAlipaySign(msg);
-       console.log(`==>result:${result}<===`);
+       //console.log(`==>result:${result}<===`);
        if(!result){
          winston.getlog().warn(`==>验证失败找原因啊<===:${prestr}`);
        }
@@ -281,22 +281,22 @@ module.exports=  startmodule;
 //       notify_id: 'c1757296faa70e7a943bb6105d5f705nhi',
 //       seller_email: '1144709265@qq.com' };
 //   {
-//     console.log(`==>原始数据<===`);
+//     //console.log(`==>原始数据<===`);
 //     var keys = Object.keys(msg).sort();
 //     var prestr = [];
 //     keys.forEach(function (e) {
 //         prestr.push(e+'='+msg[e]);
 //     });
 //     prestr = prestr.join('&');
-//     console.log(`==>${prestr}`);
+//     //console.log(`==>${prestr}`);
 //   }
 //
 //   const result = alipaysigner.verifyAlipaySign(msg);
 //   if(!result){
-//     console.log(`==>找原因啊！<===`);
+//     //console.log(`==>找原因啊！<===`);
 //   }
 //   else{
-//     console.log(`==>成功啦！<===`);
+//     //console.log(`==>成功啦！<===`);
 //   }
 //
 // }

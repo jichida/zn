@@ -8,7 +8,7 @@ exports.initLog =  ()=>{
 
   var logfile = `${config.logdir}/${filename}.log`;
   var logpath = path.resolve(__dirname,'../', logfile);
-  console.log(`logpath==>${logpath}`);
+  //console.log(`logpath==>${logpath}`);
 
   var logfileerr = `${config.logdir}/${filename}_err.log`;
   var logpatherr = path.resolve(__dirname,'../', logfileerr);

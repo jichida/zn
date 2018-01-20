@@ -19,8 +19,8 @@ describe('测试支付方式', () => {
     it('获得支付宝数据', (done) => {
           orderDoc.finalmoney = 0.01;
           pay.getpayresultstring('alipay',orderDoc,(err,result)=>{
-            console.log("err:" + JSON.stringify(err));
-            console.log("result:" + JSON.stringify(result));
+            //console.log("err:" + JSON.stringify(err));
+            //console.log("result:" + JSON.stringify(result));
             done();
           });
       });
@@ -30,8 +30,8 @@ describe('测试支付方式', () => {
         orderDoc.total_fee = 0.01 * 100;
         orderDoc.product_id = 'xxxxxxxxxxx';
         pay.getpayresultstring('weixin',orderDoc,(err,result)=>{
-          console.log("err:" + JSON.stringify(err));
-          console.log("result:" + JSON.stringify(result));
+          //console.log("err:" + JSON.stringify(err));
+          //console.log("result:" + JSON.stringify(result));
           done();
         });
       });

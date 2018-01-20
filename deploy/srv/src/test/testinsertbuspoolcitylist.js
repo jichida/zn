@@ -37,7 +37,7 @@ describe('测试拼车路线', () => {
   buscarpoolcitylistdata.forEach((obj)=>{
     let entity = new buscarpoolcitylistModel(obj);
     entity.save((err,result)=>{
-      console.log('save --->' + JSON.stringify(result));
+      //console.log('save --->' + JSON.stringify(result));
     });
   });
 });

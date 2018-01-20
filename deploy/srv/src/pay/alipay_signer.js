@@ -53,7 +53,7 @@ const getAlipayPaySign = (orderInfo) => {
         sign = sign.sign(key,'base64');
         return encodeURIComponent(sign);
     } catch(err) {
-        console.log('veriSign err', err)
+        //console.log('veriSign err', err)
     }
 }
 
@@ -82,16 +82,16 @@ const verifyAlipaySign = (params) => {
       .reduce((x, y) => x + "&" + y)
 
     var publicPem = globalpayparam['alipay'].publickey;
-    console.log(`publicPem====>${publicPem}<====>`);
-    // publicPem ='MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB';
     //console.log(`publicPem====>${publicPem}<====>`);
+    // publicPem ='MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB';
+    ////console.log(`publicPem====>${publicPem}<====>`);
     var publicKey = base64toPem(publicPem.toString());
     var verify = crypto.createVerify('RSA-SHA1');
     verify.update(new Buffer(content, 'utf-8'));
     return verify.verify(publicKey, sign, 'base64')
   }
   catch(err) {
-    console.log('veriSign err', err)
+    //console.log('veriSign err', err)
     return false
   }
 }

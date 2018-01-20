@@ -12,10 +12,10 @@ describe('测试地理信息', () => {
         location:[119.96016,31.68762],
       }
       geo.getnearbyrequests(param,(issuc,result)=>{
-        console.log("result:" + JSON.stringify(result));
+        //console.log("result:" + JSON.stringify(result));
         if(issuc){
           result.forEach((e)=>{
-             console.log("找到:" + e.srcaddress.addressname);
+             //console.log("找到:" + e.srcaddress.addressname);
           });
         }
         done();
@@ -32,7 +32,7 @@ describe('测试地理信息', () => {
 //     geo.getnearestdrivers(param,(issuc,result)=>{
 //       if(issuc){
 //         result.forEach((e)=>{
-//            console.log("找到:" + e.curaddress.addressname);
+//            //console.log("找到:" + e.curaddress.addressname);
 //         });
 //       }
 //       done();

@@ -28,10 +28,10 @@ exports.getpaysign = (socket,actiondata,ctx)=>{
                 totalfee = parseFloat(totalfee);
             }
             if(totalfee !== orderinfo.realprice){
-              console.log(JSON.stringify({
-                totalfee:totalfee,
-                realprice:orderinfo.realprice
-              }));
+              //console.log(JSON.stringify({
+              //   totalfee:totalfee,
+              //   realprice:orderinfo.realprice
+              // }));
               socket.emit('common_err', {errmsg:`支付的订单金额和实际不一致:实际金额:${totalfee},订单中的金额:${orderinfo.realprice}`,type:'getpaysign'});
               return;
             }
@@ -49,7 +49,7 @@ exports.getpaysign = (socket,actiondata,ctx)=>{
               else if(actiondata.paytype === 'leftbalance'){
                 //<----------检查是否有优惠券----------------
                 //检查用户余额是否足够
-                  console.log(`使用余额支付:${JSON.stringify(orderinfo)}`);
+                  //console.log(`使用余额支付:${JSON.stringify(orderinfo)}`);
                   let userModel = DBModels.UserRiderModel;
                   userModel.findOne({_id:ctx.userid},(err,targetuser)=>{
                     if(targetuser.balance < orderinfo.balanceprice){

@@ -50,7 +50,7 @@ describe('测试关于页面', () => {
   aboutlistdata.forEach((obj)=>{
     let entity = new aboutModel(obj);
     entity.save((err,result)=>{
-      console.log('save --->' + JSON.stringify(result));
+      //console.log('save --->' + JSON.stringify(result));
     });
   });
 });

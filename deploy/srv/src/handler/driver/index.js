@@ -81,11 +81,11 @@ const authhandler = {
 };
 
 module.exports = (socket,actiondata,ctx)=>{
-  console.log("司机端获取数据--->" + JSON.stringify(actiondata));
-  console.log("司机端获取上下文--->" + JSON.stringify(ctx));
+  //console.log("司机端获取数据--->" + JSON.stringify(actiondata));
+  //console.log("司机端获取上下文--->" + JSON.stringify(ctx));
   try{
       if(ctx.usertype !== 'driver'){
-        console.log("不是正确的客户端--->" + actiondata.cmd);
+        //console.log("不是正确的客户端--->" + actiondata.cmd);
         socket.emit('common_err',{errmsg:'无效的app客户端'});
         return;
       }
@@ -95,7 +95,7 @@ module.exports = (socket,actiondata,ctx)=>{
       else{
         if(authhandler.hasOwnProperty(actiondata.cmd)){
           if(!ctx.hasOwnProperty('userid')){
-            console.log("需要登录--->" + actiondata.cmd);
+            //console.log("需要登录--->" + actiondata.cmd);
             socket.emit('common_err',{errmsg:'请先重新登录'});
           }
           else{
@@ -103,13 +103,13 @@ module.exports = (socket,actiondata,ctx)=>{
           }
         }
         else{
-          console.log("未找到处理函数--->" + actiondata.cmd);
+          //console.log("未找到处理函数--->" + actiondata.cmd);
           socket.emit('common_err',{errmsg:`未找到处理函数${actiondata.cmd}`});
         }
       }
     }
     catch(e){
-      console.log("服务端内部错误--->" + e);
+      //console.log("服务端内部错误--->" + e);
       socket.emit('common_err',{errmsg:`服务端内部错误:${JSON.stringify(e)}`});
     }
 }

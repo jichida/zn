@@ -30,12 +30,12 @@ let pincheorderrefund = (orderid,fnresult)=>{
                                 srctype:'pincheorderrefund',
                                 created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                             });
-             console.log(`拼车订单退款,创建充值记录:${JSON.stringify(rechargerecord)}`);
+             //console.log(`拼车订单退款,创建充值记录:${JSON.stringify(rechargerecord)}`);
              rechargerecord.save((err,rechargerecord1)=>{
                   if(!err && !!rechargerecord1){
                       userModel.findOneAndUpdate({_id:user._id},{$set:{balance:feenew}},{new:true},(err,ctxuser)=>{
                         //更新用户余额《----》
-                        console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
+                        //console.log(`更新用户${ctxuser._id}余额${feeold}=>${ctxuser.balance}`);
                         //更新订单为已退款
                         orderModel.findOneAndUpdate({_id: triporder._id},{
                             orderstatus : '已取消',

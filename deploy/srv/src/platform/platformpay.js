@@ -14,7 +14,7 @@ const utilarea = require('../util/getarea');
 //     lng:118.77,
 //   },
 // },(result)=>{
-//   console.log(result);
+//   //console.log(result);
 // });
 //triporder.resultpricedetail.fareid
 // const getBaseInfoCompanyFare = (param={
@@ -150,7 +150,7 @@ const notifyplatform_orderpaied = (order)=>{
       lng:order.getofflocation[0],
     },
   },(result)=>{
-    // console.log(result);
+    // //console.log(result);
     updateddata = _.merge(updateddata,result);
     //通知平台插入
     PubSub.publish('Platformmsgs', {

@@ -47,7 +47,7 @@ describe('测试优惠券', () => {
   let mycouponModel = mongoose.model('UserRiderCoupon', DBModels.UserRiderCouponSchema);
   let entity = new couponModel(obj);
   entity.save((err,result)=>{
-    console.log('save --->' + JSON.stringify(result));
+    //console.log('save --->' + JSON.stringify(result));
     for(var i = 0 ;i < 100;i ++){
       //仅供测试
       let mycoupon = {

@@ -2,7 +2,7 @@ const util = require('./alipaynodeutil');
 let winston = require('../log/log.js');
 exports.notify_alipay = (fn)=> {
     return function (req, res, next) {
-        console.log('--支付宝回调数据来了--');
+        //console.log('--支付宝回调数据来了--');
         console.dir(req.body);
         winston.getlog().warn(`支付宝回调数据来了`);
  
@@ -24,7 +24,7 @@ exports.notify_alipay = (fn)=> {
 
 exports.notifywexin = (fn)=>{
 	return function(req, res, next){
-        console.log('--微信回调数据来了--');
+        //console.log('--微信回调数据来了--');
         console.dir(req.body);
         winston.getlog().warn(`微信回调数据来了`);
         
@@ -39,7 +39,7 @@ exports.notifywexin = (fn)=>{
 				req.wxmessage = msg;
                 let msgstring = JSON.stringify(msg);
                 winston.getlog().warn(`接收到微信回调:${msgstring}`);
-                console.log(`接收到微信回调:${msgstring}`);
+                //console.log(`接收到微信回调:${msgstring}`);
 				fn.apply(_this, [msg, req, res, next]);
 			});
 		});

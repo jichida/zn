@@ -26,7 +26,7 @@ let carsetdefault = (socket,actiondata,ctx)=>{
             Brand:user.Platform_baseInfoVehicle.Brand,//车辆厂牌
             Model:user.Platform_baseInfoVehicle.Model,//车辆型号
           });
-          console.log(ctx.driverinfo);
+          //console.log(ctx.driverinfo);
           socket.emit('serverpush_userinfo',userlogin.getdatafromuser(user));
       }
   });

@@ -19,7 +19,7 @@ exports.queryuserbalance = (socket,actiondata,ctx)=>{
       socket.emit('queryuserbalance_result', {balance:userEntity.balance});
     }
     else{
-      console.log(`${JSON.stringify(err)},${JSON.stringify(userEntity)},id:${ctx.userid}`);
+      //console.log(`${JSON.stringify(err)},${JSON.stringify(userEntity)},id:${ctx.userid}`);
       socket.emit('common_err',{errmsg:'找不到该用户',type:'queryuserbalance'});
     }
   });
@@ -52,7 +52,7 @@ let userloginsuccess =(socket,ctx)=>{
     ctx.nearbyrequestlist = [];
     ctx.bizstatus = 4;//4.停运
     ctx.driverstatus = '未接单';
-    console.log("司机用户登录成功=======》" + ctx.userid);
+    //console.log("司机用户登录成功=======》" + ctx.userid);
     let TripOrderModel = DBModels.TripOrderModel;
     let queryobj = {
       driveruserid:ctx.userid,
@@ -85,7 +85,7 @@ let userloginsuccess =(socket,ctx)=>{
           PubSub.subscribe(`request.${triprequest._id}`, ctx.userReqSubscriber);
 
           triporder.triprequest = triprequest._id;
-          console.log("恢复一个订单=======》" + JSON.stringify({triprequest,triporder}));
+          //console.log("恢复一个订单=======》" + JSON.stringify({triprequest,triporder}));
           socket.emit('serverpush_restoreorder', {triprequest,triporder});
         }
       }
@@ -195,7 +195,7 @@ exports.setloginsuccess = setloginsuccess;
 exports.loginwithtoken = (socket,actiondata,ctx)=>{
   try {
       let decodeduser = jwt.verify(actiondata.token, config.secretkey);
-      console.log("decode user===>" + JSON.stringify(decodeduser));
+      //console.log("decode user===>" + JSON.stringify(decodeduser));
       let userid = decodeduser._id;
       let userModel = DBModels.UserDriverModel;
       userModel.findByIdAndUpdate(userid,{updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,result)=>{
@@ -209,8 +209,8 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
 
     //  PubSub.publish(userid, {msg:'allriders',data:'bbbb',topic:'name'});
   } catch (e) {
-    console.log("invalied token===>" + JSON.stringify(actiondata.token));
-    console.log("invalied token===>" + JSON.stringify(e));
+    //console.log("invalied token===>" + JSON.stringify(actiondata.token));
+    //console.log("invalied token===>" + JSON.stringify(e));
     socket.emit('common_err',{err:e.message,type:'login'});
   }
 
@@ -344,7 +344,7 @@ exports.fillrealnameprofile = (socket,actiondata,ctx)=>{
         actiondata.data.approvalstatus = '待审核';
         //insert after approval
         userModel.findByIdAndUpdate(ctx.userid,{$set:actiondata.data},{new: true},(err,user)=>{
-          console.log('userEntity------------>' + JSON.stringify(user));
+          //console.log('userEntity------------>' + JSON.stringify(user));
           if(!err && !!user){
             socket.emit('fillrealnameprofile_result',getdatafromuser(user));
           }
@@ -360,7 +360,7 @@ exports.fillrealnameprofile = (socket,actiondata,ctx)=>{
 
 let doregisteruser = (socket,newUser,ctx,socketerrstring,callbackuserexits)=>{
   let globalUserauth = loginauth.globalUserauth;
-  console.log(`doregisteruser=>${JSON.stringify(globalUserauth)}`);
+  //console.log(`doregisteruser=>${JSON.stringify(globalUserauth)}`);
    if(!globalUserauth.hasOwnProperty(newUser.username)){
     socket.emit(socketerrstring,{errmsg:'请先发送验证码',title:'注册',type:'register'});
     return;
@@ -404,7 +404,7 @@ let doregisteruser = (socket,newUser,ctx,socketerrstring,callbackuserexits)=>{
         }
         if (numberAffected === 1) {
           //Register OK
-          console.log("Register ok");
+          //console.log("Register ok");
           callbackuserexits(true,user);
         }
       });
@@ -425,7 +425,7 @@ let tryregisteruser = (socket,actiondata,ctx,newUser,socketerrstring,callback)=>
 exports.register = (socket,actiondata,ctx)=>{
   let newUser = {};
   tryregisteruser(socket,actiondata,ctx,newUser,'common_err',(isok,user)=>{
-     console.log(`register:${isok}`);
+     //console.log(`register:${isok}`);
      if(isok){
         setloginsuccess(socket,ctx,user);
         socket.emit('register_result',{user});

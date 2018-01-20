@@ -20,10 +20,10 @@ exports.insertemerygencycontact = (socket,actiondata,ctx)=>{
   let emerygencycontactModel = DBModels.UserEmerygencyContactModel;
   let obj = actiondata;
   obj.userid = ctx.userid;
-  console.log(`------->${JSON.stringify(obj)}`);
+  //console.log(`------->${JSON.stringify(obj)}`);
   let entity = new emerygencycontactModel(obj);
   entity.save((err,result)=>{
-    console.log(`err:${JSON.stringify(err)},result------->${JSON.stringify(result)}`);
+    //console.log(`err:${JSON.stringify(err)},result------->${JSON.stringify(result)}`);
     if(!err && !!result){
       socket.emit('insertemerygencycontact_result',result);
       //插入成功后返回列表

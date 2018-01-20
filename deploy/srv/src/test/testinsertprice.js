@@ -77,7 +77,7 @@ describe('测试价格', () => {
   pricedata.forEach((priceobj)=>{
     let entity = new priceModel(priceobj);
     entity.save((err,result)=>{
-      console.log('save --->' + JSON.stringify(result));
+      //console.log('save --->' + JSON.stringify(result));
     });
   });
 });

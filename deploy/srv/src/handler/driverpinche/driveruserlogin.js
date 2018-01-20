@@ -67,7 +67,7 @@ exports.setloginsuccess = setloginsuccess;
 exports.loginwithtoken = (socket,actiondata,ctx)=>{
   try {
       let decodeduser = jwt.verify(actiondata.token, config.secretkey);
-      console.log("decode user===>" + JSON.stringify(decodeduser));
+      //console.log("decode user===>" + JSON.stringify(decodeduser));
       let userid = decodeduser._id;
       let userModel = DBModels.UserDriverPincheModel;
       userModel.findByIdAndUpdate(userid,{updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,result)=>{
@@ -81,8 +81,8 @@ exports.loginwithtoken = (socket,actiondata,ctx)=>{
 
     //  PubSub.publish(userid, {msg:'allriders',data:'bbbb',topic:'name'});
   } catch (e) {
-    console.log("invalied token===>" + JSON.stringify(actiondata.token));
-    console.log("invalied token===>" + JSON.stringify(e));
+    //console.log("invalied token===>" + JSON.stringify(actiondata.token));
+    //console.log("invalied token===>" + JSON.stringify(e));
     socket.emit('common_err',{err:e.message,type:'login'});
   }
 

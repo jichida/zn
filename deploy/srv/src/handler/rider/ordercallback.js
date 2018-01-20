@@ -15,7 +15,7 @@ let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
   let srctype = 'order';
   let created_at = moment().format('YYYY-MM-DD HH:mm:ss');
   let userModel = DBModels.UserDriverModel;
-  console.log(`往司机端加一条充值记录${order.driveruserid}`);
+  //console.log(`往司机端加一条充值记录${order.driveruserid}`);
   userModel.findOne({_id:order.driveruserid},(err,targetuser)=>{
       if(!err && !!targetuser){
           let feeold = targetuser.balance || 0;
@@ -35,7 +35,7 @@ let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
               srctype,
               created_at:moment().format('YYYY-MM-DD HH:mm:ss')
           };
-          console.log(`====>${JSON.stringify(newdata)}`);
+          //console.log(`====>${JSON.stringify(newdata)}`);
           let rechargerecordModel =  DBModels.RechargerecordModel;
           let entityrechargerecord = new rechargerecordModel(newdata);
           entityrechargerecord.save((err,rechargerecord)=>{
@@ -90,13 +90,13 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
         fromorder:order._id,
         used_at:new Date()
       }},{new:true},(err,result)=>{
-        console.log(`优惠券已使用${JSON.stringify(result)}`);
+        //console.log(`优惠券已使用${JSON.stringify(result)}`);
       });
     }
 
     if(order.triptype === '代驾' || order.triptype === '出租车' || order.triptype === '快车'){
       let userModel = DBModels.UserDriverModel;
-      console.log(`往司机端加一条充值记录${order.driveruserid}`);
+      //console.log(`往司机端加一条充值记录${order.driveruserid}`);
       userModel.findOne({_id:order.driveruserid},(err,targetuser)=>{
           if(!err && !!targetuser){
               let feeold = targetuser.balance || 0;
@@ -116,7 +116,7 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
                   srctype,
                   created_at:moment().format('YYYY-MM-DD HH:mm:ss')
               };
-              console.log(`====>${JSON.stringify(newdata)}`);
+              //console.log(`====>${JSON.stringify(newdata)}`);
               let rechargerecordModel =  DBModels.RechargerecordModel;
               let entityrechargerecord = new rechargerecordModel(newdata);
               entityrechargerecord.save((err,rechargerecord)=>{
@@ -159,7 +159,7 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
     }
     else if(order.triptype === '充值'){
       let userModel = DBModels.UserRiderModel;
-      console.log(`往userfrom1加一条充值记录${creator}`);
+      //console.log(`往userfrom1加一条充值记录${creator}`);
       userModel.findOne({_id:creator},(err,targetuser)=>{
                   if(!err && !!targetuser){
                       let feeold = targetuser.balance || 0;
@@ -179,7 +179,7 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
                           srctype,
                           created_at:new Date()
                       };
-                      console.log(`====>${JSON.stringify(newdata)}`);
+                      //console.log(`====>${JSON.stringify(newdata)}`);
                       let rechargerecordModel =  DBModels.RechargerecordModel;
                       let entityrechargerecord = new rechargerecordModel(newdata);
                       entityrechargerecord.save((err,rechargerecord)=>{

@@ -102,7 +102,7 @@ module.exports = (socket,actiondata,ctx)=>{
     }
   }
   catch(e){
-    console.log(e);
+    //console.log(e);
     socket.emit('common_err',{errmsg:`服务端内部错误:${JSON.stringify(e)}`});
   }
 
