@@ -4,7 +4,10 @@ import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
+   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
+   ReferenceField,ReferenceInput,SelectInput
+
+  } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
@@ -17,8 +20,9 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {required} from 'admin-on-rest';
 import {DateInputString} from '../controls/DateInput_String.js';
 
-
-
+const renderDriverOptionText = (record)=>{
+  return `${record.DriverName}(${record.DriverPhone})(${record.LicenseId})`;
+}
 
 const RatedDriverPunishcreateTitle = ({ record }) => {
    return <span>新建 驾驶员处罚信息</span>;
@@ -26,7 +30,9 @@ const RatedDriverPunishcreateTitle = ({ record }) => {
 const RatedDriverPunishCreate = (props) => (
        <Create {...props} title={<RatedDriverPunishcreateTitle />} >
            <SimpleForm>
-             <TextInputEx label="机动车驾驶证编号" source="LicenseId"   validate={[required]}/>
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+                 <SelectInput optionText={renderDriverOptionText} />
+             </ReferenceInput>
              <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>
              <TextInputEx label="处罚原因"  source="PunishReason"   validate={[required]}/>
              <TextInputEx label="处罚结果"  source="PunishResult"   validate={[required]}/>
@@ -42,7 +48,9 @@ const RatedDriverPunisheditTitle = ({ record }) => {
 const RatedDriverPunishEdit = (props) => {
       return (<Edit title={<RatedDriverPunisheditTitle />} {...props}>
           <SimpleForm>
-            <TextInputEx label="机动车驾驶证编号" source="LicenseId"   validate={[required]}/>
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+                <SelectInput optionText={renderDriverOptionText} />
+            </ReferenceInput>
             <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>
             <TextInputEx label="处罚原因"  source="PunishReason"   validate={[required]}/>
             <TextInputEx label="处罚结果"  source="PunishResult"   validate={[required]}/>
@@ -56,6 +64,9 @@ const RatedDriverPunishEdit = (props) => {
 const RatedDriverPunishList = (props) => (//
      <List title="驾驶员处罚信息列表" {...props} >
         <Datagrid>
+        <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+          <TextField source="DriverName" />
+        </ReferenceField>
         <TextField label="机动车驾驶证编号" source="LicenseId" />
         <DateField label="处罚时间"  source="PunishTime" />
         <TextField label="处罚原因"  source="PunishReason" />

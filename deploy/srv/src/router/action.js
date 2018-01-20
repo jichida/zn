@@ -9,6 +9,7 @@ const withdraw = require('../handler/driver/withdrawcash.js');
 const jpushdriver = require('../smspush/pushdriver.js');
 const jpushrider = require('../smspush/pushrider.js');
 const moment = require('moment');
+const platformaction = require('../platform/platformaction.js');
 
 let preaction =(actionname,collectionname,doc,fnresult)=>{
   let retdoc = doc.data;
@@ -108,7 +109,7 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
               });
             }
           }
-        });    
+        });
       }
       return;
       // }
@@ -236,11 +237,13 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
     }
   }
   fncallback(null,retdoc);
-  PubSub.publish('platformmessage_upload',{
-    action:actionname,//'findByIdAndUpdate',
-    collectionname:collectionname,//'baseinfocompany',
-    doc:retdoc
-  });
+
+  platformaction.postaction(actionname,collectionname,retdoc);
+  // PubSub.publish('platformmessage_upload',{
+  //   action:actionname,//'findByIdAndUpdate',
+  //   collectionname:collectionname,//'baseinfocompany',
+  //   doc:retdoc
+  // });
 }
 
 

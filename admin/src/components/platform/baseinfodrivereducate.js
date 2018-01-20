@@ -4,7 +4,9 @@ import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
+   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
+ ReferenceField,ReferenceInput,SelectInput
+ } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
@@ -16,13 +18,19 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
 
+const renderDriverOptionText = (record)=>{
+  return `${record.DriverName}(${record.DriverPhone})(${record.LicenseId})`;
+}
+
 const BaseInfoDriverEducatecreateTitle = ({ record }) => {
    return <span>新建 驾驶员培训信息</span>;
 };
 const BaseInfoDriverEducateCreate = (props) => (
        <Create {...props} title={<BaseInfoDriverEducatecreateTitle />} >
            <SimpleForm>
-               <TextInputEx label="机动车驾驶证号" source="LicenseId"  validate={[required]}/>
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+                 <SelectInput optionText={renderDriverOptionText} />
+              </ReferenceInput>
                <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
                <DateInputString label="培训课程日期"  source="CourseDate"  validate={[required]}/>
                <TimePickerInput label="培训开始时间" source="StartTime" validate={[required]} defaultValue={'09:00'}/>
@@ -40,7 +48,9 @@ const BaseInfoDriverEducateTitle = ({ record }) => {
 const BaseInfoDriverEducateEdit = (props) => {
       return (<Edit title={<BaseInfoDriverEducateTitle />} {...props}>
           <SimpleForm>
-          <TextInputEx label="机动车驾驶证号" source="LicenseId"  validate={[required]}/>
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+                <SelectInput optionText={renderDriverOptionText} />
+             </ReferenceInput>
           <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
           <DateInputString label="培训课程日期"  source="CourseDate"  validate={[required]}/>
           <TimePickerInput label="培训开始时间" source="StartTime"  validate={[required]} defaultValue={'09:00'}/>
@@ -57,7 +67,9 @@ const BaseInfoDriverEducateEdit = (props) => {
 const BaseInfoDriverEducateList = (props) => (//
      <List title="驾驶员培训信息列表" {...props} >
         <Datagrid>
-        <TextField label="机动车驾驶证号" source="LicenseId" />
+        <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+          <TextField source="DriverName" />
+        </ReferenceField>
         <TextField label="驾驶员培训课程名称"  source="CourseName" />
         <TextField label="培训课程日期"  source="CourseDate" />
         <TextField label="培训开始时间" source="StartTime" />

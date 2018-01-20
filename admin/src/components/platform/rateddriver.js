@@ -4,7 +4,9 @@ import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,
-   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
+   DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
+ ReferenceField,ReferenceInput,SelectInput
+} from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
@@ -17,14 +19,18 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {required} from 'admin-on-rest';
 import {DateInputString} from '../controls/DateInput_String.js';
 
-
+const renderDriverOptionText = (record)=>{
+  return `${record.DriverName}(${record.DriverPhone})(${record.LicenseId})`;
+}
 const RatedDrivercreateTitle = ({ record }) => {
    return <span>新建 驾驶员信誉信息</span>;
 };
 const RatedDriverCreate = (props) => (
        <Create {...props} title={<RatedDrivercreateTitle />} >
            <SimpleForm>
-             <TextInputEx label="机动车驾驶证编号" source="LicenseId"  validate={[required]}/>
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+                <SelectInput optionText={renderDriverOptionText} />
+            </ReferenceInput>
              <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>
              <DateInputString label="服务质量信誉考核日"  source="TestDate"  validate={[required]}/>
              <TextInputEx label="服务质量信誉考核机构"  source="TestDepartment"  validate={[required]}/>
@@ -40,7 +46,9 @@ const RatedDrivereditTitle = ({ record }) => {
 const RatedDriverEdit = (props) => {
       return (<Edit title={<RatedDrivereditTitle />} {...props}>
           <SimpleForm>
-            <TextInputEx label="机动车驾驶证编号" source="LicenseId"  validate={[required]}/>
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+               <SelectInput optionText={renderDriverOptionText} />
+           </ReferenceInput>
             <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>
             <DateInputString label="服务质量信誉考核日"  source="TestDate"  validate={[required]}/>
             <TextInputEx label="服务质量信誉考核机构"  source="TestDepartment"  validate={[required]}/>
@@ -55,7 +63,9 @@ const RatedDriverEdit = (props) => {
 const RatedDriverList = (props) => (//
      <List title="驾驶员信誉信息列表" {...props} >
         <Datagrid>
-        <TextField label="机动车驾驶证编号" source="LicenseId" />
+        <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+          <TextField source="DriverName" />
+        </ReferenceField>
         <TextField label="服务质量信誉等级"  source="Level" />
         <TextField label="服务质量信誉考核日"  source="TestDate" />
         <TextField label="服务质量信誉考核机构"  source="TestDepartment" />
