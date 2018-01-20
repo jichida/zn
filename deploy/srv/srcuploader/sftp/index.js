@@ -6,12 +6,7 @@ const sftp = new Client();
 const config = require('../config.js');
 
 const sftptosrv = (localdir,localfilename,callback)=>{
-  sftp.connect({
-      host: 'vpn.czjcd.com',
-      port: '22',
-      username: 'wxq',
-      password: '******'
-  }).then(() => {
+  sftp.connect(config.sftp).then(() => {
       console.log(`file:${localdir}/${localfilename}`);
       sftp.put(`${localdir}/${localfilename}`, `/tmp/${localfilename}`);
       // return sftp.list('/pathname');

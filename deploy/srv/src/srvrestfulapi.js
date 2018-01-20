@@ -77,7 +77,7 @@ let startsrv = ()=>{
       ext = sz[sz.length - 1];
     }
     fileInfo.name = `${uuid.v4()}.${ext}`;
-    //console.log(`开始上传文件:${JSON.stringify(fileInfo)}`);
+    console.log(`开始上传文件:${JSON.stringify(fileInfo)}`);
   });
 
   upload.on('error', function (e, req, res) {
