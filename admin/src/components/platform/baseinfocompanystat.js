@@ -53,7 +53,6 @@ const BaseInfoCompanyStatList = (props) => (//
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />
         <TextField label="平台注册驾驶员数"  source="DriverNum" />
         <TextField label="数据更新时间" source="UpdateTime" />
-        <EditButton />
         </Datagrid>
     </List>
 );

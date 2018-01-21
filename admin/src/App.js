@@ -42,7 +42,7 @@ import {BaseInfoVehicleTotalMileList,BaseInfoVehicleTotalMileShow} from './compo
 import {BaseInfoDriverList,BaseInfoDriverEdit}  from './components/platform/baseinfodriver.js';
 import {BaseInfoDriverEducateList,BaseInfoDriverEducateCreate,BaseInfoDriverEducateEdit} from './components/platform/baseinfodrivereducate.js';
 import {BaseInfoDriverAppList,BaseInfoDriverAppEdit} from './components/platform/baseinfodriverapp.js';
-import {BaseInfoDriverStatList} from './components/platform/baseinfodriverstat.js';
+import {BaseInfoDriverStatList,BaseInfoDriverStatCreate} from './components/platform/baseinfodriverstat.js';
 import {BaseInfoPassengerList,BaseInfoPassengerEdit} from './components/platform/baseinfopassenger.js';
 
 import {OrderCreateList,OrderCreateShow}  from './components/platform/ordercreate.js';
@@ -102,7 +102,7 @@ class App extends Component {
 
             <Resource name="baseinfocompany" list={BaseInfoCompanyList} />
             <Resource name="baseinfocompanyservice" list={BaseInfoCompanyServiceList}/>
-            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList}  edit={BaseInfoCompanyStatEdit}/>
+            <Resource name="baseinfocompanystat" list={BaseInfoCompanyStatList} />
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} remove={Delete} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} remove={Delete} />
@@ -112,7 +112,7 @@ class App extends Component {
             <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}  />
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} remove={Delete} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} edit={BaseInfoDriverAppEdit} />
-            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  />
+            <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  create={BaseInfoDriverStatCreate}/>
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} edit={BaseInfoPassengerEdit} />
             <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
             <Resource name="ordermatch" list={OrderMatchList} show={OrderMatchShow} />
