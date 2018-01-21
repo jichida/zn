@@ -3,7 +3,12 @@ const util = require('./util');
 const _ = require('lodash');
 const dbplatform = require('../db/modelsplatform.js');
 
-let postaction = (actionname,collectionname,doc)=>{
+const converturltofilename = (file_url)=>{
+  let arr = file_url.split("/");
+  return arr[arr.length - 1];
+}
+
+const postaction = (actionname,collectionname,doc)=>{
   let retdoc = doc;
   if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
     if(collectionname === 'rateddriverpunish' ||
@@ -25,6 +30,33 @@ let postaction = (actionname,collectionname,doc)=>{
             doc:newdoc
           });
         }
+      });
+      return;
+    }
+
+    if(collectionname === 'baseinfocompany' ||
+    collectionname === 'baseinfovehicle' ||
+    collectionname === 'baseinfodriver'){
+      //conver URL->file
+      let newdoc = _.clone(retdoc.toJSON());
+      if(collectionname === 'baseinfocompany'){
+        newdoc.LegalPhoto = converturltofilename(newdoc.LegalPhotoURL);
+        newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
+      }
+      else if(collectionname === 'baseinfovehicle'){
+        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
+        newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
+      }
+      else if(collectionname === 'baseinfodriver'){
+        newdoc.LicensePhotoId = converturltofilename(newdoc.LicensePhotoIdURL);
+        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
+        newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
+      }
+
+      PubSub.publish('platformmessage_upload',{
+        action:actionname,//'findByIdAndUpdate',
+        collectionname:collectionname,//'baseinfocompany',
+        doc:newdoc
       });
       return;
     }
