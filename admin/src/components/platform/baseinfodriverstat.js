@@ -26,6 +26,12 @@ import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 import moment from 'moment';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import NewStatButton from './stat/NewStatButton';
+import { CardActions } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
+
+
 const BaseInfoDriverStatTitle = ({ record }) => <span>驾驶员统计信息</span>;
 
 // Address:Number,//	是数字型F6注册地行政区划代码车辆在平台的注册地， 见 GB/T2260
@@ -44,10 +50,23 @@ export const BaseInfoDriverStatCreate = (props) => (
        </Create>
 );
 
+const cardActionStyle = {
+    zIndex: 2,
+    display: 'inline-block',
+    float: 'right',
+};
+
+const StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+    <CardActions style={cardActionStyle}>
+        {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
+        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <NewStatButton resource={resource}/>
+    </CardActions>
+);
 
 
 export const BaseInfoDriverStatList = (props) => (//
-     <List title="驾驶员统计信息" {...props} >
+     <List title="驾驶员统计信息" {...props} actions={<StatActions />}>
         <Datagrid>
         <TextField label="代码车辆在平台的注册地"  source="Address" />
         <TextField label="机动车驾驶证编号"  source="LicenseId" />

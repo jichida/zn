@@ -284,7 +284,6 @@ Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
 admin设置
 */
 let Platform_baseInfoDriverEducateSchema= new Schema({
-  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
   // CompanyId:String,	//	是	字符型	V32	公司标识
   Address:Number,//	是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， I见 GB/T 2260
   LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
@@ -603,7 +602,6 @@ Platform_ratedPassengerComplaintSchema.plugin(mongoosePaginate);
 程序获取，驾驶员处罚信息接口
 */
 let Platform_ratedDriverPunishSchema= new Schema({
-  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
   // CompanyId:String,	//	是	字符型	V32	公司标识
   LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
   PunishTime:String,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
@@ -618,7 +616,6 @@ Platform_ratedDriverPunishSchema.plugin(mongoosePaginate);
 程序获取，驾驶员信誉信息
 */
 let Platform_ratedDriverSchema= new Schema({
-  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
   // CompanyId:String,	//	是	字符型	V32	公司标识
   LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
   Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制

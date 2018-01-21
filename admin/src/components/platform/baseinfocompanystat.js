@@ -30,6 +30,10 @@ import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
+import NewStatButton from './stat/NewStatButton';
+import { CardActions } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 
 const BaseInfoCompanyStatTitle = ({ record }) => {
     console.log("record=>" + JSON.stringify(record));
@@ -47,8 +51,21 @@ const BaseInfoCompanyStatEdit = (props) => {
   </Edit>);
 };
 
+const cardActionStyle = {
+    zIndex: 2,
+    display: 'inline-block',
+    float: 'right',
+};
+
+const StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+    <CardActions style={cardActionStyle}>
+        {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
+        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <NewStatButton resource={resource}/>
+    </CardActions>
+);
 const BaseInfoCompanyStatList = (props) => (//
-     <List title="营运规模信息" {...props} >
+     <List title="营运规模信息" {...props}   actions={<StatActions />}>
         <Datagrid>
         <TextField label="平台注册网约车辆数"  source="VehicleNum" />
         <TextField label="平台注册驾驶员数"  source="DriverNum" />

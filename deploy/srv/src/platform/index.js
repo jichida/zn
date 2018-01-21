@@ -4,7 +4,7 @@
 let winston = require('../log/log.js');
 let PubSub = require('pubsub-js');
 const config = require('../config.js');
-const interval = require('./interval');
+
 
 const Platform_baseInfoDriverApp= require('./Platform_baseInfoDriverApp/index');
 const Platform_baseInfoPassenger= require('./Platform_baseInfoPassenger/index');
@@ -92,11 +92,7 @@ let startplatformmonitor = ()=>{
         // winston.getlog().info('(平台相关）未找到处理函数:' + data);
     });
 
-    interval.interval_baseInfoCompanyStat();
 
-    interval.interval_baseInfoVehicleTotalMile();
-
-    interval.interval_baseInfoDriverStat();
 }
 
 exports.startplatformmonitor  = startplatformmonitor;
