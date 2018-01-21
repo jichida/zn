@@ -21,6 +21,7 @@ const sftptosrv = (localdir,localfilename,callback)=>{
   });
 };
 
+module.exports = sftptosrv;
 // sftptosrv('/Users/wangxiaoqing/Documents','70DBAC95C9C64C15863E66FD9A5A36D9.jpg',(err,result)=>{
 //
 // });
