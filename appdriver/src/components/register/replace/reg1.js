@@ -96,6 +96,10 @@ const driverTypeData = [
     {
         value: 'A2',
         label: 'A2'
+    },
+    {
+        value: 'A3',
+        label: 'A3'
     }
   ];
 
