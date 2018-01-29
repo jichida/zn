@@ -4,8 +4,11 @@ const _ = require('lodash');
 const dbplatform = require('../db/modelsplatform.js');
 
 const converturltofilename = (file_url)=>{
-  let arr = file_url.split("/");
-  return arr[arr.length - 1];
+  if(typeof file_url === 'string'){
+    let arr = file_url.split("/");
+    return arr[arr.length - 1];
+  }
+  return null;
 }
 
 const postaction = (actionname,collectionname,doc)=>{

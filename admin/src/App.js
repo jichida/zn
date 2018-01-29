@@ -45,9 +45,9 @@ import {BaseInfoDriverAppList,BaseInfoDriverAppEdit} from './components/platform
 import {BaseInfoDriverStatList,BaseInfoDriverStatCreate} from './components/platform/baseinfodriverstat.js';
 import {BaseInfoPassengerList,BaseInfoPassengerEdit} from './components/platform/baseinfopassenger.js';
 
-import {OrderCreateList,OrderCreateShow}  from './components/platform/ordercreate.js';
-import {OrderMatchList,OrderMatchShow}  from './components/platform/ordermatch.js';
-import {OrderCancelList,OrderCancelShow}  from './components/platform/ordercancel.js';
+import {OrderCreateList,OrderCreateEdit}  from './components/platform/ordercreate.js';
+import {OrderMatchList,OrderMatchEdit}  from './components/platform/ordermatch.js';
+import {OrderCancelList,OrderCancelEdit}  from './components/platform/ordercancel.js';
 
 import  {OperateArriveList,OperateArriveShow} from './components/platform/operatearrive.js';
 import  {OperateDepartList,OperateDepartShow} from './components/platform/operatedepart.js';
@@ -114,9 +114,9 @@ class App extends Component {
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} edit={BaseInfoDriverAppEdit} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  create={BaseInfoDriverStatCreate}/>
             <Resource name="baseinfopassenger" list={BaseInfoPassengerList} edit={BaseInfoPassengerEdit} />
-            <Resource name="ordercreate" list={OrderCreateList} show={OrderCreateShow} />
-            <Resource name="ordermatch" list={OrderMatchList} show={OrderMatchShow} />
-            <Resource name="ordercancel" list={OrderCancelList} show={OrderCancelShow} />
+            <Resource name="ordercreate" list={OrderCreateList} edit={OrderCreateEdit} />
+            <Resource name="ordermatch" list={OrderMatchList} edit={OrderMatchEdit} />
+            <Resource name="ordercancel" list={OrderCancelList} edit={OrderCancelEdit} />
 
             <Resource name="operatearrive" list={OperateArriveList} show={OperateArriveShow} />
             <Resource name="operatedepart" list={OperateDepartList} show={OperateDepartShow} />
