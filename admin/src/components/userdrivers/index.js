@@ -1,5 +1,7 @@
 import React from 'react';
-
+import { CardActions } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {
   NumberInput,
   Edit,
@@ -30,6 +32,7 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
+import ImportExcelButton from './importexcelbtn';
 
 const UserdriverlistTitle = ({ record }) => {
    return <span>显示 司机</span>;
@@ -212,9 +215,24 @@ const UserdriverlistEdit = (props) => {
 
 };
 
+const cardActionStyle = {
+    zIndex: 2,
+    display: 'inline-block',
+    float: 'right',
+};
+
+const DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+    <CardActions style={cardActionStyle}>
+        {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
+        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <ImportExcelButton />
+    </CardActions>
+);
+
 
 const UserdriverlistList = (props) => (//
-     <List title="司机列表" {...props} filters={<UserdriverFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="司机列表" {...props} filters={<UserdriverFilter />} sort={{ field: 'created_at', order: 'DESC' }}
+     actions={<DeviceActions />}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>
