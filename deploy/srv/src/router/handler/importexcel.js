@@ -163,6 +163,16 @@ const importexcel = (excelfilepath,callbackfn)=>{
           });
         });
       });
+      callbackfn({
+        result:'OK',
+        resultstring:`成功导入${resultlist.length}条`,
+      });
+    }
+    else{
+      callbackfn({
+        result:'Error',
+        resultstring:`导入失败,失败原因:${JSON.stringify(err)}`,
+      });
     }
   });
 
