@@ -49,14 +49,14 @@ import {OrderCreateList,OrderCreateEdit}  from './components/platform/ordercreat
 import {OrderMatchList,OrderMatchEdit}  from './components/platform/ordermatch.js';
 import {OrderCancelList,OrderCancelEdit}  from './components/platform/ordercancel.js';
 
-import  {OperateArriveList,OperateArriveShow} from './components/platform/operatearrive.js';
-import  {OperateDepartList,OperateDepartShow} from './components/platform/operatedepart.js';
-import  {OperateLoginList,OperateLoginShow} from './components/platform/operatelogin.js';
-import  {OperateLogoutList,OperateLogoutShow} from './components/platform/operatelogout.js';
-import  {OperatePayList,OperatePayShow} from './components/platform/operatepay.js';
+import  {OperateArriveList,OperateArriveEdit} from './components/platform/operatearrive.js';
+import  {OperateDepartList,OperateDepartEdit} from './components/platform/operatedepart.js';
+import  {OperateLoginList,OperateLoginEdit} from './components/platform/operatelogin.js';
+import  {OperateLogoutList,OperateLogoutEdit} from './components/platform/operatelogout.js';
+import  {OperatePayList,OperatePayEdit} from './components/platform/operatepay.js';
 
-import  {PositionVehicleList,PositionVehicleShow} from './components/platform/positionvehicle.js';
-import  {PositionDriverList,PositionDriverShow} from './components/platform/positiondriver.js';
+import  {PositionVehicleList,PositionVehicleEdit} from './components/platform/positionvehicle.js';
+import  {PositionDriverList,PositionDriverEdit} from './components/platform/positiondriver.js';
 
 import  {RatedDriverList,RatedDriverCreate,RatedDriverEdit} from './components/platform/rateddriver.js';
 import  {RatedDriverPunishList,RatedDriverPunishCreate,RatedDriverPunishEdit} from './components/platform/rateddriverpunish.js';
@@ -118,14 +118,14 @@ class App extends Component {
             <Resource name="ordermatch" list={OrderMatchList} edit={OrderMatchEdit} />
             <Resource name="ordercancel" list={OrderCancelList} edit={OrderCancelEdit} />
 
-            <Resource name="operatearrive" list={OperateArriveList} show={OperateArriveShow} />
-            <Resource name="operatedepart" list={OperateDepartList} show={OperateDepartShow} />
-            <Resource name="operatelogin" list={OperateLoginList} show={OperateLoginShow} />
-            <Resource name="operatelogout" list={OperateLogoutList} show={OperateLogoutShow} />
-            <Resource name="operatepay" list={OperatePayList} show={OperatePayShow} />
+            <Resource name="operatearrive" list={OperateArriveList} edit={OperateArriveEdit} />
+            <Resource name="operatedepart" list={OperateDepartList} edit={OperateDepartEdit} />
+            <Resource name="operatelogin" list={OperateLoginList} edit={OperateLoginEdit} />
+            <Resource name="operatelogout" list={OperateLogoutList} edit={OperateLogoutEdit} />
+            <Resource name="operatepay" list={OperatePayList} edit={OperatePayEdit} />
 
-            <Resource name="positionvehicle" list={PositionVehicleList} show={PositionVehicleShow} />
-            <Resource name="positiondriver" list={PositionDriverList} show={PositionDriverShow} />
+            <Resource name="positionvehicle" list={PositionVehicleList} edit={PositionVehicleEdit} />
+            <Resource name="positiondriver" list={PositionDriverList} edit={PositionDriverEdit} />
 
             <Resource name="ratedpassenger" list={RatedPassengerList} edit={RatedPassengerEdit} />
             <Resource name="rateddriver" list={RatedDriverList} create={RatedDriverCreate}  edit={RatedDriverEdit}  />

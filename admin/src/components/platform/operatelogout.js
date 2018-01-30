@@ -3,7 +3,7 @@ import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
+import { Edit as EditPage,NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
@@ -19,6 +19,18 @@ const OperateLogoutTitle = ({ record }) => {
    return <span>车辆经营下线</span>;
 };
 
+const OperateLogoutEdit = (props) => (
+       <EditPage {...props} title={<OperateLogoutTitle />}>
+           <SimpleForm>
+             <TextField label="机动车驾驶证号" source="LicenseId" />
+             <TextField label="车辆号牌" source="VehicleNo" />
+             <TextField label="车辆经营下线时间" source="LogoutTime" showTime/>
+             <TextField label="上线经度" source="Longitude" />
+             <TextField label="上线纬度" source="Latitude" />
+             <TextField label="坐标加密标识" source="Encrypt" />
+           </SimpleForm>
+       </EditPage>
+);
 
 const OperateLogoutShow = (props) => (
        <Show title={<OperateLogoutTitle />} {...props}>
@@ -44,10 +56,10 @@ const OperateLogoutList = (props) => (//
         <TextField label="上线经度" source="Longitude" />
         <TextField label="上线纬度" source="Latitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
-        <ShowButton />
+        <EditButton />
         </Datagrid>
     </List>
 );
 
 
-export  {OperateLogoutList,OperateLogoutShow};
+export  {OperateLogoutList,OperateLogoutEdit};
