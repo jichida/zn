@@ -1,5 +1,5 @@
 import {requestpostdatawithtoken} from '../util/util.js';
-
+import config from '../env/config.js';
 
 // export function fileupload(e,config,callbackfn){
 //     const {usertoken,...restconfig} = config;
@@ -54,7 +54,7 @@ export const excelupload = (e,{usertoken},callbackfn)=>{
     const data = new FormData();
     data.append('filename', file.name||'a.xls' );
     data.append('file', excel);
-    requestpostdatawithtoken('/uploadexcel',usertoken,data,(issuc,result)=>{
+    requestpostdatawithtoken(`${config.serverurl}/uploadexcel`,usertoken,data,(issuc,result)=>{
         console.log("issuc:" + issuc);
         console.log("result:" + JSON.stringify(result));
         callbackfn(issuc,result);
