@@ -1,4 +1,4 @@
-let islocalhost = true;
+let islocalhost = false;
 let config = {
     serverurl:islocalhost?'http://localhost:3005':'http://api.tczncx.com/',
     requesttimeout:5000,

@@ -91,12 +91,38 @@ const getdrivers = (listdrivers)=>{
       newdriver.Platform_baseInfoDriver.FullTimeDriver = false;
       newdriver.Platform_baseInfoDriver.CommercialType = 0;
       newdriver.Platform_baseInfoDriver.InDriverBlacklist = false;
-
-      newdriver.Platform_baseInfoVehicle.Address = parseInt(newdriver.Platform_baseInfoVehicle.Address);
+      try{
+        newdriver.Platform_baseInfoVehicle.Address = parseInt(newdriver.Platform_baseInfoVehicle.Address);
+      }
+      catch(e){
+        console.log(e)
+      }
+      // try{
+      //   // _.set(newdriver.balance,parseInt(driver.balance),0);
+      // }
+      // catch(e){
+      //   console.log(e)
+      // }
+      newdriver.balance = 0;
       newdriver.Platform_baseInfoVehicle.Seats = 6;
       newdriver.Platform_baseInfoVehicle.CommercialType = 0;
 
-      _.set(newdriver.balance,parseInt(driver.balance),0);
+      if(!newdriver.registertype){
+        newdriver.registertype = '快车';
+      }
+      if(!newdriver.idcard){
+        newdriver.idcard = '';
+      }
+      if(!newdriver.bankname){
+        newdriver.bankname = '';
+      }
+      if(!newdriver.bankaccount){
+        newdriver.bankaccount = '';
+      }
+      if(!newdriver.huji){
+        newdriver.huji = '';
+      }
+
       newlistdrivers.push(newdriver);
     }
   });
