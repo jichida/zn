@@ -2,9 +2,9 @@
 export const config=
 {
 "appName":"Xview",
-"wxappid": "wx2b87e74e18cf8f3a", //微信AppID
-"wxappsecret":"d4624c36b6795d1d99dcf0547af5443d",//微信Secret《---注意是错误的
-"qqappid":"1104714921", //QQAppID
+"wxappid": "wx2dd3b98bd67763d2", //微信AppID
+"wxappsecret":"38d35798f0392172d7619b82d89498e8",//微信Secret《---注意是错误的
+"qqappid":"101439112", //QQAppID
 "wbappkey":"3067948552",//微博AppKey
 "wbappsecret":"bf69337ef871a364b92e174855f83138", //微博Secret
 "wbRedirectUrl":"https://api.weibo.com/oauth2/default.html",//微博回调网址（开放平台设置）

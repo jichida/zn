@@ -53,7 +53,7 @@ class Page extends Component {
                     <Cells>
                         <Cell access onClick={this.onClickItem.bind(this,'/myorders')}>
                             <CellHeader>
-                                <img src="newimg/26.png" alt=""/>
+                                <img src="newimg/n1.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 我的订单
@@ -62,7 +62,7 @@ class Page extends Component {
                         </Cell>
                         <Cell access onClick={this.onClickItem.bind(this,'/oftenuseaddress')}>
                             <CellHeader>
-                                <img src="newimg/27.png" alt=""/>
+                                <img src="newimg/n2.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 常用地址
@@ -71,7 +71,7 @@ class Page extends Component {
                         </Cell>
                         <Cell access onClick={this.onClickItem.bind(this,'/mywallet')}>
                             <CellHeader>
-                                <img src="newimg/28.png" alt=""/>
+                                <img src="newimg/n3.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 我的钱包
@@ -80,17 +80,26 @@ class Page extends Component {
                         </Cell>
                         <Cell access onClick={this.onClickItem.bind(this,'/mycoupons/nosel')}>
                             <CellHeader>
-                                <img src="newimg/29.png" alt=""/>
+                                <img src="newimg/n4.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 我的优惠券
                             </CellBody>
                             <CellFooter />
                         </Cell>
+                        <Cell access onClick={this.onClickItem.bind(this,'/messagecenter')}>
+                            <CellHeader>
+                                <img src="newimg/n5.png" alt=""/>
+                            </CellHeader>
+                            <CellBody>
+                                我的消息
+                            </CellBody>
+                            <CellFooter />
+                        </Cell>
                         { !!this.props.app.servicephonenumber &&
                         <Cell access>
                             <CellHeader>
-                                <img src="newimg/30.png" alt=""/>
+                                <img src="newimg/n6.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 <a
@@ -101,24 +110,33 @@ class Page extends Component {
                             <CellFooter />
                         </Cell>
                         }
+
                         <Cell access onClick={this.onClickItem.bind(this,'/systemsetting')}>
                             <CellHeader>
-                                <img src="newimg/31.png" alt=""/>
+                                <img src="newimg/n7.png" alt=""/>
                             </CellHeader>
                             <CellBody>
                                 系统设置
                             </CellBody>
                             <CellFooter />
                         </Cell>
-                        <Cell access onClick={this.onClickItem.bind(this,'/about/ridergroup')}>
+                        <Cell access onClick={this.onClickItem.bind(this,'/gotodriver')}>
                             <CellHeader>
-                                <img src="newimg/32.png" alt=""/>
+                                <img src="newimg/n8.png" alt=""/>
                             </CellHeader>
                             <CellBody>
-                                <span className="tit">集团信息</span>
-                                <span className="cont">这里可以投诉</span>
+                                司机入驻
                             </CellBody>
-                            <CellFooter/>
+                            <CellFooter />
+                        </Cell>
+                        <Cell access onClick={this.onClickItem.bind(this,'/about/rideraboutus')}>
+                            <CellHeader>
+                                <img src="newimg/n9.png" alt=""/>
+                            </CellHeader>
+                            <CellBody>
+                                关于我们
+                            </CellBody>
+                            <CellFooter />
                         </Cell>
 
                     </Cells>

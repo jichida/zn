@@ -9,6 +9,7 @@ import Pinche from '../carpool/index.js';
 import CarOverlayEmbedded from '../maps/caroverlaymbedded';
 var Sidebar = require('react-sidebar').default;
 import NavBar from '../tools/nav.js';
+import config from '../../env/config.js';
 import {
     ui_setsidebaropen,
     ui_setindexmapvisiable,
@@ -38,7 +39,7 @@ export class AppIndex extends React.Component {
       });
 
       let currentkeyname = this.props.match.params.keyname;
-      if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
+      if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='wangyueche'){
           this.props.dispatch(ui_setindexmapvisiable(true));
 
           if(currentkeyname === 'chuzuche'){
@@ -47,8 +48,8 @@ export class AppIndex extends React.Component {
           else if(currentkeyname === 'kuaiche'){
               this.props.dispatch(carmap_settriptype('快车'));
           }
-          else if(currentkeyname === 'daijia'){
-              this.props.dispatch(carmap_settriptype('代驾'));
+          else if(currentkeyname === 'wangyueche'){
+              this.props.dispatch(carmap_settriptype('网约车'));
           }
       }
       else{
@@ -95,7 +96,7 @@ export class AppIndex extends React.Component {
         if(nextprop.match.params.keyname !== this.props.match.params.keyname){
             const {match} = nextprop;
             let currentkeyname = match.params.keyname;
-            if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='daijia'){
+            if(currentkeyname==='chuzuche' || currentkeyname==='kuaiche' || currentkeyname==='wangyueche'){
                 this.props.dispatch(ui_setindexmapvisiable(true));
                 if(currentkeyname === 'chuzuche'){
                     this.props.dispatch(carmap_settriptype('出租车'));
@@ -103,8 +104,8 @@ export class AppIndex extends React.Component {
                 else if(currentkeyname === 'kuaiche'){
                     this.props.dispatch(carmap_settriptype('快车'));
                 }
-                else if(currentkeyname === 'daijia'){
-                    this.props.dispatch(carmap_settriptype('代驾'));
+                else if(currentkeyname === 'wangyueche'){
+                    this.props.dispatch(carmap_settriptype('网约车'));
                 }
             }
             else{
@@ -117,6 +118,11 @@ export class AppIndex extends React.Component {
         //console.log("thisprops:" + JSON.stringify(this.props));
         const {issidedbaropen,match,daijialeastbalance} = this.props;
         let pathnamelist = [
+            {
+                keyname:'wangyueche',
+                title:'网约车',
+                Co:<CarOverlayEmbedded {...this.props}/>
+            },
             {
                 keyname:'chuzuche',
                 title:'出租车',
@@ -131,16 +137,6 @@ export class AppIndex extends React.Component {
                 keyname:'pinche',
                 title:'拼车',
                 Co:<Pinche {...this.props}/>
-            },
-            {
-                keyname:'lvyoudaba',
-                title:'旅游大巴',
-                Co:<Lvyoudaba {...this.props}/>
-            },
-            {
-                keyname:'daijia',
-                title:'代驾',
-                Co:<CarOverlayEmbedded {...this.props}/>
             }
         ];
 
@@ -193,7 +189,7 @@ export class AppIndex extends React.Component {
                                     height: "24px",
                                 },
                             ]}
-                            title="中南出行"
+                            title={config.appname}
                             />
 
                         <div

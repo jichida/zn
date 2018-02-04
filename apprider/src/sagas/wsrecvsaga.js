@@ -53,6 +53,7 @@ import {
 } from '../actions';
 import { push,replace } from 'react-router-redux';
 import _ from 'lodash';
+// import {playaudio} from '../env/audio';
 
 const waitfnsz = [
   [
@@ -175,6 +176,7 @@ export function* wsrecvsagaflow() {
         }));
       }
       yield put(push('/requestorderstarting'));
+      // playaudio('audio1');
   });
 
   //===========

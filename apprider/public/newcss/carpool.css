@@ -7,8 +7,8 @@
     margin: 15px 15%;
     flex-grow: 0;
     justify-content: space-between;
-    border: 1px solid #0080ff;
-    color: #0080ff;
+    border: 1px solid #fc8725;
+    color: #fc8725;
     border-radius: 36px;
     overflow: hidden;
 
@@ -16,14 +16,14 @@
 .carpoolPage .pageNav span{
     width: 50%;
     text-align: center;
-    color: #0080ff;
+    color: #fc8725;
     height: 36px;
     line-height: 36px;
     display: block;
 }
 .carpoolPage .pageNav span.sel{
      color: #FFF;
-     background: #0080ff;
+     background: #fc8725;
 }
 .carpoolPage .submitBtn{
     margin: 15px;

@@ -1,5 +1,5 @@
 .loginPage{
-	background: url(../newimg/23.png) no-repeat center;
+	background: #f2f7fb;
 	background-size: 100% 100%;
 }
 .loginPage #newNavHeadContent.newNavHeadContent{
@@ -9,7 +9,7 @@
 	background: none;
 }
 .loginPage #newNavHeadContent .title{
-	color: #FFF;
+	color: #333;
 	font-size: 20px;
 }
 .loginPage .content{
@@ -18,16 +18,16 @@
 }
 .loginPage .content .logo{
 	text-align: center;
-	padding: 40px 0 30px 0;
+	padding: 40px 0 10px 0;
 }
 .loginPage .content .logo img{
-	width: 42%;
+	width: 50%;
 }
 .loginPage #newNavHeadContent .back:active{
 	background: none;
 }
 .loginPage #newNavHeadContent .back:after{
-	border-color: #FFF;
+	border-color: #333;
 }
 
 .loginPage .loginForm {
@@ -39,7 +39,7 @@
 	display: flex;
 	background: #FFF;
 	border-radius: 8px;
-	height:50px;
+	height:40px;
 	margin-bottom: 15px;
 	align-items: center;
 	position: relative;
@@ -59,14 +59,29 @@
 }
 .loginPage .loginForm .li .getyanzhen{
 	padding: 0 10px;
-	border-left: 1px solid #369;
-	color: #369;
+	border-left: 1px solid #fe8802;
+	color: #fe8802;
 	font-size: 16px;
 	line-height: 30px;
 	flex-shrink: 0;
 }
 .loginPage .submitBtn{
 	padding-top: 20px;
+}
+.loginPage .loginForm .loginlink{
+	padding-top:20px;
+	display: -webkit-box;
+    display: -ms-flexbox;
+   	display: flex;
+   	display: -webkit-flex;
+   	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+.loginPage .loginForm .btn.Primary{
+	background: #fe8802;
+	height: 40px;
+	line-height: 40px;
 }
 .loginPage .gotoregister{
 	color: #FFF;

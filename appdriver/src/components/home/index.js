@@ -50,7 +50,7 @@ class Page extends Component {
 
     return (
     		<div className="indexPage AppPage">
-    		<NavBar back={false} title="中南出行" />
+    		<NavBar back={false} title="旺旺约车" />
 				<div className="indexHead" onClick={()=>{this.onClickItem(linkeditprofile)}}>
           {loginsuccess && (
 					<Cells>
@@ -121,9 +121,18 @@ class Page extends Component {
 			                </CellBody>
 			                <CellFooter />
 			            </Cell>
+			            <Cell access onClick={()=>{this.onClickItem('/about/driveruserguide')}}>
+			                <CellHeader>
+			                    <img src="newimg/11.png"  alt=""/>
+			                </CellHeader>
+			                <CellBody>
+			                	新手入门
+			                </CellBody>
+			                <CellFooter />
+			            </Cell>
 			            <Cell access>
 			                <CellHeader>
-			                    <img src="newimg/9.png"  alt=""/>
+			                    <img src="newimg/12.png"  alt=""/>
 			                </CellHeader>
 			                <CellBody>
 			                   	<a

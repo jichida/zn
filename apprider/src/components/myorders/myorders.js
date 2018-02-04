@@ -101,7 +101,7 @@ const OrderItem = (props) => {
                   <Pinche info={orderinfo} />
               ):""}
 
-              {orderinfo.triptype==="快车"||orderinfo.triptype==="代驾"||orderinfo.triptype==="出租车"?(
+              {orderinfo.triptype==="快车"||orderinfo.triptype===""||orderinfo.triptype==="出租车"||orderinfo.triptype==="网约车"?(
                   <Kuaiche info={orderinfo} />
               ):""}
 

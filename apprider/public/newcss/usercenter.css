@@ -7,7 +7,8 @@
 .usercenterPage .head{
     text-align: center;
     padding: 15px 0;
-   	background: #0080ff;
+    background: #ff9537;
+   	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f7ca6c), to(#ff9537));
    	display: flex;
    	align-items: center;
    	flex-direction: column;
@@ -22,6 +23,7 @@
 	height: 50px;
 	border-radius: 50px;
 	margin-bottom: 5px;
+	border:3px solid rgba(255,255,255,.4);
 }
 .usercenterPage .name {
 	font-size: 16px;
@@ -37,15 +39,36 @@
 	width: 28px;
 	margin-right: 5px;
 }
-.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd{
-	display: flex;
-	flex-direction: column;
-	color: #0080ff;
+.usercenterPage .list .weui-cells .weui-cell:before,
+.usercenterPage .list .weui-cells:after,
+.usercenterPage .list .weui-cells .weui-cell_access .weui-cell__ft:after{
+	content: none;
 }
-.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd span{
-	display: block;
+
+
+
+.list.gotodriver{
+	padding:20px;
+	background: #FFF;
+	border-top:1px solid #EEE;
 }
-.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd .cont{
-	color: #999;
-	font-size: 12px;
+.list.gotodriver > img{
+	width: 100%;
+}
+.list.gotodriver > div{
+	display: -webkit-box;
+    display: -ms-flexbox;
+   	display: flex;
+   	display: -webkit-flex;
+	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+.list.gotodriver > div img{
+	width: 150px;
+	height: auto;
+	flex-grow: 1;
+	margin: 10px;
+	border-radius: 4px;
+	align-self: center;
 }

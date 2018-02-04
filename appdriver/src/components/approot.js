@@ -50,7 +50,7 @@ import {requireAuthentication,requireApproval} from './requireauthentication';
 class AppRoot extends React.Component {
   componentWillMount() {
         const script = document.createElement("script");
-        script.src = "http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving";
+        script.src = "http://webapi.amap.com/maps?v=1.3&key=a922bb9a4c9840e79cb0b3ec9df3fce2&callback=init&plugin=AMap.Geocoder,AMap.Driving";
         script.async = true;
         window.init = ()=>{
           console.log(`地图下载成功啦！`);

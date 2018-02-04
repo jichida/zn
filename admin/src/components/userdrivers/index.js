@@ -76,7 +76,7 @@ const UserdriverlistEdit = (props) => {
               <SelectInput  label="注册类型"  source="registertype" choices={[
                   { id: '出租车', name: '出租车' },
                   { id: '快车', name: '快车' },
-                  { id: '代驾', name: '代驾' },
+                  { id: '网约车', name: '网约车' },
               ]} />
               <TextField label="身份证号"  source="idcard" />
               <TextField label="银行名字"  source="bankname" />

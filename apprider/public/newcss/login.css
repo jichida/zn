@@ -1,5 +1,5 @@
 .loginPage{
-	background: url(../newimg/p23.png) no-repeat center;
+	background: #f0f5fb;
 	background-size: 100% 100%;
 }
 .loginPage #newNavHeadContent.newNavHeadContent{
@@ -9,20 +9,28 @@
 	background: none;
 }
 .loginPage #newNavHeadContent .title{
-	color: #FFF;
+	color: #333;
 	font-size: 20px;
-	
 }
 .loginPage .content{
-	display: flex;
-	flex-direction: column;
+	display: -webkit-box;
+    display: -ms-flexbox;
+   	display: flex;
+   	display: -webkit-flex;
+	-moz-box-direction:normal;
+    flex-direction:column;
+    -webkit-flex-direction:column;
+	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	flex-grow: 1;
 }
 .loginPage .content .logo{
 	text-align: center;
-	padding: 40px 0 30px 0;
+	padding: 40px 0 10px 0;
 }
 .loginPage .content .logo img{
-	width: 42%;
+	width: 30%;
 }
 .loginPage #newNavHeadContent .back:active{
 	background: none;
@@ -35,12 +43,13 @@
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
+	flex-grow: 1;
 }
 .loginPage .loginForm .li{
 	display: flex;
 	background: #FFF;
 	border-radius: 8px;
-	height:50px;
+	height:40px;
 	margin-bottom: 15px;
 	align-items: center;
 	position: relative;
@@ -62,8 +71,8 @@
 }
 .loginPage .loginForm .li .getyanzhen{
 	padding: 0 10px;
-	border-left: 1px solid #369;
-	color: #369;
+	border-left: 1px solid #fe8802;
+	color: #fe8802;
 	font-size: 16px;
 	line-height: 30px;
 	flex-shrink: 0;
@@ -71,14 +80,18 @@
     right: 10px;
     background: #FFF;
     z-index: 1000;
-    top:10px;
+    top: 5px;
 	width: 82px;
 	text-align: center;
 }
 .loginPage .loginForm .getyanzhenli .formvalidation.form_input{
 	margin-right: 115px;
 }
-
+.loginPage .loginForm .btn.Primary{
+	background: #fe8802;
+	height: 38px;
+	line-height: 38px;
+}
 .loginPage .submitBtn{
 	padding-top: 30px;
 	flex-direction: column;
@@ -88,5 +101,43 @@
 	text-align: center;
 	line-height: 40px;
 }
-
+.loginPage #newNavHeadContent .back:after{
+	border-color: #333;
+}
+.moreLogin {
+	display: -webkit-box;
+    display: -ms-flexbox;
+   	display: flex;
+   	display: -webkit-flex;
+   	-moz-box-direction:normal;
+	flex-direction:column;
+	-webkit-flex-direction:column;
+}
+.moreLogin > img{
+	width: 90%;
+	margin: auto;
+}
+.moreLogin > div{
+	display: -webkit-box;
+    display: -ms-flexbox;
+   	display: flex;
+   	display: -webkit-flex;
+   	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	padding-bottom: 30px;
+}
+.moreLogin > div >a{
+	border:1px solid #CCC;
+	padding: 10px;
+	border-radius: 50px;
+	height: 30px;
+	width: 30px;
+}
+.moreLogin > div >a:first-child{
+	margin-right: 30px;
+}
+.moreLogin > div >a > img{
+	width: 30px;
+}
 

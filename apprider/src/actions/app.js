@@ -12,3 +12,4 @@ export const serverpush_userloginsuccess_notify = createAction('serverpush_userl
 export const queryorder = createAction('queryorder');//查询第一个订单状态（防止已经在打车页面断开连接后订单已经过期 恢复）
 
 export const getsystemconfig_result = createAction('getsystemconfig_result');
+export const setisweixininstalled = createAction('setisweixininstalled');

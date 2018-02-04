@@ -60,8 +60,11 @@ const SystemconfigCreateTitle = ({ record }) => {
        <TabbedForm>
            <FormTab label="resources.systemconfig.tabs.sysconfig">
            <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
-           <NumberInput label="代驾要求余额" source="daijialeastbalance" />
-           <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
+           {/* <NumberInput label="代驾要求余额" source="daijialeastbalance" />
+           <NumberInput label="代驾取消价格" source="daijiacancelprice"/> */}
+
+           <TextInput label="android司机端下载地址" source="downloadurl_android"/>
+           <TextInput label="ios司机端下载地址" source="downloadurl_ios"/>
            <TextInput label="客服电话" source="servicephonenumber"/>
            </FormTab>
            <FormTab label="resources.systemconfig.tabs.pinche">
@@ -87,8 +90,10 @@ const SystemconfigCreateTitle = ({ record }) => {
           <TabbedForm>
               <FormTab label="resources.systemconfig.tabs.sysconfig">
               <NumberInput label="司机抽成" source="platformdriverfeediscount"/>
-              <NumberInput label="代驾要求余额" source="daijialeastbalance" />
-              <NumberInput label="代驾取消价格" source="daijiacancelprice"/>
+              <TextInput label="android司机端下载地址" source="downloadurl_android"/>
+              <TextInput label="ios司机端下载地址" source="downloadurl_ios"/>
+              {/* <NumberInput label="代驾要求余额" source="daijialeastbalance" />
+              <NumberInput label="代驾取消价格" source="daijiacancelprice"/> */}
               <TextInput label="客服电话" source="servicephonenumber"/>
               </FormTab>
               <FormTab label="resources.systemconfig.tabs.pinche">

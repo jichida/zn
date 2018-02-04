@@ -10,6 +10,12 @@ import {
 import {
   registerandroid
 } from './env/android';
+import {
+  haveWechatApp
+} from './env/login';
+import {
+  setisweixininstalled
+} from './actions';
 
 sagaMiddleware.run(rootSaga);
 ReactDOM.render(
@@ -21,3 +27,13 @@ ReactDOM.render(
 // store.subscribe(handleChange);
 registerandroid();
 postNotifyFromJPush(store.dispatch);
+
+haveWechatApp((data)=>{
+  //alert(JSON.stringify(`微信是否安装:${JSON.stringify(data)}`));
+  let isweixininstalled = true;
+  if(!!data){
+    // 	{code: 1} 手机没有安装微信客户端
+    isweixininstalled = data.code === '1'?false:true;
+  }
+  store.dispatch(setisweixininstalled(isweixininstalled));
+});

@@ -19,7 +19,7 @@ class Page extends Component {
         let hascommented = false;
 
         const {triptype} = orderinfo;
-        if(triptype === '出租车' || triptype === '快车' || triptype === '代驾' ){
+        if(triptype === '出租车' || triptype === '快车' || triptype === '网约车' ){
           //已支付才会显示评价页面
           hascommented = orderinfo.paystatus === '已支付';
         }

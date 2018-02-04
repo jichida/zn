@@ -117,8 +117,8 @@ export class Page extends Component {
                 <NavBar back={false} title="快速登录" />
                 <div className="content">
                     <div className="logo">
-                        <span className="tit">中南拼车</span>
-                        <span className="tips">司机端</span>
+                        <span className="tit">旺旺约车</span>
+                        <span className="tips">拼车司机端</span>
                     </div>
                     <PageForm onClickLogin={this.onClickLogin}/>
                 </div>

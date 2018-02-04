@@ -23,7 +23,7 @@ const FaretypelistCreate = (props) => (
                <SelectInput  label="注册类型"  source="registertype" choices={[
                    { id: '快车', name: '快车' },
                    { id: '出租车', name: '出租车' },
-                   { id: '代驾', name: '代驾' },
+                   { id: '网约车', name: '网约车' },
                ]} />
                <TextInput label="运价说明"  source="faretypenote" />
            </SimpleForm>
@@ -42,7 +42,7 @@ const FaretypelistEdit = (props) => {
               <SelectInput  label="注册类型"  source="registertype" choices={[
                   { id: '快车', name: '快车' },
                   { id: '出租车', name: '出租车' },
-                  { id: '代驾', name: '代驾' },
+                  { id: '网约车', name: '网约车' },
               ]} />
               <TextInput label="运价说明"  source="faretypenote" />
           </SimpleForm>

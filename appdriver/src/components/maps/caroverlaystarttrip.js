@@ -13,6 +13,7 @@ import CaroverlayQjck from './embmapstep2qjck';
 import CaroverlayJdck from './embmapstep3jdck';
 import CaroverlayKsxc from './embmapstep4ksxc';
 import {setbackhandler,removebackhandler} from '../../env/android';
+import {playaudio} from '../../env/audio';
 
 export class Page extends React.Component {
 
@@ -67,6 +68,11 @@ export class Page extends React.Component {
           triporderid:curmappageorder._id,
           requeststatus: stagenext[curmappagerequest.requeststatus]
       }));
+
+
+      if(btnname === '到达目的地'){
+        playaudio('audio5');
+      }
     }
   }
 
@@ -107,6 +113,7 @@ export class Page extends React.Component {
                     onClickNext={this.onClickNext.bind(this,'接到乘客')}
                     curlocation={curlocation}
                 />
+            // playaudio('audio4');
         }
         else if(currentrequest.requeststatus === '待上车'){
             CaroverlayCo =

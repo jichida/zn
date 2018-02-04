@@ -1,7 +1,7 @@
 const JPush = require('jpush-sdk');
 //中南出行-司机端
 
-const client = JPush.buildClient('369f6c72ac4d09929a678f8c', '93670557bdb0d4d3a8f98af3');
+const client = JPush.buildClient('121e8477d4de72f063f54e6f', '0d717b0c05a39008aa6ed18d');
 
 // messagetype:String,//all,app
 // touserid:String,

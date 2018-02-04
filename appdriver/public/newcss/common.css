@@ -47,18 +47,18 @@ input, textarea{
     border-radius: 6px;
 }
 .btn.Primary{
-    background: #3479e1;
+    background: #fe8802;
     color: #FFF;
 }
 .btn.Primary:active{
-    background: #2a6bce;
+    background: #d17207;
 }
 .btn.Warning{
     background: #fe8802;
     color: #FFF;
 }
 .btn.Warning:active{
-    background: #e07b08;
+    background: #d17207;
 }
 .btn.login{
     background: #72aaff;
@@ -134,7 +134,7 @@ input, textarea{
 
 /*color*/
 .blue {
-    color: #3479e1
+    color: #fe8802
 }
 .green {
     color: #64c600
@@ -271,24 +271,4 @@ input, textarea{
 }
 .approvalPage #newNavHeadContent .nli span{
     font-size: 0;
-}
-.renderDateField .weui-cell__ft{
-    flex-grow:1;
-    align-self: stretch;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    display: -webkit-flex;
-    height: 30px;
-
-}
-.renderDateField .weui-cell__ft>div{
-    
-    width: 100%;
-    align-self: stretch;
-    height: 30px;
-}
-.renderDateField .weui-cell__ft>div>input{
-    height: 30px;
-    font-size: 16px;
 }

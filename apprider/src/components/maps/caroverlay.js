@@ -69,8 +69,8 @@ export class Page extends React.Component {
       else if(triptype === '快车'){
         url='/index/kuaiche';
       }
-      else if(triptype === '代驾'){
-        url='/index/daijia';
+      else if(triptype === '网约车'){
+        url='/index/wangyueche';
       }
       if(mapstage === 'pageinit' || !curmappagerequest){
         needrender = false;

@@ -123,6 +123,16 @@ class RegisterFillWizardForm extends Component {
               }
             ]}/>
 				      <Cells>
+                <Cell access onClick={()=>this.setcurPage('网约车')}>
+		                <CellHeader>
+		                    <img src="newimg/1.png" alt=""/>
+		                </CellHeader>
+		                <CellBody>
+                        <div className="tit">我要成为网约车司机</div>
+		                    <div className="con">做点兼职赚点钱...</div>
+		                </CellBody>
+		                <CellFooter />
+		            </Cell>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>
 		                    <img src="newimg/1.png" alt=""/>
@@ -143,16 +153,7 @@ class RegisterFillWizardForm extends Component {
 		                </CellBody>
 		                <CellFooter />
 		            </Cell>
-		          <Cell access onClick={()=>this.setcurPage('代驾')}>
-		                <CellHeader>
-		                    <img src="newimg/3.png"  alt=""/>
-		                </CellHeader>
-		                <CellBody>
-		                    <div className="tit">我要成为代驾司机</div>
-		                    <div className="con">做点兼职赚点钱...</div>
-		                </CellBody>
-		                <CellFooter />
-		            </Cell>
+
 		        </Cells>
     		</div>
     	)
@@ -186,12 +187,15 @@ class RegisterFillWizardForm extends Component {
         return (<TaxiRegPage3  previousPage={this.previousPage}  onSubmit={this.onSubmit}/>);
       }
     }
-    if(registertype === '代驾'){
+    if(registertype === '网约车'){
       if(curpage === 1){
-        return (<ReplaceRegPage1 previousPage={this.previousPage}  onSubmit={this.nextPage}/>);
+        return (<FastRegPage1  previousPage={this.previousPage}  onSubmit={this.nextPage}/>);
       }
       if(curpage === 2){
-        return (<ReplaceRegPage2  previousPage={this.previousPage}  onSubmit={this.onSubmit}/>);
+        return (<FastRegPage2  previousPage={this.previousPage}  onSubmit={this.nextPage}/>);
+      }
+      if(curpage === 3){
+        return (<FastRegPage3  previousPage={this.previousPage}  onSubmit={this.onSubmit}/>);
       }
     }
 

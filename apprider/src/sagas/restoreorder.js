@@ -8,6 +8,7 @@ import {
 } from '../actions';
 import { push } from 'react-router-redux';
 import {delay} from 'redux-saga';
+// import {playaudio} from '../env/audio';
 
 const getcurmap_triporderid = (state) => {
   let triporderid = state.carmap.curmappageorder._id;
@@ -24,6 +25,7 @@ export function* createrestoreorderflow(){
       yield put(push('/requestorderstarting'));
       yield call(delay,1000);
       yield put(serverpush_restoreorder_effect(payload));
+      // playaudio('audio1');
     });
 
     yield takeEvery(`${serverpush_userloginsuccess_notify}`, function*(restoreorderaction) {

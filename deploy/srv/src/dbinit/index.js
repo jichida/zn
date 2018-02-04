@@ -36,14 +36,14 @@ const setconfigfile = ()=>{
 
     const id1 = mongoose.Types.ObjectId(config.faretypemap['快车']);
     const id2 = mongoose.Types.ObjectId(config.faretypemap['出租车']);
-    const id3 = mongoose.Types.ObjectId(config.faretypemap['代驾']);
+    const id3 = mongoose.Types.ObjectId(config.faretypemap['网约车']);
 
     dbModel.remove({_id:{'$nin':[id1,id2,id3]}},(err,result)=>{
       dbModel.findOneAndUpdate({_id:id1}, {$set:{registertype:'快车',_id:id1}},{new: true,upsert:true},(err,result)=>{
       });
       dbModel.findOneAndUpdate({_id:id2}, {$set:{registertype:'出租车',_id:id2}},{new: true,upsert:true},(err,result)=>{
       });
-      dbModel.findOneAndUpdate({_id:id3}, {$set:{registertype:'代驾',_id:id3}},{new: true,upsert:true},(err,result)=>{
+      dbModel.findOneAndUpdate({_id:id3}, {$set:{registertype:'网约车',_id:id3}},{new: true,upsert:true},(err,result)=>{
       });
     });
 

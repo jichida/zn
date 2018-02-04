@@ -6,12 +6,17 @@ import NavBar from '../tools/nav.js';
 import Sendauth from '../tools/sendauth.js';
 import '../../../public/newcss/login.css';
 import { withRouter } from 'react-router-dom';
+import Img_More from '../newimg/p27.png';
+import Img_QQ from '../newimg/2.png';
+import Img_Wexin from '../newimg/3.png';
 import {
     required,
     phone,
     InputValidation,
     length4
     } from "../tools/formvalidation"
+import {loginQQ,loginWx} from '../../env/login.js';
+import {loginwithoauth_result,loginwithoauth_request} from '../../actions';
 
 export class PageForm extends Component {
 
@@ -61,7 +66,7 @@ export class PageForm extends Component {
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
-                    
+
 
                     <Sendauth primary action={this.onClickAuth} className="getyanzhen" />
                 </div>
@@ -72,7 +77,7 @@ export class PageForm extends Component {
                         disabled={pristine || submitting}
                         onClick={handleSubmit(onClickLogin)}
                         >
-                        登录
+                        确认登录
                     </span>
                   </div>
             </Form>
@@ -122,8 +127,38 @@ export class Page extends Component {
         };
         this.props.dispatch(loginwithauth_request(payload));
     }
+    //社交账号登陆
+    // loginwith=(v)=>{
+    //     console.log(`使用${v}登录`);//
+    // }
+
     render(){
-        return (
+      const {isweixininstalled} = this.props;
+
+      let loginwithqq = ()=>{
+          loginQQ((result)=>{
+              if(result.code === '0'){
+                if(!result.openId || result.openId === ''){
+                  alert(`未获取到qq参数:${result.openId}`);
+                  return;
+                }
+                this.props.dispatch(loginwithoauth_request({bindtype:'qq',openid:result.openId}));
+              }
+          });
+      }
+      let loginwithwechat = ()=>{
+          loginWx((result)=>{
+            if(result.code === '0'){
+              if(!result.openid || result.openid === ''){
+                alert(`未获取到微信参数:${result.openid}`);
+                return;
+              }
+              this.props.dispatch(loginwithoauth_request({bindtype:'weixin',openid:result.openid}));
+            }
+          });
+
+      }
+      return (
             <div className="loginPage AppPage">
                 <NavBar back={true} title="快速登录" />
                 <div className="content">
@@ -131,13 +166,20 @@ export class Page extends Component {
                         <img src="newimg/p24.png"  alt=''/>
                     </div>
                     <PageForm onClickLogin={this.onClickLogin}/>
+                    <div className="moreLogin">
+                        <img src={Img_More} />
+                        <div>
+                            <a onClick={loginwithqq}><img src={Img_QQ} /></a>
+                            {isweixininstalled &&   <a onClick={loginwithwechat}><img src={Img_Wexin} /></a> }
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-const data = ({userlogin}) => { return userlogin; }
+const data = ({userlogin,app:{isweixininstalled}}) => { return {...userlogin,isweixininstalled}; }
 Page = connect(data)(Page);
 
 export default Page;

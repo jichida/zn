@@ -176,11 +176,12 @@
    @since 2.0
    */
   export const openiPhoneApp = (url) => {
-  	if(url.indexOf("http://"!=0)){
-  		url="http://"+url;
-  	}
+  	// if(url.indexOf("http://")===-1){
+  	// 	url="http://"+url;
+  	// }
     window.xview.openiPhoneApp(url);
   }
+
   /**
    * 获取通讯录信息
    @method getPhoneBook
@@ -283,4 +284,17 @@
      */
      export const jsCallPhone = (phone) => {
        window.xview.jsCallPhone(phone);
+     }
+
+     export const playaudio = (name)=>{
+       const json = {
+            "voiceName":`${name}.mp3`
+       };
+       if(!!window.xview.xviewVoicePrompt){
+         window.xview.xviewVoicePrompt(JSON.stringify(json));
+       }
+       else{
+         console.log(`找不到xviewVoicePrompt方法`)
+       }
+
      }

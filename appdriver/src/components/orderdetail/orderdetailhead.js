@@ -13,6 +13,7 @@ export default class Page extends Component {
             <div className="orderinfohead">
             	{
             		orderinfo.triptype==="代驾"||
+                orderinfo.triptype==="网约车"||
             		orderinfo.triptype==="快车"||
             		orderinfo.triptype==="出租车"?
             		(

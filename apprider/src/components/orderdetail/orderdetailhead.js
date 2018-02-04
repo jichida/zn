@@ -16,7 +16,7 @@ class Page extends Component {
         return (
             <div className="orderinfohead">
             	{
-            		orderinfo.triptype==="代驾"||
+            		orderinfo.triptype==="网约车"||
             		orderinfo.triptype==="快车"||
             		orderinfo.triptype==="出租车"?
             		(

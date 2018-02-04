@@ -23,7 +23,7 @@ const PricelistCreate = (props) => (
                <SelectInput  label="注册类型"  source="registertype" choices={[
                    { id: '快车', name: '快车' },
                    { id: '出租车', name: '出租车' },
-                   { id: '代驾', name: '代驾' },
+                   { id: '网约车', name: '网约车' },
                ]} />
                <NumberInput label="每公里价格"  source="priceperkm" />
                <NumberInput label="起步公里数"  source="minkem" />
@@ -45,7 +45,7 @@ const PricelistEdit = (props) => {
               <SelectInput  label="注册类型"  source="registertype" choices={[
                   { id: '快车', name: '快车' },
                   { id: '出租车', name: '出租车' },
-                  { id: '代驾', name: '代驾' },
+                  { id: '网约车', name: '网约车' },
               ]} />
               <NumberInput label="每公里价格"  source="priceperkm" />
               <NumberInput label="起步公里数"  source="minkem" />

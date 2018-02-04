@@ -1,4 +1,4 @@
-let serverurl = 'http://api.tczncx.com';//'http://vpn.czjcd.com:3004';//'http://localhost:3004';//;
+let serverurl = 'http://ynyj.com28.cn';//'http://vpn.czjcd.com:3004';//'http://localhost:3004';//;
 export default {
     restserverurl:`${serverurl}/adminapi`,
     adminauthserverurl:`${serverurl}/adminauth`,

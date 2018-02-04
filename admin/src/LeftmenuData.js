@@ -81,7 +81,7 @@ export default [
   {
     name:'settingbaseinfo',icon: <PlatformbaseinfoIcon />,
     children: [
-        { name:'tourbusinfo', icon: <TourbusinfoIcon />,},
+        // { name:'tourbusinfo', icon: <TourbusinfoIcon />,},
         { name: 'systemconfig', icon: <SystemconfigIcon /> },
         { name: 'faretype', icon: <FaretypeIcon /> },
         { name: 'about', icon: <AboutIcon /> },

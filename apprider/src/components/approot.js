@@ -23,6 +23,7 @@ import Myorders from './myorders/myorders';
 import Orderconfirm from './orderconfirm/index';
 import Mywallet from './mywallet/wallet';
 import Mycoupons from './mycoupons/index';
+import Gotodriver from './gotodriver/index';
 //支付界面
 import Pay from './pay/pay';
 //订单列表
@@ -36,6 +37,11 @@ import Seladdressbook from './emerygencycontact/Telephone/Seladdressbook.js';
 import Tourbusfillform from "./tourbus/userinfo";
 import MessageCenter from './messagecenter/messagecenter.js';
 import MessageDetail from './messagecenter/messagedetail.js';
+
+//一键登录绑定用户
+import Userbind from './login/userbind.js';
+
+
 import {requireAuthentication} from './requireauthentication';
 
 import PincheQuery from './carpool/pinchequery.js';
@@ -43,7 +49,7 @@ import PincheQuery from './carpool/pinchequery.js';
 class AppRoot extends React.Component {
   componentWillMount() {
         const script = document.createElement("script");
-        script.src = "http://webapi.amap.com/maps?v=1.3&key=788e08def03f95c670944fe2c78fa76f&callback=init&plugin=AMap.Geocoder,AMap.Driving";
+        script.src = "http://webapi.amap.com/maps?v=1.3&key=770167c0839d0e473752998bf486b2dd&callback=init&plugin=AMap.Geocoder,AMap.Driving";
         script.async = true;
         window.init = ()=>{
           console.log(`地图下载成功啦！`);
@@ -65,9 +71,10 @@ class AppRoot extends React.Component {
             <div className="AppContainer" style={{minHeight:window.innerHeight+"px"}}>
                 <WeuiTool />
                 <Switch>
-                    <Route exact path="/" component={()=>(<Redirect to="/index/chuzuche"/>)}/>
+                    <Route exact path="/" component={()=>(<Redirect to="/index/wangyueche"/>)}/>
                     <Route path="/index/:keyname" component={App}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/userbind" component={Userbind} />
                     <Route path="/about/:keyname" component={About}/>
                     <Route path="/systemsetting" component={SystemSetting}/>
                     <Route path="/rechargepay/:triporderid" component={requireAuthentication(Rechargepay)}/>
@@ -89,6 +96,7 @@ class AppRoot extends React.Component {
                     <Route path="/pay/:triporderid" component={requireAuthentication(Pay)}/>
                     <Route path="/seladdressbook" component={requireAuthentication(Seladdressbook)}/>
                     <Route path="/pinchequery" component={PincheQuery}/>
+                    <Route path="/gotodriver" component={Gotodriver}/>
 
                     <Route component={App}/>
                 </Switch>

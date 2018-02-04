@@ -12,16 +12,16 @@ import {
 export const Orderinfo = (props) => {
     let {label,record,source,...rest} = props;
     const triptypemap = {
-        '代驾':'daijia',
+        '网约车':'wangyueche',
         '出租车':'chuzuche',
         '快车':'kuaiche',
-        '旅游大巴':'lvyoudaba',
+        // '旅游大巴':'lvyoudaba',
         '拼车':'pinche',
     };
     let label2 = `${label}.${triptypemap[record.triptype]}`;
     let comret;
     let props2 = {...props,label:label2};
-    if(record.triptype === '代驾' || record.triptype === '出租车' || record.triptype === '快车'){
+    if(record.triptype === '网约车' || record.triptype === '出租车' || record.triptype === '快车'){
         comret = (
             <FormTab  {...props2}>
                 <TextField label="订单类型"  source="triptype" {...rest}/>
