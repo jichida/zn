@@ -15,6 +15,9 @@ const renderDatePicker= (props) => {
   if(!!input.value){
     try{
       value = moment(input.value).toDate();
+      if ( isNaN( value.getTime() ) ) {
+        value = new Date();
+      }
     }
     catch(e){
       console.log(e);
