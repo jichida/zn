@@ -24,7 +24,7 @@ const OperateLogoutEdit = (props) => (
            <SimpleForm>
              <TextField label="机动车驾驶证号" source="LicenseId" />
              <TextField label="车辆号牌" source="VehicleNo" />
-             <TextField label="车辆经营下线时间" source="LogoutTime" showTime/>
+             <TextField label="车辆经营下线时间" source="LogoutTime" />
              <TextField label="上线经度" source="Longitude" />
              <TextField label="上线纬度" source="Latitude" />
              <TextField label="坐标加密标识" source="Encrypt" />
@@ -37,7 +37,7 @@ const OperateLogoutShow = (props) => (
            <SimpleShowLayout>
            <TextField label="机动车驾驶证号" source="LicenseId" />
            <TextField label="车辆号牌" source="VehicleNo" />
-           <DateField label="车辆经营下线时间" source="LogoutTime" showTime/>
+           <TextField label="车辆经营下线时间" source="LogoutTime" />
            <TextField label="上线经度" source="Longitude" />
            <TextField label="上线纬度" source="Latitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
@@ -52,7 +52,7 @@ const OperateLogoutList = (props) => (//
         <Datagrid>
         <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="车辆号牌" source="VehicleNo" />
-        <DateField label="车辆经营下线时间" source="LogoutTime" showTime/>
+        <TextField label="车辆经营下线时间" source="LogoutTime" />
         <TextField label="上线经度" source="Longitude" />
         <TextField label="上线纬度" source="Latitude" />
         <TextField label="坐标加密标识" source="Encrypt" />

@@ -68,7 +68,7 @@ const RatedDriverPunishList = (props) => (//
           <TextField source="DriverName" />
         </ReferenceField>
         <TextField label="机动车驾驶证编号" source="LicenseId" />
-        <DateField label="处罚时间"  source="PunishTime" />
+        <TextField label="处罚时间"  source="PunishTime" />
         <TextField label="处罚原因"  source="PunishReason" />
         <TextField label="处罚结果"  source="PunishResult" />
         <EditButton />

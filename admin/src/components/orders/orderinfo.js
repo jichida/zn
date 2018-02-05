@@ -25,8 +25,8 @@ export const Orderinfo = (props) => {
         comret = (
             <FormTab  {...props2}>
                 <TextField label="订单类型"  source="triptype" {...rest}/>
-                <DateField label="上车时间"  source="getindate_at" showTime  {...rest}/>
-                <DateField label="下车时间"  source="getoffdate_at" showTime  {...rest}/>
+                <TextField label="上车时间"  source="getindate_at"   {...rest}/>
+                <TextField label="下车时间"  source="getoffdate_at"   {...rest}/>
                 <TextField label="预估距离"  source="totaldistance"  {...rest}/>
                 <TextField label="预估时间"  source="totalduring"  {...rest}/>
             </FormTab>
@@ -36,8 +36,8 @@ export const Orderinfo = (props) => {
         comret = (
             <FormTab  {...props2}>
                 <TextField label="租车人姓名"  source="rentusername"  {...rest}/>
-                <DateField label="开始用车时间"  source="startdate" showTime  {...rest}/>
-                <DateField label="还车时间"  source="enddate" showTime  {...rest}/>
+                <TextField label="开始用车时间"  source="startdate"   {...rest}/>
+                <TextField label="还车时间"  source="enddate"   {...rest}/>
             </FormTab>
         );
 

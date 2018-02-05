@@ -24,8 +24,8 @@ const OrderCancelShow = (props) => (
        <Show title={<OrderCancelTitle />} {...props}>
            <SimpleShowLayout>
            <TextField label="订单编号" source="OrderId" />
-           <DateField label="订单时间" source="OrderTime" showTime/>
-           <DateField label="订单撤销时间" source="CancelTime" showTime/>
+           <TextField label="订单时间" source="OrderTime" />
+           <TextField label="订单撤销时间" source="CancelTime" />
            <TextField label="撤销发起方	1.乘客.2.驾驶员3.平台公司" source="Operator" />
            <TextField label="撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销" source="CancelTypeCode" />
            <TextField label="撤销或违约原因" source="CancelReason" />
@@ -37,8 +37,8 @@ const OrderCancelEdit = (props) => (
        <EditPage {...props} title={<OrderCancelTitle />}>
            <SimpleForm>
            <TextField label="订单编号" source="OrderId" />
-           <DateField label="订单时间" source="OrderTime" showTime/>
-           <DateField label="订单撤销时间" source="CancelTime" showTime/>
+           <TextField label="订单时间" source="OrderTime" />
+           <TextField label="订单撤销时间" source="CancelTime" />
            <TextField label="撤销发起方	1.乘客.2.驾驶员3.平台公司" source="Operator" />
            <TextField label="撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销" source="CancelTypeCode" />
            <TextField label="撤销或违约原因" source="CancelReason" />
@@ -52,8 +52,8 @@ const OrderCancelList = (props) => (//
      <List title="订单取消列表" {...props}  sort={{ field: 'CancelTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单编号" source="OrderId" />
-        <DateField label="订单时间" source="OrderTime" showTime/>
-        <DateField label="订单撤销时间" source="CancelTime" showTime/>
+        <TextField label="订单时间" source="OrderTime" />
+        <TextField label="订单撤销时间" source="CancelTime" />
         <TextField label="撤销发起方" source="Operator" />
         <TextField label="撤销类型代码" source="CancelTypeCode" />
         <TextField label="撤销或违约原因" source="CancelReason" />

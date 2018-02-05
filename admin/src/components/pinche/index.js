@@ -125,7 +125,7 @@ const BuscarpoolEdit = (props) => {
                        <TextField label="目的站点" source="endstation" />
                        <TextField label="订单状态" source="orderstatus" />
                        <TextField label="预定座位数" source="seatnumber" />
-                       <DateField label="下单时间" source="created_at" showTime/>
+                       <TextField label="下单时间" source="created_at" />
                        <RefundButton />
                        <EditButton />
                    </Datagrid>
@@ -154,7 +154,7 @@ const BuscarpoolShow = (props) => {
                <TextField label="开始城市" source="startcity" />
                <TextField label="目的城市" source="endcity" />
                <TextField label="出发日期" source="startdate" type="date" />
-               <DateField label="出发时间" source="starttime" showTime/>
+               <TextField label="出发时间" source="starttime" />
                <TextField label="座位数" source="seatnumber" />
                <TextField label="成团数"  source="groupnumber" />
                <BooleanField label="是否启用" source="isenabled" />
@@ -169,7 +169,7 @@ const BuscarpoolShow = (props) => {
                     <TextField label="目的站点" source="endstation" />
                     <TextField label="订单状态" source="orderstatus" />
                     <TextField label="预定座位数" source="seatnumber" />
-                    <DateField label="下单时间" source="created_at" showTime/>
+                    <TextField label="下单时间" source="created_at" />
                     <RefundButton />
                     <EditButton />
                 </Datagrid>

@@ -13,7 +13,13 @@ const renderDatePicker= (props) => {
 
   let value = new Date();
   if(!!input.value){
-    value = moment(input.value).toDate();
+    try{
+      value = moment(input.value).toDate();
+    }
+    catch(e){
+      console.log(e);
+    }
+
   }
   else{
     input.onChange(moment().format("YYYY-MM-DD"));

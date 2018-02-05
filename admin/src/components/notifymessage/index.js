@@ -63,7 +63,7 @@ const NotifyMessagelistShow = (props) => (
                <TextField source="id" />
                <TextField label="消息类型" source="messagetype" />
                <TextField label="消息标题" source="messagetitle" />
-               <DateField label="发帖时间" source="created_at" showTime />
+               <TextField label="发帖时间" source="created_at"  />
            </SimpleShowLayout>
        </Show>
 );
@@ -75,7 +75,7 @@ const NotifyMessagelistList = (props) => (//
         <Datagrid>
         <TextField label="消息类型" source="messagetype" />
         <TextField label="消息标题" source="messagetitle" />
-        <DateField label="生成时间" source="created_at" showTime />
+        <TextField label="生成时间" source="created_at"  />
         <EditButton />
         </Datagrid>
     </List>

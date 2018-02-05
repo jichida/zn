@@ -235,8 +235,8 @@ const UserdriverlistList = (props) => (//
      actions={<DeviceActions />}>
         <Datagrid>
         <TextField label="手机号" source="username" />
-        <DateField label="注册时间" source="created_at"  showTime/>
-        <DateField label="上次登录时间" source="updated_at"  showTime/>
+        <TextField label="注册时间" source="created_at"  />
+        <TextField label="上次登录时间" source="updated_at"  />
         <TextField label="审批状态"  source="approvalstatus" />
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
         <EditButton style={{ padding: 0 }} />

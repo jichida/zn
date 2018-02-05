@@ -56,7 +56,7 @@ const UserdriverloginlogList = (props) => (//
         <ReferenceField label="司机" source="creator" reference="userdriver" >
           <TextField source="username" />
         </ReferenceField>
-        <DateField label="登录时间" source="created_at"  showTime/>
+        <TextField label="登录时间" source="created_at"  />
         </Datagrid>
     </List>
 );

@@ -160,7 +160,7 @@ const MycouponlistList = (props) => (//
             <TextField source="username" />
             </ReferenceField>
             <TextField label="优惠类型" source="triptype" />
-            <DateField label="过期时间" source="expdate"  />
+            <TextField label="过期时间" source="expdate"  />
             <NumberField label="最高抵扣金额（元)" source="pricediscountmax" locales="zh-cn" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
             <NumberField label="最高抵扣（折）" source="pricediscountpercent" locales="zh-cn" elStyle={{ fontWeight: 'bold' }}/>
         <EditButton />
