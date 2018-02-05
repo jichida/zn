@@ -193,9 +193,9 @@ const UserdriverlistEdit = (props) => {
               <DateInputString  label="车辆运输证有效期止" source="Platform_baseInfoVehicle.TransDateStop"  validate={[required]}/>
               <DateInputString  label="车辆初次登记日期" source="Platform_baseInfoVehicle.CertifyDateB"  validate={[required]}/>
               <SelectInput  label="车辆检修状态"  source="Platform_baseInfoVehicle.FixState" choices={[
-                  { id: 0, name: '未检修' },
-                  { id: 1, name: '已检修' },
-                  { id: 2, name: '未知' },
+                { id: '0', name: '未检修' },
+                { id: '1', name: '已检修' },
+                { id: '2', name: '未知' },
               ]}  validate={[required]}/>
               <DateInputString  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
               <TextInputEx  label="车辆年度审验状态" source="Platform_baseInfoVehicle.CheckState"  validate={[required]}/>
