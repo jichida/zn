@@ -30,7 +30,7 @@ const RatedDriverPunishcreateTitle = ({ record }) => {
 const RatedDriverPunishCreate = (props) => (
        <Create {...props} title={<RatedDriverPunishcreateTitle />} >
            <SimpleForm>
-             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                  <SelectInput optionText={renderDriverOptionText} />
              </ReferenceInput>
              <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>
@@ -48,7 +48,7 @@ const RatedDriverPunisheditTitle = ({ record }) => {
 const RatedDriverPunishEdit = (props) => {
       return (<Edit title={<RatedDriverPunisheditTitle />} {...props}>
           <SimpleForm>
-            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                 <SelectInput optionText={renderDriverOptionText} />
             </ReferenceInput>
             <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>

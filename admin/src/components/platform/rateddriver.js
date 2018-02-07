@@ -28,7 +28,7 @@ const RatedDrivercreateTitle = ({ record }) => {
 const RatedDriverCreate = (props) => (
        <Create {...props} title={<RatedDrivercreateTitle />} >
            <SimpleForm>
-             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                 <SelectInput optionText={renderDriverOptionText} />
             </ReferenceInput>
              <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>
@@ -46,7 +46,7 @@ const RatedDrivereditTitle = ({ record }) => {
 const RatedDriverEdit = (props) => {
       return (<Edit title={<RatedDrivereditTitle />} {...props}>
           <SimpleForm>
-            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                <SelectInput optionText={renderDriverOptionText} />
            </ReferenceInput>
             <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>

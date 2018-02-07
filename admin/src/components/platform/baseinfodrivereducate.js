@@ -28,7 +28,7 @@ const BaseInfoDriverEducatecreateTitle = ({ record }) => {
 const BaseInfoDriverEducateCreate = (props) => (
        <Create {...props} title={<BaseInfoDriverEducatecreateTitle />} >
            <SimpleForm>
-             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                  <SelectInput optionText={renderDriverOptionText} />
               </ReferenceInput>
                <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
@@ -48,7 +48,7 @@ const BaseInfoDriverEducateTitle = ({ record }) => {
 const BaseInfoDriverEducateEdit = (props) => {
       return (<Edit title={<BaseInfoDriverEducateTitle />} {...props}>
           <SimpleForm>
-            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
+            <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                 <SelectInput optionText={renderDriverOptionText} />
              </ReferenceInput>
           <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
