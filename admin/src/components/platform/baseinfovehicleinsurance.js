@@ -3,7 +3,7 @@ import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
+import { ReferenceInput,SelectInput,ReferenceField,NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
@@ -16,13 +16,20 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
 
+const renderVehicleOptionText = (record)=>{
+  return `${record.VehicleNo}(${record.Brand})(${record.Model})`;
+}
+
+
 const BaseInfoVehicleInsurancecreateTitle = ({ record }) => {
    return <span>新建 车辆保险</span>;
 };
 const BaseInfoVehicleInsuranceCreate = (props) => (
        <Create {...props} title={<BaseInfoVehicleInsurancecreateTitle />} >
            <SimpleForm>
-               <TextInputEx label="车辆号牌" source="VehicleNo" validate={[required]}/>
+             <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty >
+                 <SelectInput optionText={renderVehicleOptionText} />
+              </ReferenceInput>
                <TextInputEx label="保险公司名称"  source="InsurCom" validate={[required]}/>
                <TextInputEx label="保险号"  source="InsurNum" validate={[required]}/>
                <TextInputEx label="保险类型"  source="InsurType" validate={[required]}/>
@@ -41,7 +48,9 @@ const BaseInfoVehicleInsuranceTitle = ({ record }) => {
 const BaseInfoVehicleInsuranceEdit = (props) => {
       return (<Edit title={<BaseInfoVehicleInsuranceTitle />} {...props}>
           <SimpleForm>
-            <TextInputEx label="车辆号牌" source="VehicleNo" validate={[required]}/>
+            <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty >
+                <SelectInput optionText={renderVehicleOptionText} />
+             </ReferenceInput>
             <TextInputEx label="保险公司名称"  source="InsurCom" validate={[required]}/>
             <TextInputEx label="保险号"  source="InsurNum" validate={[required]}/>
             <TextInputEx label="保险类型"  source="InsurType" validate={[required]}/>
@@ -59,7 +68,9 @@ const BaseInfoVehicleInsuranceEdit = (props) => {
 const BaseInfoVehicleInsuranceList = (props) => (//
      <List title="车辆保险列表" {...props} >
         <Datagrid>
-        <TextField label="车辆号牌" source="VehicleNo" />
+        <ReferenceField label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty >
+            <TextField source="VehicleNo" />
+        </ReferenceField>
         <TextField label="保险公司名称"  source="InsurCom" />
         <TextField label="保险号"  source="InsurNum" />
         <TextField label="保险类型"  source="InsurType" />

@@ -37,6 +37,24 @@ const postaction = (actionname,collectionname,doc)=>{
       return;
     }
 
+    if(collectionname === 'baseinfovehicleinsurance'){
+      const baseInfoVehicleModel = dbplatform.Platform_baseInfoVehicleModel;
+      baseInfoVehicleModel.findOne({_id:retdoc.Platform_baseInfoVehicleId},(err,vehicle)=>{
+        if(!err && !!vehicle){
+          let newdoc = _.clone(retdoc.toJSON());
+          newdoc = _.omit(newdoc,['Platform_baseInfoVehicleId','__v']);
+          newdoc.VehicleNo = vehicle.VehicleNo;
+          //console.log(newdoc);
+          PubSub.publish('platformmessage_upload',{
+            action:actionname,//'findByIdAndUpdate',
+            collectionname:collectionname,//'baseinfocompany',
+            doc:newdoc
+          });
+        }
+      });
+      return;
+    }
+
     if(collectionname === 'baseinfocompany' ||
     collectionname === 'baseinfovehicle' ||
     collectionname === 'baseinfodriver'){

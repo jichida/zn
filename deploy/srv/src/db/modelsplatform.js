@@ -206,6 +206,8 @@ let Platform_baseInfoVehicleInsuranceSchema = new Schema({
   InsurExp:String,//	是	数字型	F8	保险到期时间	YYYYMMDD
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
 });
 Platform_baseInfoVehicleInsuranceSchema.plugin(mongoosePaginate);
 // A. 4. 9.	网约车 车辆里程信息接 口
