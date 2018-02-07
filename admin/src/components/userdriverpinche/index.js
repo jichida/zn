@@ -29,8 +29,8 @@ const UserdriverpincheCreate = (props) => {
                   <TextInput label="昵称(显示在乘客端的名字)" source="nickname" />
                   <TextInput label="姓名" source="truename" />
                   <TextInput label="密码" source="password" />
-                  <DateField label="注册时间" source="created_at"  showTime/>
-                  <DateField label="上次登录时间" source="updated_at"  showTime/>
+                  <TextField label="注册时间" source="created_at"  />
+                  <TextField label="上次登录时间" source="updated_at"  />
                   <BooleanField label="是否启用" source="isenabled" />
                </SimpleForm>
               </Create>);
@@ -45,8 +45,8 @@ const UserdriverpincheEdit = (props) => {
                   <TextInput label="昵称(显示在乘客端的名字)" source="nickname" />
                   <TextInput label="姓名" source="truename" />
                   <TextInput label="密码" source="password" />
-                  <DateField label="注册时间" source="created_at"  showTime/>
-                  <DateField label="上次登录时间" source="updated_at"  showTime/>
+                  <TextField label="注册时间" source="created_at"  />
+                  <TextField label="上次登录时间" source="updated_at"  />
                   <BooleanField label="是否启用" source="isenabled" />
                </SimpleForm>
               </Edit>);
@@ -61,8 +61,8 @@ const UserdriverpincheList = (props) => (//
      <List title="拼车司机列表" filters={<UserFilter />} {...props} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
-        <DateField label="注册时间" source="created_at"  showTime/>
-        <DateField label="上次登录时间" source="updated_at"  showTime/>
+        <TextField label="注册时间" source="created_at"  />
+        <TextField label="上次登录时间" source="updated_at"  />
         <TextField label="姓名" source="truename" />
         <TextField label="昵称" source="nickname" />
         <BooleanField label="是否启用" source="isenabled" />

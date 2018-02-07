@@ -97,9 +97,9 @@ const MycarEdit = (props) => {
           <DateInputString  label="车辆运输证有效期止" source="Platform_baseInfoVehicle.TransDateStop" validate={[required]}/>
           <DateInputString  label="车辆初次登记日期" source="Platform_baseInfoVehicle.CertifyDateB" validate={[required]}/>
           <SelectInput  label="车辆检修状态"  source="Platform_baseInfoVehicle.FixState" choices={[
-              { id: 0, name: '未检修' },
-              { id: 1, name: '已检修' },
-              { id: 2, name: '未知' },
+            { id: '0', name: '未检修' },
+            { id: '1', name: '已检修' },
+            { id: '2', name: '未知' },
           ]} validate={[required]}/>
           <DateInputString  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" validate={[required]}/>
           <TextInputEx  label="车辆年度审验状态" source="Platform_baseInfoVehicle.CheckState" validate={[required]}/>
@@ -135,7 +135,7 @@ const MycarList = (props) => (//
         <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty>
           <TextField source="id" />
         </ReferenceField>
-        <DateField label="新建时间" source="created_at"  showTime/>
+        <TextField label="新建时间" source="created_at"  />
         <TextField label="审批状态"  source="approvalstatus" />
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
         <EditButton style={{ padding: 0 }} />

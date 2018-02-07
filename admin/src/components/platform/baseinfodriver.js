@@ -187,7 +187,7 @@ const BaseInfoDriverList = (props) => (//
         <TextField label="驾驶员姓名" source="DriverName" />
         <TextField label="驾驶员手机号"  source="DriverPhone" />
         <TextField label="性别"  source="DriverGender" />
-        <DateField label="出生日期"  source="DriverBirthday" />
+        <TextField label="出生日期"  source="DriverBirthday" />
         <TextField label="婚姻状况" source="DriverMaritalStatus" />
         <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="准驾车型" source="DriverType" />

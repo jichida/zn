@@ -29,7 +29,7 @@ const RatedPassengerEdit = (props) => {
   return (<Edit title={<BaseInfoPassengerTitle />} {...props}>
       <SimpleForm>
         <TextInputEx label="订单号" source="OrderId"  validate={[required]}/>
-        <DateField label="评价时间"  source="EvaluateTime" showTime/>
+        <TextField label="评价时间"  source="EvaluateTime" />
         <NumberInputEx label="服务满意度"  source="ServiceScore"  validate={[required]}/>
         <NumberInputEx label="驾驶员满意度"  source="DriverScore"  validate={[required]}/>
         <NumberInputEx label="车辆满意度"  source="VehicleScore"  validate={[required]}/>
@@ -45,7 +45,7 @@ const RatedPassengerList = (props) => (//
      <List title="乘客评价信息列表" {...props} >
         <Datagrid>
         <TextField label="订单号" source="OrderId" />
-        <DateField label="评价时间"  source="EvaluateTime" />
+        <TextField label="评价时间"  source="EvaluateTime" />
         <TextField label="服务满意度"  source="ServiceScore" />
         <TextField label="驾驶员满意度"  source="DriverScore" />
         <TextField label="车辆满意度"  source="VehicleScore" />

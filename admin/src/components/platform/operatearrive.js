@@ -58,9 +58,9 @@ const OperateArriveList = (props) => (//
         <TextField label="车辆到达经度" source="DestLongitude" />
         <TextField label="车辆到达纬度" source="DestLatitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
-        <DateField label="下车时间" source="DestTime" />
+        <TextField label="下车时间" source="DestTime" />
         <TextField label="载客里程" source="DriveMile" />
-        <DateField label="载客时间" source="DriveTime" />
+        <TextField label="载客时间" source="DriveTime" />
         <EditButton />
         </Datagrid>
     </List>

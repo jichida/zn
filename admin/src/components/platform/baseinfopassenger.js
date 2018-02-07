@@ -26,7 +26,7 @@ const BaseInfoPassengerTitle = ({ record }) => {
 const BaseInfoPassengerEdit = (props) => {
   return (<Edit title={<BaseInfoPassengerTitle />} {...props}>
       <SimpleForm>
-        <DateField label="注册日期" source="RegisterDate" showTime/>
+        <TextField label="注册日期" source="RegisterDate" />
         <TextInputEx label="乘客手机号"  source="PassengerPhone" validate={[required]}/>
         <TextInputEx label="乘客称谓"  source="PassengerName" validate={[required]}/>
         <TextInputEx label="乘客性别"  source="PassengerGender" validate={[required]}/>
@@ -38,7 +38,7 @@ const BaseInfoPassengerEdit = (props) => {
 const BaseInfoPassengerList = (props) => (//
      <List title="乘客信息列表" {...props} >
         <Datagrid>
-        <DateField label="注册日期" source="RegisterDate" showTime/>
+        <TextField label="注册日期" source="RegisterDate" />
         <TextField label="乘客手机号"  source="PassengerPhone" />
         <TextField label="乘客称谓"  source="PassengerName" />
         <TextField label="乘客性别"  source="PassengerGender" />

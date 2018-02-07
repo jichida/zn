@@ -56,7 +56,7 @@ const UserriderloginlogList = (props) => (//
         <ReferenceField label="乘客" source="creator" reference="userrider" >
           <TextField source="username" />
         </ReferenceField>
-        <DateField label="登录时间" source="created_at"  showTime/>
+        <TextField label="登录时间" source="created_at"  />
         </Datagrid>
     </List>
 );

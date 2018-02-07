@@ -294,6 +294,8 @@ let Platform_baseInfoDriverEducateSchema= new Schema({
   Duration:Number,//	是	数字型	VIO	培训时长
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
 });
 Platform_baseInfoDriverEducateSchema.plugin(mongoosePaginate);
 // A. 4. 12. 驾驶员移动终端信息接口
@@ -607,6 +609,8 @@ let Platform_ratedDriverPunishSchema= new Schema({
   PunishTime:String,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
   PunishReason:String,	//	否	字符型	V128	处罚原因
   PunishResult:String,	//	是	字符型	V128	处罚结果
+
+  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
 });
 Platform_ratedDriverPunishSchema.plugin(mongoosePaginate);
 // . 8. 4. 驾驶员信誉信息接口
@@ -621,6 +625,8 @@ let Platform_ratedDriverSchema= new Schema({
   Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制
   TestDate:String,	//	是	数字型	  F8	服务质量信誉考核日 期	YYYYMMDD
   TestDepartment:String,	//	是	字符型	V128 服务质量信誉考核机构
+
+  Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
 });
 Platform_ratedDriverSchema.plugin(mongoosePaginate);
 
