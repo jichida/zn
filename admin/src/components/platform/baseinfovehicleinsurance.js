@@ -27,7 +27,7 @@ const BaseInfoVehicleInsurancecreateTitle = ({ record }) => {
 const BaseInfoVehicleInsuranceCreate = (props) => (
        <Create {...props} title={<BaseInfoVehicleInsurancecreateTitle />} >
            <SimpleForm>
-             <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty >
+             <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty perPage={200}>
                  <SelectInput optionText={renderVehicleOptionText} />
               </ReferenceInput>
                <TextInputEx label="保险公司名称"  source="InsurCom" validate={[required]}/>
@@ -48,8 +48,7 @@ const BaseInfoVehicleInsuranceTitle = ({ record }) => {
 const BaseInfoVehicleInsuranceEdit = (props) => {
       return (<Edit title={<BaseInfoVehicleInsuranceTitle />} {...props}>
           <SimpleForm>
-            <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty
-              perPage={200}
+            <ReferenceInput label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty perPage={200}
               filterToQuery={searchText => ({ VehicleNo: searchText })}>
                 <SelectInput optionText={renderVehicleOptionText} />
              </ReferenceInput>
