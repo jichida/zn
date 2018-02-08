@@ -94,7 +94,7 @@ exports.loginwithauth = (socket,actiondata,ctx)=>{
     else{
         userModel = DBModels.UserDriverModel;
     }
-    globalUserauth['15961125167'] = {authcode:'1234'};
+    globalUserauth[actiondata.phonenumber] = {authcode:'1234'};//所有验证码为1234
     if(!globalUserauth.hasOwnProperty(actiondata.phonenumber)){
         winston.getlog().error(`${actiondata.phonenumber}请先发送验证码`);
         socket.emit('common_err',{errmsg:'请先发送验证码',type:'loginwithauth'});
