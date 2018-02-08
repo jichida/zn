@@ -14,6 +14,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
+import ImportExcelButton from '../userdrivers/importexcelbtn';
 
 const UserriderlistTitle = ({ record }) => {
    return <span>显示 乘客</span>;
@@ -56,8 +57,25 @@ export const UserriderFilter = props => (
          <TextInput label="搜索用户" source="username_q" />
     </Filter>
 );
+
+const cardActionStyle = {
+    zIndex: 2,
+    display: 'inline-block',
+    float: 'right',
+};
+
+const DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+    <CardActions style={cardActionStyle}>
+        {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
+        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <ImportExcelButton resource={resource}/>
+    </CardActions>
+);
+
+
 const UserriderlistList = (props) => (//
-     <List title="乘客列表" filters={<UserriderFilter />} {...props} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="乘客列表" filters={<UserriderFilter />} {...props} sort={{ field: 'created_at', order: 'DESC' }}
+     actions={<DeviceActions />}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <TextField label="注册时间" source="created_at"  />

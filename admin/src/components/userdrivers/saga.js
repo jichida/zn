@@ -21,10 +21,10 @@ import { fetchJson } from '../../util/fetch.js';
 import config from '../../env/config';
 import {excelupload} from '../../util/excelupload';
 
-const uploadandimportexcel=(event)=>{
+const uploadandimportexcel=({event,resource})=>{
   return new Promise((resolve,reject)=>{
     const usertoken = localStorage.getItem('admintoken');
-    excelupload(event,{usertoken},(issuc,result)=>{
+    excelupload({e:event,resource,usertoken},(issuc,result)=>{
       if(issuc){
         resolve(result);
       }
@@ -69,7 +69,7 @@ export default function* reviewSaga() {
           const {payload} = action;
           try{
             yield put({type:UPLOADEXCEL_LOADING,payload:{}});
-            const result = yield call(uploadandimportexcel,payload.event);
+            const result = yield call(uploadandimportexcel,payload);
             console.log(result);
             yield put({type:UPLOADEXCEL_SUCCESS,payload:{}});
 

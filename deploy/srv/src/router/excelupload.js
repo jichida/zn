@@ -6,14 +6,26 @@ const moment  = require('moment');
 const middlewareauth = require('./middlewareauth.js');
 const formidable = require('formidable');
 const util = require('util');
-const importexcel = require('./handler/importexcel.js');
-
+const importexcel_userdriver = require('./handler/importexcel_userdriver.js');
+const importexcel_userrider = require('./handler/importexcel_userrider.js');
 const startuploader = (app)=>{
-  app.post('/uploadexcel',middlewareauth,(req,res)=>{
+  app.post('/uploadexcel/:resourcename',middlewareauth,(req,res)=>{
     console.log("userid:" + req.userid);
-    // let data = req.body;
-    // data.userid = req.userid;
-    // let userModel = mongoose.model('UserRider', DBModels.UserRiderSchema);
+    const resourcename = req.params.resourcename;
+    let importexcel;
+    if(resourcename === 'userdriver'){
+      importexcel = importexcel_userdriver;
+    }
+    else if(resourcename === 'userrider'){
+      importexcel = importexcel_userrider;
+    }
+    else{
+      res.status(200)
+          .json({
+            result:'Error',
+          });
+      return;
+    }
 
      const form = new formidable.IncomingForm();
      form.uploadDir = path.join(__dirname,'../',config.uploaddir);

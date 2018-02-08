@@ -24,7 +24,7 @@ srvsystem.job();
 srvwebsocket.startsrv(srvhttp.startsrv());
 
 
-let PubSub = require('pubsub-js');
+const PubSub = require('pubsub-js');
 const fork = require('child_process').fork;
 const process_request = fork(__dirname + '/srcuploader/index.js');
 console.log("process_request pid:" + process_request.pid);

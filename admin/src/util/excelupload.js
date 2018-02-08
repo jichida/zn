@@ -28,7 +28,7 @@ import config from '../env/config.js';
 // }
 
 
-export const excelupload = (e,{usertoken},callbackfn)=>{
+export const excelupload = ({e,usertoken,resource},callbackfn)=>{
   e.preventDefault();
   let files;
   if (e.dataTransfer) {
@@ -54,7 +54,7 @@ export const excelupload = (e,{usertoken},callbackfn)=>{
     const data = new FormData();
     data.append('filename', file.name||'a.xls' );
     data.append('file', excel);
-    requestpostdatawithtoken(`${config.serverurl}/uploadexcel`,usertoken,data,(issuc,result)=>{
+    requestpostdatawithtoken(`${config.serverurl}/uploadexcel/${resource}`,usertoken,data,(issuc,result)=>{
         console.log("issuc:" + issuc);
         console.log("result:" + JSON.stringify(result));
         callbackfn(issuc,result);

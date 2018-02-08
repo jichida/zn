@@ -21,8 +21,8 @@ const cardActionStyle = {
 let ImportExcelButton = (props) => {
 
   const fileChange = (event)=>{
-    const {dispatch} = props;
-    uploadExcelAction({event},dispatch);
+    const {dispatch,resource} = props;
+    uploadExcelAction({event,resource},dispatch);
   }
   return (
         <FlatButton
