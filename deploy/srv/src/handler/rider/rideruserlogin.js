@@ -325,7 +325,7 @@ exports.loginwithoauth = (socket,actiondata,ctx)=>{
     }
     let userModel = DBModels.UserRiderModel;
     userModel.findOneAndUpdate(queryuserobj,
-      {updated_at:new Date()},{new: true},(err,result)=>{
+      {updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,result)=>{
       if(!err && !!result){
         setloginsuccess(socket,ctx,result);
       }
