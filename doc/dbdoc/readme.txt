@@ -37,3 +37,7 @@ db.getCollection('positiondrivers').remove({"LicenseId" : {"$exists":false}})
 db.getCollection('positionvehicles').remove({"VehicleNo" : "124"})
 db.getCollection('positionvehicles').remove({"VehicleNo" : "皖MD0456"})
 7、移动终端信息列表
+db.getCollection('baseinfodriverapps').remove({"LicenseId" : {"$exists":false}})
+db.getCollection('baseinfodriverapps').remove({"LicenseId" : {"$in":["12345","","12345794646","123456","888888","7654321",""]}})
+8、订单成功匹配列表
+db.getCollection('ordermatches').remove({"OrderId" : {"$exists":false}})
