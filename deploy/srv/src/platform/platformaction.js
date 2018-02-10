@@ -97,7 +97,7 @@ const postaction = (actionname,collectionname,doc)=>{
         newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
       }
 
-      retdoc = newdoc；
+      retdoc = newdoc;
     }
   }
 

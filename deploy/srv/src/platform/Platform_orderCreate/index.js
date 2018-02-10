@@ -66,8 +66,8 @@ exports.insertOrderCreate  = ({triprequest,triporder,FareType},postaction)=> {
         orderCreateDoc.Address = address.adcode;
         const eModel = dbplatform.Platform_orderCreateModel;
         const entity = new eModel(orderCreateDoc);
-        entity.save((err,!!result)=> {
-            if (!err && result) {
+        entity.save((err,result)=> {
+            if (!err && !!result) {
                 postaction('save','ordercreate',result);
             }
         });
