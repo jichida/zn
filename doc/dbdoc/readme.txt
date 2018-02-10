@@ -29,10 +29,13 @@ db.getCollection('userdrivers').update({"username" : "18019890099" },{"$set":{"c
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 3、车辆经营上线列表
 db.getCollection('operatelogins').remove({"LicenseId" : {"$exists":false}})
+3、车辆经营下线列表
+db.getCollection('operatelogouts').remove({"LicenseId" : {"$in":['12345','7654321','888888','123456']}})
 4、车辆经营出发列表
 db.getCollection('operatedeparts').remove({"OrderId" : {"$exists":false}})
 5、驾驶员定位信息列表
 db.getCollection('positiondrivers').remove({"LicenseId" : {"$exists":false}})
+db.getCollection('positiondrivers').remove({"LicenseId" : {"$in":['12345']}})
 6、车辆定位信息列表
 db.getCollection('positionvehicles').remove({"VehicleNo" : "124"})
 db.getCollection('positionvehicles').remove({"VehicleNo" : "皖MD0456"})
@@ -50,4 +53,7 @@ db.getCollection('baseinfovehicles').remove({"PlateColor" : {"$exists":false}})
 12、订单取消列表
 db.getCollection('ordercancels').remove({"OrderId" : {"$exists":false}})
 13、驾驶员统计信息
-db.getCollection('baseinfodriverstats').update({"Cycle" : 201802},{$set:{"Cycle" : 201801}});
+db.getCollection('baseinfodriverstats').remove({"OrderId" : {"$exists":false}})
+db.getCollection('baseinfodriverstats').remove({"LicenseId" : {"$in":['12345']}})
+db.getCollection('baseinfodriverstats').update({"Cycle" : 201802},{$set:{"Cycle" : 201712}},{multi:true});
+db.getCollection('baseinfodrivers').update({"Address" :  {"$exists":false}},{$set:{"Address" : 340000}},{multi:true});
