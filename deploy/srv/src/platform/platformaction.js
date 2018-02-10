@@ -12,32 +12,32 @@ const converturltofilename = (file_url)=>{
 }
 
 const preaction = (actionname,collectionname,doc,callbackfn)=>{
+  let retdoc = doc;
   if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
     if(collectionname === 'rateddriverpunish' ||
     collectionname === 'rateddriver' ||
     collectionname === 'baseinfodrivereducate'){
       const baseInfoDriverModel = dbplatform.Platform_baseInfoDriverModel;
       baseInfoDriverModel.findOne({_id:retdoc.Platform_baseInfoDriverId},(err,driver)=>{
+        let newdoc = _.clone(retdoc);
         if(!err && !!driver){
-          let newdoc = _.clone(retdoc);
           newdoc.LicenseId = driver.LicenseId;
           if(collectionname === 'baseinfodrivereducate'){
             newdoc.Address = driver.Address;
           }
-          //console.log(newdoc);
-          callbackfn(newdoc);
         }
+        callbackfn(newdoc);
       });
       return;
     }
     if(collectionname === 'baseinfovehicleinsurance'){
       const baseInfoVehicleModel = dbplatform.Platform_baseInfoVehicleModel;
       baseInfoVehicleModel.findOne({_id:retdoc.Platform_baseInfoVehicleId},(err,vehicle)=>{
+        let newdoc = _.clone(retdoc);
         if(!err && !!vehicle){
-          let newdoc = _.clone(retdoc);
-          newdoc.VehicleNo = vehicle.VehicleNo;
-          callbackfn(newdoc);
+          newdoc.VehicleNo = vehicle.VehicleNo;      
         }
+        callbackfn(newdoc);
       });
       return;
     }

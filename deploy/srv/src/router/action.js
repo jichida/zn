@@ -13,6 +13,7 @@ const platformaction = require('../platform/platformaction.js');
 
 let preaction =(actionname,collectionname,doc,fnresult)=>{
   let retdoc = doc.data;
+
   if(actionname === 'findByIdAndUpdate' && collectionname === 'withdrawcashapply'){
     //这里需要判断很多东西，比如用户余额是否大于可提取余额
     //是否已经提取过等等
@@ -129,7 +130,11 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
     //  }
    }
 
-   fnresult(null,doc);
+   platformaction.preaction(actionname,collectionname,retdoc,(newdoc)=>{
+     doc.data = newdoc;
+     fnresult(null,true);
+   });
+
 }
 
 let gettakenseatfromorder = (retdoc,fncallback)=>{
