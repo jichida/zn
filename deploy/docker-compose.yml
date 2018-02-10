@@ -6,6 +6,7 @@ services:
       ports:
           - "80:8090"
       volumes:
+         - /etc/localtime:/etc/localtime:ro
           - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
           - ./dist:/usr/share/nginx/html
       depends_on:
@@ -16,6 +17,7 @@ services:
     command: node ./index.js
     working_dir: /simulatorsrv
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./simulator_restfulapi:/simulatorsrv
       - ./dist/log:/dist/log
     environment:
@@ -30,6 +32,7 @@ services:
     command: node ./index.js
     working_dir: /app
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./srv:/app
       - ./dist/log:/dist/log
     environment:
@@ -48,6 +51,7 @@ services:
     expose:
        - "27018"
     volumes:
+       - /etc/localtime:/etc/localtime:ro
        - "/var/db100/dbdata:/data/db -d"
     ports:
        - "27018:27017"
