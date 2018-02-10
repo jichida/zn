@@ -135,6 +135,7 @@ const MycarList = (props) => (//
         <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty>
           <TextField source="id" />
         </ReferenceField>
+        <TextField  label="车辆号牌" source="Platform_baseInfoVehicle.VehicleNo"/>
         <TextField label="新建时间" source="created_at"  />
         <TextField label="审批状态"  source="approvalstatus" />
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
