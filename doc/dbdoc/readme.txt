@@ -36,6 +36,8 @@ db.getCollection('operatedeparts').remove({"OrderId" : {"$exists":false}})
 5、驾驶员定位信息列表
 db.getCollection('positiondrivers').remove({"LicenseId" : {"$exists":false}})
 db.getCollection('positiondrivers').remove({"LicenseId" : {"$in":['12345']}})
+db.getCollection('positiondrivers').update({"DriverRegionCode" :  {"$exists":false}},{$set:{"DriverRegionCode" : 340000}},{multi:true});
+
 6、车辆定位信息列表
 db.getCollection('positionvehicles').remove({"VehicleNo" : "124"})
 db.getCollection('positionvehicles').remove({"VehicleNo" : "皖MD0456"})

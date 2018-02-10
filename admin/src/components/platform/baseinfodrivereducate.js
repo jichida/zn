@@ -70,6 +70,7 @@ const BaseInfoDriverEducateList = (props) => (//
         <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
           <TextField source="DriverName" />
         </ReferenceField>
+        <TextField label="机动车驾驶证编号" source="LicenseId" />
         <TextField label="驾驶员培训课程名称"  source="CourseName" />
         <TextField label="培训课程日期"  source="CourseDate" />
         <TextField label="培训开始时间" source="StartTime" />

@@ -40,7 +40,7 @@ const RatedDriverCreate = (props) => (
 
 const RatedDrivereditTitle = ({ record }) => {
     console.log("record=>" + JSON.stringify(record));
-   return <span>编辑 支付信息</span>;
+   return <span>编辑 驾驶员信誉信息</span>;
 };
 
 const RatedDriverEdit = (props) => {
@@ -66,6 +66,7 @@ const RatedDriverList = (props) => (//
         <ReferenceField label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty >
           <TextField source="DriverName" />
         </ReferenceField>
+        <TextField label="机动车驾驶证编号" source="LicenseId" />
         <TextField label="服务质量信誉等级"  source="Level" />
         <TextField label="服务质量信誉考核日"  source="TestDate" />
         <TextField label="服务质量信誉考核机构"  source="TestDepartment" />
