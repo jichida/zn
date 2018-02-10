@@ -14,6 +14,18 @@ const converturltofilename = (file_url)=>{
 const preaction = (actionname,collectionname,doc,callbackfn)=>{
   let retdoc = doc;
   if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
+    if(collectionname === 'ratedpassengercomplaint'){
+      const orderMatchModel = dbplatform.Platform_orderMatchModel;
+      orderMatchModel.findOne({_id:retdoc.Platform_orderMatchId},(err,order)=>{
+        let newdoc = _.clone(retdoc);
+        if(!err && !!order){
+          newdoc.OrderId = order.OrderId;
+          newdoc.LicenseId = order.LicenseId;
+        }
+        callbackfn(newdoc);
+      });
+      return;
+    }
     if(collectionname === 'rateddriverpunish' ||
     collectionname === 'rateddriver' ||
     collectionname === 'baseinfodrivereducate'){
@@ -35,7 +47,7 @@ const preaction = (actionname,collectionname,doc,callbackfn)=>{
       baseInfoVehicleModel.findOne({_id:retdoc.Platform_baseInfoVehicleId},(err,vehicle)=>{
         let newdoc = _.clone(retdoc);
         if(!err && !!vehicle){
-          newdoc.VehicleNo = vehicle.VehicleNo;      
+          newdoc.VehicleNo = vehicle.VehicleNo;
         }
         callbackfn(newdoc);
       });

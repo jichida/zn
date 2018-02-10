@@ -3,7 +3,7 @@ import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
+import { ReferenceInput,SelectInput,ReferenceField,NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput } from 'admin-on-rest/lib/mui';
 
 import { Field,FieldArray } from 'redux-form';
@@ -16,15 +16,20 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {required} from 'admin-on-rest';
 import {DateInputString} from '../controls/DateInput_String.js';
 
-
+const renderOrderOptionText = (record)=>{
+  return `${record.VehicleNo}(${record.DistributeTime})(${record.DriverPhone})`;
+}
 const RatedPassengerComplaintcreateTitle = ({ record }) => {
    return <span>新建 乘客投诉信息</span>;
 };
 const RatedPassengerComplaintCreate = (props) => (
        <Create {...props} title={<RatedPassengerComplaintcreateTitle />} >
            <SimpleForm>
-             <TextInputEx label="订单号" source="OrderId"   validate={[required]}/>
-             <TextInputEx label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
+             <ReferenceInput label="平台关联订单" source="Platform_orderMatchId" reference="ordermatch" allowEmpty perPage={200}>
+                <SelectInput optionText={renderOrderOptionText} />
+             </ReferenceInput>
+             <TextField label="订单号" source="OrderId"   validate={[required]}/>
+             <TextField label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
              <DateInputString label="投诉时间"  source="ComplaintTime"   validate={[required]}/>
              <TextInputEx label="技诉内容"  source="Detail"   validate={[required]}/>
              <TextInputEx label="处理结果"  source="Result"  validate={[required]} />
@@ -40,8 +45,11 @@ const RatedPassengerComplainteditTitle = ({ record }) => {
 const RatedPassengerComplaintEdit = (props) => {
       return (<Edit title={<RatedPassengerComplainteditTitle />} {...props}>
           <SimpleForm>
-            <TextInputEx label="订单号" source="OrderId"   validate={[required]}/>
-            <TextInputEx label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
+            <ReferenceInput label="平台关联订单" source="Platform_orderMatchId" reference="ordermatch" allowEmpty perPage={200}>
+               <SelectInput optionText={renderOrderOptionText} />
+            </ReferenceInput>
+            <TextField label="订单号" source="OrderId"   validate={[required]}/>
+            <TextField label="驾驶证号(和订单关联)" source="LicenseId"   validate={[required]}/>
             <DateInputString label="投诉时间"  source="ComplaintTime"   validate={[required]}/>
             <TextInputEx label="技诉内容"  source="Detail"   validate={[required]}/>
             <TextInputEx label="处理结果"  source="Result"  validate={[required]} />
@@ -55,6 +63,9 @@ const RatedPassengerComplaintEdit = (props) => {
 const RatedPassengerComplaintList = (props) => (//
      <List title="乘客投诉列表" {...props} >
         <Datagrid>
+        <ReferenceField label="平台关联订单" source="Platform_orderMatchId" reference="ordermatch" allowEmpty >
+          <TextField source="VehicleNo" />
+        </ReferenceField>
         <TextField label="订单号" source="OrderId" />
         <TextField label="投诉时间"  source="ComplaintTime" />
         <TextField label="技诉内容"  source="Detail" />

@@ -597,6 +597,7 @@ let Platform_ratedPassengerComplaintSchema= new Schema({
   Result:String,	//	否	字符型	V128	处理结果
 
   LicenseId:String,	//注：接口中没有，辅助统计用【根据orderid到ordermatch中查找后替换】
+  Platform_orderMatchId:{ type: Schema.Types.ObjectId, ref: 'ordermatch' },
 });
 Platform_ratedPassengerComplaintSchema.plugin(mongoosePaginate);
 // A. 8. 3. 驾驶员处罚信息接口
