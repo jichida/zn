@@ -93,7 +93,7 @@ const fn_setbaseInfoDriverStat = (updateddata,callbackfn)=>{
       updateddata.Address = driverinfo.Address;
       updateddata.UpdateTime = moment().format('YYYY-MM-DD HH:mm:ss');
       const dbModel = dbplatform.Platform_baseInfoDriverStatModel;
-      dbModel.findOneAndUpdate({LicenseId:updateddata.LicenseId},
+      dbModel.findOneAndUpdate({LicenseId:updateddata.LicenseId,Cycle:updateddata.Cycle},
         {
           $set:updateddata
         },{

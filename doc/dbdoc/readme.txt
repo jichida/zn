@@ -1,6 +1,6 @@
 ssh -p 33321 huawei@zn.tczncx.com
 #执行数据库
-docker run -it -v /root:/root mongo:3.4 bash
+sudo docker run -it -v /home/huawei:/root mongo:3.4 bash
 mongo --host 172.17.0.1 --port 27018
 
 
@@ -41,3 +41,13 @@ db.getCollection('baseinfodriverapps').remove({"LicenseId" : {"$exists":false}})
 db.getCollection('baseinfodriverapps').remove({"LicenseId" : {"$in":["12345","","12345794646","123456","888888","7654321",""]}})
 8、订单成功匹配列表
 db.getCollection('ordermatches').remove({"OrderId" : {"$exists":false}})
+9、订单生成列表
+db.getCollection('ordercreates').remove({"FareType":""})
+10、车辆经营到达列表
+db.getCollection('operatearrives').remove({"OrderId" : {"$exists":false}})
+11、车辆列表【PlateColor】
+db.getCollection('baseinfovehicles').remove({"PlateColor" : {"$exists":false}})
+12、订单取消列表
+db.getCollection('ordercancels').remove({"OrderId" : {"$exists":false}})
+13、驾驶员统计信息
+db.getCollection('baseinfodriverstats').update({"Cycle" : 201802},{$set:{"Cycle" : 201801}});
