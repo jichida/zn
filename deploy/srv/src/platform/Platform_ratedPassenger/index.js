@@ -24,12 +24,11 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
-exports.insertRatedPassenger  = (actiondata)=> {
+exports.insertRatedPassenger  = (actiondata,postaction)=> {
     let ratedPassengerDoc = {
         CompanyId:config.CompanyId,	//	是	字符型	V32	公司标识
         OrderId:actiondata.OrderId,	//	是	字符型	V64	订单号
@@ -42,8 +41,8 @@ exports.insertRatedPassenger  = (actiondata)=> {
     let eModel = dbplatform.Platform_ratedPassengerModel;
     let entity = new eModel(ratedPassengerDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','ratedpassenger',result);
+        if (!err && !!result) {
+            postaction('save','ratedpassenger',result);
         }
     });
 }

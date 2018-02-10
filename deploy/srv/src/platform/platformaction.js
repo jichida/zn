@@ -11,8 +11,7 @@ const converturltofilename = (file_url)=>{
   return null;
 }
 
-const postaction = (actionname,collectionname,doc)=>{
-  let retdoc = doc;
+const preaction = (actionname,collectionname,doc,callbackfn)=>{
   if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
     if(collectionname === 'rateddriverpunish' ||
     collectionname === 'rateddriver' ||
@@ -20,39 +19,67 @@ const postaction = (actionname,collectionname,doc)=>{
       const baseInfoDriverModel = dbplatform.Platform_baseInfoDriverModel;
       baseInfoDriverModel.findOne({_id:retdoc.Platform_baseInfoDriverId},(err,driver)=>{
         if(!err && !!driver){
-          let newdoc = _.clone(retdoc.toJSON());
-          newdoc = _.omit(newdoc,['Platform_baseInfoDriverId','__v']);
+          let newdoc = _.clone(retdoc);
           newdoc.LicenseId = driver.LicenseId;
           if(collectionname === 'baseinfodrivereducate'){
             newdoc.Address = driver.Address;
           }
           //console.log(newdoc);
-          PubSub.publish('platformmessage_upload',{
-            action:actionname,//'findByIdAndUpdate',
-            collectionname:collectionname,//'baseinfocompany',
-            doc:newdoc
-          });
+          callbackfn(newdoc);
         }
       });
       return;
     }
-
     if(collectionname === 'baseinfovehicleinsurance'){
       const baseInfoVehicleModel = dbplatform.Platform_baseInfoVehicleModel;
       baseInfoVehicleModel.findOne({_id:retdoc.Platform_baseInfoVehicleId},(err,vehicle)=>{
         if(!err && !!vehicle){
-          let newdoc = _.clone(retdoc.toJSON());
-          newdoc = _.omit(newdoc,['Platform_baseInfoVehicleId','__v']);
+          let newdoc = _.clone(retdoc);
           newdoc.VehicleNo = vehicle.VehicleNo;
-          //console.log(newdoc);
-          PubSub.publish('platformmessage_upload',{
-            action:actionname,//'findByIdAndUpdate',
-            collectionname:collectionname,//'baseinfocompany',
-            doc:newdoc
-          });
+          callbackfn(newdoc);
         }
       });
       return;
+    }
+    if(collectionname === 'baseinfocompany' ||
+    collectionname === 'baseinfovehicle' ||
+    collectionname === 'baseinfodriver'){
+      //conver URL->file
+      let newdoc = _.clone(retdoc);
+      if(collectionname === 'baseinfocompany'){
+        newdoc.LegalPhoto = converturltofilename(newdoc.LegalPhotoURL);
+        // newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
+      }
+      else if(collectionname === 'baseinfovehicle'){
+        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
+        // newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
+      }
+      else if(collectionname === 'baseinfodriver'){
+        newdoc.LicensePhotoId = converturltofilename(newdoc.LicensePhotoIdURL);
+        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
+        // newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
+      }
+      callbackfn(newdoc);
+      return;
+    }
+
+  }
+  callbackfn(doc);
+}
+
+const postaction = (actionname,collectionname,doc)=>{
+  let retdoc = doc;
+  if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
+    if(collectionname === 'rateddriverpunish' ||
+    collectionname === 'rateddriver' ||
+    collectionname === 'baseinfodrivereducate'){
+      let newdoc = _.clone(retdoc.toJSON());
+      retdoc = _.omit(newdoc,['Platform_baseInfoDriverId','__v']);
+    }
+
+    if(collectionname === 'baseinfovehicleinsurance'){
+      let newdoc = _.clone(retdoc.toJSON());
+      retdoc = _.omit(newdoc,['Platform_baseInfoVehicleId','__v']);
     }
 
     if(collectionname === 'baseinfocompany' ||
@@ -61,29 +88,18 @@ const postaction = (actionname,collectionname,doc)=>{
       //conver URL->file
       let newdoc = _.clone(retdoc.toJSON());
       if(collectionname === 'baseinfocompany'){
-        newdoc.LegalPhoto = converturltofilename(newdoc.LegalPhotoURL);
         newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
       }
       else if(collectionname === 'baseinfovehicle'){
-        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
         newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
       }
       else if(collectionname === 'baseinfodriver'){
-        newdoc.LicensePhotoId = converturltofilename(newdoc.LicensePhotoIdURL);
-        newdoc.PhotoId = converturltofilename(newdoc.PhotoIdURL);
         newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
       }
 
-      PubSub.publish('platformmessage_upload',{
-        action:actionname,//'findByIdAndUpdate',
-        collectionname:collectionname,//'baseinfocompany',
-        doc:newdoc
-      });
-      return;
+      retdoc = newdoc；
     }
   }
-
-
 
   PubSub.publish('platformmessage_upload',{
     action:actionname,//'findByIdAndUpdate',
@@ -92,4 +108,5 @@ const postaction = (actionname,collectionname,doc)=>{
   });
 }
 
+exports.preaction = preaction;
 exports.postaction = postaction;

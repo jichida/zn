@@ -24,10 +24,9 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 
-exports.insertOperateLogout  = (actiondata)=> {
+exports.insertOperateLogout  = (actiondata,postaction)=> {
     let operateLogoutDoc = {
         CompanyId:config.CompanyId,
         LicenseId:actiondata.licenseld,
@@ -40,8 +39,8 @@ exports.insertOperateLogout  = (actiondata)=> {
     let eModel = dbplatform.Platform_operateLogoutModel;
     let entity = new eModel(operateLogoutDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','operatelogout',result);
+        if (!err && !!result) {
+            postaction('save','operatelogout',result);
         }
     });
 }

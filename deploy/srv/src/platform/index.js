@@ -4,7 +4,7 @@
 let winston = require('../log/log.js');
 let PubSub = require('pubsub-js');
 const config = require('../config.js');
-
+const _ = require('lodash');
 
 const Platform_baseInfoDriverApp= require('./Platform_baseInfoDriverApp/index');
 const Platform_baseInfoPassenger= require('./Platform_baseInfoPassenger/index');
@@ -23,6 +23,7 @@ const Platform_ratedDriverPunish = require('./Platform_ratedDriverPunish/index')
 const Platform_ratedPassenger = require('./Platform_ratedPassenger/index');
 const Platform_ratedPassengerComplaint = require('./Platform_ratedPassengerComplaint/index');
 
+const platformaction = require('./platformaction');
 
 const platformhandlers = {
     'Platform_baseInfoDriverApp':{
@@ -83,16 +84,14 @@ let startplatformmonitor = ()=>{
         // winston.getlog().info('(平台相关）订阅消息:' + msg);
         // winston.getlog().info('(平台相关）订阅数据:' + JSON.stringify(data));
         const {action,type,payload} = data;
-        if(platformhandlers.hasOwnProperty(data.type)){
-            if(platformhandlers[data.type].hasOwnProperty(data.action)){
-                platformhandlers[data.type][data.action](data.payload);
-                return;
-            }
+        const handlerfn = _.get(platformhandlers,`${data.type}.${data.action}`);
+
+        if(!!handlerfn){
+          platformaction.preaction(data.type,data.action,data.payload,(newpayload)=>{
+            platformhandlers[data.type][data.action](data.payload,platformaction.postaction);
+          });
         }
-        // winston.getlog().info('(平台相关）未找到处理函数:' + data);
     });
-
-
 }
 
 exports.startplatformmonitor  = startplatformmonitor;

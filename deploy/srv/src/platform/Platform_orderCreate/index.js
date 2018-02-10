@@ -26,7 +26,6 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');
 let dbplatform = require('../../db/modelsplatform.js');
 const utilarea = require('../../util/getarea');
@@ -45,7 +44,7 @@ const utilarea = require('../../util/getarea');
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
 
-exports.insertOrderCreate  = ({triprequest,triporder,FareType})=> {
+exports.insertOrderCreate  = ({triprequest,triporder,FareType},postaction)=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
@@ -67,9 +66,9 @@ exports.insertOrderCreate  = ({triprequest,triporder,FareType})=> {
         orderCreateDoc.Address = address.adcode;
         const eModel = dbplatform.Platform_orderCreateModel;
         const entity = new eModel(orderCreateDoc);
-        entity.save((err,result)=> {
+        entity.save((err,!!result)=> {
             if (!err && result) {
-                platformaction.postaction('save','ordercreate',result);
+                postaction('save','ordercreate',result);
             }
         });
       }

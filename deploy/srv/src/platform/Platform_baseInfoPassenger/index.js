@@ -23,11 +23,10 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment  = require('moment');
 
-exports.insertBaseInfoPassenger  = (actiondata)=> {
+exports.insertBaseInfoPassenger  = (actiondata,postaction)=> {
     let baseInfoPassengerDoc = {
         CompanyId:config.CompanyId,
         RegisterDate:moment(actiondata.registerdate).format('YYYY-MM-DD'),
@@ -41,13 +40,13 @@ exports.insertBaseInfoPassenger  = (actiondata)=> {
     let eModel = dbplatform.Platform_baseInfoPassengerModel;
     let entity = new eModel(baseInfoPassengerDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','baseinfopassenger',result);
+        if (!err && !!result) {
+            postaction('save','baseinfopassenger',result);
         }
     });
 }
 
-exports.updateBaseInfoPassenger  = (actiondata)=> {
+exports.updateBaseInfoPassenger  = (actiondata,postaction)=> {
     let baseInfoPassengerDoc = {
         CompanyId:config.CompanyId,
         RegisterDate:moment(actiondata.registerdate).format('YYYY-MM-DD'),
@@ -60,8 +59,8 @@ exports.updateBaseInfoPassenger  = (actiondata)=> {
     };
     let eModel = dbplatform.Platform_baseInfoPassengerModel;
     eModel.findOneAndUpdate({PassengerPhone:baseInfoPassengerDoc.PassengerPhone},{$set:baseInfoPassengerDoc},{new:true},(err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('findOneAndUpdate','baseinfopassenger',result);
+        if (!err && !!result) {
+            postaction('findOneAndUpdate','baseinfopassenger',result);
         }
     });
 }

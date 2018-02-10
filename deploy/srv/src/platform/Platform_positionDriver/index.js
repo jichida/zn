@@ -29,11 +29,10 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 
-exports.insertPositionDriver  = (actiondata)=> {
+exports.insertPositionDriver  = (actiondata,postaction)=> {
     let positionDriverDoc = {
         CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
         LicenseId:actiondata.LicenseId,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
@@ -53,7 +52,7 @@ exports.insertPositionDriver  = (actiondata)=> {
     let entity = new eModel(positionDriverDoc);
     entity.save((err,result)=> {
         if (!err && result) {
-            platformaction.postaction('save','positiondriver',result);
+            postaction('save','positiondriver',result);
         }
     });
 }

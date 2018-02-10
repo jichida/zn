@@ -22,12 +22,11 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
-exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
+exports.insertRatedDriverPunish  = ({triprequest,triporder},postaction)=> {
     let ratedDriverPunishDoc = {
         CompanyId:config.CompanyId,
         LicenseId:'',// 数据库中读取
@@ -38,8 +37,8 @@ exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
     let eModel = dbplatform.Platform_ratedDriverPunishModel;
     let entity = new eModel(ratedDriverPunishDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','rateddriverpunish',result);
+        if (!err && !!result) {
+            postaction('save','rateddriverpunish',result);
         }
     });
 }

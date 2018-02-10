@@ -21,30 +21,29 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 
-exports.insertBaseInfoDriver  = (actiondata)=> {
+exports.insertBaseInfoDriver  = (actiondata,postaction)=> {
     let baseInfoDriverDoc = {
 
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
     let entity = new eModel(baseInfoDriverDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','baseinfodriver',result);
+        if (!err && !!result) {
+            postaction('save','baseinfodriver',result);
         }
     });
 }
 
-exports.updateBaseInfoDriver  = (actiondata)=> {
+exports.updateBaseInfoDriver  = (actiondata,postaction)=> {
     let baseInfoDriverDoc = {
 
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
     eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('findOneAndUpdate','baseinfodriver',result);
+        if (!err && !!result) {
+            postaction('findOneAndUpdate','baseinfodriver',result);
         }
     });
 }

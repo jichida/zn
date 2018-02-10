@@ -21,11 +21,10 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 //到达目的地
-exports.insertOperateArrive  = ({triprequest,triporder})=> {
+exports.insertOperateArrive  = ({triprequest,triporder},postaction)=> {
     let datestart = moment(triporder.getindate_at);
     let dateend = moment(triporder.getoffdate_at);
     let DriveTime = (dateend.unix() - datestart.unix())/1000; //单位是秒
@@ -43,8 +42,8 @@ exports.insertOperateArrive  = ({triprequest,triporder})=> {
     let eModel = dbplatform.Platform_operateArriveModel;
     let entity = new eModel(operateArriveDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','operatearrive',result);
+        if (!err && !!result) {
+            postaction('save','operatearrive',result);
         }
     });
 }

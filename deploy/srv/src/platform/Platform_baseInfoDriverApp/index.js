@@ -22,10 +22,9 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 
-exports.insertBaseInfoDriverApp  = (actiondata)=> {
+exports.insertBaseInfoDriverApp  = (actiondata,postaction)=> {
     let baseInfoDriverAppDoc = {
         CompanyId:config.CompanyId,
         Address:actiondata.Address,
@@ -41,13 +40,13 @@ exports.insertBaseInfoDriverApp  = (actiondata)=> {
     let eModel = dbplatform.Platform_baseInfoDriverAppModel;
     let entity = new eModel(baseInfoDriverAppDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','baseinfodriverapp',result);
+        if (!err && !!result) {
+            postaction('save','baseinfodriverapp',result);
         }
     });
 }
 
-exports.updateBaseInfoDriverApp  = (actiondata)=> {
+exports.updateBaseInfoDriverApp  = (actiondata,postaction)=> {
     let baseInfoDriverAppDoc = {
         CompanyId:config.CompanyId,
         Address:actiondata.Address,
@@ -62,8 +61,8 @@ exports.updateBaseInfoDriverApp  = (actiondata)=> {
     };
     let eModel = dbplatform.Platform_baseInfoDriverAppModel;
     eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverAppDoc},{new:true},(err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('findOneAndUpdate','baseinfodriverapp',result);
+        if (!err && !!result) {
+            postaction('findOneAndUpdate','baseinfodriverapp',result);
         }
     });
 }

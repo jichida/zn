@@ -24,7 +24,6 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 const utilarea = require('../../util/getarea');
@@ -50,7 +49,7 @@ const reasonflag = [
   '乘客违约撤销',
   '驾驶员违约撤销'
 ];
-exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
+exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1},postaction)=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
@@ -61,15 +60,15 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
         CancelReason:reasonflag[canceltypecode],
     };
     utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
-      if(!!address){
-        orderCancelDoc.Address = address.adcode;
-    let eModel = dbplatform.Platform_orderCancelModel;
-    let entity = new eModel(orderCancelDoc);
-    entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','ordercancel',result);
+        if(!!address){
+            orderCancelDoc.Address = address.adcode;
+            let eModel = dbplatform.Platform_orderCancelModel;
+            let entity = new eModel(orderCancelDoc);
+            entity.save((err,result)=> {
+                if (!err && !!result) {
+                    postaction('save','ordercancel',result);
+                }
+            });
         }
-    });
-}
     });
 }

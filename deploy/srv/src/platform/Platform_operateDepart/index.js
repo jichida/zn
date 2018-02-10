@@ -25,11 +25,10 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 //到达出发地
-exports.insertOperateDepart  = ({triprequest,triporder,LicenseId,FareType,VehicleNo})=> {
+exports.insertOperateDepart  = ({triprequest,triporder,LicenseId,FareType,VehicleNo},postaction)=> {
     // let datestart = triprequest.getindate_at.getTime();
     // let dateend = triprequest.getoffdate_at.getTime();
     // let DriveTime = (dateend - datestart)/1000;
@@ -50,8 +49,8 @@ exports.insertOperateDepart  = ({triprequest,triporder,LicenseId,FareType,Vehicl
     let eModel = dbplatform.Platform_operateDepartModel;
     let entity = new eModel(operateDepartDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','operatedepart',result);
+        if (!err && !!result) {
+            postaction('save','operatedepart',result);
         }
     });
 }

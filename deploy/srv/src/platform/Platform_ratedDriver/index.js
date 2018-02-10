@@ -23,12 +23,11 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
-exports.insertRatedDriver  = (actiondata)=> {
+exports.insertRatedDriver  = (actiondata,postaction)=> {
     let ratedDriverDoc = {
         CompanyId:config.CompanyId,
         LicenseId:'',
@@ -39,8 +38,8 @@ exports.insertRatedDriver  = (actiondata)=> {
     let eModel = dbplatform.Platform_ratedDriverModel;
     let entity = new eModel(ratedDriverDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','rateddriver',result);
+        if (!err && !!result) {
+            postaction('save','rateddriver',result);
         }
     });
 }

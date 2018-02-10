@@ -22,12 +22,11 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
-exports.insertRatedPassengerComplaint  = (actiondata)=> {
+exports.insertRatedPassengerComplaint  = (actiondata,postaction)=> {
     let ratedPassengerComplaintDoc = {
         CompanyId:config.CompanyId,
         OrderId:actiondata.triporderid,// 数据库中读取
@@ -38,8 +37,8 @@ exports.insertRatedPassengerComplaint  = (actiondata)=> {
     let eModel = dbplatform.Platform_ratedPassengerComplaintModel;
     let entity = new eModel(orderMatchDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','ratedpassengercomplaint',result);
+        if (!err && !!result) {
+            postaction('save','ratedpassengercomplaint',result);
         }
     });
 }

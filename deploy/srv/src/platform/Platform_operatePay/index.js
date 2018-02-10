@@ -51,10 +51,9 @@
 // Platform_operatePaySchema.plugin(mongoosePaginate);
 let PubSub = require('pubsub-js');
 const config = require('../../config.js');
-const platformaction = require('../platformaction.js');
 const dbplatform = require('../../db/modelsplatform.js');
 
-exports.insertOperatePay  = (OperatePayDoc)=> {
+exports.insertOperatePay  = (OperatePayDoc,postaction)=> {
 
     OperatePayDoc.CompanyId = config.CompanyId;
 
@@ -62,7 +61,7 @@ exports.insertOperatePay  = (OperatePayDoc)=> {
     const entity = new eModel(OperatePayDoc);
     entity.save((err,result)=> {
         if (!err && !!result) {
-            platformaction.postaction('save','operatepay',result);
+            postaction('save','operatepay',result);
         }
     });
 }

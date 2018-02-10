@@ -20,7 +20,6 @@ const PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 const winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const moment = require('moment');
 const dbplatform = require('../../db/modelsplatform.js');
 const utilarea = require('../../util/getarea');
@@ -39,7 +38,7 @@ const utilarea = require('../../util/getarea');
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
 
-exports.insertOrderMatch  = ({triprequest,triporder,LicenseId,DriverPhone,VehicleNo })=> {
+exports.insertOrderMatch  = ({triprequest,triporder,LicenseId,DriverPhone,VehicleNo },postaction)=> {
     let orderMatchDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
@@ -57,8 +56,8 @@ exports.insertOrderMatch  = ({triprequest,triporder,LicenseId,DriverPhone,Vehicl
         const eModel = dbplatform.Platform_orderMatchModel;
         const entity = new eModel(orderMatchDoc);
         entity.save((err,result)=> {
-            if (!err && result) {
-                platformaction.postaction('save','ordermatch',result);
+            if (!err && !!result) {
+                postaction('save','ordermatch',result);
             }
         });
       }

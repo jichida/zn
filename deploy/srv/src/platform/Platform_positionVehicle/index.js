@@ -31,17 +31,16 @@ let PubSub = require('pubsub-js');
 const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
-const platformaction = require('../platformaction.js');
 const util = require('../util');//
 let dbplatform = require('../../db/modelsplatform.js');
 const moment = require('moment');
 
-exports.insertPositionVehicle  = (actiondata)=> {
+exports.insertPositionVehicle  = (actiondata,postaction)=> {
     let positionVehicleDoc = {
         CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
         VehicleNo:actiondata.VehicleNo,			//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
         VehicleRegionCode:actiondata.VehicleRegionCode,		//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
-  
+
         PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],	//	是	数字型	V10		经度	单位 :1祷 10-6 度
         Latitude:actiondata.driverlocation[1],	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
@@ -58,8 +57,8 @@ exports.insertPositionVehicle  = (actiondata)=> {
     let eModel = dbplatform.Platform_positionVehicleModel;
     let entity = new eModel(positionVehicleDoc);
     entity.save((err,result)=> {
-        if (!err && result) {
-            platformaction.postaction('save','positionvehicle',result);
+        if (!err && !!result) {
+            postaction('save','positionvehicle',result);
         }
     });
 }
