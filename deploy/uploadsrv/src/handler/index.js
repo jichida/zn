@@ -10,8 +10,7 @@ console.log("upload====>" + uploaddir);
 
 const onmessage = (msgobj)=> {
   console.log("platformmessage:" + JSON.stringify(msgobj));
-  let msg = msgobj.msg;
-  let data = msgobj.data;
+  let data = msgobj;
   const mapfn = map_platformfn[data.collectionname];
   if(!!mapfn){
     console.log(`getdata ==>${JSON.stringify(data)}`);

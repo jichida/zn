@@ -12,6 +12,7 @@ clientRedis.on('ready',()=> {
     clientRedis.subscribe('platformmessage_upload');
 
     clientRedis.on("message",(channel, message)=>{
+      console.log(`channel=====>${channel},message====>${message}`)
       if(channel === 'platformmessage_upload'){
         let msg = message;
         if(typeof msg === 'string'){

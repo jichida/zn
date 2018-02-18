@@ -33,7 +33,7 @@ srvwebsocket.startsrv(srvhttp.startsrv());
 
 PubSub.subscribe('platformmessage_upload', ( msg, data )=>{
   console.log("platformmessage:" + JSON.stringify(data));
-  redis.publish('platformmessage_upload',{msg,data})
+  redis.publish('platformmessage_upload',data)
   // process_request.send({
   //   msg:msg,
   //   data:data
