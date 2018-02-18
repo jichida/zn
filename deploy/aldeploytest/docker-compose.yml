@@ -19,7 +19,7 @@ services:
     working_dir: /simulatorsrv
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /app/zn/deploy/dist/simulator_restfulapi:/simulatorsrv
+      - /app/zn/deploy/simulator_restfulapi:/simulatorsrv
       - /app/zn/deploy/dist/log:/dist/log
     environment:
       - listenport=8080
@@ -35,7 +35,7 @@ services:
     working_dir: /app
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /app/zn/deploy/dist/srv:/app
+      - /app/zn/deploy/srv:/app
       - /app/zn/deploy/dist/log:/dist/log
     environment:
       - MONGO_URL=mongodb://127.0.0.1/zhongnandb
@@ -52,7 +52,7 @@ services:
     working_dir: /app
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /app/zn/deploy/dist/uploadsrv:/app
+      - /app/zn/deploy/uploadsrv:/app
       - /app/zn/deploy/dist/log:/dist/log
     environment:
       - platformserverurl=http://127.0.0.1:8080
