@@ -19,7 +19,7 @@ services:
     working_dir: /simulatorsrv
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./simulator_restfulapi:/simulatorsrv
+      - /app/zn/deploy/dist/simulator_restfulapi:/simulatorsrv
       - /app/zn/deploy/dist/log:/dist/log
     environment:
       - listenport=8080
