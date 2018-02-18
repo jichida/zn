@@ -22,7 +22,7 @@ clientRedis.on('ready',()=> {
             cnosole.log(e);
           }
         }
-        handlermsg(message);
+        handlermsg(msg);
       }//channel
     });
 });

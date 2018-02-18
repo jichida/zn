@@ -9,7 +9,7 @@ const uploaddir = path.join(__dirname,config.uploaddir);
 console.log("upload====>" + uploaddir);
 
 const onmessage = (msgobj)=> {
-  //console.log("platformmessage:" + JSON.stringify(msgobj));
+  console.log("platformmessage:" + JSON.stringify(msgobj));
   let msg = msgobj.msg;
   let data = msgobj.data;
   const mapfn = map_platformfn[data.collectionname];
