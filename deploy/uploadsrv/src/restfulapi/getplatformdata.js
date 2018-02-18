@@ -13,7 +13,7 @@ const getdatefromstring = (timestring)=>{
 
 const getplatformdata = (actionname,collectionname,doc)=>{
   let retdoc = doc;
-  retdoc = _.omit(retdoc,['_id','__v']);
+  retdoc = _.omit(retdoc,['_id','__v','isuploaded']);
   console.log(`retdoc==>${JSON.stringify(retdoc)}`);
   console.log(`actionname==>${actionname}`);
   console.log(`collectionname==>${collectionname}`);

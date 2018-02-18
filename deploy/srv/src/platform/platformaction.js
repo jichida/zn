@@ -79,7 +79,7 @@ const preaction = (actionname,collectionname,doc,callbackfn)=>{
   callbackfn(doc);
 }
 
-const postaction = (actionname,collectionname,doc)=>{
+const postaction_getnewdoc = (actionname,collectionname,doc)=>{
   let retdoc = doc;
   if(actionname === 'findByIdAndUpdate' || actionname === 'save' || actionname === 'upload'){
     if(collectionname === 'rateddriverpunish' ||
@@ -113,6 +113,12 @@ const postaction = (actionname,collectionname,doc)=>{
     }
   }
 
+  return _.clone(retdoc);
+
+}
+
+const postaction = (actionname,collectionname,doc)=>{
+  const retdoc = postaction_getnewdoc(actionname,collectionname,doc);
   PubSub.publish('platformmessage_upload',{
     action:actionname,//'findByIdAndUpdate',
     collectionname:collectionname,//'baseinfocompany',
@@ -122,3 +128,4 @@ const postaction = (actionname,collectionname,doc)=>{
 
 exports.preaction = preaction;
 exports.postaction = postaction;
+exports.postaction_getnewdoc = postaction_getnewdoc;
