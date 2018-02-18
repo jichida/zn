@@ -1,5 +1,5 @@
 const redis = require("redis");
-const winston = require('./src/log/log.js');
+const winston = require('./src/log/index.js');
 const handlermsg = require('./src/handler/index.js');
 const config = require('./src/config.js');
 
