@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "issmsdebug=true node index.js",
+    "start": "srvredis_host=zn.i2u.top issmsdebug=true node index.js",
     "test": "mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "redis": "^2.8.0",
     "ajv": "^5.1.1",
     "async": "^2.1.4",
     "axios": "^0.15.3",

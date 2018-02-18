@@ -14,7 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "srvredis_host=zn.i2u.top node index.js"
   },
   "author": "",
   "license": "ISC"

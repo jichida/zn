@@ -1,9 +1,11 @@
 const srvhttp = require('./src/srvrestfulapi.js');
 const srvwebsocket = require('./src/srvwebsocket.js');
 const srvsystem = require('./src/srvsystem.js');
-
+const redis = require('./src/redis/index.js');
 const config = require('./src/config');
-let mongoose     = require('mongoose');
+const PubSub = require('pubsub-js');
+const mongoose     = require('mongoose');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodburl,{
     socketOptions: {
@@ -24,19 +26,20 @@ srvsystem.job();
 srvwebsocket.startsrv(srvhttp.startsrv());
 
 
-const PubSub = require('pubsub-js');
-const fork = require('child_process').fork;
-const process_request = fork(__dirname + '/srcuploader/index.js');
-console.log("process_request pid:" + process_request.pid);
+
+// const fork = require('child_process').fork;
+// const process_request = fork(__dirname + '/srcuploader/index.js');
+// console.log("process_request pid:" + process_request.pid);
 
 PubSub.subscribe('platformmessage_upload', ( msg, data )=>{
   console.log("platformmessage:" + JSON.stringify(data));
-  process_request.send({
-    msg:msg,
-    data:data
-  });
+  redis.publish('platformmessage_upload',{msg,data})
+  // process_request.send({
+  //   msg:msg,
+  //   data:data
+  // });
 });
 
-process_request.on('message', (res)=> {
-  console.log('message_reply:' + JSON.stringify(res));
-});
+// process_request.on('message', (res)=> {
+//   console.log('message_reply:' + JSON.stringify(res));
+// });
