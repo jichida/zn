@@ -55,6 +55,7 @@ services:
       - /app/zn/deploy/uploadsrv:/app
       - /app/zn/deploy/dist/log:/dist/log
     environment:
+      - logdir=/dist/log
       - platformserverurl=http://127.0.0.1:8080
     network_mode: "host"
   mongodb:
