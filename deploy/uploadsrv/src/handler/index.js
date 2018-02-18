@@ -57,6 +57,6 @@ const onmessage = (msgobj)=> {
   else{
     console.log(`找不到===>${data.collectionname}`);
   }
-});
+};
 
 module.exports = onmessage;
