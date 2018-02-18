@@ -5,6 +5,8 @@ const redis = require('./src/redis/index.js');
 const config = require('./src/config');
 const PubSub = require('pubsub-js');
 const mongoose     = require('mongoose');
+const testconnectivity = require('./testconnectivity/index.js');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodburl,{
@@ -26,10 +28,7 @@ srvsystem.job();
 srvwebsocket.startsrv(srvhttp.startsrv());
 
 
-
-// const fork = require('child_process').fork;
-// const process_request = fork(__dirname + '/srcuploader/index.js');
-// console.log("process_request pid:" + process_request.pid);
+redis.setSubscribeHandler('platformmessage_upload_callback',testconnectivity.platformmessage_upload_callback);
 
 PubSub.subscribe('platformmessage_upload', ( msg, data )=>{
   console.log("platformmessage:" + JSON.stringify(data));

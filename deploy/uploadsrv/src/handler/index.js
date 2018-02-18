@@ -4,6 +4,7 @@ const getplatformdata = require('../restfulapi/getplatformdata');
 const map_platformfn = require('../restfulapi/getmapfn');
 const uploadtoplatform = require('../restfulapi/index');
 const sftptosrv = require('../sftp/index');
+const redis = require('../redis/index.js');
 
 const uploaddir = path.join(__dirname,config.uploaddir);
 console.log("upload====>" + uploaddir);
@@ -18,6 +19,10 @@ const onmessage = (msgobj)=> {
     if(!!uploaddata){
       uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
         console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
+        redis.publish(`platformmessage_upload_callback`,{
+          collectionname:data.collectionname,
+          _id:data.doc._id,
+        });
       }).catch((e)=>{
         console.log(e);
       });

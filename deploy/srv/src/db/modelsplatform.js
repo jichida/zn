@@ -28,6 +28,7 @@ let Platform_baseInfoCompanySchema = new Schema({
   UpdateTime:String,// UpdateTime	是	数字型
 
   LegalPhotoURL:String,
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanySchema.plugin(mongoosePaginate);
 // A. 4. 2.	网约 车平台公司营运 规模信息接 口
@@ -41,6 +42,8 @@ let Platform_baseInfoCompanyStatSchema = new Schema({
   DriverNum:{ type: Number, default: 0 },// DriverNum	是	数字型	V64	平台注册驾驶员数
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 Fl	操作标识	1:新增2:更新3 :删除
   UpdateTime:String,// UpdateTime	是	数字型	F14		网约车平台完成数据更新时间的时间YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanyStatSchema.plugin(mongoosePaginate);
 // A. 4. 3.	网约车平台公司支付信息接口
@@ -59,6 +62,8 @@ let Platform_baseInfoCompanyPaySchema = new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime 二	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanyPaySchema.plugin(mongoosePaginate);
 // A. 4. 4.	网约车平台公司服务机构接口
@@ -82,6 +87,8 @@ let Platform_baseInfoCompanyServiceSchema = new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanyServiceSchema.plugin(mongoosePaginate);
 // A. 4. 5.	网约车平台公司经营许可接口
@@ -102,6 +109,8 @@ let Platform_baseInfoCompanyPermitSchema = new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间	网约车平台完成数据更新 l
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanyPermitSchema.plugin(mongoosePaginate);
 // A. 4. 6 . 网约车平台公司运价信息接口
@@ -138,6 +147,8 @@ let Platform_baseInfoCompanyFareSchema = new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoCompanyFareSchema.plugin(mongoosePaginate);
 // A. 4. 7.  车辆基本信息接口
@@ -188,6 +199,8 @@ let Platform_baseInfoVehicleSchema = new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoVehicleSchema.plugin(mongoosePaginate);
 // A. 4. 8. 车辆保险信息接口
@@ -208,6 +221,8 @@ let Platform_baseInfoVehicleInsuranceSchema = new Schema({
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 
   Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoVehicleInsuranceSchema.plugin(mongoosePaginate);
 // A. 4. 9.	网约车 车辆里程信息接 口
@@ -222,6 +237,8 @@ let Platform_baseInfoVehicleTotalMileSchema = new Schema({
   TotalMile:Number,//	是	数字型	V64	行驶总里程	单位 :km
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14 更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmm ss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoVehicleTotalMileSchema.plugin(mongoosePaginate);
 // A. 4. 10. 驾驶员基本信 息接口
@@ -278,6 +295,8 @@ let Platform_baseInfoDriverSchema= new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	  是数字型F14更新时间网约车平台完成数据更 新的时间 YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoDriverSchema.plugin(mongoosePaginate);
 // A.4.11.网约车驾驶员培训信息接口
@@ -298,6 +317,8 @@ let Platform_baseInfoDriverEducateSchema= new Schema({
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
 
   Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoDriverEducateSchema.plugin(mongoosePaginate);
 // A. 4. 12. 驾驶员移动终端信息接口
@@ -316,6 +337,8 @@ let Platform_baseInfoDriverAppSchema= new Schema({
   State:{ type: Number, default: 0 },// State	是	数字型 状态
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//		是	数字型	F14	更新时间	网约车平台完成数据更新 的时间 YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoDriverAppSchema.plugin(mongoosePaginate);
 // A. 4. 13. 驾驶员统计信息接口
@@ -333,6 +356,8 @@ let Platform_baseInfoDriverStatSchema= new Schema({
   ComplainedCount:{ type: Number, default: 0 },//		是	数字型V32	被投诉次数
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是数字型F14更新时间网约车平台完成数据更 新的时间YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoDriverStatSchema.plugin(mongoosePaginate);
 // A. 4. 14. 乘客基本信息接口baselnfoPassenger
@@ -349,6 +374,8 @@ let Platform_baseInfoPassengerSchema= new Schema({
   State:{ type: Number, default: 0 },//	是	数字型	F1	状态	0:有效1.失效
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,//	是	数字型	F14	更新时间	网约车平台完成数据更 新的时间 YYYYMMDDh hmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_baseInfoPassengerSchema.plugin(mongoosePaginate);
 // A.5.  订 单信息交换接口
@@ -372,6 +399,8 @@ let Platform_orderCreateSchema= new Schema({
   DestLatitude:Number,//	是	数字型V10	预计目的地纬度	单位 :1怜 10-6度
   Encrypt:Number,//是数字型F1坐标加密标识1:GCJ-02 测绘局标准2 :WGS84 GPS 标准3 :BD-09 百度标准4 :CGCS2000 北斗标准O .其他
   FareType:String,	//	是	字符型V16	运价类型编码
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_orderCreateSchema.plugin(mongoosePaginate);
 // A. 5. 2. 订单成功接口
@@ -391,6 +420,8 @@ let Platform_orderMatchSchema= new Schema({
   DriverPhone:String,// 是 字符型 V32 驾驶员手机号
   VehicleNo:String, // 是 字符型 v32 车辆号码
   DistributeTime:String,//	是	数字型	F14	派单成功时间	YYYYMMDDhhmmss
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_orderMatchSchema.plugin(mongoosePaginate);
 // A. 5. 3. 订单撤销接口
@@ -409,6 +440,8 @@ let Platform_orderCancelSchema= new Schema({
   Operator:Number,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
   CancelTypeCode:Number,	//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销
   CancelReason:String,	//	否	字符型	  V128	撤销或违约原因
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_orderCancelSchema.plugin(mongoosePaginate);
 // A. 6. 1.车辆经营上线接口
@@ -425,6 +458,8 @@ let Platform_operateLoginSchema= new Schema({
   Longitude:Number,	//否	数字型	V10	上线经度	单位 :1 铃 10-6度
   Latitude:Number,//	否	数字型	V10	上线纬度	单位 :1 铃 10-6度
   Encrypt:Number,	 // 是	数字型	F1	坐标加密标识	l:GCJ 一02 测绘局标准2:WGS84 GPS 标准 3:BD一09 百度标准4 :CGCS2000 北斗标准0 :其他
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_operateLoginSchema.plugin(mongoosePaginate);
 // A. 6. 2.  车辆经营下线接口
@@ -440,6 +475,8 @@ let Platform_operateLogoutSchema= new Schema({
   Longitude:Number,	//否	数字型	V10	下线经度	单位 :1铃 10-6度
   Latitude:Number,	//否	数字型	V10	下线纬度	单位 :1铃 10-6度
   Encrypt:Number,	//是	数字型	F1	坐标加密标识	l :GCJ 一02 测绘局标准2:WGS84 GPS 标准3:BD一09 百度标准4: CGCS2000 北斗标准0:其他
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_operateLogoutSchema.plugin(mongoosePaginate);
 // A. 6. 3. 经营出发接口 业务描述:用于网约车平台公司向部级平台发起请求，上传经营出发信息。
@@ -458,6 +495,8 @@ let Platform_operateDepartSchema= new Schema({
   DepTime:String,	//	是	数字型	F14	上车时间	YYYYMMDDhhmmss
   WaitMile:Number,	//	否	数字型	VIO	空驶里程	单位 :km
   WaitTime:Number,	//	否	数字型	VIO	等待时间	单位:秒
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_operateDepartSchema.plugin(mongoosePaginate);
 // A. 6. 4.  经营到达接口
@@ -473,6 +512,8 @@ let Platform_operateArriveSchema= new Schema({
   DestTime:String,	//	是	数字型	F14	下车时间	YYYYMMDDhhmmss
   DriveMile:Number,	//	是	数字型	V10	载客里程	单位 :km
   DriveTime:Number,	//	是	数字型	V10	载客时间	单位:秒
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_operateArriveSchema.plugin(mongoosePaginate);
 // A. 6. 5. 经营支付接口业务描述:用于网约车平台公司向部级平台发起请求，上传经营支付信息。
@@ -521,6 +562,8 @@ let Platform_operatePaySchema= new Schema({
   PayTime:String,	//	否	数字型	F14	乘客结算时间	YYYYMMDDhhmmss
   OrderMatchTime:String,	//	否	数字型	F14	订单完成时间	YYYY MMDDhhmm ss
   InvoiceStatus:String,		//	 是	字符型	 V32	发票状态	数据取值有效范围 :0:未开票1.已开票	2 :未知
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_operatePaySchema.plugin(mongoosePaginate);
 // A. 7. 1.驾驶员定位信息接口
@@ -542,6 +585,8 @@ let Platform_positionDriverSchema= new Schema({
   Speed:Number,	//	否	数字型	V10		瞬时速度	单位 :公里每小时(km/h)
   BizStatus:Number,	//	否	数字型	V10		营运状态	1:载客、2.接单、3 :空驶4.停运
   OrderId:String,		//	是	字符型	V64		订单编号
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_positionDriverSchema.plugin(mongoosePaginate);
 // A. 7. 2.  车辆定位信息接口
@@ -565,6 +610,8 @@ let Platform_positionVehicleSchema= new Schema({
   VehStatus:Number,		//	否	数字型	V10	车辆状态	参考 JT/T808
   BizStatus:Number,		//	否	数字型	V10	营运状态	1.载客2 :接单3 :空驶  4 .停运
   OrderId:String,	//是	字符型	V64	订单编号	非营运状态下填 "0"
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_positionVehicleSchema.plugin(mongoosePaginate);
 // A.8. 服务质量信息交换接口
@@ -581,6 +628,8 @@ let Platform_ratedPassengerSchema= new Schema({
   DriverScore:Number,		//	否	数字型	VI0	驾驶员满意度	五分制
   VehicleScore:Number,		//	否	数字型	VI0	车辆满意度	五分制
   Detail:String,	//	否	字符型	V128	评价内容
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_ratedPassengerSchema.plugin(mongoosePaginate);
 // A. 8. 2.  乘客投诉信息接口
@@ -598,6 +647,8 @@ let Platform_ratedPassengerComplaintSchema= new Schema({
 
   LicenseId:String,	//注：接口中没有，辅助统计用【根据orderid到ordermatch中查找后替换】
   Platform_orderMatchId:{ type: Schema.Types.ObjectId, ref: 'ordermatch' },
+
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_ratedPassengerComplaintSchema.plugin(mongoosePaginate);
 // A. 8. 3. 驾驶员处罚信息接口
@@ -614,6 +665,7 @@ let Platform_ratedDriverPunishSchema= new Schema({
   PunishResult:String,	//	是	字符型	V128	处罚结果
 
   Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_ratedDriverPunishSchema.plugin(mongoosePaginate);
 // . 8. 4. 驾驶员信誉信息接口
@@ -630,6 +682,7 @@ let Platform_ratedDriverSchema= new Schema({
   TestDepartment:String,	//	是	字符型	V128 服务质量信誉考核机构
 
   Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
+  isuploaded:{ type: Number, default: 0 },//是否上传
 });
 Platform_ratedDriverSchema.plugin(mongoosePaginate);
 
