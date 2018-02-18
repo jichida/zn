@@ -54,7 +54,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /app/zn/deploy/uploadsrv:/app
       - /app/zn/deploy/dist/log:/dist/log
+      - /app/zn/deploy/dist/uploader:/dist/uploaddir
     environment:
+      - uploaddir=/dist/uploaddir
       - logdir=/dist/log
       - platformserverurl=http://127.0.0.1:8080
     network_mode: "host"
