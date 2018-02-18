@@ -18,26 +18,35 @@ const getplatformdata = (actionname,collectionname,doc)=>{
   console.log(`actionname==>${actionname}`);
   console.log(`collectionname==>${collectionname}`);
 
-  if(actionname === 'save' || actionname === 'findByIdAndUpdate'){
+  if(actionname === 'save' || actionname === 'findByIdAndUpdate' || actionname === 'upload'){
     retdoc.CompanyId = config.CompanyId;
     if(collectionname === 'baseinfocompany'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
+
     }
     else if(collectionname === 'baseinfocompanystat'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfocompanypay'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     if(collectionname === 'baseinfocompanyservice'){
       if (typeof retdoc.CreateDate === 'string') {
         retdoc.CreateDate = getdatefromstring(retdoc.CreateDate);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfocompanypermit'){
       if (typeof retdoc.StartDate === 'string') {
@@ -50,7 +59,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.CertifyDate = getdatefromstring(retdoc.CertifyDate);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfocompanyfare'){
       if (typeof retdoc.FareValidOn === 'string') {
@@ -60,7 +71,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.FareValidOff = getdatefromstring(retdoc.FareValidOff);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfovehicle'){//待检查
       if (typeof retdoc.CertifyDateA === 'string') {
@@ -80,7 +93,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc['Commercial-Type'] = 1;
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
@@ -90,7 +105,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.InsurExp = getdatefromstring(retdoc.InsurExp);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
-      retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      if(actionname !== 'upload'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+      }
     }
     else if(collectionname === 'baseinfovehicletotalmile'){
        retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);

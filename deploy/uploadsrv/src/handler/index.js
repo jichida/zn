@@ -16,7 +16,11 @@ const onmessage = (msgobj)=> {
     console.log(`getdata ==>${JSON.stringify(data)}`);
     let uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
     if(!!uploaddata){
-      uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata);
+      uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
+        console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
+      }).catch((e)=>{
+        console.log(e);
+      });
 
       const collectionname = data.collectionname;
       const retdoc = data.doc;

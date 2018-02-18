@@ -81,7 +81,7 @@ const preaction = (actionname,collectionname,doc,callbackfn)=>{
 
 const postaction = (actionname,collectionname,doc)=>{
   let retdoc = doc;
-  if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
+  if(actionname === 'findByIdAndUpdate' || actionname === 'save' || actionname === 'upload'){
     if(collectionname === 'rateddriverpunish' ||
     collectionname === 'rateddriver' ||
     collectionname === 'baseinfodrivereducate'){
