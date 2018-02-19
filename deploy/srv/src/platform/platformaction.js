@@ -14,6 +14,18 @@ const converturltofilename = (file_url)=>{
 const preaction = (actionname,collectionname,doc,callbackfn)=>{
   let retdoc = doc;
   if(actionname === 'findByIdAndUpdate' || actionname === 'save'){
+    if(collectionname === 'baseinfocompany'
+    ||  collectionname === 'baseinfocompanystat'
+    ||  collectionname ==='baseinfocompanypay'
+    ||  collectionname ==='baseinfocompanyservice'
+    ||  collectionname ==='baseinfocompanypermit'
+    ||  collectionname ==='baseinfocompanyfare'
+    ||  collectionname ==='baseinfovehicle'
+    ||  collectionname ==='baseinfovehicleinsurance'){
+        retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
+    }
+
+
     if(collectionname === 'ratedpassengercomplaint'){
       const orderMatchModel = dbplatform.Platform_orderMatchModel;
       orderMatchModel.findOne({_id:retdoc.Platform_orderMatchId},(err,order)=>{
