@@ -1,4 +1,4 @@
-let serverurl = 'http://znapi.i2u.top';//'http://vpn.czjcd.com:3004';//'http://localhost:3004';//;
+let serverurl = 'http://api.tczncx.com';//'http://vpn.czjcd.com:3004';//'http://localhost:3004';//;
 export default {
     restserverurl:`${serverurl}/adminapi`,
     adminauthserverurl:`${serverurl}/adminauth`,
