@@ -10,7 +10,7 @@ const config = {
       password: process.env.srvsftp_password||'DownUp2U'
   },
   srvredis:{
-    host:process.env.srvredis_host||'192.168.0.1',
+    host:process.env.srvredis_host||'127.0.0.1',
     port: process.env.srvredis_port||6379,
     // user: process.env.srvredis_user||'wxq',
     // password: process.env.srvredis_password||'124',
