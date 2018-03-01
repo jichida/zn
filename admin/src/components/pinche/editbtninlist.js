@@ -6,13 +6,12 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import ContentCreate from 'material-ui/svg-icons/content/create';
+import moment from 'moment';
 
 const EditButton = ({basePath = '', record = {}, label = '编辑'}) => {
-  let today = new Date();
+  let today = moment().format('YYYY-MM-DD');
   let startdate = record.startdate;
-  if (typeof startdate === 'string') {
-    startdate = new Date(Date.parse(startdate));
-  }
+
   if(startdate < today){
     return null;
   }
