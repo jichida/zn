@@ -1,5 +1,6 @@
   mongodb:
     image:  mongo:3.4
+    container_name: mongodb
     restart: always
     expose:
        - "27017"
