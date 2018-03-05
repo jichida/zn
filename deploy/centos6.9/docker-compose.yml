@@ -37,6 +37,9 @@
       - srvredis_host=172.17.42.1
       - MONGO_URL=mongodb://172.17.42.1/zhongnandb
       - listenport=3005
+    links:
+      - mongodb
+      - redis
     ports:
        - "3005:3005"
     expose:
@@ -56,3 +59,6 @@
       - uploaddir=/dist/uploaddir
       - logdir=/dist/log
       - platformserverurl=http://172.17.42.1:8080
+    links:
+      - mongodb
+      - redis
