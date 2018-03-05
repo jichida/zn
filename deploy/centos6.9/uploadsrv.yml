@@ -1,0 +1,20 @@
+  uploadsrv:
+    image: node:6.11.2
+    container_name: uploadsrv
+    restart: always
+    command: node ./index.js
+    working_dir: /app
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app/zn/deploy/uploadsrv:/app
+      - /app/zn/deploy/dist/log:/dist/log
+      - /app/zn/deploy/dist/uploader:/dist/uploaddir
+    environment:
+      - srvredis_host=redis
+      - uploaddir=/dist/uploaddir
+      - logdir=/dist/log
+      - platformserverurl=http://simulatorsrv:8080
+    external_links:
+      - mongodb
+      - redis
+      - simulatorsrv

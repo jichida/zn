@@ -1,0 +1,17 @@
+  simulatorsrv:
+    image: node:6.11.2
+    container_name: simulatorsrv
+    restart: always
+    command: node ./index.js
+    working_dir: /simulatorsrv
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app/zn/deploy/simulator_restfulapi:/simulatorsrv
+      - /app/zn/deploy/dist/log:/dist/log
+    environment:
+      - listenport=8080
+    ports:
+       - "8080:8080"
+    expose:
+       - "8080"
+  

@@ -1,0 +1,21 @@
+znserver:
+  image: node:6.11.2
+  container_name: znserver
+  restart: always
+  command: node ./index.js
+  working_dir: /app
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /app/zn/deploy/srv:/app
+    - /app/zn/deploy/dist/log:/dist/log
+  environment:
+    - srvredis_host=redis
+    - MONGO_URL=mongodb://mongodb/zhongnandb
+    - listenport=3005
+  external_links:
+    - mongodb
+    - redis
+  ports:
+     - "3005:3005"
+  expose:
+     - "3005"
