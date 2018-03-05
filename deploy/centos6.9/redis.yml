@@ -5,6 +5,6 @@ redis:
      - "6379"
   volumes:
      - /etc/localtime:/etc/localtime:ro
-     - /diskg/redis:/var/lib/redis
+     - /500g/redis:/var/lib/redis
   ports:
      - "6379:6379"
