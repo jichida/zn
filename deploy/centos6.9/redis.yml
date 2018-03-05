@@ -1,0 +1,10 @@
+redis:
+  image:  redis:4.0.8
+  restart: always
+  expose:
+     - "6379"
+  volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /diskg/redis:/var/lib/redis
+  ports:
+     - "6379:6379"
