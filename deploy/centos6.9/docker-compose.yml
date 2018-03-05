@@ -1,0 +1,82 @@
+  nginx:
+      image: nginx
+      restart: always
+      network_mode: "host"
+      ports:
+          - "80:8090"
+      volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - ./nginx.conf:/etc/nginx/conf.d/default.conf
+          - /app/zn/deploy/dist:/usr/share/nginx/html
+      depends_on:
+        - znserver
+  simulatorsrv:
+    image: node:6.11.2
+    restart: always
+    command: node ./index.js
+    working_dir: /simulatorsrv
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app/zn/deploy/simulator_restfulapi:/simulatorsrv
+      - /app/zn/deploy/dist/log:/dist/log
+    environment:
+      - listenport=8080
+    network_mode: "host"
+    ports:
+       - "8080:8080"
+    expose:
+       - "8080"
+  znserver:
+    image: node:6.11.2
+    restart: always
+    command: node ./index.js
+    working_dir: /app
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app/zn/deploy/srv:/app
+      - /app/zn/deploy/dist/log:/dist/log
+    environment:
+      - MONGO_URL=mongodb://127.0.0.1/zhongnandb
+      - listenport=3005
+    network_mode: "host"
+    ports:
+       - "3005:3005"
+    expose:
+       - "3005"
+  uploadsrv:
+    image: node:6.11.2
+    restart: always
+    command: node ./index.js
+    working_dir: /app
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app/zn/deploy/uploadsrv:/app
+      - /app/zn/deploy/dist/log:/dist/log
+      - /app/zn/deploy/dist/uploader:/dist/uploaddir
+    environment:
+      - uploaddir=/dist/uploaddir
+      - logdir=/dist/log
+      - platformserverurl=http://127.0.0.1:8080
+    network_mode: "host"
+  mongodb:
+    image:  mongo:3.4
+    restart: always
+    expose:
+       - "27017"
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - "/var/db100/dbdata:/data/db -d"
+    network_mode: "host"
+    ports:
+       - "27017:27017"
+  redis:
+    image:  redis:4.0.8
+    restart: always
+    expose:
+       - "6379"
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /diskg/redis:/var/lib/redis
+    network_mode: "host"
+    ports:
+       - "6379:6379"

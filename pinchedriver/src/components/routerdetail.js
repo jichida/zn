@@ -104,12 +104,13 @@ export class Page extends Component {
 
         return (
             <div className="pinchePage AppPage">
-                <NavBar back={true} title="路线详情" rightnav={[
+                {/* <NavBar back={true} title="路线详情" rightnav={[
                     {icon : Mapicon,
                     text : '路线地图',
                     type : 'push',
                     url : '/routermap'}
-                ]}/>
+                ]}/> */}
+                <NavBar back={true} title="路线详情"  />
                 <div className="pinche">
                     <div className="time">{starttimestring}</div>
                     <div className="city">
