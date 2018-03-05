@@ -23,8 +23,8 @@
       - /app/zn/deploy/srv:/app
       - /app/zn/deploy/dist/log:/dist/log
     environment:
-      - srvredis_host=172.17.42.1
-      - MONGO_URL=mongodb://172.17.42.1/zhongnandb
+      - srvredis_host=redis
+      - MONGO_URL=mongodb://mongodb/zhongnandb
       - listenport=3005
     external_links:
       - mongodb
@@ -44,7 +44,7 @@
       - /app/zn/deploy/dist/log:/dist/log
       - /app/zn/deploy/dist/uploader:/dist/uploaddir
     environment:
-      - srvredis_host=172.17.42.1
+      - srvredis_host=redis
       - uploaddir=/dist/uploaddir
       - logdir=/dist/log
       - platformserverurl=http://172.17.42.1:8080
