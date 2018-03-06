@@ -13,10 +13,9 @@
       - srvredis_host=redis
       - uploaddir=/dist/uploaddir
       - logdir=/dist/log
-      - platformserverurl=http://platformserver:8080
+      - platformserverurl=http://simulatorsrv:8080
     extra_hosts:
-      - platformserver:172.16.5.101
+      - simulatorsrv:172.16.5.101
     external_links:
       - mongodb
       - redis
-      - simulatorsrv
