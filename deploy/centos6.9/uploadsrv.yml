@@ -13,7 +13,7 @@
       - srvredis_host=redis
       - uploaddir=/dist/uploaddir
       - logdir=/dist/log
-      - platformserverurl=http://vpn.i2u.top:8080
+      - platformserverurl=http://172.16.5.101:8080
     external_links:
       - mongodb
       - redis
