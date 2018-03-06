@@ -31,7 +31,7 @@ const resetplatform = (app)=>{
           });
     });
   });
-
+  //http://api.tczncx.com/starttest_resetuploaded
   app.get('/starttest_resetuploaded',(req,res)=>{
     testdatalegitimacy.starttest_resetuploaded((err,result)=>{
       res.status(200)

@@ -1,13 +1,13 @@
 const config = {
-  CompanyId:'zncx',
+  CompanyId:'3411ZNCX293T',
   logdir:process.env.logdir||'/app/zn/logs',
   uploaddir:process.env.uploaddir||'/app/zn/logs',
-  platformserverurl:process.env.platformserverurl||'http://127.0.0.1:8080',//'http://127.0.0.1:8080',
+  platformserverurl:process.env.platformserverurl||'http://172.16.5.101:8080',//'http://127.0.0.1:8080',
   srvsftp:{
-      host: process.env.srvsftp_host||'vpn.czjcd.com',
+      host: process.env.srvsftp_host||'172.16.11.41',
       port: process.env.srvsftp_port||'22',
-      username: process.env.srvsftp_username||'root',
-      password: process.env.srvsftp_password||'DownUp2U'
+      username: process.env.srvsftp_username||'wycftp1079',
+      password: process.env.srvsftp_password||'@N5755OR8c7!'
   },
   srvredis:{
     host:process.env.srvredis_host||'127.0.0.1',
