@@ -5,6 +5,8 @@
          - "80"
       ports:
           - "80:8090"
+      extra_hosts:
+        - znserver:172.17.42.1
       external_links:
         - znserver
       volumes:
