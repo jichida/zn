@@ -53,10 +53,10 @@ const MycarEdit = (props) => {
                 <TextField source="username" />
               </ReferenceField>
               <TextInputEx  label="车辆名字" source="name" />
-              <ImageField  label="人车合影" source="PhotoandCarmanURL" addLabel={true}/>
-              <ImageField  label="机动车驾驶证" source="LicensePhotoIdURL" addLabel={true}/>
-              <ImageField  label="城市" source="City" addLabel={true}/>
-              <ImageField  label="机动车行驶证" source="CarrunPhotoIdURL" addLabel={true}/>
+              <ImageInputUpload  label="人车合影" source="PhotoandCarmanURL" addLabel={true}/>
+              <ImageInputUpload  label="机动车驾驶证" source="LicensePhotoIdURL" addLabel={true}/>
+              <TextField  label="城市" source="City" addLabel={true}/>
+              <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoIdURL" addLabel={true}/>
               <ReferenceField label="平台车辆信息" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" addLabel={true} allowEmpty>
                 <TextField source="id" />
               </ReferenceField>
