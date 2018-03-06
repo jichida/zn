@@ -12,9 +12,9 @@ znserver:
     - srvredis_host=redis
     - MONGO_URL=mongodb://mongodb/zhongnandb
     - listenport=3005
-  external_links:
-    - mongodb
-    - redis
+  extra_hosts:
+    - mongodb:172.17.42.1
+    - redis:172.17.42.1
   ports:
      - "3005:3005"
   expose:
