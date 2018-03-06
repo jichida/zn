@@ -5,7 +5,7 @@ const config = {
   platformserverurl:process.env.platformserverurl||'http://172.16.5.101:8080',//'http://127.0.0.1:8080',
   srvsftp:{
       host: process.env.srvsftp_host||'172.16.11.41',
-      port: process.env.srvsftp_port||'22',
+      port: process.env.srvsftp_port||'21',
       username: process.env.srvsftp_username||'wycftp1079',
       password: process.env.srvsftp_password||'@N5755OR8c7!'
   },
