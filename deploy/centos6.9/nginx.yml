@@ -5,8 +5,8 @@
          - "80"
       ports:
           - "80:8090"
-      extra_hosts:
-          - znserver:172.17.42.1
+      external_links:
+        - znserver
       volumes:
           - /etc/localtime:/etc/localtime:ro
           - ./nginx.conf:/etc/nginx/conf.d/default.conf

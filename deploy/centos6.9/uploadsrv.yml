@@ -16,5 +16,6 @@
       - platformserverurl=http://simulatorsrv:8080
     extra_hosts:
       - simulatorsrv:172.16.5.101
-      - mongodb:172.17.42.1
-      - redis:172.17.42.1
+    external_links:
+      - mongodb
+      - redis
