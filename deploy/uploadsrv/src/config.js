@@ -1,7 +1,7 @@
 const config = {
   CompanyId:'3411ZNCX293T',
   logdir:process.env.logdir||'/app/zn/logs',
-  uploaddir:process.env.uploaddir||'/app/zn/logs',
+  uploaddir:process.env.uploaddir,
   platformserverurl:process.env.platformserverurl||'http://172.16.5.101:8080',//'http://127.0.0.1:8080',
   srvsftp:{
       host: process.env.srvsftp_host||'172.16.11.41',

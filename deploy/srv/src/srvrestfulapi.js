@@ -32,8 +32,8 @@ let startsrv = ()=>{
   //console.log("static admin:" + admindir);
   app.use('/admin', express.static(admindir));
 
-  let uploaddir = path.join(__dirname,config.uploaddir);
-  //console.log("static upload:" + uploaddir);
+  let uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
+  console.log("static upload:" + uploaddir);
   app.use(config.uploadurl, express.static(uploaddir));
 
   let logdir = path.join(__dirname,config.logdir);

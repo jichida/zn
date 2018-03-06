@@ -11,7 +11,7 @@ let config =  {
   publishdirdriver:'../../dist/appdriver',
   publishdirriderpinche:'../../dist/pinchedriver',
   publishdiradmin:'../../dist/admin',
-  uploaddir:'../../dist/uploader',
+  uploaddir:process.env.uploaddir,
   uploadurl:'/uploader',
   logdir:'../../dist/log',
 

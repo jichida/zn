@@ -8,7 +8,9 @@ znserver:
     - /etc/localtime:/etc/localtime:ro
     - /app/zn/deploy/srv:/app
     - /app/zn/deploy/dist/log:/dist/log
+    - /app/zn/deploy/dist/uploader:/dist/uploaddir
   environment:
+    - uploaddir=/dist/uploaddir
     - srvredis_host=redis
     - MONGO_URL=mongodb://mongodb/zhongnandb
     - listenport=3005

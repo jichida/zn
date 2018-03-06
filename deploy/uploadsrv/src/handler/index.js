@@ -7,7 +7,7 @@ const sftptosrv = require('../sftp/index');
 const redis = require('../redis/index.js');
 const _ = require('lodash');
 
-const uploaddir = path.join(__dirname,config.uploaddir);
+const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
 console.log("upload====>" + uploaddir);
 
 const uploadsftp = (collectionname,retdoc)=>{

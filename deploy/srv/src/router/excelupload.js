@@ -28,7 +28,7 @@ const startuploader = (app)=>{
     }
 
      const form = new formidable.IncomingForm();
-     form.uploadDir = path.join(__dirname,'../',config.uploaddir);
+     form.uploadDir = config.uploaddir || path.join(__dirname,'../../../dist/uploader');
      form.keepExtensions = true;
      console.log("form.uploadDir :" + form.uploadDir );
      form.parse(req, (err, fields, files)=> {
