@@ -4,8 +4,8 @@ const config = require('../config.js');
 var ftps = new FTPS({
   host: config.srvsftp.host, // required
   username: config.srvsftp.username, // Optional. Use empty username for anonymous access.
-  password: config.srvsftp.username, // Required if username is not empty, except when requiresPassword: false
-  protocol: 'ftps', // Optional, values : 'ftp', 'sftp', 'ftps', ... default: 'ftp'
+  password: config.srvsftp.password, // Required if username is not empty, except when requiresPassword: false
+  protocol: 'ftp', // Optional, values : 'ftp', 'sftp', 'ftps', ... default: 'ftp'
   // protocol is added on beginning of host, ex : sftp://domain.com in this case
   port: config.srvsftp.port, // Optional
   // port is added to the end of the host, ex: sftp://domain.com:22 in this case
