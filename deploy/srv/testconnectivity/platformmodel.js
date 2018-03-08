@@ -21,7 +21,7 @@ const testurls = [
     // 'operatelogin',
     // 'operatelogout',
     // 'operatedepart',
-    'operatearrive',
+    // 'operatearrive',
     // 'operatepay',
     // 'positiondriver',
     // 'positionvehicle',
