@@ -314,8 +314,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.DestLatitude ){
         retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
       }
-
       retdoc.Encrypt =  2;
+      retdoc.DriveTime = parseInt(retdoc.DriveTime);
     }
     else if(collectionname === 'operatepay'){
       if (typeof retdoc.BookDepTime === 'string') {
