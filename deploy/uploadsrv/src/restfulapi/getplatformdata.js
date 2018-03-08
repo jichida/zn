@@ -356,7 +356,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       //   debug(`${collectionname}-->字段OnArea必填,但目前没有`);
       //   winston.getlog().error(`${collectionname}-->字段OnArea必填,但目前没有`);
       // }
-      if(!DestTime){
+      if(!retdoc.DestTime){
         retdoc.DestTime = retdoc.DepTime;
         debug(`${collectionname}-->字段DestTime必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段DestTime必填,但目前没有`);
