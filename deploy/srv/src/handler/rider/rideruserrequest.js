@@ -244,7 +244,7 @@ exports.canceltriprequestorder_request =(socket,actiondata,ctx)=>{
           dataresult:{
             triprequest:triprequest,
             triporder:triporder,
-            canceltypecode:actiondata.canceltypecode||1
+            canceltypecode:actiondata.canceltypecode||'1'
           }//通知所有司机端更新该请求状态
         });
 

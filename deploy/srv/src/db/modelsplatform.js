@@ -437,8 +437,8 @@ let Platform_orderCancelSchema= new Schema({
   OrderId:String,	//	是	字符型	V64	订单编号
   OrderTime:String,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
   CancelTime:String,//	是	数字型	F14	订单撤销时间	YYYYMMDDhhmmss
-  Operator:Number,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
-  CancelTypeCode:Number,	//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销
+  Operator:{ type: String, default: '1' },	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
+  CancelTypeCode:{ type: String, default: '1' },	//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销
   CancelReason:String,	//	否	字符型	  V128	撤销或违约原因
 
   isuploaded:{ type: Number, default: 0 },//是否上传

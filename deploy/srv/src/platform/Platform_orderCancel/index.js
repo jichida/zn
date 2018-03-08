@@ -14,8 +14,8 @@
 //     OrderId:String,	//	是	字符型	V64	订单编号
 //     OrderTime:Date,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
 //     CancelTime:Date,//	是	数字型	F14	订单撤销时间	YYYYMMDDhhmmss
-//     Operator:Number,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
-//     CancelTypeCode:Number,	//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销
+//     Operator:String,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
+//     CancelTypeCode:String,	//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销5 .驾驶员违约撤销
 //     CancelReason:String,	//	否	字符型	  V128	撤销或违约原因
 // });
 let DBModels = require('../../db/models.js');
@@ -41,21 +41,21 @@ const utilarea = require('../../util/getarea');
 //     },
 //     "addressname" : "南京市江宁区玉兰路98号南京南站"
 // },
-const reasonflag = [
-  '',
-  '乘客提前撤销',
-  '驾驶员提前撤销',
-  '平台公司撤销',
-  '乘客违约撤销',
-  '驾驶员违约撤销'
-];
-exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1},postaction)=> {
+const reasonflag = {
+  '1':'乘客提前撤销',
+  '2':'驾驶员提前撤销',
+  '3':'平台公司撤销',
+  '4':'乘客违约撤销',
+  '5':'驾驶员违约撤销'
+};
+
+exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode='1'},postaction)=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
-        Operator:1,//撤销发起方	1.乘客2:驾驶员3 .平台公司
+        Operator:'1',//撤销发起方	1.乘客2:驾驶员3 .平台公司
         CancelTypeCode:canceltypecode,//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销 5 .驾驶员违约撤销
         CancelReason:reasonflag[canceltypecode],
     };
