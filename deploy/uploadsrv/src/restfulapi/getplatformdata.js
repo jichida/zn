@@ -308,11 +308,11 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.DestTime === 'string') {
         retdoc.DestTime = gettimefromstring(retdoc.DestTime);
       }
-      if(!!retdoc.DepLongitude){
-        retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
+      if(!!retdoc.DestLongitude){
+        retdoc.DestLongitude = getgeonumberfloat6(retdoc.DestLongitude);
       }
-      if(!!retdoc.DepLatitude ){
-        retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      if(!!retdoc.DestLatitude ){
+        retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
       }
 
       retdoc.Encrypt =  2;
