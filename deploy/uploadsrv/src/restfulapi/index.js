@@ -1,6 +1,6 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-const debug = require("uploadsrv:upload");
+const debug = require('debug')("uploadsrv:upload");
 const config = require('../config.js');
 const winston = require('../log/log.js');
 // const map = require('lodash.map');
