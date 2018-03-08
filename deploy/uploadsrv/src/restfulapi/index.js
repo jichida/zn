@@ -31,15 +31,15 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       if (response.status >= 200 && response.status < 300) {
         debug(`${IPCType}-->返回状态码-->${response.status}`);
         winston.getlog().info(`返回状态码-->${response.status}`);
-        return Promise.resolve(response)
+        return Promise.resolve(response.body)
       } else {
         return Promise.reject(new Error(response.statusText))
       }
     })
-    .then(response => {
-      debug(`${IPCType}-->返回结果-->${response}`);
-      winston.getlog().info(`返回结果-->${response}`);
-      Promise.resolve(response);
+    .then(body => {
+      debug(`${IPCType}-->返回结果-->${body}`);
+      winston.getlog().info(`返回结果-->${body}`);
+      Promise.resolve(body);
     });
 }
 

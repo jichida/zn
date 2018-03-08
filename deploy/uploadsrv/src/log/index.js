@@ -4,16 +4,16 @@ const path = require('path');
 const config = require('../config.js');
 let logger;
 exports.initLog =  ()=>{
-  var filename = `uploadsrv.html`;
+  var filename = `uploadsrv`;
 
-  var logfile = `${config.logdir}/${filename}.log`;
+  var logfile = `${config.logdir}/${filename}.html`;
   var logpath = path.resolve(__dirname,'../', logfile);
   console.log(`logpath==>${logpath}`);
 
-  var logfileerr = `${config.logdir}/${filename}_err.log`;
+  var logfileerr = `${config.logdir}/${filename}_err.html`;
   var logpatherr = path.resolve(__dirname,'../', logfileerr);
 
-  var logfilewarn = `${config.logdir}/${filename}_warn.log`;
+  var logfilewarn = `${config.logdir}/${filename}_warn.html`;
   var logpathwarn = path.resolve(__dirname,'../', logfilewarn);
 
   // winston.configure({
