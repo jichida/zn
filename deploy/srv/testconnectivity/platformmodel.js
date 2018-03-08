@@ -1,20 +1,20 @@
 const dbs = require('../src/db/index');
 const _ = require('lodash');
 const testurls = [
-    'baseinfocompany',
-    'baseinfocompanystat',
-    'baseinfocompanypay',
-    'baseinfocompanyservice',
+    // 'baseinfocompany',
+    // 'baseinfocompanystat',
+    // 'baseinfocompanypay',
+    // 'baseinfocompanyservice',
     'baseinfocompanypermit',
-    'baseinfocompanyfare',
+    // 'baseinfocompanyfare',
     'baseinfovehicle',
-    'baseinfovehicleinsurance',
-    'baseinfovehicletotalmile',
+    // 'baseinfovehicleinsurance',
+    // 'baseinfovehicletotalmile',
     'baseinfodriver',
     'baseinfodrivereducate',
     'baseinfodriverapp',
     'baseinfodriverstat',
-    'baseinfopassenger',
+    // 'baseinfopassenger',
     'ordercreate',
     'ordermatch',
     'ordercancel',
@@ -26,9 +26,9 @@ const testurls = [
     'positiondriver',
     'positionvehicle',
     'ratedpassenger',
-    'ratedpassengercomplaint',
-    'rateddriverpunish',
-    'rateddriver'
+    // 'ratedpassengercomplaint',
+    // 'rateddriverpunish',
+    // 'rateddriver'
 ];
 
 const getmodels = ()=>{
