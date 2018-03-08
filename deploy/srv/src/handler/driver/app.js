@@ -11,7 +11,7 @@ const util = require('../../platform/util.js');
 exports.senddriverappinfo = (socket,actiondata,ctx)=>{
    if(ctx.approvalstatus === '已审核'){
        let eModel = dbplatform.Platform_baseInfoDriverAppModel;
-       eModel.findOne({licenseld:ctx.driverinfo.LicenseId},(err,result)=>{
+       eModel.findOne({LicenseId:ctx.driverinfo.LicenseId},(err,result)=>{
            let postdata = {
                Address:ctx.driverinfo.DriverRegionCode,
                DriverPhone:ctx.driverinfo.DriverPhone||ctx.username,

@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOperateLogout  = (actiondata,postaction)=> {
     let operateLogoutDoc = {
         CompanyId:config.CompanyId,
-        LicenseId:actiondata.licenseld,
+        LicenseId:actiondata.LicenseId,
         VehicleNo:actiondata.vehicleno,
         LogoutTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Longitude:actiondata.driverlocation[0],

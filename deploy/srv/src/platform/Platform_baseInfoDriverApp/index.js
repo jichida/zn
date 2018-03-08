@@ -60,7 +60,7 @@ exports.updateBaseInfoDriverApp  = (actiondata,postaction)=> {
         UpdateTime:moment().format('YYYY-MM-DD HH:mm:ss'),
     };
     let eModel = dbplatform.Platform_baseInfoDriverAppModel;
-    eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverAppDoc},{new:true},(err,result)=> {
+    eModel.findOneAndUpdate({LicenseId:actiondata.LicenseId},{$set:baseInfoDriverAppDoc},{new:true},(err,result)=> {
         if (!err && !!result) {
             postaction('findOneAndUpdate','baseinfodriverapp',result);
         }

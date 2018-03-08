@@ -29,7 +29,7 @@ let dbplatform = require('../../db/modelsplatform.js');
 exports.insertOperateLogin  = (actiondata,postaction)=> {
     let operateLoginDoc = {
         CompanyId:config.CompanyId,
-        LicenseId:actiondata.licenseld,
+        LicenseId:actiondata.LicenseId,
         VehicleNo:actiondata.vehicleno,
         LoginTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Longitude:actiondata.driverlocation[0],

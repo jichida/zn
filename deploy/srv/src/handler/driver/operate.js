@@ -16,7 +16,7 @@ exports.operatelogin = (socket,actiondata,ctx)=>{
 
         let postdata = {
             vehicleno:ctx.driverinfo.VehicleNo,
-            licenseld:ctx.driverinfo.LicenseId,
+            LicenseId:ctx.driverinfo.LicenseId,
             driverlocation:actiondata.driverlocation
         };
         //通知平台插入
@@ -31,10 +31,10 @@ exports.operatelogin = (socket,actiondata,ctx)=>{
 exports.operatelogout = (socket,actiondata,ctx)=>{
 
     ctx.bizstatus = 4;//4.停运
-    // if(ctx.hasOwnProperty('licenseld')){
+    // if(ctx.hasOwnProperty('LicenseId')){
     let postdata = {
         vehicleno:ctx.driverinfo.VehicleNo,
-        licenseld:ctx.driverinfo.LicenseId,
+        LicenseId:ctx.driverinfo.LicenseId,
         driverlocation:actiondata.driverlocation
     };
     //通知平台插入

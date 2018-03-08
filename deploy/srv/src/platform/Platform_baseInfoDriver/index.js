@@ -41,7 +41,7 @@ exports.updateBaseInfoDriver  = (actiondata,postaction)=> {
 
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
-    eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
+    eModel.findOneAndUpdate({LicenseId:actiondata.LicenseId},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
         if (!err && !!result) {
             postaction('findOneAndUpdate','baseinfodriver',result);
         }
