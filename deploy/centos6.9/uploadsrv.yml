@@ -14,6 +14,7 @@
       - uploaddir=/dist/uploaddir
       - logdir=/dist/log
       - platformserverurl=http://simulatorsrv:8080
+      - DEBUG=uploadsrv:*
     extra_hosts:
       - simulatorsrv:172.16.5.101
     external_links:
