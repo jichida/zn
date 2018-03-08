@@ -2,7 +2,7 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 const debug = require('debug')("uploadsrv:upload");
 const config = require('../config.js');
-const winston = require('../log/log.js');
+const winston = require('../log/index.js');
 // const map = require('lodash.map');
 
 const fetchurl =`${config.platformserverurl}`;
