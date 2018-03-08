@@ -363,6 +363,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+      retdoc = _.omit(retdoc,['TafficViolationCount']);
+      if(!retdoc.TrafficViolationCount){
+        retdoc.TrafficViolationCount = 0;
+        debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
+      }
     }
     else if(collectionname === 'positiondriver'){
       if (typeof retdoc.PositionTime === 'string') {
