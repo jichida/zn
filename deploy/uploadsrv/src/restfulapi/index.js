@@ -16,7 +16,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       IPCType,
     };
     postdata[IPCType] = data;
-    winston.getlog().info(`开始发送接口-->${JSON.stringify(postdata)}`);
+    winston.getlog().info(postdata);
     debug(`开始发送接口-->${JSON.stringify(postdata)}`);
 
     return fetch(`${fetchurl}${uri}`, {
