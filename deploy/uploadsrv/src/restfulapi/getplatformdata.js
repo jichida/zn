@@ -347,9 +347,21 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc.Encrypt =  2;
 
-      retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','DestTime','BookModel',
+      retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','BookModel',
     'Model','WaitMile','Price','CashPrice','LineName','LinePrice','PosName','PosPrice','BenfitPrice',
   'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
+
+      // if(!retdoc.OnArea){
+      //   retdoc.OnArea = 341181;
+      //   debug(`${collectionname}-->字段OnArea必填,但目前没有`);
+      //   winston.getlog().error(`${collectionname}-->字段OnArea必填,但目前没有`);
+      // }
+      if(!DestTime){
+        retdoc.DestTime = retdoc.DepTime;
+        debug(`${collectionname}-->字段DestTime必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段DestTime必填,但目前没有`);
+      }
+      retdoc.DriveTime = parseInt(retdoc.DriveTime);
 
     }
     else if(collectionname === 'baseinfodriverstat'){
