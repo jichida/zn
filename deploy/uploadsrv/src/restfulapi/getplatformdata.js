@@ -241,12 +241,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
-      if(!DriverPhone){
+      if(!retdoc.DriverPhone){
         retdoc.DriverPhone = '1234';
         debug(`${collectionname}-->字段DriverPhone必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段DriverPhone必填,但目前没有`);
       }
-      if(!VehicleNo){
+      if(!retdoc.VehicleNo){
         retdoc.VehicleNo = '1234';
         debug(`${collectionname}-->字段VehicleNo必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段VehicleNo必填,但目前没有`);
