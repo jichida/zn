@@ -231,7 +231,7 @@ const DeviceActions = ({ resource, filters, displayedFilters, filterValues, base
 
 
 const UserdriverlistList = (props) => (//
-     <List title="司机列表" {...props} filters={<UserdriverFilter />} sort={{ field: 'updated_at', order: 'ASC' }} perPage={100}>
+     <List title="司机列表" {...props} filters={<UserdriverFilter />} sort={{ field: 'created_at', order: 'DESC' }}
      actions={<DeviceActions />}>
         <Datagrid>
         <TextField label="手机号" source="username" />

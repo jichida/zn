@@ -182,7 +182,7 @@ const BaseInfoDriverEdit = (props) => {
 
 
 const BaseInfoDriverList = (props) => (//
-     <List title="驾驶员信息列表" {...props} sort={{ field: 'updated_at', order: 'ASC' }} perPage={100}>
+     <List title="驾驶员信息列表" {...props} >
         <Datagrid>
         <TextField label="驾驶员姓名" source="DriverName" />
         <TextField label="驾驶员手机号"  source="DriverPhone" />
