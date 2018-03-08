@@ -28,12 +28,16 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       body    : JSON.stringify(postdata)
     })
     .then((response)=> {
+      debug(`${IPCType}-->返回状态码-->${response.status}`);
+      winston.getlog().info(`返回状态码-->${response.status}`);
       if (response.status >= 200 && response.status < 300) {
-        debug(`${IPCType}-->返回状态码-->${response.status}`);
-        winston.getlog().info(`返回状态码-->${response.status}`);
+        debug(`${IPCType}-->OK`);
+        winston.getlog().info(`${IPCType}-->OK`);
         return Promise.resolve(response)
       } else {
-        return Promise.reject(new Error(response.statusText))
+        debug(`${IPCType}-->Error`);
+        winston.getlog().info(`${IPCType}-->Error`);
+        return Promise.reject()
       }
     })
     .then(body => {
