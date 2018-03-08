@@ -96,11 +96,19 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.GPSlnstallDate === 'string') {
         retdoc.GPSlnstallDate =  getdatefromstring(retdoc.GPSlnstallDate);
       }
+      if (typeof retdoc.RegisterDate === 'string') {
+        retdoc.RegisterDate =  getdatefromstring(retdoc.RegisterDate);
+      }
+      if (typeof retdoc.NextFixDate === 'string') {
+        retdoc.NextFixDate =  getdatefromstring(retdoc.NextFixDate);
+      }
       retdoc['Commercial-Type'] = 1;
+      retdoc['CommercialType'] = 1;
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI']);
     }
     else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
@@ -162,7 +170,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc.ContractOff = getdatefromstring(retdoc.ContractOff);
         }
         retdoc.CommercialType = 1;//1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
-        // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+        etdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+        retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
+        'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
+        'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
+        'InDriverBlacklist','EmergencyContact','EmergencyContactPhone','EmergencyContactAddress']);
+
       }
     else if(collectionname === 'baseinfodrivereducate'){
       if (typeof retdoc.CourseDate === 'string') {
@@ -192,10 +206,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     }
     else if(collectionname === 'ordercreate'){
       if (typeof retdoc.DepartTime === 'string') {
-        retdoc.DepartTime = getdatefromstring(retdoc.DepartTime);
+        retdoc.DepartTime = gettimefromstring(retdoc.DepartTime);
       }
       if (typeof retdoc.OrderTime === 'string') {
-        retdoc.OrderTime = getdatefromstring(retdoc.OrderTime);
+        retdoc.OrderTime = gettimefromstring(retdoc.OrderTime);
       }
       if(!!retdoc.DepLongitude){
         retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
@@ -222,6 +236,21 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
       retdoc.Encrypt =  2;
+      if(!retdoc.Address){
+        retdoc.Address = 341181;
+        debug(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+      }
+      if(!DriverPhone){
+        retdoc.DriverPhone = '1234';
+        debug(`${collectionname}-->字段DriverPhone必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段DriverPhone必填,但目前没有`);
+      }
+      if(!VehicleNo){
+        retdoc.VehicleNo = '1234';
+        debug(`${collectionname}-->字段VehicleNo必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段VehicleNo必填,但目前没有`);
+      }
     }
     else if(collectionname === 'ordercancel'){
       if (typeof retdoc.OrderTime === 'string') {
