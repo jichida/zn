@@ -127,7 +127,7 @@ const MycarEdit = (props) => {
 
 
 const MycarList = (props) => (//
-     <List title="驾驶员车辆信息列表" {...props} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="驾驶员车辆信息列表" {...props} sort={{ field: 'updated_at', order: 'ASC' }} perPage={100}>
         <Datagrid>
         <ReferenceField label="司机" source="creator" reference="userdriver" >
           <TextField source="username" />
