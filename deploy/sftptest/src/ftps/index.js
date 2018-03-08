@@ -1,4 +1,5 @@
 const FTPS = require('ftps');
+//参考文档：https://github.com/Atinux/node-ftps
 const config = require('../config.js');
 
 var ftps = new FTPS({
@@ -22,8 +23,22 @@ var ftps = new FTPS({
 // Do some amazing things
 console.log(`--start connect:${JSON.stringify(config.srvsftp)}`);
 const sftptosrv = (localdir,localfilename,callback)=>{
-  console.log(`--file:${localdir}/${localfilename}`);
-  ftps.cd('/tmp').addFile(`${localdir}/${localfilename}`).exec(callback);
+  console.log(`开始连接:${JSON.stringify(config.srvsftp)}`);
+  ftps.put(`${localdir}/${localfilename}`, `tmp/${localfilename}`).exec((err, res)=> {
+    console.log(`上传文件到tmp目录:${localdir}/${localfilename}`);
+    if(!err){
+      console.log(err);
+      callback(err,res);
+      return;
+    }
+    ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
+      console.log(`移动文件到swapfiles目录:${localfilename}`);
+      if(!err){
+        console.log(err);
+      }
+      callback(err,res);
+    });
+  });
 }
 
 module.exports = sftptosrv;

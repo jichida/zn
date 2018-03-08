@@ -3,7 +3,7 @@ const config = require('../config.js');
 const getplatformdata = require('../restfulapi/getplatformdata');
 const map_platformfn = require('../restfulapi/getmapfn');
 const uploadtoplatform = require('../restfulapi/index');
-const sftptosrv = require('../sftp/index');
+const sftptosrv = require('../ftps/index');
 const redis = require('../redis/index.js');
 const _ = require('lodash');
 

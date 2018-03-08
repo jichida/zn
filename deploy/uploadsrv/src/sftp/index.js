@@ -6,16 +6,16 @@ const sftp = new Client();
 const config = require('../config.js');
 
 const sftptosrv = (localdir,localfilename,callback)=>{
-  console.log(`start connect:${JSON.stringify(config.srvsftp)}`);
+  console.log(`开始连接:${JSON.stringify(config.srvsftp)}`);
   sftp.connect(config.srvsftp).then(() => {
-      console.log(`file:${localdir}/${localfilename}`);
-      sftp.put(`${localdir}/${localfilename}`, `/tmp/${localfilename}`);
+      console.log(`上传文件到tmp目录:${localdir}/${localfilename}`);
+      sftp.put(`${localdir}/${localfilename}`, `tmp/${localfilename}`);
       // return sftp.list('/pathname');
   }).then(() => {
-      console.log(`file:${localdir}/${localfilename}`);
-      sftp.rename(`/tmp/${localfilename}`, `/swapfiles/${localfilename}`);
+      console.log(`移动文件到swapfiles目录:${localfilename}`);
+      sftp.rename(`tmp/${localfilename}`, `swapfiles/${localfilename}`);
   }).then(() => {
-    console.log(`file:${localdir}/${localfilename}`);
+    console.log(`完成!!`);
     callback(null,true);
   })
   .catch((err) => {

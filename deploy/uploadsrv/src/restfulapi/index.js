@@ -10,6 +10,7 @@ console.log(`url-->${fetchurl}`);
 
 const statusHelper = (response)=> {
   if (response.status >= 200 && response.status < 300) {
+    console.log(`返回状态码-->${response.status}`);
     return Promise.resolve(response)
   } else {
     return Promise.reject(new Error(response.statusText))
@@ -23,7 +24,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       IPCType,
     };
     postdata[IPCType] = data;
-    console.log(`postdata-->${JSON.stringify(postdata)}`);
+    console.log(`开始发送接口-->${JSON.stringify(postdata)}`);
 
     return fetch(`${fetchurl}${uri}`, {
       method  : 'POST',
