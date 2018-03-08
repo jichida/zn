@@ -25,7 +25,7 @@ const testurls = [
     'operatepay',
     'positiondriver',
     'positionvehicle',
-    'ratedpassenger',
+    // 'ratedpassenger',
     // 'ratedpassengercomplaint',
     // 'rateddriverpunish',
     // 'rateddriver'

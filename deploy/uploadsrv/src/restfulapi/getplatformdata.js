@@ -1,6 +1,8 @@
 const moment = require('moment');
 const _ = require('lodash');
 const config = require('../config.js');
+const debug = require('debug')("uploadsrv:processdata");
+const winston = require('../log/index.js');
 
 const gettimefromstring = (timestring)=>{
   let curtime = moment(timestring).format('YYYYMMDDHHmmss');
@@ -171,6 +173,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     else if(collectionname === 'baseinfodriverapp'){
       retdoc.MapType =  2;
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+      retdoc = _.omit(retdoc,['Companyld']);
+      if(!retdoc.LicenseId){
+        retdoc.LicenseId = '1234';
+        debug(`${collectionname}-->字段LicenseId必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段LicenseId必填,但目前没有`);
+      }
     }
     // else if(collectionname === 'baseinfodriverstat'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -221,6 +230,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.CancelTime === 'string') {
         retdoc.CancelTime = gettimefromstring(retdoc.CancelTime);
       }
+
+      if(!retdoc.Address){
+        retdoc.Address = 341181;
+        debug(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+      }
     }
     else if(collectionname === 'operatelogin'){
       if (typeof retdoc.LoginTime === 'string') {
@@ -256,8 +271,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.DepLatitude){
         retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
       }
-
       retdoc.Encrypt =  2;
+      retdoc = _.omit(retdoc,['WaitMile','WaitTime']);
     }
     else if(collectionname === 'operatearrive'){
       if (typeof retdoc.DestTime === 'string') {
@@ -300,9 +315,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.DestLatitude){
         retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
       }
-
-
       retdoc.Encrypt =  2;
+
+      retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','DestTime','BookModel',
+    'Model','WaitMile','Price','CashPrice','LineName','LinePrice','PosName','PosPrice','BenfitPrice',
+  'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
+
     }
     else if(collectionname === 'baseinfodriverstat'){
       if (typeof retdoc.PositionTime === 'string') {
@@ -314,7 +332,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'positiondriver'){
       if (typeof retdoc.PositionTime === 'string') {
@@ -326,7 +344,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-
+      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage','Encrypt',
+      'WarnStatus','VehStatus','BizStatus']);
     }
     else if(collectionname === 'positionvehicle'){
       if (typeof retdoc.PositionTime === 'string') {
@@ -338,7 +357,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-      
+      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {
