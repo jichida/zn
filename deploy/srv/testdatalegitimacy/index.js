@@ -28,25 +28,27 @@ const starttest_resetuploaded = (callbackfn)=>{
   const flagdb = ['baseinfocompany','baseinfocompanystat','baseinfocompanypay','baseinfocompanyservice',
   'baseinfocompanypermit','baseinfocompanyfare','baseinfovehicle','baseinfovehicleinsurance'];
   _.map(flagdb,(collectionname)=>{
-    fnsz.push((callback)=>{
-      const schmodel = dbslistmap[collectionname];
-      const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
-      dbModel.update({
-        $or:[
-          {
-            Flag:2
-          },
-          {
-            Flag:
+    if(!!dbslistmap[collectionname]){
+      fnsz.push((callback)=>{
+        const schmodel = dbslistmap[collectionname];
+        const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
+        dbModel.update({
+          $or:[
             {
-              $exists:false
+              Flag:2
+            },
+            {
+              Flag:
+              {
+                $exists:false
+              }
             }
-          }
-        ]
-      },{$set:{Flag:1}},{ multi: true },(err,result)=>{
-        callback(err,result);
+          ]
+        },{$set:{Flag:1}},{ multi: true },(err,result)=>{
+          callback(err,result);
+        });
       });
-    });
+    }
   });
 
   async.parallel(fnsz,callbackfn);

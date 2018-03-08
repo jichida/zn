@@ -188,18 +188,30 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.OrderTime === 'string') {
         retdoc.OrderTime = getdatefromstring(retdoc.OrderTime);
       }
-      retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
-      retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
-      retdoc.DestLongitude = getgeonumberfloat6(retdoc.DestLongitude);
-      retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
+      if(!!retdoc.DepLongitude){
+        retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
+      }
+      if(!!retdoc.DepLatitude){
+        retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      }
+      if(!!retdoc.DestLongitude){
+        retdoc.DestLongitude = getgeonumberfloat6(retdoc.DestLongitude);
+      }
+      if(!!retdoc.DestLatitude){
+        retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
+      }
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'ordermatch'){
       if (typeof retdoc.DistributeTime === 'string') {
         retdoc.DistributeTime = gettimefromstring(retdoc.DistributeTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'ordercancel'){
@@ -214,32 +226,50 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.LoginTime === 'string') {
         retdoc.LoginTime = gettimefromstring(retdoc.LoginTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'operatelogout'){
       if (typeof retdoc.LogoutTime === 'string') {
         retdoc.LogoutTime = gettimefromstring(retdoc.LogoutTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'operatedepart'){
       if (typeof retdoc.DepTime === 'string') {
         retdoc.DepTime = gettimefromstring(retdoc.DepTime);
       }
-      retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
-      retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      if(!!retdoc.DepLongitude){
+        retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
+      }
+      if(!!retdoc.DepLatitude){
+        retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      }
+
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'operatearrive'){
       if (typeof retdoc.DestTime === 'string') {
         retdoc.DestTime = gettimefromstring(retdoc.DestTime);
       }
-      retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
-      retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      if(!!retdoc.DepLongitude){
+        retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
+      }
+      if(!!retdoc.DepLatitude ){
+        retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      }
+
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'operatepay'){
@@ -258,32 +288,57 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.OrderMatchTime === 'string') {
         retdoc.OrderMatchTime = gettimefromstring(retdoc.OrderMatchTime);
       }
-      retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
-      retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
-      retdoc.DestLongitude = getgeonumberfloat6(retdoc.DestLongitude);
-      retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
+      if(!!retdoc.DepLongitude ){
+        retdoc.DepLongitude = getgeonumberfloat6(retdoc.DepLongitude);
+      }
+      if(!!retdoc.DepLatitude){
+        retdoc.DepLatitude = getgeonumberfloat6(retdoc.DepLatitude);
+      }
+      if(!!retdoc.DestLongitude){
+        retdoc.DestLongitude = getgeonumberfloat6(retdoc.DestLongitude);
+      }
+      if(!!retdoc.DestLatitude){
+        retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
+      }
+
+
       retdoc.Encrypt =  2;
     }
     else if(collectionname === 'baseinfodriverstat'){
       if (typeof retdoc.PositionTime === 'string') {
         retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
+
     }
     else if(collectionname === 'positiondriver'){
       if (typeof retdoc.PositionTime === 'string') {
         retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
+
     }
     else if(collectionname === 'positionvehicle'){
       if (typeof retdoc.PositionTime === 'string') {
         retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
       }
-      retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
-      retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      if(!!retdoc.Longitude){
+        retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
+      }
+      if(!!retdoc.Latitude){
+        retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
+      }
+      
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {
