@@ -42,7 +42,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
     })
     .then(body => {
       debug(`${IPCType}-->返回结果-->`);
-      winston.getlog().info(`返回结果-->`);
+      winston.getlog().info(`${IPCType}-->返回结果-->`);
       Promise.resolve();
     });
 }
