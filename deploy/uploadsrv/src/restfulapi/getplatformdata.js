@@ -13,7 +13,8 @@ const getdatefromstring = (timestring)=>{
   return parseInt(curtime);
 }
 const getgeonumberfloat6 = (lntlngnumber)=>{
-  return _.toNumber(lntlngnumber.toFixed(6));
+  const retv = _.toNumber(lntlngnumber.toFixed(6))*1000000;
+  return parseInt(retv);
 }
 
 
