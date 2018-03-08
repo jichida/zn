@@ -170,7 +170,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc.ContractOff = getdatefromstring(retdoc.ContractOff);
         }
         retdoc.CommercialType = 1;//1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
-        etdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+        retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
 
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
