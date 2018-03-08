@@ -55,7 +55,7 @@ const onmessage = (msgobj)=> {
       const uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
       if(!!uploaddata){
         uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
-          debug(`uploadtoplatform===>${JSON.stringify(res)}`);
+          debug(`uploadtoplatform===>${res}`);
           redis.publish(`platformmessage_upload_callback`,{
             collectionname:data.collectionname,
             _id:data.doc._id,
@@ -80,7 +80,7 @@ const onmessage = (msgobj)=> {
 
       if(uploaddatalists.length > 0){
         uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddatalists).then((res)=>{
-          debug(`uploadtoplatform===>${JSON.stringify(res)}`);
+          debug(`uploadtoplatform===>${res}`);
           redis.publish(`platformmessage_upload_callback`,{
             collectionname:data.collectionname,
             _ids,

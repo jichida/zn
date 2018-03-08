@@ -9,16 +9,6 @@ const fetchurl =`${config.platformserverurl}`;
 
 debug(`url-->${fetchurl}`);
 
-const statusHelper = (response)=> {
-  if (response.status >= 200 && response.status < 300) {
-    debug(`返回状态码-->${response.status}`);
-    winston.getlog().info(`返回状态码-->${response.status}`);
-    return Promise.resolve(response)
-  } else {
-    return Promise.reject(new Error(response.statusText))
-  }
-}
-
 const uploadtoplatform = (IPCType,uri,data)=>{
     let postdata = {
       Source:'0',
@@ -37,12 +27,18 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       },
       body    : JSON.stringify(postdata)
     })
-    .then(statusHelper)
+    .then((response)=> {
+      if (response.status >= 200 && response.status < 300) {
+        debug(`${IPCType}-->返回状态码-->${response.status}`);
+        winston.getlog().info(`返回状态码-->${response.status}`);
+        return Promise.resolve(response)
+      } else {
+        return Promise.reject(new Error(response.statusText))
+      })
     .then(response => {
-      const retjson = response.json();
-      debug(`返回结果-->${JSON.stringify(retjson)}`);
-      winston.getlog().info(`返回结果-->${JSON.stringify(retjson)}`);
-      Promise.resolve(retjson);
+      debug(`${IPCType}-->返回结果-->${response)}`);
+      winston.getlog().info(`返回结果-->${response}`);
+      Promise.resolve(response);
     });
 }
 

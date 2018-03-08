@@ -29,20 +29,21 @@ const sftptosrv = (localdir,localfilename,callback)=>{
     callback();
     return;
   }
-  ftps.put(`${localdir}/${localfilename}`, `tmp/${localfilename}`).exec((err, res)=> {
+  ftps.cd(`tmp/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
     debug(`上传文件到tmp目录:${localdir}/${localfilename}`);
     if(!err){
       debug(err);
       callback(err,res);
       return;
     }
-    ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
-      debug(`移动文件到swapfiles目录:${localfilename}`);
-      if(!err){
-        debug(err);
-      }
-      callback(err,res);
-    });
+    callback(err,res);
+    // ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
+    //   debug(`移动文件到swapfiles目录:${localfilename}`);
+    //   if(!err){
+    //     debug(err);
+    //   }
+    //   callback(err,res);
+    // });
   });
 }
 

@@ -4,7 +4,7 @@ const path = require('path');
 const config = require('../config.js');
 let logger;
 exports.initLog =  ()=>{
-  var filename = "znplatformuploader_"+moment().format('YYYY-MM-DD-HHmmss');
+  var filename = `uploadsrv.html`;
 
   var logfile = `${config.logdir}/${filename}.log`;
   var logpath = path.resolve(__dirname,'../', logfile);
