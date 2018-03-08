@@ -30,7 +30,7 @@ const sftptosrv = (localdir,localfilename,callback)=>{
     return;
   }
   ftps.cd(`tmp/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
-    debug(`上传文件到tmp目录:${localdir}/${localfilename}`);
+    debug(`上传文件到tmp目录:${localdir}/${localfilename},err:${!!err}`);
     if(!err){
       debug(err);
       callback(err,res);
