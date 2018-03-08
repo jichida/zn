@@ -162,7 +162,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.CourseDate === 'string') {
         retdoc.CourseDate = getdatefromstring(retdoc.CourseDate);
       }
-      // retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'baseinfodriverapp'){
       retdoc.MapType =  2;
@@ -175,7 +175,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.RegisterDate === 'string') {
         retdoc.RegisterDate = getdatefromstring(retdoc.UpdateTime);
       }
-      // retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+      retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
     }
     else if(collectionname === 'ordercreate'){
       if (typeof retdoc.DepartTime === 'string') {
