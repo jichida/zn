@@ -14,9 +14,9 @@ const getdatefromstring = (timestring)=>{
 const getplatformdata = (actionname,collectionname,doc)=>{
   let retdoc = doc;
   retdoc = _.omit(retdoc,['_id','__v','isuploaded']);
-  console.log(`retdoc==>${JSON.stringify(retdoc)}`);
-  console.log(`actionname==>${actionname}`);
-  console.log(`collectionname==>${collectionname}`);
+  // console.log(`retdoc==>${JSON.stringify(retdoc)}`);
+  // console.log(`actionname==>${actionname}`);
+  // console.log(`collectionname==>${collectionname}`);
 
   if(actionname === 'save' || actionname === 'findByIdAndUpdate' || actionname === 'upload'){
     retdoc.CompanyId = config.CompanyId;

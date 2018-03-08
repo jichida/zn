@@ -1,16 +1,18 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-
+const debug = require("uploadsrv:upload");
 const config = require('../config.js');
+const winston = require('../log/log.js');
 // const map = require('lodash.map');
 
 const fetchurl =`${config.platformserverurl}`;
 
-console.log(`url-->${fetchurl}`);
+debug(`url-->${fetchurl}`);
 
 const statusHelper = (response)=> {
   if (response.status >= 200 && response.status < 300) {
-    console.log(`返回状态码-->${response.status}`);
+    debug(`返回状态码-->${response.status}`);
+    winston.getlog().info(`返回状态码-->${response.status}`);
     return Promise.resolve(response)
   } else {
     return Promise.reject(new Error(response.statusText))
@@ -24,7 +26,8 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       IPCType,
     };
     postdata[IPCType] = data;
-    console.log(`开始发送接口-->${JSON.stringify(postdata)}`);
+    winston.getlog().info(`开始发送接口-->${JSON.stringify(postdata)}`);
+    debug(`开始发送接口-->${JSON.stringify(postdata)}`);
 
     return fetch(`${fetchurl}${uri}`, {
       method  : 'POST',
@@ -35,7 +38,12 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       body    : JSON.stringify(postdata)
     })
     .then(statusHelper)
-    .then(response => response.json());
+    .then(response => {
+      const retjson = response.json();
+      debug(`返回结果-->${JSON.stringify(retjson)}`);
+      winston.getlog().info(`返回结果-->${JSON.stringify(retjson)}`);
+      Promise.resolve(retjson);
+    });
 }
 
 module.exports = uploadtoplatform;
