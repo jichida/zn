@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "srvredis_host=zn.i2u.top issmsdebug=true node --inspect index.js",
+    "start": "srvredis_host=api.nuistiot.com issmsdebug=true node --inspect index.js",
     "test": "mocha"
   },
   "author": "",

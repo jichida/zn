@@ -70,6 +70,7 @@ const MycarEdit = (props) => {
               ]} />
           </FormTab>
           <FormTab label="resources.baseinfovehicle.tabs.tab0">
+          <TextInputEx  label="车辆行政地注册编码" source="Platform_baseInfoVehicle.Address" validate={[required]}/>
           <TextInputEx  label="车辆号牌" source="Platform_baseInfoVehicle.VehicleNo" validate={[required]}/>
           <TextInputEx  label="车牌颜色" source="Platform_baseInfoVehicle.PlateColor" validate={[required]}/>
           <NumberInputEx  label="核定载客位" source="Platform_baseInfoVehicle.Seats" validate={[required]}/>

@@ -235,6 +235,12 @@ const UserdriverlistList = (props) => (//
      actions={<DeviceActions />}>
         <Datagrid>
         <TextField label="手机号" source="username" />
+        <ReferenceField label="车辆" source="defaultmycar" reference="mycar" allowEmpty>
+          <TextField source="Platform_baseInfoVehicle.VehicleNo" />
+        </ReferenceField>
+        <ReferenceField label="司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty>
+          <TextField source="DriverName" />
+        </ReferenceField>
         <TextField label="注册时间" source="created_at"  />
         <TextField label="上次登录时间" source="updated_at"  />
         <TextField label="审批状态"  source="approvalstatus" />
