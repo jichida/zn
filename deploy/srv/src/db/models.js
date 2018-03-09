@@ -177,7 +177,7 @@ let UserDriverSchema = new Schema({
 
       RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
       CommercialType:Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
-      FareType:{ type: Schema.Types.ObjectId, ref: 'faretype' },//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
+      FareType:String,//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
     },
     issynctoplatform:{ type: Boolean, default: false },//同步到平台,admin有效
     approvalrejectseason:{type:String,default:''},

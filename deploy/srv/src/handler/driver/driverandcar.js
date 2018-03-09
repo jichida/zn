@@ -54,7 +54,7 @@ let get_fnsavebaseinfovehicle = (retdoc)=>{
 
       let baseInfovehicle = retdoc.Platform_baseInfoVehicle || {};
       baseInfovehicle._id = baseinfovehicleid;
-      baseInfovehicle.CompanyId = config.CompanyId;
+      // baseInfovehicle.CompanyId = config.CompanyId;
       // baseInfovehicle.Address = config.Address;
 
 
@@ -89,6 +89,8 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
             Platform_baseInfoVehicleId:result._id,
 
             Platform_baseInfoVehicle:{
+              Address:result.Address,//<----	是	字符型	V32	行政地注册编码
+
               VehicleNo:result.VehicleNo,//<----	是	字符型	V32	车辆号牌
               PlateColor:result.PlateColor,//<----()	是	字符型	V32	车牌颜色	见 J T/T 697. 7-2014 中5.6
               Seats:result.Seats,//<----	是	数字型	V10	核定载客位
