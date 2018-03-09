@@ -122,7 +122,7 @@ let get_fnsavemycar = (retdoc,driveruserid)=>{
               GPSBrand:result.GPSBrand,//	是	字符型	V2 56	卫星定位装置品牌
               GPSModel:result.GPSModel,//	是	字符型	V64	卫星定位装置型号
               GPSIMEI:result.GPSIMEI,//	否	字符型	V128	卫星定位装置IMEI号
-              GPSlnstallDate:result.GPSlnstallDate,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+              GPSInstallDate:result.GPSInstallDate,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
               RegisterDate:result.RegisterDate,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
               CommercialType:result.CommercialType,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘

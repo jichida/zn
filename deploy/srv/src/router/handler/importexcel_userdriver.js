@@ -71,7 +71,7 @@ const saveDriverCar = require('../../handler/driver/driverandcar.js');
 // 		GPSBrand: '北斗',
 // 		GPSModel: 'DJ058196',
 // 		GPSIMEI: '12385641252',
-// 		GPSlnstallDate: '2016-02-01',
+// 		GPSInstallDate: '2016-02-01',
 // 		RegisterDate: '2019-02-12'
 // 	},
 // 	username: '15961125110',

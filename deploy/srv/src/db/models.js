@@ -173,7 +173,7 @@ let UserDriverSchema = new Schema({
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号
       GPSIMEI:String,//	否	字符型	V128	卫星定位装置IMEI号
-      GPSlnstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+      GPSInstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
       RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
       CommercialType:Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
@@ -541,7 +541,7 @@ let MycarSchema = new Schema({
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号
       GPSIMEI:String,//	否	字符型	V128	卫星定位装置IMEI号
-      GPSlnstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+      GPSInstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
       RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
       CommercialType:Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘

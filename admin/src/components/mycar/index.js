@@ -112,7 +112,7 @@ const MycarEdit = (props) => {
         <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand" validate={[required]}/>
         <TextInputEx  label="卫星定位装置型号" source="Platform_baseInfoVehicle.GPSModel" validate={[required]}/>
         <TextInputEx  label="卫星定位装置IMEI号" source="Platform_baseInfoVehicle.GPSIMEI" validate={[required]}/>
-        <DateInputString  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSlnstallDate" validate={[required]}/>
+        <DateInputString  label="卫星定位设备安装日期" source="Platform_baseInfoVehicle.GPSInstallDate" validate={[required]}/>
         </FormTab>
 
         <FormTab label="resources.baseinfovehicle.tabs.tab4">

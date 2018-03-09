@@ -328,7 +328,7 @@ exports.fillrealnameprofile = (socket,actiondata,ctx)=>{
           GPSBrand:userobj.Platform_baseInfoVehicle.GPSBrand,//	是	字符型	V2 56	卫星定位装置品牌
           GPSModel:userobj.Platform_baseInfoVehicle.GPSModel,//	是	字符型	V64	卫星定位装置型号
           GPSIMEI:userobj.Platform_baseInfoVehicle.GPSIMEI,//	否	字符型	V128	卫星定位装置IMEI号
-          GPSlnstallDate:userobj.Platform_baseInfoVehicle.GPSlnstallDate,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+          GPSInstallDate:userobj.Platform_baseInfoVehicle.GPSInstallDate,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
           RegisterDate:userobj.Platform_baseInfoVehicle.RegisterDate,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
           CommercialType:userobj.Platform_baseInfoVehicle.CommercialType,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘

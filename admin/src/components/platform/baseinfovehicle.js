@@ -71,7 +71,7 @@ import {required} from 'admin-on-rest';
 //          <TextInputEx  label="卫星定位装置品牌" source="GPSBrand" validate={[required]}/>
 //          <TextInputEx  label="卫星定位装置型号" source="GPSModel" validate={[required]}/>
 //          <TextInputEx  label="卫星定位装置IMEI号" source="GPSIMEI" />
-//          <DateInputString  label="卫星定位设备安装日期" source="GPSlnstallDate" validate={[required]}/>
+//          <DateInputString  label="卫星定位设备安装日期" source="GPSInstallDate" validate={[required]}/>
 //          </FormTab>
 //
 //          <FormTab label="resources.baseinfovehicle.tabs.tab4">
@@ -133,7 +133,7 @@ const BaseInfoVehicleEdit = (props) => {
           <TextInputEx  label="卫星定位装置品牌" source="GPSBrand" validate={[required]}/>
           <TextInputEx  label="卫星定位装置型号" source="GPSModel" validate={[required]}/>
           <TextInputEx  label="卫星定位装置IMEI号" source="GPSIMEI" />
-          <DateInputString  label="卫星定位设备安装日期" source="GPSlnstallDate" validate={[required]}/>
+          <DateInputString  label="卫星定位设备安装日期" source="GPSInstallDate" validate={[required]}/>
           </FormTab>
 
           <FormTab label="resources.baseinfovehicle.tabs.tab4">
