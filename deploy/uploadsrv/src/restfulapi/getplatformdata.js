@@ -112,6 +112,44 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!retdoc.GPSInstallDate && !!retdoc.GPSlnstallDate){
         retdoc.GPSInstallDate  = retdoc.GPSlnstallDate;
       }
+
+      if(!!retdoc.PlateColor){
+        const PlateColorMap = {
+          '蓝色':'1',
+          '黄色':'2',
+          '黑色':'3',
+          '白色':'4',
+          '绿色':'5',
+          '其他':'9'
+        };
+        if(!!PlateColorMap[retdoc.PlateColor]){
+          retdoc.PlateColor = PlateColorMap[retdoc.PlateColor];
+          if(!retdoc.PlateColor){
+            retdoc.PlateColor = '9';
+          }
+        }
+      }
+
+      if(!!retdoc.FuelType){
+        const FuelTypeMap = {
+          '汽油':'A',
+          '柴油':'B',
+          '电':'C'
+        }
+        if(!!FuelTypeMap[retdoc.FuelType]){
+          retdoc.FuelType = FuelTypeMap[retdoc.FuelType];
+          if(!retdoc.FuelType){
+            retdoc.FuelType = 'A';
+          }
+        }
+      }
+
+
+      if(!!retdoc.CheckState){
+        retdoc.CheckState = '0';
+      }
+
+
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
@@ -178,6 +216,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         }
         retdoc.CommercialType = 1;//1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
         retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+        if(!!retdoc.DriverNation){
+          retdoc.DriverNation = '01';
+        }
+        if(!!retdoc.DriverGender){
+          retdoc.DriverGender = '1';
+        }
 
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
