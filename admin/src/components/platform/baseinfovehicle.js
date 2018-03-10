@@ -93,7 +93,14 @@ const BaseInfoVehicleEdit = (props) => {
             <FormTab label="resources.baseinfovehicle.tabs.tab0">
             <NumberInputEx  label="注册行政区域代码" source="Address" validate={[required]}/>
             <TextInputEx  label="车辆号牌" source="VehicleNo" validate={[required]}/>
-            <TextInputEx  label="车牌颜色" source="PlateColor" validate={[required]}/>
+            <SelectInput  label="车牌颜色"  source="PlateColor" choices={[
+              { id: '1', name: '蓝色' },
+              { id: '2', name: '黄色' },
+              { id: '3', name: '黑色' },
+              { id: '4', name: '白色' },
+              { id: '5', name: '绿色' },
+              { id: '9', name: '其他' },
+            ]} />
             <NumberInputEx  label="核定载客位" source="Seats" validate={[required]}/>
             <TextInputEx  label="车辆厂牌" source="Brand" validate={[required]}/>
             <TextInputEx  label="车辆型号" source="Model" validate={[required]}/>

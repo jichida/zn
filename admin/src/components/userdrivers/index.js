@@ -167,7 +167,15 @@ const UserdriverlistEdit = (props) => {
               <FormTab label="resources.userdriver.tabs.vehicle">
               <NumberInputEx  label="注册行政区域代码" source="Platform_baseInfoVehicle.Address" validate={[required]}/>
               <TextInputEx  label="车辆号牌【审核必填】" source="Platform_baseInfoVehicle.VehicleNo"  validate={[required]}/>
-              <TextInputEx  label="车辆颜色【审核必填】" source="Platform_baseInfoVehicle.PlateColor"  validate={[required]}/>
+              <SelectInput  label="车牌颜色"  source="Platform_baseInfoVehicle.PlateColor" choices={[
+                { id: '1', name: '蓝色' },
+                { id: '2', name: '黄色' },
+                { id: '3', name: '黑色' },
+                { id: '4', name: '白色' },
+                { id: '5', name: '绿色' },
+                { id: '9', name: '其他' },
+              ]} validate={[required]}/>
+              <TextInputEx  label="车身颜色【审核必填】" source="Platform_baseInfoVehicle.VehicleColor"  validate={[required]}/>
               <NumberInputEx  label="核定载客位" source="Platform_baseInfoVehicle.Seats"  validate={[required]}/>
               <TextInputEx  label="车辆厂牌【审核必填】" source="Platform_baseInfoVehicle.Brand"  validate={[required]}/>
               <TextInputEx  label="车辆型号【审核必填】" source="Platform_baseInfoVehicle.Model"  validate={[required]}/>
