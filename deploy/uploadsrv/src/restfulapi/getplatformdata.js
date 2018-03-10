@@ -106,7 +106,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if (typeof retdoc.NextFixDate === 'string') {
         retdoc.NextFixDate =  getdatefromstring(retdoc.NextFixDate);
       }
-      retdoc['Commercial-Type'] = 1;
+      // retdoc['Commercial-Type'] = 1;
       retdoc['CommercialType'] = 1;
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       if(!retdoc.GPSInstallDate && !!retdoc.GPSlnstallDate){
@@ -161,7 +161,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
-      retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI','GPSlnstallDate']);
+      retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI','GPSlnstallDate','Commercial-Type']);
     }
     else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
@@ -231,14 +231,14 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         if(!!retdoc.DriverGender){
           retdoc.DriverGender = '1';
         }
-        if(!!retdoc.TaxiDriver){
-          if(retdoc.TaxiDriver){
-            retdoc.TaxiDriver = 1;
-          }
-          else{
-            retdoc.TaxiDriver = 0;
-          }
+
+        if(retdoc.TaxiDriver){
+          retdoc.TaxiDriver = 1;
         }
+        else{
+          retdoc.TaxiDriver = 0;
+        }
+
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
         'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
