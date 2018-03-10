@@ -272,7 +272,7 @@ let Platform_baseInfoDriverSchema= new Schema({
   DriverLicenseOn:String,//	 是 数字型  F8  驾驶证有效期限起  YYYYMMDD
   DriverLicenseOff:String,//	            是   数字型   F8      驾驶证有效期限止    YYYYMMDD
 
-  TaxiDriver:Boolean,//	                   是   数字型   F1      是否出租汽车驾驶员	。:否
+  TaxiDriver:Number,//	                   是   数字型   F1      是否出租汽车驾驶员	。:否
   CertificateNo:String,	//                         是   字符型  V128    网络预约出租汽车驾驶员资格证号
   NetworkCarIssueOrganization:String,	// 是	字符型	V256网络预约出租汽车驾驶员证发证机构
   NetworkCarIssueDate:String,//		是	数字型	F8	资格证发证日期	YYYYMMDD

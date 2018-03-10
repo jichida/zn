@@ -79,7 +79,7 @@ const MycarEdit = (props) => {
             { id: '4', name: '白色' },
             { id: '5', name: '绿色' },
             { id: '9', name: '其他' },
-          ]} />
+          ]}  validate={[required]}/>
           <NumberInputEx  label="核定载客位" source="Platform_baseInfoVehicle.Seats" validate={[required]}/>
           <TextInputEx  label="车辆厂牌" source="Platform_baseInfoVehicle.Brand" validate={[required]}/>
           <TextInputEx  label="车辆型号" source="Platform_baseInfoVehicle.Model" validate={[required]}/>
@@ -92,7 +92,12 @@ const MycarEdit = (props) => {
           <TextInputEx  label="发动机号(以机动车行驶证为准)" source="Platform_baseInfoVehicle.EngineId" validate={[required]}/>
           <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="Platform_baseInfoVehicle.VIN" validate={[required]}/>
           <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="Platform_baseInfoVehicle.CertifyDateA" validate={[required]}/>
-          <TextInputEx  label="车辆燃料类型" source="Platform_baseInfoVehicle.FuelType" validate={[required]}/>
+          <SelectInput  label="车辆燃料类型"  source="Platform_baseInfoVehicle.FuelType" choices={[
+            { id: 'A', name: '汽油' },
+            { id: 'B', name: '柴油' },
+            { id: 'C', name: '电' },
+          ]}  validate={[required]}/>
+
           <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace" validate={[required]}/>
           </FormTab>
 

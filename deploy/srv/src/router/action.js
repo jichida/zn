@@ -46,13 +46,13 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
     else if(collectionname === 'baseinfodriver'){
       //注意：不能用=>，否则出错，不知道原因
         if(!retdoc.hasOwnProperty('TaxiDriver')){
-          retdoc.TaxiDriver = false;
+          retdoc.TaxiDriver = 0;
         }
         if(!retdoc.hasOwnProperty('FullTimeDriver')){
-          retdoc.FullTimeDriver = false;
+          retdoc.FullTimeDriver = 0;
         }
         if(!retdoc.hasOwnProperty('InDriverBlacklist')){
-          retdoc.InDriverBlacklist = false;
+          retdoc.InDriverBlacklist = 0;
         }
         retdoc.CommercialType = 1;//1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
     }

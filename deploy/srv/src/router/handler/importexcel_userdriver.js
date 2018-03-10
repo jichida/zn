@@ -87,10 +87,10 @@ const getdrivers = (listdrivers)=>{
   _.map(listdrivers,(driver,index)=>{
     if(index > 0){
       let newdriver = _.clone(driver);
-      newdriver.Platform_baseInfoDriver.TaxiDriver = false;
-      newdriver.Platform_baseInfoDriver.FullTimeDriver = false;
+      newdriver.Platform_baseInfoDriver.TaxiDriver = 0;
+      newdriver.Platform_baseInfoDriver.FullTimeDriver = 0;
       newdriver.Platform_baseInfoDriver.CommercialType = 0;
-      newdriver.Platform_baseInfoDriver.InDriverBlacklist = false;
+      newdriver.Platform_baseInfoDriver.InDriverBlacklist = 0;
       try{
         newdriver.Platform_baseInfoVehicle.Address = parseInt(newdriver.Platform_baseInfoVehicle.Address);
       }

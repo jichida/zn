@@ -107,10 +107,18 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.NextFixDate =  getdatefromstring(retdoc.NextFixDate);
       }
       // retdoc['Commercial-Type'] = 1;
-      retdoc['CommercialType'] = 1;
+
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       if(!retdoc.GPSInstallDate && !!retdoc.GPSlnstallDate){
+        debug(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
         retdoc.GPSInstallDate  = retdoc.GPSlnstallDate;
+      }
+
+      if(!retdoc['CommercialType']){
+        debug(`${collectionname}-->字段CommercialType必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段CommercialType必填,但目前没有`);
+        retdoc['CommercialType'] = 1;
       }
 
       if(!!retdoc.PlateColor){
@@ -126,13 +134,6 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc.PlateColor = PlateColorMap[retdoc.PlateColor];
           if(!retdoc.PlateColor){
             retdoc.PlateColor = '9';
-          }
-        }
-
-        if(!!PlateColorMap[retdoc.VehicleColor]){
-          retdoc.VehicleColor = PlateColorMap[retdoc.VehicleColor];
-          if(!retdoc.VehicleColor){
-            retdoc.VehicleColor = '9';
           }
         }
 
@@ -192,8 +193,8 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         if (typeof retdoc.DriverLicenseOff === 'string') {
           retdoc.DriverLicenseOff = getdatefromstring(retdoc.DriverLicenseOff);
         }
-        if(!retdoc.hasOwnProperty('TaxiDriver')){
-          retdoc.TaxiDriver = false;
+        if(!retdoc['TaxiDriver']){
+          retdoc.TaxiDriver = 0;
         }
         if (typeof retdoc.NetworkCarIssueDate === 'string') {
           retdoc.NetworkCarIssueDate = getdatefromstring(retdoc.NetworkCarIssueDate);
@@ -209,12 +210,6 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         }
         if (typeof retdoc.RegisterDate === 'string') {
           retdoc.RegisterDate = getdatefromstring(retdoc.RegisterDate);
-        }
-        if(!retdoc.hasOwnProperty('FullTimeDriver')){
-          retdoc.FullTimeDriver = false;
-        }
-        if(!retdoc.hasOwnProperty('InDriverBlacklist')){
-          retdoc.InDriverBlacklist = false;
         }
         if (typeof retdoc.ContractOn === 'string') {
           retdoc.ContractOn = getdatefromstring(retdoc.ContractOn);

@@ -113,7 +113,11 @@ const BaseInfoVehicleEdit = (props) => {
             <TextInputEx  label="发动机号(以机动车行驶证为准)" source="EngineId" validate={[required]}/>
             <TextInputEx  label="车辆VIN码(以机动车行驶证为准)" source="VIN" validate={[required]}/>
             <DateInputString  label="车辆注册日期(以机动车行驶证为准)" source="CertifyDateA" validate={[required]}/>
-            <TextInputEx  label="车辆燃料类型" source="FuelType" validate={[required]}/>
+            <SelectInput  label="车辆燃料类型"  source="FuelType" choices={[
+              { id: 'A', name: '汽油' },
+              { id: 'B', name: '柴油' },
+              { id: 'C', name: '电' },
+            ]}  validate={[required]}/>
             <TextInputEx  label="发动机排量" source="EngineDisplace" validate={[required]}/>
             </FormTab>
 
