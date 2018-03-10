@@ -20,7 +20,8 @@ let carsetdefault = (socket,actiondata,ctx)=>{
           //Set ctx
           ctx.driverinfo = _.merge(ctx.driverinfo,{
             VehicleRegionCode:user.Platform_baseInfoVehicle.Address,//车辆注册地
-            PlateColor:user.Platform_baseInfoVehicle.PlateColor,//车辆颜色
+            PlateColor:user.Platform_baseInfoVehicle.PlateColor,//车牌颜色
+            VehicleColor:user.Platform_baseInfoVehicle.VehicleColor,//车辆颜色
             Seats:user.Platform_baseInfoVehicle.Seats || 0,//核定载客位
             VehicleNo:user.Platform_baseInfoVehicle.VehicleNo,//车牌号
             Brand:user.Platform_baseInfoVehicle.Brand,//车辆厂牌

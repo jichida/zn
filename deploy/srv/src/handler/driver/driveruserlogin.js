@@ -151,6 +151,7 @@ let setloginsuccess = (socket,ctx,user)=>{
 
           VehicleRegionCode:user.Platform_baseInfoVehicle.Address,//车辆注册地
           PlateColor:user.Platform_baseInfoVehicle.PlateColor,//车辆颜色
+          VehicleColor:user.Platform_baseInfoVehicle.VehicleColor,//车身颜色
           Seats:user.Platform_baseInfoVehicle.Seats || 0,//核定载客位
           VehicleNo:user.Platform_baseInfoVehicle.VehicleNo,//车牌号
           Brand:user.Platform_baseInfoVehicle.Brand,//车辆厂牌

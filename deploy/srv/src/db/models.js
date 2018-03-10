@@ -312,7 +312,8 @@ let TripOrderSchema = new Schema({
       DriverName:String,//司机名
       DriverPhone:String,//司机电话
       DriverGender:String,//司机姓别
-      PlateColor:String,//车辆颜色
+      PlateColor:String,//
+      VehicleColor:String,//车辆颜色
       Seats:{ type: Number, default: 0 },//核定载客位
       VehicleNo:String,//车牌号
       Brand:String,//车辆厂牌
