@@ -128,6 +128,14 @@ const getplatformdata = (actionname,collectionname,doc)=>{
             retdoc.PlateColor = '9';
           }
         }
+
+        if(!!PlateColorMap[retdoc.VehicleColor]){
+          retdoc.VehicleColor = PlateColorMap[retdoc.VehicleColor];
+          if(!retdoc.VehicleColor){
+            retdoc.VehicleColor = '9';
+          }
+        }
+
       }
 
       if(!!retdoc.FuelType){
@@ -218,12 +226,19 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
 
         if(!!retdoc.DriverNation){
-          retdoc.DriverNation = '01';
+          retdoc.DriverNation = 'HA';
         }
         if(!!retdoc.DriverGender){
           retdoc.DriverGender = '1';
         }
-
+        if(!!retdoc.TaxiDriver){
+          if(retdoc.TaxiDriver){
+            retdoc.TaxiDriver = 1;
+          }
+          else{
+            retdoc.TaxiDriver = 0;
+          }
+        }
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
         'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
