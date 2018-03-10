@@ -37,7 +37,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       } else {
         debug(`${IPCType}-->Error`);
         winston.getlog().error(`${IPCType}-->Error`);
-        winston.getlog().error(response.body.toString());
+        winston.getlog().error(response.text());
         return Promise.reject()
       }
     })
