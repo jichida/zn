@@ -6,11 +6,11 @@ const winston = require('../log/index.js');
 
 const gettimefromstring = (timestring)=>{
   try{
+    debug(`gettimefromstring-->${timestring}`);
     let curtime = moment(timestring).format('YYYYMMDDHHmmss');
     return parseInt(curtime);
   }
   catch(e){
-    debug(`gettimefromstring-->${timestring}`);
     winston.getlog().warn(`gettimefromstring-->${timestring}`);
 
     let curtime = moment().format('YYYYMMDDHHmmss');
@@ -20,11 +20,11 @@ const gettimefromstring = (timestring)=>{
 }
 const getdatefromstring = (timestring)=>{
   try{
+    debug(`getdatefromstring-->${timestring}`);
     let curtime = moment(timestring).format('YYYYMMDD');
     return parseInt(curtime);
   }
   catch(e){
-    debug(`getdatefromstring-->${timestring}`);
     winston.getlog().warn(`getdatefromstring-->${timestring}`);
 
     let curtime = moment().format('YYYYMMDD');
