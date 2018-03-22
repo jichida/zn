@@ -13,9 +13,11 @@ const fs = require('fs');
 const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
 debug("upload====>" + uploaddir);
 
-const checkfile_exists =(filename,collectionname,id)=>{
-  if (!fs.existsSync(`${uploaddir}/${filename}`)) {
-      winston.getlog().error(`检查文件不存在-->${collectionname}-->${id}--->文件名:${filename}--->全路径:${uploaddir}/${filename}`);
+const checkfile_exists =(filename,collectionname,retdoc)=>{
+  if(!!filename){
+    if (!fs.existsSync(`${uploaddir}/${filename}`)) {
+        winston.getlog().error(`检查文件不存在-->${collectionname}--->文件名:${filename}--->全路径:${uploaddir}/${filename}`);
+    }
   }
 }
 const recordid =(collectionname,doc)=>{
@@ -47,14 +49,14 @@ const uploadsftp = (collectionname,retdoc)=>{
   collectionname === 'baseinfovehicle' ||
   collectionname === 'baseinfodriver'){
     if(collectionname === 'baseinfocompany'){
-      checkfile_exists(`${retdoc.LegalPhoto}`,collectionname,retdoc._id);
+      checkfile_exists(`${retdoc.LegalPhoto}`,collectionname,retdoc);
     }
     else if(collectionname === 'baseinfovehicle'){
-      checkfile_exists(`${uploaddir}/${retdoc.PhotoId}`,collectionname,retdoc._id);
+      checkfile_exists(`${uploaddir}/${retdoc.PhotoId}`,collectionname,retdoc);
     }
     else if(collectionname === 'baseinfodriver'){
-      checkfile_exists(`${retdoc.LicensePhotoId}`,collectionname,retdoc._id);
-      checkfile_exists(`${retdoc.PhotoId}`,collectionname,retdoc._id);
+      checkfile_exists(`${retdoc.LicensePhotoId}`,collectionname,retdoc);
+      checkfile_exists(`${retdoc.PhotoId}`,collectionname,retdoc);
     }
   }
 
@@ -96,7 +98,7 @@ const onmessage = (msgobj)=> {
   if(!!mapfn){
     debug(`getdata ==>${JSON.stringify(data)}`);
     recordid(data.collectionname,data.doc);
-    
+
     if(!_.isArray(data.doc)){
       const uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
       if(!!uploaddata){
