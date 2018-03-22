@@ -79,8 +79,8 @@ const starttest_datalegitimacy = (callbackfn)=>{
         limit: limit_perpage,
         sort:{ "_id": 1}
       },(err,result)=>{
+        let listdata = [];
         if(!err && !!result){
-          let listdata = [];
           if(listdata.length > 0){
             _.map(result,(doc)=>{
               const newdoc = platformaction.postaction_getnewdoc('upload',schmodel.collectionname,doc);
@@ -102,7 +102,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
 }
 
 const starttest_datalegitimacy_interval = (callbackfn)=>{
-
+  datalegitimacy_interval_handler = null;
   const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
       starttest_datalegitimacy((err,result)=>{
