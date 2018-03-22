@@ -102,6 +102,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
   async.parallel(fnsz,callbackfn);
 }
 
+let transmsg = '';
 const starttest_datalegitimacy_interval = (callbackfn)=>{
   datalegitimacy_interval_handler = null;
   const startupload = (timeoutdelay)=>{
@@ -110,16 +111,21 @@ const starttest_datalegitimacy_interval = (callbackfn)=>{
         isnum = true;
         if(!err && !!result){
           isnum = false;
-          _.map(result,(list)=>{
+          transmsg = `正在传输:${result.length}==》`;
+          _.map(result,(list,index)=>{
             if(list.length > 0){
               isnum = true;
             }
-          })
+            transmsg += `${index}->${list.length},`;
+          });
         }
         if(isnum && !!datalegitimacy_interval_handler){
           setImmediate(()=>{
             startupload(30000);
           });
+        }
+        else{
+          transmsg = '传输完毕';
         }
       });
     },timeoutdelay);
@@ -131,6 +137,20 @@ const starttest_datalegitimacy_interval = (callbackfn)=>{
   });
 }
 
+const starttest_datalegitimacy_interval_getstatus = (callbackfn)=>{
+  if(!datalegitimacy_interval_handler){
+    callbackfn(null,{
+      msg:'传输停止'
+    });
+  }
+  else{
+    callbackfn(null,{
+      msg:transmsg
+    });
+  }
+}
+
 exports.starttest_resetuploaded = starttest_resetuploaded;
 exports.starttest_datalegitimacy = starttest_datalegitimacy;
 exports.starttest_datalegitimacy_interval = starttest_datalegitimacy_interval;
+exports.starttest_datalegitimacy_interval_getstatus = starttest_datalegitimacy_interval_getstatus;

@@ -40,6 +40,15 @@ const resetplatform = (app)=>{
           });
     });
   });
+
+  app.get('/starttest_datalegitimacy_interval_getstatus',(req,res)=>{
+    testdatalegitimacy.starttest_datalegitimacy_interval_getstatus((err,result)=>{
+      res.status(200)
+          .json({
+            result,
+          });
+    });
+  });
   //http://api.tczncx.com/starttest_resetuploaded
   app.get('/starttest_resetuploaded',(req,res)=>{
     testdatalegitimacy.starttest_resetuploaded((err,result)=>{
