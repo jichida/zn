@@ -81,7 +81,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
       },(err,result)=>{
         let listdata = [];
         if(!err && !!result){
-          if(listdata.length > 0){
+          if(result.length > 0){
             _.map(result,(doc)=>{
               const newdoc = platformaction.postaction_getnewdoc('upload',schmodel.collectionname,doc);
               listdata.push(newdoc);
@@ -93,6 +93,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
             });
           }
         }
+        console.log(`listdata:${listdata.length}`);
         callback(err,listdata);
       });
     });
