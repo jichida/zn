@@ -5,7 +5,7 @@ const async = require('async');
 const _ = require('lodash');
 const platformaction = require('../src/platform/platformaction');
 
-const limit_perpage = 20;
+const limit_perpage = 50;
 let datalegitimacy_interval_handler;
 
 const dbslist = getmodels();
@@ -121,7 +121,7 @@ const starttest_datalegitimacy_interval = (callbackfn)=>{
         }
         if(isnum && !!datalegitimacy_interval_handler){
           setImmediate(()=>{
-            startupload(30000);
+            startupload(15000);
           });
         }
         else{
