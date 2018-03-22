@@ -123,7 +123,7 @@ const starttest_datalegitimacy_interval = (callbackfn)=>{
       });
     },30000);
   }
-  callbackfn(nul,{
+  callbackfn(null,{
     msg:'OK'
   });
 }
