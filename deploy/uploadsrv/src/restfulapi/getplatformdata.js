@@ -5,12 +5,32 @@ const debug = require('debug')("uploadsrv:processdata");
 const winston = require('../log/index.js');
 
 const gettimefromstring = (timestring)=>{
-  let curtime = moment(timestring).format('YYYYMMDDHHmmss');
-  return parseInt(curtime);
+  try{
+    let curtime = moment(timestring).format('YYYYMMDDHHmmss');
+    return parseInt(curtime);
+  }
+  catch(e){
+    debug(`gettimefromstring-->${timestring}`);
+    winston.getlog().warn(`gettimefromstring-->${timestring}`);
+
+    let curtime = moment().format('YYYYMMDDHHmmss');
+    return parseInt(curtime);
+  }
+
 }
 const getdatefromstring = (timestring)=>{
-  let curtime = moment(timestring).format('YYYYMMDD');
-  return parseInt(curtime);
+  try{
+    let curtime = moment(timestring).format('YYYYMMDD');
+    return parseInt(curtime);
+  }
+  catch(e){
+    debug(`getdatefromstring-->${timestring}`);
+    winston.getlog().warn(`getdatefromstring-->${timestring}`);
+
+    let curtime = moment().format('YYYYMMDD');
+    return parseInt(curtime);
+  }
+
 }
 const getgeonumberfloat6 = (lntlngnumber)=>{
   const retv = _.toNumber(lntlngnumber.toFixed(6))*1000000;

@@ -6,6 +6,7 @@ const _ = require('lodash');
 const platformaction = require('../src/platform/platformaction');
 
 const limit_perpage = 20;
+let datalegitimacy_interval_handler;
 
 const dbslist = getmodels();
 const dbslistmap = {};
@@ -15,6 +16,7 @@ _.map(dbslist,(schmodel)=>{
 
 
 const starttest_resetuploaded = (callbackfn)=>{
+  datalegitimacy_interval_handler = null;
   let fnsz = [];
   _.map(dbslist,(schmodel)=>{
     fnsz.push((callback)=>{
@@ -79,17 +81,19 @@ const starttest_datalegitimacy = (callbackfn)=>{
       },(err,result)=>{
         if(!err && !!result){
           let listdata = [];
-          _.map(result,(doc)=>{
-            const newdoc = platformaction.postaction_getnewdoc('upload',schmodel.collectionname,doc);
-            listdata.push(newdoc);
-          });
-          PubSub.publish('platformmessage_upload',{
-            action:'upload',//'findByIdAndUpdate',
-            collectionname:schmodel.collectionname,//'baseinfocompany',
-            doc:listdata
-          });
+          if(listdata.length > 0){
+            _.map(result,(doc)=>{
+              const newdoc = platformaction.postaction_getnewdoc('upload',schmodel.collectionname,doc);
+              listdata.push(newdoc);
+            });
+            PubSub.publish('platformmessage_upload',{
+              action:'upload',//'findByIdAndUpdate',
+              collectionname:schmodel.collectionname,//'baseinfocompany',
+              doc:listdata
+            });
+          }
         }
-        callback(err,result);
+        callback(err,listdata);
       });
     });
   });
@@ -97,5 +101,33 @@ const starttest_datalegitimacy = (callbackfn)=>{
   async.parallel(fnsz,callbackfn);
 }
 
+const starttest_datalegitimacy_interval = ()=>{
+
+  const startupload = ()=>{
+    datalegitimacy_interval_handler = setTimeout(()=>{
+      starttest_datalegitimacy((err,result)=>{
+        isnum = true;
+        if(!err && !!result){
+          isnum = false;
+          _.map(result,(list)=>{
+            if(list.length > 0){
+              isnum = true;
+            }
+          })
+        }
+        if(isnum && !!datalegitimacy_interval_handler){
+          setImmediate(()=>{
+            startupload();
+          });
+        }
+      });
+    },30000);
+  }
+  callback(nul,{
+    msg:'OK'
+  });
+}
+
 exports.starttest_resetuploaded = starttest_resetuploaded;
 exports.starttest_datalegitimacy = starttest_datalegitimacy;
+exports.starttest_datalegitimacy_interval = starttest_datalegitimacy_interval;
