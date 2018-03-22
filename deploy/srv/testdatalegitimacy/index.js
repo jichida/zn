@@ -101,7 +101,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
   async.parallel(fnsz,callbackfn);
 }
 
-const starttest_datalegitimacy_interval = ()=>{
+const starttest_datalegitimacy_interval = (callbackfn)=>{
 
   const startupload = ()=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
@@ -123,7 +123,7 @@ const starttest_datalegitimacy_interval = ()=>{
       });
     },30000);
   }
-  callback(nul,{
+  callbackfn(nul,{
     msg:'OK'
   });
 }
