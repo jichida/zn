@@ -31,7 +31,7 @@ srvwebsocket.startsrv(srvhttp.startsrv());
 redis.setSubscribeHandler('platformmessage_upload_callback',testconnectivity.platformmessage_upload_callback);
 
 PubSub.subscribe('platformmessage_upload', ( msg, data )=>{
-  console.log("platformmessage:" + JSON.stringify(data));
+  // console.log("platformmessage:" + JSON.stringify(data));
   redis.publish('platformmessage_upload',data)
   // process_request.send({
   //   msg:msg,
