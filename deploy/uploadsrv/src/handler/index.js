@@ -49,14 +49,14 @@ const uploadsftp = (collectionname,retdoc)=>{
   collectionname === 'baseinfovehicle' ||
   collectionname === 'baseinfodriver'){
     if(collectionname === 'baseinfocompany'){
-      checkfile_exists(`${retdoc.LegalPhoto}`,collectionname,retdoc);
+      checkfile_exists(retdoc.LegalPhoto,collectionname,retdoc);
     }
     else if(collectionname === 'baseinfovehicle'){
-      checkfile_exists(`${uploaddir}/${retdoc.PhotoId}`,collectionname,retdoc);
+      checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
     }
     else if(collectionname === 'baseinfodriver'){
-      checkfile_exists(`${retdoc.LicensePhotoId}`,collectionname,retdoc);
-      checkfile_exists(`${retdoc.PhotoId}`,collectionname,retdoc);
+      checkfile_exists(retdoc.LicensePhotoId,collectionname,retdoc);
+      checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
     }
   }
 
