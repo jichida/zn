@@ -111,13 +111,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       if(!retdoc.GPSInstallDate && !!retdoc.GPSlnstallDate){
         debug(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
         retdoc.GPSInstallDate  = retdoc.GPSlnstallDate;
       }
 
       if(!retdoc['CommercialType']){
         debug(`${collectionname}-->字段CommercialType必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段CommercialType必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段CommercialType必填,但目前没有`);
         retdoc['CommercialType'] = 1;
       }
 
@@ -254,7 +254,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!retdoc.LicenseId){
         retdoc.LicenseId = '1234';
         debug(`${collectionname}-->字段LicenseId必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段LicenseId必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段LicenseId必填,但目前没有`);
       }
     }
     // else if(collectionname === 'baseinfodriverstat'){
@@ -301,17 +301,17 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!retdoc.Address){
         retdoc.Address = 341181;
         debug(`${collectionname}-->字段Address必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段Address必填,但目前没有`);
       }
       if(!retdoc.DriverPhone){
         retdoc.DriverPhone = '1234';
         debug(`${collectionname}-->字段DriverPhone必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段DriverPhone必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段DriverPhone必填,但目前没有`);
       }
       if(!retdoc.VehicleNo){
         retdoc.VehicleNo = '1234';
         debug(`${collectionname}-->字段VehicleNo必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段VehicleNo必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段VehicleNo必填,但目前没有`);
       }
     }
     else if(collectionname === 'ordercancel'){
@@ -325,7 +325,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!retdoc.Address){
         retdoc.Address = 341181;
         debug(`${collectionname}-->字段Address必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段Address必填,但目前没有`);
       }
     }
     else if(collectionname === 'operatelogin'){
@@ -415,12 +415,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       // if(!retdoc.OnArea){
       //   retdoc.OnArea = 341181;
       //   debug(`${collectionname}-->字段OnArea必填,但目前没有`);
-      //   winston.getlog().error(`${collectionname}-->字段OnArea必填,但目前没有`);
+      //   winston.getlog().warn(`${collectionname}-->字段OnArea必填,但目前没有`);
       // }
       if(!retdoc.DestTime){
         retdoc.DestTime = retdoc.DepTime;
         debug(`${collectionname}-->字段DestTime必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段DestTime必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段DestTime必填,但目前没有`);
       }
       retdoc.DriveTime = parseInt(retdoc.DriveTime);
 
@@ -441,7 +441,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       if(!retdoc.TrafficViolationCount){
         retdoc.TrafficViolationCount = 0;
         debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
       }
     }
     else if(collectionname === 'positiondriver'){

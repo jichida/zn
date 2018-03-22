@@ -7,12 +7,57 @@ const sftptosrv = require('../ftps/index');
 const redis = require('../redis/index.js');
 const debug = require('debug')('uploadsrv:handler')
 const _ = require('lodash');
+const winston = require('../log/index.js');
+const fs = require('fs');
 
 const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
 debug("upload====>" + uploaddir);
 
+const checkfile_exists =(filename,collectionname,id)=>{
+  if (!fs.existsSync(`${uploaddir}/${filename}`)) {
+      winston.getlog().error(`检查文件不存在-->${collectionname}-->${id}--->文件名:${filename}--->全路径:${uploaddir}/${filename}`);
+  }
+}
+const recordid =(collectionname,doc)=>{
+  if(_.isArray(doc)){
+    if(doc.length > 0){
+      if(collectionname === 'baseinfovehicle'){
+        winston.getlog().error(`批量接口【车辆信息】-->${collectionname}-->个数${doc.length}--->第一条车牌号:${doc[0].VehicleNo}`);
+      }
+      else if(collectionname === 'baseinfodriver'){
+        winston.getlog().error(`批量接口【司机信息】-->${collectionname}-->个数${doc.length}--->第一条驾驶证号:${doc[0].LicenseId}`);
+      }
+    }
+
+  }
+  else{
+    if(collectionname === 'baseinfovehicle'){
+      winston.getlog().error(`单个接口【车辆信息】-->${collectionname}-->车牌号:${doc.VehicleNo}`);
+    }
+    else if(collectionname === 'baseinfodriver'){
+      winston.getlog().error(`单个接口【司机信息】-->${collectionname}-->驾驶证号:${doc.LicenseId}`);
+    }
+  }
+}
+
+
 const uploadsftp = (collectionname,retdoc)=>{
   debug(`================>${collectionname}`);
+  if(collectionname === 'baseinfocompany' ||
+  collectionname === 'baseinfovehicle' ||
+  collectionname === 'baseinfodriver'){
+    if(collectionname === 'baseinfocompany'){
+      checkfile_exists(`${retdoc.LegalPhoto}`,collectionname,retdoc._id);
+    }
+    else if(collectionname === 'baseinfovehicle'){
+      checkfile_exists(`${uploaddir}/${retdoc.PhotoId}`,collectionname,retdoc._id);
+    }
+    else if(collectionname === 'baseinfodriver'){
+      checkfile_exists(`${retdoc.LicensePhotoId}`,collectionname,retdoc._id);
+      checkfile_exists(`${retdoc.PhotoId}`,collectionname,retdoc._id);
+    }
+  }
+
 
   if(collectionname === 'baseinfocompany' ||
   collectionname === 'baseinfovehicle' ||
@@ -50,7 +95,8 @@ const onmessage = (msgobj)=> {
   const mapfn = map_platformfn[data.collectionname];
   if(!!mapfn){
     debug(`getdata ==>${JSON.stringify(data)}`);
-
+    recordid(data.collectionname,data.doc);
+    
     if(!_.isArray(data.doc)){
       const uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
       if(!!uploaddata){
