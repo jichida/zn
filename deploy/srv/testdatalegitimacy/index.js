@@ -103,7 +103,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
 
 const starttest_datalegitimacy_interval = (callbackfn)=>{
 
-  const startupload = ()=>{
+  const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
       starttest_datalegitimacy((err,result)=>{
         isnum = true;
@@ -117,12 +117,14 @@ const starttest_datalegitimacy_interval = (callbackfn)=>{
         }
         if(isnum && !!datalegitimacy_interval_handler){
           setImmediate(()=>{
-            startupload();
+            startupload(30000);
           });
         }
       });
-    },30000);
+    },timeoutdelay);
   }
+
+  startupload(1);
   callbackfn(null,{
     msg:'OK'
   });
