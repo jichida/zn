@@ -106,7 +106,7 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
               const sms = require('../smspush/sms.js');
               sms.sendsmstouser(retdoc.username,retdoc.approvalstatus === '已审核'?
               'driver_isapprovaledtrue':'driver_isapprovaledfalse','',(err,result)=>{
-                //console.log(`发送短信通知:${JSON.stringify(result)}`);
+                ////console.log(`发送短信通知:${JSON.stringify(result)}`);
               });
             }
           }
@@ -116,10 +116,10 @@ let preaction =(actionname,collectionname,doc,fnresult)=>{
       // }
   }
 
-   //console.log(`actionname:${actionname},collectionname:${collectionname}`);
+   ////console.log(`actionname:${actionname},collectionname:${collectionname}`);
    if(actionname === 'findByIdAndUpdate' && collectionname==='mycar'){
      let retdoc = doc.data;
-     //console.log(`issynctoplatform:${retdoc.issynctoplatform},retdoc.approvalstatus:${retdoc.approvalstatus}`);
+     ////console.log(`issynctoplatform:${retdoc.issynctoplatform},retdoc.approvalstatus:${retdoc.approvalstatus}`);
     //  if(retdoc.issynctoplatform && retdoc.approvalstatus === '已审核'){
      const saveDriverCar = require('../handler/driver/driverandcar.js');
      let fnsavebaseinfovehicle = saveDriverCar.get_fnsavebaseinfovehicle(retdoc);
@@ -156,20 +156,20 @@ let gettakenseatfromorder = (retdoc,fncallback)=>{
        }],
        (err, list)=> {
 
-          //console.log(`postaction===========>${JSON.stringify(list)}`);
+          ////console.log(`postaction===========>${JSON.stringify(list)}`);
          _.map(list,(item)=>{
            if(item._id === '未支付'){
              retdoc.seatnumbernotpaid = item.seatnumbertotal;
-             //console.log(`doc.seatnumbernotpaid===========>${retdoc.seatnumbernotpaid}`);
+             ////console.log(`doc.seatnumbernotpaid===========>${retdoc.seatnumbernotpaid}`);
            }
            else if(item._id === '已支付'){
              retdoc.seatnumberpaid  = item.seatnumbertotal;
-             //console.log(`doc.seatnumberpaid===========>${retdoc.seatnumberpaid}`);
+             ////console.log(`doc.seatnumberpaid===========>${retdoc.seatnumberpaid}`);
            }
          });
          retdoc.seatnumbertotal =  retdoc.seatnumbernotpaid + retdoc.seatnumberpaid;
-         //console.log(`doc.seatnumbertotal===========>${retdoc.seatnumbertotal}`);
-         //console.log(`postaction===========>${JSON.stringify(retdoc)}`);
+         ////console.log(`doc.seatnumbertotal===========>${retdoc.seatnumbertotal}`);
+         ////console.log(`postaction===========>${JSON.stringify(retdoc)}`);
          fncallback(null,retdoc);
        });
 }
@@ -181,12 +181,12 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
   //   seatnumbernotpaid:0
   // });
   let retdoc = doc;
-  //console.log(`retdoc===========>${JSON.stringify(retdoc)}`);
+  ////console.log(`retdoc===========>${JSON.stringify(retdoc)}`);
   if(actionname === 'findByIdAndUpdate' && collectionname === 'withdrawcashapply'){
     if(doc.status === '已支付' || doc.status === '已拒绝'){
       withdraw.withdrawcashapplypaid(doc,(err,result)=>{
-          //console.log("withdrawcashapplypaid err======>" + JSON.stringify(err));
-          //console.log("withdrawcashapplypaid result======>" + JSON.stringify(result));
+          ////console.log("withdrawcashapplypaid err======>" + JSON.stringify(err));
+          ////console.log("withdrawcashapplypaid result======>" + JSON.stringify(result));
       });
     }
   }
@@ -203,15 +203,15 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
         if(doc.messagetype === 'all' || doc.messagetype === 'rider'){
           jpushrider.sendnotifymessage(doc,(err,result)=>{
              //设置推送消息：
-             //console.log(`设置推送消息：err:${JSON.stringify(err)}`);
-             //console.log(`设置推送消息：result:${JSON.stringify(result)}`);
+             ////console.log(`设置推送消息：err:${JSON.stringify(err)}`);
+             ////console.log(`设置推送消息：result:${JSON.stringify(result)}`);
           });
         }
         if(doc.messagetype === 'all' || doc.messagetype === 'driver'){
           jpushdriver.sendnotifymessage(doc,(err,result)=>{
              //设置推送消息：
-             //console.log(`设置推送消息：err:${JSON.stringify(err)}`);
-             //console.log(`设置推送消息：result:${JSON.stringify(result)}`);
+             ////console.log(`设置推送消息：err:${JSON.stringify(err)}`);
+             ////console.log(`设置推送消息：result:${JSON.stringify(result)}`);
           });
         }
       }
@@ -230,7 +230,7 @@ let postaction = (actionname,collectionname,doc,fncallback)=>{
           item = item.toJSON();
           retdoc.docs[index] = item;
           gettakenseatfromorder(item,(err,result)=>{
-            //console.log(`gettakenseatfromorder,result===>${JSON.stringify(result)}`);
+            ////console.log(`gettakenseatfromorder,result===>${JSON.stringify(result)}`);
             fncallback(err,result);
           });
         }

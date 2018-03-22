@@ -26,7 +26,7 @@ const fn_getOrderCount = (monthtimestring,callbackfn)=>{
     }
   };
 
-  console.log(`fn_getOrderCount--->query ${JSON.stringify(query)}`);
+  //console.log(`fn_getOrderCount--->query ${JSON.stringify(query)}`);
   dbModel.aggregate([
        {$match:query},
        {$group: {
@@ -35,7 +35,7 @@ const fn_getOrderCount = (monthtimestring,callbackfn)=>{
        }
        }],
        (err, list)=> {
-         console.log(`fn_getOrderCount--->${JSON.stringify(list)}`);
+         //console.log(`fn_getOrderCount--->${JSON.stringify(list)}`);
          //[{"_id":"BBB","count":2},{"_id":"","count":2},{"_id":"AAA","count":3}]
          let result = {};
          if(!err && !!list){
@@ -62,7 +62,7 @@ const fn_getComplainedCount = (monthtimestring,callbackfn)=>{
       $lt: nextmonthtime,
     }
   };
-  console.log(`fn_getComplainedCount--->query ${JSON.stringify(query)}`);
+  //console.log(`fn_getComplainedCount--->query ${JSON.stringify(query)}`);
   dbModel.aggregate([
        {$match:query},
        {$group: {
@@ -79,7 +79,7 @@ const fn_getComplainedCount = (monthtimestring,callbackfn)=>{
              }
            });
          }
-         console.log(`fn_getComplainedCount--->${JSON.stringify(list)}`);
+         //console.log(`fn_getComplainedCount--->${JSON.stringify(list)}`);
          callbackfn(result);
        });
 
@@ -105,7 +105,7 @@ const fn_setbaseInfoDriverStat = (updateddata,callbackfn)=>{
           callbackfn(result);
         }
         else{
-          console.log(err);
+          //console.log(err);
           callbackfn(null);
         }
       });
@@ -170,7 +170,7 @@ const interval_baseInfoDriverStat = ()=>{
           resultobj[k] = tmp;
         });
 
-        console.log(`合并后--->${JSON.stringify(resultobj)}`);
+        //console.log(`合并后--->${JSON.stringify(resultobj)}`);
         _.map(resultobj,(updateddata)=>{
             fn_setbaseInfoDriverStat(updateddata,(result)=>{
               if(!!result){

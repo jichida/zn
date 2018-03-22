@@ -44,13 +44,13 @@ let config =  {
 
 // config.setfaretypemap =  (faretypemap)=>{
 //   config.faretypemap = faretypemap;
-//   //console.log(`setfaretypemap:${JSON.stringify(config.faretypemap)}`);
+//   ////console.log(`setfaretypemap:${JSON.stringify(config.faretypemap)}`);
 // };
 //
 // config.setcompanyandaddress =  (CompanyId,Address)=>{
 //   config.CompanyId = CompanyId;
 //   config.Address = Address;
-//   //console.log(`setcompanyandaddress:${CompanyId},===>${Address}`);
+//   ////console.log(`setcompanyandaddress:${CompanyId},===>${Address}`);
 // };
 
 

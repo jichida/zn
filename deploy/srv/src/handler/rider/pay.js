@@ -28,7 +28,7 @@ exports.getpaysign = (socket,actiondata,ctx)=>{
                 totalfee = parseFloat(totalfee);
             }
             if(totalfee !== orderinfo.realprice){
-              //console.log(JSON.stringify({
+              ////console.log(JSON.stringify({
               //   totalfee:totalfee,
               //   realprice:orderinfo.realprice
               // }));
@@ -49,7 +49,7 @@ exports.getpaysign = (socket,actiondata,ctx)=>{
               else if(actiondata.paytype === 'leftbalance'){
                 //<----------检查是否有优惠券----------------
                 //检查用户余额是否足够
-                  //console.log(`使用余额支付:${JSON.stringify(orderinfo)}`);
+                  ////console.log(`使用余额支付:${JSON.stringify(orderinfo)}`);
                   let userModel = DBModels.UserRiderModel;
                   userModel.findOne({_id:ctx.userid},(err,targetuser)=>{
                     if(targetuser.balance < orderinfo.balanceprice){

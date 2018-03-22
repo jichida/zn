@@ -70,6 +70,6 @@ let sendsmstouser = (tel,reason,authcode,callbackfn)=>{
 exports.sendsmstouser = sendsmstouser;
 
 // sendsmstouser('15961125167','register','3456',(err,result)=>{
-//     //console.log(`err=====>${JSON.stringify(err)}`);
-//     //console.log(`result=====>${JSON.stringify(result)}`);
+//     ////console.log(`err=====>${JSON.stringify(err)}`);
+//     ////console.log(`result=====>${JSON.stringify(result)}`);
 // });

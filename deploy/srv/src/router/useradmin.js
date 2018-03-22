@@ -25,7 +25,7 @@ const DELETE = 'DELETE';
 // };
 app.post('/adminauth',(req,res)=>{
   const actiondata =   req.body;
-  //console.log("actiondata=>" + JSON.stringify(actiondata));
+  ////console.log("actiondata=>" + JSON.stringify(actiondata));
 
 
   const userModel = DBModels.UserAdminModel;
@@ -73,7 +73,7 @@ for(let keyname in dbs){
     let urlname = '/adminapi' + schmodel.urlname;
     app.post(urlname,middlewareauth,(req,res)=>{
       let queryparam = req.body;
-      //console.log("queryparam=>" + JSON.stringify(queryparam));
+      ////console.log("queryparam=>" + JSON.stringify(queryparam));
 
       let query = {};
       let sort = {};
@@ -108,8 +108,8 @@ for(let keyname in dbs){
         });
 
       }
-      //console.log("query=>" + JSON.stringify(query));
-      //console.log("options=>" + JSON.stringify(options));
+      ////console.log("query=>" + JSON.stringify(query));
+      ////console.log("options=>" + JSON.stringify(options));
       let actionname = '';
       let preupdateddata = {};
       if(queryparam.type === GET_LIST){
@@ -156,14 +156,14 @@ for(let keyname in dbs){
 
       //<==============================================
       preaction(actionname,schmodel.collectionname,preupdateddata,(err,result)=>{
-         //console.log("需要更新的数据=>" + JSON.stringify(preupdateddata));
+         ////console.log("需要更新的数据=>" + JSON.stringify(preupdateddata));
 
         if(queryparam.type === GET_LIST){
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
           dbModel.paginate(preupdateddata.query, preupdateddata.options,(err,result)=>{
 
             postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                //console.log("GET_LIST result=>" + JSON.stringify(result));
+                ////console.log("GET_LIST result=>" + JSON.stringify(result));
                 res.status(200).json(result);
             });
 
@@ -175,12 +175,12 @@ for(let keyname in dbs){
             if(!err && !!result){
               result = result.toJSON();
               postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                  //console.log("GET_ONE result=>" + JSON.stringify(result));
+                  ////console.log("GET_ONE result=>" + JSON.stringify(result));
                   res.status(200).json(result);
               });
             }
             else{
-              //console.log(`GET_ONE cannt find ${preupdateddata.query._id}`);
+              ////console.log(`GET_ONE cannt find ${preupdateddata.query._id}`);
             }
 
           });
@@ -198,12 +198,12 @@ for(let keyname in dbs){
 
         }
         else if(queryparam.type === GET_MANY_REFERENCE){
-          //console.log("GET_MANY_REFERENCE 查询条件=>" + JSON.stringify(query));
+          ////console.log("GET_MANY_REFERENCE 查询条件=>" + JSON.stringify(query));
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
           dbModel.paginate(preupdateddata.query, preupdateddata.options,(err,result)=>{
 
             postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                //console.log("GET_MANY_REFERENCE result=>" + JSON.stringify(result));
+                ////console.log("GET_MANY_REFERENCE result=>" + JSON.stringify(result));
                 res.status(200).json(result);
             });
           });
@@ -214,22 +214,22 @@ for(let keyname in dbs){
           entity.save((err,result)=>{
             if(!err && !!result){
               postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                  //console.log("CREATE result=>" + JSON.stringify(result));
+                  ////console.log("CREATE result=>" + JSON.stringify(result));
                   res.status(200).json(result);
               });
             }
             else{
-              //console.log(err);
+              ////console.log(err);
             }
           });
         }
         else if(queryparam.type === UPDATE){
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
           dbModel.findByIdAndUpdate(preupdateddata.query._id,preupdateddata.data, {new: true},(err, result)=> {
-              //console.log("==>UPDATE err=>" + JSON.stringify(err));
-              //console.log("==>UPDATE result=>" + JSON.stringify(result));
+              ////console.log("==>UPDATE err=>" + JSON.stringify(err));
+              ////console.log("==>UPDATE result=>" + JSON.stringify(result));
              postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                 //console.log("UPDATE result=>" + JSON.stringify(result));
+                 ////console.log("UPDATE result=>" + JSON.stringify(result));
                  res.status(200).json(result);
              });
           });
@@ -240,7 +240,7 @@ for(let keyname in dbs){
           dbModel.findOneAndRemove(preupdateddata.query, (err, result)=> {
 
               postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                  //console.log("DELETE result=>" + JSON.stringify(result));
+                  ////console.log("DELETE result=>" + JSON.stringify(result));
                   res.status(200).json(result);
               });
             });

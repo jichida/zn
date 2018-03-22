@@ -24,7 +24,7 @@ let startadmincustom = (app)=>{
   });
 
   app.post('/findone/:resourcename',(req,res)=>{
-    //console.log("findone:" + req.params.resourcename);
+    ////console.log("findone:" + req.params.resourcename);
     let schmodel = dbs[req.params.resourcename];
     let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
     dbModel.findOne({},(err,result)=>{
@@ -40,7 +40,7 @@ let startadmincustom = (app)=>{
 
 
   app.post('/pincheorderrefund/:orderid',(req,res)=>{
-      //console.log("orderid:" + req.params.orderid);
+      ////console.log("orderid:" + req.params.orderid);
       pinche.pincheorderrefund(req.params.orderid,(err,result)=>{
         if(!!result){
           res.status(200).json(result);
@@ -52,9 +52,9 @@ let startadmincustom = (app)=>{
   });
 
   app.post('/createmycouponsbatch',(req,res)=>{
-      ////console.log("orderid:" + req.params.orderid);
+      //////console.log("orderid:" + req.params.orderid);
       let record = req.body;
-      //console.log(`createmycouponsbatch record===>${JSON.stringify(record)}`);
+      ////console.log(`createmycouponsbatch record===>${JSON.stringify(record)}`);
       _.map(record.creators,(creator)=>{
         _.map(record.triptypes,(triptype)=>{
           for(let i = 0;i < record.couponnumber;i++){

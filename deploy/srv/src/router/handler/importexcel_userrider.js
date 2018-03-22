@@ -54,9 +54,9 @@ const sendtoplatform = (userEntity)=>{
 
 
 const importexcel = (excelfilepath,callbackfn)=>{
-  console.log(`开始导入excel:${excelfilepath}`);
+  //console.log(`开始导入excel:${excelfilepath}`);
   const obj = xlsx.parse(excelfilepath);
-  console.log(JSON.stringify(obj));
+  //console.log(JSON.stringify(obj));
   let listriders = [];
   let resultkey = [];
   _.map(obj,(v)=>{
@@ -75,9 +75,9 @@ const importexcel = (excelfilepath,callbackfn)=>{
     });
   });
 
-  console.log(listriders);
+  //console.log(listriders);
   const newlistriders = getriders(listriders);
-  console.log(newlistriders);
+  //console.log(newlistriders);
 
   let asyncgetidsfnsz = [];
   _.map(newlistriders,(riderinfo)=>{

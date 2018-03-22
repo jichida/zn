@@ -10,7 +10,7 @@ const importexcel_userdriver = require('./handler/importexcel_userdriver.js');
 const importexcel_userrider = require('./handler/importexcel_userrider.js');
 const startuploader = (app)=>{
   app.post('/uploadexcel/:resourcename',middlewareauth,(req,res)=>{
-    console.log("userid:" + req.userid);
+    //console.log("userid:" + req.userid);
     const resourcename = req.params.resourcename;
     let importexcel;
     if(resourcename === 'userdriver'){
@@ -30,10 +30,10 @@ const startuploader = (app)=>{
      const form = new formidable.IncomingForm();
      form.uploadDir = config.uploaddir || path.join(__dirname,'../../../dist/uploader');
      form.keepExtensions = true;
-     console.log("form.uploadDir :" + form.uploadDir );
+     //console.log("form.uploadDir :" + form.uploadDir );
      form.parse(req, (err, fields, files)=> {
-      //  console.log('file name:' + util.inspect({fields: fields, files: files}));
-      //  console.log('file name:' + files['file'].path);
+      //  //console.log('file name:' + util.inspect({fields: fields, files: files}));
+      //  //console.log('file name:' + files['file'].path);
        let basename = path.basename(files['file'].path);
        let extname = path.extname(fields['filename']);
        let filename = basename + extname;
@@ -58,12 +58,12 @@ const startuploader = (app)=>{
 
      });
     //  form.on('file', (name, file)=> {
-    //    //console.log("file name:" + name);
-    //    //console.log("file file:" + JSON.stringify(file));
+    //    ////console.log("file name:" + name);
+    //    ////console.log("file file:" + JSON.stringify(file));
     //  });
      form.on('progress', (bytesReceived, bytesExpected)=> {
-       console.log('已接受:' + bytesReceived);
-       console.log('一共:' + bytesExpected);
+       //console.log('已接受:' + bytesReceived);
+       //console.log('一共:' + bytesExpected);
      });
 
   });

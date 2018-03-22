@@ -95,13 +95,13 @@ const getdrivers = (listdrivers)=>{
         newdriver.Platform_baseInfoVehicle.Address = parseInt(newdriver.Platform_baseInfoVehicle.Address);
       }
       catch(e){
-        console.log(e)
+        //console.log(e)
       }
       // try{
       //   // _.set(newdriver.balance,parseInt(driver.balance),0);
       // }
       // catch(e){
-      //   console.log(e)
+      //   //console.log(e)
       // }
       newdriver.balance = 0;
       newdriver.Platform_baseInfoVehicle.Seats = 6;
@@ -131,9 +131,9 @@ const getdrivers = (listdrivers)=>{
 }
 
 const importexcel = (excelfilepath,callbackfn)=>{
-  console.log(`开始导入excel:${excelfilepath}`);
+  //console.log(`开始导入excel:${excelfilepath}`);
   const obj = xlsx.parse(excelfilepath);
-  console.log(JSON.stringify(obj));
+  //console.log(JSON.stringify(obj));
   let listdrivers = [];
   let resultkey = [];
   _.map(obj,(v)=>{
@@ -159,7 +159,7 @@ const importexcel = (excelfilepath,callbackfn)=>{
     });
   });
 
-  console.log(listdrivers);
+  //console.log(listdrivers);
   const newlistdrivers = getdrivers(listdrivers);
 
   let asyncgetidsfnsz = [];

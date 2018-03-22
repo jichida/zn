@@ -27,7 +27,7 @@ const interval_setvehicle = (vehicleno,calcmile,callbackfn)=>{
             callbackfn(result);
           }
           else{
-            //console.log(err);
+            ////console.log(err);
             callbackfn(null);
           }
         });
