@@ -24,20 +24,20 @@ const recordid =(collectionname,doc)=>{
   if(_.isArray(doc)){
     if(doc.length > 0){
       if(collectionname === 'baseinfovehicle'){
-        winston.getlog().error(`批量接口【车辆信息】-->${collectionname}-->个数${doc.length}--->第一条车牌号:${doc[0].VehicleNo}`);
+        winston.getlog().info(`批量接口【车辆信息】-->${collectionname}-->个数${doc.length}--->第一条车牌号:${doc[0].VehicleNo}`);
       }
       else if(collectionname === 'baseinfodriver'){
-        winston.getlog().error(`批量接口【司机信息】-->${collectionname}-->个数${doc.length}--->第一条驾驶证号:${doc[0].LicenseId}`);
+        winston.getlog().info(`批量接口【司机信息】-->${collectionname}-->个数${doc.length}--->第一条驾驶证号:${doc[0].LicenseId}`);
       }
     }
 
   }
   else{
     if(collectionname === 'baseinfovehicle'){
-      winston.getlog().error(`单个接口【车辆信息】-->${collectionname}-->车牌号:${doc.VehicleNo}`);
+      winston.getlog().info(`单个接口【车辆信息】-->${collectionname}-->车牌号:${doc.VehicleNo}`);
     }
     else if(collectionname === 'baseinfodriver'){
-      winston.getlog().error(`单个接口【司机信息】-->${collectionname}-->驾驶证号:${doc.LicenseId}`);
+      winston.getlog().info(`单个接口【司机信息】-->${collectionname}-->驾驶证号:${doc.LicenseId}`);
     }
   }
 }
