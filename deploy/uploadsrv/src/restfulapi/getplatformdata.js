@@ -7,30 +7,30 @@ const winston = require('../log/index.js');
 const gettimefromstring = (timestring)=>{
   try{
     debug(`gettimefromstring-->${timestring}`);
-    let curtime = moment(timestring).format('YYYYMMDDHHmmss');
-    return parseInt(curtime);
+    if(!!timestring){
+      let curtime = moment(timestring).format('YYYYMMDDHHmmss');
+      return parseInt(curtime);
+    }
   }
   catch(e){
     winston.getlog().warn(`gettimefromstring-->${timestring}`);
-
-    let curtime = moment().format('YYYYMMDDHHmmss');
-    return parseInt(curtime);
   }
-
+  let curtime = moment().format('YYYYMMDDHHmmss');
+  return parseInt(curtime);
 }
 const getdatefromstring = (timestring)=>{
   try{
     debug(`getdatefromstring-->${timestring}`);
-    let curtime = moment(timestring).format('YYYYMMDD');
-    return parseInt(curtime);
+    if(!!timestring){
+      let curtime = moment(timestring).format('YYYYMMDD');
+      return parseInt(curtime);
+    }
   }
   catch(e){
     winston.getlog().warn(`getdatefromstring-->${timestring}`);
-
-    let curtime = moment().format('YYYYMMDD');
-    return parseInt(curtime);
   }
-
+  let curtime = moment().format('YYYYMMDD');
+  return parseInt(curtime);
 }
 const getgeonumberfloat6 = (lntlngnumber)=>{
   const retv = _.toNumber(lntlngnumber.toFixed(6))*1000000;
@@ -130,15 +130,21 @@ const getplatformdata = (actionname,collectionname,doc)=>{
 
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       if(!retdoc.GPSInstallDate && !!retdoc.GPSlnstallDate){
-        debug(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
-        winston.getlog().warn(`${collectionname}-->字段GPSInstallDate必填,但目前没有`);
+        debug(`${collectionname}-->字段GPSInstallDate必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
+        winston.getlog().warn(`${collectionname}-->字段GPSInstallDate必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
         retdoc.GPSInstallDate  = retdoc.GPSlnstallDate;
       }
 
       if(!retdoc['CommercialType']){
-        debug(`${collectionname}-->字段CommercialType必填,但目前没有`);
-        winston.getlog().warn(`${collectionname}-->字段CommercialType必填,但目前没有`);
+        debug(`${collectionname}-->字段CommercialType必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
+        winston.getlog().warn(`${collectionname}-->字段CommercialType必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
         retdoc['CommercialType'] = 1;
+      }
+
+      if(!retdoc['CertifyDateA']){
+        debug(`${collectionname}-->字段CertifyDateA必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
+        winston.getlog().warn`${collectionname}-->字段CertifyDateA必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
+        retdoc['CertifyDateA'] = getdatefromstring('2018-03-24');
       }
 
       if(!!retdoc.PlateColor){
@@ -258,6 +264,11 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
         'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
         'InDriverBlacklist','EmergencyContact','EmergencyContactPhone','EmergencyContactAddress','Licenseld']);
+
+        if(!retdoc['GetDriverLicenseDate']){
+          debug(`${collectionname}-->字段GetDriverLicenseDate必填,但目前没有,驾驶证号:${retdoc.LicenseId}`);
+          retdoc['GetDriverLicenseDate'] = getdatefromstring('2018-03-24');
+        }
 
       }
     else if(collectionname === 'baseinfodrivereducate'){
@@ -442,6 +453,13 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         debug(`${collectionname}-->字段DestTime必填,但目前没有`);
         winston.getlog().warn(`${collectionname}-->字段DestTime必填,但目前没有`);
       }
+      if(!retdoc.OnArea){
+        retdoc.OnArea = 341181;
+        debug(`${collectionname}-->字段OnArea必填,但目前没有`);
+        winston.getlog().warn(`${collectionname}-->字段OnArea必填,但目前没有`);
+      }
+
+
       retdoc.DriveTime = parseInt(retdoc.DriveTime);
 
     }
