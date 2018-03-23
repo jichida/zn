@@ -143,7 +143,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
 
       if(!retdoc['CertifyDateA']){
         debug(`${collectionname}-->字段CertifyDateA必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
-        winston.getlog().warn`${collectionname}-->字段CertifyDateA必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
+        winston.getlog().warn(`${collectionname}-->字段CertifyDateA必填,但目前没有,车牌号:${retdoc.VehicleNo}`);
         retdoc['CertifyDateA'] = getdatefromstring('2018-03-24');
       }
 
