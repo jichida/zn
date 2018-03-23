@@ -17,7 +17,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
     };
     postdata[IPCType] = data;
     // winston.getlog().info(postdata);
-    debug(`开始发送接口-->${JSON.stringify(postdata)}`);
+    // debug(`开始发送接口-->${JSON.stringify(postdata)}`);
 
     return fetch(`${fetchurl}${uri}`, {
       method  : 'POST',
@@ -31,7 +31,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       debug(`${IPCType}-->返回状态码-->${response.status}`);
       // winston.getlog().info(`返回状态码-->${response.status}`);
       if (response.status >= 200 && response.status < 300) {
-        debug(`${IPCType}-->OK`);
+        // debug(`${IPCType}-->OK`);
         // winston.getlog().info(`${IPCType}-->OK`);
         return Promise.resolve(response)
       } else {

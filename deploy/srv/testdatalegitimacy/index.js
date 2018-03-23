@@ -5,7 +5,7 @@ const async = require('async');
 const _ = require('lodash');
 const platformaction = require('../src/platform/platformaction');
 
-const limit_perpage = 50;
+let limit_perpage = 50;
 let datalegitimacy_interval_handler;
 
 const dbslist = getmodels();
@@ -57,7 +57,7 @@ const starttest_resetuploaded = (callbackfn)=>{
 }
 
 const starttest_datalegitimacy = ({perpage},callbackfn)=>{
-
+  limit_perpage = perpage;
   let fnsz = [];
   _.map(dbslist,(schmodel)=>{
     fnsz.push((callback)=>{
@@ -104,6 +104,7 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
 
 let transmsg = '';
 const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
+  limit_perpage = perpage;
   datalegitimacy_interval_handler = null;
   const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
