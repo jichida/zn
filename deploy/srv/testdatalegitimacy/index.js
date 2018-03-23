@@ -56,7 +56,7 @@ const starttest_resetuploaded = (callbackfn)=>{
   async.parallel(fnsz,callbackfn);
 }
 
-const starttest_datalegitimacy = (callbackfn)=>{
+const starttest_datalegitimacy = ({perpage},callbackfn)=>{
 
   let fnsz = [];
   _.map(dbslist,(schmodel)=>{
@@ -76,7 +76,7 @@ const starttest_datalegitimacy = (callbackfn)=>{
         ]
       },null,{
         skip: 0,
-        limit: limit_perpage,
+        limit: perpage,
         sort:{ "_id": 1}
       },(err,result)=>{
         let listdata = [];
@@ -103,11 +103,11 @@ const starttest_datalegitimacy = (callbackfn)=>{
 }
 
 let transmsg = '';
-const starttest_datalegitimacy_interval = (callbackfn)=>{
+const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
   datalegitimacy_interval_handler = null;
   const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
-      starttest_datalegitimacy((err,result)=>{
+      starttest_datalegitimacy({perpage},(err,result)=>{
         isnum = true;
         if(!err && !!result){
           isnum = false;

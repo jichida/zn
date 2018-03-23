@@ -23,8 +23,9 @@ const resetplatform = (app)=>{
     });
   });
 
-  app.get('/starttest_datalegitimacy',(req,res)=>{
-    testdatalegitimacy.starttest_datalegitimacy((err,result)=>{
+  app.get('/starttest_datalegitimacy/:perpage',(req,res)=>{
+    const perpage = parseInt(req.params.perpage);
+    testdatalegitimacy.starttest_datalegitimacy({perpage},(err,result)=>{
       res.status(200)
           .json({
             result,
@@ -32,8 +33,9 @@ const resetplatform = (app)=>{
     });
   });
 
-  app.get('/starttest_datalegitimacy_interval',(req,res)=>{
-    testdatalegitimacy.starttest_datalegitimacy_interval((err,result)=>{
+  app.get('/starttest_datalegitimacy_interval/:perpage',(req,res)=>{
+    const perpage = parseInt(req.params.perpage);
+    testdatalegitimacy.starttest_datalegitimacy_interval({perpage},(err,result)=>{
       res.status(200)
           .json({
             result,
