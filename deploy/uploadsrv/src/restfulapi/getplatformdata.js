@@ -500,6 +500,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage','Encrypt',
       'WarnStatus','VehStatus','BizStatus']);
+
+      if(!retdoc['DriverRegionCode']){
+        debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
+        winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
+        retdoc['DriverRegionCode'] = 341181;
+      }
     }
     else if(collectionname === 'positionvehicle'){
       if (typeof retdoc.PositionTime === 'string') {
