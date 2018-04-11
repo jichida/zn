@@ -293,6 +293,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         debug(`${collectionname}-->字段LicenseId必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段LicenseId必填,但目前没有`);
       }
+
+      if(!retdoc.Address){
+        retdoc.Address = 341181;
+        debug(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+      }
     }
     // else if(collectionname === 'baseinfodriverstat'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
