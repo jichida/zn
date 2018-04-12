@@ -8,6 +8,7 @@ services:
     volumes:
       - ./srv:/app
       - ./dist:/dist
+      - ./dist/log:/dist/log
     environment:
       - platformserverurl=http://192.168.0.1:8081
       - MONGO_URL=mongodb://192.168.0.1:27018/ynyj
