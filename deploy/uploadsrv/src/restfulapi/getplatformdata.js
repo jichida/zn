@@ -266,6 +266,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc.TaxiDriver = 0;
         }
 
+        //  1、接口baseInfoDriver
+        //  DriverType 准驾车型 不可为空，不可为"0"
+        //  DriverGender、PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
+        //  CommercialType 取值范围 1、2、3
+
+
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
         'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
@@ -308,6 +314,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.RegisterDate = getdatefromstring(retdoc.UpdateTime);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+      // 2、接口baseInfoPassenger
+      // PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
+
     }
     else if(collectionname === 'ordercreate'){
       if (typeof retdoc.DepartTime === 'string') {
