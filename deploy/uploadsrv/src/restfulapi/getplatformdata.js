@@ -270,11 +270,27 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         //  DriverType 准驾车型 不可为空，不可为"0"
         //  DriverGender、PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
         //  CommercialType 取值范围 1、2、3
+        if(_.findIndex(['A1','A2','A3','B1','B2','C1','C2','C3','C4','C5','D','E','F','M','N','P'],retdoc.DriverType) === -1){
+          debug(`${collectionname}-->字段DriverType非法,但目前是:${retdoc.DriverType}`);
+          retdoc.DriverType = 'C1';
+        }
 
+        if(_.findIndex(['0','1','2','5','6','9'],retdoc.DriverGender) === -1){
+          debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.DriverGender}`);
+          if(retdoc.DriverGender === '男'){
+            retdoc.DriverGender = '1';
+          }
+          else if(retdoc.DriverGender === '女'){
+            retdoc.DriverGender = '2';
+          }
+          else{
+            retdoc.DriverGender = '0';
+          }
+        }
 
         retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
         'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
-        'DriverAddress','PhotoIdURL','LicensePhotoIdURL','DriverType','FullTimeDriver',
+        'DriverAddress','PhotoIdURL','LicensePhotoIdURL','FullTimeDriver',
         'InDriverBlacklist','EmergencyContact','EmergencyContactPhone','EmergencyContactAddress','Licenseld']);
 
         if(!retdoc['GetDriverLicenseDate']){
@@ -317,6 +333,18 @@ const getplatformdata = (actionname,collectionname,doc)=>{
 
       // 2、接口baseInfoPassenger
       // PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
+      if(_.findIndex(['0','1','2','5','6','9'],retdoc.PassengerGender) === -1){
+        debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.PassengerGender}`);
+        if(retdoc.PassengerGender === '男'){
+          retdoc.PassengerGender = '1';
+        }
+        else if(retdoc.PassengerGender === '女'){
+          retdoc.PassengerGender = '2';
+        }
+        else{
+          retdoc.PassengerGender = '0';
+        }
+      }
 
     }
     else if(collectionname === 'ordercreate'){
