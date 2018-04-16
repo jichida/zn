@@ -105,7 +105,11 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
 let transmsg = '';
 const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
   limit_perpage = perpage;
-  datalegitimacy_interval_handler = null;
+  if(!!datalegitimacy_interval_handler){
+    clearTimeout(datalegitimacy_interval_handler);
+    datalegitimacy_interval_handler = null;
+  }
+  
   const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
       starttest_datalegitimacy({perpage},(err,result)=>{
