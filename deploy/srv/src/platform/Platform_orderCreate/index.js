@@ -48,7 +48,7 @@ exports.insertOrderCreate  = ({triprequest,triporder,FareType},postaction)=> {
     let orderCreateDoc = {
         CompanyId:config.CompanyId,
         OrderId:triporder._id,
-        DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD'):moment(triprequest.dated_at).format('YYYY-MM-DD'),
+        DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD HH:mm:ss'):moment(triprequest.dated_at).format('YYYY-MM-DD HH:mm:ss'),
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         PassengerNote:'',
         Departure:triporder.srcaddress.addressname,

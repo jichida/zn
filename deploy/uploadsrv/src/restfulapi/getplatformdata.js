@@ -190,7 +190,9 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.CheckState = '0';
       }
 
-
+      if(!retdoc['PhotoId']){
+        retdoc = _.omit(retdoc,['PhotoId']);
+      }
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
@@ -298,6 +300,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
           retdoc['GetDriverLicenseDate'] = getdatefromstring('2018-03-24');
         }
 
+        if(!retdoc['LicensePhotoId']){
+          retdoc = _.omit(retdoc,['LicensePhotoId']);
+        }
+        if(!retdoc['PhotoId']){
+          retdoc = _.omit(retdoc,['PhotoId']);
+        }
       }
     else if(collectionname === 'baseinfodrivereducate'){
       if (typeof retdoc.CourseDate === 'string') {
