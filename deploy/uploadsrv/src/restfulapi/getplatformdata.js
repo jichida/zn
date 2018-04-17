@@ -330,10 +330,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
 
-      if(retDoc.NetType !== 1 && retDoc.NetType !== 2 && retDoc.NetType !== 3 && retDoc.NetType !== 4){
-        retDoc.NetType = 1;
-        debug(`${collectionname}-->字段NetType非法,目前是:${retDoc.NetType}`);
-        winston.getlog().error(`${collectionname}-->字段NetType非法,目前是:${retDoc.NetType}`);
+      if(retdoc.NetType !== 1 && retdoc.NetType !== 2 && retdoc.NetType !== 3 && retdoc.NetType !== 4){
+        retdoc.NetType = 1;
+        debug(`${collectionname}-->字段NetType非法,目前是:${retdoc.NetType}`);
+        winston.getlog().error(`${collectionname}-->字段NetType非法,目前是:${retdoc.NetType}`);
       }
     }
     // else if(collectionname === 'baseinfodriverstat'){
