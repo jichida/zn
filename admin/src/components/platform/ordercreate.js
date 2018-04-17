@@ -42,6 +42,7 @@ const OrderCreateEdit = (props) => (
    <EditPage {...props} title={<OrderCreateTitle />}>
        <SimpleForm>
            <TextField label="订单编号" source="OrderId" />
+           <TextField label="行政区划代码" source="Address" />
            <TextField label="预计用车时间"  source="DepartTime"  />
            <TextField label="订单发起时间"  source="OrderTime"  />
            <TextField label="乘客备注"  source="PassengerNote" />
@@ -64,6 +65,7 @@ const OrderCreateList = (props) => (//
      <List title="订单生成列表" {...props} sort={{ field: 'OrderTime', order: 'DESC' }}>
         <Datagrid>
         <TextField label="订单编号" source="OrderId" />
+        <TextField label="行政区划代码" source="Address" />
         <TextField label="预计用车时间"  source="DepartTime"  />
         <TextField label="订单发起时间"  source="OrderTime"  />
         <TextField label="预计出发地点详细地址" source="Departure" />

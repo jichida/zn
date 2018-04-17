@@ -34,7 +34,13 @@ export default (type, params) => {
       return checkauth();
     }
     if (type === AUTH_ERROR) {
-         return Promise.resolve();
+      const status  = params.status;
+      if (status === 401 || status === 403) {
+        localStorage.removeItem('admintoken');
+        localStorage.removeItem('usertype');
+        return Promise.reject('请先登录');
+      }
+      return Promise.resolve();
     }
     if (type === AUTH_LOGOUT) {
         localStorage.removeItem('admintoken');

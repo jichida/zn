@@ -329,6 +329,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
+
+      if(retDoc.NetType !== 1 && retDoc.NetType !== 2 && retDoc.NetType !== 3 && retDoc.NetType !== 4){
+        retDoc.NetType = 1;
+        debug(`${collectionname}-->字段NetType非法,目前是:${retDoc.NetType}`);
+        winston.getlog().error(`${collectionname}-->字段NetType非法,目前是:${retDoc.NetType}`);
+      }
     }
     // else if(collectionname === 'baseinfodriverstat'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -357,7 +363,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
     }
     else if(collectionname === 'ordercreate'){
       if (typeof retdoc.DepartTime === 'string') {
-        retdoc.DepartTime = gettimefromstring(retdoc.DepartTime);
+        if(retdoc.DepartTime.length < 12){//"2018-01-23"
+          retdoc.DepartTime = gettimefromstring(retdoc.OrderTime);
+        }
+        else{
+          retdoc.DepartTime = gettimefromstring(retdoc.DepartTime);
+        }
       }
       if (typeof retdoc.OrderTime === 'string') {
         retdoc.OrderTime = gettimefromstring(retdoc.OrderTime);
@@ -375,6 +386,30 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
       }
       retdoc.Encrypt =  2;
+      if(!retdoc.Address){
+        retdoc.Address = 341181;
+        debug(`${collectionname}-->字段Address必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
+      }
+
+      // let Platform_orderCreateSchema= new Schema({
+      //   // CompanyId:String,	//	是	字符型	V32	公司标识
+      //   Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
+      //   OrderId:String,	//	是	字符型	V64	订单编号
+      //   DepartTime:String,//	是	数字型	F14	预计用车时间	YYYYMMDDhhmmss
+      //   OrderTime:String,//	是	数字型F14	订单发起时间 YYYYMMDDhhmmss
+      //   PassengerNote:String,	//	否	字符型V128	乘客备注
+      //   Departure:String,	//是字符型V128 预计出发地点详细地址
+      //   DepLongitude:Number,//	是	数字型V10	预计出发地点经度	单位 :1 祷 10-6度
+      //   DepLatitude:Number,//	是	数字型V10	预计出发地点纬度	单位:1铃 10-6度
+      //   Destination:String,	//	是	字符型V128	预计目的地
+      //   DestLongitude:Number,//	是	数字型VI0	预计目的地经度	单位 :1铃 10-6度
+      //   DestLatitude:Number,//	是	数字型V10	预计目的地纬度	单位 :1怜 10-6度
+      //   Encrypt:Number,//是数字型F1坐标加密标识1:GCJ-02 测绘局标准2 :WGS84 GPS 标准3 :BD-09 百度标准4 :CGCS2000 北斗标准O .其他
+      //   FareType:String,	//	是	字符型V16	运价类型编码
+      //
+      //   isuploaded:{ type: Number, default: 0 },//是否上传
+      // });
     }
     else if(collectionname === 'ordermatch'){
       if (typeof retdoc.DistributeTime === 'string') {
@@ -541,6 +576,24 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
     }
     else if(collectionname === 'positiondriver'){
+
+      // let Platform_positionDriverSchema= new Schema({
+      //   // CompanyId:String,		//	是	字符型	V32	网约车公司标识
+      //   LicenseId:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
+      //   DriverRegionCode:Number,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
+      //   VehicleNo:String,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
+      //   PositionTime:String,	//	是	数字型	V14		定位时间	umxtlme
+      //   Longitude:Number,	//	是	数字型	V10		经度	单位 :1祷 10-6 度
+      //   Latitude:Number,	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
+      //   Encrypt:Number,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
+      //   Direction:Number,	//	否	数字型	V10		方向角	0-359 ，顺时针方向
+      //   Elevation:Number,	//	否	数字型	V10		海拔高度	单位:米
+      //   Speed:Number,	//	否	数字型	V10		瞬时速度	单位 :公里每小时(km/h)
+      //   BizStatus:Number,	//	否	数字型	V10		营运状态	1:载客、2.接单、3 :空驶4.停运
+      //   OrderId:String,		//	是	字符型	V64		订单编号
+      //
+      //   isuploaded:{ type: Number, default: 0 },//是否上传
+      // });
       if (typeof retdoc.PositionTime === 'string') {
         retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
       }
@@ -552,7 +605,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage','Encrypt',
       'WarnStatus','VehStatus','BizStatus']);
-
+      retdoc.Encrypt = 2;
       if(!retdoc['DriverRegionCode']){
         debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
         winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
@@ -570,6 +623,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
       retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
+      retdoc.Encrypt = 2;
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {
