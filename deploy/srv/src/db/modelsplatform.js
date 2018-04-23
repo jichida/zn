@@ -398,7 +398,7 @@ let Platform_orderCreateSchema= new Schema({
   DestLongitude:Number,//	是	数字型VI0	预计目的地经度	单位 :1铃 10-6度
   DestLatitude:Number,//	是	数字型V10	预计目的地纬度	单位 :1怜 10-6度
   Encrypt:Number,//是数字型F1坐标加密标识1:GCJ-02 测绘局标准2 :WGS84 GPS 标准3 :BD-09 百度标准4 :CGCS2000 北斗标准O .其他
-  FareType:String,	//	是	字符型V16	运价类型编码
+  FareType:String,	//	是	字符型V16	运价类型编码 <<16位编码
 
   isuploaded:{ type: Number, default: 0 },//是否上传
 });
@@ -576,7 +576,7 @@ let Platform_positionDriverSchema= new Schema({
   LicenseId:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
   DriverRegionCode:Number,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
   VehicleNo:String,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
-  PositionTime:String,	//	是	数字型	V14		定位时间	umxtlme
+  PositionTime:String,	//	是	数字型	V14		定位时间	unixtime
   Longitude:Number,	//	是	数字型	V10		经度	单位 :1祷 10-6 度
   Latitude:Number,	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
   Encrypt:Number,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
@@ -598,7 +598,7 @@ let Platform_positionVehicleSchema= new Schema({
   // CompanyId:String,	//是	字符型	V32	公司标识
   VehicleNo:String,	//是	字符型	V32	车辆号牌
   VehicleRegionCode:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
-  PositionTime:String,		//是	数字型	 V14	定位时间	Unlxtlme
+  PositionTime:String,		//是	数字型	 V14	定位时间	Unixtime
   Longitude:Number,		//是	数字型	VIO	经度	单位 :1铃 10-6 度
   Latitude:Number,		//是	数字型	VIO	纬度	单位:1祷 10-6 度
   Speed:Number,		//	否	数字型	VIO	瞬时速度	单位 :公里每小时(km/h)

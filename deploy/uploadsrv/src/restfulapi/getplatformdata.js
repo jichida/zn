@@ -37,8 +37,18 @@ const getgeonumberfloat6 = (lntlngnumber)=>{
   return parseInt(retv);
 }
 
+const getFaretype = (faretype)=>{
+  let faretypestring;
+  if(typeof faretype === 'string'){
+    if(faretype.length > 16){
+      faretypestring = faretype.substr(faretype.length-16,16);
+    }
+  }
+  return faretypestring;
+}
 
-const getplatformdata = (actionname,collectionname,doc)=>{
+
+const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
   let retdoc = doc;
   retdoc = _.omit(retdoc,['_id','__v','isuploaded']);
   // console.log(`retdoc==>${JSON.stringify(retdoc)}`);
@@ -97,6 +107,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.FareValidOff = getdatefromstring(retdoc.FareValidOff);
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+
+      retdoc.FareType = getFaretype(retdoc.FareType);
+      if(!retdoc.FareType ){
+        callbackfn();
+        return;
+      }
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
@@ -192,6 +208,12 @@ const getplatformdata = (actionname,collectionname,doc)=>{
 
       if(!retdoc['PhotoId']){
         retdoc = _.omit(retdoc,['PhotoId']);
+      }
+
+      retdoc.FareType = getFaretype(retdoc.FareType);
+      if(!retdoc.FareType ){
+        callbackfn();
+        return;
       }
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
@@ -391,7 +413,11 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
-
+      retdoc.FareType = getFaretype(retdoc.FareType);
+      if(!retdoc.FareType ){
+        callbackfn();
+        return;
+      }
       // let Platform_orderCreateSchema= new Schema({
       //   // CompanyId:String,	//	是	字符型	V32	公司标识
       //   Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
@@ -488,6 +514,11 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc.Encrypt =  2;
       retdoc = _.omit(retdoc,['WaitMile','WaitTime']);
+      retdoc.FareType = getFaretype(retdoc.FareType);
+      if(!retdoc.FareType ){
+        callbackfn();
+        return;
+      }
     }
     else if(collectionname === 'operatearrive'){
       if (typeof retdoc.DestTime === 'string') {
@@ -531,7 +562,11 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.DestLatitude = getgeonumberfloat6(retdoc.DestLatitude);
       }
       retdoc.Encrypt =  2;
-
+      retdoc.FareType = getFaretype(retdoc.FareType);
+      if(!retdoc.FareType ){
+        callbackfn();
+        return;
+      }
       retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','BookModel',
     'Model','WaitMile','Price','CashPrice','LineName','LinePrice','PosName','PosPrice','BenfitPrice',
   'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
@@ -611,6 +646,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
         retdoc['DriverRegionCode'] = 341181;
       }
+      retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
     }
     else if(collectionname === 'positionvehicle'){
       if (typeof retdoc.PositionTime === 'string') {
@@ -624,6 +660,7 @@ const getplatformdata = (actionname,collectionname,doc)=>{
       }
       retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
       retdoc.Encrypt = 2;
+      retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {
@@ -645,8 +682,10 @@ const getplatformdata = (actionname,collectionname,doc)=>{
         retdoc.TestDate = getdatefromstring(retdoc.TestDate);
       }
     }
-    return retdoc;
+    callbackfn(retdoc);
+    return;
   }
+  callbackfn();
 
 }
 

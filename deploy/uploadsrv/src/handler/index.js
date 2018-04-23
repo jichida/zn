@@ -8,6 +8,7 @@ const redis = require('../redis/index.js');
 const debug = require('debug')('uploadsrv:handler')
 const _ = require('lodash');
 const winston = require('../log/index.js');
+const async = require('async');
 const fs = require('fs');
 
 const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
@@ -100,48 +101,55 @@ const onmessage = (msgobj)=> {
     recordid(data.collectionname,data.doc);
 
     if(!_.isArray(data.doc)){
-      const uploaddata = getplatformdata(data.action,data.collectionname,data.doc);
-      if(!!uploaddata){
-        uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
-          // debug(`uploadtoplatform===>${res}`);
-          redis.publish(`platformmessage_upload_callback`,{
-            collectionname:data.collectionname,
-            _id:data.doc._id,
+      getplatformdata(data.action,data.collectionname,data.doc,(uploaddata)=>{
+        if(!!uploaddata){
+          uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
+            console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
+            redis.publish(`platformmessage_upload_callback`,{
+              collectionname:data.collectionname,
+              _id:data.doc._id,
+            });
+          }).catch((e)=>{
+            console.log(e);
           });
-        }).catch((e)=>{
-          debug(e);
-        });
-        uploadsftp(data.collectionname,data.doc);
-      }
+          uploadsftp(data.collectionname,data.doc);
+        }
+      });
+
     }
     else{
       //bat
       const _ids = [];
       const uploaddatalists = [];
+      let fnsz = [];
       _.map(data.doc,(doc)=>{
-        const uploaddata = getplatformdata(data.action,data.collectionname,doc);
-        if(!!uploaddata){
-          uploaddatalists.push(uploaddata);
-          _ids.push(doc._id);
-        }
+        getplatformdata(data.action,data.collectionname,doc,(uploaddata)=>{
+          if(!!uploaddata){
+            fnsz.push((callbackfn)=>{
+              uploaddatalists.push(uploaddata);
+              _ids.push(doc._id);
+            });
+          }
+        });
+
       });
 
-      if(uploaddatalists.length > 0){
-        uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddatalists).then((res)=>{
-          // debug(`uploadtoplatform===>${res}`);
-          redis.publish(`platformmessage_upload_callback`,{
-            collectionname:data.collectionname,
-            _ids,
+      async.series(fnsz,(err,result)=>{
+        if(uploaddatalists.length > 0){
+          uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddatalists).then((res)=>{
+            console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
+            redis.publish(`platformmessage_upload_callback`,{
+              collectionname:data.collectionname,
+              _ids,
+            });
+          }).catch((e)=>{
+            console.log(e);
           });
-        }).catch((e)=>{
-          debug(e);
-        });
-
-        _.map(uploaddatalists,(doc)=>{
-          uploadsftp(data.collectionname,doc);
-        });
-
-      }
+          _.map(uploaddatalists,(doc)=>{
+            uploadsftp(data.collectionname,doc);
+          });
+        }
+      });
     }
 
   }
