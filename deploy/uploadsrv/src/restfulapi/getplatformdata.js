@@ -629,9 +629,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       //
       //   isuploaded:{ type: Number, default: 0 },//是否上传
       // });
-      if (typeof retdoc.PositionTime === 'string') {
-        retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
-      }
+      // if (typeof retdoc.PositionTime === 'string') {
+      //   retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
+      // }
       if(!!retdoc.Longitude){
         retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
       }
@@ -649,9 +649,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
     }
     else if(collectionname === 'positionvehicle'){
-      if (typeof retdoc.PositionTime === 'string') {
-        retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
-      }
+      // if (typeof retdoc.PositionTime === 'string') {
+      //   retdoc.PositionTime = gettimefromstring(retdoc.PositionTime);
+      // }
       if(!!retdoc.Longitude){
         retdoc.Longitude = getgeonumberfloat6(retdoc.Longitude);
       }
