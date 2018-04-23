@@ -62,6 +62,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      retdoc = _.omit(retdoc,['Companyld']);
     }
     else if(collectionname === 'baseinfocompanystat'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
