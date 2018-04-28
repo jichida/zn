@@ -129,6 +129,7 @@ const onmessage = (msgobj)=> {
                 uploaddatalists.push(uploaddata);
                 _ids.push(doc._id);
               }
+              callbackfn(null,true);
             });
         });
       });
