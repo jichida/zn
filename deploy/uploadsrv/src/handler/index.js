@@ -128,10 +128,9 @@ const onmessage = (msgobj)=> {
             if(!!uploaddata){
                 uploaddatalists.push(uploaddata);
                 _ids.push(doc._id);
-              });
-            }
+              }
+            });
         });
-
       });
 
       async.series(fnsz,(err,result)=>{
