@@ -55,4 +55,5 @@ startsrv();
 
 const listenport = parseInt(process.env.listenport) || 8080;
 console.log(`port-->${listenport}`)
+winston.getlog().info(`开始服务器,port-->${listenport}`);
 app.listen(listenport);
