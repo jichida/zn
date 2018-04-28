@@ -123,13 +123,13 @@ const onmessage = (msgobj)=> {
       const uploaddatalists = [];
       let fnsz = [];
       _.map(data.doc,(doc)=>{
-        getplatformdata(data.action,data.collectionname,doc,(uploaddata)=>{
-          if(!!uploaddata){
-            fnsz.push((callbackfn)=>{
-              uploaddatalists.push(uploaddata);
-              _ids.push(doc._id);
-            });
-          }
+        fnsz.push((callbackfn)=>{
+          getplatformdata(data.action,data.collectionname,doc,(uploaddata)=>{
+            if(!!uploaddata){
+                uploaddatalists.push(uploaddata);
+                _ids.push(doc._id);
+              });
+            }
         });
 
       });
