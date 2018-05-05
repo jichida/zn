@@ -11,8 +11,9 @@ let get_fnsavebaseinfodriver = (retdoc)=>{
   //以Platform_baseInfoDriver为主体，插入到Platform_baseInfoDriverModel,返回Platform_baseInfoDriverModel
   return (fncallback)=>{
       let baseInfoDriver = retdoc.Platform_baseInfoDriver || {};
-      baseInfoDriver.CompanyId = config.CompanyId;
-      // baseInfoDriver.Address = config.Address;
+      console.log(JSON.stringify(baseInfoDriver));
+      // baseInfoDriver.CompanyId = config.CompanyId;
+      // baseInfoDriver.Address = retdoc.Platform_baseInfoDriver.Address;
       let dbplatformmodel = DBPlatformModels.Platform_baseInfoDriverModel;
       let baseInfoDriverid = retdoc.Platform_baseInfoDriverId;
       if(typeof baseInfoDriverid === 'string'){

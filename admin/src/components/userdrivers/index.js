@@ -111,6 +111,7 @@ const UserdriverlistEdit = (props) => {
               <ImageInputUpload  label="机动车行驶证" source="CarrunPhotoIdURL" />
               </FormTab>
               <FormTab label="resources.userdriver.tabs.platformdriverinfo">
+              <TextInput label="行政注册地【审核必填】" source="Platform_baseInfoDriver.Address" validate={[required]}/>
               <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" validate={[required]}/>
               <TextInput label="手机号【审核必填】" source="Platform_baseInfoDriver.DriverPhone" validate={[required]}/>
               <TextInput label="性别" source="Platform_baseInfoDriver.DriverGender" />
@@ -253,6 +254,8 @@ const UserdriverlistList = (props) => (//
         <ReferenceField label="司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty>
           <TextField source="DriverName" />
         </ReferenceField>
+        <TextField label="行政注册地[车辆]" source="Platform_baseInfoVehicle.Address" />
+        <TextField label="行政注册地[驾驶员]" source="Platform_baseInfoDriver.Address" />
         <TextField label="注册时间" source="created_at"  />
         <TextField label="上次登录时间" source="updated_at"  />
         <TextField label="审批状态"  source="approvalstatus" />

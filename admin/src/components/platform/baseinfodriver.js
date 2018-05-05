@@ -185,6 +185,7 @@ const BaseInfoDriverList = (props) => (//
      <List title="驾驶员信息列表" {...props} >
         <Datagrid>
         <TextField label="驾驶员姓名" source="DriverName" />
+        <TextField label="行政注册地" source="Address" />
         <TextField label="驾驶员手机号"  source="DriverPhone" />
         <TextField label="性别"  source="DriverGender" />
         <TextField label="出生日期"  source="DriverBirthday" />
