@@ -78,13 +78,15 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
         skip: 0,
         limit: perpage,
         sort:{ "_id": 1}
-      },(err,result)=>{
+      }).lean().exec((err,result)=>{
         let listdata = [];
         if(!err && !!result){
           if(result.length > 0){
             _.map(result,(doc)=>{
               const newdoc = platformaction.postaction_getnewdoc('upload',schmodel.collectionname,doc);
               listdata.push(newdoc);
+              dbModel.findOneAndUpdate({_id:doc._id},{$set:{isuploaded:-1}},{new:true},(err,ctxuser)=>{
+              });
             });
             PubSub.publish('platformmessage_upload',{
               action:'upload',//'findByIdAndUpdate',
@@ -109,7 +111,7 @@ const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
     clearTimeout(datalegitimacy_interval_handler);
     datalegitimacy_interval_handler = null;
   }
-  
+
   const startupload = (timeoutdelay)=>{
     datalegitimacy_interval_handler = setTimeout(()=>{
       starttest_datalegitimacy({perpage},(err,result)=>{

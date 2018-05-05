@@ -21,6 +21,7 @@ const checkfile_exists =(filename,collectionname,retdoc)=>{
     }
   }
 }
+
 const recordid =(collectionname,doc)=>{
   if(_.isArray(doc)){
     if(doc.length > 0){
