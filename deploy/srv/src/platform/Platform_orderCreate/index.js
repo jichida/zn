@@ -52,11 +52,11 @@ exports.insertOrderCreate  = ({triprequest,triporder,FareType},postaction)=> {
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         PassengerNote:'',
         Departure:triporder.srcaddress.addressname,
-        DepLongitude:triporder.srcaddress.location.lat,
-        DepLatitude:triporder.srcaddress.location.lng,
+        DepLongitude:triporder.srcaddress.location.lng,
+        DepLatitude:triporder.srcaddress.location.lat,
         Destination:triporder.dstaddress.addressname,
-        DestLongitude:triporder.dstaddress.location.lat,
-        DestLatitude:triporder.dstaddress.location.lng,
+        DestLongitude:triporder.dstaddress.location.lng,
+        DestLatitude:triporder.dstaddress.location.lat,
         Encrypt:2,//1:GCJ-02 测绘局标准
         FareType:FareType//运价编码（缺失）
     };
