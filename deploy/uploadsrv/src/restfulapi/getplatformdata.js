@@ -639,15 +639,19 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage','Encrypt',
+      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage',
       'WarnStatus','VehStatus','BizStatus']);
       retdoc.Encrypt = 2;
       if(!retdoc['DriverRegionCode']){
         debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
         winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
-        retdoc['DriverRegionCode'] = 341181;
+        retdoc['DriverRegionCode'] = 340000;
       }
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
+      if(retdoc.OrderId === '0'){//不传
+        callbackfn();
+        return;
+      }
     }
     else if(collectionname === 'positionvehicle'){
       // if (typeof retdoc.PositionTime === 'string') {
