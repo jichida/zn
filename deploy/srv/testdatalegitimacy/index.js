@@ -78,7 +78,7 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
         skip: 0,
         limit: perpage,
         sort:{ "_id": 1}
-      }).lean().exec((err,result)=>{
+      },(err,result)=>{
         let listdata = [];
         if(!err && !!result){
           if(result.length > 0){
