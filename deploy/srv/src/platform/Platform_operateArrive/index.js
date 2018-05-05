@@ -34,7 +34,7 @@ exports.insertOperateArrive  = ({triprequest,triporder},postaction)=> {
         OrderId:triporder._id,
         DestLongitude:triporder.getofflocation[0],
         DestLatitude:triporder.getofflocation[1],
-        Encrypt:1,//1:GCJ-02 测绘局标准
+        Encrypt:2,//1:GCJ-02 测绘局标准
         DestTime:triprequest.getoffdate_at,
         DriveMile:0,
         DriveTime

@@ -41,7 +41,7 @@ exports.insertPositionDriver  = (actiondata,postaction)=> {
         PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),	//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],
-        Encrypt:1,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
+        Encrypt:2,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
         Direction:0,	//	否	数字型	V10		方向角	0-359 ，顺时针方向
         Elevation:0,	//	否	数字型	V10		海拔高度	单位:米
         Speed:0,	//	否	数字型	V10		瞬时速度	单位 :公里每小时(km/h)

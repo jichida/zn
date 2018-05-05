@@ -15,6 +15,8 @@ scp -P 33321 huawei@zn.tczncx.com:/home/huawei/dbbk0209.tar.gz ./
 
 mongorestore --dir=dbbk0209/dump/zhongnandb --db=zhongnandb
 
+mongorestore --dir=zhongnandb_20180505/dump/zhongnandb --db=zn
+
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 开始清理数据库
 1、乘客列表

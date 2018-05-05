@@ -57,7 +57,7 @@ exports.insertOrderCreate  = ({triprequest,triporder,FareType},postaction)=> {
         Destination:triporder.dstaddress.addressname,
         DestLongitude:triporder.dstaddress.location.lat,
         DestLatitude:triporder.dstaddress.location.lng,
-        Encrypt:1,//1:GCJ-02 测绘局标准
+        Encrypt:2,//1:GCJ-02 测绘局标准
         FareType:FareType//运价编码（缺失）
     };
 

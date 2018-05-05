@@ -44,7 +44,7 @@ exports.insertOrderMatch  = ({triprequest,triporder,LicenseId,DriverPhone,Vehicl
         OrderId:triporder._id,
         Longitude:triprequest.driverlocation[0],
         Latitude:triprequest.driverlocation[1],
-        Encrypt:1,//1:GCJ-02 测绘局标准
+        Encrypt:2,//1:GCJ-02 测绘局标准
         LicenseId:LicenseId,//<-----机动车驾驶证编号
         DriverPhone:DriverPhone,
         VehicleNo:VehicleNo,

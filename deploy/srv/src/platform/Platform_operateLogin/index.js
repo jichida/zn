@@ -34,7 +34,7 @@ exports.insertOperateLogin  = (actiondata,postaction)=> {
         LoginTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],
-        Encrypt:1,//1:GCJ-02 测绘局标准
+        Encrypt:2,//1:GCJ-02 测绘局标准
     };
     let eModel = dbplatform.Platform_operateLoginModel;
     let entity = new eModel(operateLoginDoc);
