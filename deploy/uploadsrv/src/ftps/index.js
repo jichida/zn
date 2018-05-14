@@ -2,7 +2,7 @@ const FTPS = require('ftps');
 //参考文档：https://github.com/Atinux/node-ftps
 const config = require('../config.js');
 const debug = require('debug')('uploadsrv:ftps');
-var ftps = new FTPS({
+const ftps = new FTPS({
   host: config.srvsftp.host, // required
   username: config.srvsftp.username, // Optional. Use empty username for anonymous access.
   password: config.srvsftp.password, // Required if username is not empty, except when requiresPassword: false
@@ -22,21 +22,21 @@ var ftps = new FTPS({
 });
 // Do some amazing things
 debug(`--start connect:${JSON.stringify(config.srvsftp)}`);
-const sftptosrv = (localdir,localfilename,callback)=>{
+const sftptosrv = (collectionname,localdir,localfilename,callback)=>{
   debug(`开始连接:${JSON.stringify(config.srvsftp)}`);
   if(!localfilename){
     debug(`无文件可用`);
     callback();
     return;
   }
-  ftps.cd(`tmp/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
+  ftps.cd(`collectionname/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
     debug(`上传文件到tmp目录:${localdir}/${localfilename},err:${!!err}`);
     if(!err){
       debug(err);
       callback(err,res);
       return;
     }
-    callback(err,res);
+    callback(err,`${config.srvsftp.username}/${collectionname}/${localfilename}`);
     // ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
     //   debug(`移动文件到swapfiles目录:${localfilename}`);
     //   if(!err){
