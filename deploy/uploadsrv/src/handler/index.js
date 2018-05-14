@@ -45,8 +45,9 @@ const recordid =(collectionname,doc)=>{
 }
 
 
-const uploadsftp = (collectionname,retdoc)=>{
+const uploadsftp = (collectionname,retdoc,callbackfn)=>{
   debug(`================>${collectionname}`);
+  let fnsz = [];
   if(collectionname === 'baseinfocompany' ||
   collectionname === 'baseinfovehicle' ||
   collectionname === 'baseinfodriver'){
@@ -69,27 +70,61 @@ const uploadsftp = (collectionname,retdoc)=>{
     //conver URL->file
     const newdoc = retdoc;
     if(collectionname === 'baseinfocompany'){
-      sftptosrv(uploaddir,newdoc.LegalPhoto ,(err,result)=>{
-        debug(err);
-        debug(result);
+      fnsz.push((callbackfn)=>{
+        sftptosrv(collectionname,uploaddir,newdoc.LegalPhoto ,(err,result)=>{
+          debug(err);
+          debug(result);
+          if(!err && !!result){
+            newdoc.LegalPhoto = result;
+          }
+          callbackfn(null,true);
+        });
       });
+
     }
     else if(collectionname === 'baseinfovehicle'){
-      sftptosrv(uploaddir,newdoc.PhotoId ,(err,result)=>{
-        debug(err);
-        debug(result);
+      fnsz.push((callbackfn)=>{
+        sftptosrv(collectionname,uploaddir,newdoc.PhotoId,(err,result)=>{
+          debug(err);
+          debug(result);
+          if(!err && !!result){
+            newdoc.PhotoId = result;
+          }
+          callbackfn(null,true);
+        });
       });
     }
     else if(collectionname === 'baseinfodriver'){
-      sftptosrv(uploaddir,newdoc.LicensePhotoId ,(err,result)=>{
-        debug(err);
-        debug(result);
+      fnsz.push((callbackfn)=>{
+        sftptosrv(collectionname,uploaddir,newdoc.LicensePhotoId ,(err,result)=>{
+          debug(err);
+          debug(result);
+          if(!err && !!result){
+            newdoc.LicensePhotoId = result;
+          }
+          callbackfn(null,true);
+        });
       });
-      sftptosrv(uploaddir,newdoc.PhotoId ,(err,result)=>{
-        debug(err);
-        debug(result);
+      fnsz.push((callbackfn)=>{
+        sftptosrv(collectionname,uploaddir,newdoc.PhotoId ,(err,result)=>{
+          debug(err);
+          debug(result);
+          if(!err && !!result){
+            newdoc.PhotoId = result;
+          }
+          callbackfn(null,true);
+        });
       });
     }
+  }
+
+  if(fnsz.length > 0){
+    async.series(fnsz,(err,result)=>{
+      callbackfn(retdoc);
+    });
+  }
+  else{
+    callbackfn(retdoc);
   }
 }
 
@@ -102,21 +137,21 @@ const onmessage = (msgobj)=> {
     recordid(data.collectionname,data.doc);
 
     if(!_.isArray(data.doc)){
-      getplatformdata(data.action,data.collectionname,data.doc,(uploaddata)=>{
-        if(!!uploaddata){
-          uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
-            console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
-            redis.publish(`platformmessage_upload_callback`,{
-              collectionname:data.collectionname,
-              _id:data.doc._id,
+      uploadsftp(data.collectionname,data.doc,(newdoc)=>{
+        getplatformdata(data.action,data.collectionname,newdoc,(uploaddata)=>{
+          if(!!uploaddata){
+            uploadtoplatform(mapfn.IPCType,mapfn.uri,uploaddata).then((res)=>{
+              console.log(`uploadtoplatform===>${JSON.stringify(res)}`);
+              redis.publish(`platformmessage_upload_callback`,{
+                collectionname:data.collectionname,
+                _id:data.doc._id,
+              });
+            }).catch((e)=>{
+              console.log(e);
             });
-          }).catch((e)=>{
-            console.log(e);
-          });
-          uploadsftp(data.collectionname,data.doc);
-        }
+          }
+        });
       });
-
     }
     else{
       //bat
@@ -146,9 +181,11 @@ const onmessage = (msgobj)=> {
           }).catch((e)=>{
             console.log(e);
           });
-          _.map(uploaddatalists,(doc)=>{
-            uploadsftp(data.collectionname,doc);
-          });
+          // _.map(uploaddatalists,(doc)=>{
+          //   uploadsftp(data.collectionname,doc,(newdoc)=>{
+          //
+          //   });
+          // });
         }
       });
     }

@@ -59,7 +59,10 @@ const starttest_resetuploaded = (callbackfn)=>{
 const starttest_datalegitimacy = ({perpage},callbackfn)=>{
   limit_perpage = perpage;
   let fnsz = [];
-  _.map(dbslist,(schmodel)=>{
+  const dbslist_bat = getmodels(true);
+  const dbslist_single = getmodels(false);
+
+  _.map(dbslist_bat,(schmodel)=>{
     fnsz.push((callback)=>{
       const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
       dbModel.find({
@@ -97,6 +100,32 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
         }
         console.log(`listdata:${listdata.length}`);
         callback(err,listdata);
+      });
+    });
+  });
+
+  _.map(dbslist_single,(schmodel)=>{
+    fnsz.push((callback)=>{
+      const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
+      dbModel.findOne({
+        $or:[
+          {
+            isuploaded:0
+          },
+          {
+            isuploaded:
+            {
+              $exists:false
+            }
+          }
+        ]
+      },(err,result)=>{
+        if(!err && !!result){
+          dbModel.findOneAndUpdate({_id:result._id},{$set:{isuploaded:-1}},{new:true},(err,ctxuser)=>{
+          });
+          platformaction.postaction('upload',schmodel.collectionname,result);
+        }
+        callback(err,[result]);
       });
     });
   });

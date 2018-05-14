@@ -39,4 +39,24 @@ const getmodels = ()=>{
   return dbslist;
 }
 
-module.exports = getmodels;
+const hasphoto = (name)=>{
+  return name === 'baseinfocompany' || name === 'baseinfodriver' || name === 'baseinfovehicle';
+}
+const getmodelslist = (isbat)=>{
+  if(isbat === null){
+    return getmodels();
+  }
+  const dbslist = [];
+  _.map(testurls,(name)=>{
+    const isphoto = hasphoto(name);
+    if(isbat && !isphoto){
+      dbslist.push(dbs[name]);
+    }
+    if(!isbat && isphoto){
+      dbslist.push(dbs[name]);
+    }
+  });
+  return dbslist;
+}
+
+module.exports = getmodelslist;

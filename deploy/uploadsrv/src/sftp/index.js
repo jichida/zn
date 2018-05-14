@@ -5,18 +5,21 @@ const Client = require('ssh2-sftp-client');
 const sftp = new Client();
 const config = require('../config.js');
 
-const sftptosrv = (localdir,localfilename,callback)=>{
+/*
+注意：实现建好3个目录
+1、baseinfocompany
+2、baseinfovehicle
+3、baseinfodriver
+*/
+const sftptosrv = (collectionname,localdir,localfilename,callback)=>{
   console.log(`开始连接:${JSON.stringify(config.srvsftp)}`);
   sftp.connect(config.srvsftp).then(() => {
       console.log(`上传文件到tmp目录:${localdir}/${localfilename}`);
-      sftp.put(`${localdir}/${localfilename}`, `tmp/${localfilename}`);
+      sftp.put(`${localdir}/${localfilename}`, `${collectionname}/${localfilename}`);
       // return sftp.list('/pathname');
   }).then(() => {
-      console.log(`移动文件到swapfiles目录:${localfilename}`);
-      sftp.rename(`tmp/${localfilename}`, `swapfiles/${localfilename}`);
-  }).then(() => {
     console.log(`完成!!`);
-    callback(null,true);
+    callback(null,`${config.srvsftp.username}/${collectionname}/${localfilename}`);
   })
   .catch((err) => {
       console.log(`get error===>`);
