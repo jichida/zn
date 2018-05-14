@@ -29,7 +29,7 @@ const sftptosrv = (collectionname,localdir,localfilename,callback)=>{
     callback();
     return;
   }
-  ftps.cd(`collectionname/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
+  ftps.cd(`${collectionname}/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
     debug(`上传文件到tmp目录:${localdir}/${localfilename},err:${!!err}`);
     if(!err){
       debug(err);

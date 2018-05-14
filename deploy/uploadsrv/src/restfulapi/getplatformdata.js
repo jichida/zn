@@ -5,8 +5,8 @@ const debug = require('debug')("uploadsrv:processdata");
 const winston = require('../log/index.js');
 
 const getAddress = (address)=>{
-  const addressnew = Math.floor(address/1000);
-  const retv = addressnew*1000;
+  const addressnew = Math.floor(address/100);
+  const retv = addressnew*100;
   return parseInt(retv);
 }
 
@@ -68,6 +68,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      retdoc.Address = getAddress(retdoc.Address);
       retdoc = _.omit(retdoc,['Companyld']);
     }
     else if(collectionname === 'baseinfocompanystat'){
@@ -218,6 +219,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       }
 
       retdoc.FareType = getFaretype(retdoc.FareType);
+      retdoc.Address = getAddress(retdoc.Address);
       if(!retdoc.FareType ){
         callbackfn();
         return;
