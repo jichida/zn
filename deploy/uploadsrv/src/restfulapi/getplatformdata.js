@@ -5,8 +5,8 @@ const debug = require('debug')("uploadsrv:processdata");
 const winston = require('../log/index.js');
 
 const getAddress = (address)=>{
-  const address = Math.floor(address/1000);
-  const retv = address*1000;
+  const addressnew = Math.floor(address/1000);
+  const retv = addressnew*1000;
   return parseInt(retv);
 }
 
