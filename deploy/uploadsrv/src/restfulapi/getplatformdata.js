@@ -4,6 +4,12 @@ const config = require('../config.js');
 const debug = require('debug')("uploadsrv:processdata");
 const winston = require('../log/index.js');
 
+const getAddress = (address)=>{
+  const address = Math.floor(address/1000);
+  const retv = address*1000;
+  return parseInt(retv);
+}
+
 const gettimefromstring = (timestring)=>{
   try{
     // debug(`gettimefromstring-->${timestring}`);
@@ -414,6 +420,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
+      retdoc.Address = getAddress(retdoc.Address);
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
         callbackfn();
@@ -454,6 +461,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
+      retdoc.Address = getAddress(retdoc.Address);
       if(!retdoc.DriverPhone){
         retdoc.DriverPhone = '1234';
         debug(`${collectionname}-->字段DriverPhone必填,但目前没有`);
@@ -478,6 +486,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段Address必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
+      retdoc.Address = getAddress(retdoc.Address);
     }
     else if(collectionname === 'operatelogin'){
       if (typeof retdoc.LoginTime === 'string') {
@@ -587,7 +596,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段OnArea必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段OnArea必填,但目前没有`);
       }
-
+      retdoc.OnArea = getAddress(retdoc.OnArea);
 
       retdoc.DriveTime = parseInt(retdoc.DriveTime);
 
