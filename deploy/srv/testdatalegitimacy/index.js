@@ -157,7 +157,7 @@ const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
         }
         if(isnum && !!datalegitimacy_interval_handler){
           setImmediate(()=>{
-            startupload(15000);
+            startupload(3000);
           });
         }
         else{
