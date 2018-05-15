@@ -130,9 +130,9 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="户口登记机关名称" source="Platform_baseInfoDriver.DriverCensus" />
               <TextInput label="户口住址或长住地址" source="Platform_baseInfoDriver.DriverAddress" />
               <TextInput label="驾驶员通信地址" source="Platform_baseInfoDriver.DriverContactAddress" validate={[required]}/>
-              <ImageField  label="驾驶员照片"  source="Platform_baseInfoDriver.PhotoIdURL" addLabel={true}/>
+              <ImageInputUpload  label="驾驶员照片【<--审核必填[接口要求]-->】"  source="Platform_baseInfoDriver.PhotoIdURL" />
               <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.LicenseId" />
-              <ImageField  label="机动车驾驶证扫描件" source="Platform_baseInfoDriver.LicensePhotoIdURL" addLabel={true} validate={[required]}/>
+              <ImageInputUpload  label="机动车驾驶证扫描件【<--审核必填[接口要求]-->】" source="Platform_baseInfoDriver.LicensePhotoIdURL"  validate={[required]}/>
               <TextInput label="准驾车型" source="Platform_baseInfoDriver.DriverType" />
               <DateInputString label="初次领取驾驶证日期" source="Platform_baseInfoDriver.GetDriverLicenseDate" validate={[required]}/>
               <DateInputString label="驾驶证有效期限起" source="Platform_baseInfoDriver.DriverLicenseOn" validate={[required]}/>
