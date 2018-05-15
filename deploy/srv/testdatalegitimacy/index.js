@@ -3,12 +3,13 @@ const getmodels = require('../testconnectivity/platformmodel');
 const mongoose     = require('mongoose');
 const async = require('async');
 const _ = require('lodash');
+const debug = require('debug')('appsrv:test');
 const platformaction = require('../src/platform/platformaction');
 
 let limit_perpage = 50;
 let datalegitimacy_interval_handler;
 
-const dbslist = getmodels();
+const dbslist = getmodels(null);
 const dbslistmap = {};
 _.map(dbslist,(schmodel)=>{
   dbslistmap[schmodel.collectionname] = schmodel;
@@ -18,6 +19,8 @@ _.map(dbslist,(schmodel)=>{
 const starttest_resetuploaded = (callbackfn)=>{
   datalegitimacy_interval_handler = null;
   let fnsz = [];
+
+  debug(`starttest_resetuploaded dbslist--->${dbslist.length}`);
   _.map(dbslist,(schmodel)=>{
     fnsz.push((callback)=>{
       const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
@@ -62,6 +65,9 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
   const dbslist_bat = getmodels(true);
   const dbslist_single = getmodels(false);
 
+  debug(`dbslist_bat--->${dbslist_bat.length}`);
+  debug(`dbslist_single--->${dbslist_single.length}`);
+
   _.map(dbslist_bat,(schmodel)=>{
     fnsz.push((callback)=>{
       const dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
@@ -91,6 +97,8 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
               dbModel.findOneAndUpdate({_id:doc._id},{$set:{isuploaded:-1}},{new:true},(err,ctxuser)=>{
               });
             });
+
+            debug(`publish bat ${schmodel.collectionname}->${listdata.length}`);
             PubSub.publish('platformmessage_upload',{
               action:'upload',//'findByIdAndUpdate',
               collectionname:schmodel.collectionname,//'baseinfocompany',
@@ -123,6 +131,8 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
         if(!err && !!result){
           dbModel.findOneAndUpdate({_id:result._id},{$set:{isuploaded:-1}},{new:true},(err,ctxuser)=>{
           });
+
+          debug(`publish single ${schmodel.collectionname}`);
           platformaction.postaction('upload',schmodel.collectionname,result);
         }
         callback(err,[result]);
@@ -130,6 +140,7 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
     });
   });
 
+  debug(`run--->${fnsz.length}`);
   async.parallel(fnsz,callbackfn);
 }
 
