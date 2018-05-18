@@ -107,7 +107,10 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
           }
         }
         console.log(`listdata:${listdata.length}`);
-        callback(err,listdata);
+        callback(err,{
+          collectionname:schmodel.collectionname,
+          listdata
+        });
       });
     });
   });
@@ -128,14 +131,19 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
           }
         ]
       },(err,result)=>{
+        let list = [];
         if(!err && !!result){
+          list = [result];
           dbModel.findOneAndUpdate({_id:result._id},{$set:{isuploaded:-1}},{new:true},(err,ctxuser)=>{
           });
 
           debug(`publish single ${schmodel.collectionname}`);
           platformaction.postaction('upload',schmodel.collectionname,result);
         }
-        callback(err,[result]);
+        callback(err,{
+          collectionname:schmodel.collectionname,
+          listdata:list
+        });
       });
     });
   });
@@ -159,11 +167,11 @@ const starttest_datalegitimacy_interval = ({perpage},callbackfn)=>{
         if(!err && !!result){
           isnum = false;
           transmsg = `正在传输:${result.length}==》`;
-          _.map(result,(list,index)=>{
-            if(list.length > 0){
+          _.map(result,(resultdata,index)=>{
+            if(resultdata.listdata.length > 0){
               isnum = true;
             }
-            transmsg += `${index}->${list.length},`;
+            transmsg += `${resultdata.collectionname}->${resultdata.listdata.length},`;
           });
         }
         if(isnum && !!datalegitimacy_interval_handler){
