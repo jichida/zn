@@ -659,10 +659,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc['DriverRegionCode'] = 340000;
       }
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
-      if(retdoc.OrderId === '0'){//不传
-        callbackfn();
-        return;
-      }
+      // if(retdoc.OrderId === '0'){//不传
+      //   callbackfn();
+      //   return;
+      // }
     }
     else if(collectionname === 'positionvehicle'){
       // if (typeof retdoc.PositionTime === 'string') {
