@@ -44,12 +44,12 @@ const getgeonumberfloat6 = (lntlngnumber)=>{
 }
 
 const getFaretype = (faretype)=>{
-  let faretypestring;
-  if(typeof faretype === 'string'){
-    if(faretype.length > 16){
-      faretypestring = faretype.substr(faretype.length-16,16);
-    }
-  }
+  let faretypestring = faretype;
+  // if(typeof faretype === 'string'){
+  //   if(faretype.length > 16){
+  //     faretypestring = faretype.substr(faretype.length-16,16);
+  //   }
+  // }
   return faretypestring;
 }
 
@@ -70,20 +70,26 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // }
       retdoc.Address = getAddress(retdoc.Address);
       retdoc = _.omit(retdoc,['Companyld']);
+
+      // A.4.1 注册资本的格式小写加汉字，单位万元，例如“3000万元”
     }
     else if(collectionname === 'baseinfocompanystat'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // A.4.2 DriverNum，VehicleNum 最少为200条
     }
     else if(collectionname === 'baseinfocompanypay'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // A.4.3 PayId 请安标准填写 eg：Z2000133000019，
+      // PayType 请安标准填写  （货币兑付、互联网支付、移动电话支付、银行卡收单、预付卡发行与受理（仅限于线上实名支付账户充值））
+
     }
-    if(collectionname === 'baseinfocompanyservice'){
+    else if(collectionname === 'baseinfocompanyservice'){
       if (typeof retdoc.CreateDate === 'string') {
         retdoc.CreateDate = getdatefromstring(retdoc.CreateDate);
       }
@@ -91,6 +97,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // A.4.4 address应与4.1相对应
     }
     else if(collectionname === 'baseinfocompanypermit'){
       if (typeof retdoc.StartDate === 'string') {
@@ -106,6 +113,11 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // A.4.5 address应与4.1相对应
+      // Certificate 请填写真实数据
+      // Organization 请填写真实数据
+      // StartDate，StopDate 不能相同
+
     }
     else if(collectionname === 'baseinfocompanyfare'){
       if (typeof retdoc.FareValidOn === 'string') {
@@ -124,6 +136,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // address应与4.1相对应
+      // FareType应相同
+      // FareTypeNote 需填写中文说明
+      // FareValidOn，FareValidOff不能相同且要符合逻辑
+      // OtherPeakTimeOn，OtherPeakTimeOff字段需要填写
+
     }
     else if(collectionname === 'baseinfovehicle'){//待检查
       if (typeof retdoc.CertifyDateA === 'string') {
@@ -228,6 +246,19 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
       retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI','GPSlnstallDate','Commercial-Type']);
+
+      // 数据量应超过200条。
+   	 //  VehicleNo 应使用注册公司当地车牌号码
+      // EngineDisplace请正确填写  单位:毫升
+      // PhotoId 请正确填写（本字段传输照片文件编号，照片文件通过6.1节	  FTPS	  接口传输；格式jpg；按照车辆行驶证照片的标准。）
+      // Certificate 字段请填写
+      // TransDateStop 请按正确逻辑填写
+      // NextFixDate  请按正确逻辑填写
+      // CheckState  （0 未年审，1 年审合格    2 年审不合格）
+      // GPSIMEI 请填写
+      // FareType请与A4.6相对应
+      // NextFixDate 应大于CertifyDateA
+
     }
     else if(collectionname === 'baseinfovehicleinsurance'){
       if (typeof retdoc.InsurEff === 'string') {
@@ -240,9 +271,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
+      // VehicleNo 应使用注册公司当地车牌号码
     }
     else if(collectionname === 'baseinfovehicletotalmile'){
        retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
+        // VehicleNo 应使用注册公司当地车牌号码
+        // address应与4.1相对应
     }
     else if(collectionname === 'baseinfodriver'){
       //注意：不能用=>，否则出错，不知道原因
@@ -337,12 +371,29 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         if(!retdoc['PhotoId']){
           retdoc = _.omit(retdoc,['PhotoId']);
         }
+
+        // 数据量应超过200条
+        // address应与4.1相对应
+        // DriverName字段请填写
+        // DriverGender字段请填写（1 男   2 女）
+        // DriverNationality请填写
+        // DriverNation请填写（eg 汉族，满族）
+        // DriverMaritalStatus，DriverLanguageLevel，DriverEducation，DriverCensus，DriverAddress，PhotoId，LicensePhotoId，EmergencyContact，EmergencyContactPhone，EmergencyContactAddress请填写
+        // DriverLicenseOff应大于DriverLicenseOn
+        // NetworkCarProofOff应大于NetworkCarProofOn
+        // ContractCompany字段请正确填写
+        // ContractOff应大于ContractOn
+
       }
     else if(collectionname === 'baseinfodrivereducate'){
       if (typeof retdoc.CourseDate === 'string') {
         retdoc.CourseDate = getdatefromstring(retdoc.CourseDate);
       }
       retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
+    //   A4.11   数据量应超过200条
+    // address应与4.1相对应
+    // StartTime，StopTime格式应为eg20170802
+
     }
     else if(collectionname === 'baseinfodriverapp'){
       retdoc.MapType =  2;
@@ -366,6 +417,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段NetType非法,目前是:${retdoc.NetType}`);
         winston.getlog().error(`${collectionname}-->字段NetType非法,目前是:${retdoc.NetType}`);
       }
+        //       A4.12   数据量应超过200条
+        // address应与4.1相对应
+
     }
     // else if(collectionname === 'baseinfodriverstat'){
     //   retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
@@ -393,6 +447,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
 
     }
     else if(collectionname === 'ordercreate'){
+
       if (typeof retdoc.DepartTime === 'string') {
         if(retdoc.DepartTime.length < 12){//"2018-01-23"
           retdoc.DepartTime = gettimefromstring(retdoc.OrderTime);
@@ -428,24 +483,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         callbackfn();
         return;
       }
-      // let Platform_orderCreateSchema= new Schema({
-      //   // CompanyId:String,	//	是	字符型	V32	公司标识
-      //   Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
-      //   OrderId:String,	//	是	字符型	V64	订单编号
-      //   DepartTime:String,//	是	数字型	F14	预计用车时间	YYYYMMDDhhmmss
-      //   OrderTime:String,//	是	数字型F14	订单发起时间 YYYYMMDDhhmmss
-      //   PassengerNote:String,	//	否	字符型V128	乘客备注
-      //   Departure:String,	//是字符型V128 预计出发地点详细地址
-      //   DepLongitude:Number,//	是	数字型V10	预计出发地点经度	单位 :1 祷 10-6度
-      //   DepLatitude:Number,//	是	数字型V10	预计出发地点纬度	单位:1铃 10-6度
-      //   Destination:String,	//	是	字符型V128	预计目的地
-      //   DestLongitude:Number,//	是	数字型VI0	预计目的地经度	单位 :1铃 10-6度
-      //   DestLatitude:Number,//	是	数字型V10	预计目的地纬度	单位 :1怜 10-6度
-      //   Encrypt:Number,//是数字型F1坐标加密标识1:GCJ-02 测绘局标准2 :WGS84 GPS 标准3 :BD-09 百度标准4 :CGCS2000 北斗标准O .其他
-      //   FareType:String,	//	是	字符型V16	运价类型编码
-      //
-      //   isuploaded:{ type: Number, default: 0 },//是否上传
-      // });
+      //       A.5.1   address应与4.1相对应
+      //     PassengerNote字段请填写
+      // FareType请与A4.6相对应
+
     }
     else if(collectionname === 'ordermatch'){
       if (typeof retdoc.DistributeTime === 'string') {
@@ -489,6 +530,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         winston.getlog().error(`${collectionname}-->字段Address必填,但目前没有`);
       }
       retdoc.Address = getAddress(retdoc.Address);
+
+      // A.5.3  Address应与4.1的Address相同
     }
     else if(collectionname === 'operatelogin'){
       if (typeof retdoc.LoginTime === 'string') {
@@ -513,6 +556,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
       retdoc.Encrypt =  2;
+      // A.6.2  VehicleNo 应使用注册公司当地车牌号码
     }
     else if(collectionname === 'operatedepart'){
       if (typeof retdoc.DepTime === 'string') {
@@ -531,6 +575,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         callbackfn();
         return;
       }
+        //       A.6.3  VehicleNo 应使用注册公司当地车牌号码
+        // FareType请与A4.6相对应
+
+
     }
     else if(collectionname === 'operatearrive'){
       if (typeof retdoc.DestTime === 'string') {
@@ -544,8 +592,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       }
       retdoc.Encrypt =  2;
       retdoc.DriveTime = parseInt(retdoc.DriveTime);
+        // A6.4  DriveMile，DriveTime字段请填写
     }
     else if(collectionname === 'operatepay'){
+
       if (typeof retdoc.BookDepTime === 'string') {
         retdoc.BookDepTime = gettimefromstring(retdoc.BookDepTime);
       }
@@ -582,6 +632,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','BookModel',
     'Model','WaitMile','Price','CashPrice','LineName','LinePrice','PosName','PosPrice','BenfitPrice',
   'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
+
+        // A 6.5   OnArea应与4.1的Address相对应
+        //     DriverName，DepArea，DestArea，BookModel，Model，LineName，PosName字段请填写
+        // FareType请与A4.6相对应《----------
 
       // if(!retdoc.OnArea){
       //   retdoc.OnArea = 341181;
@@ -621,6 +675,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
       }
+
+//       A4.13   数据量应超过200条
+// address应与4.1相对应
+
     }
     else if(collectionname === 'positiondriver'){
 
