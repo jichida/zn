@@ -72,7 +72,7 @@ const BaseInfoVehicleInsuranceList = (props) => (//
         <ReferenceField label="平台关联车辆" source="Platform_baseInfoVehicleId" reference="baseinfovehicle" allowEmpty >
             <TextField source="VehicleNo" />
         </ReferenceField>
-        <TextField label="车辆号牌" source="VehicleNo" />
+        <TextField label="车辆号牌[*使用注册公司当地车牌号码]" source="VehicleNo" />
         <TextField label="保险公司名称"  source="InsurCom" />
         <TextField label="保险号"  source="InsurNum" />
         <TextField label="保险类型"  source="InsurType" />
