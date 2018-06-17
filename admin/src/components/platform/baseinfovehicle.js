@@ -168,15 +168,23 @@ const BaseInfoVehicleEdit = (props) => {
 const BaseInfoVehicleList = (props) => (//
      <List title="车辆列表" {...props} >
         <Datagrid>
-        <TextField  label="车辆号牌" source="VehicleNo" />
-        <TextField  label="车牌颜色" source="PlateColor" />
+        <TextField  label="车辆号牌[*]" source="VehicleNo" />
+        <TextField  label="发动机排量[*毫升]" source="EngineDisplace" />
+        <TextField  label="运输证字号[*]" source="Certificate" />
+        <TextField  label="车辆运输证有效期止[*按正确逻辑填写]" source="TransDateStop" />
+        <TextField  label="车辆注册日期(CertifyDateA)" source="CertifyDateA"/>
+        <TextField  label="车辆下次年检时间[*NextFixDate 应大于CertifyDateA]" source="NextFixDate" />
+        <TextField  label="车辆年度审验状态[*（0未年审/1年审合格/2年审不合格）]" source="CheckState" />
+        <TextField  label="卫星定位装置IMEI号[*请填写]" source="GPSIMEI" />
+        <TextField  label="运价[*]" source="FareType" />
+        {/* <TextField  label="车牌颜色" source="PlateColor" />
         <TextField  label="核定载客位" source="Seats" />
         <TextField  label="车辆厂牌" source="Brand" />
         <TextField  label="车辆型号" source="Model" />
         <TextField  label="车辆类型" source="VehicleType" />
         <TextField  label="车辆所有人" source="OwnerName" />
         <TextField  label="车身颜色" source="VehicleColor" />
-        <TextField  label="报备日期" source="RegisterDate" />
+        <TextField  label="报备日期" source="RegisterDate" /> */}
         <EditButton />
         </Datagrid>
     </List>
