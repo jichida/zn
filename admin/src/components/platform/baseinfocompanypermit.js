@@ -52,13 +52,13 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
  const BaseInfoCompanyPermitEdit = (props) => (
     <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
         <SimpleForm>
-            <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
-            <TextInputEx label="网络预约出租汽车经营许可证号"  source="Certificate" validate={[required]}/>
+            <NumberInputEx label="行政区划代码[*用运营城市的行政区划，如530100，不要用具体城区的530102]"  source="Address" validate={[required]}/>
+            <TextInputEx label="网络预约出租汽车经营许可证号[*请填写真实数据]"  source="Certificate" validate={[required]}/>
             <TextInputEx label="经营区域"  source="OperationArea" validate={[required]}/>
             <TextInputEx label="公司名称"  source="OwnerName" validate={[required]}/>
-            <TextInputEx label="发证机构名称"  source="Organization" validate={[required]}/>
+            <TextInputEx label="发证机构名称[*Organization 请填写真实数据]"  source="Organization" validate={[required]}/>
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
-            <DateInputString label="有效期止" source="StopDate" validate={[required]}/>
+            <DateInputString label="有效期止" source="StopDate[*StartDate,StopDate 不能相同]" validate={[required]}/>
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
             <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
             <TextField label="操作标识" source="Flag"  />
