@@ -60,11 +60,11 @@ const BaseInfoCompanyCreate = (props) => (
             <DisabledInput  label="公司标识" source="CompanyId" defaultValue="zncx"/>
             <TextInputEx  label="公司名称" source="CompanyName" validate={[required]}/>
             <TextInputEx  label="统一社会信用代码" source="Identifier" validate={[required]}/>
-            <NumberInputEx  label="数字型注册地行政区划代码" source="Address"  validate={[required]}/>
+            <NumberInputEx  label="数字型注册地行政区划代码(*用运营城市的行政区划，如530100)" source="Address"  validate={[required]}/>
             <TextInputEx label="经营范围（按照网络预约出租汽车经营许可证内容）"  source="BusinessScope" validate={[required]}/>
             <TextInputEx label="通信地址全称"  source="ContactAddress" validate={[required]}/>
             <TextInputEx label="经营业户经济类型"  source="EconomicType" validate={[required]}/>
-            <TextInputEx label="注册资本（按照营业执照内容填写）"  source="RegCapital" validate={[required]}/>
+            <TextInputEx label="注册资本（按照营业执照内容填写）(*注册资本的格式小写加汉字，单位万元，例如:[3000万元])"  source="RegCapital" validate={[required]}/>
             <TextInputEx label="法人代表姓名（按照营业执照内容填写）"  source="LegalName" validate={[required]}/>
             <TextInputEx label="法人代表身份证号"  source="LegalID" validate={[required]}/>
             <TextInputEx label="法人代表电话"  source="LegalPhone" validate={[required]}/>
