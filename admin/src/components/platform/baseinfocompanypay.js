@@ -41,8 +41,8 @@ const BaseInfoCompanyPayEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyPayeditTitle />} {...props}>
           <SimpleForm>
             <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" validate={[required]}/>
-            <TextInputEx label="非银行支付机构支付业务许可证编号"  source="PayId" validate={[required]}/>
-            <TextInputEx label="支付业务类型"  source="PayType" validate={[required]}/>
+            <TextInputEx label="非银行支付机构支付业务许可证编号[*PayId 请安标准填写 eg：Z2000133000019]"  source="PayId" validate={[required]}/>
+            <TextInputEx label="支付业务类型[*PayType 请安标准填写  （货币兑付、互联网支付、移动电话支付、银行卡收单、预付卡发行与受理（仅限于线上实名支付账户充值））]"  source="PayType" validate={[required]}/>
             <TextInputEx label="业务覆盖范围"  source="PayScope" validate={[required]}/>
             <TextInputEx label="备付金存管银行全称" source="PrepareBank" validate={[required]}/>
             <NumberInputEx label="结算周期(单位:天)" source="CountDate" validate={[required]}/>
