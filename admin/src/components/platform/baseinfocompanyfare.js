@@ -67,13 +67,13 @@ const BaseInfoCompanyFareEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyFareTitle />} {...props}>
         <TabbedForm>
             <FormTab label="resources.baseinfocompanyfare.tabs.tab0">
-            <NumberInputEx label="行政区划代码"  source="Address" validate={[required]}/>
+            <NumberInputEx label="行政区划代码[*用运营城市的行政区划，如530100，不要用具体城区的530102]"  source="Address" validate={[required]}/>
             <ReferenceInput label="运价"  source="FareType" reference="faretype" allowEmpty>
                   <SelectInput optionText="registertype" />
             </ReferenceInput>
-            <DisabledInputEx  label="运价类型说明" source="FareTypeNote" />
+            <TextInputEx  label="运价类型说明[FareTypeNote 需填写中文说明]" source="FareTypeNote" />
             <DateInputString label="运价有效期起" source="FareValidOn"  validate={[required]} defaultValue={moment().format('YYYY-MM-DD')}/>
-            <DateInputString label="运价有效期止" source="FareValidOff" />
+            <DateInputString label="运价有效期止[*FareValidOn，FareValidOff不能相同且要符合逻辑]" source="FareValidOff" />
             <NumberInputEx  label="起步价(单位:元)" source="StartFare"  validate={[required]}/>
             <NumberInputEx  label="起步里程(单位:km)" source="StartMile"  validate={[required]}/>
             <NumberInputEx  label="计程单价〈按公里〉(单位:元)" source="UnitPricePerMile" validate={[required]} />
@@ -87,8 +87,8 @@ const BaseInfoCompanyFareEdit = (props) => {
             <TimePickerInput label="营运早高峰时间止" source="MorningPeakTimeOff"  validate={[required]} defaultValue={'09:00'}/>
             <TimePickerInput label="营运晚高峰时间起" source="EveningPeakTimeOn"  validate={[required]} defaultValue={'17:00'}/>
             <TimePickerInput label="营运晚高峰时间止" source="EveningPeakTimeOff"  validate={[required]}  defaultValue={'18:00'}/>
-            <TimePickerInput label="其他营运高峰时间起" source="OtherPeakTimeOn" />
-            <TimePickerInput label="其他营运高峰时间止" source="OtherPeakTimeOff" />
+            <TimePickerInput label="其他营运高峰时间起[*OtherPeakTimeOn，OtherPeakTimeOff字段需要填写]" source="OtherPeakTimeOn" />
+            <TimePickerInput label="其他营运高峰时间止[*OtherPeakTimeOn，OtherPeakTimeOff字段需要填写]" source="OtherPeakTimeOff" />
             <NumberInputEx  label="高峰时间单程加价单价" source="PeakUnitPrice"  validate={[required]} defaultValue={0}/>
             <NumberInputEx  label="高峰时间单程加价公里" source="PeakPriceStartMile"  validate={[required]} defaultValue={0}/>
             <NumberInputEx  label="低速计时加价〈按分钟〉(单位:元)" source="LowSpeedPricePerMinute" />
