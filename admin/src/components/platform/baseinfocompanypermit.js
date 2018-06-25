@@ -58,7 +58,7 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
             <TextInputEx label="公司名称"  source="OwnerName" validate={[required]}/>
             <TextInputEx label="发证机构名称[*Organization 请填写真实数据]"  source="Organization" validate={[required]}/>
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
-            <DateInputString label="有效期止" source="StopDate[*StartDate,StopDate 不能相同]" validate={[required]}/>
+            <DateInputString label="有效期止[*StartDate,StopDate 不能相同]" source="StopDate" validate={[required]}/>
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
             <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
             <TextField label="操作标识" source="Flag"  />
@@ -69,5 +69,8 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
 
 
 export const BaseInfoCompanyPermitList = props => (
-    <ShowPageOne Create={BaseInfoCompanyPermitCreate} Edit={BaseInfoCompanyPermitEdit} {...props}/>
+    <ShowPageOne
+      Create={BaseInfoCompanyPermitCreate}
+      Edit={BaseInfoCompanyPermitEdit}
+       {...props}/>
 );

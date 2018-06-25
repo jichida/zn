@@ -225,11 +225,12 @@ for(let keyname in dbs){
         }
         else if(queryparam.type === UPDATE){
           let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
+          console.log("==>UPDATE preupdateddata=>" + JSON.stringify(preupdateddata));
           dbModel.findByIdAndUpdate(preupdateddata.query._id,preupdateddata.data, {new: true},(err, result)=> {
               ////console.log("==>UPDATE err=>" + JSON.stringify(err));
-              ////console.log("==>UPDATE result=>" + JSON.stringify(result));
+              console.log("==>UPDATE result=>" + JSON.stringify(result));
              postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
-                 ////console.log("UPDATE result=>" + JSON.stringify(result));
+                 console.log("UPDATE result=>" + JSON.stringify(result));
                  res.status(200).json(result);
              });
           });

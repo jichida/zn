@@ -13,7 +13,7 @@ import _ from 'lodash';
 const validate_userdriver_edit = (values) => {
     const errors = {};
     //341100
-    if (!_.get(values,'Platform_baseInfoDriver.Address') !== '341100') {
+    if (!_.get(values,'Platform_baseInfoDriver.Address') !== 341100) {
         _.set(errors,'Platform_baseInfoDriver.Address', ['address应与4.1相对应,为统一方便,固定写341100吧']);
     }
     // DriverName字段请填写
@@ -89,7 +89,7 @@ const validate_userdriver_edit = (values) => {
 
     //============================================================================================
     //341100
-    if (!_.get(values,'Platform_baseInfoVehicle.Address') !== '341100') {
+    if (!_.get(values,'Platform_baseInfoVehicle.Address') !== 341100) {
         _.set(errors,'Platform_baseInfoVehicle.Address', ['address应与4.1相对应,为统一方便,固定写341100吧']);
     }
     //Platform_baseInfoVehicle.CheckState
