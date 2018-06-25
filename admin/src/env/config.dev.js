@@ -1,4 +1,4 @@
-let islocalhost = true;
+let islocalhost = false;
 let serverurl = islocalhost?'http://localhost:3005':'http://api.tczncx.com';
 export default {
     restserverurl:`${serverurl}/adminapi`,

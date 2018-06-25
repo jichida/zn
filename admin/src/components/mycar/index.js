@@ -98,7 +98,7 @@ const MycarEdit = (props) => {
             { id: 'C', name: '电' },
           ]}  validate={[required]}/>
 
-          <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace" validate={[required]}/>
+          <TextInputEx  label="发动机排量[*毫升]" source="Platform_baseInfoVehicle.EngineDisplace" validate={[required]}/>
           </FormTab>
 
           <FormTab label="resources.baseinfovehicle.tabs.tab2">

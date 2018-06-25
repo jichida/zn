@@ -33,6 +33,7 @@ import {ImageInputUpload} from '../controls/imageupload.js';
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
 import ImportExcelButton from './importexcelbtn';
+import {validate_userdriver_edit} from '../validate';
 
 const UserdriverlistTitle = ({ record }) => {
    return <span>显示 司机</span>;
@@ -48,28 +49,28 @@ const UserdriverTitle = ({ record }) => {
    return <span>司机</span>;
 };
 
-const validateDriverEdit = (values) => {
-    const errors = {};
-    if(!!values.Platform_baseInfoDriver){
-      if (!values.Platform_baseInfoDriver.DriverName) {
-          errors.Platform_baseInfoDriver = {};
-          errors.Platform_baseInfoDriver.DriverName = ['司机姓名必填'];
-      }
-      if (!values.Platform_baseInfoDriver.DriverPhone) {
-          if(!errors.Platform_baseInfoDriver){
-            errors.Platform_baseInfoDriver = {};
-          };
-          errors.Platform_baseInfoDriver.DriverPhone = ['司机手机号必填'];
-      }
-    }
-
-    return errors
-};
+// const validateDriverEdit = (values) => {
+//     const errors = {};
+//     if(!!values.Platform_baseInfoDriver){
+//       if (!values.Platform_baseInfoDriver.DriverName) {
+//           errors.Platform_baseInfoDriver = {};
+//           errors.Platform_baseInfoDriver.DriverName = ['司机姓名必填'];
+//       }
+//       if (!values.Platform_baseInfoDriver.DriverPhone) {
+//           if(!errors.Platform_baseInfoDriver){
+//             errors.Platform_baseInfoDriver = {};
+//           };
+//           errors.Platform_baseInfoDriver.DriverPhone = ['司机手机号必填'];
+//       }
+//     }
+//
+//     return errors
+// };
 
 
 const UserdriverlistEdit = (props) => {
       return (<Edit title={<UserdriverTitle />} {...props}>
-        <TabbedForm validate={validateDriverEdit}>
+        <TabbedForm validate={validate_userdriver_edit}>
             <FormTab label="resources.userdriver.tabs.basicinfo">
               <TextField label="Id" source="id" />
               <TextField label="手机号"  source="username" />
@@ -114,7 +115,10 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="行政注册地【审核必填】" source="Platform_baseInfoDriver.Address" validate={[required]}/>
               <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" validate={[required]}/>
               <TextInput label="手机号【审核必填】" source="Platform_baseInfoDriver.DriverPhone" validate={[required]}/>
-              <TextInput label="性别" source="Platform_baseInfoDriver.DriverGender" />
+              <SelectInput  label="性别"  source="Platform_baseInfoDriver.DriverGender" choices={[
+                { id: '1', name: '男' },
+                { id: '2', name: '女' },
+              ]}  validate={[required]}/>
               <DateInputString label="生日" source="Platform_baseInfoDriver.DriverBirthday" validate={[required]}/>
               <TextInput label="国籍" source="Platform_baseInfoDriver.DriverNationality" />
               <TextInput label="民族" source="Platform_baseInfoDriver.DriverNation" validate={[required]}/>
@@ -196,7 +200,7 @@ const UserdriverlistEdit = (props) => {
                 { id: 'B', name: '柴油' },
                 { id: 'C', name: '电' },
               ]}  validate={[required]}/>
-              <TextInputEx  label="发动机排量" source="Platform_baseInfoVehicle.EngineDisplace"  validate={[required]}/>
+              <TextInputEx  label="发动机排量[*毫升]" source="Platform_baseInfoVehicle.EngineDisplace"  validate={[required]}/>
 
               <ImageInputUpload  label="车辆照片" source="Platform_baseInfoVehicle.PhotoIdURL" />
               <TextInputEx  label="运输证字号" source="Platform_baseInfoVehicle.Certificate" />
@@ -211,7 +215,12 @@ const UserdriverlistEdit = (props) => {
                 { id: '2', name: '未知' },
               ]}  validate={[required]}/>
               <DateInputString  label="车辆下次年检时间" source="Platform_baseInfoVehicle.NextFixDate" />
-              <TextInputEx  label="车辆年度审验状态" source="Platform_baseInfoVehicle.CheckState"  validate={[required]}/>
+              <SelectInput  label="车辆年度审验状态"  source="Platform_baseInfoVehicle.CheckState" choices={[
+                  { id: '0', name: '未年审' },
+                  { id: '1', name: '年审合格' },
+                  { id: '2', name: '年审不合格' },
+              ]} />
+
               <TextInputEx  label="发票打印设备序列号" source="Platform_baseInfoVehicle.FeePrintId"  validate={[required]}/>
 
               <TextInputEx  label="卫星定位装置品牌" source="Platform_baseInfoVehicle.GPSBrand"  validate={[required]}/>
