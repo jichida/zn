@@ -2,8 +2,11 @@ import React from 'react';
 import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import { Field,FieldArray } from 'redux-form';
+import {FieldTitle,isRequired} from 'admin-on-rest';
+
 const renderTimePicker= (props) => {
-  let {input,label} = props;
+  let {input,label,meta,resource,source} = props;
+  const { touched, error } = meta;
   let onChange = (event, newdate)=>{
     let newvalue = moment(newdate).format("HH:mm");
     input.onChange(newvalue);
@@ -21,7 +24,15 @@ const renderTimePicker= (props) => {
       value.setHours(h,m,0,0);
     }
   }
-  return (<TimePicker floatingLabelText={label} floatingLabelFixed={true}
+  return (<TimePicker errorText={touched && error}
+  floatingLabelText={
+                  <FieldTitle
+                      label={label}
+                      source={source}
+                      resource={resource}
+                      isRequired={isRequired}
+                  />
+              }
   value={value} onChange={onChange} okLabel='确定' cancelLabel='取消'/>);
 }
 
@@ -29,7 +40,7 @@ const TimePickerInput = (props) => {
   let {source,label} = props;
   return(
     <span>
-      <Field name={source} component={renderTimePicker} label={label}/>
+      <Field name={source} component={renderTimePicker} {...props}/>
     </span>
 )
 }
