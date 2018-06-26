@@ -26,7 +26,7 @@ import {required} from 'admin-on-rest';
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 import {DateInputString} from '../controls/DateInput_String.js';
-
+import {validate_baseinfocompanypermit_edit} from '../validate';
 import ShowPageOne from '../singledocumentpage/index.js';
 
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
@@ -51,7 +51,7 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
 
  const BaseInfoCompanyPermitEdit = (props) => (
     <EditPage {...props} title={<BaseInfoCompanyPermitTitle />}>
-        <SimpleForm>
+        <SimpleForm validate={validate_baseinfocompanypermit_edit}>
             <NumberInputEx label="行政区划代码[*用运营城市的行政区划，如530100，不要用具体城区的530102]"  source="Address" validate={[required]}/>
             <TextInputEx label="网络预约出租汽车经营许可证号[*请填写真实数据]"  source="Certificate" validate={[required]}/>
             <TextInputEx label="经营区域"  source="OperationArea" validate={[required]}/>
