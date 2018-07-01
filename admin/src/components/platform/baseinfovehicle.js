@@ -21,6 +21,7 @@ import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
+import {validate_baseinfovechile_edit} from '../validate';
 
 // const BaseInfoVehiclecreateTitle = ({ record }) => {
 //    return <span>新建 车辆</span>;
@@ -89,7 +90,7 @@ const BaseInfoVehicleTitle = ({ record }) => {
 };
 const BaseInfoVehicleEdit = (props) => {
       return (<Edit title={<BaseInfoVehicleTitle />} {...props}>
-        <TabbedForm>
+        <TabbedForm validate={validate_baseinfovechile_edit}>
             <FormTab label="resources.baseinfovehicle.tabs.tab0">
             <NumberInputEx  label="注册行政区域代码" source="Address" validate={[required]}/>
             <TextInputEx  label="车辆号牌" source="VehicleNo" validate={[required]}/>

@@ -106,10 +106,10 @@ class App extends Component {
             <Resource name="baseinfocompanypermit" list={BaseInfoCompanyPermitList}  />
             <Resource name="baseinfocompanypay" list={BaseInfoCompanyPayList} create={BaseInfoCompanyPayCreate} edit={BaseInfoCompanyPayEdit} remove={Delete} />
             <Resource name="baseinfocompanyfare" list={BaseInfoCompanyFareList}  create={BaseInfoCompanyFareCreate}  edit={BaseInfoCompanyFareEdit} remove={Delete} />
-            <Resource name="baseinfovehicle" list={BaseInfoVehicleList}  edit={BaseInfoVehicleEdit}/>
+            <Resource name="baseinfovehicle" list={BaseInfoVehicleList}  edit={BaseInfoVehicleEdit} remove={Delete}/>
             <Resource name="baseinfovehicleinsurance" list={BaseInfoVehicleInsuranceList} create={BaseInfoVehicleInsuranceCreate}  edit={BaseInfoVehicleInsuranceEdit} remove={Delete}  />
             <Resource name="baseinfovehicletotalmile" list={BaseInfoVehicleTotalMileList} />
-            <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}  />
+            <Resource name="baseinfodriver" list={BaseInfoDriverList}  edit={BaseInfoDriverEdit}   remove={Delete}/>
             <Resource name="baseinfodrivereducate" list={BaseInfoDriverEducateList} create={BaseInfoDriverEducateCreate}  edit={BaseInfoDriverEducateEdit} remove={Delete} />
             <Resource name="baseinfodriverapp" list={BaseInfoDriverAppList} edit={BaseInfoDriverAppEdit} />
             <Resource name="baseinfodriverstat" list={BaseInfoDriverStatList}  create={BaseInfoDriverStatCreate}/>

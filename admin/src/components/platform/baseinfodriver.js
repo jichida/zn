@@ -19,6 +19,7 @@ import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {DateInputString} from '../controls/DateInput_String.js';
+import {validate_baseinfodriver_edit} from '../validate';
 import {required} from 'admin-on-rest';
 
 const BaseInfoDrivercreateTitle = ({ record }) => {
@@ -104,7 +105,7 @@ const BaseInfoDriverTitle = ({ record }) => {
 
 const BaseInfoDriverEdit = (props) => {
       return (<Edit title={<BaseInfoDriverTitle />} {...props}>
-        <TabbedForm>
+        <TabbedForm validate={validate_baseinfodriver_edit}>
             <FormTab label="resources.baseinfodriver.tabs.tab0">
             <NumberInputEx  label="注册行政区域代码" source="Address" validate={[required]}/>
             <TextInputEx  label="机动车驾驶员姓名" source="DriverName" />
