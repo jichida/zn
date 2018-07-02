@@ -6,10 +6,12 @@ const async = require('async');
 const config = require('./config');
 const moment = require('moment');
 const startbaseinfovehicle = require('./fix/baseinfovehicle');
-
+const startbaseinfodriver = require('./fix/baseinfodriver');
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
   startbaseinfovehicle();
+
+  startbaseinfodriver();
 };
 
 

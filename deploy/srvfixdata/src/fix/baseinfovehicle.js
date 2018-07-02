@@ -32,7 +32,7 @@ const getbaseInfoVehicleIdlistFromUserdrivers =(callbackfn)=>{
     let list_mycar = [];
     let list_baseinfovehicle = [];
     if(!err && !!result){
-      debug(`result--->${JSON.stringify(result)}`);
+      debug(`getbaseInfoVehicleIdlistFromUserdrivers--->${result.length}`);
       _.map(result,(r)=>{
         const mycarid = _.get(r,'defaultmycar._id');
         const Platform_baseInfoVehicleId =  _.get(r,'defaultmycar.Platform_baseInfoVehicleId._id');
