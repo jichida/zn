@@ -8,13 +8,14 @@ const moment = require('moment');
 const startbaseinfovehicle = require('./fix/baseinfovehicle');
 const startbaseinfodriver = require('./fix/baseinfodriver');
 const startbaseinfovehicleinsurance = require('./fix/baseinfovehicleinsurance');
+const startbaseinfodrivereducate = require('./fix/baseinfodrivereducate');
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
   // startbaseinfovehicle();
   //
   // startbaseinfodriver();
 
-  startbaseinfovehicleinsurance();
+  startbaseinfodrivereducate();
 };
 
 
