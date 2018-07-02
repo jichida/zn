@@ -9,7 +9,7 @@ const moment = require('moment');
 const debug = require('debug')('srvfixdata:start');
 
 
-debug(`start=====>version:${config.version}`);
+debug(`start=====>version:${config.version},mongodburl:${config.mongodburl}`);
 
 winston.initLog();
 process.setMaxListeners(0);
