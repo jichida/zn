@@ -7,11 +7,14 @@ const config = require('./config');
 const moment = require('moment');
 const startbaseinfovehicle = require('./fix/baseinfovehicle');
 const startbaseinfodriver = require('./fix/baseinfodriver');
+const startbaseinfovehicleinsurance = require('./fix/baseinfovehicleinsurance');
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
-  startbaseinfovehicle();
+  // startbaseinfovehicle();
+  //
+  // startbaseinfodriver();
 
-  startbaseinfodriver();
+  startbaseinfovehicleinsurance();
 };
 
 
