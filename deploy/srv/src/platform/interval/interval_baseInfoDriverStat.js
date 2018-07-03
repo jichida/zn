@@ -113,7 +113,7 @@ const fn_setbaseInfoDriverStat = (updateddata,callbackfn)=>{
   });
 };
 
-const interval_baseInfoDriverStat = ()=>{
+const interval_baseInfoDriverStat = (callbackfn)=>{
   // let Platform_baseInfoDriverStatSchema= new Schema({
   //   CompanyId:String,	//		是	字符型V32	公司标识
   //   Address:Number,//	是数字型F6注册地行政区划代码车辆在平台的注册地， 见 GB/T2260
@@ -170,8 +170,10 @@ const interval_baseInfoDriverStat = ()=>{
           resultobj[k] = tmp;
         });
 
-        //console.log(`合并后--->${JSON.stringify(resultobj)}`);
+        let fnsz = [];
+        console.log(`合并后--->${JSON.stringify(resultobj)}`);
         _.map(resultobj,(updateddata)=>{
+          fnsz.push((callback)=>{
             fn_setbaseInfoDriverStat(updateddata,(result)=>{
               if(!!result){
                 PubSub.publish('platformmessage_upload',{
@@ -180,7 +182,17 @@ const interval_baseInfoDriverStat = ()=>{
                   doc:result
                 });
               }
+              callback(null,true);
             });
+          });
+        });
+
+        //----------------------------------------
+        //callbackfn
+        async.parallelLimit(fnsz,100,(err,result)=>{
+          if(!!callbackfn){
+            callbackfn(null,true);
+          }
         });
       }
   });

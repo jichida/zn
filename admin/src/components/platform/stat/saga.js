@@ -11,21 +11,28 @@ import {
 } from './action';
 import { fetchJson } from '../../../util/fetch.js';
 import config from '../../../env/config';
+import {refreshView} from 'admin-on-rest';
 
 export default function* statPlatformSaga() {
 
   yield takeLatest(STATONE, function* (action) {
     const {payload} = action;
     try{
+      console.log(`start send stat...`)
       const url = `${config.serverurl}/statone/${payload.resource}`;
       const options = {
         method:'POST',
       };
       yield put({type:STATONE_LOADING,payload:{resource:payload.resource}});
+      console.log(`fetchJson url:${url}`)
       const {json} = yield call(fetchJson,url,options);
       yield put({type:STATONE_SUCCESS,payload:{resource:payload.resource,json}});
+      //刷新
+      console.log(`开始刷新...`)
+      yield put(refreshView())
     }
     catch(e){
+      console.log(e)
       yield put({type:STATONE_FAILURE,payload:{resource:payload.resource}});
     }
   });

@@ -12,6 +12,7 @@ const interval = require('../platform/interval');
 let startadmincustom = (app)=>{
   app.post('/statone/:resourcename',(req,res)=>{
     const resourcename = req.params.resourcename;
+    console.log(`statone------------>${resourcename}`);
     if(resourcename === 'baseinfocompanystat'){
       interval.interval_baseInfoCompanyStat();
     }
@@ -19,7 +20,11 @@ let startadmincustom = (app)=>{
       interval.interval_baseInfoVehicleTotalMile();
     }
     else if(resourcename === 'baseinfodriverstat'){
-      interval.interval_baseInfoDriverStat();
+      interval.interval_baseInfoDriverStat(()=>{
+        res.status(200).json({
+          result:'OK'
+        });
+      });
     }
   });
 

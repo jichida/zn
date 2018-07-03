@@ -23,7 +23,6 @@ let NewStatButton = (props) => {
     const {dispatch,resource} = props;
     statOneAction({resource},dispatch)
   }
-  console.log(props);
   return (
         <FlatButton
          primary
