@@ -9,13 +9,17 @@ const startbaseinfovehicle = require('./fix/baseinfovehicle');
 const startbaseinfodriver = require('./fix/baseinfodriver');
 const startbaseinfovehicleinsurance = require('./fix/baseinfovehicleinsurance');
 const startbaseinfodrivereducate = require('./fix/baseinfodrivereducate');
+const startbaseinfovehicletotalmile = require('./fix/baseinfovehicletotalmile');
+
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
   // startbaseinfovehicle();
   //
   // startbaseinfodriver();
 
-  startbaseinfodrivereducate();
+  // startbaseinfodrivereducate();
+
+  startbaseinfovehicletotalmile();
 };
 
 
