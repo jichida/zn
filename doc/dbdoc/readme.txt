@@ -1,6 +1,6 @@
-ssh -p 33321 huawei@zn.tczncx.com
+
 #执行数据库
-sudo docker run -it -v /home/huawei:/root mongo:3.4 bash
+sudo docker run -it -v /root:/root mongo:3.4 bash
 mongo --host 172.17.0.1 --port 27018
 
 

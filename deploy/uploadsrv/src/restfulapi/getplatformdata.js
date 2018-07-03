@@ -69,7 +69,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
       retdoc.Address = getAddress(retdoc.Address);
-      retdoc = _.omit(retdoc,['Companyld']);
+      // retdoc = _.omit(retdoc,['Companyld']);
 
       // A.4.1 注册资本的格式小写加汉字，单位万元，例如“3000万元”
     }
@@ -278,7 +278,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
       // }
-      retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI','GPSlnstallDate','Commercial-Type']);
+      // retdoc = _.omit(retdoc,['Certificate','NextFixDate','GPSIMEI','GPSlnstallDate','Commercial-Type']);
 
       // 数据量应超过200条。
    	 //  VehicleNo 应使用注册公司当地车牌号码
@@ -393,10 +393,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
           }
         }
 
-        retdoc = _.omit(retdoc,['LicensePhotoldURL','DriverName','DriverNationality',
-        'DriverMaritalStatus','DriverLanguageLevel','DriverEducation','DriverCensus',
-        'DriverAddress','PhotoIdURL','LicensePhotoIdURL','FullTimeDriver',
-        'InDriverBlacklist','EmergencyContact','EmergencyContactPhone','EmergencyContactAddress','Licenseld']);
+        retdoc = _.omit(retdoc,['LicensePhotoldURL',
+        'PhotoIdURL','LicensePhotoIdURL','FullTimeDriver',
+        'InDriverBlacklist','Licenseld']);
 
         if(!retdoc['GetDriverLicenseDate']){
           debug(`${collectionname}-->字段GetDriverLicenseDate必填,但目前没有,驾驶证号:${retdoc.LicenseId}`);
@@ -490,10 +489,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
 
     }
     else if(collectionname === 'ordercreate'){
-      if(retdoc.Address != 341100){
-        debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-        winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-      }
+      // if(retdoc.Address != 341100){
+      //   debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      //   winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      // }
       if(!retdoc.PassengerNote){
         debug(`${collectionname}-->PassengerNote字段请填写`);
         winston.getlog().error(`${collectionname}-->PassengerNote字段请填写`);
@@ -551,10 +550,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
       retdoc.Encrypt =  2;
-      if(retdoc.Address != 341100){
-        debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-        winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-      }
+      // if(retdoc.Address != 341100){
+      //   debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      //   winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      // }
       retdoc.Address = getAddress(retdoc.Address);
       if(!retdoc.DriverPhone){
         // retdoc.DriverPhone = '1234';
@@ -575,10 +574,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc.CancelTime = gettimefromstring(retdoc.CancelTime);
       }
 
-      if(retdoc.Address != 341100){
-        debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-        winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
-      }
+      // if(retdoc.Address != 341100){
+      //   debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      //   winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
+      // }
       retdoc.Address = getAddress(retdoc.Address);
 
       // A.5.3  Address应与4.1的Address相同
@@ -688,9 +687,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         callbackfn();
         return;
       }
-      retdoc = _.omit(retdoc,['DriverName','WaitTime','DepArea','DestArea','BookModel',
-    'Model','WaitMile','Price','CashPrice','LineName','LinePrice','PosName','PosPrice','BenfitPrice',
-  'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
+      retdoc = _.omit(retdoc,['WaitTime',
+    'WaitMile','Price','CashPrice','LinePrice','PosName','PosPrice','BenfitPrice',
+    'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
 
         // A 6.5   OnArea应与4.1的Address相对应
         //     DriverName，DepArea，DestArea，BookModel，Model，LineName，PosName字段请填写
@@ -707,7 +706,6 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         winston.getlog().error(`${collectionname}-->字段DestTime必填,但目前没有`);
       }
       if(!retdoc.OnArea){
-        retdoc.OnArea = 341181;
         debug(`${collectionname}-->字段OnArea必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段OnArea必填,但目前没有`);
       }
@@ -733,7 +731,6 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
 
-      retdoc = _.omit(retdoc,['TafficViolationCount']);
       if(!retdoc.TrafficViolationCount){
         retdoc.TrafficViolationCount = 0;
         debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
@@ -778,7 +775,6 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!retdoc['DriverRegionCode']){
         debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
         winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
-        retdoc['DriverRegionCode'] = 340000;
       }
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
       // if(retdoc.OrderId === '0'){//不传
