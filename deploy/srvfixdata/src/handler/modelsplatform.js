@@ -720,6 +720,7 @@ exports.Platform_ratedPassengerComplaintSchema= Platform_ratedPassengerComplaint
 exports.Platform_ratedDriverPunishSchema= Platform_ratedDriverPunishSchema;
 exports.Platform_ratedDriverSchema= Platform_ratedDriverSchema;
 //=============exports model=============
+
 let Platform_baseInfoCompanyModel  = mongoose.model('baseinfocompany',  Platform_baseInfoCompanySchema);
 let Platform_baseInfoCompanyStatModel= mongoose.model('baseinfocompanystat',  Platform_baseInfoCompanyStatSchema);
 let Platform_baseInfoCompanyPayModel= mongoose.model('baseinfocompanypay',  Platform_baseInfoCompanyPaySchema);
