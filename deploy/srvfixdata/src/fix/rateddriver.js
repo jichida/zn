@@ -70,34 +70,43 @@ const get_baseinfodriver = (callbackfn)=>{
 //添加不在的记录
 const addnewrecords_rateddriver = (driverlist,callbackfn)=>{
   const TestDate = moment().format('YYYY-MM-DD');
+  let fnsz = [];
   _.map(driverlist,({Platform_baseInfoDriverId,LicenseId})=>{
     // debug(`Platform_baseInfoVehicleId-->${Platform_baseInfoVehicleId},VehicleNo:${VehicleNo}`);
-    const dbModel = DBPlatformModels.Platform_ratedDriverModel;
-    let objSetOnInsert =  {
-      TestDate,
-      LicenseId,
-      "Level" : 4,
-      "TestDepartment" : "自我考核",
-      Platform_baseInfoDriverId,
-      "isuploaded" : 0
-    };
-    let updated_data = {"$set":{}};
-    updated_data["$setOnInsert"] = objSetOnInsert;
+    fnsz.push((callback)=>{
+      const dbModel = DBPlatformModels.Platform_ratedDriverModel;
+      let objSetOnInsert =  {
+        TestDate,
+        LicenseId,
+        "Level" : 4,
+        "TestDepartment" : "自我考核",
+        Platform_baseInfoDriverId,
+        "isuploaded" : 0
+      };
+      let updated_data = {"$set":{}};
+      updated_data["$setOnInsert"] = objSetOnInsert;
 
-    dbModel.findOneAndUpdate({Platform_baseInfoDriverId},updated_data,{new: true,upsert:true},(err,result)=>{
-
+      dbModel.findOneAndUpdate({Platform_baseInfoDriverId},updated_data,{new: true,upsert:true},(err,result)=>{
+        callback(null,true);
+      });
     });
+
   })
 
+  async.parallelLimit(fnsz,100,(err,result)=>{
+    callbackfn();
+  });
 };
 
 
-const startrateddriver = ()=>{
+const startrateddriver = (callbackfn)=>{
   debug(`startbaseinfodrivereducate-->`)
   get_baseinfodriver((driverlist)=>{
     deletedup_rateddriver(driverlist,()=>{
       addnewrecords_rateddriver(driverlist,()=>{
-
+        if(!!callbackfn){
+          callbackfn(null,true);
+        }
       });
     });
   });

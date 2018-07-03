@@ -70,40 +70,47 @@ const get_baseinfodriver = (callbackfn)=>{
 //添加不在的记录
 const addnewrecords_baseinfodrivereducate = (driverlist,callbackfn)=>{
   const UpdateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  let fnsz = [];
   _.map(driverlist,({Platform_baseInfoDriverId,LicenseId})=>{
     // debug(`Platform_baseInfoVehicleId-->${Platform_baseInfoVehicleId},VehicleNo:${VehicleNo}`);
+    fnsz.push((callback)=>{
+      const dbModel = DBPlatformModels.Platform_baseInfoDriverEducateModel;
+      let objSetOnInsert =  {
+         "StartTime" : "09:00",
+         "StopTime" : "11:00",
+         "Duration" : 2,
+         LicenseId,
+         "CourseName" : "安全信息维护",
+         "UpdateTime" : "2018-07-02 10:24:59",
+         "Flag" : 1,
+         "CourseDate" : "2018-01-19",
+         Platform_baseInfoDriverId,
+         "Address" : 341100.0,
+         "isuploaded" : 0
+      };
+      let updated_data = {"$set":{}};
+      updated_data["$setOnInsert"] = objSetOnInsert;
 
-    const dbModel = DBPlatformModels.Platform_baseInfoDriverEducateModel;
-    let objSetOnInsert =  {
-       "StartTime" : "09:00",
-       "StopTime" : "11:00",
-       "Duration" : 2,
-       LicenseId,
-       "CourseName" : "安全信息维护",
-       "UpdateTime" : "2018-07-02 10:24:59",
-       "Flag" : 1,
-       "CourseDate" : "2018-01-19",
-       Platform_baseInfoDriverId,
-       "Address" : 341100.0,
-       "isuploaded" : 0
-    };
-    let updated_data = {"$set":{}};
-    updated_data["$setOnInsert"] = objSetOnInsert;
-
-    dbModel.findOneAndUpdate({Platform_baseInfoDriverId},updated_data,{new: true,upsert:true},(err,result)=>{
-
+      dbModel.findOneAndUpdate({Platform_baseInfoDriverId},updated_data,{new: true,upsert:true},(err,result)=>{
+        callback(null,true);
+      });
     });
-  })
+  });
 
+  async.parallelLimit(fnsz,100,(err,result)=>{
+    callbackfn();
+  });
 };
 
 
-const startbaseinfodrivereducate = ()=>{
+const startbaseinfodrivereducate = (callbackfn)=>{
   debug(`startbaseinfodrivereducate-->`)
   get_baseinfodriver((driverlist)=>{
     deletedup_baseinfodrivereducate(driverlist,()=>{
       addnewrecords_baseinfodrivereducate(driverlist,()=>{
-
+        if(!!callbackfn){
+          callbackfn(null,true);
+        }
       });
     });
   });

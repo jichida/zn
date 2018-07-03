@@ -82,16 +82,26 @@ const set_baseinfovehicle = (Platform_baseInfoVehicleIdlist,callbackfn)=>{
   }
 }
 
-const startbaseinfovehicle = ()=>{
+const startbaseinfovehicle = (callbackfn)=>{
   debug(`startbaseinfovehicle-->`)
   getbaseInfoVehicleIdlistFromUserdrivers(({list_mycar,list_baseinfovehicle})=>{
-    set_mycar(list_mycar,()=>{
-
+    let fnsz = [];
+    fnsz.push((callback)=>{
+      set_mycar(list_mycar,()=>{
+        callback(null,true);
+      });
+    })
+    fnsz.push((callback)=>{
+      set_baseinfovehicle(list_baseinfovehicle,()=>{
+        callback(null,true);
+      });
     });
-    set_baseinfovehicle(list_baseinfovehicle,()=>{
 
+    async.parallelLimit(fnsz,1,(err,result)=>{
+      if(!!callbackfn){
+        callbackfn(null,true);
+      }
     });
-
   });
 }
 

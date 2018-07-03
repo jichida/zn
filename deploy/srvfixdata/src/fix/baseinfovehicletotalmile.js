@@ -70,34 +70,41 @@ const get_baseinfovehicle = (callbackfn)=>{
 //添加不在的记录
 const addnewrecords_baseinfovehicletotalmile = (vehiclelist,callbackfn)=>{
   const UpdateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  let fnsz = [];
   _.map(vehiclelist,({Platform_baseInfoVehicleId,VehicleNo})=>{
     // debug(`Platform_baseInfoVehicleId-->${Platform_baseInfoVehicleId},VehicleNo:${VehicleNo}`);
+    fnsz.push((callback)=>{
+      const dbModel = DBPlatformModels.Platform_baseInfoVehicleTotalMileModel;
+      let objSetOnInsert =  {
+        VehicleNo,
+        UpdateTime,
+        "TotalMile" : 0,
+        "Address" : 341100.0,
+        "isuploaded" : 0
+      };
+      let updated_data = {"$set":{}};
+      updated_data["$setOnInsert"] = objSetOnInsert;
 
-    const dbModel = DBPlatformModels.Platform_baseInfoVehicleTotalMileModel;
-    let objSetOnInsert =  {
-      VehicleNo,
-      UpdateTime,
-      "TotalMile" : 0,
-      "Address" : 341100.0,
-      "isuploaded" : 0
-    };
-    let updated_data = {"$set":{}};
-    updated_data["$setOnInsert"] = objSetOnInsert;
-
-    dbModel.findOneAndUpdate({VehicleNo},updated_data,{new: true,upsert:true},(err,result)=>{
-
+      dbModel.findOneAndUpdate({VehicleNo},updated_data,{new: true,upsert:true},(err,result)=>{
+        callback(null,true);
+      });
     });
-  })
+  });
 
+  async.parallelLimit(fnsz,100,(err,result)=>{
+    callbackfn();
+  });
 };
 
 
-const startbaseinfovehicletotalmile = ()=>{
+const startbaseinfovehicletotalmile = (callbackfn)=>{
   debug(`startbaseinfovehicletotalmile-->`)
   get_baseinfovehicle((vehiclelist)=>{
     deletedup_baseinfovehicletotalmile(vehiclelist,()=>{
       addnewrecords_baseinfovehicletotalmile(vehiclelist,()=>{
-
+        if(!!callbackfn){
+          callbackfn(null,true);
+        }
       });
     });
   });

@@ -47,11 +47,13 @@ const set_baseinfodriver = (Platform_baseInfoVehicleIdlist,callbackfn)=>{
   }
 }
 
-const startbaseinfodriver = ()=>{
+const startbaseinfodriver = (callbackfn)=>{
   debug(`startbaseinfodriver-->`)
   getbaseInfoDriverIdlistFromUserdrivers(({list_baseinfodriverid})=>{
     set_baseinfodriver(list_baseinfodriverid,()=>{
-
+      if(!!callbackfn){
+        callbackfn(null,true);
+      }
     });
 
   });

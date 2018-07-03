@@ -70,40 +70,48 @@ const get_baseinfovehicle = (callbackfn)=>{
 //添加不在的记录
 const addnewrecords_baseinfovehicleinsurance = (vehiclelist,callbackfn)=>{
   const UpdateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  let fnsz = [];
   _.map(vehiclelist,({Platform_baseInfoVehicleId,VehicleNo})=>{
     // debug(`Platform_baseInfoVehicleId-->${Platform_baseInfoVehicleId},VehicleNo:${VehicleNo}`);
+    fnsz.push((callback)=>{
+      const dbModel = DBPlatformModels.Platform_baseInfoVehicleInsuranceModel;
+      let objSetOnInsert =  {
+          "InsurEff" : "2018-02-08",
+           "InsurExp" : "2019-09-30",
+           Platform_baseInfoVehicleId,
+           "InsurCom" : "中国人寿保险",
+           "InsurNum" : "215445",
+           "InsurType" : "安全险",
+           "InsurCount" : 50000,
+           UpdateTime,
+           "Flag" : 1,
+            VehicleNo,
+           "isuploaded" : 0
+      };
+      let updated_data = {"$set":{}};
+      updated_data["$setOnInsert"] = objSetOnInsert;
 
-    const dbModel = DBPlatformModels.Platform_baseInfoVehicleInsuranceModel;
-    let objSetOnInsert =  {
-        "InsurEff" : "2018-02-08",
-         "InsurExp" : "2019-09-30",
-         Platform_baseInfoVehicleId,
-         "InsurCom" : "中国人寿保险",
-         "InsurNum" : "215445",
-         "InsurType" : "安全险",
-         "InsurCount" : 50000,
-         UpdateTime,
-         "Flag" : 1,
-          VehicleNo,
-         "isuploaded" : 0
-    };
-    let updated_data = {"$set":{}};
-    updated_data["$setOnInsert"] = objSetOnInsert;
-
-    dbModel.findOneAndUpdate({Platform_baseInfoVehicleId},updated_data,{new: true,upsert:true},(err,result)=>{
-
+      dbModel.findOneAndUpdate({Platform_baseInfoVehicleId},updated_data,{new: true,upsert:true},(err,result)=>{
+        callback(null,true);
+      });
     });
+
   })
 
+  async.parallelLimit(fnsz,100,(err,result)=>{
+    callbackfn();
+  });
 };
 
 
-const startbaseinfovehicleinsurance = ()=>{
+const startbaseinfovehicleinsurance = (callbackfn)=>{
   debug(`startbaseinfovehicleinsurance-->`)
   get_baseinfovehicle((vehiclelist)=>{
     deletedup_baseinfovehicleinsurance(vehiclelist,()=>{
       addnewrecords_baseinfovehicleinsurance(vehiclelist,()=>{
-
+        if(!!callbackfn){
+          callbackfn(null,true);
+        }
       });
     });
   });

@@ -15,14 +15,34 @@ const startaddressfix = require('./fix/addressfix');
 
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
-  // startbaseinfovehicle();
-  //
-  // startbaseinfodriver();
+  debug(`开始执行`)
+  let fnsz = [];
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicle(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodriver(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicleinsurance(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodrivereducate(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicletotalmile(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startrateddriver(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startaddressfix(callbackfn);
+  });
 
-  // startbaseinfodrivereducate();
-
-  // startrateddriver();
-  startaddressfix();
+  async.parallelLimit(fnsz,1,(err,result)=>{
+    debug(`执行完毕`)
+    winston.getlog().info(`执行完毕`);
+  });
 };
 
 
