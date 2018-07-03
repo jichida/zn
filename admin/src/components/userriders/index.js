@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { List, EmailField,RichTextInput } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -7,7 +8,6 @@ import { NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,S
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,
  Filter } from 'admin-on-rest/lib/mui';
 
-
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -15,6 +15,7 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import ImportExcelButton from '../userdrivers/importexcelbtn';
+import {refreshView} from 'admin-on-rest';
 
 const UserriderlistTitle = ({ record }) => {
    return <span>显示 乘客</span>;
@@ -64,14 +65,16 @@ const cardActionStyle = {
     float: 'right',
 };
 
-const DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+let DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter,dispatch }) => (
     <CardActions style={cardActionStyle}>
         {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
-        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <FlatButton primary label="刷新" onClick={()=>{
+          dispatch(refreshView());
+        }} icon={<NavigationRefresh />} />
         <ImportExcelButton resource={resource}/>
     </CardActions>
 );
-
+DeviceActions = connect()(DeviceActions);
 
 const UserriderlistList = (props) => (//
      <List title="乘客列表" filters={<UserriderFilter />} {...props} sort={{ field: 'created_at', order: 'DESC' }}

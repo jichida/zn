@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
@@ -34,6 +35,7 @@ import {DateInputString} from '../controls/DateInput_String.js';
 import {required} from 'admin-on-rest';
 import ImportExcelButton from './importexcelbtn';
 import {validate_userdriver_edit} from '../validate';
+import {refreshView} from 'admin-on-rest';
 
 const UserdriverlistTitle = ({ record }) => {
    return <span>显示 司机</span>;
@@ -243,13 +245,16 @@ const cardActionStyle = {
     float: 'right',
 };
 
-const DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+let DeviceActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter,dispatch }) => (
     <CardActions style={cardActionStyle}>
         {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
-        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <FlatButton primary label="刷新" onClick={()=>{
+          dispatch(refreshView());
+        }} icon={<NavigationRefresh />} />
         <ImportExcelButton resource={resource}/>
     </CardActions>
 );
+DeviceActions = connect()(DeviceActions);
 
 
 const UserdriverlistList = (props) => (//

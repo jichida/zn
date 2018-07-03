@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
     Datagrid,
     DateField,
@@ -26,7 +27,7 @@ import NewStatButton from './stat/NewStatButton';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
-
+import {refreshView} from 'admin-on-rest';
 
 const BaseInfoVehicleTotalMileTitle = ({ record }) => <span>车辆里程信息</span>;
 
@@ -36,13 +37,16 @@ const cardActionStyle = {
     float: 'right',
 };
 
-const StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+let StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter,dispatch }) => (
     <CardActions style={cardActionStyle}>
         {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
-        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <FlatButton primary label="刷新" onClick={()=>{
+          dispatch(refreshView());
+        }} icon={<NavigationRefresh />} />
         <NewStatButton resource={resource}/>
     </CardActions>
 );
+StatActions = connect()(StatActions);
 
 export const BaseInfoVehicleTotalMileList = (props) => (//
      <List title="车辆里程信息" {...props}  actions={<StatActions />}>

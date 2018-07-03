@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
     Create,
     Edit,
@@ -25,7 +26,6 @@ import {
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
-
 import {ImageInputUpload} from '../controls/imageupload.js';
 import {Titlewithimage} from '../controls/Titlewithimage';
 import {DateInputString} from '../controls/DateInput_String.js';
@@ -34,6 +34,7 @@ import NewStatButton from './stat/NewStatButton';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
+import {refreshView} from 'admin-on-rest';
 
 const BaseInfoCompanyStatTitle = ({ record }) => {
     console.log("record=>" + JSON.stringify(record));
@@ -57,13 +58,18 @@ const cardActionStyle = {
     float: 'right',
 };
 
-const StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+
+let StatActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh,dispatch }) => (
     <CardActions style={cardActionStyle}>
         {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
-        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <FlatButton primary label="刷新" onClick={()=>{
+          dispatch(refreshView());
+        }} icon={<NavigationRefresh />} />
         <NewStatButton resource={resource}/>
     </CardActions>
 );
+StatActions = connect()(StatActions);
+
 const BaseInfoCompanyStatList = (props) => (//
      <List title="营运规模信息" {...props}   actions={<StatActions />}>
         <Datagrid>

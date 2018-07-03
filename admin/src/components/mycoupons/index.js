@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { List, EmailField } from 'admin-on-rest/lib/mui';
 import { CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -36,7 +37,7 @@ import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import TimePicker from 'material-ui/TimePicker';
-
+import {refreshView} from 'admin-on-rest';
 import moment from 'moment';
 export const MycouponFilter = props => (
     <Filter {...props}>
@@ -136,11 +137,13 @@ const styles = {
     },
 };
 
-const PostActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter, refresh }) => (
+let PostActions = ({ resource, filters, displayedFilters, filterValues, basePath, showFilter,dispatch }) => (
     <CardActions style={cardActionStyle}>
         {filters && React.cloneElement(filters, { resource, showFilter, displayedFilters, filterValues, context: 'button' }) }
         <CreateButton basePath={basePath} />
-        <FlatButton primary label="刷新" onClick={refresh} icon={<NavigationRefresh />} />
+        <FlatButton primary label="刷新" onClick={()=>{
+          dispatch(refreshView());
+        }} icon={<NavigationRefresh />} />
         {/* Add your custom actions */}
         <FlatButton
         primary
@@ -150,6 +153,7 @@ const PostActions = ({ resource, filters, displayedFilters, filterValues, basePa
         containerElement={<Link to={`/createbatch`} />}/>
     </CardActions>
 );
+PostActions = connect()(PostActions);
 
 const MycouponlistList = (props) => (//
      <List title="用户优惠券列表" {...props} actions={<PostActions />}
