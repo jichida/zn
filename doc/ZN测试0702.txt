@@ -1,0 +1,36 @@
+===数据库备份===
+docker  run  -it  -v /root:/root --link mongodb:mongodb mongo:3.4  bash
+cd /root
+mkdir db20180702
+cd db20180702
+mongodump --host mongodb --port 27017 --db zhongnandb
+===
+tar -czvf ./db20180702.tar.gz ./db20180702
+=========================================================
+scp ./db20180702.tar.gz  root@yunqi.com28.cn:/var/db100/
+mongorestore --port 27018 --dir=dump/zhongnandb --db=zhongnandb
+=========================================================
+# zn
+开始数据推送测试
+1、清空数据
+http://localhost:3005/starttest_resetuploaded
+
+#http://localhost:3005/starttest_datalegitimacy/1
+
+2、开始定时传输
+http://localhost:3005/starttest_datalegitimacy_interval/100
+
+3、查看传输状态
+http://localhost:3005/starttest_datalegitimacy_interval_getstatus
+--------------------------------------------------------------------------------
+开始数据推送测试
+1、清空数据
+http://api.tczncx.com/starttest_resetuploaded
+
+http://api.tczncx.com/starttest_datalegitimacy/1
+
+2、开始定时传输
+http://api.tczncx.com/starttest_datalegitimacy_interval/100
+
+3、查看传输状态
+http://api.tczncx.com/starttest_datalegitimacy_interval_getstatus

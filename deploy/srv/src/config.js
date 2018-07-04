@@ -1,6 +1,6 @@
 
 let config =  {
-  platformserverurl:process.env.platformserverurl||'http://127.0.0.1:8080',//'http://127.0.0.1:8080',
+  // platformserverurl:process.env.platformserverurl||'http://127.0.0.1:8080',//'http://127.0.0.1:8080',
 
   secretkey:'zongnanchuxingkey',
   listenport:process.env.listenport||3005,
@@ -25,7 +25,7 @@ let config =  {
   loginuserexptime:60*60*24*30,//用户登录有效期,30天
   // 'mongodb://'+process.env.MONGO_PORT_27017_TCP_ADDR+':'+process.env.MONGO_PORT_27017_TCP_PORT+'/blog', function(err, db) {
     // ...
-  mongodburl:process.env.MONGO_URL || `mongodb://localhost/zn`,
+  mongodburl:process.env.MONGO_URL || `mongodb://localhost/zhongnandb`,
   defaultprofileimage:'newimg/17.png',
   faretypemap:{
        '快车':'590c8e423beda6051b5afa26',
