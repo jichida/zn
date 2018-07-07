@@ -495,7 +495,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // }
       if(!retdoc.PassengerNote){
         debug(`${collectionname}-->PassengerNote字段请填写`);
-        winston.getlog().error(`${collectionname}-->PassengerNote字段请填写`);
+        winston.getlog().error(`${collectionname}-->PassengerNote字段请填写-->${JSON.stringify(retdoc)}`);
       }
       if(!retdoc.FareType){
         debug(`${collectionname}-->FareType请与A4.6相对应,但目前没有`);
@@ -558,12 +558,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!retdoc.DriverPhone){
         // retdoc.DriverPhone = '1234';
         debug(`${collectionname}-->字段DriverPhone必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段DriverPhone必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段DriverPhone必填,但目前没有-->${JSON.stringify(retdoc)}`);
       }
       if(!retdoc.VehicleNo){
         // retdoc.VehicleNo = '1234';
         debug(`${collectionname}-->字段VehicleNo必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段VehicleNo必填,但目前没有`);
+        winston.getlog().error(`${collectionname}-->字段VehicleNo必填,但目前没有-->${JSON.stringify(retdoc)}`);
       }
     }
     else if(collectionname === 'ordercancel'){
