@@ -1,0 +1,17 @@
+{
+  "apps" : [
+    {
+      "name": "uploadsrv_prod",
+      "script": "/app/zn/deploy/uploadsrv/index.js",
+      "env": {
+        "DEBUG":"uploadsrv:processdata,uploadsrv:upload",
+        "NODE_ENV": "production",
+        "NodeID":"1",
+        "platformserverurl":"http://172.16.5.101:8080",
+        "logdir":"/app/zn/deploy/dist/log",
+        "uploaddir":"/app/zn/deploy/dist/uploader",
+      },
+      "node-args": "--nouse-idle-notification --gc_global --max-old-space-size=40960 --max-new-space-size=40960"
+    }
+    ]
+  }
