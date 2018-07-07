@@ -493,10 +493,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       //   debug(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
       //   winston.getlog().error(`${collectionname}-->address应与4.1相对应:${retdoc.Address}`);
       // }
-      if(!retdoc.PassengerNote){
-        debug(`${collectionname}-->PassengerNote字段请填写`);
-        winston.getlog().error(`${collectionname}-->PassengerNote字段请填写-->${JSON.stringify(retdoc)}`);
-      }
+      // if(!retdoc.PassengerNote){
+      //   debug(`${collectionname}-->PassengerNote字段请填写`);
+      //   winston.getlog().error(`${collectionname}-->PassengerNote字段请填写-->${JSON.stringify(retdoc)}`);
+      // }
       if(!retdoc.FareType){
         debug(`${collectionname}-->FareType请与A4.6相对应,但目前没有`);
         winston.getlog().error(`${collectionname}-->FareType请与A4.6相对应,但目前没有`);
@@ -731,11 +731,11 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       }
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
 
-      if(!retdoc.TrafficViolationCount){
-        retdoc.TrafficViolationCount = 0;
-        debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
-      }
+      // if(!retdoc.TrafficViolationCount){
+      //   retdoc.TrafficViolationCount = 0;
+      //   debug(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
+      //   winston.getlog().error(`${collectionname}-->字段TrafficViolationCount必填,但目前没有`);
+      // }
 
 //       A4.13   数据量应超过200条
 // address应与4.1相对应
