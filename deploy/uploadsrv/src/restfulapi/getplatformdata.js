@@ -499,7 +499,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // }
       if(!retdoc.FareType){
         debug(`${collectionname}-->FareType请与A4.6相对应,但目前没有`);
-        winston.getlog().error(`${collectionname}-->FareType请与A4.6相对应,但目前没有`);
+        winston.getlog().error(`${collectionname}-->FareType请与A4.6相对应,但目前没有,-->${JSON.stringify(retdoc)}`);
       }
 
 
@@ -634,10 +634,10 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段DriveMile必填,但目前没有`);
         winston.getlog().error(`${collectionname}-->字段DriveMile必填,但目前没有`);
       }
-      if(!retdoc.DriveTime){
-        debug(`${collectionname}-->字段DriveTime必填,但目前没有`);
-        winston.getlog().error(`${collectionname}-->字段DriveTime必填,但目前没有`);
-      }
+      // if(!retdoc.DriveTime){
+      //   debug(`${collectionname}-->字段DriveTime必填,但目前没有`);
+      //   winston.getlog().error(`${collectionname}-->字段DriveTime必填,但目前没有`);
+      // }
 
       if (typeof retdoc.DestTime === 'string') {
         retdoc.DestTime = gettimefromstring(retdoc.DestTime);
