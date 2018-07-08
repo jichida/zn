@@ -12,6 +12,7 @@ const startbaseinfodrivereducate = require('./fix/baseinfodrivereducate');
 const startbaseinfovehicletotalmile = require('./fix/baseinfovehicletotalmile');
 const startrateddriver = require('./fix/rateddriver');
 const startaddressfix = require('./fix/addressfix');
+const startbaseinfodriverapp = require('./fix/baseinfodriverapp');
 
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
@@ -38,6 +39,10 @@ const start = (callbackfn)=>{
   fnsz.push((callbackfn)=>{
     startaddressfix(callbackfn);
   });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodriverapp(callbackfn);
+  });
+
 
   async.parallelLimit(fnsz,1,(err,result)=>{
     debug(`执行完毕`)

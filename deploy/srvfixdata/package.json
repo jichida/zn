@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test1":"DEBUG=srvfixdata:* MONGO_URL=mongodb://yunqi.com28.cn:27018/zhongnandb logdir=/Users/wangxiaoqing/Downloads/work/zn/deploy/dist node index"
   },
   "author": "",
   "license": "ISC",
