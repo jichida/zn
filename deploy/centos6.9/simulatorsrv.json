@@ -1,0 +1,17 @@
+{
+  "apps" : [
+    {
+      "name": "simulatorsrv",
+      "script": "/app/zn/deploy/simulator_restfulapi/index.js",
+      "env": {
+        "DEBUG":"uploadsrv:*",
+        "NODE_ENV": "production",
+        "MONGO_URL":"mongodb://127.0.0.1/zhongnandb",
+        "listenport":8080,
+        "logdir":"/app/zn/deploy/dist/log",
+        "uploaddir":"/app/zn/deploy/dist/uploader",
+      },
+      "node-args": "--nouse-idle-notification --gc_global --max-old-space-size=40960 --max-new-space-size=40960"
+    }
+    ]
+  }
