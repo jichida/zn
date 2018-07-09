@@ -16,7 +16,7 @@ let config =  {
   logdir:'../../dist/log',
 
   CompanyId:'3411ZNCX293T',
-  // Address:340000,
+  Address:341100,
 
   expRequestMinutes:200,//2分钟之内
   maxAge:86400000,

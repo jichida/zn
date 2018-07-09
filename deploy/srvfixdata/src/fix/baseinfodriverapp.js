@@ -25,6 +25,7 @@ const deletedup_baseinfodriverapp = (driverlist,callbackfn)=>{
     LicenseIds.push(LicenseId);
     fnsz.push((callbackfn)=>{
       dbModel.count({LicenseId},(err,count)=>{
+        debug(`--->${LicenseId}-->${count}`);
         if(!err && count > 1){
           dbModel.remove({LicenseId},(err,result)=>{
             debug(`删除--->${LicenseId}`);
@@ -40,13 +41,14 @@ const deletedup_baseinfodriverapp = (driverlist,callbackfn)=>{
 
   fnsz.push((callbackfn)=>{
     //删除不存在的车辆
+    console.log(`LicenseIds-->${JSON.stringify(LicenseIds)}`)
     dbModel.remove({LicenseId:{$nin:LicenseIds}},(err,result)=>{
       debug(`删除不存在的驾驶员---`);
       callbackfn(null,true);
     });
   });
 
-  async.parallelLimit(fnsz,100,(err,result)=>{
+  async.parallelLimit(fnsz,1,(err,result)=>{
     callbackfn();
   });
 
@@ -81,13 +83,23 @@ const addnewrecords_baseinfodriverapp = (driverlist,callbackfn)=>{
         DriverPhone,
         Address
       }};
-      dbModel.findOneAndUpdate({LicenseId},updated_data,{new: true},(err,result)=>{
+      let objSetOnInsert =  {
+         "NetType" : 3,
+         "AppVersion" : "1.0.0",
+         UpdateTime,
+         "State" : 0,
+         "MapType" : 2,
+         "isuploaded" : 0
+      };
+      updated_data["$setOnInsert"] = objSetOnInsert;
+      dbModel.findOneAndUpdate({LicenseId},updated_data,{new: true,upsert:true},(err,result)=>{
+        debug(`${LicenseId}->${Address}`)
         callback(null,true);
       });
     });
   });
 
-  async.parallelLimit(fnsz,100,(err,result)=>{
+  async.parallelLimit(fnsz,1,(err,result)=>{
     callbackfn();
   });
 };
@@ -97,6 +109,10 @@ const startbaseinfodriverapp = (callbackfn)=>{
   debug(`startbaseinfodriverapp-->`)
   get_baseinfodriver((driverlist)=>{
     deletedup_baseinfodriverapp(driverlist,()=>{
+      // const dbModel = DBPlatformModels.Platform_baseInfoDriverAppModel;
+      // dbModel.count({},(err,result)=>{
+      //   debug(`Platform_baseInfoDriverAppModel-->${result}`)
+      // });
       addnewrecords_baseinfodriverapp(driverlist,()=>{
         if(!!callbackfn){
           callbackfn(null,true);

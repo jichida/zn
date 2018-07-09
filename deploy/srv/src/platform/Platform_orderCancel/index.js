@@ -52,6 +52,7 @@ const reasonflag = {
 exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode='1'},postaction)=> {
     let orderCancelDoc = {
         CompanyId:config.CompanyId,
+        Address:config.Address,
         OrderId:triporder._id,
         OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
@@ -59,8 +60,8 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode='1'},postact
         CancelTypeCode:canceltypecode,//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销 5 .驾驶员违约撤销
         CancelReason:reasonflag[canceltypecode],
     };
-    utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
-        if(!!address){
+    // utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
+    //     if(!!address){
             orderCancelDoc.Address = address.adcode;
             let eModel = dbplatform.Platform_orderCancelModel;
             let entity = new eModel(orderCancelDoc);
@@ -69,6 +70,6 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode='1'},postact
                     postaction('save','ordercancel',result);
                 }
             });
-        }
-    });
+    //     }
+    // });
 }

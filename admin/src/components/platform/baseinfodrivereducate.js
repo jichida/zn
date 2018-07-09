@@ -33,8 +33,8 @@ const BaseInfoDriverEducateCreate = (props) => (
               </ReferenceInput>
                <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
                <DateInputString label="培训课程日期"  source="CourseDate"  validate={[required]}/>
-               <TimePickerInput label="培训开始时间" source="StartTime" validate={[required]} defaultValue={'09:00'}/>
-               <TimePickerInput label="培训结束时间" source="StopTime"  validate={[required]} defaultValue={'11:00'}/>
+               <DateInputString label="培训开始时间" source="StartTime" validate={[required]} defaultValue={'09:00'}/>
+               <DateInputString label="培训结束时间" source="StopTime"  validate={[required]} defaultValue={'11:00'}/>
                <NumberInputEx label="培训时长" source="Duration"  validate={[required]} defaultValue={2}/>
            </SimpleForm>
        </Create>
@@ -53,8 +53,8 @@ const BaseInfoDriverEducateEdit = (props) => {
              </ReferenceInput>
           <TextInputEx label="驾驶员培训课程名称"  source="CourseName"  validate={[required]}/>
           <DateInputString label="培训课程日期"  source="CourseDate"  validate={[required]}/>
-          <TimePickerInput label="培训开始时间" source="StartTime"  validate={[required]} defaultValue={'09:00'}/>
-          <TimePickerInput label="培训结束时间" source="StopTime"  validate={[required]} defaultValue={'11:00'}/>
+          <DateInputString label="培训开始时间" source="StartTime"  validate={[required]} defaultValue={'09:00'}/>
+          <DateInputString label="培训结束时间" source="StopTime"  validate={[required]} defaultValue={'11:00'}/>
           <NumberInputEx label="培训时长" source="Duration"  validate={[required]} defaultValue={2}/>
           </SimpleForm>
       </Edit>);
