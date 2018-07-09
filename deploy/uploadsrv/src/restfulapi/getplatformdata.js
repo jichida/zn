@@ -377,10 +377,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         //  CommercialType 取值范围 1、2、3
         if(_.findIndex(['A1','A2','A3','B1','B2','C1','C2','C3','C4','C5','D','E','F','M','N','P'],retdoc.DriverType) === -1){
           debug(`${collectionname}-->字段DriverType非法,但目前是:${retdoc.DriverType}`);
+          winston.getlog().error(`${collectionname}-->字段DriverType非法,但目前是:${retdoc.DriverType}`);
           retdoc.DriverType = 'C1';
         }
 
         if(_.findIndex(['0','1','2','5','6','9'],retdoc.DriverGender) === -1){
+          winston.getlog().error(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.DriverGender}`);
           debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.DriverGender}`);
           if(retdoc.DriverGender === '男'){
             retdoc.DriverGender = '1';
@@ -398,6 +400,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         'InDriverBlacklist','Licenseld']);
 
         if(!retdoc['GetDriverLicenseDate']){
+          winston.getlog().error(`${collectionname}-->字段GetDriverLicenseDate必填,但目前没有,驾驶证号:${retdoc.LicenseId}`);
           debug(`${collectionname}-->字段GetDriverLicenseDate必填,但目前没有,驾驶证号:${retdoc.LicenseId}`);
           retdoc['GetDriverLicenseDate'] = getdatefromstring('2018-03-24');
         }
@@ -475,6 +478,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       // 2、接口baseInfoPassenger
       // PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
       if(_.findIndex(['0','1','2','5','6','9'],retdoc.PassengerGender) === -1){
+        winston.getlog().error(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.PassengerGender}`);
         debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.PassengerGender}`);
         if(retdoc.PassengerGender === '男'){
           retdoc.PassengerGender = '1';
@@ -531,6 +535,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc.Address = getAddress(retdoc.Address);
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
+        winston.getlog().error(`${collectionname}-->retdoc.FareType没有-->${JSON.stringify(retdoc)}`);
         callbackfn();
         return;
       }
@@ -621,6 +626,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc = _.omit(retdoc,['WaitMile','WaitTime']);
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
+        winston.getlog().error(`${collectionname}-->retdoc.FareType没有-->${JSON.stringify(retdoc)}`);
         callbackfn();
         return;
       }
