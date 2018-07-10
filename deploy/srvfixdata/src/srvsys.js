@@ -13,34 +13,45 @@ const startbaseinfovehicletotalmile = require('./fix/baseinfovehicletotalmile');
 const startrateddriver = require('./fix/rateddriver');
 const startaddressfix = require('./fix/addressfix');
 const startbaseinfodriverapp = require('./fix/baseinfodriverapp');
-
+const fix_triporders = require('./fix/fix_triporders');
+const fix_operatepay = require('./fix/fix_operatepay');
 const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
   debug(`开始执行`)
   let fnsz = [];
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfovehicle(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfodriver(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfovehicleinsurance(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfodrivereducate(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfovehicletotalmile(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startrateddriver(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startaddressfix(callbackfn);
+  // });
+  // fnsz.push((callbackfn)=>{
+  //   startbaseinfodriverapp(callbackfn);
+  // });
+  //
+
+
   fnsz.push((callbackfn)=>{
-    startbaseinfovehicle(callbackfn);
+    fix_triporders(callbackfn);
   });
+
   fnsz.push((callbackfn)=>{
-    startbaseinfodriver(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startbaseinfovehicleinsurance(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startbaseinfodrivereducate(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startbaseinfovehicletotalmile(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startrateddriver(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startaddressfix(callbackfn);
-  });
-  fnsz.push((callbackfn)=>{
-    startbaseinfodriverapp(callbackfn);
+    fix_operatepay(callbackfn);
   });
 
 
