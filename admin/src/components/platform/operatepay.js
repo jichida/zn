@@ -36,6 +36,7 @@ const OperatePayEdit = (props) => (
              <TextField label="上车时间" source="DepTime" />
              <TextField label="车辆到达纬度" source="DestLongitude" />
              <TextField label="车辆到达纬度" source="DestLatitude" />
+             <TextField label="下车地点" source="DestArea" />
              <TextField label="下车时间" source="DestTime" />
              <TextField label="预定车型" source="BookModel" />
              <TextField label="实际使用车型" source="Model" />
