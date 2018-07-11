@@ -368,7 +368,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
 
         if(!!retdoc.DriverNation){
-          retdoc.DriverNation = 'HA';
+          retdoc.DriverNation = '汉族';
         }
         if(!!retdoc.DriverGender){
           retdoc.DriverGender = '1';
@@ -792,6 +792,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
         winston.getlog().error(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
       }
+      retdoc.DriverRegionCode = getAddress(retdoc.DriverRegionCode);
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
       // if(retdoc.OrderId === '0'){//不传
       //   callbackfn();
@@ -811,6 +812,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
       retdoc.Encrypt = 2;
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
+      retdoc.VehicleRegionCode = getAddress(retdoc.VehicleRegionCode);
+
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {

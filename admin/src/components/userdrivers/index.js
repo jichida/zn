@@ -286,8 +286,7 @@ const UserdriverlistList = (props) => (//
         <ReferenceField label="司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty>
           <TextField source="DriverName" />
         </ReferenceField>
-        <TextField label="行政注册地[车辆]" source="Platform_baseInfoVehicle.Address" />
-        <TextField label="行政注册地[驾驶员]" source="Platform_baseInfoDriver.Address" />
+        <TextField label="准驾车型" source="Platform_baseInfoDriver.DriverType" />
         <TextField label="注册时间" source="created_at"  />
         <TextField label="上次登录时间" source="updated_at"  />
         <TextField label="审批状态"  source="approvalstatus" />
