@@ -28,6 +28,7 @@ const getdatefromstring = (timestring)=>{
   try{
     // debug(`getdatefromstring-->${timestring}`);
     if(!!timestring){
+      //is expection
       let curtime = moment(timestring).format('YYYYMMDD');
       return parseInt(curtime);
     }

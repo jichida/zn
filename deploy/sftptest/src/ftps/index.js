@@ -1,8 +1,8 @@
 const FTPS = require('ftps');
 //参考文档：https://github.com/Atinux/node-ftps
 const config = require('../config.js');
-
-var ftps = new FTPS({
+const debug = require('debug')('uploadsrv:uploadsftp');
+const ftps = new FTPS({
   host: config.srvsftp.host, // required
   username: config.srvsftp.username, // Optional. Use empty username for anonymous access.
   password: config.srvsftp.password, // Required if username is not empty, except when requiresPassword: false
@@ -21,23 +21,32 @@ var ftps = new FTPS({
   additionalLftpCommands: '', // Additional commands to pass to lftp, splitted by ';'
 });
 // Do some amazing things
-console.log(`--start connect:${JSON.stringify(config.srvsftp)}`);
-const sftptosrv = (localdir,localfilename,callback)=>{
-  console.log(`开始连接:${JSON.stringify(config.srvsftp)}`);
-  ftps.put(`${localdir}/${localfilename}`, `tmp/${localfilename}`).exec((err, res)=> {
-    console.log(`上传文件到tmp目录:${localdir}/${localfilename}`);
-    if(!err){
-      console.log(err);
+debug(`--start connect:${JSON.stringify(config.srvsftp)}`);
+const sftptosrv = (localdir,localfilename,remotedir,remotefilename,callback)=>{
+  debug(`开始连接:${JSON.stringify(config.srvsftp)}`);
+  if(!localfilename){
+    debug(`无文件可用`);
+    callback();
+    return;
+  }
+  debug(`START UPLOAD-->LOCAL:${localdir}/${localfilename},REMOTE:${remotedir}/${remotefilename}`);
+  ftps.put(`${localdir}/${localfilename}`,`${remotedir}/${remotefilename}`).exec((err, res)=> {
+    debug(`${localdir}/${localfilename}上传文件到tmp目录:${remotedir}/${remotefilename},err:${!!err}`);
+    if(!!err){
+      debug(err);
       callback(err,res);
       return;
     }
-    ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
-      console.log(`移动文件到swapfiles目录:${localfilename}`);
-      if(!err){
-        console.log(err);
-      }
-      callback(err,res);
-    });
+
+    debug(`===>/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
+    callback(null,`/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
+    // ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
+    //   debug(`移动文件到swapfiles目录:${localfilename}`);
+    //   if(!err){
+    //     debug(err);
+    //   }
+    //   callback(err,res);
+    // });
   });
 }
 
