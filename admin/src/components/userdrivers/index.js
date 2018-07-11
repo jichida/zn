@@ -118,6 +118,7 @@ const UserdriverlistEdit = (props) => {
               <TextInput label="姓名【审核必填】" source="Platform_baseInfoDriver.DriverName" validate={[required]}/>
               <TextInput label="手机号【审核必填】" source="Platform_baseInfoDriver.DriverPhone" validate={[required]}/>
               <SelectInput  label="性别"  source="Platform_baseInfoDriver.DriverGender" choices={[
+                { id: '0', name: '未知' },
                 { id: '1', name: '男' },
                 { id: '2', name: '女' },
               ]}  validate={[required]}/>

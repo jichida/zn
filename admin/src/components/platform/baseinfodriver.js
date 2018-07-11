@@ -140,7 +140,24 @@ const BaseInfoDriverEdit = (props) => {
             <ImageInputUpload  label="驾驶员照片文件" source="PhotoIdURL" />
             <TextInputEx  label="机动车驾驶证号" source="LicenseId" validate={[required]}/>
             <ImageInputUpload  label="机动车驾驶证扫描件文件" source="LicensePhotoIdURL" />
-            <TextInput label="准驾车型" source="DriverType" />
+            <SelectInput  label="准驾车型"  source="DriverType" choices={[
+                { id: 'A1', name: 'A1' },
+                { id: 'A2', name: 'A2' },
+                { id: 'A3', name: 'A3' },
+                { id: 'B1', name: 'B1' },
+                { id: 'B2', name: 'B2' },
+                { id: 'C1', name: 'C1' },
+                { id: 'C2', name: 'C2' },
+                { id: 'C3', name: 'C3' },
+                { id: 'C4', name: 'C4' },
+                { id: 'C5', name: 'C5' },
+                { id: 'D', name: 'D' },
+                { id: 'E', name: 'E' },
+                { id: 'F', name: 'F' },
+                { id: 'M', name: 'M' },
+                { id: 'N', name: 'N' },
+                { id: 'P', name: 'P' },
+            ]} validate={[required]}/>
             <DateInputString label="初次领取驾驶证日期" source="GetDriverLicenseDate" validate={[required]}/>
             <DateInputString label="驾驶证有效期限起" source="DriverLicenseOn" validate={[required]}/>
             <DateInputString label="驾驶证有效期限止" source="DriverLicenseOff" validate={[required]}/>

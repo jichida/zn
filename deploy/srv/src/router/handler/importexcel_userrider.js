@@ -30,7 +30,7 @@ const sendtoplatform = (userEntity)=>{
       registerdate:userEntity.created_at,
       passgngerphone:userEntity.username,
       passengername:userEntity.profile.nickname,
-      passengergender:userEntity.profile.sex,
+      passengergender:userEntity.profile.sex==='男'?'1':'0',
     };
     if(!err && !!result){
       //已存在

@@ -228,37 +228,47 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         // retdoc['FareType'] = '590c8e423beda6051b5afa26';
       }
 
-      if(!!retdoc.PlateColor){
-        const PlateColorMap = {
-          '蓝色':'1',
-          '黄色':'2',
-          '黑色':'3',
-          '白色':'4',
-          '绿色':'5',
-          '其他':'9'
-        };
-        if(!!PlateColorMap[retdoc.PlateColor]){
-          retdoc.PlateColor = PlateColorMap[retdoc.PlateColor];
-          if(!retdoc.PlateColor){
-            retdoc.PlateColor = '9';
-          }
-        }
-
+      if(_.findIndex(['1','2','3','4','5','9'],(o)=>{return o === retdoc.PlateColor}) === -1){
+        debug(`${collectionname}-->字段PlateColor非法,但目前是:【${retdoc.PlateColor}】`);
+        winston.getlog().error(`${collectionname}-->字段PlateColor非法,但目前是:【${retdoc.PlateColor}】`);
+        retdoc.PlateColor = '9';
       }
-
-      if(!!retdoc.FuelType){
-        const FuelTypeMap = {
-          '汽油':'A',
-          '柴油':'B',
-          '电':'C'
-        }
-        if(!!FuelTypeMap[retdoc.FuelType]){
-          retdoc.FuelType = FuelTypeMap[retdoc.FuelType];
-          if(!retdoc.FuelType){
-            retdoc.FuelType = 'A';
-          }
-        }
+      if(_.findIndex(['A','B','C'],(o)=>{return o === retdoc.FuelType}) === -1){
+        debug(`${collectionname}-->字段FuelType非法,但目前是:【${retdoc.FuelType}】`);
+        winston.getlog().error(`${collectionname}-->字段FuelType非法,但目前是:【${retdoc.FuelType}】`);
+        retdoc.FuelType = 'A';
       }
+      // if(!!retdoc.PlateColor){
+      //   const PlateColorMap = {
+      //     '蓝色':'1',
+      //     '黄色':'2',
+      //     '黑色':'3',
+      //     '白色':'4',
+      //     '绿色':'5',
+      //     '其他':'9'
+      //   };
+      //   if(!!PlateColorMap[retdoc.PlateColor]){
+      //     retdoc.PlateColor = PlateColorMap[retdoc.PlateColor];
+      //     if(!retdoc.PlateColor){
+      //       retdoc.PlateColor = '9';
+      //     }
+      //   }
+      //
+      // }
+      //
+      // if(!!retdoc.FuelType){
+      //   const FuelTypeMap = {
+      //     '汽油':'A',
+      //     '柴油':'B',
+      //     '电':'C'
+      //   }
+      //   if(!!FuelTypeMap[retdoc.FuelType]){
+      //     retdoc.FuelType = FuelTypeMap[retdoc.FuelType];
+      //     if(!retdoc.FuelType){
+      //       retdoc.FuelType = 'A';
+      //     }
+      //   }
+      // }
 
 
       if(!!retdoc.CheckState){
@@ -375,13 +385,13 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         //  DriverType 准驾车型 不可为空，不可为"0"
         //  DriverGender、PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
         //  CommercialType 取值范围 1、2、3
-        if(_.findIndex(['A1','A2','A3','B1','B2','C1','C2','C3','C4','C5','D','E','F','M','N','P'],retdoc.DriverType) === -1){
-          debug(`${collectionname}-->字段DriverType非法,但目前是:${retdoc.DriverType}`);
-          winston.getlog().error(`${collectionname}-->字段DriverType非法,但目前是:${retdoc.DriverType}`);
+        if(_.findIndex(['A1','A2','A3','B1','B2','C1','C2','C3','C4','C5','D','E','F','M','N','P'],(o)=>{return o === retdoc.DriverType}) === -1){
+          debug(`${collectionname}-->字段DriverType非法,但目前是:【${retdoc.DriverType}】`);
+          winston.getlog().error(`${collectionname}-->字段DriverType非法,但目前是:【${retdoc.DriverType}】`);
           retdoc.DriverType = 'C1';
         }
 
-        if(_.findIndex(['0','1','2','5','6','9'],retdoc.DriverGender) === -1){
+        if(_.findIndex(['0','1','2','5','6','9'],(o)=>{return o === retdoc.DriverGender}) === -1){
           winston.getlog().error(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.DriverGender}`);
           debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.DriverGender}`);
           if(retdoc.DriverGender === '男'){
@@ -477,9 +487,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
 
       // 2、接口baseInfoPassenger
       // PassengerGender 性别字段 有效值范围，0、1、2、5、6、9
-      if(_.findIndex(['0','1','2','5','6','9'],retdoc.PassengerGender) === -1){
-        winston.getlog().error(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.PassengerGender}`);
-        debug(`${collectionname}-->字段DriverGender非法,但目前是:${retdoc.PassengerGender}`);
+      if(_.findIndex(['0','1','2','5','6','9'],(o)=>{return o === retdoc.PassengerGender}) === -1){
+        winston.getlog().error(`${collectionname}-->字段PassengerGender非法,但目前是:${retdoc.PassengerGender}`);
+        debug(`${collectionname}-->字段PassengerGender非法,但目前是:${retdoc.PassengerGender}`);
         if(retdoc.PassengerGender === '男'){
           retdoc.PassengerGender = '1';
         }
