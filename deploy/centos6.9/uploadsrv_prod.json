@@ -9,7 +9,7 @@
         "NodeID":"1",
         "platformserverurl":"http://172.16.5.101:8080",
         "logdir":"/app/zn/deploy/dist/log",
-        "uploaddir":"/app/zn/deploy/dist/uploader",
+        "uploaddir":"/app/zn/deploy/dist/uploader"
       },
       "node-args": "--nouse-idle-notification --gc_global --max-old-space-size=40960 --max-new-space-size=40960"
     }

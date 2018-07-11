@@ -10,6 +10,10 @@
         "platformserverurl":"http://127.0.0.1:8080",
         "logdir":"/app/zn/deploy/dist/log",
         "uploaddir":"/app/zn/deploy/dist/uploader",
+        "srvsftp_host":"vpn.i2u.top",
+        "srvsftp_port":22,
+        "srvsftp_username":"wycftp1079",
+        "srvsftp_password":"@N5755OR8c7!"
       },
       "node-args": "--nouse-idle-notification --gc_global --max-old-space-size=40960 --max-new-space-size=40960"
     }
