@@ -1,7 +1,7 @@
 const FTPS = require('ftps');
 //参考文档：https://github.com/Atinux/node-ftps
 const config = require('../config.js');
-const debug = require('debug')('uploadsrv:ftps');
+const debug = require('debug')('uploadsrv:uploadsftp');
 const ftps = new FTPS({
   host: config.srvsftp.host, // required
   username: config.srvsftp.username, // Optional. Use empty username for anonymous access.
