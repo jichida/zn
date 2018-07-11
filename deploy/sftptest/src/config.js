@@ -10,6 +10,7 @@ const config = {
   srvsftp:{
       host: process.env.srvsftp_host||'vpn.i2u.top',
       port: process.env.srvsftp_port||'22',
+      protocol:process.env.srvsftp_protocol||'ftp',
       username: process.env.srvsftp_username||'wycftp1079',
       password: process.env.srvsftp_password||'@N5755OR8c7!'
   },
