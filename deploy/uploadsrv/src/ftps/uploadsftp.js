@@ -3,6 +3,7 @@ const sftptosrv = require('../ftps/index');
 const path = require('path');
 const fs = require('fs');
 const winston = require('../log/index.js');
+const async = require('async');
 const debug = require('debug')('uploadsrv:uploadsftp')
 
 const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
