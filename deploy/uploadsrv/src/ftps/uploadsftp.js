@@ -94,7 +94,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
     if(collectionname === 'baseinfocompany' && isfileexists){
       fnsz.push((callbackfn)=>{
         const remotefilename = getremotefilename(collectionname,retdoc,'LegalPhoto');
-        sftptosrv(uploaddir,newdoc.LegalPhoto,`${collectionname}${extname}`,remotefilename,(err,result)=>{
+        sftptosrv(uploaddir,newdoc.LegalPhoto,`${collectionname}`,`${remotefilename}${extname}`,(err,result)=>{
           if(!err && !!result){
             newdoc.LegalPhoto = result;
           }
@@ -106,7 +106,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
     else if(collectionname === 'baseinfovehicle' && isfileexists){
       fnsz.push((callbackfn)=>{
         const remotefilename = getremotefilename(collectionname,retdoc,'PhotoId');
-        sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${collectionname}${extname}`,(err,result)=>{
+        sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${remotefilename}${extname}`,(err,result)=>{
           if(!err && !!result){
             newdoc.PhotoId = result;
           }
@@ -118,7 +118,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists){
         fnsz.push((callbackfn)=>{
           const remotefilename = getremotefilename(collectionname,retdoc,'LicensePhotoId');
-          sftptosrv(uploaddir,newdoc.LicensePhotoId,collectionname,`${collectionname}${extname}`,(err,result)=>{
+          sftptosrv(uploaddir,newdoc.LicensePhotoId,collectionname,`${remotefilename}${extname}`,(err,result)=>{
             debug(err);
             debug(result);
             if(!err && !!result){
@@ -132,7 +132,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists2){
         fnsz.push((callbackfn)=>{
           const remotefilename = getremotefilename(collectionname,retdoc,'PhotoId');
-          sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${collectionname}${extname2}`,(err,result)=>{
+          sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${remotefilename}${extname2}`,(err,result)=>{
             debug(err);
             debug(result);
             if(!err && !!result){
