@@ -4,7 +4,7 @@
       "name": "uploadsrv_test",
       "script": "/app/zn/deploy/uploadsrv/index.js",
       "env": {
-        "DEBUG":"uploadsrv:*",
+        "DEBUG":"uploadsrv:uploadsftp",
         "NODE_ENV": "production",
         "NodeID":"1",
         "platformserverurl":"http://127.0.0.1:8080",

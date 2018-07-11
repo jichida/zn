@@ -33,7 +33,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
       if (response.status >= 200 && response.status < 300) {
         // debug(`${IPCType}-->OK`);
         // winston.getlog().info(`${IPCType}-->OK`);
-        return Promise.resolve(response)
+        return Promise.resolve(response.status)
       } else {
         // debug(`${IPCType}-->Error`);
         // winston.getlog().error(`${IPCType}-->Error`);
@@ -48,7 +48,7 @@ const uploadtoplatform = (IPCType,uri,data)=>{
     .then(body => {
       debug(`${IPCType}-->返回结果-->`);
       winston.getlog().info(`${IPCType}-->返回结果-->`);
-      Promise.resolve();
+      Promise.resolve(`${IPCType}`);
     });
 }
 
