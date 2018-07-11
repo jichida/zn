@@ -30,24 +30,16 @@ const sftptosrv = (localdir,localfilename,remotedir,remotefilename,callback)=>{
     return;
   }
   debug(`START UPLOAD-->LOCAL:${localdir}/${localfilename},REMOTE:${remotedir}/${remotefilename}`);
-  ftps.cd(`${remotedir}/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
+  // ftps.cd(`${remotedir}/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
+  ftps.put(`${localdir}/${localfilename}`, `${remotedir}/${remotefilename}`).exec((err, res)=> {
     debug(`${localdir}/${localfilename}上传文件到目录:${remotedir},err:${!!err}`);
     if(!!err){
       debug(err);
       callback(err,res);
       return;
     }
-    debug(`START RENAME:${remotedir}/${localfilename}上传文件到目录:${remotedir}/${remotefilename}`);
-    ftps.mv(`${remotedir}/${localfilename}`, `${remotedir}/${remotefilename}`).exec((err, res)=> {
-      debug(`RENAME:${remotedir}/${localfilename} TO ${remotedir}/${remotefilename},err:${!!err}`);
-      if(!!err){
-        debug(err);
-        callback(err,res);
-        return;
-      }
-      debug(`===>/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
-      callback(null,`${config.srvsftp.username}/${remotedir}/${remotefilename}`);
-    });
+    debug(`===>/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
+    callback(null,`${config.srvsftp.username}/${remotedir}/${remotefilename}`);
   });
 }
 
