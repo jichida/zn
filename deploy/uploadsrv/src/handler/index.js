@@ -3,7 +3,7 @@ const config = require('../config.js');
 const getplatformdata = require('../restfulapi/getplatformdata');
 const map_platformfn = require('../restfulapi/getmapfn');
 const uploadtoplatform = require('../restfulapi/index');
-const sftptosrv = require('../ftps/index');
+const uploadsftp = require('./ftps/uploadsftp');
 const redis = require('../redis/index.js');
 const debug = require('debug')('uploadsrv:handler')
 const _ = require('lodash');
@@ -11,16 +11,6 @@ const winston = require('../log/index.js');
 const async = require('async');
 const fs = require('fs');
 
-const uploaddir = config.uploaddir || path.join(__dirname,'../../dist/uploader');
-debug("upload====>" + uploaddir);
-
-const checkfile_exists =(filename,collectionname,retdoc)=>{
-  if(!!filename){
-    if (!fs.existsSync(`${uploaddir}/${filename}`)) {
-        winston.getlog().error(`检查文件不存在-->${collectionname}--->文件名:${filename}--->全路径:${uploaddir}/${filename}`);
-    }
-  }
-}
 
 const recordid =(collectionname,doc)=>{
   if(_.isArray(doc)){
@@ -44,89 +34,6 @@ const recordid =(collectionname,doc)=>{
   }
 }
 
-
-const uploadsftp = (collectionname,retdoc,callbackfn)=>{
-  debug(`================>${collectionname}`);
-  let fnsz = [];
-  if(collectionname === 'baseinfocompany' ||
-  collectionname === 'baseinfovehicle' ||
-  collectionname === 'baseinfodriver'){
-    if(collectionname === 'baseinfocompany'){
-      checkfile_exists(retdoc.LegalPhoto,collectionname,retdoc);
-    }
-    else if(collectionname === 'baseinfovehicle'){
-      checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
-    }
-    else if(collectionname === 'baseinfodriver'){
-      checkfile_exists(retdoc.LicensePhotoId,collectionname,retdoc);
-      checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
-    }
-  }
-
-
-  if(collectionname === 'baseinfocompany' ||
-  collectionname === 'baseinfovehicle' ||
-  collectionname === 'baseinfodriver'){
-    //conver URL->file
-    const newdoc = retdoc;
-    if(collectionname === 'baseinfocompany'){
-      fnsz.push((callbackfn)=>{
-        sftptosrv(collectionname,uploaddir,newdoc.LegalPhoto ,(err,result)=>{
-          debug(err);
-          debug(result);
-          if(!err && !!result){
-            newdoc.LegalPhoto = result;
-          }
-          callbackfn(null,true);
-        });
-      });
-
-    }
-    else if(collectionname === 'baseinfovehicle'){
-      fnsz.push((callbackfn)=>{
-        sftptosrv(collectionname,uploaddir,newdoc.PhotoId,(err,result)=>{
-          debug(err);
-          debug(result);
-          if(!err && !!result){
-            newdoc.PhotoId = result;
-          }
-          callbackfn(null,true);
-        });
-      });
-    }
-    else if(collectionname === 'baseinfodriver'){
-      fnsz.push((callbackfn)=>{
-        sftptosrv(collectionname,uploaddir,newdoc.LicensePhotoId ,(err,result)=>{
-          debug(err);
-          debug(result);
-          if(!err && !!result){
-            newdoc.LicensePhotoId = result;
-          }
-          callbackfn(null,true);
-        });
-      });
-      fnsz.push((callbackfn)=>{
-        sftptosrv(collectionname,uploaddir,newdoc.PhotoId ,(err,result)=>{
-          debug(err);
-          debug(result);
-          if(!err && !!result){
-            newdoc.PhotoId = result;
-          }
-          callbackfn(null,true);
-        });
-      });
-    }
-  }
-
-  if(fnsz.length > 0){
-    async.series(fnsz,(err,result)=>{
-      callbackfn(retdoc);
-    });
-  }
-  else{
-    callbackfn(retdoc);
-  }
-}
 
 const onmessage = (msgobj)=> {
   debug("platformmessage:" + JSON.stringify(msgobj));

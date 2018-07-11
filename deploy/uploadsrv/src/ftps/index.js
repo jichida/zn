@@ -22,23 +22,23 @@ const ftps = new FTPS({
 });
 // Do some amazing things
 debug(`--start connect:${JSON.stringify(config.srvsftp)}`);
-const sftptosrv = (collectionname,localdir,localfilename,callback)=>{
+const sftptosrv = (localdir,localfilename,remotedir,remotefilename,callback)=>{
   debug(`开始连接:${JSON.stringify(config.srvsftp)}`);
   if(!localfilename){
     debug(`无文件可用`);
     callback();
     return;
   }
-  ftps.cd(`${collectionname}/`).addFile(`${localdir}/${localfilename}`).exec((err, res)=> {
-    debug(`${collectionname}/上传文件到tmp目录:${localdir}/${localfilename},err:${!!err}`);
+  ftps.put(`${localdir}/${localfilename}`,`${remotedir}/${remotefilename}`).exec((err, res)=> {
+    debug(`${localdir}/${localfilename}上传文件到tmp目录:${remotedir}/${remotefilename},err:${!!err}`);
     if(!!err){
       debug(err);
       callback(err,res);
       return;
     }
 
-    debug(`===>${config.srvsftp.username}/${collectionname}/${localfilename}`);
-    callback(null,`/${config.srvsftp.username}/${collectionname}/${localfilename}`);
+    debug(`===>${config.srvsftp.username}/${localfilename}`);
+    callback(null,`/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
     // ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
     //   debug(`移动文件到swapfiles目录:${localfilename}`);
     //   if(!err){
