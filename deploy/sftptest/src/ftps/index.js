@@ -39,7 +39,7 @@ const sftptosrv = (localdir,localfilename,remotedir,remotefilename,callback)=>{
     }
 
     debug(`===>/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
-    callback(null,`/${config.srvsftp.username}/${remotedir}/${remotefilename}`);
+    callback(null,`${config.srvsftp.username}/${remotedir}/${remotefilename}`);
     // ftps.mv(`tmp/${localfilename}`, `swapfiles/${localfilename}`).exec((err, res)=> {
     //   debug(`移动文件到swapfiles目录:${localfilename}`);
     //   if(!err){
