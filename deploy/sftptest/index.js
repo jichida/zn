@@ -13,7 +13,7 @@ cd /home/wycftp1079/
 put /app/zn/deploy/dist/uploader/fc1f8e88-f3a5-4a04-817b-1a61b5f77ed2.jpeg
 mv /home/wycftp1079/fc1f8e88-f3a5-4a04-817b-1a61b5f77ed2.jpeg /home/wycftp1079/test.jpeg
 
-
+srvsftp_protocol=sftp remotedir=baseinfodriver remotefilename=0249.jpeg DEBUG=* node index
 put -O /home/wycftp1079/baseinfocompany /app/zn/deploy/dist/uploader/fc1f8e88-f3a5-4a04-817b-1a61b5f77ed2.jpeg
 put /app/zn/deploy/dist/uploader/fc1f8e88-f3a5-4a04-817b-1a61b5f77ed2.jpeg
 */

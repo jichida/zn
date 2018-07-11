@@ -10,6 +10,7 @@
         "platformserverurl":"http://127.0.0.1:8080",
         "logdir":"/app/zn/deploy/dist/log",
         "uploaddir":"/app/zn/deploy/dist/uploader",
+        "srvsftp_protocol":"sftp",
         "srvsftp_host":"vpn.i2u.top",
         "srvsftp_port":22,
         "srvsftp_username":"wycftp1079",

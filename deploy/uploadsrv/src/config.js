@@ -6,6 +6,7 @@ const config = {
   srvsftp:{
       host: process.env.srvsftp_host||'172.16.11.41',
       port: process.env.srvsftp_port||'21',
+      protocol:process.env.srvsftp_protocol||'ftp',
       username: process.env.srvsftp_username||'wycftp1079',
       password: process.env.srvsftp_password||'@N5755OR8c7!'
   },

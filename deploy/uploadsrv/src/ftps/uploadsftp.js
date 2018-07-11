@@ -56,19 +56,32 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
 
   let isfileexists = false;
   let isfileexists2 = false;
+  let extname,extname2;
   let fnsz = [];
   if(collectionname === 'baseinfocompany' ||
   collectionname === 'baseinfovehicle' ||
   collectionname === 'baseinfodriver'){
     if(collectionname === 'baseinfocompany'){
       isfileexists = checkfile_exists(retdoc.LegalPhoto,collectionname,retdoc);
+      if(isfileexists){
+        extname = path.extname(retdoc.LegalPhoto);
+      }
     }
     else if(collectionname === 'baseinfovehicle'){
       isfileexists = checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
+      if(isfileexists){
+        extname = path.extname(retdoc.PhotoId);
+      }
     }
     else if(collectionname === 'baseinfodriver'){
       isfileexists = checkfile_exists(retdoc.LicensePhotoId,collectionname,retdoc);
+      if(isfileexists){
+        extname = path.extname(retdoc.LicensePhotoId);
+      }
       isfileexists2 = checkfile_exists(retdoc.PhotoId,collectionname,retdoc);
+      if(isfileexists2){
+        extname2 = path.extname(retdoc.PhotoId);
+      }
     }
   }
 
@@ -81,7 +94,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
     if(collectionname === 'baseinfocompany' && isfileexists){
       fnsz.push((callbackfn)=>{
         const remotefilename = getremotefilename(collectionname,retdoc,'LegalPhoto');
-        sftptosrv(uploaddir,newdoc.LegalPhoto,collectionname,remotefilename,(err,result)=>{
+        sftptosrv(uploaddir,newdoc.LegalPhoto,`${collectionname}${extname}`,remotefilename,(err,result)=>{
           if(!err && !!result){
             newdoc.LegalPhoto = result;
           }
@@ -93,7 +106,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
     else if(collectionname === 'baseinfovehicle' && isfileexists){
       fnsz.push((callbackfn)=>{
         const remotefilename = getremotefilename(collectionname,retdoc,'PhotoId');
-        sftptosrv(uploaddir,newdoc.PhotoId,collectionname,remotefilename,(err,result)=>{
+        sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${collectionname}${extname}`,(err,result)=>{
           if(!err && !!result){
             newdoc.PhotoId = result;
           }
@@ -105,7 +118,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists){
         fnsz.push((callbackfn)=>{
           const remotefilename = getremotefilename(collectionname,retdoc,'LicensePhotoId');
-          sftptosrv(uploaddir,newdoc.LicensePhotoId,collectionname,remotefilename,(err,result)=>{
+          sftptosrv(uploaddir,newdoc.LicensePhotoId,collectionname,`${collectionname}${extname}`,(err,result)=>{
             debug(err);
             debug(result);
             if(!err && !!result){
@@ -119,7 +132,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists2){
         fnsz.push((callbackfn)=>{
           const remotefilename = getremotefilename(collectionname,retdoc,'PhotoId');
-          sftptosrv(uploaddir,newdoc.PhotoId,collectionname,remotefilename,(err,result)=>{
+          sftptosrv(uploaddir,newdoc.PhotoId,collectionname,`${collectionname}${extname2}`,(err,result)=>{
             debug(err);
             debug(result);
             if(!err && !!result){
