@@ -140,7 +140,24 @@ const UserdriverlistEdit = (props) => {
               <ImageInputUpload  label="驾驶员照片【<--审核必填[接口要求]-->】"  source="Platform_baseInfoDriver.PhotoIdURL" />
               <TextInput label="机动车驾驶证号【审核必填】" source="Platform_baseInfoDriver.LicenseId" />
               <ImageInputUpload  label="机动车驾驶证扫描件【<--审核必填[接口要求]-->】" source="Platform_baseInfoDriver.LicensePhotoIdURL"  validate={[required]}/>
-              <TextInput label="准驾车型" source="Platform_baseInfoDriver.DriverType" />
+              <SelectInput  label="准驾车型"  source="Platform_baseInfoDriver.DriverType" choices={[
+                  { id: 'A1', name: 'A1' },
+                  { id: 'A2', name: 'A2' },
+                  { id: 'A3', name: 'A3' },
+                  { id: 'B1', name: 'B1' },
+                  { id: 'B2', name: 'B2' },
+                  { id: 'C1', name: 'C1' },
+                  { id: 'C2', name: 'C2' },
+                  { id: 'C3', name: 'C3' },
+                  { id: 'C4', name: 'C4' },
+                  { id: 'C5', name: 'C5' },
+                  { id: 'D', name: 'D' },
+                  { id: 'E', name: 'E' },
+                  { id: 'F', name: 'F' },
+                  { id: 'M', name: 'M' },
+                  { id: 'N', name: 'N' },
+                  { id: 'P', name: 'P' },
+              ]} validate={[required]}/>
               <DateInputString label="初次领取驾驶证日期" source="Platform_baseInfoDriver.GetDriverLicenseDate" validate={[required]}/>
               <DateInputString label="驾驶证有效期限起" source="Platform_baseInfoDriver.DriverLicenseOn" validate={[required]}/>
               <DateInputString label="驾驶证有效期限止" source="Platform_baseInfoDriver.DriverLicenseOff" validate={[required]}/>
