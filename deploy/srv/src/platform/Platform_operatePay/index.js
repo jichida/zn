@@ -53,6 +53,7 @@ let PubSub = require('pubsub-js');
 const config = require('../../config.js');
 const dbplatform = require('../../db/modelsplatform.js');
 
+
 exports.insertOperatePay  = (OperatePayDoc,postaction)=> {
 
     OperatePayDoc.CompanyId = config.CompanyId;

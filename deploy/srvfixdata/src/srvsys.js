@@ -19,32 +19,31 @@ const start = (callbackfn)=>{
   winston.getlog().info(`开始执行`);
   debug(`开始执行`)
   let fnsz = [];
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfovehicle(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfodriver(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfovehicleinsurance(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfodrivereducate(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfovehicletotalmile(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startrateddriver(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startaddressfix(callbackfn);
-  // });
-  // fnsz.push((callbackfn)=>{
-  //   startbaseinfodriverapp(callbackfn);
-  // });
-  //
-
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicle(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodriver(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicleinsurance(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodrivereducate(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfovehicletotalmile(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startrateddriver(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startaddressfix(callbackfn);
+  });
+  fnsz.push((callbackfn)=>{
+    startbaseinfodriverapp(callbackfn);
+  });
+  
 
   fnsz.push((callbackfn)=>{
     fix_triporders(callbackfn);

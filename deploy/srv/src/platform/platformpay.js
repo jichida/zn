@@ -115,7 +115,22 @@ const notifyplatform_orderpaied = (order)=>{
   // OrderMatchTime:String,	//	否	数字型	F14	订单完成时间	YYYY MMDDhhmm ss
   // InvoiceStatus:String,		//	 是	字符型	 V32	发票状态	数据取值有效范围 :0:未开票1.已开票	2 :未知
   //
+  // DriverName:_.get(orderinfo,'driverinfo.DriverName',''),
+  // VehicleNo:_.get(orderinfo,'driverinfo.VehicleNo',''),
+  // DepArea:_.get(orderinfo,'srcaddress.addressname',''),
+  // DestArea:_.get(orderinfo,'dstaddress.addressname',''),
+  // BookModel:_.get(orderinfo,'driverinfo.Model',''),
+  // Model:_.get(orderinfo,'driverinfo.Model',''),
+  // LineName:_.get(orderinfo,'paytype',''),
+  // LinePrice:_.get(orderinfo,'realprice',0),
+
   let updateddata = {
+    DepArea:_.get(order,'srcaddress.addressname',''),
+    DestArea:_.get(order,'dstaddress.addressname',''),
+    Model:_.get(order,'driverinfo.Model',''),
+    LineName:_.get(order,'paytype',''),
+    LinePrice:_.get(order,'realprice',0),
+
     BookModel:_.get(order,'driverinfo.Model',''),
     LicenseId:_.get(order,'driverinfo.LicenseId',''),
     DriverName:_.get(order,'driverinfo.DriverName',''),

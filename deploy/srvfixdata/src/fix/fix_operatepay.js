@@ -51,7 +51,7 @@ const fix_operatepay = (callbackfn)=>{
               BookModel:_.get(orderinfo,'driverinfo.Model',''),
               Model:_.get(orderinfo,'driverinfo.Model',''),
               LineName:_.get(orderinfo,'paytype',''),
-              PosName:_.get(orderinfo,'realprice',0),
+              LinePrice:_.get(orderinfo,'realprice',0),
             }
             const dbModel = DBPlatformModels.Platform_operatePayModel;
             dbModel.update({_id},{$set:updatedata},(err,result)=>{

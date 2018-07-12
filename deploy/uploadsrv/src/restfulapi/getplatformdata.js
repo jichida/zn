@@ -26,7 +26,7 @@ const gettimefromstring = (timestring)=>{
 }
 const getdatefromstring = (timestring)=>{
   try{
-    // debug(`getdatefromstring-->${timestring}`);
+    debug(`getdatefromstring-->${timestring}`);
     if(!!timestring){
       //is expection
       let curtime = moment(timestring).format('YYYYMMDD');
@@ -58,12 +58,31 @@ const getFaretype = (faretype)=>{
 const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
   let retdoc = doc;
   retdoc = _.omit(retdoc,['_id','__v','isuploaded']);
-  // console.log(`retdoc==>${JSON.stringify(retdoc)}`);
+  // debug(`retdoc==>${JSON.stringify(retdoc)}`);
   // console.log(`actionname==>${actionname}`);
-  // console.log(`collectionname==>${collectionname}`);
+  debug(`collectionname==>${collectionname}`);
 
   if(actionname === 'save' || actionname === 'findByIdAndUpdate' || actionname === 'upload'){
     retdoc.CompanyId = config.CompanyId;
+
+    if(collectionname === 'baseinfocompany' ||
+      collectionname === 'baseinfovehicle' ||
+      collectionname === 'baseinfodriver'){
+        //conver URL->file
+        let newdoc = _.clone(retdoc.toJSON());
+        if(collectionname === 'baseinfocompany'){
+          newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
+        }
+        else if(collectionname === 'baseinfovehicle'){
+          newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
+        }
+        else if(collectionname === 'baseinfodriver'){
+          newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
+        }
+        retdoc = newdoc;
+      }
+
+
     if(collectionname === 'baseinfocompany'){
       retdoc.UpdateTime =  gettimefromstring(retdoc.UpdateTime);
       // if(actionname !== 'upload'){
@@ -165,8 +184,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
 
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
-        callbackfn();
-        return;
+        debug(`${collectionname}FareType 必须`);
+        winston.getlog().error(`${collectionname}FareType 必须`);
       }
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
@@ -276,15 +295,15 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         retdoc.CheckState = '0';
       }
 
-      if(!retdoc['PhotoId']){
-        retdoc = _.omit(retdoc,['PhotoId']);
-      }
+      // if(!retdoc['PhotoId']){
+      //   retdoc = _.omit(retdoc,['PhotoId']);
+      // }
 
       retdoc.FareType = getFaretype(retdoc.FareType);
       retdoc.Address = getAddress(retdoc.Address);
       if(!retdoc.FareType ){
-        callbackfn();
-        return;
+        debug(`${collectionname}FareType 必须`);
+        winston.getlog().error(`${collectionname}FareType 必须`);
       }
       // if(actionname !== 'upload'){
       //   retdoc.Flag = actionname === 'save' ?1:2;//1新增，2更新，3删除
@@ -416,12 +435,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
           retdoc['GetDriverLicenseDate'] = getdatefromstring('2018-03-24');
         }
 
-        if(!retdoc['LicensePhotoId']){
-          retdoc = _.omit(retdoc,['LicensePhotoId']);
-        }
-        if(!retdoc['PhotoId']){
-          retdoc = _.omit(retdoc,['PhotoId']);
-        }
+        // if(!retdoc['LicensePhotoId']){
+        //   retdoc = _.omit(retdoc,['LicensePhotoId']);
+        // }
+        // if(!retdoc['PhotoId']){
+        //   retdoc = _.omit(retdoc,['PhotoId']);
+        // }
 
         // 数据量应超过200条
         // address应与4.1相对应
@@ -546,9 +565,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc.Address = getAddress(retdoc.Address);
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
-        winston.getlog().error(`${collectionname}-->retdoc.FareType没有-->${JSON.stringify(retdoc)}`);
-        callbackfn();
-        return;
+        debug(`${collectionname}FareType 必须`);
+        winston.getlog().error(`${collectionname}FareType 必须`);
       }
       //       A.5.1   address应与4.1相对应
       //     PassengerNote字段请填写
@@ -637,9 +655,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       retdoc = _.omit(retdoc,['WaitMile','WaitTime']);
       retdoc.FareType = getFaretype(retdoc.FareType);
       if(!retdoc.FareType ){
-        winston.getlog().error(`${collectionname}-->retdoc.FareType没有-->${JSON.stringify(retdoc)}`);
-        callbackfn();
-        return;
+        debug(`${collectionname}FareType 必须`);
+        winston.getlog().error(`${collectionname}FareType 必须`);
       }
         //       A.6.3  VehicleNo 应使用注册公司当地车牌号码
         // FareType请与A4.6相对应
@@ -704,9 +721,9 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
         callbackfn();
         return;
       }
-      retdoc = _.omit(retdoc,['WaitTime',
-    'WaitMile','Price','CashPrice','LinePrice','PosName','PosPrice','BenfitPrice',
-    'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
+    //   retdoc = _.omit(retdoc,['WaitTime',
+    // 'WaitMile','Price','CashPrice','LinePrice','PosName','PosPrice','BenfitPrice',
+    // 'BookTip','PassengerTip','PeakUpPrice','NightUpPrice','PayTime']);
 
         // A 6.5   OnArea应与4.1的Address相对应
         //     DriverName，DepArea，DestArea，BookModel，Model，LineName，PosName字段请填写
@@ -786,8 +803,8 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage',
-      'WarnStatus','VehStatus','BizStatus']);
+      // retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Mileage',
+      // 'WarnStatus','VehStatus','BizStatus']);
       retdoc.Encrypt = 2;
       if(!retdoc['DriverRegionCode']){
         debug(`${collectionname}-->字段DriverRegionCode必填,但目前没有,车牌号:${retdoc.VehicleNo},定位时间:${retdoc.PositionTime}`);
@@ -810,7 +827,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-      retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
+      // retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
       retdoc.Encrypt = 2;
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
       retdoc.VehicleRegionCode = getAddress(retdoc.VehicleRegionCode);
