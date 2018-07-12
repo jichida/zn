@@ -79,6 +79,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists){
         extname = path.extname(filename);
       }
+      debug(`${collectionname}->${filename}->${isfileexists}->${retdoc.LegalPhotoURL}`);
     }
     else if(collectionname === 'baseinfovehicle'){
       const filename = converturltofilename(retdoc.PhotoIdURL);
@@ -86,6 +87,7 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists){
         extname = path.extname(filename);
       }
+      debug(`${collectionname}->${filename}->${isfileexists}->${retdoc.PhotoIdURL}`);
     }
     else if(collectionname === 'baseinfodriver'){
       const filename1 = converturltofilename(retdoc.LicensePhotoIdURL);
@@ -98,6 +100,8 @@ const uploadsftp = (collectionname,retdoc,callbackfn)=>{
       if(isfileexists2){
         extname2 = path.extname(filename2);
       }
+      debug(`${collectionname}->${filename1}->${isfileexists}->${retdoc.LicensePhotoIdURL}`);
+      debug(`${collectionname}->${filename2}->${isfileexists2}->${retdoc.PhotoIdURL}`);
     }
   }
 
