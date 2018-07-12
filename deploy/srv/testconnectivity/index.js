@@ -11,7 +11,7 @@ _.map(dbslist,(schmodel)=>{
 });
 
 const platformmessage_upload_callback = (msg)=>{
-  console.log(`upload callback=====>platformmessage_upload_callback==>${JSON.stringify(msg)}`);
+  // console.log(`upload callback=====>platformmessage_upload_callback==>${JSON.stringify(msg)}`);
   const schmodel = dbslistmap[msg.collectionname];
   const idstring = msg._id;
   const idstringlist = msg._ids;

@@ -106,23 +106,23 @@ const postaction_getnewdoc = (actionname,collectionname,doc)=>{
       retdoc = _.omit(newdoc,['Platform_baseInfoVehicleId','__v']);
     }
 
-    if(collectionname === 'baseinfocompany' ||
-    collectionname === 'baseinfovehicle' ||
-    collectionname === 'baseinfodriver'){
-      //conver URL->file
-      let newdoc = _.clone(retdoc.toJSON());
-      if(collectionname === 'baseinfocompany'){
-        newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
-      }
-      else if(collectionname === 'baseinfovehicle'){
-        newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
-      }
-      else if(collectionname === 'baseinfodriver'){
-        newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
-      }
-
-      retdoc = newdoc;
-    }
+    // if(collectionname === 'baseinfocompany' ||
+    // collectionname === 'baseinfovehicle' ||
+    // collectionname === 'baseinfodriver'){
+    //   //conver URL->file
+    //   let newdoc = _.clone(retdoc.toJSON());
+    //   if(collectionname === 'baseinfocompany'){
+    //     newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
+    //   }
+    //   else if(collectionname === 'baseinfovehicle'){
+    //     newdoc = _.omit(newdoc,['PhotoIdURL','__v']);
+    //   }
+    //   else if(collectionname === 'baseinfodriver'){
+    //     newdoc = _.omit(newdoc,['LicensePhotoIdURL','PhotoIdURL','__v']);
+    //   }
+    //
+    //   retdoc = newdoc;
+    // }
   }
 
   return _.clone(retdoc);

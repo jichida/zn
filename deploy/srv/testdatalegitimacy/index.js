@@ -106,7 +106,7 @@ const starttest_datalegitimacy = ({perpage},callbackfn)=>{
             });
           }
         }
-        console.log(`listdata:${listdata.length}`);
+        // console.log(`listdata:${listdata.length}`);
         callback(err,{
           collectionname:schmodel.collectionname,
           listdata
