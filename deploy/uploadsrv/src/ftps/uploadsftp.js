@@ -40,20 +40,20 @@ const getremotefilename = (collectionname,retdoc,id)=>{
   collectionname === 'baseinfodriver'){
     if(collectionname === 'baseinfocompany'){
       if(id === 'LegalPhotoURL'){
-        remotefilename = `${localfilename}${retdoc['CompanyId']}`;
+        remotefilename = `${retdoc['CompanyId']}`;
       }
     }
     else if(collectionname === 'baseinfovehicle'){
       if(id === 'PhotoIdURL'){
-        remotefilename = `${localfilename}${retdoc['VehicleNo']}`;
+        remotefilename = `${retdoc['VehicleNo']}`;
       }
     }
     else if(collectionname === 'baseinfodriver'){
       if(id === 'LicensePhotoIdURL'){
-        remotefilename = `${localfilename}${retdoc['LicenseId']}`;
+        remotefilename = `${retdoc['LicenseId']}`;
       }
       if(id === 'PhotoIdURL'){
-        remotefilename = `${localfilename}${retdoc['DriverName']}`;
+        remotefilename = `${retdoc['DriverName']}${retdoc['DriverPhone']}`;
       }
     }
   }
