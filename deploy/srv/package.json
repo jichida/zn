@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=appsrv:test srvredis_host=api.nuistiot.com issmsdebug=true node --inspect index.js",
+    "start": "DEBUG=appsrv:test MONGO_URL=mongodb://yunqi.com28.cn:27018/zhongnandb srvredis_host=afn.i2u.top issmsdebug=true node index.js",
     "test": "mocha"
   },
   "author": "",

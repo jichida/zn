@@ -20,6 +20,9 @@ class Page extends Component{
           query:{
             _id:orderinfo._id,
             paystatus: { $ne: '已支付' }
+          },
+          payload:{
+            realprice:orderinfo.orderprice
           }
         }));
       }

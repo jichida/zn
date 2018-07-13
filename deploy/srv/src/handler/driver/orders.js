@@ -6,6 +6,7 @@ const winston = require('../../log/log.js');
 const notifymessage_all = require('../common/notifymessage.js');
 const moment = require('moment');
 const platformpay = require('../../platform/platformpay');
+const _ = require('lodash');
 
 let getorderdetail_command =(socket,actiondata,ctx,commandstring)=>{
   let isvaild = false;
@@ -60,6 +61,7 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
       paytype: "cash",
       orderstatus : '已支付',
       paystatus: '已支付',
+      realprice : _.get(actiondata,'payload.realprice',0),
       pay_at:moment().format('YYYY-MM-DD HH:mm:ss'),
   };
   //payload.realprice = payload.realprice;

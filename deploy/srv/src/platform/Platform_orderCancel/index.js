@@ -62,7 +62,7 @@ exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode='1'},postact
     };
     // utilarea.getarea({latlng:triporder.srcaddress.location},(address)=>{
     //     if(!!address){
-            orderCancelDoc.Address = address.adcode;
+            // orderCancelDoc.Address = address.adcode;
             let eModel = dbplatform.Platform_orderCancelModel;
             let entity = new eModel(orderCancelDoc);
             entity.save((err,result)=> {
