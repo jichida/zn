@@ -69,7 +69,7 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       collectionname === 'baseinfovehicle' ||
       collectionname === 'baseinfodriver'){
         //conver URL->file
-        let newdoc = _.clone(retdoc.toJSON());
+        let newdoc = _.clone(retdoc);
         if(collectionname === 'baseinfocompany'){
           newdoc = _.omit(newdoc,['LegalPhotoURL','__v']);
         }
@@ -463,6 +463,13 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
 
       if (typeof retdoc.CourseDate === 'string') {
         retdoc.CourseDate = getdatefromstring(retdoc.CourseDate);
+      }
+
+      if (typeof retdoc.StartTime === 'string') {
+        retdoc.StartTime = getdatefromstring(retdoc.StartTime);
+      }
+      if (typeof retdoc.StopTime === 'string') {
+        retdoc.StopTime = getdatefromstring(retdoc.StopTime);
       }
       retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     //   A4.11   数据量应超过200条
