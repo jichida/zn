@@ -466,10 +466,12 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       }
 
       if (typeof retdoc.StartTime === 'string') {
-        retdoc.StartTime = getdatefromstring(retdoc.StartTime);
+        const StartTime = getdatefromstring(retdoc.StartTime);
+        retdoc.StartTime = `${StartTime}`;
       }
       if (typeof retdoc.StopTime === 'string') {
-        retdoc.StopTime = getdatefromstring(retdoc.StopTime);
+        const StopTime = getdatefromstring(retdoc.StopTime);
+        retdoc.StopTime = `${StopTime}`;
       }
       retdoc.UpdateTime = gettimefromstring(retdoc.UpdateTime);
     //   A4.11   数据量应超过200条
@@ -834,11 +836,27 @@ const getplatformdata = (actionname,collectionname,doc,callbackfn)=>{
       if(!!retdoc.Latitude){
         retdoc.Latitude = getgeonumberfloat6(retdoc.Latitude);
       }
-      // retdoc = _.omit(retdoc,['Speed','Direction','Elevation','Encrypt','BizStatus']);
+      retdoc = _.omit(retdoc,['Speed','Direction','Elevation']);//,'Encrypt','BizStatus'
       retdoc.Encrypt = 2;
       retdoc.PositionTime =  moment(retdoc.PositionTime).unix();
+
+      if(!retdoc.VehicleRegionCode){
+        debug(`${collectionname}-->VehicleRegionCode必填`);
+        winston.getlog().error(`${collectionname}-->VehicleRegionCode必填`);
+      }
       retdoc.VehicleRegionCode = getAddress(retdoc.VehicleRegionCode);
 
+      if(_.findIndex([1,2,3,4],(o)=>{return o === retdoc.BizStatus}) === -1){
+        //营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
+        debug(`${collectionname}-->字段BizStatus非法,但目前是:【${retdoc.BizStatus}】`);
+        winston.getlog().error(`${collectionname}-->字段BizStatus非法,但目前是:【${retdoc.BizStatus}】`);
+        if(retdoc.OrderId !== '0'){
+          retdoc.BizStatus = 1;
+        }
+        else{
+          retdoc.BizStatus = 3;
+        }
+      }
     }
     else if(collectionname === 'ratedpassenger'){
       if (typeof retdoc.EvaluateTime === 'string') {
