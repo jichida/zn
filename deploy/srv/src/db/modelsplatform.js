@@ -106,7 +106,7 @@ let Platform_baseInfoCompanyPermitSchema = new Schema({
   StartDate:String,// StartDate	是	数字型	F8	有效期起	YYYYMMDD
   StopDate:String,// StopDate	是	数字型	F8	有效期止	YYYYMMDD
   CertifyDate:String,// CertifyDate	是	数字型	F8	初次发证日期	YYYYMMDD
-  State:{ type: String, default: '0' },// State	是	数字型 状态
+  State:{ type: String, default: '1' },//State  证照状态  1：有效  2：无效
   Flag:{ type: Number, default: 1 },// Flag	是	数字型 操作标
   UpdateTime:String,// UpdateTime	是	数字型	F14	更新时间	网约车平台完成数据更新 l
 

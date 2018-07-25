@@ -45,6 +45,10 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
             <DateInputString label="有效期止" source="StopDate" validate={[required]} />
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
+            <SelectInput  label="证照状态"  source="State" choices={[
+                { id: '1', name: '有效' },
+                { id: '2', name: '无效' },
+            ]} validate={[required]}/>
         </SimpleForm>
     </Create>
 );
@@ -60,7 +64,10 @@ const BaseInfoCompanyPermitTitle = ({ record }) => <span>经营许可信息</spa
             <DateInputString label="有效期起" source="StartDate" validate={[required]}/>
             <DateInputString label="有效期止[*StartDate,StopDate 不能相同]" source="StopDate" validate={[required]}/>
             <DateInputString label="初次发证日期" source="CertifyDate" validate={[required]}/>
-            <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
+            <SelectInput  label="证照状态"  source="State" choices={[
+                { id: '1', name: '有效' },
+                { id: '2', name: '无效' },
+            ]} validate={[required]}/>
             <TextField label="操作标识" source="Flag"  />
             <TextField label="数据更新时间" source="UpdateTime"  />
         </SimpleForm>
