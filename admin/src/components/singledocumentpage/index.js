@@ -21,6 +21,7 @@ class Page extends Component {
     renderEdit =()=>{
         const {record,isLoading,Edit,resource,location,...rest} = this.props;
         const defaultProps = {
+          actions:null,
           data: {...record,id:record._id},
           hasDelete: false,
           id: record._id,

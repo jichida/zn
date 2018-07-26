@@ -22,7 +22,6 @@ export const fetchJson = (url, options = {}) => {
                 json = JSON.parse(body);
             } catch (e) {
                 // not json, no big deal
-                console.log(e)
             }
             if (status < 200 || status >= 300) {
                 return Promise.reject(new Error((json && json.message) || statusText));

@@ -75,7 +75,6 @@ export default (apiUrl, httpClient = fetchJson) => {
         case GET_ONE:
         case CREATE:
         case DELETE:
-            console.log(json)
             json.id = json._id;
             delete json._id;
             // console.log("UPDATE| json data:" + JSON.stringify( {data:json}));

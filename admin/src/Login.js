@@ -11,6 +11,7 @@ import Avatar from 'material-ui/Avatar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import LockIcon from 'material-ui/svg-icons/action/lock-outline';
+import Config from './env/config';
 import { cyan500, pinkA200 } from 'material-ui/styles/colors';
 
 import { Notification, translate, userLogin as userLoginAction } from 'admin-on-rest';
@@ -102,6 +103,9 @@ class Login extends Component {
                             <CardActions>
                                 <RaisedButton type="submit" primary disabled={submitting} label={translate('aor.auth.sign_in')} fullWidth />
                             </CardActions>
+
+
+                            <p style={{textAlign:"center",padding:"10px 0;"}}>版本号:{Config.version}</p>
                         </form>
                     </Card>
                     <Notification />

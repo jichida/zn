@@ -13,7 +13,7 @@ export default (type, params) => {
                 }
                 return response.data;
             })
-            .then(({ loginsuccess,token }) => {
+                .then(({ loginsuccess,token,err }) => {
                 console.log(`loginsuccess:${loginsuccess},token:${token}`);
                 if(loginsuccess){
                     localStorage.setItem('admintoken', token);
@@ -23,7 +23,7 @@ export default (type, params) => {
                 else{
                     localStorage.removeItem('admintoken');
                     localStorage.removeItem('usertype');
-                      reject('用户名或密码错误');
+                        reject(`${err}`);
                       return;
                 }
                   resolve();
@@ -32,6 +32,7 @@ export default (type, params) => {
       };
 
       return checkauth();
+
     }
     if (type === AUTH_ERROR) {
       const status  = params.status;
