@@ -31,7 +31,13 @@ const RatedDriverCreate = (props) => (
              <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                 <SelectInput optionText={renderDriverOptionText} />
             </ReferenceInput>
-             <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>
+            <SelectInput label="服务质量信誉等级" source="Level" choices={[
+                { id: 1, name: '1分' },
+                { id: 2, name: '2分' },
+                { id: 3, name: '3分' },
+                { id: 4, name: '4分' },
+                { id: 5, name: '5分' },
+            ]} />
              <DateInputString label="服务质量信誉考核日"  source="TestDate"  validate={[required]}/>
              <TextInputEx label="服务质量信誉考核机构"  source="TestDepartment"  validate={[required]}/>
            </SimpleForm>
@@ -49,7 +55,13 @@ const RatedDriverEdit = (props) => {
             <ReferenceInput label="平台关联司机" source="Platform_baseInfoDriverId" reference="baseinfodriver" allowEmpty perPage={200}>
                <SelectInput optionText={renderDriverOptionText} />
            </ReferenceInput>
-            <NumberInputEx label="服务质量信誉等级[1~5]"  source="Level"  validate={[required]}/>
+              <SelectInput label="服务质量信誉等级" source="Level" choices={[
+                  { id: 1, name: '1分' },
+                  { id: 2, name: '2分' },
+                  { id: 3, name: '3分' },
+                  { id: 4, name: '4分' },
+                  { id: 5, name: '5分' },
+              ]} />
             <DateInputString label="服务质量信誉考核日"  source="TestDate"  validate={[required]}/>
             <TextInputEx label="服务质量信誉考核机构"  source="TestDepartment"  validate={[required]}/>
             <TextField label="数据更新时间" source="UpdateTime"  />

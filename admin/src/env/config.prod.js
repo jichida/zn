@@ -3,5 +3,5 @@ export default {
     restserverurl:`${serverurl}/adminapi`,
     adminauthserverurl:`${serverurl}/adminauth`,
     serverurl: serverurl//'http://localhost:3004/admin',
-     version: '1.0.1'
+     version: '1.0.2'
 };
