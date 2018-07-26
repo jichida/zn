@@ -9,6 +9,7 @@ const platformaction = require('./action.js');
 const preaction = platformaction.preaction;
 const postaction = platformaction.postaction;
 const pwd = require('../util/pwd.js');
+const debug = require('debug')('srv:admincrud');
 
 let startmodule = (app)=>{
 
@@ -73,7 +74,7 @@ for(let keyname in dbs){
     let urlname = '/adminapi' + schmodel.urlname;
     app.post(urlname,middlewareauth,(req,res)=>{
       let queryparam = req.body;
-      ////console.log("queryparam=>" + JSON.stringify(queryparam));
+      debug("queryparam=>" + JSON.stringify(queryparam));
 
       let query = {};
       let sort = {};
@@ -237,8 +238,9 @@ for(let keyname in dbs){
 
         }
         else if(queryparam.type === DELETE){
-          let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
-          dbModel.findOneAndRemove(preupdateddata.query, (err, result)=> {
+            let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
+            debug(`--->${queryparam.params.id}`);
+            dbModel.findOneAndRemove({ _id: queryparam.params.id }, (err, result)=> {
 
               postaction(actionname,schmodel.collectionname,result,(err,resultnew)=>{
                   ////console.log("DELETE result=>" + JSON.stringify(result));
